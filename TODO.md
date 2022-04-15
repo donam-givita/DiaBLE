@@ -3,8 +3,6 @@ FIXME
 
 * Libre 3:
   - Gen2 `.getSessionInfo` outpassed by new certificate data and ECDH ephemeral keys (whiteCryption's Secure Key Box)
-* Swift 5.6:
-  - "Non-sendable type" warnings
 * iOS 15:
   - *"NFC scan success sheet displayed when NFC scan time out"* (https://developer.apple.com/forums/thread/687264)
 * Xcode 13:
