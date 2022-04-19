@@ -69,8 +69,8 @@ struct Monitor: View {
                             Text(app.oopTrend.symbol).font(.system(size: 28)).bold()
                                 .frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 10).padding(.bottom, -18)
                         }
-                    }.foregroundColor(app.currentGlucose > 0 && (app.currentGlucose > Int(settings.alarmHigh) && app.trendDelta > 0 || app.currentGlucose < Int(settings.alarmLow)) && app.trendDelta < 0 ?
-                                        .red : .blue)
+                    }.foregroundColor(app.currentGlucose > 0 && ((app.currentGlucose > Int(settings.alarmHigh) && app.trendDelta > 0) || (app.currentGlucose < Int(settings.alarmLow) && app.trendDelta < 0)) ?
+                        .red : .blue)
 
                 }
 
@@ -85,16 +85,16 @@ struct Monitor: View {
                     if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
                         Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                              "\(readingCountdown) s" : "")
-                            .fixedSize()
-                            .font(Font.footnote.monospacedDigit()).foregroundColor(.orange)
-                            .onReceive(timer) { _ in
-                                // workaround: watchOS fails converting the interval to an Int32
-                                if app.lastConnectionDate == Date.distantPast {
-                                    readingCountdown = 0
-                                } else {
-                                    readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
-                                }
+                        .fixedSize()
+                        .font(Font.footnote.monospacedDigit()).foregroundColor(.orange)
+                        .onReceive(timer) { _ in
+                            // workaround: watchOS fails converting the interval to an Int32
+                            if app.lastConnectionDate == Date.distantPast {
+                                readingCountdown = 0
+                            } else {
+                                readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                             }
+                        }
                     }
                 }
             }

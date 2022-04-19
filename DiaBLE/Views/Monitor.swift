@@ -71,8 +71,8 @@ struct Monitor: View {
                                     Text(app.oopTrend.symbol).font(.largeTitle).bold()
                                         .frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 12)
                                 }
-                            }.foregroundColor(app.currentGlucose > 0 && (app.currentGlucose > Int(settings.alarmHigh) && app.trendDelta > 0 || app.currentGlucose < Int(settings.alarmLow)) && app.trendDelta < 0 ?
-                                                .red : .blue)
+                            }.foregroundColor(app.currentGlucose > 0 && ((app.currentGlucose > Int(settings.alarmHigh) && app.trendDelta > 0) || (app.currentGlucose < Int(settings.alarmLow) && app.trendDelta < 0)) ?
+                                .red : .blue)
 
                         }
 
@@ -87,11 +87,11 @@ struct Monitor: View {
                             if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
                                 Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                                      "\(readingCountdown) s" : "")
-                                    .fixedSize()
-                                    .font(Font.callout.monospacedDigit()).foregroundColor(.orange)
-                                    .onReceive(timer) { _ in
-                                        readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
-                                    }
+                                .fixedSize()
+                                .font(Font.callout.monospacedDigit()).foregroundColor(.orange)
+                                .onReceive(timer) { _ in
+                                    readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
+                                }
                             }
                         }
                     }
