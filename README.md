@@ -14,8 +14,8 @@ Since the latest **FreeStyle Libre glucose sensors** are **B**luetooth **L**ow *
 Still too early to decide the final design (but I really like already the evil logo 😈), here there are some recent screenshots I tweeted:
 
 <br><br>
-<p align="center"><img src="https://pbs.twimg.com/media/FQtJAPAX0AMn8Co?format=jpg&name=large" width="33%" align="middle" /></p>
-<h4 align ="center">Sniffing the Trident... 3:-)</h4>
+<p align="center"><img src="https://pbs.twimg.com/media/FQtJAPAX0AMn8Co?format=jpg&name=large" width="25%" align="middle" />>&nbsp;&nbsp;<img src="https://pbs.twimg.com/media/FQxk9BxWYAcoj_o?format=png&name=small" width="12.5%" align="middle" /></p>
+<h4 align ="center">Sniffing the Trident... 3:-)<br>Libre 1 + BubBLE: unforgettaBLE past</h4>
 <br><br>
 
 
