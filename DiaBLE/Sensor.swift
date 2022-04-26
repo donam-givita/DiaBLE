@@ -63,7 +63,7 @@ enum SensorRegion: Int, CustomStringConvertible {
     case european           = 1
     case usa                = 2
     case australianCanadian = 4
-    case eastern            = 8
+    case easternROW         = 8
 
     var description: String {
         switch self {
@@ -71,7 +71,7 @@ enum SensorRegion: Int, CustomStringConvertible {
         case .european:           return "European"
         case .usa:                return "USA"
         case .australianCanadian: return "Australian / Canadian"
-        case .eastern:            return "Eastern"
+        case .easternROW:         return "Eastern / Rest of World"
         }
     }
 }
