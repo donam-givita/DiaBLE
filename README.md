@@ -16,6 +16,9 @@ Still too early to decide the final design (but I really like already the evil l
 <br><br>
 <p align="center"><img src="https://pbs.twimg.com/media/FQtJAPAX0AMn8Co?format=jpg&name=large" width="33.3%" align="middle" /> &nbsp; &nbsp; <img src="https://pbs.twimg.com/media/FQxk9BxWYAcoj_o?format=png&name=small" width="16.7%" align="middle" /></p>
 <h4 align ="center">Sniffing the Trident... 3:-) &nbsp; - &nbsp; Libre 1 + BubBLE: unforgettaBLE past</h4>
+<br><<br>
+<p align="center"><img src="https://pbs.twimg.com/media/FRfbmA5WUAYiNXr?format=jpg&name=medium" /></p>
+<h4 align ="center">Three-pane preferaBLE Mac Playgrounds 4.1</h4>
 <br><br>
 
 
