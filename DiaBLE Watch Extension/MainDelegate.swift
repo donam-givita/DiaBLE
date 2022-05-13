@@ -73,6 +73,12 @@ public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
         // features currently in beta testing
         if settings.debugLevel > 1 {
             // app.sensor = LibrePro.test(main: self)
+            let libreLinkUp = LibreLinkUp(main: self)
+            settings.libreLinkUpEmail = "xxx@yyy.zzz"
+            settings.libreLinkUpPassword = "XXXXXX"
+            Task {
+                try await libreLinkUp.login()
+            }
         }
 
     }

@@ -48,7 +48,7 @@ class Nightscout: NSObject, Logging {
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         URLSession.shared.dataTask(with: request) { [self] data, response, error in
             if let data = data {
-                debugLog("Nightscout: response: \(data.string)")
+                debugLog("Nightscout: response data: \(data.string)")
                 if let json = try? JSONSerialization.jsonObject(with: data) {
                     if let array = json as? [Any] {
                         DispatchQueue.main.async {
@@ -72,7 +72,7 @@ class Nightscout: NSObject, Logging {
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
-            debugLog("Nightscout: response: \(data.string)")
+            debugLog("Nightscout: response data: \(data.string)")
             do {
                 let json = try JSONSerialization.jsonObject(with: data)
                 if let array = json as? [Any] {
@@ -168,7 +168,7 @@ class Nightscout: NSObject, Logging {
         do {
             debugLog("Nightscout: posting to \(request.url!.absoluteString) \(jsonData!.string)")
             let (data, response) = try await URLSession.shared.data(for: request)
-            debugLog("Nightscout: response: \(data.string)")
+            debugLog("Nightscout: response data: \(data.string)")
             if let response = response as? HTTPURLResponse {
                 let status = response.statusCode
                 if status == 401 {

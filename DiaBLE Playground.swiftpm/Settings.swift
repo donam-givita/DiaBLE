@@ -26,6 +26,9 @@ class Settings: ObservableObject {
         "nightscoutSite": "dashboard.heroku.com/apps",
         "nightscoutToken": "",
 
+        "libreLinkUpEmail": "",
+        "libreLinkUpPassword": "",
+
         "activeSensorSerial": "",
         "activeSensorAddress": Data(),
         "activeSensorInitialPatchInfo": Data(),
@@ -130,6 +133,14 @@ class Settings: ObservableObject {
 
     @Published var nightscoutToken: String = UserDefaults.standard.string(forKey: "nightscoutToken")! {
         didSet { UserDefaults.standard.set(self.nightscoutToken, forKey: "nightscoutToken") }
+    }
+
+    @Published var libreLinkUpEmail: String = UserDefaults.standard.string(forKey: "libreLinkUpEmail")! {
+        didSet { UserDefaults.standard.set(self.libreLinkUpEmail, forKey: "libreLinkUpEmail") }
+    }
+
+    @Published var libreLinkUpPassword: String = UserDefaults.standard.string(forKey: "libreLinkUpPassword")! {
+        didSet { UserDefaults.standard.set(self.libreLinkUpPassword, forKey: "libreLinkUpPassword") }
     }
 
     @Published var activeSensorSerial: String = UserDefaults.standard.string(forKey: "activeSensorSerial")! {
