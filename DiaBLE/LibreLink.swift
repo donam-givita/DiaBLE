@@ -20,6 +20,7 @@ enum LibreLinkUpError: LocalizedError {
 class LibreLinkUp: Logging {
 
     var main: MainDelegate!
+    var tocken: String = ""
 
     let siteURL = "https://api-eu.libreview.io"
     let loginEndpoint = "llu/auth/login"
@@ -68,8 +69,14 @@ class LibreLinkUp: Logging {
             }
             do {
                 let json = try JSONSerialization.jsonObject(with: data)
-                if let array = json as? [Any] {
-                    return (array, response)
+                if let dict = json as? [String: Any] {
+                    if let data = dict["data"] as? [String: Any] {
+                        if let authTicket = data["authTicket"] as? [String: Any] {
+                            tocken = authTicket["token"] as? String ?? ""
+                            log("LibreLinkUp authTicket: \(authTicket)")
+                        }
+                    }
+                    return (data, response)
                 }
             } catch {
                 log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
