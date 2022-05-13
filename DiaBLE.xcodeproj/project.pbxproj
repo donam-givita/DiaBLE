@@ -95,6 +95,8 @@
 		C5E9C7612444969800D52B32 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5908FB72428E6B600CF6C83 /* alarm_signal_loss.mp3 */; };
 		C5E9C763244496C800D52B32 /* MainDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E9C762244496C800D52B32 /* MainDelegate.swift */; };
 		C5E9C7672444A13600D52B32 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E9C7662444A13600D52B32 /* Console.swift */; };
+		C5F06F7B282E516200CC1297 /* LibreLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F06F7A282E516200CC1297 /* LibreLink.swift */; };
+		C5F06F7C282E516200CC1297 /* LibreLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F06F7A282E516200CC1297 /* LibreLink.swift */; };
 		C5F329D4244998230053A8FB /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53C76EC23D9AFD700B59A98 /* Nightscout.swift */; };
 		C5FB2EF323A2794D0046F4F9 /* MainDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB2EF223A2794D0046F4F9 /* MainDelegate.swift */; };
 		C5FE8EA02752732E00372495 /* Legacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE8E9F2752732E00372495 /* Legacy.swift */; };
@@ -212,6 +214,7 @@
 		C5E7EDD2275E2382001473C7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.3.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		C5E9C762244496C800D52B32 /* MainDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDelegate.swift; sourceTree = "<group>"; };
 		C5E9C7662444A13600D52B32 /* Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
+		C5F06F7A282E516200CC1297 /* LibreLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibreLink.swift; sourceTree = "<group>"; };
 		C5FB2EF223A2794D0046F4F9 /* MainDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDelegate.swift; sourceTree = "<group>"; };
 		C5FE8E9F2752732E00372495 /* Legacy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Legacy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -377,6 +380,7 @@
 				C59FE28B26AFD7A600F7F18F /* NFCTools.swift */,
 				C53C76EC23D9AFD700B59A98 /* Nightscout.swift */,
 				C54B46CA26CC3EF700870B6E /* OOP.swift */,
+				C5F06F7A282E516200CC1297 /* LibreLink.swift */,
 				C5E1014223A2774D00678DF6 /* Assets.xcassets */,
 				C5E1014A23A2774D00678DF6 /* Info.plist */,
 				C5C80BCA23A27EFA00ACFDE9 /* DiaBLE.entitlements */,
@@ -581,6 +585,7 @@
 				C5E9C755244495B000D52B32 /* Extensions.swift in Sources */,
 				C528E1812445097400BFDA73 /* Monitor.swift in Sources */,
 				C5E9C7672444A13600D52B32 /* Console.swift in Sources */,
+				C5F06F7C282E516200CC1297 /* LibreLink.swift in Sources */,
 				C5FE8EA12752732E00372495 /* Legacy.swift in Sources */,
 				C5841EBF26CCD40200922DFC /* Gen2.swift in Sources */,
 				C55B5D16245FCBE50004FE3B /* OnlineView.swift in Sources */,
@@ -604,6 +609,7 @@
 				C5E1014123A2774C00678DF6 /* ContentView.swift in Sources */,
 				C5248A9E26FD00D300DF1ED7 /* LibrePro.swift in Sources */,
 				C53C76EF23D9B87A00B59A98 /* OnlineView.swift in Sources */,
+				C5F06F7B282E516200CC1297 /* LibreLink.swift in Sources */,
 				C5DF10F623C7838B0023E0E2 /* Graph.swift in Sources */,
 				C593F91525976AED00DA3010 /* HamburgerMenu.swift in Sources */,
 				C517F87126404B0A0038FEAB /* Bubble.swift in Sources */,
