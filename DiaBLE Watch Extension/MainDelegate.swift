@@ -77,7 +77,8 @@ public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
             settings.libreLinkUpEmail = "xxx@yyy.zzz"
             settings.libreLinkUpPassword = "XXXXXX"
             Task {
-                try await libreLinkUp.login()
+                _ = try await libreLinkUp.login()
+                _ = try await libreLinkUp.requestConnections()
             }
         }
 
