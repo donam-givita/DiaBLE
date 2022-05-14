@@ -24,9 +24,30 @@ struct OnlineView: View {
 
     var body: some View {
         VStack {
+
+            VStack(spacing: 0) {
+                Button {
+                    app.main.rescan()
+                } label: {
+                    Image(systemName: "arrow.clockwise.circle").resizable().frame(width: 16, height: 16)
+                        .foregroundColor(.blue)
+                    Text(app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
+                         "\(readingCountdown) s" : "...")
+                    .fixedSize()
+                    .foregroundColor(.orange).font(Font.footnote.monospacedDigit())
+                    .onReceive(timer) { _ in
+                        // workaround: watchOS fails converting the interval to an Int32
+                        if app.lastConnectionDate == Date.distantPast {
+                            readingCountdown = 0
+                        } else {
+                            readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
+                        }
+                    }
+                }
+            }
+
             VStack(spacing: 0) {
                 HStack {
-
                     Button {
                         service = service == .nightscout ? .libreLinkUp : .nightscout
                     } label: {
@@ -38,44 +59,24 @@ struct OnlineView: View {
                         Spacer()
                         Text("token").foregroundColor(Color(.lightGray))
                     } else {
-                        Text("enail: ").foregroundColor(Color(.lightGray))
+                        Text("email ").foregroundColor(Color(.lightGray))
                         Spacer()
                         Text("password").foregroundColor(Color(.lightGray))
                     }
-
-                    VStack(spacing: 0) {
-
-                        Button {
-                            app.main.rescan()
-                        } label: {
-                                Image(systemName: "arrow.clockwise.circle").resizable().frame(width: 16, height: 16)
-                                    .foregroundColor(.blue)
-                                Text(app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
-                                        "\(readingCountdown) s" : "...")
-                                    .fixedSize()
-                                    .foregroundColor(.orange).font(Font.footnote.monospacedDigit())
-                                    .onReceive(timer) { _ in
-                                        // workaround: watchOS fails converting the interval to an Int32
-                                        if app.lastConnectionDate == Date.distantPast {
-                                            readingCountdown = 0
-                                        } else {
-                                            readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
-                                        }
-                                    }
-                            }
-                    }
                 }
 
-                HStack {
-                    if service == .nightscout {
-                        TextField("Nightscout URL", text: $settings.nightscoutSite)
-                            .textContentType(.URL)
-                        SecureField("token", text: $settings.nightscoutToken)
-                    } else {
-                        TextField("email", text: $settings.libreLinkUpEmail)
-                            .textContentType(.emailAddress)
-                        SecureField("password", text: $settings.libreLinkUpPassword)
-                    }
+            }
+
+            HStack {
+                if service == .nightscout {
+                    TextField("Nightscout URL", text: $settings.nightscoutSite)
+                        .textContentType(.URL)
+                    SecureField("token", text: $settings.nightscoutToken)
+                } else {
+                    TextField("email", text: $settings.libreLinkUpEmail)
+                        .textContentType(.emailAddress)
+                    SecureField("password", text: $settings.libreLinkUpPassword)
+                }
 
             }.font(.footnote)
 
