@@ -25,12 +25,28 @@ struct OnlineView: View {
     var body: some View {
         VStack {
 
-            VStack(spacing: 0) {
+            HStack {
+
                 Button {
-                    app.main.rescan()
+                    service = service == .nightscout ? .libreLinkUp : .nightscout
                 } label: {
-                    Image(systemName: "arrow.clockwise.circle").resizable().frame(width: 16, height: 16)
-                        .foregroundColor(.blue)
+                    Image(service.description).resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
+                }
+                if service == .nightscout {
+                    Text("https://").foregroundColor(Color(.lightGray))
+                } else {
+                    Text("email:").foregroundColor(Color(.lightGray))
+                }
+
+                Spacer()
+
+                VStack(spacing: 0) {
+                    Button {
+                        app.main.rescan()
+                    } label: {
+                        Image(systemName: "arrow.clockwise.circle").resizable().frame(width: 16, height: 16)
+                            .foregroundColor(.blue)
+                    }
                     Text(app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
                          "\(readingCountdown) s" : "...")
                     .fixedSize()
@@ -42,26 +58,6 @@ struct OnlineView: View {
                         } else {
                             readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                         }
-                    }
-                }
-            }
-
-            VStack(spacing: 0) {
-                HStack {
-                    Button {
-                        service = service == .nightscout ? .libreLinkUp : .nightscout
-                    } label: {
-                        Image(service == .nightscout ? "Nightscout" : "LibreLinkUp").resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
-                    }
-
-                    if service == .nightscout {
-                        Text("https://").foregroundColor(Color(.lightGray))
-                        Spacer()
-                        Text("token").foregroundColor(Color(.lightGray))
-                    } else {
-                        Text("email ").foregroundColor(Color(.lightGray))
-                        Spacer()
-                        Text("password").foregroundColor(Color(.lightGray))
                     }
                 }
 
