@@ -117,6 +117,15 @@ class LibreLinkUp: Logging {
                 if let dict = json as? [String: Any] {
                     if let data = dict["data"] as? [[String: Any]] {
                         log("LibreLinkUp: connections data: \(data)")
+                        if data.count == 1 {
+                            let connection = data[0]
+                            let patientId = connection["patientId"] as! String
+                            log("LibreLinkUp: patient Id: \(patientId)")
+                            request.url = URL(string: "\(siteURL)/\(connectionsEndpoint)/\(patientId)/graph")!
+                            let (data, response) = try await URLSession.shared.data(for: request)
+                            debugLog("LibreLinkUp: patient data: \(data.string)")
+                            return (data, response)
+                        }
                     }
                     return (data, response)
                 }
