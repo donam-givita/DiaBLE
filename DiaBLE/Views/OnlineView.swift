@@ -15,10 +15,13 @@ struct OnlineView: View {
     @EnvironmentObject var history: History
     @EnvironmentObject var settings: Settings
 
+    @Environment(\.colorScheme) var colorScheme
+
     @State private var showingNFCAlert = false
     @State private var readingCountdown: Int = 0
 
     @State private var service: OnlineService = .nightscout
+    @State private var libreLinkUpOutput: String = "TODO"
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -128,6 +131,28 @@ struct OnlineView: View {
                         .padding(.leading, 15)
 #endif
                         .onAppear { if let nightscout = app.main?.nightscout { nightscout.read() } }
+                    }
+
+
+                    if service == .libreLinkUp {
+                        ScrollView(showsIndicators: true) {
+                            Text(libreLinkUpOutput)
+                                .task {
+                                    do {
+                                        let libreLinkUp = LibreLinkUp(main: app.main)
+                                        if Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
+                                            _ = try await libreLinkUp.login()
+                                        }
+                                        let (data, _) = try await libreLinkUp.requestConnections()
+                                        libreLinkUpOutput = (data as! Data).string
+                                    } catch {
+                                        libreLinkUpOutput = error.localizedDescription
+                                    }
+                                }
+                                .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
+                                .textSelection(.enabled)
+                        }
+                        .padding()
                     }
 
                 }
