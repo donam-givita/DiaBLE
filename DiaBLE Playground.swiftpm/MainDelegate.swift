@@ -80,7 +80,9 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             settings.libreLinkUpEmail = "xxx@yyy.zzz"
             settings.libreLinkUpPassword = "XXXXXX"
             Task {
+                if await Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
                 _ = try await libreLinkUp.login()
+                }
                 _ = try await libreLinkUp.requestConnections()
             }
         }

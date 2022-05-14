@@ -28,6 +28,8 @@ class Settings: ObservableObject {
 
         "libreLinkUpEmail": "",
         "libreLinkUpPassword": "",
+        "libreLinkUpToken": "",
+        "libreLinkUpTokenExpires": 0.0,
 
         "activeSensorSerial": "",
         "activeSensorAddress": Data(),
@@ -141,6 +143,14 @@ class Settings: ObservableObject {
 
     @Published var libreLinkUpPassword: String = UserDefaults.standard.string(forKey: "libreLinkUpPassword")! {
         didSet { UserDefaults.standard.set(self.libreLinkUpPassword, forKey: "libreLinkUpPassword") }
+    }
+
+    @Published var libreLinkUpToken: String = UserDefaults.standard.string(forKey: "libreLinkUpToken")! {
+        didSet { UserDefaults.standard.set(self.libreLinkUpToken, forKey: "libreLinkUpToken") }
+    }
+
+    @Published var libreLinkUpTokenExpires: Double = UserDefaults.standard.double(forKey: "libreLinkUpTokenExpires") {
+        didSet { UserDefaults.standard.set(self.libreLinkUpTokenExpires, forKey: "libreLinkUpTokenExpires") }
     }
 
     @Published var activeSensorSerial: String = UserDefaults.standard.string(forKey: "activeSensorSerial")! {

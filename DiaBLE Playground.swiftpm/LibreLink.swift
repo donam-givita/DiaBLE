@@ -28,7 +28,6 @@ struct AuthTicket: Codable {
 class LibreLinkUp: Logging {
 
     var main: MainDelegate!
-    var authTicket: AuthTicket!
 
     let siteURL = "https://api-eu.libreview.io"
     let loginEndpoint = "llu/auth/login"
@@ -80,11 +79,15 @@ class LibreLinkUp: Logging {
                 if let dict = json as? [String: Any] {
                     if let data = dict["data"] as? [String: Any] {
                         if let authTicketDict = data["authTicket"] as? [String: Any] {
-                            authTicket = AuthTicket(token: authTicketDict["token"] as? String ?? "",
+                            let authTicket = AuthTicket(token: authTicketDict["token"] as? String ?? "",
                                                     expires: authTicketDict["expires"] as? Int ?? 0,
                                                     duration: authTicketDict["duration"] as? Int ?? 0,
                                                     invitations: authTicketDict["invitations"] as? Int)
-                            log("LibreLinkUp: authTicket: \(authTicket!)")
+                            self.log("LibreLinkUp: authTicket: \(authTicket), expires on \(Date(timeIntervalSince1970: Double(authTicket.expires)))")
+                            DispatchQueue.main.async {
+                                self.main.settings.libreLinkUpToken = authTicket.token
+                                self.main.settings.libreLinkUpTokenExpires = Double(authTicket.expires)
+                            }
                         }
                     }
                     return (data, response)
@@ -104,7 +107,7 @@ class LibreLinkUp: Logging {
     func requestConnections() async throws -> (Any, URLResponse) {
         var request = URLRequest(url: URL(string: "\(siteURL)/\(connectionsEndpoint)")!)
         var authenticatedHeaders = headers
-        authenticatedHeaders["authorization"] = "Bearer \(authTicket.token)"
+        authenticatedHeaders["authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
         for (header, value) in authenticatedHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
@@ -123,7 +126,21 @@ class LibreLinkUp: Logging {
                             log("LibreLinkUp: patient Id: \(patientId)")
                             request.url = URL(string: "\(siteURL)/\(connectionsEndpoint)/\(patientId)/graph")!
                             let (data, response) = try await URLSession.shared.data(for: request)
-                            debugLog("LibreLinkUp: patient data: \(data.string)")
+                            debugLog("LibreLinkUp: patient graph data: \(data.string)")
+                            let json = try JSONSerialization.jsonObject(with: data)
+                            if let dict = json as? [String: Any] {
+                                if let data = dict["data"] as? [String: Any] {
+                                    if let connection = data["connection"] as? [String: Any] {
+                                        log("LibreLinkUp: connection: \(connection)")
+                                    }
+                                    if let activeSensors = data["activeSensors"] as? [String: Any] {
+                                        log("LibreLinkUp: active sensors: \(activeSensors)")
+                                    }
+                                    if let graphData = data["graphData"] as? [[String: Any]] {
+                                        log("LibreLinkUp: measurements: \(graphData.count)")
+                                    }
+                                }
+                            }
                             return (data, response)
                         }
                     }
