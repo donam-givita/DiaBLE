@@ -38,16 +38,30 @@ struct OnlineView: View {
                         }
 
                         VStack(spacing: 0) {
-                            HStack(alignment: .firstTextBaseline, spacing: 0) {
-                                Text("https://").foregroundColor(Color(.lightGray))
-                                TextField("Nightscout URL", text: $settings.nightscoutSite)
-                                    .keyboardType(.URL)
-                                    .textContentType(.URL)
-                                    .disableAutocorrection(true)
-                            }
-                            HStack(alignment: .firstTextBaseline) {
-                                Text("token:").foregroundColor(Color(.lightGray))
-                                SecureField("token", text: $settings.nightscoutToken)
+                            if service == .nightscout {
+                                HStack(alignment: .firstTextBaseline, spacing: 0) {
+                                    Text("https://").foregroundColor(Color(.lightGray))
+                                    TextField("Nightscout URL", text: $settings.nightscoutSite)
+                                        .keyboardType(.URL)
+                                        .textContentType(.URL)
+                                        .disableAutocorrection(true)
+                                }
+                                HStack(alignment: .firstTextBaseline) {
+                                    Text("token:").foregroundColor(Color(.lightGray))
+                                    SecureField("token", text: $settings.nightscoutToken)
+                                }
+                            } else {
+                                HStack(alignment: .firstTextBaseline, spacing: 0) {
+                                    Text("email: ").foregroundColor(Color(.lightGray))
+                                    TextField("email", text: $settings.libreLinkUpEmail)
+                                        .keyboardType(.emailAddress)
+                                        .textContentType(.emailAddress)
+                                        .disableAutocorrection(true)
+                                }
+                                HStack(alignment: .firstTextBaseline) {
+                                    Text("password:").foregroundColor(Color(.lightGray))
+                                    SecureField("password", text: $settings.libreLinkUpEmail)
+                                }
                             }
                         }
 
@@ -61,11 +75,11 @@ struct OnlineView: View {
 
                             Text(!app.deviceState.isEmpty && app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
                                  "\(readingCountdown) s" : "...")
-                                .fixedSize()
-                                .foregroundColor(.orange).font(Font.caption.monospacedDigit())
-                                .onReceive(timer) { _ in
-                                    readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
-                                }
+                            .fixedSize()
+                            .foregroundColor(.orange).font(Font.caption.monospacedDigit())
+                            .onReceive(timer) { _ in
+                                readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
+                            }
                         }
 
                         Button {

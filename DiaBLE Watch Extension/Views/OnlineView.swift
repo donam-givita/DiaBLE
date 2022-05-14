@@ -33,9 +33,15 @@ struct OnlineView: View {
                         Image(service == .nightscout ? "Nightscout" : "LibreLinkUp").resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
                     }
 
-                    Text("https://").foregroundColor(Color(.lightGray))
-                    Spacer()
-                    Text("token").foregroundColor(Color(.lightGray))
+                    if service == .nightscout {
+                        Text("https://").foregroundColor(Color(.lightGray))
+                        Spacer()
+                        Text("token").foregroundColor(Color(.lightGray))
+                    } else {
+                        Text("enail: ").foregroundColor(Color(.lightGray))
+                        Spacer()
+                        Text("password").foregroundColor(Color(.lightGray))
+                    }
 
                     VStack(spacing: 0) {
 
@@ -61,10 +67,15 @@ struct OnlineView: View {
                 }
 
                 HStack {
-                    TextField("Nightscout URL", text: $settings.nightscoutSite)
-                        .textContentType(.URL)
-                    SecureField("token", text: $settings.nightscoutToken)
-                }
+                    if service == .nightscout {
+                        TextField("Nightscout URL", text: $settings.nightscoutSite)
+                            .textContentType(.URL)
+                        SecureField("token", text: $settings.nightscoutToken)
+                    } else {
+                        TextField("email", text: $settings.libreLinkUpEmail)
+                            .textContentType(.emailAddress)
+                        SecureField("password", text: $settings.libreLinkUpPassword)
+                    }
 
             }.font(.footnote)
 
