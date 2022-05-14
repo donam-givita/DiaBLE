@@ -34,7 +34,7 @@ struct OnlineView: View {
                         Button {
                             service = service == .nightscout ? .libreLinkUp : .nightscout
                         } label: {
-                            Image(service == .nightscout ? "Nightscout" : "LibreLinkUp").resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
+                            Image(service.description).resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
                         }
 
                         VStack(spacing: 0) {
@@ -104,29 +104,32 @@ struct OnlineView: View {
                         .padding(.horizontal, 15)
 #endif
 
+                    if service == .nightscout {
 
-                    WebView(site: settings.nightscoutSite, query: "token=\(settings.nightscoutToken)", delegate: app.main?.nightscout )
-                        .frame(height: UIScreen.main.bounds.size.height * 0.60)
-                        .alert("JavaScript", isPresented: $app.showingJavaScriptConfirmAlert) {
-                            Button("OK") { app.main.log("JavaScript alert: selected OK") }
-                            Button("Cancel", role: .cancel) { app.main.log("JavaScript alert: selected Cancel") }
-                        } message: {
-                            Text(app.JavaScriptConfirmAlertMessage)
-                        }
+                        WebView(site: settings.nightscoutSite, query: "token=\(settings.nightscoutToken)", delegate: app.main?.nightscout )
+                            .frame(height: UIScreen.main.bounds.size.height * 0.60)
+                            .alert("JavaScript", isPresented: $app.showingJavaScriptConfirmAlert) {
+                                Button("OK") { app.main.log("JavaScript alert: selected OK") }
+                                Button("Cancel", role: .cancel) { app.main.log("JavaScript alert: selected Cancel") }
+                            } message: {
+                                Text(app.JavaScriptConfirmAlertMessage)
+                            }
 
-                    List {
-                        ForEach(history.nightscoutValues) { glucose in
-                            (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                                .fixedSize(horizontal: false, vertical: true).listRowInsets(EdgeInsets())
+                        List {
+                            ForEach(history.nightscoutValues) { glucose in
+                                (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
+                                    .fixedSize(horizontal: false, vertical: true).listRowInsets(EdgeInsets())
+                            }
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
                         }
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                    }
-                    .listStyle(.plain)
-                    .font(.system(.caption, design: .monospaced)).foregroundColor(.cyan)
+                        .listStyle(.plain)
+                        .font(.system(.caption, design: .monospaced)).foregroundColor(.cyan)
 #if targetEnvironment(macCatalyst)
-                    .padding(.leading, 15)
+                        .padding(.leading, 15)
 #endif
-                    .onAppear { if let nightscout = app.main?.nightscout { nightscout.read() } }
+                        .onAppear { if let nightscout = app.main?.nightscout { nightscout.read() } }
+                    }
+
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
