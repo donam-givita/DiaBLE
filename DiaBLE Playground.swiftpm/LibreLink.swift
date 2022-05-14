@@ -80,9 +80,9 @@ class LibreLinkUp: Logging {
                     if let data = dict["data"] as? [String: Any] {
                         if let authTicketDict = data["authTicket"] as? [String: Any] {
                             let authTicket = AuthTicket(token: authTicketDict["token"] as? String ?? "",
-                                                    expires: authTicketDict["expires"] as? Int ?? 0,
-                                                    duration: authTicketDict["duration"] as? Int ?? 0,
-                                                    invitations: authTicketDict["invitations"] as? Int)
+                                                        expires: authTicketDict["expires"] as? Int ?? 0,
+                                                        duration: authTicketDict["duration"] as? Int ?? 0,
+                                                        invitations: authTicketDict["invitations"] as? Int)
                             self.log("LibreLinkUp: authTicket: \(authTicket), expires on \(Date(timeIntervalSince1970: Double(authTicket.expires)))")
                             DispatchQueue.main.async {
                                 self.main.settings.libreLinkUpToken = authTicket.token
@@ -135,6 +135,9 @@ class LibreLinkUp: Logging {
                                     }
                                     if let activeSensors = data["activeSensors"] as? [String: Any] {
                                         log("LibreLinkUp: active sensors: \(activeSensors)")
+                                    }
+                                    if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any] {
+                                        log("LibreLinkUp: last glucose measurement: \(glucoseMeasurement)")
                                     }
                                     if let graphData = data["graphData"] as? [[String: Any]] {
                                         log("LibreLinkUp: measurements: \(graphData.count)")

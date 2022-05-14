@@ -2,6 +2,14 @@ import Foundation
 import SwiftUI
 
 
+enum OnlineService: String, CustomStringConvertible, CaseIterable {
+    case nightscout  = "Nightscout"
+    case libreLinkUp = "LibreLinkUp"
+
+    var description: String { self.rawValue }
+}
+
+
 struct OnlineView: View {
     @EnvironmentObject var app: AppState
     @EnvironmentObject var history: History
@@ -9,6 +17,8 @@ struct OnlineView: View {
 
     @State private var showingNFCAlert = false
     @State private var readingCountdown: Int = 0
+
+    @State private var service: OnlineService = .nightscout
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -21,7 +31,12 @@ struct OnlineView: View {
                 VStack(spacing: 0) {
 
                     HStack {
-                        Image("Nightscout").resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
+                        Button {
+                            service = service == .nightscout ? .libreLinkUp : .nightscout
+                        } label: {
+                            Image(service == .nightscout ? "Nightscout" : "LibreLinkUp").resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
+                        }
+
                         VStack(spacing: 0) {
                             HStack(alignment: .firstTextBaseline, spacing: 0) {
                                 Text("https://").foregroundColor(Color(.lightGray))
