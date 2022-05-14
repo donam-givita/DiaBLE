@@ -18,6 +18,7 @@ struct OnlineView: View {
     @State private var readingCountdown: Int = 0
 
     @State private var service: OnlineService = .nightscout
+    @State private var libreLinkUpOutput: String = "TODO"
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -76,19 +77,41 @@ struct OnlineView: View {
 
             }.font(.footnote)
 
-            List {
-                ForEach(history.nightscoutValues) { glucose in
-                    (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                        .fixedSize(horizontal: false, vertical: true)
+            if service == .nightscout {
+                List {
+                    ForEach(history.nightscoutValues) { glucose in
+                        (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
-                .frame(maxWidth: .infinity, alignment: .topLeading)
-            }
-            // .font(.system(.footnote, design: .monospaced))
-            .foregroundColor(.cyan)
-            .onAppear { if let nightscout = app.main?.nightscout { nightscout.read()
-                app.main.log("nightscoutValues count \(history.nightscoutValues.count)")
+                // .font(.system(.footnote, design: .monospaced))
+                .foregroundColor(.cyan)
+                .onAppear { if let nightscout = app.main?.nightscout { nightscout.read()
+                    app.main.log("nightscoutValues count \(history.nightscoutValues.count)")
 
-            } }
+                } }
+            }
+
+            if service == .libreLinkUp {
+                ScrollView(showsIndicators: true) {
+                    Text(libreLinkUpOutput)
+                        .task {
+                            do {
+                                let libreLinkUp = LibreLinkUp(main: app.main)
+                                if Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
+                                    _ = try await libreLinkUp.login()
+                                }
+                                let (data, _) = try await libreLinkUp.requestConnections()
+                                libreLinkUpOutput = (data as! Data).string
+                            } catch {
+                                libreLinkUpOutput = error.localizedDescription
+                            }
+                        }
+                    // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
+                        .font(.footnote).foregroundColor(Color(.lightGray))
+                }
+            }
         }
         .navigationTitle("Online")
         .edgesIgnoringSafeArea([.bottom])
