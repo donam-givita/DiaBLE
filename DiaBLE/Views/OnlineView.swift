@@ -63,7 +63,7 @@ struct OnlineView: View {
                                 }
                                 HStack(alignment: .firstTextBaseline) {
                                     Text("password:").foregroundColor(Color(.lightGray))
-                                    SecureField("password", text: $settings.libreLinkUpEmail)
+                                    SecureField("password", text: $settings.libreLinkUpPassword)
                                 }
                             }
                         }
