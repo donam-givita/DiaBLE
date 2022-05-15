@@ -2,14 +2,6 @@ import Foundation
 import SwiftUI
 
 
-enum OnlineService: String, CustomStringConvertible, CaseIterable {
-    case nightscout  = "Nightscout"
-    case libreLinkUp = "LibreLinkUp"
-
-    var description: String { self.rawValue }
-}
-
-
 struct OnlineView: View {
     @EnvironmentObject var app: AppState
     @EnvironmentObject var history: History
@@ -17,7 +9,6 @@ struct OnlineView: View {
 
     @State private var readingCountdown: Int = 0
 
-    @State private var service: OnlineService = .nightscout
     @State private var libreLinkUpOutput: String = "TODO"
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -29,11 +20,11 @@ struct OnlineView: View {
             HStack {
 
                 Button {
-                    service = service == .nightscout ? .libreLinkUp : .nightscout
+                    app.selectedService = app.selectedService == .nightscout ? .libreLinkUp : .nightscout
                 } label: {
-                    Image(service.description).resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
+                    Image(app.selectedService.description).resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
                 }
-                if service == .nightscout {
+                if app.selectedService == .nightscout {
                     Text("https://").foregroundColor(Color(.lightGray))
                 } else {
                     Text("email:").foregroundColor(Color(.lightGray))
@@ -65,7 +56,7 @@ struct OnlineView: View {
             }
 
             HStack {
-                if service == .nightscout {
+                if app.selectedService == .nightscout {
                     TextField("Nightscout URL", text: $settings.nightscoutSite)
                         .textContentType(.URL)
                     SecureField("token", text: $settings.nightscoutToken)
@@ -77,7 +68,7 @@ struct OnlineView: View {
 
             }.font(.footnote)
 
-            if service == .nightscout {
+            if app.selectedService == .nightscout {
                 List {
                     ForEach(history.nightscoutValues) { glucose in
                         (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
@@ -93,7 +84,7 @@ struct OnlineView: View {
                 } }
             }
 
-            if service == .libreLinkUp {
+            if app.selectedService == .libreLinkUp {
                 ScrollView(showsIndicators: true) {
                     Text(libreLinkUpOutput)
                         .task {

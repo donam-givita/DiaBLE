@@ -30,7 +30,7 @@ struct GlucoseMeasurement: Codable {
     let Timestamp: String
     let type: Int
     let ValueInMgPerDl: Int
-    let TrendArrow: OOP.TrendArrow
+    let TrendArrow: OOP.TrendArrow?    // not in graphData
     let TrendMessage: String?
     let MeasurementColor: Int
     let GlucoseUnits: Int
@@ -157,7 +157,13 @@ class LibreLinkUp: Logging {
                                         log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
                                     }
                                     if let graphData = data["graphData"] as? [[String: Any]] {
-                                        log("LibreLinkUp: measurements: \(graphData.count)")
+                                        _ = graphData.map { glucoseMeasurement in
+                                            let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
+                                            let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
+                                            log("LibreLinkUp: graph measurement: \(measurement) (JSON: \(glucoseMeasurement))")
+
+                                        }
+                                        log("LibreLinkUp: graph measurements: \(graphData.count)")
                                     }
                                 }
                             }

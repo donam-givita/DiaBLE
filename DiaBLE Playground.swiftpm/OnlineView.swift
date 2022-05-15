@@ -2,14 +2,6 @@ import Foundation
 import SwiftUI
 
 
-enum OnlineService: String, CustomStringConvertible, CaseIterable {
-    case nightscout  = "Nightscout"
-    case libreLinkUp = "LibreLinkUp"
-
-    var description: String { self.rawValue }
-}
-
-
 struct OnlineView: View {
     @EnvironmentObject var app: AppState
     @EnvironmentObject var history: History
@@ -20,7 +12,6 @@ struct OnlineView: View {
     @State private var showingNFCAlert = false
     @State private var readingCountdown: Int = 0
 
-    @State private var service: OnlineService = .nightscout
     @State private var libreLinkUpOutput: String = "TODO"
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -35,13 +26,14 @@ struct OnlineView: View {
 
                     HStack {
                         Button {
-                            service = service == .nightscout ? .libreLinkUp : .nightscout
+                            app.selectedService = app.selectedService == .nightscout ? .libreLinkUp : .nightscout
                         } label: {
-                            Image(service.description).resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
+                            Image(app.selectedService.description).resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
                         }
 
                         VStack(spacing: 0) {
-                            if service == .nightscout {
+
+                            if app.selectedService == .nightscout {
                                 HStack(alignment: .firstTextBaseline, spacing: 0) {
                                     Text("https://").foregroundColor(Color(.lightGray))
                                     TextField("Nightscout URL", text: $settings.nightscoutSite)
@@ -53,6 +45,7 @@ struct OnlineView: View {
                                     Text("token:").foregroundColor(Color(.lightGray))
                                     SecureField("token", text: $settings.nightscoutToken)
                                 }
+
                             } else {
                                 HStack(alignment: .firstTextBaseline, spacing: 0) {
                                     Text("email: ").foregroundColor(Color(.lightGray))
@@ -107,7 +100,7 @@ struct OnlineView: View {
                         .padding(.horizontal, 15)
 #endif
 
-                    if service == .nightscout {
+                    if app.selectedService == .nightscout {
 
                         WebView(site: settings.nightscoutSite, query: "token=\(settings.nightscoutToken)", delegate: app.main?.nightscout )
                             .frame(height: UIScreen.main.bounds.size.height * 0.60)
@@ -134,7 +127,7 @@ struct OnlineView: View {
                     }
 
 
-                    if service == .libreLinkUp {
+                    if app.selectedService == .libreLinkUp {
                         ScrollView(showsIndicators: true) {
                             Text(libreLinkUpOutput)
                                 .task {

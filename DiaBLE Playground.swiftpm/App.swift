@@ -35,6 +35,14 @@ enum Tab: String {
 }
 
 
+enum OnlineService: String, CustomStringConvertible, CaseIterable {
+    case nightscout  = "Nightscout"
+    case libreLinkUp = "LibreLinkUp"
+
+    var description: String { self.rawValue }
+}
+
+
 class AppState: ObservableObject {
 
     @Published var device: Device!
@@ -45,6 +53,7 @@ class AppState: ObservableObject {
 
     // FIXME: @AppStorage prevents managing the "More..." fifth tab item
     @AppStorage("selectedTab") var selectedTab: Tab = .monitor
+    @AppStorage("selectedService") var selectedService: OnlineService = .nightscout
 
     @Published var currentGlucose: Int = 0
     @Published var lastReadingDate: Date = Date.distantPast
