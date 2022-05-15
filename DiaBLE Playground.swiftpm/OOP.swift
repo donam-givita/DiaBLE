@@ -70,7 +70,7 @@ struct OOPGen2Response: Codable {
 
 struct OOP {
 
-    enum TrendArrow: Int, CustomStringConvertible, CaseIterable {
+    enum TrendArrow: Int, CustomStringConvertible, CaseIterable, Codable {
         case unknown        = -1
         case notDetermined  = 0
         case fallingQuickly = 1
@@ -113,7 +113,7 @@ struct OOP {
         }
     }
 
-    enum Alarm: Int, CustomStringConvertible, CaseIterable {
+    enum Alarm: Int, CustomStringConvertible, CaseIterable, Codable {
         case unknown              = -1
         case notDetermined        = 0
         case lowGlucose           = 1

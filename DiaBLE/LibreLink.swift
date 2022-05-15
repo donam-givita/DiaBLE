@@ -25,6 +25,21 @@ struct AuthTicket: Codable {
 }
 
 
+struct GlucoseMeasurement: Codable {
+    let FactoryTimestamp: String
+    let Timestamp: String
+    let type: Int
+    let ValueInMgPerDl: Int
+    let TrendArrow: OOP.TrendArrow
+    let TrendMessage: String?
+    let MeasurementColor: Int
+    let GlucoseUnits: Int
+    let Value: Int
+    let isHigh: Bool
+    let isLow: Bool
+}
+
+
 class LibreLinkUp: Logging {
 
     var main: MainDelegate!
@@ -137,7 +152,9 @@ class LibreLinkUp: Logging {
                                         log("LibreLinkUp: active sensors: \(activeSensors)")
                                     }
                                     if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any] {
-                                        log("LibreLinkUp: last glucose measurement: \(glucoseMeasurement)")
+                                        let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
+                                        let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
+                                        log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
                                     }
                                     if let graphData = data["graphData"] as? [[String: Any]] {
                                         log("LibreLinkUp: measurements: \(graphData.count)")
