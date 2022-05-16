@@ -159,7 +159,7 @@ class LibreLinkUp: Logging {
                                         _ = graphData.map { glucoseMeasurement in
                                             let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
                                             let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
-                                            history.append(Glucose(measurement.ValueInMgPerDl, id: id, date: formatter.date(from: measurement.Timestamp)!))
+                                            history.append(Glucose(measurement.ValueInMgPerDl, id: id, date: formatter.date(from: measurement.Timestamp)!, source: "LibreLinkUp"))
                                             id += 1
                                             log("LibreLinkUp: graph measurement: \(measurement) (JSON: \(glucoseMeasurement))")
                                         }
@@ -167,7 +167,7 @@ class LibreLinkUp: Logging {
                                             let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
                                             let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
                                             log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
-                                            history.append(Glucose(measurement.ValueInMgPerDl, id: id, date: formatter.date(from: measurement.Timestamp)!))
+                                            history.append(Glucose(measurement.ValueInMgPerDl, id: id, date: formatter.date(from: measurement.Timestamp)!, source: "LibreLinkUp"))
                                         }
                                         log("LibreLinkUp: graph values: \(history.map { ($0.id, $0.value, $0.date.shortDateTime) })")
                                     }
