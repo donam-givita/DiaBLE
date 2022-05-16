@@ -119,7 +119,7 @@ class LibreLinkUp: Logging {
     }
 
 
-    func requestConnections() async throws -> (Any, URLResponse) {
+    func requestConnections() async throws -> (Any, URLResponse, [Glucose]) {
         var request = URLRequest(url: URL(string: "\(siteURL)/\(connectionsEndpoint)")!)
         var authenticatedHeaders = headers
         authenticatedHeaders["authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
@@ -143,6 +143,7 @@ class LibreLinkUp: Logging {
                             let (data, response) = try await URLSession.shared.data(for: request)
                             debugLog("LibreLinkUp: patient graph data: \(data.string)")
                             let json = try JSONSerialization.jsonObject(with: data)
+                            var history: [Glucose] = []
                             if let dict = json as? [String: Any] {
                                 if let data = dict["data"] as? [String: Any] {
                                     if let connection = data["connection"] as? [String: Any] {
@@ -156,7 +157,6 @@ class LibreLinkUp: Logging {
                                         let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
                                         log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
                                     }
-                                    var history: [Glucose] = []
                                     var id = 1
                                     let formatter = DateFormatter()
                                     formatter.dateFormat = "M/d/yyyy h:mm:ss a"
@@ -172,10 +172,10 @@ class LibreLinkUp: Logging {
                                     }
                                 }
                             }
-                            return (data, response)
+                            return (data, response, history)
                         }
                     }
-                    return (data, response)
+                    return (data, response, [])
                 }
             } catch {
                 log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
@@ -185,7 +185,7 @@ class LibreLinkUp: Logging {
             log("LibreLinkUp: server error: \(error.localizedDescription)")
             throw LibreLinkUpError.noConnection
         }
-        return (["": ""], URLResponse())
+        return (["": ""], URLResponse(), [])
     }
 
 }

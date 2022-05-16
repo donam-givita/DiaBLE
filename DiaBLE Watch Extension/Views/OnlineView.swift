@@ -10,6 +10,7 @@ struct OnlineView: View {
     @State private var readingCountdown: Int = 0
 
     @State private var libreLinkUpResponse: String = "TODO"
+    @State private var libreLinkUpHistory: [Glucose] = []
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -85,22 +86,39 @@ struct OnlineView: View {
             }
 
             if app.selectedService == .libreLinkUp {
-                ScrollView(showsIndicators: true) {
-                    Text(libreLinkUpResponse)
-                        .task {
-                            do {
-                                let libreLinkUp = LibreLinkUp(main: app.main)
-                                if Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
-                                    _ = try await libreLinkUp.login()
-                                }
-                                let (data, _) = try await libreLinkUp.requestConnections()
-                                libreLinkUpResponse = (data as! Data).string
-                            } catch {
-                                libreLinkUpResponse = error.localizedDescription
-                            }
+
+                VStack {
+
+                    List {
+                        ForEach(libreLinkUpHistory) { glucose in
+                            (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
+                                .fixedSize(horizontal: false, vertical: true)
                         }
-                    // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
-                        .font(.footnote).foregroundColor(Color(.lightGray))
+                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                    }
+                    // .font(.system(.footnote, design: .monospaced))
+                    .foregroundColor(.cyan)
+
+                    ScrollView(showsIndicators: true) {
+                        Text(libreLinkUpResponse)
+
+                        // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
+                            .font(.footnote).foregroundColor(Color(.lightGray))
+                    }
+
+                }
+                .task {
+                    do {
+                        let libreLinkUp = LibreLinkUp(main: app.main)
+                        if Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
+                            _ = try await libreLinkUp.login()
+                        }
+                        let (data, _, history) = try await libreLinkUp.requestConnections()
+                        libreLinkUpResponse = (data as! Data).string
+                        libreLinkUpHistory = history.reversed()
+                    } catch {
+                        libreLinkUpResponse = error.localizedDescription
+                    }
                 }
             }
         }
