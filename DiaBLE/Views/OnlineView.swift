@@ -136,8 +136,9 @@ struct OnlineView: View {
                                     .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
                                     .textSelection(.enabled)
                             }
+#if targetEnvironment(macCatalyst)
                             .padding()
-
+#endif
                             List {
                                 ForEach(libreLinkUpHistory) { glucose in
                                     (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())

@@ -21,6 +21,7 @@ struct HamburgerMenu: View {
         "Loop": "https://github.com/LoopKit/Loop",
         "Marek Macner": "https://github.com/MarekM60",
         "Nightguard": "https://github.com/nightscout/nightguard",
+        "Nightscout LibreLink Up Uploader": "https://github.com/timoschlueter/nightscout-librelink-up",
         "@travisgoodspeed": "https://github.com/travisgoodspeed",
         "WoofWoof": "https://github.com/gshaviv/ninety-two",
         "xDrip+": "https://github.com/NightscoutFoundation/xDrip",

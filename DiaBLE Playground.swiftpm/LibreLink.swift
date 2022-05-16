@@ -163,14 +163,14 @@ class LibreLinkUp: Logging {
                                             id += 1
                                             log("LibreLinkUp: graph measurement: \(measurement) (JSON: \(glucoseMeasurement))")
                                         }
-                                        if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any] {
-                                            let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
-                                            let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
-                                            log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
-                                            history.append(Glucose(measurement.ValueInMgPerDl, id: id, date: formatter.date(from: measurement.Timestamp)!, source: "LibreLinkUp"))
-                                        }
-                                        log("LibreLinkUp: graph values: \(history.map { ($0.id, $0.value, $0.date.shortDateTime) })")
                                     }
+                                    if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any] {
+                                        let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
+                                        let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
+                                        log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
+                                        history.append(Glucose(measurement.ValueInMgPerDl, id: id, date: formatter.date(from: measurement.Timestamp)!, source: "LibreLinkUp"))
+                                    }
+                                    log("LibreLinkUp: graph values: \(history.map { ($0.id, $0.value, $0.date.shortDateTime) })")
                                 }
                             }
                             return (data, response, history)

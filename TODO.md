@@ -8,7 +8,6 @@ FIXME
 * Xcode 13:
   - *"No 'async' operations occur within 'await' expression"* warnings
 * Playgrounds 4:
-  - frequent crashes while unwrapping optionals
   - missing entitlements for HealthKit, NFC and Bluetooth background mode
 * Mac Catalyst:
   - log bogging down too early
@@ -26,7 +25,7 @@ TODO
 
 * Apple Watch app: snapshots, workout and extended runtime background sessions, complications
 * Libre 3 / Gen2:
-  - native and/or online en/decoding
+  - native and/or online en/decrypting
 * scrollable graph, offline trend arrow, landcape mode, realtime RSSI
 * smooth the historic values and project the trend ones (see [LibreTransmitter](https://github.com/dabear/LibreTransmitter/commit/49b50d7995955b76861440e5e34a0accd064d18f))
 * log: limit to a number of readings, autoscroll to bottom, prepend time, Share menu, record to a file, add Logger support
