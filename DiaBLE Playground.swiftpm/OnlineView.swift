@@ -12,7 +12,7 @@ struct OnlineView: View {
     @State private var showingNFCAlert = false
     @State private var readingCountdown: Int = 0
 
-    @State private var libreLinkUpOutput: String = "TODO"
+    @State private var libreLinkUpResponse: String = "TODO"
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -129,7 +129,7 @@ struct OnlineView: View {
 
                     if app.selectedService == .libreLinkUp {
                         ScrollView(showsIndicators: true) {
-                            Text(libreLinkUpOutput)
+                            Text(libreLinkUpResponse)
                                 .task {
                                     do {
                                         let libreLinkUp = LibreLinkUp(main: app.main)
@@ -137,9 +137,9 @@ struct OnlineView: View {
                                             _ = try await libreLinkUp.login()
                                         }
                                         let (data, _) = try await libreLinkUp.requestConnections()
-                                        libreLinkUpOutput = (data as! Data).string
+                                        libreLinkUpResponse = (data as! Data).string
                                     } catch {
-                                        libreLinkUpOutput = error.localizedDescription
+                                        libreLinkUpResponse = error.localizedDescription
                                     }
                                 }
                                 .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
