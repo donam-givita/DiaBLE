@@ -14,6 +14,9 @@ FIXME
 * Libre Pro / MiaoMiao:
   - `buffer[3...4]` doesn't match the real sensor age in `body[2...3]`
   - the appended 21 historic blocks aren't dated properly
+* AppleWatch:
+  - *"How do I add 'com.apple.developer.bluetooth-central-background' entitlement for WatchOS?"*
+    (https://developer.apple.com/forums/thread/109947)
 * @Published classes nonsense
 * the new Libre2() subclass is not instantiated specifically in Transmitters
 * `@AppStorage(selectedTab)` prevents managing the "More..." fifth tab item
@@ -25,7 +28,7 @@ TODO
 
 * Apple Watch app: snapshots, workout and extended runtime background sessions, complications
 * Libre 3 / Gen2:
-  - native and/or online en/decrypting
+  - native and/or online en/decryption
 * scrollable graph, offline trend arrow, landcape mode, realtime RSSI
 * smooth the historic values and project the trend ones (see [LibreTransmitter](https://github.com/dabear/LibreTransmitter/commit/49b50d7995955b76861440e5e34a0accd064d18f))
 * log: limit to a number of readings, autoscroll to bottom, prepend time, Share menu, record to a file, add Logger support
