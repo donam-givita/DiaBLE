@@ -12,7 +12,7 @@ struct OnlineView: View {
     @State private var showingNFCAlert = false
     @State private var readingCountdown: Int = 0
 
-    @State private var libreLinkUpResponse: String = "TODO"
+    @State private var libreLinkUpResponse: String = "[...]"
     @State private var libreLinkUpHistory: [Glucose] = []
 
 
