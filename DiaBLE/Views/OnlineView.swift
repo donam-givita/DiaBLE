@@ -158,7 +158,7 @@ struct OnlineView: View {
                                 if Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
                                     _ = try await libreLinkUp.login()
                                 }
-                                let (data, _, history) = try await libreLinkUp.requestConnections()
+                                let (data, _, history) = try await libreLinkUp.getConnections()
                                 libreLinkUpResponse = (data as! Data).string
                                 libreLinkUpHistory = history.reversed()
                             } catch {

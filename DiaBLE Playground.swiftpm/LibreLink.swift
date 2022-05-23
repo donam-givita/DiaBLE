@@ -21,7 +21,6 @@ struct AuthTicket: Codable {
     let token: String
     let expires: Int
     let duration: Int
-    let invitations: Int?
 }
 
 
@@ -96,8 +95,7 @@ class LibreLinkUp: Logging {
                         if let authTicketDict = data["authTicket"] as? [String: Any] {
                             let authTicket = AuthTicket(token: authTicketDict["token"] as? String ?? "",
                                                         expires: authTicketDict["expires"] as? Int ?? 0,
-                                                        duration: authTicketDict["duration"] as? Int ?? 0,
-                                                        invitations: authTicketDict["invitations"] as? Int)
+                                                        duration: authTicketDict["duration"] as? Int ?? 0)
                             self.log("LibreLinkUp: authTicket: \(authTicket), expires on \(Date(timeIntervalSince1970: Double(authTicket.expires)))")
                             DispatchQueue.main.async {
                                 self.main.settings.libreLinkUpToken = authTicket.token
@@ -119,7 +117,7 @@ class LibreLinkUp: Logging {
     }
 
 
-    func requestConnections() async throws -> (Any, URLResponse, [Glucose]) {
+    func getConnections() async throws -> (Any, URLResponse, [Glucose]) {
         var request = URLRequest(url: URL(string: "\(siteURL)/\(connectionsEndpoint)")!)
         var authenticatedHeaders = headers
         authenticatedHeaders["authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
@@ -142,8 +140,8 @@ class LibreLinkUp: Logging {
                             request.url = URL(string: "\(siteURL)/\(connectionsEndpoint)/\(patientId)/graph")!
                             let (data, response) = try await URLSession.shared.data(for: request)
                             debugLog("LibreLinkUp: patient graph data: \(data.string)")
-                            let json = try JSONSerialization.jsonObject(with: data)
                             var history: [Glucose] = []
+                            let json = try JSONSerialization.jsonObject(with: data)
                             if let dict = json as? [String: Any] {
                                 if let data = dict["data"] as? [String: Any] {
                                     if let connection = data["connection"] as? [String: Any] {
@@ -160,8 +158,8 @@ class LibreLinkUp: Logging {
                                             let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
                                             let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
                                             history.append(Glucose(measurement.ValueInMgPerDl, id: id, date: formatter.date(from: measurement.Timestamp)!, source: "LibreLinkUp"))
+                                            log("LibreLinkUp: graph measurement #\(id): \(measurement) (JSON: \(glucoseMeasurement))")
                                             id += 1
-                                            log("LibreLinkUp: graph measurement: \(measurement) (JSON: \(glucoseMeasurement))")
                                         }
                                     }
                                     if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any] {

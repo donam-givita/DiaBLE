@@ -76,7 +76,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                 if await Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
                 _ = try await libreLinkUp.login()
                 }
-                _ = try await libreLinkUp.requestConnections()
+                _ = try await libreLinkUp.getConnections()
             }
         }
 
