@@ -24,6 +24,13 @@ struct AuthTicket: Codable {
 }
 
 
+enum MeasurementColor: Int, Codable {
+    case green  = 1
+    case yellow = 2
+    case red    = 3
+}
+
+
 struct GlucoseMeasurement: Codable {
     let factoryTimestamp: String
     let timestamp: String
@@ -31,7 +38,7 @@ struct GlucoseMeasurement: Codable {
     let valueInMgPerDl: Int
     let trendArrow: OOP.TrendArrow?    // not in graphData
     let trendMessage: String?
-    let measurementColor: Int
+    let measurementColor: MeasurementColor
     let glucoseUnits: Int
     let value: Int
     let isHigh: Bool
@@ -42,12 +49,9 @@ struct GlucoseMeasurement: Codable {
 
 struct LibreLinkUpGlucose: Identifiable, Codable {
     let glucose: Glucose
-    let color: Int
+    let color: MeasurementColor
     var id: Int { glucose.id }
 }
-
-
-// TODO: MeasurementColor enum
 
 
 class LibreLinkUp: Logging {
@@ -166,16 +170,17 @@ class LibreLinkUp: Logging {
                                     var id = 1
                                     if let graphData = data["graphData"] as? [[String: Any]] {
                                         _ = graphData.map { glucoseMeasurement in
-                                            let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
-                                            let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
-                                            history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
-                                            log("LibreLinkUp: graph measurement #\(id): \(measurement) (JSON: \(glucoseMeasurement))")
-                                            id += 1
+                                            if let measurementData = try? JSONSerialization.data(withJSONObject: glucoseMeasurement),
+                                               let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
+                                                history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
+                                                log("LibreLinkUp: graph measurement #\(id): \(measurement) (JSON: \(glucoseMeasurement))")
+                                                id += 1
+                                            }
                                         }
                                     }
-                                    if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any] {
-                                        let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
-                                        let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
+                                    if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any],
+                                       let measurementData = try? JSONSerialization.data(withJSONObject: glucoseMeasurement),
+                                       let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
                                         log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
                                         history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
                                     }

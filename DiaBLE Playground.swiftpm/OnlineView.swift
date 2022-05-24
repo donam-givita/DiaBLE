@@ -2,6 +2,17 @@ import Foundation
 import SwiftUI
 
 
+extension MeasurementColor {
+    var color: Color {
+        switch self {
+        case .green:  return .green
+        case .yellow: return .yellow
+        case .red:    return .red
+        }
+    }
+}
+
+
 struct OnlineView: View {
     @EnvironmentObject var app: AppState
     @EnvironmentObject var history: History
@@ -142,9 +153,9 @@ struct OnlineView: View {
                             List {
                                 ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
                                     let glucose = libreLinkUpGlucose.glucose
-                                    (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold() + Text(" (color: \(libreLinkUpGlucose.color))"))
+                                    (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
+                                        .foregroundColor(libreLinkUpGlucose.color.color)
                                         .fixedSize(horizontal: false, vertical: true).listRowInsets(EdgeInsets())
-                                    // TODO: colorize the background
                                 }
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                             }
