@@ -13,10 +13,10 @@ struct OnlineView: View {
     @State private var readingCountdown: Int = 0
 
     @State private var libreLinkUpResponse: String = "[...]"
-    @State private var libreLinkUpHistory: [Glucose] = []
-
+    @State private var libreLinkUpHistory: [LibreLinkUpGlucose] = []
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    // TODO: one-minute timer for Libre 3
 
 
     var body: some View {
@@ -140,9 +140,11 @@ struct OnlineView: View {
                             .padding()
 #endif
                             List {
-                                ForEach(libreLinkUpHistory) { glucose in
-                                    (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
+                                ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
+                                    let glucose = libreLinkUpGlucose.glucose
+                                    (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold() + Text(" (color: \(libreLinkUpGlucose.color))"))
                                         .fixedSize(horizontal: false, vertical: true).listRowInsets(EdgeInsets())
+                                    // TODO: colorize the background
                                 }
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                             }

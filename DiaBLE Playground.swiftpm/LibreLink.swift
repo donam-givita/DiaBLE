@@ -25,18 +25,29 @@ struct AuthTicket: Codable {
 
 
 struct GlucoseMeasurement: Codable {
-    let FactoryTimestamp: String
-    let Timestamp: String
+    let factoryTimestamp: String
+    let timestamp: String
     let type: Int
-    let ValueInMgPerDl: Int
-    let TrendArrow: OOP.TrendArrow?    // not in graphData
-    let TrendMessage: String?
-    let MeasurementColor: Int
-    let GlucoseUnits: Int
-    let Value: Int
+    let valueInMgPerDl: Int
+    let trendArrow: OOP.TrendArrow?    // not in graphData
+    let trendMessage: String?
+    let measurementColor: Int
+    let glucoseUnits: Int
+    let value: Int
     let isHigh: Bool
     let isLow: Bool
+    enum CodingKeys: String, CodingKey { case factoryTimestamp = "FactoryTimestamp", timestamp = "Timestamp", type, valueInMgPerDl = "ValueInMgPerDl", trendArrow = "TrendArrow", trendMessage = "TrendMessage", measurementColor = "MeasurementColor", glucoseUnits = "GlucoseUnits", value = "Value", isHigh, isLow }
 }
+
+
+struct LibreLinkUpGlucose: Identifiable, Codable {
+    let glucose: Glucose
+    let color: Int
+    var id: Int { glucose.id }
+}
+
+
+// TODO: MeasurementColor enum
 
 
 class LibreLinkUp: Logging {
@@ -117,7 +128,7 @@ class LibreLinkUp: Logging {
     }
 
 
-    func getConnections() async throws -> (Any, URLResponse, [Glucose]) {
+    func getConnections() async throws -> (Any, URLResponse, [LibreLinkUpGlucose]) {
         var request = URLRequest(url: URL(string: "\(siteURL)/\(connectionsEndpoint)")!)
         var authenticatedHeaders = headers
         authenticatedHeaders["authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
@@ -140,7 +151,7 @@ class LibreLinkUp: Logging {
                             request.url = URL(string: "\(siteURL)/\(connectionsEndpoint)/\(patientId)/graph")!
                             let (data, response) = try await URLSession.shared.data(for: request)
                             debugLog("LibreLinkUp: patient graph data: \(data.string)")
-                            var history: [Glucose] = []
+                            var history: [LibreLinkUpGlucose] = []
                             let json = try JSONSerialization.jsonObject(with: data)
                             if let dict = json as? [String: Any] {
                                 if let data = dict["data"] as? [String: Any] {
@@ -157,7 +168,7 @@ class LibreLinkUp: Logging {
                                         _ = graphData.map { glucoseMeasurement in
                                             let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
                                             let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
-                                            history.append(Glucose(measurement.ValueInMgPerDl, id: id, date: formatter.date(from: measurement.Timestamp)!, source: "LibreLinkUp"))
+                                            history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
                                             log("LibreLinkUp: graph measurement #\(id): \(measurement) (JSON: \(glucoseMeasurement))")
                                             id += 1
                                         }
@@ -166,9 +177,9 @@ class LibreLinkUp: Logging {
                                         let measurementData = try! JSONSerialization.data(withJSONObject: glucoseMeasurement)
                                         let measurement = try! JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData)
                                         log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
-                                        history.append(Glucose(measurement.ValueInMgPerDl, id: id, date: formatter.date(from: measurement.Timestamp)!, source: "LibreLinkUp"))
+                                        history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
                                     }
-                                    log("LibreLinkUp: graph values: \(history.map { ($0.id, $0.value, $0.date.shortDateTime) })")
+                                    log("LibreLinkUp: graph values: \(history.map { ($0.glucose.id, $0.glucose.value, $0.glucose.date.shortDateTime, $0.color) })")
                                 }
                             }
                             return (data, response, history)
