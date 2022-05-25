@@ -14,6 +14,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
     var bluetoothDelegate: BluetoothDelegate
     var nfc: NFC
     var healthKit: HealthKit?
+    var libreLinkUp: LibreLinkUp?
     var nightscout: Nightscout?
     var eventKit: EventKit?
 
@@ -54,6 +55,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             }
         }
 
+        libreLinkUp = LibreLinkUp(main: self)
         nightscout = Nightscout(main: self)
         nightscout!.read()
         eventKit = EventKit(main: self)

@@ -16,6 +16,7 @@ public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
     var centralManager: CBCentralManager
     var bluetoothDelegate: BluetoothDelegate
     var healthKit: HealthKit?
+    var libreLinkUp: LibreLinkUp?
     var nightscout: Nightscout?
     //    var eventKit: EventKit?
 
@@ -57,6 +58,7 @@ public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
             }
         }
 
+        libreLinkUp = LibreLinkUp(main: self)
         nightscout = Nightscout(main: self)
         nightscout!.read()
         //        eventKit = EventKit(main: self)
