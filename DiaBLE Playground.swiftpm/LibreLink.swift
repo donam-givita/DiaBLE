@@ -104,22 +104,22 @@ class LibreLinkUp: Logging {
                 }
             }
             do {
-                let json = try JSONSerialization.jsonObject(with: data)
-                if let dict = json as? [String: Any] {
-                    if let data = dict["data"] as? [String: Any] {
-                        if let authTicketDict = data["authTicket"] as? [String: Any] {
-                            let authTicket = AuthTicket(token: authTicketDict["token"] as? String ?? "",
-                                                        expires: authTicketDict["expires"] as? Int ?? 0,
-                                                        duration: authTicketDict["duration"] as? Int ?? 0)
-                            self.log("LibreLinkUp: authTicket: \(authTicket), expires on \(Date(timeIntervalSince1970: Double(authTicket.expires)))")
-                            DispatchQueue.main.async {
-                                self.main.settings.libreLinkUpToken = authTicket.token
-                                self.main.settings.libreLinkUpTokenExpires = Double(authTicket.expires)
-                            }
-                        }
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let data = json["data"] as? [String: Any],
+                   let user = data["user"] as? [String: Any],
+                   let id = user["id"] as? String,
+                   let authTicketDict = data["authTicket"] as? [String: Any] {
+                    let authTicket = AuthTicket(token: authTicketDict["token"] as? String ?? "",
+                                                expires: authTicketDict["expires"] as? Int ?? 0,
+                                                duration: authTicketDict["duration"] as? Int ?? 0)
+                    self.log("LibreLinkUp: user id: \(id), authTicket: \(authTicket), expires on \(Date(timeIntervalSince1970: Double(authTicket.expires)))")
+                    DispatchQueue.main.async {
+                        self.main.settings.libreLinkUpPatientId = id
+                        self.main.settings.libreLinkUpToken = authTicket.token
+                        self.main.settings.libreLinkUpTokenExpires = Double(authTicket.expires)
                     }
-                    return (data, response)
                 }
+                return (data, response)
             } catch {
                 log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
                 throw LibreLinkUpError.jsonDecoding
@@ -128,70 +128,51 @@ class LibreLinkUp: Logging {
             log("LibreLinkUp: server error: \(error.localizedDescription)")
             throw LibreLinkUpError.noConnection
         }
-        return (["": ""], URLResponse())
     }
 
 
-    func getConnections() async throws -> (Any, URLResponse, [LibreLinkUpGlucose]) {
-        var request = URLRequest(url: URL(string: "\(siteURL)/\(connectionsEndpoint)")!)
+    func getPatientGraph() async throws -> (Any, URLResponse, [LibreLinkUpGlucose]) {
+        var request = URLRequest(url: URL(string: "\(siteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/graph")!)
         var authenticatedHeaders = headers
         authenticatedHeaders["authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
         for (header, value) in authenticatedHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
         debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(authenticatedHeaders)")
+        var history: [LibreLinkUpGlucose] = []
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             debugLog("LibreLinkUp: response data: \(data.string)")
             do {
-                let json = try JSONSerialization.jsonObject(with: data)
-                if let dict = json as? [String: Any] {
-                    if let data = dict["data"] as? [[String: Any]] {
-                        log("LibreLinkUp: connections data: \(data)")
-                        if data.count == 1 {
-                            let connection = data[0]
-                            let patientId = connection["patientId"] as! String
-                            log("LibreLinkUp: patient Id: \(patientId)")
-                            request.url = URL(string: "\(siteURL)/\(connectionsEndpoint)/\(patientId)/graph")!
-                            let (data, response) = try await URLSession.shared.data(for: request)
-                            debugLog("LibreLinkUp: patient graph data: \(data.string)")
-                            var history: [LibreLinkUpGlucose] = []
-                            let json = try JSONSerialization.jsonObject(with: data)
-                            if let dict = json as? [String: Any] {
-                                if let data = dict["data"] as? [String: Any] {
-                                    if let connection = data["connection"] as? [String: Any] {
-                                        log("LibreLinkUp: connection: \(connection)")
-                                    }
-                                    if let activeSensors = data["activeSensors"] as? [String: Any] {
-                                        log("LibreLinkUp: active sensors: \(activeSensors)")
-                                    }
-                                    let formatter = DateFormatter()
-                                    formatter.dateFormat = "M/d/yyyy h:mm:ss a"
-                                    var id = 1
-                                    if let graphData = data["graphData"] as? [[String: Any]] {
-                                        _ = graphData.map { glucoseMeasurement in
-                                            if let measurementData = try? JSONSerialization.data(withJSONObject: glucoseMeasurement),
-                                               let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
-                                                history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
-                                                log("LibreLinkUp: graph measurement #\(id): \(measurement) (JSON: \(glucoseMeasurement))")
-                                                id += 1
-                                            }
-                                        }
-                                    }
-                                    if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any],
-                                       let measurementData = try? JSONSerialization.data(withJSONObject: glucoseMeasurement),
-                                       let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
-                                        log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
-                                        history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
-                                    }
-                                    log("LibreLinkUp: graph values: \(history.map { ($0.glucose.id, $0.glucose.value, $0.glucose.date.shortDateTime, $0.color) })")
-                                }
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let data = json["data"] as? [String: Any],
+                   let connection = data["connection"] as? [String: Any] {
+                    log("LibreLinkUp: connection data: \(connection)")
+                    if let activeSensors = data["activeSensors"] as? [String: Any] {
+                        log("LibreLinkUp: active sensors: \(activeSensors)")
+                    }
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "M/d/yyyy h:mm:ss a"
+                    var id = 1
+                    if let graphData = data["graphData"] as? [[String: Any]] {
+                        _ = graphData.map { glucoseMeasurement in
+                            if let measurementData = try? JSONSerialization.data(withJSONObject: glucoseMeasurement),
+                               let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
+                                history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
+                                log("LibreLinkUp: graph measurement #\(id): \(measurement) (JSON: \(glucoseMeasurement))")
+                                id += 1
                             }
-                            return (data, response, history)
                         }
                     }
-                    return (data, response, [])
+                    if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any],
+                       let measurementData = try? JSONSerialization.data(withJSONObject: glucoseMeasurement),
+                       let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
+                        log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
+                        history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
+                    }
+                    log("LibreLinkUp: graph values: \(history.map { ($0.glucose.id, $0.glucose.value, $0.glucose.date.shortDateTime, $0.color) })")
                 }
+                return (data, response, history)
             } catch {
                 log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
                 throw LibreLinkUpError.jsonDecoding
@@ -200,7 +181,6 @@ class LibreLinkUp: Logging {
             log("LibreLinkUp: server error: \(error.localizedDescription)")
             throw LibreLinkUpError.noConnection
         }
-        return (["": ""], URLResponse(), [])
     }
 
 }

@@ -69,15 +69,6 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         // features currently in beta testing
         if settings.debugLevel > 1 {
             // app.sensor = LibrePro.test(main: self)
-            let libreLinkUp = LibreLinkUp(main: self)
-            settings.libreLinkUpEmail = "xxx@yyy.zzz"
-            settings.libreLinkUpPassword = "XXXXXX"
-            Task {
-                if await Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
-                _ = try await libreLinkUp.login()
-                }
-                _ = try await libreLinkUp.getConnections()
-            }
         }
 
     }
@@ -372,4 +363,3 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         }
     }
 }
-

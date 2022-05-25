@@ -124,12 +124,14 @@ struct OnlineView: View {
                 .task {
                     do {
                         let libreLinkUp = LibreLinkUp(main: app.main)
-                        if Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
+                        if settings.libreLinkUpPatientId.isEmpty || Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
                             _ = try await libreLinkUp.login()
                         }
-                        let (data, _, history) = try await libreLinkUp.getConnections()
-                        libreLinkUpResponse = (data as! Data).string
-                        libreLinkUpHistory = history.reversed()
+                        if !settings.libreLinkUpPatientId.isEmpty {
+                            let (data, _, history) = try await libreLinkUp.getPatientGraph()
+                            libreLinkUpResponse = (data as! Data).string
+                            libreLinkUpHistory = history.reversed()
+                        }
                     } catch {
                         libreLinkUpResponse = error.localizedDescription
                     }
