@@ -168,7 +168,7 @@ struct OnlineView: View {
                         .task {
                             do {
                                 let libreLinkUp = LibreLinkUp(main: app.main)
-                                if settings.libreLinkUpPatientId.isEmpty || Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
+                                if await (settings.libreLinkUpPatientId.isEmpty || Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date()) {
                                     _ = try await libreLinkUp.login()
                                 }
                                 if !settings.libreLinkUpPatientId.isEmpty {
