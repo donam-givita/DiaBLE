@@ -168,26 +168,27 @@ struct OnlineView: View {
                         .task {
                             if let libreLinkUp = app.main?.libreLinkUp {
                                 var dataString = ""
-                            loop:
+                                var retries = 0
+                            loop: repeat {
                                 do {
-                                    if settings.libreLinkUpPatientId.isEmpty ||
-                                        dataString == "{\"message\": \"MissingCachedUser\"}" ||
-                                        Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
+                                    if settings.libreLinkUpPatientId.isEmpty || Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
                                         _ = try await libreLinkUp.login()
                                     }
                                     if !settings.libreLinkUpPatientId.isEmpty {
                                         let (data, _, history) = try await libreLinkUp.getPatientGraph()
                                         dataString = (data as! Data).string
                                         libreLinkUpResponse = dataString
+                                        libreLinkUpHistory = history.reversed()
                                         // TODO
-                                        if dataString == "{\"message\": \"MissingCachedUser\"}" {
+                                        if dataString != "{\"message\": \"MissingCachedUser\"}" {
                                             break loop
                                         }
-                                        libreLinkUpHistory = history.reversed()
+                                        retries += 1
                                     }
                                 } catch {
                                     libreLinkUpResponse = error.localizedDescription
                                 }
+                            } while retries == 1
                             }
                         }
 
