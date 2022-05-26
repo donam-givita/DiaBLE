@@ -151,8 +151,8 @@ class Libre3: Sensor {
 
 
     // - The payload to append to `A8` to activate a sensor (CMD_SWITCH_RECEIVER)
-    //   is computed basing on the activation time and on the `receiverID`
-    //   (NFC_ACTIVATION_COMMAND_PAYLOAD_SIZE: 10 bytes)
+    //   is formed by the activation time - 1 (4 bytes), the `receiverID` (4 bytes)
+    //   and a final CRC (NFC_ACTIVATION_COMMAND_PAYLOAD_SIZE = 10 bytes)
     // - The 18-byte reply starts with the dummy bytes `A5 00` and ends in a CRC16
 
     struct ActivationResponse {
@@ -390,6 +390,23 @@ class Libre3: Sensor {
     var currentControlCommand:  ControlCommand?
     var currentSecurityCommand: SecurityCommand?
     var expectedStreamSize = 0
+
+
+// https://insulinclub.de/index.php?thread/33795-free-three-ein-xposed-lsposed-modul-f%C3%BCr-libre-3-aktueller-wert-am-sperrbildschir/&postID=655055#post655055
+
+    /// Converts a LibreView account ID string into a receiverID
+    /// i.e  "2977dec2-492a-11ea-9702-0242ac110002" -> 524381581
+    func hash(_ str: String) -> UInt32 {
+        let chars = Array(str)
+        let seed: UInt64 = 0x811C9DC5 // int -2128831035
+        var hash: UInt64 = 0
+        for char in chars {
+            hash *= seed
+            hash &= 0xFFFFFFFF
+            hash ^= UInt64(char.asciiValue!)
+        }
+        return UInt32(hash & 0xFFFFFFFF)
+    }
 
 
     func parsePatchInfo() {
