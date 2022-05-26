@@ -1,6 +1,17 @@
 import Foundation
 
 
+// https://insulinclub.de/index.php?thread/33795-free-three-ein-xposed-lsposed-modul-f%C3%BCr-libre-3-aktueller-wert-am-sperrbildschir/&postID=655055#post655055
+
+/// Converts a LibreView account ID string into a receiverID
+/// i.e. "2977dec2-492a-11ea-9702-0242ac110002" -> 524381581
+extension String {
+    public var fnv32Hash: UInt32 {
+        return UInt32( self.reduce(0) { 0xFFFFFFFF & (UInt64($0) * 0x811C9DC5) ^ UInt64($1.asciiValue!) } )
+    }
+}
+
+
 class Libre3: Sensor {
 
 
@@ -390,23 +401,6 @@ class Libre3: Sensor {
     var currentControlCommand:  ControlCommand?
     var currentSecurityCommand: SecurityCommand?
     var expectedStreamSize = 0
-
-
-    // https://insulinclub.de/index.php?thread/33795-free-three-ein-xposed-lsposed-modul-f%C3%BCr-libre-3-aktueller-wert-am-sperrbildschir/&postID=655055#post655055
-
-    /// Converts a LibreView account ID string into a receiverID
-    /// i.e. "2977dec2-492a-11ea-9702-0242ac110002" -> 524381581
-    func hash(_ str: String) -> UInt32 {
-        let chars = Array(str)
-        let seed: UInt64 = 0x811C9DC5 // int -2128831035
-        var hash: UInt64 = 0
-        for char in chars {
-            hash *= seed
-            hash &= 0xFFFFFFFF
-            hash ^= UInt64(char.asciiValue!)
-        }
-        return UInt32(hash & 0xFFFFFFFF)
-    }
 
 
     func parsePatchInfo() {
