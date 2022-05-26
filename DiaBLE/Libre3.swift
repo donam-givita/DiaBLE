@@ -6,9 +6,7 @@ import Foundation
 /// Converts a LibreView account ID string into a receiverID
 /// i.e. "2977dec2-492a-11ea-9702-0242ac110002" -> 524381581
 extension String {
-    public var fnv32Hash: UInt32 {
-        return UInt32( self.reduce(0) { 0xFFFFFFFF & (UInt64($0) * 0x811C9DC5) ^ UInt64($1.asciiValue!) } )
-    }
+    var fnv32Hash: UInt32 { UInt32(self.reduce(0) { 0xFFFFFFFF & (UInt64($0) * 0x811C9DC5) ^ UInt64($1.asciiValue!) }) }
 }
 
 
