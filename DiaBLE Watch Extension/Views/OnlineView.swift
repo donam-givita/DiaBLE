@@ -127,7 +127,9 @@ struct OnlineView: View {
                         var retries = 0
                     loop: repeat {
                         do {
-                            if settings.libreLinkUpPatientId.isEmpty || Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() {
+                            if settings.libreLinkUpPatientId.isEmpty ||
+                                Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() ||
+                                retries == 1 {
                                 _ = try await libreLinkUp.login()
                             }
                             if !settings.libreLinkUpPatientId.isEmpty {
