@@ -392,10 +392,10 @@ class Libre3: Sensor {
     var expectedStreamSize = 0
 
 
-// https://insulinclub.de/index.php?thread/33795-free-three-ein-xposed-lsposed-modul-f%C3%BCr-libre-3-aktueller-wert-am-sperrbildschir/&postID=655055#post655055
+    // https://insulinclub.de/index.php?thread/33795-free-three-ein-xposed-lsposed-modul-f%C3%BCr-libre-3-aktueller-wert-am-sperrbildschir/&postID=655055#post655055
 
     /// Converts a LibreView account ID string into a receiverID
-    /// i.e  "2977dec2-492a-11ea-9702-0242ac110002" -> 524381581
+    /// i.e. "2977dec2-492a-11ea-9702-0242ac110002" -> 524381581
     func hash(_ str: String) -> UInt32 {
         let chars = Array(str)
         let seed: UInt64 = 0x811C9DC5 // int -2128831035
