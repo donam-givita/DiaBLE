@@ -72,9 +72,16 @@ extension UInt16 {
     var data: Data { Data([UInt8(self & 0xFF), UInt8(self >> 8)]) }
 }
 
+
+extension UInt32 {
+    var data: Data { Data([UInt8(self & 0xFF), UInt8(self >> 8 & 0xFF), UInt8(self >> 16 & 0xFF), UInt8(self >> 24 & 0xFF)]) }
+}
+
+
 extension UInt64 {
     var hex: String { String(format: "%016lx", self) }
 }
+
 
 extension String {
     var base64: String? { self.data(using: .utf8)?.base64EncodedString() }
