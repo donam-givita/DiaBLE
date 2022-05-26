@@ -74,7 +74,7 @@ extension UInt16 {
 
 
 extension UInt32 {
-    var data: Data { Data([UInt8(self & 0xFF), UInt8(self >> 8 & 0xFF), UInt8(self >> 16 & 0xFF), UInt8(self >> 24 & 0xFF)]) }
+    var data: Data { Data([UInt8(self & 0xFF), UInt8(self >> 8 & 0xFF), UInt8(self >> 16 & 0xFF), UInt8(self >> 24)]) }
 }
 
 

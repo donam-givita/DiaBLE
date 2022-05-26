@@ -395,10 +395,23 @@ class Libre3: Sensor {
         case shutdownPatch(Data)  // 5 - CTRL_CMD_SHUTDOWN_PATCH
     }
 
+    var activationTime: UInt32 = 0
+    var receiverId: UInt32 = 0    // fnv32Hash of LibreView ID string
+
     var buffer: Data = Data()
     var currentControlCommand:  ControlCommand?
     var currentSecurityCommand: SecurityCommand?
     var expectedStreamSize = 0
+
+
+    // TODO
+    var activationNFCCommand: NFCCommand {
+        var parameters: Data = Data()
+        parameters += (activationTime - 1).data
+        parameters += receiverId.data
+        parameters += parameters.crc16.data
+        return NFCCommand(code: 0xA8, parameters: parameters, description: "activate")
+    }
 
 
     func parsePatchInfo() {
