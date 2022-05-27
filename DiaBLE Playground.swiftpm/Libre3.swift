@@ -3,9 +3,9 @@ import Foundation
 
 // https://insulinclub.de/index.php?thread/33795-free-three-ein-xposed-lsposed-modul-f%C3%BCr-libre-3-aktueller-wert-am-sperrbildschir/&postID=655055#post655055
 
-/// Converts a LibreView account ID string into a receiverID
-/// i.e. "2977dec2-492a-11ea-9702-0242ac110002" -> 524381581
 extension String {
+    /// Converts a LibreView account ID string into a receiverID
+    /// i.e. "2977dec2-492a-11ea-9702-0242ac110002" -> 524381581
     var fnv32Hash: UInt32 { UInt32(self.reduce(0) { 0xFFFFFFFF & (UInt64($0) * 0x811C9DC5) ^ UInt64($1.asciiValue!) }) }
 }
 

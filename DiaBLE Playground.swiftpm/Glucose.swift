@@ -79,7 +79,7 @@ struct Glucose: Identifiable, Codable {
 
     }
 
-    /// id: minutes from sensor start
+    /// id: minutes since sensor start
     let id: Int
     let date: Date
     let rawValue: Int

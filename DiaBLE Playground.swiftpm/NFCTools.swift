@@ -263,7 +263,7 @@ extension NFC {
 
         case .activate:
 
-            if sensor.securityGeneration > 1 {
+            if sensor.securityGeneration == 2 {
                 log("Activating a \(sensor.type) is not supported")
                 throw NFCError.commandNotSupported
             }

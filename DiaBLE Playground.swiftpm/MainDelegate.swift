@@ -346,9 +346,9 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         if history.values.count > 0 || history.factoryValues.count > 0 {
             var entries = [Glucose]()
             if history.values.count > 0 {
-                entries += self.history.values
+                entries += history.values
             } else {
-                entries += self.history.factoryValues
+                entries += history.factoryValues
             }
             entries += history.factoryTrend.dropFirst() + [Glucose(currentGlucose, date: sensor.lastReadingDate)]
             entries = entries.filter{ $0.value > 0 && $0.id > -1 }
