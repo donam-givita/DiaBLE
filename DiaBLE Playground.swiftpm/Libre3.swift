@@ -407,8 +407,8 @@ class Libre3: Sensor {
     // TODO
     var activationNFCCommand: NFCCommand {
         var parameters: Data = Data()
-        parameters += (activationTime - 1).data
-        parameters += receiverId.data
+        parameters += ((activationTime != 0 ? activationTime : UInt32(Date().timeIntervalSince1970)) - 1).data
+        parameters += (receiverId != 0 ? receiverId : main.settings.libreLinkUpPatientId.fnv32Hash).data
         parameters += parameters.crc16.data
         return NFCCommand(code: 0xA8, parameters: parameters, description: "activate")
     }

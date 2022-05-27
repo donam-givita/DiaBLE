@@ -289,13 +289,17 @@ extension NFC {
                     debugLog("NFC: 'B0 read 0x04DF' command output: \(output.hex)")
                 }
 
-                let output = try await send(sensor.activationCommand)
+                var output = try await send(sensor.activationCommand)
                 log("NFC: after trying to activate received \(output.hex) for the patch info \(sensor.patchInfo.hex)")
 
-                // Libre 2
-                if output.count == 4 {
+                if sensor.type == .libre2 && output.count == 4 {
                     // receiving 9d081000 for a patchInfo 9d0830010000
                     log("NFC: \(sensor.type) should be activated and warming up")
+                }
+
+                if sensor.type == .libre3 {
+                    output = output.drop(while: { $0 == 0xA5 })
+                    log("NFC: Libre 3 activation response: 0x\(output.hex)")
                 }
 
             } catch {

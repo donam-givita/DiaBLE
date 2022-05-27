@@ -374,7 +374,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
             if taskRequest != .none {
 
-                if sensor.securityGeneration > 1 {
+                if sensor.securityGeneration > 1 && taskRequest != .activate {
                     await testNFCCommands()
                 }
 
