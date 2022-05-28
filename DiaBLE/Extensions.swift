@@ -74,6 +74,10 @@ extension UInt16 {
 
 
 extension UInt32 {
+    init(_ data: Data) {
+        let start = data.startIndex
+        self = UInt32(data[start]) + UInt32(data[start + 1]) << 8 + UInt32(data[start + 2]) << 16 + UInt32(data[start + 3]) << 24
+    }
     var data: Data { Data([UInt8(self & 0xFF), UInt8(self >> 8 & 0xFF), UInt8(self >> 16 & 0xFF), UInt8(self >> 24)]) }
 }
 
@@ -120,7 +124,7 @@ extension String {
 extension Double {
     var units: String {
         UserDefaults.standard.bool(forKey: "displayingMillimoles") ?
-            String(format: "%.1f", self / 18.0182) : String(format: "%.0f", self)
+        String(format: "%.1f", self / 18.0182) : String(format: "%.0f", self)
     }
 }
 
@@ -129,7 +133,7 @@ extension Int {
     var hex: String { String(format: "%.2x", self) }
     var units: String {
         UserDefaults.standard.bool(forKey: "displayingMillimoles") ?
-            String(format: "%.1f", Double(self) / 18.0182) : String(self)
+        String(format: "%.1f", Double(self) / 18.0182) : String(self)
     }
     var formattedInterval: String {
         let formatter = DateComponentsFormatter()
