@@ -165,9 +165,9 @@ class Libre3: Sensor {
     // - The 18-byte reply starts with the dummy bytes `A5 00` and ends in a CRC16
 
     struct ActivationResponse {
-        let bdAddress: Data      // 6 bytes
-        let BLE_Pin: Data        // 4 bytes
-        let activationTime: Int  // 4 bytes
+        let bdAddress: Data         // 6 bytes
+        let BLE_Pin: Data           // 4 bytes
+        let activationTime: UInt32  // 4 bytes
     }
 
 
