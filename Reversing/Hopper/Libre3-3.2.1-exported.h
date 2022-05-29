@@ -3241,11 +3241,9 @@ struct anonymous_type_19 {
 @interface _TtC6Libre322UserNotificationSystem : NSObject {
     id unitOfMeasure;
     id subscribedToEvents;
-    id tag;
-    id center;
-    id alarmUNavailableManager;
 }
 - (id)init;
+- (void)dealloc;
 - (void).cxx_destruct;
 @end
 
@@ -4141,20 +4139,6 @@ struct anonymous_type_19 {
     id termsOfUse;
     id termsOfUseVersion;
 }
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC6Libre310RxEventBus : NSObject {
-    id sSubjectMap;
-    id sSubjectDisposableMap;
-}
-- (void)sendWithObject:(id)v1;
-- (void)registerWithReceiverId:(id)v1 event:(id)v2 useUiThread:(bool)v3 callBack:(void (^ /* unknown block signature */)(void))v4;
-- (void)unRegisterWithReceiverId:(id)v1 event:(id)v2;
-- (id)init;
-- (void).cxx_destruct;
 @end
 
 
@@ -8199,6 +8183,25 @@ struct anonymous_type_19 {
 
 /*****************************************************************/
 
+@interface _TtC6Libre313EventBusError : NSError
+- (id)initWithDomain:(id)v1 code:(long long)v2 userInfo:(id)v3;
+- (id)initWithCoder:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre315CombineEventBus : _TtCs12_SwiftObject {
+    id subjectMap;
+    id subjectCancellableMap;
+    id receiveOnQueue;
+    id isDuplicateSubscriptionAllowed;
+}
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC6Libre37NMEvent : _TtC6Libre35Event
 - (id)init;
 @end
@@ -8258,12 +8261,12 @@ struct anonymous_type_19 {
 @interface _TtC6Libre317AMSignalLossEvent : _TtC6Libre37NMEvent {
     id repeatCount;
     id type;
-    id dateTime;
+    id dateTimeArray;
 }
 @property (nonatomic,readonly) long long repeatCount;
-@property (nonatomic,readonly) NSDate * dateTime;
+@property (nonatomic,readonly) NSArray * dateTimeArray;
 @property (nonatomic,readonly) NSString * description;
-- (id)initWithRepeatCount:(long long)v1 dateTime:(id)v2;
+- (id)initWithRepeatCount:(long long)v1 dateTimeArray:(id)v2;
 - (id)init;
 - (void).cxx_destruct;
 @end
@@ -8392,12 +8395,14 @@ struct anonymous_type_19 {
     id title;
     id body;
     id dateTime;
+    id skipNotification;
 }
 @property (nonatomic,readonly) NSString * title;
 @property (nonatomic,readonly) NSString * body;
 @property (nonatomic,readonly) NSDate * dateTime;
+@property (nonatomic,readonly) bool skipNotification;
 @property (nonatomic,readonly) NSString * description;
-- (id)initWithTitle:(id)v1 body:(id)v2 dateTime:(id)v3;
+- (id)initWithTitle:(id)v1 body:(id)v2 dateTime:(id)v3 skipNotification:(bool)v4;
 - (id)init;
 - (void).cxx_destruct;
 @end
@@ -16495,7 +16500,7 @@ struct anonymous_type_19 {
 - (id)init;
 - (bool)loadBinaryImagesFromFile:(id)v1;
 - (id)loadedBinaryImageForPC:(unsigned long long)v1;
-fillInImageDetails:forUUID: (IMP @0x1009d37d4);
+fillInImageDetails:forUUID: (IMP @0x1009cf75c);
 - (id)frameForAddress:(unsigned long long)v1;
 - (bool)updateStackFrame:(id)v1;
 - (void).cxx_destruct;
