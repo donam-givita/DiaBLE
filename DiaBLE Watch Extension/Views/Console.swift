@@ -7,6 +7,8 @@ struct Console: View {
     @EnvironmentObject var log: Log
     @EnvironmentObject var settings: Settings
 
+    @Namespace var bottomID
+
     @State private var readingCountdown: Int = 0
 
     @State private var showingFilterField = false
@@ -36,18 +38,29 @@ struct Console: View {
                 }
             }
 
-            ScrollView(showsIndicators: true) {
-                if filterString.isEmpty {
-                    Text(log.text)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                } else {
-                    let pattern = filterString.lowercased()
-                    Text(log.text.split(separator: "\n").filter({$0.lowercased().contains(pattern)}).joined(separator: ("\n \n")))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            ScrollViewReader { proxy in
+                ScrollView(showsIndicators: true) {
+                    if filterString.isEmpty {
+                        Text(log.text)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                            .id(bottomID)
+                    } else {
+                        let pattern = filterString.lowercased()
+                        Text(log.text.split(separator: "\n").filter({$0.lowercased().contains(pattern)}).joined(separator: ("\n \n")))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                            .id(bottomID)
+                    }
+                }
+                // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
+                .font(.footnote).foregroundColor(Color(.lightGray))
+                .onChange(of: log.text) { _ in
+                    if !settings.reversedLog {
+                        withAnimation {
+                            proxy.scrollTo(bottomID, anchor: .bottomTrailing)
+                        }
+                    }
                 }
             }
-            // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
-            .font(.footnote).foregroundColor(Color(.lightGray))
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
@@ -103,9 +116,9 @@ struct Console: View {
                 if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
                     VStack(spacing: 0) {
                         Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
-                                "\(readingCountdown)" : " ")
+                             "\(readingCountdown)" : " ")
                         Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
-                                "s" : " ")
+                             "s" : " ")
                     }
                     .font(Font.footnote.monospacedDigit()).foregroundColor(.orange)
                     .frame(width: 24, height: 24)

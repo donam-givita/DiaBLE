@@ -22,6 +22,8 @@ struct Console: View {
 
     @Environment(\.colorScheme) var colorScheme
 
+    @Namespace var bottomID
+
     @State private var showingNFCAlert = false
     @State private var showingUnlockConfirmationDialog = false
     @State private var showingResetConfirmationDialog = false
@@ -54,22 +56,32 @@ struct Console: View {
             }
 
             HStack(spacing: 4) {
-
-                ScrollView(showsIndicators: true) {
-                    if filterString.isEmpty {
-                        Text(log.text)
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                            .padding(4)
-                            .textSelection(.enabled)
-                    } else {
-                        let pattern = filterString.lowercased()
-                        Text(log.text.split(separator: "\n").filter({$0.lowercased().contains(pattern)}).joined(separator: ("\n \n")))
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                            .padding(4)
-                            .textSelection(.enabled)
+                ScrollViewReader { proxy in
+                    ScrollView(showsIndicators: true) {
+                        if filterString.isEmpty {
+                            Text(log.text)
+                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                .padding(4)
+                                .textSelection(.enabled)
+                                .id(bottomID)
+                        } else {
+                            let pattern = filterString.lowercased()
+                            Text(log.text.split(separator: "\n").filter({$0.lowercased().contains(pattern)}).joined(separator: ("\n \n")))
+                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                .padding(4)
+                                .textSelection(.enabled)
+                                .id(bottomID)
+                        }
+                    }
+                    .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
+                    .onChange(of: log.text) { _ in
+                        if !settings.reversedLog {
+                            withAnimation {
+                                proxy.scrollTo(bottomID, anchor: .bottomTrailing)
+                            }
+                        }
                     }
                 }
-                .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
 
                 ConsoleSidebar(showingNFCAlert: $showingNFCAlert)
             }
@@ -291,11 +303,11 @@ struct ConsoleSidebar: View {
             if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
                 Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                      "\(readingCountdown) s" : "")
-                    .fixedSize()
-                    .font(Font.caption.monospacedDigit()).foregroundColor(.orange)
-                    .onReceive(timer) { _ in
-                        readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
-                    }
+                .fixedSize()
+                .font(Font.caption.monospacedDigit()).foregroundColor(.orange)
+                .onReceive(timer) { _ in
+                    readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
+                }
             } else {
                 Text("").fixedSize().font(Font.caption.monospacedDigit()).hidden()
             }

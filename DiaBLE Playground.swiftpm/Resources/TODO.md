@@ -31,7 +31,7 @@ TODO
   - native and/or online en/decryption
 * scrollable graph, offline trend arrow, landscape mode, realtime RSSI
 * smooth the historic values and project the trend ones (see [LibreTransmitter](https://github.com/dabear/LibreTransmitter/commit/49b50d7995955b76861440e5e34a0accd064d18f))
-* log: limit to a number of readings, autoscroll to bottom, prepend time, Share menu, record to a file, add Logger support
+* log: limit to a number of readings, prepend time, Share menu, record to a file, add Logger support
 * HealthKit, Nightscout: more than just a few ported dozen lines of code
 * profile and avoid retain cycles
 * make use of Actors, Combine, TabularData, ...
