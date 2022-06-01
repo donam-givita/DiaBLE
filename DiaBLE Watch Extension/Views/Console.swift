@@ -7,7 +7,7 @@ struct Console: View {
     @EnvironmentObject var log: Log
     @EnvironmentObject var settings: Settings
 
-    @Namespace var bottomID
+    @Namespace var logTextID
 
     @State private var readingCountdown: Int = 0
 
@@ -43,20 +43,24 @@ struct Console: View {
                     if filterString.isEmpty {
                         Text(log.text)
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                            .id(bottomID)
+                            .id(logTextID)
                     } else {
                         let pattern = filterString.lowercased()
                         Text(log.text.split(separator: "\n").filter({$0.lowercased().contains(pattern)}).joined(separator: ("\n \n")))
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                            .id(bottomID)
+                            .id(logTextID)
                     }
                 }
                 // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
                 .font(.footnote).foregroundColor(Color(.lightGray))
-                .onChange(of: log.text) { _ in
+                .onReceive(log.$text) { _ in
                     if !settings.reversedLog {
                         withAnimation {
-                            proxy.scrollTo(bottomID, anchor: .bottomTrailing)
+                            proxy.scrollTo(logTextID, anchor: .bottom)
+                        }
+                    } else {
+                        withAnimation {
+                            proxy.scrollTo(logTextID, anchor: .top)
                         }
                     }
                 }

@@ -22,7 +22,7 @@ struct Console: View {
 
     @Environment(\.colorScheme) var colorScheme
 
-    @Namespace var bottomID
+    @Namespace var logTextID
 
     @State private var showingNFCAlert = false
     @State private var showingUnlockConfirmationDialog = false
@@ -63,21 +63,26 @@ struct Console: View {
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                 .padding(4)
                                 .textSelection(.enabled)
-                                .id(bottomID)
+                                .id(logTextID)
                         } else {
                             let pattern = filterString.lowercased()
                             Text(log.text.split(separator: "\n").filter({$0.lowercased().contains(pattern)}).joined(separator: ("\n \n")))
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                 .padding(4)
                                 .textSelection(.enabled)
-                                .id(bottomID)
+                                .id(logTextID)
                         }
                     }
                     .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
-                    .onChange(of: log.text) { _ in
+                    // FIXME: not scrolling to bottom when cleared
+                    .onReceive(log.$text) { _ in
                         if !settings.reversedLog {
                             withAnimation {
-                                proxy.scrollTo(bottomID, anchor: .bottomTrailing)
+                                proxy.scrollTo(logTextID, anchor: .bottom)
+                            }
+                        } else {
+                            withAnimation {
+                                proxy.scrollTo(logTextID, anchor: .top)
                             }
                         }
                     }
