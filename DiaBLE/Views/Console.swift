@@ -344,9 +344,8 @@ struct ConsoleSidebar: View {
                 }
 
                 Button {
-                    DispatchQueue.main.async {
-                        log.text = "Log cleared \(Date().local)"
-                    }
+                    log.text = "Log cleared \(Date().local)"
+                    print("Log cleared \(Date().local)")
                 } label: {
                     VStack {
                         Image(systemName: "clear").resizable().frame(width: 24, height: 24)

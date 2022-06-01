@@ -82,14 +82,12 @@ public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
 
     public func log(_ msg: String) {
         if settings.logging || msg.hasPrefix("Log") {
-            DispatchQueue.main.async {
-                if self.settings.reversedLog {
-                    self.log.text = "\(msg)\n \n\(self.log.text)"
-                } else {
-                    self.log.text.append("\n \n\(msg)")
-                }
-                print(msg)
+            if self.settings.reversedLog {
+                self.log.text = "\(msg)\n \n\(self.log.text)"
+            } else {
+                self.log.text.append("\n \n\(msg)")
             }
+            print(msg)
         }
     }
 

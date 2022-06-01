@@ -322,8 +322,8 @@ extension NFC {
                             activationTime: UInt32(output.subdata(in: 11 ..< 15))
                         )
                         let crc = UInt16(output[15 ... 16])
-                        let computedCrc = Data(output[1 ... 14]).crc16
-                        log("NFC: Libre 3 activation response: \(activationResponse), BLE address: \(activationResponse.bdAddress.hexAddress), BLE PIN: \(activationResponse.BLE_Pin.hex), activation timne: \(Date(timeIntervalSince1970: Double(activationResponse.activationTime))), CRC: \(crc.hex), computed CRC: \(computedCrc.hex)")
+                        let computedCrc = output[1 ... 14].crc16
+                        log("NFC: Libre 3 activation response: \(activationResponse), BLE address: \(activationResponse.bdAddress.hexAddress), BLE PIN: \(activationResponse.BLE_Pin.hex), activation time: \(Date(timeIntervalSince1970: Double(activationResponse.activationTime))), CRC: \(crc.hex), computed CRC: \(computedCrc.hex)")
                     }
                 }
 
