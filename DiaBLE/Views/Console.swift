@@ -84,6 +84,7 @@ struct Console: View {
                                 }
                             }
                         }
+                        .padding(4)
                     }
                     .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
                     .onChange(of: log.entries.count) { _ in
