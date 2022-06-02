@@ -41,7 +41,7 @@ public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
 
         super.init()
 
-        log.entries = [LogEntry(message: "Welcome to DiaBLE!\n \n\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")]
+        log.entries = [LogEntry(message: "Welcome to DiaBLE!"), LogEntry(message: "\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")]
         debugLog("User defaults: \(Settings.defaults.keys.map{ [$0, UserDefaults.standard.dictionaryRepresentation()[$0]!] }.sorted{($0[0] as! String) < ($1[0] as! String) })")
 
         app.main = self
@@ -83,7 +83,7 @@ public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
     public func log(_ msg: String) {
         if settings.logging || msg.hasPrefix("Log") {
             let entry = LogEntry(message: msg)
-            if self.settings.reversedLog {
+            if settings.reversedLog {
                 log.entries.insert(entry, at: 0)
             } else {
                 log.entries.append(entry)

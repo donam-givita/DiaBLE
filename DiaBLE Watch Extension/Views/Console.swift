@@ -53,7 +53,7 @@ struct Console: View {
                 }
                 // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
                 .font(.footnote).foregroundColor(Color(.lightGray))
-                .onReceive(log.$entries) { _ in
+                .onChange(of: log.entries.count) { _ in
                     if !settings.reversedLog {
                         withAnimation {
                             proxy.scrollTo(log.entries.last!.id, anchor: .bottom)

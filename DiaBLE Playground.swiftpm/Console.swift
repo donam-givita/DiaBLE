@@ -71,8 +71,7 @@ struct Console: View {
                         }
                     }
                     .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
-                    // FIXME: not scrolling to bottom when cleared
-                    .onReceive(log.$entries) { _ in
+                    .onChange(of: log.entries.count) { _ in
                         if !settings.reversedLog {
                             withAnimation {
                                 proxy.scrollTo(log.entries.last!.id, anchor: .bottom)
