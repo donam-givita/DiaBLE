@@ -119,6 +119,7 @@ public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
             centralManager.cancelPeripheralConnection(device.peripheral!)
         }
         if centralManager.state == .poweredOn {
+            settings.stoppedBluetooth = false
             centralManager.scanForPeripherals(withServices: nil, options: nil)
             status("Scanning...")
         }

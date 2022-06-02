@@ -144,6 +144,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             centralManager.cancelPeripheralConnection(device.peripheral!)
         }
         if centralManager.state == .poweredOn {
+            settings.stoppedBluetooth = false
             centralManager.scanForPeripherals(withServices: nil, options: nil)
             status("Scanning...")
         }

@@ -22,9 +22,14 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             }
             app.deviceState = "Disconnected"
         case .poweredOn:
-            log("Bluetooth: state: powered on")
-            centralManager.scanForPeripherals(withServices: nil, options: nil)
-            main.status("Scanning...")
+            if settings.stoppedBluetooth {
+                log("Bluetooth: state: powered on but stopped")
+                main.errorStatus("Bluetooth on but stopped")
+            } else {
+                log("Bluetooth: state: powered on")
+                centralManager.scanForPeripherals(withServices: nil, options: nil)
+                main.status("Scanning...")
+            }
         case .resetting:    log("Bluetooth: state: resetting")
         case .unauthorized: log("Bluetooth: state: unauthorized")
         case .unknown:      log("Bluetooth: state: unknown")
@@ -122,7 +127,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 case "3":
                     app.device.name = "Libre 2"
                 default: app.device.name = "Libre"
-                // TODO: Libre 2 US / CA
+                    // TODO: Libre 2 US / CA
                 }
             }
             settings.activeSensorSerial = app.device.serial
@@ -345,7 +350,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                         case 3:  sensor.type = .libre2
                         case 0:  sensor.type = .libre3
                         default: sensor.type = .libre2
-                        // TODO: .libre2US / .libre2CA
+                            // TODO: .libre2US / .libre2CA
                         }
                         sensor.family = SensorFamily(rawValue: family) ?? .libre
                     }
@@ -493,7 +498,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         if let error = error {
             let errorCode = CBError.Code(rawValue: (error as NSError).code)!
             if errorCode == .encryptionTimedOut {
-            log("Bluetooth: DEBUG: TODO: manage pairing timeout")
+                log("Bluetooth: DEBUG: TODO: manage pairing timeout")
                 // TODO: manage pairing
             }
             msg += ", error: \(error.localizedDescription)"

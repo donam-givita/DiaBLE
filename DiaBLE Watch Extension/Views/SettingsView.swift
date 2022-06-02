@@ -21,9 +21,12 @@ struct SettingsView: View {
                     }
                 }
                 .labelsHidden()
+                .disabled(settings.stoppedBluetooth)
 
                 TextField("device name pattern", text: $settings.preferredDevicePattern)
                     .frame(alignment: .center)
+                    .disabled(settings.stoppedBluetooth)
+
             }
             .frame(height: 20)
             .padding(.top, 57)
@@ -32,6 +35,20 @@ struct SettingsView: View {
 
             HStack {
                 Spacer()
+
+                Button {
+                    settings.stoppedBluetooth.toggle()
+                    if settings.stoppedBluetooth {
+                        app.main.centralManager.stopScan()
+                        app.main.status("Stopped scanning")
+                        app.main.log("Bluetooth: stopped scanning")
+                    } else {
+                        app.main.rescan()
+                    }
+                } label: {
+                    Image("Bluetooth").renderingMode(.template).resizable().frame(width: 28, height: 28).foregroundColor(.blue).padding(-4)
+                        .overlay(settings.stoppedBluetooth ? Image(systemName: "line.diagonal").resizable().frame(width: 18, height: 18).rotationEffect(.degrees(90)) : nil).foregroundColor(.red)
+                }
 
                 Button {
                     settings.usingOOP.toggle()
@@ -58,6 +75,8 @@ struct SettingsView: View {
                 } label: {
                     Image(systemName: settings.calibrating ? "tuningfork" : "tuningfork").resizable().frame(width: 20, height: 20).foregroundColor(settings.calibrating ? .blue : .primary)
                 }
+
+                Spacer()
 
                 Spacer()
             }

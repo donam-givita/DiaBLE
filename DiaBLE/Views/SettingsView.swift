@@ -19,15 +19,28 @@ struct SettingsView: View {
                 VStack(spacing: 20) {
                     VStack {
                         HStack(spacing: 0) {
+
                             Button {
+                                settings.stoppedBluetooth.toggle()
+                                if settings.stoppedBluetooth {
+                                    app.main.centralManager.stopScan()
+                                    app.main.status("Stopped scanning")
+                                    app.main.log("Bluetooth: stopped scanning")
+                                } else {
+                                    app.main.rescan()
+                                }
                             } label: {
-                                Image("Bluetooth").renderingMode(.template).resizable().frame(width: 32, height: 32)
+                                Image("Bluetooth").renderingMode(.template).resizable().frame(width: 32, height: 32).foregroundColor(.blue)
+                                    .overlay(settings.stoppedBluetooth ? Image(systemName: "line.diagonal").resizable().frame(width: 24, height: 24).rotationEffect(.degrees(90)) : nil).foregroundColor(.red)
                             }
+
                             Picker(selection: $settings.preferredTransmitter, label: Text("Preferred")) {
                                 ForEach(TransmitterType.allCases) { t in
                                     Text(t.name).tag(t)
                                 }
-                            }.pickerStyle(.segmented)
+                            }
+                            .pickerStyle(.segmented)
+                            .disabled(settings.stoppedBluetooth)
                         }
                         HStack(spacing: 0) {
                             Button {
@@ -62,7 +75,7 @@ struct SettingsView: View {
                             label: {
                         Image(systemName: "timer").resizable().frame(width: 32, height: 32)
                         Text(" \(settings.readingInterval) min") })
-                        .frame(maxWidth: 200)
+                    .frame(maxWidth: 200)
                     Spacer()
                 }
                 .foregroundColor(.orange)
@@ -143,7 +156,7 @@ struct SettingsView: View {
                                     showingCalendarPicker = false
                                     app.main.eventKit?.sync()
                                 } label: { Text("None").bold().padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2)) }
-                                .disabled(settings.calendarTitle == "")
+                                    .disabled(settings.calendarTitle == "")
                             }
                             Section {
                                 Picker(selection: $settings.calendarTitle, label: Text("Calendar")) {

@@ -7,6 +7,7 @@ class Settings: ObservableObject {
         "preferredTransmitter": TransmitterType.none.id,
         "preferredDevicePattern": BLE.knownDevicesIds.joined(separator: " "),
         "readingInterval": 5,
+        "stoppedBluetooth": false,
 
         "targetLow": 80.0,
         "targetHigh": 170.0,
@@ -81,6 +82,10 @@ class Settings: ObservableObject {
 
     @Published var readingInterval: Int = UserDefaults.standard.integer(forKey: "readingInterval") {
         didSet { UserDefaults.standard.set(self.readingInterval, forKey: "readingInterval") }
+    }
+
+    @Published var stoppedBluetooth: Bool = UserDefaults.standard.bool(forKey: "stoppedBluetooth") {
+        didSet { UserDefaults.standard.set(self.stoppedBluetooth, forKey: "stoppedBluetooth") }
     }
 
     @Published var numberFormatter: NumberFormatter = NumberFormatter()

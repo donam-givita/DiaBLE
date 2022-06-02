@@ -106,6 +106,7 @@ struct OnlineView: View {
                             let glucose = libreLinkUpGlucose.glucose
                             (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
                                 .foregroundColor(libreLinkUpGlucose.color.color)
+                                .padding(.vertical, 1)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         .frame(maxWidth: .infinity, alignment: .topLeading)
