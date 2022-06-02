@@ -7,8 +7,6 @@ struct Console: View {
     @EnvironmentObject var log: Log
     @EnvironmentObject var settings: Settings
 
-    @Namespace var logTextID
-
     @State private var readingCountdown: Int = 0
 
     @State private var showingFilterField = false
@@ -40,27 +38,29 @@ struct Console: View {
 
             ScrollViewReader { proxy in
                 ScrollView(showsIndicators: true) {
-                    if filterString.isEmpty {
-                        Text(log.text)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                            .id(logTextID)
-                    } else {
-                        let pattern = filterString.lowercased()
-                        Text(log.text.split(separator: "\n").filter({$0.lowercased().contains(pattern)}).joined(separator: ("\n \n")))
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                            .id(logTextID)
+                    LazyVStack(alignment: .leading, spacing: 10) {
+                        if filterString.isEmpty {
+                            ForEach(log.entries) { entry in
+                                Text(entry.message)
+                            }
+                        } else {
+                            let pattern = filterString.lowercased()
+                            ForEach(log.entries.filter({$0.message.lowercased().contains(pattern)})) { entry in
+                                Text(entry.message)
+                            }
+                        }
                     }
                 }
                 // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
                 .font(.footnote).foregroundColor(Color(.lightGray))
-                .onReceive(log.$text) { _ in
+                .onReceive(log.$entries) { _ in
                     if !settings.reversedLog {
                         withAnimation {
-                            proxy.scrollTo(logTextID, anchor: .bottom)
+                            proxy.scrollTo(log.entries.last!.id, anchor: .bottom)
                         }
                     } else {
                         withAnimation {
-                            proxy.scrollTo(logTextID, anchor: .top)
+                            proxy.scrollTo(log.entries[0].id, anchor: .top)
                         }
                     }
                 }
@@ -152,7 +152,7 @@ struct Console: View {
                 }
 
                 //      Button {
-                //          UIPasteboard.general.string = log.text
+                //          UIPasteboard.general.string = log.entries.map(\.message).joined(separator: "\n \n")
                 //      } label: {
                 //          VStack {
                 //              Image(systemName: "doc.on.doc").resizable().frame(width: 24, height: 24)
@@ -161,7 +161,7 @@ struct Console: View {
                 //      }
 
                 Button {
-                    log.text = "Log cleared \(Date().local)"
+                    log.entries = [LogEntry(message: "Log cleared \(Date().local)")]
                     print("Log cleared \(Date().local)")
                 } label: {
                     VStack {
@@ -171,7 +171,7 @@ struct Console: View {
 
                 Button {
                     settings.reversedLog.toggle()
-                    log.text = log.text.components(separatedBy: "\n \n").reversed().joined(separator: "\n \n")
+                    log.entries.reverse()
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5).fill(settings.reversedLog ? Color.blue : Color.clear)

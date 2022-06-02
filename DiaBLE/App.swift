@@ -3,11 +3,11 @@ import SwiftUI
 
 @main
 struct DiaBLEApp: App {
-    #if !os(watchOS)
+#if !os(watchOS)
     @UIApplicationDelegateAdaptor(MainDelegate.self) var main
-    #else
+#else
     var main: MainDelegate = MainDelegate()
-    #endif
+#endif
 
     @SceneBuilder var body: some Scene {
         WindowGroup {
@@ -18,9 +18,9 @@ struct DiaBLEApp: App {
                 .environmentObject(main.settings)
         }
 
-        #if os(watchOS)
+#if os(watchOS)
         WKNotificationScene(controller: NotificationController.self, category: "myCategory")
-        #endif
+#endif
     }
 }
 
@@ -80,10 +80,16 @@ class AppState: ObservableObject {
 }
 
 
-class Log: ObservableObject {
-    @Published var text: String
+struct LogEntry: Identifiable {
+    let id = UUID()
+    let message: String
+}
+
+
+final class Log: ObservableObject {
+    @Published var entries: [LogEntry]
     init(_ text: String = "Log \(Date().local)\n") {
-        self.text = text
+        entries = [LogEntry(message: text)]
     }
 }
 

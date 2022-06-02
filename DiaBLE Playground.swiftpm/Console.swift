@@ -22,8 +22,6 @@ struct Console: View {
 
     @Environment(\.colorScheme) var colorScheme
 
-    @Namespace var logTextID
-
     @State private var showingNFCAlert = false
     @State private var showingUnlockConfirmationDialog = false
     @State private var showingResetConfirmationDialog = false
@@ -56,33 +54,32 @@ struct Console: View {
             }
 
             HStack(spacing: 4) {
+
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: true) {
-                        if filterString.isEmpty {
-                            Text(log.text)
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
-                                .padding(4)
-                                .textSelection(.enabled)
-                                .id(logTextID)
-                        } else {
-                            let pattern = filterString.lowercased()
-                            Text(log.text.split(separator: "\n").filter({$0.lowercased().contains(pattern)}).joined(separator: ("\n \n")))
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
-                                .padding(4)
-                                .textSelection(.enabled)
-                                .id(logTextID)
+                        LazyVStack(alignment: .leading, spacing: 20) {
+                            if filterString.isEmpty {
+                                ForEach(log.entries) { entry in
+                                    Text(entry.message)
+                                }
+                            } else {
+                                let pattern = filterString.lowercased()
+                                ForEach(log.entries.filter({$0.message.lowercased().contains(pattern)})) { entry in
+                                    Text(entry.message)
+                                }
+                            }
                         }
                     }
                     .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
                     // FIXME: not scrolling to bottom when cleared
-                    .onReceive(log.$text) { _ in
+                    .onReceive(log.$entries) { _ in
                         if !settings.reversedLog {
                             withAnimation {
-                                proxy.scrollTo(logTextID, anchor: .bottom)
+                                proxy.scrollTo(log.entries.last!.id, anchor: .bottom)
                             }
                         } else {
                             withAnimation {
-                                proxy.scrollTo(logTextID, anchor: .top)
+                                proxy.scrollTo(log.entries[0].id, anchor: .top)
                             }
                         }
                     }
@@ -335,7 +332,7 @@ struct ConsoleSidebar: View {
             VStack(spacing: 0) {
 
                 Button {
-                    UIPasteboard.general.string = log.text
+                    UIPasteboard.general.string = log.entries.map(\.message).joined(separator: "\n \n")
                 } label: {
                     VStack {
                         Image(systemName: "doc.on.doc").resizable().frame(width: 24, height: 24)
@@ -344,7 +341,7 @@ struct ConsoleSidebar: View {
                 }
 
                 Button {
-                    log.text = "Log cleared \(Date().local)"
+                    log.entries = [LogEntry(message: "Log cleared \(Date().local)")]
                     print("Log cleared \(Date().local)")
                 } label: {
                     VStack {
@@ -357,7 +354,7 @@ struct ConsoleSidebar: View {
 
             Button {
                 settings.reversedLog.toggle()
-                log.text = log.text.components(separatedBy: "\n \n").reversed().joined(separator: "\n \n")
+                log.entries.reverse()
             } label: {
                 VStack {
                     Image(systemName: "backward.fill").resizable().frame(width: 12, height: 12).offset(y: 5)
