@@ -58,9 +58,11 @@ class LibreLinkUp: Logging {
 
     var main: MainDelegate!
 
-    let siteURL = "https://api-eu.libreview.io"
+    let siteURL = "https://api.libreview.io"
+    let localSiteURL = "https://api-eu.libreview.io"
     let loginEndpoint = "llu/auth/login"
     let connectionsEndpoint = "llu/connections"
+    let measurementsEndpoint = "lsl/api/measurements"
 
     let headers = [
         "User-Agent": "Mozilla/5.0",

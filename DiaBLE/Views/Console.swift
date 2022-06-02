@@ -35,22 +35,37 @@ struct Console: View {
 
             if showingFilterField {
                 HStack {
-                    Image(systemName: "magnifyingglass").padding(.leading).foregroundColor(Color(.lightGray))
-                    TextField("Filter", text: $filterString)
-                        .autocapitalization(.none)
-                        .padding(.vertical, 8)
-                        .foregroundColor(Color.accentColor)
-                    if filterString.count > 0 {
-                        Button {
-                            filterString = ""
-                        } label: {
-                            Image(systemName: "xmark.circle.fill").padding(.trailing)
+
+                    HStack {
+                        Image(systemName: "magnifyingglass").padding(.leading).foregroundColor(Color(.lightGray))
+                        TextField("Filter", text: $filterString)
+                            .autocapitalization(.none)
+                            .padding(.vertical, 8)
+                            .foregroundColor(Color.accentColor)
+                        if filterString.count > 0 {
+                            Button {
+                                filterString = ""
+                            } label: {
+                                Image(systemName: "xmark.circle.fill").padding(.trailing)
+                            }
                         }
                     }
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(10)
+                    .padding()
+
+                    HStack {
+                        ForEach(Array(log.labels), id: \.self) { label in
+                            Button {
+                                filterString = label
+                            } label: {
+                                Text(label).font(.footnote).foregroundColor(.blue)
+                            }
+                        }
+                    }
+                    .padding()
+
                 }
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(10)
-                .padding()
             }
 
             HStack(spacing: 4) {
@@ -379,7 +394,7 @@ struct ConsoleSidebar: View {
 
             Button {
                 settings.logging.toggle()
-                app.main.log("\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")
+                app.main.log("\(settings.logging ? "Log: started" : "Log: stopped") \(Date().local)")
             } label: {
                 VStack {
                     Image(systemName: settings.logging ? "stop.circle" : "play.circle").resizable().frame(width: 32, height: 32)

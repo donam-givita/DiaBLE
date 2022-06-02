@@ -80,16 +80,34 @@ class AppState: ObservableObject {
 }
 
 
-struct LogEntry: Identifiable {
-    let id = UUID()
-    let message: String
+/// https://github.com/apple/swift-log/blob/main/Sources/Logging/Logging.swift
+public enum LogLevel: UInt8, Codable, CaseIterable {
+    case trace, debug, info, notice, warning, error, critical
 }
 
 
-final class Log: ObservableObject {
+struct LogEntry: Identifiable {
+    let id = UUID()
+    let message: String
+    let time: Date
+    var label: String
+    var level: LogLevel
+    init(message: String, label: String = "", level: LogLevel = .info) {
+        self.message = message
+        self.time = Date()
+        self.label = String(message[message.startIndex ..< (message.firstIndex(of: ":") ?? message.startIndex)])
+        self.level = level
+    }
+}
+
+
+class Log: ObservableObject {
+    // FIXME: "Publishing changes from background threads is not allowed"
     @Published var entries: [LogEntry]
+    @Published var labels: Set<String>
     init(_ text: String = "Log \(Date().local)\n") {
         entries = [LogEntry(message: text)]
+        labels = []
     }
 }
 

@@ -45,7 +45,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
         super.init()
 
-        log.entries = [LogEntry(message: "Welcome to DiaBLE!"), LogEntry(message: "\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")]
+        log.entries = [LogEntry(message: "Welcome to DiaBLE!"), LogEntry(message: "\(settings.logging ? "Log: started" : "Log: stopped") \(Date().local)")]
         debugLog("User defaults: \(Settings.defaults.keys.map{ [$0, UserDefaults.standard.dictionaryRepresentation()[$0]!] }.sorted{($0[0] as! String) < ($1[0] as! String) })")
 
         app.main = self
@@ -83,22 +83,25 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
     }
 
 
-    public func log(_ msg: String) {
+    public func log(_ msg: String, level: LogLevel = .info) {
         if settings.logging || msg.hasPrefix("Log") {
-            let entry = LogEntry(message: msg)
+            let entry = LogEntry(message: msg, level: level)
             if settings.reversedLog {
                 log.entries.insert(entry, at: 0)
             } else {
                 log.entries.append(entry)
             }
             print(msg)
+            if !entry.label.isEmpty {
+                log.labels.insert(entry.label)
+            }
         }
     }
 
 
     public func debugLog(_ msg: String) {
         if settings.debugLevel > 0 {
-            log(msg)
+            log(msg, level: .debug)
         }
     }
 
