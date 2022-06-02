@@ -95,7 +95,8 @@ struct LogEntry: Identifiable {
     init(message: String, label: String = "", level: LogLevel = .info) {
         self.message = message
         self.time = Date()
-        self.label = String(message[message.startIndex ..< (message.firstIndex(of: ":") ?? message.startIndex)])
+        let label = String(message[message.startIndex ..< (message.firstIndex(of: ":") ?? message.startIndex)])
+        self.label = !label.contains(" ") ? label : ""
         self.level = level
     }
 }

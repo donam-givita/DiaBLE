@@ -175,6 +175,7 @@ struct Console: View {
 
                 Button {
                     log.entries = [LogEntry(message: "Log cleared \(Date().local)")]
+                    log.labels = []
                     print("Log cleared \(Date().local)")
                 } label: {
                     VStack {
@@ -195,7 +196,7 @@ struct Console: View {
 
                 Button {
                     settings.logging.toggle()
-                    app.main.log("\(settings.logging ? "Log: started" : "Log: stopped") \(Date().local)")
+                    app.main.log("\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")
                 } label: {
                     VStack {
                         Image(systemName: settings.logging ? "stop.circle" : "play.circle").resizable().frame(width: 24, height: 24).foregroundColor(settings.logging ? .red : .green)
