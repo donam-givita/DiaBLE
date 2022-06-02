@@ -64,6 +64,17 @@ struct Console: View {
                         }
                     }
                 }
+                .onChange(of: log.entries[0].id) { _ in
+                    if !settings.reversedLog {
+                        withAnimation {
+                            proxy.scrollTo(log.entries.last!.id, anchor: .bottom)
+                        }
+                    } else {
+                        withAnimation {
+                            proxy.scrollTo(log.entries[0].id, anchor: .top)
+                        }
+                    }
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
