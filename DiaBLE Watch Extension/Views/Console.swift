@@ -18,24 +18,35 @@ struct Console: View {
         VStack(spacing: 0) {
 
             if showingFilterField {
-                HStack {
-                    Image(systemName: "magnifyingglass").foregroundColor(Color(.lightGray))
-                    TextField("Filter", text: $filterString)
-                        .foregroundColor(.blue)
-                    if filterString.count > 0 {
-                        Button {
-                            filterString = ""
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
+                ScrollView {
+
+                    HStack {
+                        Image(systemName: "magnifyingglass").foregroundColor(Color(.lightGray))
+                        TextField("Filter", text: $filterString)
+                            .foregroundColor(.blue)
+                        if filterString.count > 0 {
+                            Button {
+                                filterString = ""
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                            }
+                            .frame(maxWidth: 24)
+                            .padding(0)
+                            .buttonStyle(.plain)
+                            .foregroundColor(.blue)
                         }
-                        .frame(maxWidth: 24)
-                        .padding(0)
-                        .buttonStyle(.plain)
-                        .foregroundColor(.blue)
+                    }
+
+                    // TODO: picker to filter labels
+                    ForEach(Array(log.labels), id: \.self) { label in
+                        Button {
+                            filterString = label
+                        } label: {
+                            Text(label).font(.caption).foregroundColor(.blue)
+                        }
                     }
                 }
-
-                // TODO: filter labels
+                .padding()
             }
 
             ScrollViewReader { proxy in
