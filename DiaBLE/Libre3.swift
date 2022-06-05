@@ -319,24 +319,24 @@ class Libre3: Sensor {
     // enable notifications for 2198, 23FA and 22CE
     // write  2198  01
     // write  2198  02
-    // write  23FA  20 * 9 bytes        // fixed certificate data
+    // write  23FA  20 * 9 bytes        // 162-byte fixed certificate data
     // write  2198  03
     // notify 2198  04
     // write  2198  09
     // notify 2198  A0 8C
-    // notify 23FA  20 * 7 + 8 bytes
+    // notify 23FA  20 * 7 + 8 bytes    // 140-byte payload
     // write  2198  0D
-    // write  23FA  20 * 3 + 13 bytes
+    // write  23FA  20 * 3 + 13 bytes   // 65-byte payload
     // write  2198  0E
     // notify 2198  0F 41
-    // notify 23FA  20 * 3 + 9 bytes
+    // notify 23FA  20 * 3 + 9 bytes    // 65-byte paylod
     // write  2198  11
     // notify 2198  08 17
     // notify 22CE  20 + 5 bytes        // 23-byte challenge
     // write  22CE  20 * 2 + 6 bytes    // 40-byte unlock payload
     // write  2198  08
     // notify 2198  08 43
-    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info
+    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info - wrapped kAuth?
     // enable notifications for 1338, 1BEE, 195A, 1AB8, 1D24, 1482
     // notify 1482  18 bytes            // patch status
     // enable notifications for 177A
@@ -344,7 +344,7 @@ class Libre3: Sensor {
     // notify 1BEE  20 + 20 bytes       // event log
     // notify 1338  10 bytes            // ending in 01 00
     // write  1338  13 bytes            // ending in 02 00
-    // notify 1D24  20 * 10 + 15 bytes  // factory data
+    // notify 1D24  20 * 10 + 15 bytes  // 204-byte factory data
     // notify 1338  10 bytes            // ending in 02 00
     //
     // Shutdown:
@@ -389,7 +389,11 @@ class Libre3: Sensor {
     /// - a final sequential Int starting by 01 00 since it is enqueued
     enum ControlCommand {
         case historic(Data)       // 1 - CTRL_CMD_HISTORIC
+
+        /// Requests past clinical data
+        /// - 010101 9B48 0000 requests clinical data from lifeCount 18587 (0x9B48)
         case backfill(Data)       // 2 - CTRL_CMD_BACKFILL
+
         case eventLog(Data)       // 3 - CTRL_CMD_EVENTLOG
         case factoryData(Data)    // 4 - CTRL_CMD_FACTORY_DATA
         case shutdownPatch(Data)  // 5 - CTRL_CMD_SHUTDOWN_PATCH
