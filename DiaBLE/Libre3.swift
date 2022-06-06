@@ -394,8 +394,12 @@ class Libre3: Sensor {
         /// - 010101 9B48 0000 requests clinical data from lifeCount 18587 (0x9B48)
         case backfill(Data)       // 2 - CTRL_CMD_BACKFILL
 
+        /// - 040100 0000 0000
         case eventLog(Data)       // 3 - CTRL_CMD_EVENTLOG
+
+        /// - 060000 0000 0000
         case factoryData(Data)    // 4 - CTRL_CMD_FACTORY_DATA
+
         case shutdownPatch(Data)  // 5 - CTRL_CMD_SHUTDOWN_PATCH
     }
 
