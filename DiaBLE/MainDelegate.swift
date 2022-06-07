@@ -218,7 +218,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             debugLog("Trend data quality: [\n\(sensor.trend.map(\.dataQuality.description).joined(separator: ",\n"))\n]")
             debugLog("Trend quality flags: [\(sensor.trend.map { "0" + String($0.dataQualityFlags,radix: 2).suffix(2) }.joined(separator: ", "))]")
             debugLog("History has errors: \(sensor.history.map(\.hasError))")
-            debugLog("History data quality: [\n\(sensor.history.map(\..dataQuality.description).joined(separator: ",\n"))\n]")
+            debugLog("History data quality: [\n\(sensor.history.map(\.dataQuality.description).joined(separator: ",\n"))\n]")
             debugLog("History quality flags: [\(sensor.history.map { "0" + String($0.dataQualityFlags,radix: 2).suffix(2) }.joined(separator: ", "))]")
         }
 
