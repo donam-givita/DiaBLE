@@ -19,7 +19,7 @@ class MiaoMiao: Transmitter {
         }
     }
 
-    override class var knownUUIDs: [String] { UUID.allCases.map{$0.rawValue} }
+    override class var knownUUIDs: [String] { UUID.allCases.map(\.rawValue) }
 
     override class var dataServiceUUID: String             { UUID.data.rawValue }
     override class var dataWriteCharacteristicUUID: String { UUID.dataWrite.rawValue }

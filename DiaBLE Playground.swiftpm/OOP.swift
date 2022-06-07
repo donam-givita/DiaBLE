@@ -553,7 +553,7 @@ extension MainDelegate {
                         } else {
                             history.values = []
                         }
-                        log("OOP: current glucose: \(realTimeGlucose), history values: \(oopHistory.map{ $0.value })".replacingOccurrences(of: "-1", with: "… "))
+                        log("OOP: current glucose: \(realTimeGlucose), history values: \(oopHistory.map(\.value))".replacingOccurrences(of: "-1", with: "… "))
                     } else {
                         log("OOP: error while decoding JSON data")
                         errorStatus("OOP server error: \(data.string)")

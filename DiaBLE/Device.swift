@@ -9,7 +9,7 @@ enum DeviceType: CaseIterable, Hashable, Identifiable {
     case watch(WatchType)
 
     static var allCases: [DeviceType] {
-        return TransmitterType.allCases.map{.transmitter($0)} // + WatchType.allCases.map{.watch($0)}
+        return TransmitterType.allCases.map { .transmitter($0) } // + WatchType.allCases.map{ .watch($0) }
     }
 
     var id: String {

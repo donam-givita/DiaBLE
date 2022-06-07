@@ -21,7 +21,7 @@ class Abbott: Transmitter {
     }
 
 
-    override class var knownUUIDs: [String] { UUID.allCases.map{$0.rawValue} }
+    override class var knownUUIDs: [String] { UUID.allCases.map(\.rawValue) }
 
     override class var dataServiceUUID: String { UUID.abbottCustom.rawValue }
     override class var dataWriteCharacteristicUUID: String { UUID.bleLogin.rawValue }
@@ -117,13 +117,13 @@ class Abbott: Transmitter {
 
                     debugLog("Bluetooth: decrypted BLE data: 0x\(bleData.hex), wear time: 0x\(wearTimeMinutes.hex) (\(wearTimeMinutes) minutes, sensor age: \(sensor!.age.formattedInterval)), CRC: \(crc.hex), computed CRC: \(computedCRC.hex), glucose values: \(bleGlucose)")
 
-                    let bleRawValues = bleGlucose.map{$0.rawValue}
+                    let bleRawValues = bleGlucose.map(\.rawValue)
                     log("BLE raw values: \(bleRawValues)")
 
                     // TODO
                     if bleRawValues.contains(0) {
-                        debugLog("BLE values data quality: [\n\(bleGlucose.map{$0.dataQuality.description}.joined(separator: ",\n"))\n]")
-                        debugLog("BLE values quality flags: [\(bleGlucose.map{("0"+String($0.dataQualityFlags,radix: 2)).suffix(2)}.joined(separator: ", "))]")
+                        debugLog("BLE values data quality: [\n\(bleGlucose.map(\.dataQuality.description).joined(separator: ",\n"))\n]")
+                        debugLog("BLE values quality flags: [\(bleGlucose.map { "0"+String($0.dataQualityFlags,radix: 2).suffix(2) }.joined(separator: ", "))]")
                     }
 
                     // TODO: move UI stuff to MainDelegate()
@@ -133,14 +133,14 @@ class Abbott: Transmitter {
                     let bleTrend = bleGlucose[0...6].map { factoryGlucose(rawGlucose: $0, calibrationInfo: main.settings.activeSensorCalibrationInfo) }
                     let bleHistory = bleGlucose[7...9].map { factoryGlucose(rawGlucose: $0, calibrationInfo: main.settings.activeSensorCalibrationInfo) }
 
-                    log("BLE temperatures: \((bleTrend + bleHistory).map{Double(String(format: "%.1f", $0.temperature))!})")
-                    log("BLE factory trend: \(bleTrend.map{$0.value})")
-                    log("BLE factory history: \(bleHistory.map{$0.value})")
+                    log("BLE temperatures: \((bleTrend + bleHistory).map { Double(String(format: "%.1f", $0.temperature))! })")
+                    log("BLE factory trend: \(bleTrend.map(\.value))")
+                    log("BLE factory history: \(bleHistory.map(\.value))")
 
                     main.history.rawTrend = sensor!.trend
                     let factoryTrend = sensor!.factoryTrend
                     main.history.factoryTrend = factoryTrend
-                    log("BLE merged trend: \(factoryTrend.map{$0.value})".replacingOccurrences(of: "-1", with: "… "))
+                    log("BLE merged trend: \(factoryTrend.map(\.value))".replacingOccurrences(of: "-1", with: "… "))
 
                     // TODO: compute accurate delta and update trend arrow
                     let deltaMinutes = factoryTrend[6].value != 0 ? 6 : 7
@@ -152,7 +152,7 @@ class Abbott: Transmitter {
                     main.history.rawValues = sensor!.history
                     let factoryHistory = sensor!.factoryHistory
                     main.history.factoryValues = factoryHistory
-                    log("BLE merged history: \(factoryHistory.map{$0.value})".replacingOccurrences(of: "-1", with: "… "))
+                    log("BLE merged history: \(factoryHistory.map(\.value))".replacingOccurrences(of: "-1", with: "… "))
 
                     // Slide the OOP history
                     // TODO: apply the following also after a NFC scan

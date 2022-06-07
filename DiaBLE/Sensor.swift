@@ -230,6 +230,7 @@ class Sensor: ObservableObject, Logging {
     var factoryTrend: [Glucose] { trend.map { factoryGlucose(rawGlucose: $0, calibrationInfo: calibrationInfo) }}
     var factoryHistory: [Glucose] { history.map { factoryGlucose(rawGlucose: $0, calibrationInfo: calibrationInfo) }}
 
+    var encryptedFram: Data = Data()
     var fram: Data = Data() {
         didSet {
             encryptedFram = Data()
@@ -244,7 +245,6 @@ class Sensor: ObservableObject, Logging {
             parseFRAM()
         }
     }
-    var encryptedFram: Data = Data()
 
     // Libre 2 and BLE streaming parameters
     @Published var initialPatchInfo: PatchInfo = Data()

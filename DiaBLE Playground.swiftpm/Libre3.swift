@@ -287,7 +287,7 @@ class Libre3: Sensor {
         }
     }
 
-    class var knownUUIDs: [String] { UUID.allCases.map{$0.rawValue} }
+    class var knownUUIDs: [String] { UUID.allCases.map(\.rawValue) }
 
 
     // maximum packet size is 20

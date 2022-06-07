@@ -7,7 +7,7 @@ extension Data {
     var string: String { String(decoding: self, as: UTF8.self) }
     var hexBytes: String { String(self.reduce("", { $0 + $1.hex + " "}).dropLast(1)) }
     var hexAddress: String { String(self.reduce("", { $0 + $1.hex + ":"}).dropLast(1)) }
-    var sha1: String { Insecure.SHA1.hash(data: self).makeIterator().reduce("", { $0 + String(format: "%02x", $1)}) }
+    var sha1: String { Insecure.SHA1.hash(data: self).makeIterator().reduce("", { $0 + String(format: "%02x", $1) }) }
 
     func hexDump(header: String = "", address: Int = -1, startBlock: Int = -1, escaping: Bool = false) -> String {
         var offset = startIndex

@@ -79,7 +79,7 @@ struct Console: View {
                                 }
                             } else {
                                 let pattern = filterString.lowercased()
-                                ForEach(log.entries.filter({$0.message.lowercased().contains(pattern)})) { entry in
+                                ForEach(log.entries.filter { $0.message.lowercased().contains(pattern) }) { entry in
                                     Text(entry.message)
                                 }
                             }

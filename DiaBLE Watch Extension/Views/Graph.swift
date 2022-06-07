@@ -9,10 +9,10 @@ struct Graph: View {
 
     func yMax() -> Double {
         let maxValues = [
-            history.rawValues.map{$0.value}.max() ?? 0,
-            history.factoryValues.map{$0.value}.max() ?? 0,
-            history.values.map{$0.value}.max() ?? 0,
-            history.calibratedValues.map{$0.value}.max() ?? 0,
+            history.rawValues.map(\.value).max() ?? 0,
+            history.factoryValues.map(\.value).max() ?? 0,
+            history.values.map(\.value).max() ?? 0,
+            history.calibratedValues.map(\.value).max() ?? 0,
             Int(settings.targetHigh + 20)
         ]
         return Double(maxValues.max()!)
@@ -56,7 +56,7 @@ struct Graph: View {
                     Path { path in
                         let width  = geometry.size.width - 60
                         let height = geometry.size.height
-                        let v = history.rawValues.map{$0.value}
+                        let v = history.rawValues.map(\.value)
                         let yScale = (height - 20) / yMax()
                         let xScale = width / Double(count - 1)
                         var startingVoid = v[count - 1] < 1 ? true : false
@@ -83,7 +83,7 @@ struct Graph: View {
                     Path { path in
                         let width  = geometry.size.width - 60
                         let height = geometry.size.height
-                        let v = history.factoryValues.map{$0.value}
+                        let v = history.factoryValues.map(\.value)
                         let yScale = (height - 20) / yMax()
                         let xScale = width / Double(count - 1)
                         var startingVoid = v[count - 1] < 1 ? true : false
@@ -110,7 +110,7 @@ struct Graph: View {
                     Path { path in
                         let width  = geometry.size.width - 60
                         let height = geometry.size.height
-                        let v = history.calibratedValues.map{$0.value}
+                        let v = history.calibratedValues.map(\.value)
                         let yScale = (height - 20) / yMax()
                         let xScale = width / Double(count - 1)
                         var startingVoid = v[count - 1] < 1 ? true : false
@@ -138,7 +138,7 @@ struct Graph: View {
                     path.addRoundedRect(in: CGRect(x: 0 + 30, y: 0, width: width, height: height), cornerSize: CGSize(width: 8, height: 8))
                     let count = history.values.count
                     if count > 0 {
-                        let v = history.values.map{$0.value}
+                        let v = history.values.map(\.value)
                         let yScale = (height - 20) / yMax()
                         let xScale = width / Double(count - 1)
                         var startingVoid = v[count - 1] < 1 ? true : false

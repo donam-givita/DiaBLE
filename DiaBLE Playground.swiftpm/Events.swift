@@ -29,8 +29,8 @@ class EventKit: Logging {
             }
 
             self.calendarTitles = self.store.calendars(for: .event)
-                .filter { $0.allowsContentModifications }
-                .map { $0.title }
+                .filter(\.allowsContentModifications)
+                .map(\.title)
 
             guard self.main.settings.calendarTitle != "" else { return }
 

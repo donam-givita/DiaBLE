@@ -39,7 +39,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         super.init()
 
         log.entries = [LogEntry(message: "Welcome to DiaBLE!"), LogEntry(message: "\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")]
-        debugLog("User defaults: \(Settings.defaults.keys.map{ [$0, UserDefaults.standard.dictionaryRepresentation()[$0]!] }.sorted{($0[0] as! String) < ($1[0] as! String) })")
+        debugLog("User defaults: \(Settings.defaults.keys.map { [$0, UserDefaults.standard.dictionaryRepresentation()[$0]!] }.sorted{($0[0] as! String) < ($1[0] as! String) })")
 
         app.main = self
         bluetoothDelegate.main = self
@@ -199,27 +199,27 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             }
 
             history.rawTrend = sensor.trend
-            log("Raw trend: \(sensor.trend.map{$0.rawValue})")
-            debugLog("Raw trend temperatures: \(sensor.trend.map{$0.rawTemperature})")
+            log("Raw trend: \(sensor.trend.map(\.rawValue))")
+            debugLog("Raw trend temperatures: \(sensor.trend.map(\.rawTemperature))")
             let factoryTrend = sensor.factoryTrend
             history.factoryTrend = factoryTrend
-            log("Factory trend: \(factoryTrend.map{$0.value})")
-            log("Trend temperatures: \(factoryTrend.map{Double(String(format: "%.1f", $0.temperature))!}))")
+            log("Factory trend: \(factoryTrend.map(\.value))")
+            log("Trend temperatures: \(factoryTrend.map { Double(String(format: "%.1f", $0.temperature))! }))")
             history.rawValues = sensor.history
-            log("Raw history: \(sensor.history.map{$0.rawValue})")
-            debugLog("Raw historic temperatures: \(sensor.history.map{$0.rawTemperature})")
+            log("Raw history: \(sensor.history.map(\.rawValue))")
+            debugLog("Raw historic temperatures: \(sensor.history.map(\.rawTemperature))")
             let factoryHistory = sensor.factoryHistory
             history.factoryValues = factoryHistory
-            log("Factory history: \(factoryHistory.map{$0.value})")
-            log("Historic temperatures: \(factoryHistory.map{Double(String(format: "%.1f", $0.temperature))!})")
+            log("Factory history: \(factoryHistory.map(\.value))")
+            log("Historic temperatures: \(factoryHistory.map { Double(String(format: "%.1f", $0.temperature))! })")
 
             // TODO
-            debugLog("Trend has errors: \(sensor.trend.map{$0.hasError})")
-            debugLog("Trend data quality: [\n\(sensor.trend.map{$0.dataQuality.description}.joined(separator: ",\n"))\n]")
-            debugLog("Trend quality flags: [\(sensor.trend.map{("0"+String($0.dataQualityFlags,radix: 2)).suffix(2)}.joined(separator: ", "))]")
-            debugLog("History has errors: \(sensor.history.map{$0.hasError})")
-            debugLog("History data quality: [\n\(sensor.history.map{$0.dataQuality.description}.joined(separator: ",\n"))\n]")
-            debugLog("History quality flags: [\(sensor.history.map{("0"+String($0.dataQualityFlags,radix: 2)).suffix(2)}.joined(separator: ", "))]")
+            debugLog("Trend has errors: \(sensor.trend.map(\.hasError))")
+            debugLog("Trend data quality: [\n\(sensor.trend.map(\.dataQuality.description).joined(separator: ",\n"))\n]")
+            debugLog("Trend quality flags: [\(sensor.trend.map { "0" + String($0.dataQualityFlags,radix: 2).suffix(2) }.joined(separator: ", "))]")
+            debugLog("History has errors: \(sensor.history.map(\.hasError))")
+            debugLog("History data quality: [\n\(sensor.history.map(\..dataQuality.description).joined(separator: ",\n"))\n]")
+            debugLog("History quality flags: [\(sensor.history.map { "0" + String($0.dataQualityFlags,radix: 2).suffix(2) }.joined(separator: ", "))]")
         }
 
         debugLog("Sensor uid: \(sensor.uid.hex), saved uid:\(settings.patchUid.hex), patch info: \(sensor.patchInfo.hex.count > 0 ? sensor.patchInfo.hex : "<nil>"), saved patch info: \(settings.patchInfo.hex)")
@@ -347,7 +347,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                 entries += history.factoryValues
             }
             entries += history.factoryTrend.dropFirst() + [Glucose(currentGlucose, date: sensor.lastReadingDate)]
-            entries = entries.filter{ $0.value > 0 && $0.id > -1 }
+            entries = entries.filter { $0.value > 0 && $0.id > -1 }
 
             // TODO
             healthKit?.write(entries.filter { $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())! })
