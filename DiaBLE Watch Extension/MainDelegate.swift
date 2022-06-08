@@ -82,15 +82,17 @@ public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
 
     public func log(_ msg: String, level: LogLevel = .info) {
         if settings.logging || msg.hasPrefix("Log") {
-            let entry = LogEntry(message: msg, level: level)
-            if settings.reversedLog {
-                log.entries.insert(entry, at: 0)
-            } else {
-                log.entries.append(entry)
-            }
-            print(msg)
-            if !entry.label.isEmpty {
-                log.labels.insert(entry.label)
+            DispatchQueue.main.async {
+                let entry = LogEntry(message: msg, level: level)
+                if self.settings.reversedLog {
+                    self.log.entries.insert(entry, at: 0)
+                } else {
+                    self.log.entries.append(entry)
+                }
+                print(msg)
+                if !entry.label.isEmpty {
+                    self.log.labels.insert(entry.label)
+                }
             }
         }
     }

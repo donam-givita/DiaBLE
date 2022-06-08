@@ -103,7 +103,6 @@ struct LogEntry: Identifiable {
 
 
 class Log: ObservableObject {
-    // FIXME: "Publishing changes from background threads is not allowed"
     @Published var entries: [LogEntry]
     @Published var labels: Set<String>
     init(_ text: String = "Log \(Date().local)\n") {
