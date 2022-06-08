@@ -46,7 +46,6 @@
 		C58507B523C50BF40079539D /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58507B423C50BF40079539D /* NotificationView.swift */; };
 		C58507B723C50BF40079539D /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58507B623C50BF40079539D /* ComplicationController.swift */; };
 		C58507B923C50BF40079539D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58507B823C50BF40079539D /* Assets.xcassets */; };
-		C58507BC23C50BF40079539D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58507BB23C50BF40079539D /* Preview Assets.xcassets */; };
 		C58507C123C50BF40079539D /* DiaBLE Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C585079B23C50BF20079539D /* DiaBLE Watch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5908FB82428E6B600CF6C83 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5908FB72428E6B600CF6C83 /* alarm_signal_loss.mp3 */; };
 		C593F91525976AED00DA3010 /* HamburgerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593F91425976AED00DA3010 /* HamburgerMenu.swift */; };
@@ -81,7 +80,6 @@
 		C5DF10F823C783F90023E0E2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF10F723C783F90023E0E2 /* SettingsView.swift */; };
 		C5E1014123A2774C00678DF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1014023A2774C00678DF6 /* ContentView.swift */; };
 		C5E1014323A2774D00678DF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5E1014223A2774D00678DF6 /* Assets.xcassets */; };
-		C5E1014623A2774D00678DF6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5E1014523A2774D00678DF6 /* Preview Assets.xcassets */; };
 		C5E7EDD3275E2382001473C7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E7EDD2275E2382001473C7 /* HealthKit.framework */; };
 		C5E9C755244495B000D52B32 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566341223B14D55001EB5F3 /* Extensions.swift */; };
 		C5E9C756244495D700D52B32 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5521C8123BB5D5A00826CFB /* App.swift */; };
@@ -179,7 +177,6 @@
 		C58507B423C50BF40079539D /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		C58507B623C50BF40079539D /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		C58507B823C50BF40079539D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C58507BB23C50BF40079539D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C58507BD23C50BF40079539D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C58507BE23C50BF40079539D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		C5908FB72428E6B600CF6C83 /* alarm_signal_loss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_signal_loss.mp3; sourceTree = "<group>"; };
@@ -209,7 +206,6 @@
 		C5E1013623A2774C00678DF6 /* DiaBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5E1014023A2774C00678DF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C5E1014223A2774D00678DF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C5E1014523A2774D00678DF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C5E1014A23A2774D00678DF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5E7EDD2275E2382001473C7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.3.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		C5E9C762244496C800D52B32 /* MainDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDelegate.swift; sourceTree = "<group>"; };
@@ -289,17 +285,8 @@
 				C58507BD23C50BF40079539D /* Info.plist */,
 				C500E45824448C4000171BCA /* DiaBLE Watch Extension.entitlements */,
 				C58507BE23C50BF40079539D /* PushNotificationPayload.apns */,
-				C58507BA23C50BF40079539D /* Preview Content */,
 			);
 			path = "DiaBLE Watch Extension";
-			sourceTree = "<group>";
-		};
-		C58507BA23C50BF40079539D /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				C58507BB23C50BF40079539D /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		C5C20E4323C77F7700475327 /* Views */ = {
@@ -386,18 +373,8 @@
 				C5E1014223A2774D00678DF6 /* Assets.xcassets */,
 				C5E1014A23A2774D00678DF6 /* Info.plist */,
 				C5C80BCA23A27EFA00ACFDE9 /* DiaBLE.entitlements */,
-				C5E1014423A2774D00678DF6 /* Preview Content */,
 			);
 			path = DiaBLE;
-			sourceTree = "<group>";
-		};
-		C5E1014423A2774D00678DF6 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				C5E1014523A2774D00678DF6 /* Preview Assets.xcassets */,
-			);
-			name = "Preview Content";
-			path = "../../DiaBLE/Preview Content";
 			sourceTree = "<group>";
 		};
 		C5E9C7652444A10A00D52B32 /* Views */ = {
@@ -525,7 +502,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C58507BC23C50BF40079539D /* Preview Assets.xcassets in Resources */,
 				C5E9C7602444969400D52B32 /* alarm_low.mp3 in Resources */,
 				C5B7AC6F270ADF2100EB1F87 /* TODO.md in Resources */,
 				C52F1A5F24975F12004C2F90 /* company_ids.json in Resources */,
@@ -542,7 +518,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C84482241B884F009D3EAF /* alarm_low.mp3 in Resources */,
-				C5E1014623A2774D00678DF6 /* Preview Assets.xcassets in Resources */,
 				C513933123B8EB7600CB245F /* alarm_high.mp3 in Resources */,
 				C5DC03912667679700C499DC /* README.md in Resources */,
 				C5B7AC6E270ADF2100EB1F87 /* TODO.md in Resources */,
@@ -707,7 +682,7 @@
 				CODE_SIGN_ENTITLEMENTS = "DiaBLE Watch Extension/DiaBLE Watch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DiaBLE Watch Extension/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "DiaBLE Watch Extension/Info.plist";
@@ -734,7 +709,7 @@
 				CODE_SIGN_ENTITLEMENTS = "DiaBLE Watch Extension/DiaBLE Watch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DiaBLE Watch Extension/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "DiaBLE Watch Extension/Info.plist";
@@ -878,7 +853,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
-				DEVELOPMENT_ASSET_PATHS = "\"DiaBLE/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DiaBLE/Info.plist;
@@ -903,7 +878,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
-				DEVELOPMENT_ASSET_PATHS = "\"DiaBLE/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DiaBLE/Info.plist;
