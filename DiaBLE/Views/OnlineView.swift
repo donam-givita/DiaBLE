@@ -30,6 +30,43 @@ struct OnlineView: View {
     // TODO: one-minute timer for Libre 3
 
 
+    func reloadLibreLinkUp() async {
+        libreLinkUpHistory = []
+        if let libreLinkUp = app.main?.libreLinkUp {
+            var dataString = ""
+            var retries = 0
+        loop: repeat {
+            do {
+                if settings.libreLinkUpPatientId.isEmpty ||
+                    settings.libreLinkUpToken.isEmpty ||
+                    Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() ||
+                    retries == 1 {
+                    do {
+                        try await libreLinkUp.login()
+                    } catch {
+                        libreLinkUpResponse = error.localizedDescription.capitalized
+                    }
+                }
+                if !(settings.libreLinkUpPatientId.isEmpty ||
+                     settings.libreLinkUpToken.isEmpty) {
+                    let (data, _, history) = try await libreLinkUp.getPatientGraph()
+                    dataString = (data as! Data).string
+                    libreLinkUpResponse = dataString
+                    libreLinkUpHistory = history.reversed()
+                    // TODO
+                    if dataString != "{\"message\":\"MissingCachedUser\"}" {
+                        break loop
+                    }
+                    retries += 1
+                }
+            } catch {
+                libreLinkUpResponse = error.localizedDescription.capitalized
+            }
+        } while retries == 1
+        }
+    }
+
+
     var body: some View {
         NavigationView {
 
@@ -66,10 +103,24 @@ struct OnlineView: View {
                                         .keyboardType(.emailAddress)
                                         .textContentType(.emailAddress)
                                         .disableAutocorrection(true)
+                                        .onSubmit {
+                                            settings.libreLinkUpPatientId = ""
+                                            libreLinkUpResponse = "[Logging in...]"
+                                            Task {
+                                                await reloadLibreLinkUp()
+                                            }
+                                        }
                                 }
                                 HStack(alignment: .firstTextBaseline) {
                                     Text("password:").foregroundColor(Color(.lightGray))
                                     SecureField("password", text: $settings.libreLinkUpPassword)
+                                }
+                                .onSubmit {
+                                    settings.libreLinkUpPatientId = ""
+                                    libreLinkUpResponse = "[Logging in...]"
+                                    Task {
+                                        await reloadLibreLinkUp()
+                                    }
                                 }
                             }
                         }
@@ -166,38 +217,7 @@ struct OnlineView: View {
 #endif
                         }
                         .task {
-                            if let libreLinkUp = app.main?.libreLinkUp {
-                                var dataString = ""
-                                var retries = 0
-                            loop: repeat {
-                                do {
-                                    if settings.libreLinkUpPatientId.isEmpty ||
-                                        settings.libreLinkUpToken.isEmpty ||
-                                        Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() ||
-                                        retries == 1 {
-                                        do {
-                                            try await libreLinkUp.login()
-                                        } catch {
-                                            libreLinkUpResponse = error.localizedDescription.capitalized
-                                        }
-                                    }
-                                    if !(settings.libreLinkUpPatientId.isEmpty ||
-                                         settings.libreLinkUpToken.isEmpty) {
-                                        let (data, _, history) = try await libreLinkUp.getPatientGraph()
-                                        dataString = (data as! Data).string
-                                        libreLinkUpResponse = dataString
-                                        libreLinkUpHistory = history.reversed()
-                                        // TODO
-                                        if dataString != "{\"message\":\"MissingCachedUser\"}" {
-                                            break loop
-                                        }
-                                        retries += 1
-                                    }
-                                } catch {
-                                    libreLinkUpResponse = error.localizedDescription.capitalized
-                                }
-                            } while retries == 1
-                            }
+                            await reloadLibreLinkUp()
                         }
 
                     }
