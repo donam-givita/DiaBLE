@@ -6,12 +6,14 @@ import Foundation
 
 enum LibreLinkUpError: LocalizedError {
     case noConnection
+    case notAuthenticated
     case jsonDecoding
 
     var errorDescription: String? {
         switch self {
-        case .noConnection: return "no connection"
-        case .jsonDecoding: return "JSON decoding"
+        case .noConnection:     return "no connection"
+        case .notAuthenticated: return "not authenticated"
+        case .jsonDecoding:     return "JSON decoding"
         }
     }
 }
@@ -81,6 +83,7 @@ class LibreLinkUp: Logging {
     }
 
 
+    @discardableResult
     func login() async throws -> (Any, URLResponse) {
         var request = URLRequest(url: URL(string: "\(siteURL)/\(loginEndpoint)")!)
         let credentials = await [
@@ -107,28 +110,30 @@ class LibreLinkUp: Logging {
             }
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                   let data = json["data"] as? [String: Any],
-                   let user = data["user"] as? [String: Any],
-                   let id = user["id"] as? String,
-                   let authTicketDict = data["authTicket"] as? [String: Any] {
-                    let authTicket = AuthTicket(token: authTicketDict["token"] as? String ?? "",
-                                                expires: authTicketDict["expires"] as? Int ?? 0,
-                                                duration: authTicketDict["duration"] as? Int ?? 0)
-                    self.log("LibreLinkUp: user id: \(id), authTicket: \(authTicket), expires on \(Date(timeIntervalSince1970: Double(authTicket.expires)))")
-                    DispatchQueue.main.async {
-                        self.main.settings.libreLinkUpPatientId = id
-                        self.main.settings.libreLinkUpToken = authTicket.token
-                        self.main.settings.libreLinkUpTokenExpires = Double(authTicket.expires)
+                   let status = json["status"] as? Int {
+                    if status == 2 {  // {"status":2,"error":{"message":"notAuthenticated"}}
+                        throw LibreLinkUpError.notAuthenticated
+                    }
+                    if let data = json["data"] as? [String: Any],
+                       let user = data["user"] as? [String: Any],
+                       let id = user["id"] as? String,
+                       let authTicketDict = data["authTicket"] as? [String: Any] {
+                        let authTicket = AuthTicket(token: authTicketDict["token"] as? String ?? "",
+                                                    expires: authTicketDict["expires"] as? Int ?? 0,
+                                                    duration: authTicketDict["duration"] as? Int ?? 0)
+                        self.log("LibreLinkUp: user id: \(id), authTicket: \(authTicket), expires on \(Date(timeIntervalSince1970: Double(authTicket.expires)))")
+                        DispatchQueue.main.async {
+                            self.main.settings.libreLinkUpPatientId = id
+                            self.main.settings.libreLinkUpToken = authTicket.token
+                            self.main.settings.libreLinkUpTokenExpires = Double(authTicket.expires)
+                        }
                     }
                 }
                 return (data, response)
-            } catch {
-                log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
-                throw LibreLinkUpError.jsonDecoding
             }
         } catch {
             log("LibreLinkUp: server error: \(error.localizedDescription)")
-            throw LibreLinkUpError.noConnection
+            throw error
         }
     }
 

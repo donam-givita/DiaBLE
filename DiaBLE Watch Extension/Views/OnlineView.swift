@@ -129,23 +129,29 @@ struct OnlineView: View {
                     loop: repeat {
                         do {
                             if settings.libreLinkUpPatientId.isEmpty ||
+                                settings.libreLinkUpToken.isEmpty ||
                                 Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() ||
                                 retries == 1 {
-                                _ = try await libreLinkUp.login()
+                                do {
+                                    try await libreLinkUp.login()
+                                } catch {
+                                    libreLinkUpResponse = error.localizedDescription.capitalized
+                                }
                             }
-                            if !settings.libreLinkUpPatientId.isEmpty {
+                            if !(settings.libreLinkUpPatientId.isEmpty ||
+                                 settings.libreLinkUpToken.isEmpty) {
                                 let (data, _, history) = try await libreLinkUp.getPatientGraph()
                                 dataString = (data as! Data).string
                                 libreLinkUpResponse = dataString
                                 libreLinkUpHistory = history.reversed()
                                 // TODO
-                                if dataString != "{\"message\": \"MissingCachedUser\"}" {
+                                if dataString != "{\"message\":\"MissingCachedUser\"}" {
                                     break loop
                                 }
                                 retries += 1
                             }
                         } catch {
-                            libreLinkUpResponse = error.localizedDescription
+                            libreLinkUpResponse = error.localizedDescription.capitalized
                         }
                     } while retries == 1
                     }
