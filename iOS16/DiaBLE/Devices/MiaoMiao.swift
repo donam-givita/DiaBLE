@@ -43,7 +43,7 @@ class MiaoMiao: Transmitter {
 
     override init(peripheral: CBPeripheral?, main: MainDelegate) {
         super.init(peripheral: peripheral!, main: main)
-        if let peripheral = peripheral, peripheral.name!.contains("miaomiao2") {
+        if let peripheral, peripheral.name!.contains("miaomiao2") {
             name += " 2"
         }
     }

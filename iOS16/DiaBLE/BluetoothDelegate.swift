@@ -45,13 +45,13 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         let manufacturerData = advertisement[CBAdvertisementDataManufacturerDataKey] as? Data
         let dataServiceUUIDs = advertisement[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID]
 
-        if let dataServiceUUIDs = dataServiceUUIDs, dataServiceUUIDs.count > 0, dataServiceUUIDs[0].uuidString == Libre3.UUID.data.rawValue {
+        if let dataServiceUUIDs, dataServiceUUIDs.count > 0, dataServiceUUIDs[0].uuidString == Libre3.UUID.data.rawValue {
             name = "ABBOTT\(name ?? "unnamedLibre")"    // Libre 3 device name is 12 chars long (hexadecimal MAC address)
         }
 
         var didFindATransmitter = false
 
-        if let name = name {
+        if let name {
             for transmitterType in TransmitterType.allCases {
                 if name.matches(transmitterType.id) {
                     didFindATransmitter = true
@@ -63,7 +63,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         }
 
         var companyId = BLE.companies.count - 1 // "< Unknown >"
-        if let manufacturerData = manufacturerData {
+        if let manufacturerData {
             companyId = Int(manufacturerData[0]) + Int(manufacturerData[1]) << 8
             if companyId >= BLE.companies.count { companyId = BLE.companies.count - 1 }    // when 0xFFFF
         }
@@ -176,10 +176,10 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             msg += ", company: \(app.device.company) (id: 0x\(companyId.hex))"
         }
         log(msg)
-        if let manufacturerData = manufacturerData {
+        if let manufacturerData {
             app.device.parseManufacturerData(manufacturerData)
         }
-        if let dataServiceUUIDs = dataServiceUUIDs {
+        if let dataServiceUUIDs {
             // TODO: assign to device instance vars
             log("Bluetooth: \(name!)'s data service UUIDs: \(dataServiceUUIDs)")
         }
@@ -445,12 +445,12 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         var msg = "Bluetooth: failed to connect to \(name)"
         var errorCode: CBError.Code?
 
-        if let error = error {
+        if let error {
             errorCode = CBError.Code(rawValue: (error as NSError).code)
             msg += ", error type \(errorCode!.rawValue): \(error.localizedDescription)"
         }
 
-        if let errorCode = errorCode, errorCode == .peerRemovedPairingInformation {  // i.e. BluCon
+        if let errorCode, errorCode == .peerRemovedPairingInformation {  // i.e. BluCon
             main.errorStatus("Failed to connect: \(error!.localizedDescription)")
         } else {
             msg += "; retrying..."
@@ -495,7 +495,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         var msg = "Bluetooth: \(name) did update notification state for \(characteristicString) characteristic"
         msg += ": \(characteristic.isNotifying ? "" : "not ")notifying"
         if let descriptors = characteristic.descriptors { msg += ", descriptors: \(descriptors)" }
-        if let error = error {
+        if let error {
             let errorCode = CBError.Code(rawValue: (error as NSError).code)!
             if errorCode == .encryptionTimedOut {
                 log("Bluetooth: DEBUG: TODO: manage pairing timeout")

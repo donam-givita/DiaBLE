@@ -45,7 +45,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         bluetoothDelegate.main = self
         nfc.main = self
 
-        if let healthKit = healthKit {
+        if let healthKit {
             healthKit.main = self
             healthKit.authorize {
                 self.log("HealthKit: \( $0 ? "" : "not ")authorized")
@@ -254,7 +254,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
     func applyCalibration(sensor: Sensor?) {
 
-        if let sensor = sensor, sensor.history.count > 0, settings.calibrating {
+        if let sensor, sensor.history.count > 0, settings.calibrating {
 
             if app.calibration != .empty {
 
@@ -288,7 +288,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
         applyCalibration(sensor: sensor)
 
-        guard let sensor = sensor else {
+        guard let sensor else {
             return
         }
 
