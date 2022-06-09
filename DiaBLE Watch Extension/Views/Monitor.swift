@@ -76,8 +76,10 @@ struct Monitor: View {
 
                     }
 
-                    Text("\(app.oopAlarm.description.replacingOccurrences(of: "_", with: " ")) - \(app.oopTrend.description.replacingOccurrences(of: "_", with: " "))")
-                        .font(.footnote).foregroundColor(.blue).lineLimit(1)
+                    if app.oopAlarm.description.count + app.oopTrend.description.count != 0 {
+                        Text("\(app.oopAlarm.description.replacingOccurrences(of: "_", with: " ")) - \(app.oopTrend.description.replacingOccurrences(of: "_", with: " "))")
+                            .foregroundColor(.blue)
+                    }
 
                     HStack {
                         Text(app.deviceState)
@@ -103,53 +105,41 @@ struct Monitor: View {
 
                 Graph().frame(width: 31 * 4 + 60, height: 80)
 
-                VStack(spacing: 0) {
+                HStack(spacing: 2) {
 
-                    HStack(spacing: 2) {
+                    if app.sensor != nil && (app.sensor.state != .unknown || app.sensor.serial != "") {
+                        VStack(spacing: 0) {
+                            Text(app.sensor.state.description)
+                                .foregroundColor(app.sensor.state == .active ? .green : .red)
 
-                        if app.sensor != nil && (app.sensor.state != .unknown || app.sensor.serial != "") {
-                            VStack(spacing: 0) {
-                                Text(app.sensor.state.description)
-                                    .foregroundColor(app.sensor.state == .active ? .green : .red)
-
-                                if app.sensor.age > 0 {
-                                    Text(app.sensor.age.shortFormattedInterval)
-                                }
+                            if app.sensor.age > 0 {
+                                Text(app.sensor.age.shortFormattedInterval)
                             }
                         }
+                    }
 
-                        if app.device != nil {
-                            VStack(spacing: 0) {
-                                if app.device.battery > -1 {
-                                    let battery = app.device.battery
-                                    HStack(spacing: 4) {
-                                        let ext = battery > 95 ? 100 :
-                                        battery > 65 ? 75 :
-                                        battery > 35 ? 50 :
-                                        battery > 10 ? 25 : 0
-                                        Image(systemName: "battery.\(ext)")
-                                        Text("\(app.device.battery)%")
-                                    }
-                                    .foregroundColor(app.device.battery > 10 ? .green : .red)
+                    if app.device != nil {
+                        VStack(spacing: 0) {
+                            if app.device.battery > -1 {
+                                let battery = app.device.battery
+                                HStack(spacing: 4) {
+                                    let ext = battery > 95 ? 100 :
+                                    battery > 65 ? 75 :
+                                    battery > 35 ? 50 :
+                                    battery > 10 ? 25 : 0
+                                    Image(systemName: "battery.\(ext)")
+                                    Text("\(app.device.battery)%")
                                 }
-                                if app.device.rssi != 0 {
-                                    Text("RSSI: ").foregroundColor(Color(.lightGray)) +
-                                    Text("\(app.device.rssi) dB")
-                                }
+                                .foregroundColor(app.device.battery > 10 ? .green : .red)
+                            }
+                            if app.device.rssi != 0 {
+                                Text("RSSI: ").foregroundColor(Color(.lightGray)) +
+                                Text("\(app.device.rssi) dB")
                             }
                         }
+                    }
 
-                    }.font(.footnote).foregroundColor(.yellow)
-
-                    Text(app.status.hasPrefix("Scanning") ? app.status : app.status.replacingOccurrences(of: "\n", with: " "))
-                        .font(.footnote)
-                        .lineLimit(app.status.hasPrefix("Scanning") ? 3 : 1)
-                        .truncationMode(app.status.hasPrefix("Scanning") ?.tail : .head)
-                        .frame(maxWidth: .infinity)
-
-                }
-
-                Spacer()
+                }.font(.footnote).foregroundColor(.yellow)
 
                 HStack {
                     Spacer()
@@ -188,6 +178,13 @@ struct Monitor: View {
                     }.frame(height: 16)
                     Spacer()
                 }
+
+                Text(app.status.hasPrefix("Scanning") ? app.status : app.status.replacingOccurrences(of: "\n", with: " "))
+                    .font(.footnote)
+                    .lineLimit(app.status.hasPrefix("Scanning") ? 3 : 1)
+                    .truncationMode(app.status.hasPrefix("Scanning") ?.tail : .head)
+                    .frame(maxWidth: .infinity)
+
             }
         }
         .navigationTitle("Monitor")
