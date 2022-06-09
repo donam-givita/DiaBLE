@@ -60,16 +60,15 @@ struct Monitor: View {
                         // TODO: display both delta and trend arrow
                         Group {
                             if app.trendDeltaMinutes > 0 {
-                                HStack(spacing: 4) {
+                                VStack(spacing: -6) {
                                     Text("\(app.trendDelta > 0 ? "+ " : app.trendDelta < 0 ? "- " : "")\(app.trendDelta == 0 ? "→" : abs(app.trendDelta).units)")
                                         .fontWeight(.black)
-                                        .padding(.bottom, -20)
                                         .fixedSize()
-                                    Text("\(app.trendDeltaMinutes)m").font(.footnote).padding(.bottom, -20)
-                                }.frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 0)
+                                    Text("\(app.trendDeltaMinutes)m").font(.footnote)
+                                }.frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 10)
                             } else {
                                 Text(app.oopTrend.symbol).font(.system(size: 28)).bold()
-                                    .frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 10).padding(.bottom, -18)
+                                    .frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 10)
                             }
                         }.foregroundColor(app.currentGlucose > 0 && ((app.currentGlucose > Int(settings.alarmHigh) && app.trendDelta > 0) || (app.currentGlucose < Int(settings.alarmLow) && app.trendDelta < 0)) ?
                             .red : .blue)
@@ -119,7 +118,7 @@ struct Monitor: View {
                     }
 
                     if app.device != nil {
-                        VStack(spacing: 0) {
+                        VStack(spacing: -4) {
                             if app.device.battery > -1 {
                                 let battery = app.device.battery
                                 HStack(spacing: 4) {
