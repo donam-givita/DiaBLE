@@ -60,15 +60,6 @@ struct Details: View {
                             Row("State", (app.device.peripheral?.state ?? app.device.state).description.capitalized,
                                 foregroundColor: (app.device.peripheral?.state ?? app.device.state) == .connected ? .green : .red)
 
-                            if app.sensor.state == .failure && app.sensor.fram.count > 8 {
-                                let fram = app.sensor.fram
-                                let errorCode = fram[6]
-                                let failureAge = Int(fram[7]) + Int(fram[8]) << 8
-                                let failureInterval = failureAge == 0 ? "an unknown time" : "\(failureAge.formattedInterval)"
-                                Row("Failure", "\(decodeFailure(error: errorCode).capitalized) (0x\(errorCode.hex)) at \(failureInterval)",
-                                    foregroundColor: .red)
-                            }
-
                             if app.device.lastConnectionDate != .distantPast {
                                 HStack {
                                     Text("Since")
@@ -130,6 +121,15 @@ struct Details: View {
 
                         Row("State", app.sensor.state.description,
                             foregroundColor: app.sensor.state == .active ? .green : .red)
+
+                        if app.sensor.state == .failure && app.sensor.fram.count > 8 {
+                            let fram = app.sensor.fram
+                            let errorCode = fram[6]
+                            let failureAge = Int(fram[7]) + Int(fram[8]) << 8
+                            let failureInterval = failureAge == 0 ? "an unknown time" : "\(failureAge.formattedInterval)"
+                            Row("Failure", "\(decodeFailure(error: errorCode).capitalized) (0x\(errorCode.hex)) at \(failureInterval)",
+                                foregroundColor: .red)
+                        }
 
                         Row("Type", "\(app.sensor.type.description)\(app.sensor.patchInfo.hex.hasPrefix("a2") ? " (new 'A2' kind)" : "")")
 
