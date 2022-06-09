@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Charts
 
 
 extension MeasurementColor {
@@ -201,6 +202,15 @@ struct OnlineView: View {
 #if targetEnvironment(macCatalyst)
                             .padding()
 #endif
+
+                            Chart {
+                                ForEach(libreLinkUpHistory) {
+                                    LineMark(x: .value("Time", $0.glucose.date),
+                                             y: .value("Glucose", $0.glucose.value)
+                                    )
+                                }
+                            }
+
                             List {
                                 ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
                                     let glucose = libreLinkUpGlucose.glucose
