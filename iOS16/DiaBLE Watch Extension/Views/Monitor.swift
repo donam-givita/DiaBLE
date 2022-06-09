@@ -78,7 +78,7 @@ struct Monitor: View {
 
                     if app.oopAlarm.description.count + app.oopTrend.description.count != 0 {
                         Text("\(app.oopAlarm.description.replacingOccurrences(of: "_", with: " ")) - \(app.oopTrend.description.replacingOccurrences(of: "_", with: " "))")
-                            .foregroundColor(.blue)
+                            .font(.footnote).foregroundColor(.blue).lineLimit(1)
                     }
 
                     HStack {
@@ -142,14 +142,8 @@ struct Monitor: View {
                 }.font(.footnote).foregroundColor(.yellow)
 
                 HStack {
+
                     Spacer()
-
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left.circle.fill").resizable().frame(width: 16, height: 16).foregroundColor(.blue)
-                    }.frame(height: 16)
-
                     Spacer()
 
                     Button {
@@ -176,6 +170,8 @@ struct Monitor: View {
                     NavigationLink(destination: Details()) {
                         Image(systemName: "info.circle").resizable().frame(width: 16, height: 16).foregroundColor(.blue)
                     }.frame(height: 16)
+
+                    Spacer()
                     Spacer()
                 }
 
