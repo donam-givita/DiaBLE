@@ -6,13 +6,11 @@ FIXME
 * iOS 15:
   - *"NFC scan success sheet displayed when NFC scan time out"* (https://developer.apple.com/forums/thread/687264)
 * watchOS 9:
-  - .navigationBarHidden(true) is ignored in Monitor
+  - .navigationBarHidden(true) is ignored in Monitor when using a NavigationStack
 * Xcode 13:
   - *"No 'async' operations occur within 'await' expression"* warnings
 * Playgrounds 4:
   - missing entitlements for HealthKit, NFC and Bluetooth background mode
-* Mac Catalyst:
-  - log bogging down too early
 * Libre Pro / MiaoMiao:
   - `buffer[3...4]` doesn't match the real sensor age in `body[2...3]`
   - the appended 21 historic blocks aren't dated properly
@@ -35,7 +33,7 @@ TODO
 * log: limit to a number of readings, prepend time, Share menu, record to a file, add Logger support
 * HealthKit, Nightscout: more than just a few ported dozen lines of code
 * profile and avoid retain cycles
-* make use of Actors, Combine, TabularData, ...
+* make use of iOS 16 Charts and Widgets, Actors, TabularData, ...
 
 
 PLANS / WISHES

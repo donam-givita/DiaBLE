@@ -9,7 +9,10 @@ struct ContentView: View {
     @EnvironmentObject var settings: Settings
 
     var body: some View {
-        NavigationStack {
+
+        // TODO: use NavigationStack (.navigationBarHidden(true) doesn't work with it in Beta 1)
+
+        NavigationView {
             ScrollView {
                 VStack(spacing: 4) {
 

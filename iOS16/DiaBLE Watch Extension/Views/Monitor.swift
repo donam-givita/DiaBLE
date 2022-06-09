@@ -2,9 +2,6 @@ import Foundation
 import SwiftUI
 
 
-// FIXME: .navigationBarHidden(true) doesn't work in iOS 16 beta 1
-
-
 struct Monitor: View {
     @EnvironmentObject var app: AppState
     @EnvironmentObject var log: Log
@@ -191,7 +188,7 @@ struct Monitor: View {
             }
         }
         // .navigationTitle("Monitor")
-        // FIXME: .navigationBarHidden(true) doesn't work in iOS 16 beta 1
+        // FIXME: .navigationBarHidden(true) doesn't work with a MavigationStack in Beta 1
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea([.top, .bottom])
         .buttonStyle(.plain)
