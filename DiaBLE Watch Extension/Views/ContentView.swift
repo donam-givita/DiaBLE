@@ -11,8 +11,11 @@ struct ContentView: View {
     @State var isMonitorActive = false
 
     var body: some View {
+
         NavigationView {
+
             ScrollView {
+
                 VStack(spacing: 4) {
 
                     HStack(spacing: 10) {
@@ -63,6 +66,7 @@ struct ContentView: View {
                 }
                 .foregroundColor(.red)
                 .buttonStyle(.plain)
+
             }
             .navigationTitle("DiaBLE  \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)")
             .navigationBarTitleDisplayMode(.inline)

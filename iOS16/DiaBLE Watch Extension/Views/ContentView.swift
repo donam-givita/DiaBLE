@@ -10,10 +10,10 @@ struct ContentView: View {
 
     var body: some View {
 
-        // TODO: use NavigationStack (.navigationBarHidden(true) doesn't work with it in Beta 1)
+        NavigationStack {
 
-        NavigationView {
             ScrollView {
+
                 VStack(spacing: 4) {
 
                     HStack(spacing: 10) {
@@ -64,9 +64,11 @@ struct ContentView: View {
                 }
                 .foregroundColor(.red)
                 .buttonStyle(.plain)
+
             }
             .navigationTitle("DiaBLE  \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)")
             .navigationBarTitleDisplayMode(.inline)
+
         }
         .edgesIgnoringSafeArea([.bottom])
     }
