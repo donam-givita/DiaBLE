@@ -5,6 +5,8 @@ FIXME
   - Gen2 `.getSessionInfo` outpassed by new certificate data and ECDH ephemeral keys (whiteCryption's Secure Key Box)
 * iOS 15:
   - *"NFC scan success sheet displayed when NFC scan time out"* (https://developer.apple.com/forums/thread/687264)
+* watchOS 9:
+  - .navigationBarHidden(true) is ignored in Monitor
 * Xcode 13:
   - *"No 'async' operations occur within 'await' expression"* warnings
 * Playgrounds 4:
