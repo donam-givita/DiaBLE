@@ -90,7 +90,7 @@ struct OnlineView: View {
                                     TextField("Nightscout URL", text: $settings.nightscoutSite)
                                         .keyboardType(.URL)
                                         .textContentType(.URL)
-                                        .disableAutocorrection(true)
+                                        .autocorrectionDisabled(true)
                                 }
                                 HStack(alignment: .firstTextBaseline) {
                                     Text("token:").foregroundColor(Color(.lightGray))
@@ -103,7 +103,7 @@ struct OnlineView: View {
                                     TextField("email", text: $settings.libreLinkUpEmail)
                                         .keyboardType(.emailAddress)
                                         .textContentType(.emailAddress)
-                                        .disableAutocorrection(true)
+                                        .autocorrectionDisabled(true)
                                         .onSubmit {
                                             settings.libreLinkUpPatientId = ""
                                             libreLinkUpResponse = "[Logging in...]"
