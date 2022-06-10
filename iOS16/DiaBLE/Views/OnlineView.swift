@@ -204,12 +204,14 @@ struct OnlineView: View {
 #endif
 
                             Chart(libreLinkUpHistory) {
-                                LineMark(x: .value("Time", $0.glucose.date),
-                                         y: .value("Glucose", $0.glucose.value)
+                                PointMark(x: .value("Time", $0.glucose.date),
+                                          y: .value("Glucose", $0.glucose.value)
                                 )
+                                .foregroundStyle($0.color.color)
                             }
                             .chartXAxis {
                                 AxisMarks(values: .stride(by: .hour, count: 3)) { _ in
+                                    AxisGridLine()
                                     AxisTick()
                                     AxisValueLabel(format: .dateTime.hour().minute())
                                 }
