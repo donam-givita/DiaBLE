@@ -150,22 +150,24 @@ struct OnlineView: View {
 
             if app.selectedService == .libreLinkUp {
 
-                VStack {
+                ScrollView(showsIndicators: true) {
 
-                    List {
-                        ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
-                            let glucose = libreLinkUpGlucose.glucose
-                            (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                                .foregroundColor(libreLinkUpGlucose.color.color)
-                                .padding(.vertical, 1)
-                                .fixedSize(horizontal: false, vertical: true)
+                    VStack(spacing: 0) {
+
+
+                        List {
+                            ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
+                                let glucose = libreLinkUpGlucose.glucose
+                                (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
+                                    .foregroundColor(libreLinkUpGlucose.color.color)
+                                    .padding(.vertical, 1)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
                         }
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                    }
-                    // .font(.system(.footnote, design: .monospaced))
-                    .foregroundColor(.cyan)
+                        // .font(.system(.footnote, design: .monospaced))
+                        .frame(minHeight: 64)
 
-                    ScrollView(showsIndicators: true) {
                         Text(libreLinkUpResponse)
 
                         // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))

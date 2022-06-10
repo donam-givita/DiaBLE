@@ -203,20 +203,23 @@ struct OnlineView: View {
                             .padding()
 #endif
 
-                            Chart(libreLinkUpHistory) {
-                                PointMark(x: .value("Time", $0.glucose.date),
-                                          y: .value("Glucose", $0.glucose.value)
-                                )
-                                .foregroundStyle($0.color.color)
-                            }
-                            .chartXAxis {
-                                AxisMarks(values: .stride(by: .hour, count: 3)) { _ in
-                                    AxisGridLine()
-                                    AxisTick()
-                                    AxisValueLabel(format: .dateTime.hour().minute())
+                            if libreLinkUpHistory.count > 0 {
+                                Chart(libreLinkUpHistory) {
+                                    PointMark(x: .value("Time", $0.glucose.date),
+                                              y: .value("Glucose", $0.glucose.value)
+                                    )
+                                    .foregroundStyle($0.color.color)
+                                    .symbolSize(12)
                                 }
+                                .chartXAxis {
+                                    AxisMarks(values: .stride(by: .hour, count: 3)) { _ in
+                                        AxisGridLine()
+                                        AxisTick()
+                                        AxisValueLabel(format: .dateTime.hour().minute())
+                                    }
+                                }
+                                .padding()
                             }
-                            .padding()
 
                             List {
                                 ForEach(libreLinkUpHistory) { libreLinkUpGlucose in

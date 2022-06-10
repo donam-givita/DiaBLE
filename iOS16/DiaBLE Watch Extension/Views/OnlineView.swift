@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Charts
 
 
 extension MeasurementColor {
@@ -150,22 +151,43 @@ struct OnlineView: View {
 
             if app.selectedService == .libreLinkUp {
 
-                VStack {
+                ScrollView(showsIndicators: true) {
 
-                    List {
-                        ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
-                            let glucose = libreLinkUpGlucose.glucose
-                            (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                                .foregroundColor(libreLinkUpGlucose.color.color)
-                                .padding(.vertical, 1)
-                                .fixedSize(horizontal: false, vertical: true)
+                    VStack(spacing: 0) {
+
+                        if libreLinkUpHistory.count > 0 {
+                            Chart(libreLinkUpHistory) {
+                                PointMark(x: .value("Time", $0.glucose.date),
+                                          y: .value("Glucose", $0.glucose.value)
+                                )
+                                .foregroundStyle($0.color.color)
+                                .symbolSize(6)
+                            }
+                            .chartXAxis {
+                                AxisMarks(values: .stride(by: .hour, count: 3)) { _ in
+                                    AxisGridLine()
+                                    AxisTick()
+                                    AxisValueLabel(format: .dateTime.hour().minute())
+                                }
+                            }
+                            .padding()
+                            .frame(minHeight: 64)
                         }
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                    }
-                    // .font(.system(.footnote, design: .monospaced))
-                    .foregroundColor(.cyan)
 
-                    ScrollView(showsIndicators: true) {
+                        List {
+                            ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
+                                let glucose = libreLinkUpGlucose.glucose
+                                (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
+                                    .foregroundColor(libreLinkUpGlucose.color.color)
+                                    .padding(.vertical, 1)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                        }
+                        // .font(.system(.footnote, design: .monospaced))
+                        .foregroundColor(.cyan)
+                        .frame(minHeight: 64)
+
                         Text(libreLinkUpResponse)
 
                         // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
