@@ -217,7 +217,7 @@ struct Details: View {
                                         Button {
                                             showingCalibrationInfoForm = false
                                         } label: {
-                                            Text("Set").bold().foregroundColor(Color.accentColor).padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
+                                            Text("Set").bold().foregroundColor(.accentColor).padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
                                         }.accentColor(.blue)
                                         Spacer()
                                     }

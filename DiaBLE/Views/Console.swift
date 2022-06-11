@@ -41,7 +41,7 @@ struct Console: View {
                         TextField("Filter", text: $filterString)
                             .autocapitalization(.none)
                             .padding(.vertical, 8)
-                            .foregroundColor(Color.accentColor)
+                            .foregroundColor(.accentColor)
                         if filterString.count > 0 {
                             Button {
                                 filterString = ""
