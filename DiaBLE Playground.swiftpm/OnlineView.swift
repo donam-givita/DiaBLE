@@ -211,7 +211,7 @@ struct OnlineView: View {
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                             }
                             .listStyle(.plain)
-                            .font(.system(.caption, design: .monospaced)).foregroundColor(.cyan)
+                            .font(.system(.caption, design: .monospaced))
 #if targetEnvironment(macCatalyst)
                             .padding(.leading, 15)
 #endif

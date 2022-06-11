@@ -75,11 +75,8 @@ struct OnlineView: View {
                 } label: {
                     Image(app.selectedService.description).resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
                 }
-                if app.selectedService == .nightscout {
-                    Text("https://").foregroundColor(Color(.lightGray))
-                } else {
-                    Text("email:").foregroundColor(Color(.lightGray))
-                }
+
+                Text("\(app.selectedService.description)").foregroundColor(.accentColor)
 
                 Spacer()
 
@@ -185,7 +182,6 @@ struct OnlineView: View {
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                         }
                         // .font(.system(.footnote, design: .monospaced))
-                        .foregroundColor(.cyan)
                         .frame(minHeight: 64)
 
                         Text(libreLinkUpResponse)
@@ -203,7 +199,7 @@ struct OnlineView: View {
         .navigationTitle("Online")
         .edgesIgnoringSafeArea([.bottom])
         .buttonStyle(.plain)
-        .foregroundColor(.cyan)
+        .accentColor(.blue)
 
     }
 }
