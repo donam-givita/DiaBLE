@@ -269,8 +269,8 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 app.device.readCharacteristic = characteristic
                 msg += " (data read)"
 
-                // enable Libre notifications only in didWriteValueFor()
-                if uuid != Abbott.dataReadCharacteristicUUID {
+                // enable notifications only in didWriteValueFor() unless sniffing the Libre 2 in TEST mode
+                if uuid != Abbott.dataReadCharacteristicUUID || settings.debugLevel > 1 {
                     app.device.peripheral?.setNotifyValue(true, for: app.device.readCharacteristic!)
                     msg += "; enabling notifications"
                 }
@@ -386,11 +386,13 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 debugLog("Bluetooth: sent \(app.device.name) read security challenge")
 
             } else if sensor.uid.count > 0 && sensor.patchInfo.count > 0 && settings.activeSensorInitialPatchInfo.count > 0 {
-                sensor.streamingUnlockCount += 1
-                settings.activeSensorStreamingUnlockCount += 1
-                let unlockPayload = Libre2.streamingUnlockPayload(id: sensor.uid, info: settings.activeSensorInitialPatchInfo, enableTime: sensor.streamingUnlockCode, unlockCount: sensor.streamingUnlockCount)
-                log("Bluetooth: writing streaming unlock payload: \(Data(unlockPayload).hex) (patch info: \(settings.activeSensorInitialPatchInfo.hex), unlock code: \(sensor.streamingUnlockCode), unlock count: \(sensor.streamingUnlockCount), sensor id: \(sensor.uid.hex), current patch info: \(sensor.patchInfo.hex))")
-                app.device.write(unlockPayload, .withResponse)
+                if settings.debugLevel < 1 {  // TEST: sniff Libre 2
+                    sensor.streamingUnlockCount += 1
+                    settings.activeSensorStreamingUnlockCount += 1
+                    let unlockPayload = Libre2.streamingUnlockPayload(id: sensor.uid, info: settings.activeSensorInitialPatchInfo, enableTime: sensor.streamingUnlockCode, unlockCount: sensor.streamingUnlockCount)
+                    log("Bluetooth: writing streaming unlock payload: \(Data(unlockPayload).hex) (patch info: \(settings.activeSensorInitialPatchInfo.hex), unlock code: \(sensor.streamingUnlockCode), unlock count: \(sensor.streamingUnlockCount), sensor id: \(sensor.uid.hex), current patch info: \(sensor.patchInfo.hex))")
+                    app.device.write(unlockPayload, .withResponse)
+                }
             }
         }
 
