@@ -127,16 +127,47 @@ struct OnlineView: View {
                             }
                         }
                 }
-
             }.font(.footnote)
 
+
             if app.selectedService == .nightscout {
-                List {
-                    ForEach(history.nightscoutValues) { glucose in
-                        (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                            .fixedSize(horizontal: false, vertical: true)
+
+                ScrollView(showsIndicators: true) {
+
+                    VStack(spacing: 0) {
+
+                        if history.nightscoutValues.count > 0 {
+                            let twelveHours = Double(8 * 60 * 60)  // TODO: the same as LLU
+                            let now = Date()
+                            let nightscoutHistory = history.nightscoutValues.filter { $0.date.timeIntervalSince(now) <=
+                                twelveHours }
+                            Chart(nightscoutHistory) {
+                                PointMark(x: .value("Time", $0.date),
+                                          y: .value("Glucose", $0.value)
+                                )
+                                .foregroundStyle(Color.cyan)
+                                .symbolSize(6)
+                            }
+                            .chartXAxis {
+                                AxisMarks(values: .stride(by: .hour, count: 3)) { _ in
+                                    AxisGridLine()
+                                    AxisTick()
+                                    AxisValueLabel(format: .dateTime.hour().minute())
+                                }
+                            }
+                            .padding()
+                            .frame(minHeight: 64)
+                        }
+
+                        List {
+                            ForEach(history.nightscoutValues) { glucose in
+                                (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                        }
+                        .frame(minHeight: 64)
                     }
-                    .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
                 // .font(.system(.footnote, design: .monospaced))
                 .foregroundColor(.cyan)
@@ -145,6 +176,7 @@ struct OnlineView: View {
 
                 } }
             }
+
 
             if app.selectedService == .libreLinkUp {
 
