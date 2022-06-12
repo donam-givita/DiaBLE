@@ -158,6 +158,13 @@ class LibreLinkUp: Logging {
                     if let activeSensors = data["activeSensors"] as? [String: Any] {
                         log("LibreLinkUp: active sensors: \(activeSensors)")
                     }
+                    if let sensor = connection["sensor"] as? [String: Any],
+                       let pt = sensor["pt"] as? Int,
+                       let sn = sensor["sn"] as? String,
+                       let a = sensor["a"] as? Int {
+                        let serial = "\(pt)\(sn)"
+                        log("LibreLinkUp: sensor serial: \(serial), activation date: \(Date(timeIntervalSince1970: Double(a))) (timestamp = \(a))")
+                    }
                     let formatter = DateFormatter()
                     formatter.dateFormat = "M/d/yyyy h:mm:ss a"
                     var id = 1
