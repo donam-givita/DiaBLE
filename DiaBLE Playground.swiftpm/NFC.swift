@@ -296,6 +296,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             let currentSensor = await main.app.sensor
             if currentSensor != nil && currentSensor!.uid == Data(tag.identifier.reversed()) {
                 sensor = await main.app.sensor
+                sensor.patchInfo = patchInfo
             } else {
                 let sensorType = SensorType(patchInfo: patchInfo)
                 switch sensorType {
