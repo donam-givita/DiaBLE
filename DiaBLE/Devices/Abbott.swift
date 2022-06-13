@@ -143,8 +143,8 @@ class Abbott: Transmitter {
                     log("BLE merged trend: \(factoryTrend.map(\.value))".replacingOccurrences(of: "-1", with: "… "))
 
                     // TODO: compute accurate delta and update trend arrow
-                    let deltaMinutes = factoryTrend[6].value != 0 ? 6 : 7
-                    let delta = (factoryTrend[0].value != 0 ? factoryTrend[0].value : (factoryTrend[1].value != 0 ? factoryTrend[1].value : factoryTrend[2].value)) - factoryTrend[deltaMinutes].value
+                    let deltaMinutes = factoryTrend[6].value > 0 ? 6 : 7
+                    let delta = (factoryTrend[0].value != 0 ? factoryTrend[0].value : (factoryTrend[1].value > 0 ? factoryTrend[1].value : factoryTrend[2].value)) - factoryTrend[deltaMinutes].value
                     main.app.trendDeltaMinutes = deltaMinutes
                     main.app.trendDelta = delta
 
