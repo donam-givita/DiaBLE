@@ -73,8 +73,11 @@ struct SettingsView: View {
                             step: settings.preferredTransmitter == .miaomiao || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.miaomiao)) ?
                             2 : 1,
                             label: {
-                        Image(systemName: "timer").resizable().frame(width: 32, height: 32)
-                        Text(" \(settings.readingInterval) min") })
+                        HStack {
+                            Image(systemName: "timer").resizable().frame(width: 32, height: 32)
+                            Text(" \(settings.readingInterval) min")
+                        }
+                    })
                     .frame(maxWidth: 200)
                     Spacer()
                 }
