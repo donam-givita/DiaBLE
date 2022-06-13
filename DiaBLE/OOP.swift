@@ -488,7 +488,7 @@ extension MainDelegate {
                 "userId": 1,
                 "list": [
                     ["timestamp": "\(Int64(Date().timeIntervalSince1970 * 1000))",
-                     "content": sensor.fram.hex]
+                     "content": fram.hex]
                 ]
             ]
             do {
@@ -506,7 +506,7 @@ extension MainDelegate {
         log("OOP: posting sensor data to \(settings.oopServer.siteURL)/\(session == "" ? settings.oopServer.historyEndpoint! : settings.oopServer.historyAndCalibrationEndpoint!)...")
 
         do {
-            let (data, urlResponse, queryItems) = try await postToOOP(server: settings.oopServer, bytes: sensor.fram, date: app.lastReadingDate, patchUid: sensor.uid, patchInfo: sensor.patchInfo, session: session)
+            let (data, urlResponse, queryItems) = try await postToOOP(server: settings.oopServer, bytes: fram, date: app.lastReadingDate, patchUid: sensor.uid, patchInfo: sensor.patchInfo, session: session)
             log("OOP: post query parameters: \(queryItems)")
             if let data = data {
                 log("OOP: history response: \(data.string)")
