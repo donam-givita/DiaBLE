@@ -22,15 +22,15 @@ struct DataView: View {
                 if app.status.hasPrefix("Scanning") {
                     Text("Scanning...").foregroundColor(.orange)
                 } else if !app.deviceState.isEmpty && app.deviceState != "Connected" {
-                    Text(app.deviceState).foregroundColor(.red)
-                } else {
-                    Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
-                            "\(readingCountdown) s" : "")
-                        .fixedSize()
-                        .font(Font.caption.monospacedDigit()).foregroundColor(.orange)
+                    HStack {
+                        Text(app.deviceState).foregroundColor(.red)
+                        Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
+                             "\(readingCountdown) s" : " ")
+                        .foregroundColor(.orange)
                         .onReceive(timer) { _ in
                             readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                         }
+                    }
                 }
 
                 VStack {
@@ -143,7 +143,7 @@ struct DataView: View {
                                 }
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                             }.foregroundColor(.red)
-                            .onAppear { if let healthKit = app.main?.healthKit { healthKit.read() } }
+                                .onAppear { if let healthKit = app.main?.healthKit { healthKit.read() } }
                         }
 
                         if history.nightscoutValues.count > 0 {
@@ -157,7 +157,7 @@ struct DataView: View {
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                 }
                             }.foregroundColor(.cyan)
-                            .onAppear { if let nightscout = app.main?.nightscout { nightscout.read() } }
+                                .onAppear { if let nightscout = app.main?.nightscout { nightscout.read() } }
                         }
                     }
                     .listStyle(.plain)

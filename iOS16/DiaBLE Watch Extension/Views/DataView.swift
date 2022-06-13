@@ -21,13 +21,12 @@ struct DataView: View {
             if app.status.hasPrefix("Scanning") {
                 Text("Scanning...").foregroundColor(.orange)
             } else if !app.deviceState.isEmpty && app.deviceState != "Connected" {
-                Text(app.deviceState).foregroundColor(.red)
-            } else {
-                Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
-                     "\(readingCountdown) s" : "")
-                    .fixedSize()
-                // .font(Font.caption.monospacedDigit())
+                HStack {
+                    Text(app.deviceState).foregroundColor(.red)
+                    Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
+                         "\(readingCountdown) s" : " ")
                     .foregroundColor(.orange)
+                    // .font(Font.caption.monospacedDigit())
                     .onReceive(timer) { _ in
                         // workaround: watchOS fails converting the interval to an Int32
                         if app.lastConnectionDate == Date.distantPast {
@@ -36,6 +35,7 @@ struct DataView: View {
                             readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                         }
                     }
+                }
             }
 
             if history.factoryTrend.count + history.rawTrend.count > 0 {
