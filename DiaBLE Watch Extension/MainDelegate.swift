@@ -4,7 +4,7 @@ import AVFoundation
 
 
 //public class MainDelegate: NSObject, UNUserNotificationCenterDelegate {
-public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
+public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessionDelegate {
 
     var app: AppState
     var log: Log
@@ -116,6 +116,11 @@ public class MainDelegate: NSObject, WKExtendedRuntimeSessionDelegate {
                 self.app.status.append("\n\(text)")
             }
         }
+    }
+
+
+    public func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
+        log("TODO: handling background tasks")
     }
 
 

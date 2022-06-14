@@ -6,7 +6,7 @@ struct DiaBLEApp: App {
 #if !os(watchOS)
     @UIApplicationDelegateAdaptor(MainDelegate.self) var main
 #else
-    var main: MainDelegate = MainDelegate()
+    @WKExtensionDelegateAdaptor(MainDelegate.self) var main
 #endif
 
     @SceneBuilder var body: some Scene {
