@@ -385,7 +385,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 app.device.write(Data([0x20]), .withResponse)
                 debugLog("Bluetooth: sent \(app.device.name) read security challenge")
 
-            } else if sensor.uid.count > 0 && sensor.patchInfo.count > 0 && settings.activeSensorInitialPatchInfo.count > 0 {
+            } else if sensor.uid.count > 0 && settings.activeSensorInitialPatchInfo.count > 0 {
                 if settings.debugLevel < 2 {  // TEST: sniff Libre 2
                     sensor.streamingUnlockCount += 1
                     settings.activeSensorStreamingUnlockCount += 1
