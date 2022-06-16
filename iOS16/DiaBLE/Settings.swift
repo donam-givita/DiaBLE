@@ -33,6 +33,8 @@ class Settings: ObservableObject {
         "libreLinkUpToken": "",
         "libreLinkUpTokenExpires": 0.0,
 
+        "onlineInterval": 5,
+
         "activeSensorSerial": "",
         "activeSensorAddress": Data(),
         "activeSensorInitialPatchInfo": Data(),
@@ -161,6 +163,10 @@ class Settings: ObservableObject {
 
     @Published var libreLinkUpTokenExpires: Double = UserDefaults.standard.double(forKey: "libreLinkUpTokenExpires") {
         didSet { UserDefaults.standard.set(self.libreLinkUpTokenExpires, forKey: "libreLinkUpTokenExpires") }
+    }
+
+    @Published var onlineInterval: Int = UserDefaults.standard.integer(forKey: "onlineInterval") {
+        didSet { UserDefaults.standard.set(self.onlineInterval, forKey: "onlineInterval") }
     }
 
     @Published var activeSensorSerial: String = UserDefaults.standard.string(forKey: "activeSensorSerial")! {

@@ -12,29 +12,9 @@ struct SettingsView: View {
 
     var body: some View {
 
-        VStack {
+        VStack(spacing: 8) {
 
             HStack {
-                Picker(selection: $settings.preferredTransmitter, label: Text("Preferred")) {
-                    ForEach(TransmitterType.allCases) { t in
-                        Text(t.name).tag(t)
-                    }
-                }
-                .labelsHidden()
-                .disabled(settings.stoppedBluetooth)
-
-                TextField("device name pattern", text: $settings.preferredDevicePattern)
-                    .frame(alignment: .center)
-                    .disabled(settings.stoppedBluetooth)
-
-            }
-            .frame(height: 20)
-            .padding(.top, 57)
-            .font(.footnote)
-            .foregroundColor(.blue)
-
-            HStack {
-                Spacer()
 
                 Button {
                     settings.stoppedBluetooth.toggle()
@@ -46,19 +26,52 @@ struct SettingsView: View {
                         app.main.rescan()
                     }
                 } label: {
-                    Image("Bluetooth").renderingMode(.template).resizable().frame(width: 28, height: 28).foregroundColor(.blue).padding(-4)
+                    Image("Bluetooth").renderingMode(.template).resizable().frame(width: 28, height: 28).foregroundColor(.blue)
                         .overlay(settings.stoppedBluetooth ? Image(systemName: "line.diagonal").resizable().frame(width: 18, height: 18).rotationEffect(.degrees(90)) : nil).foregroundColor(.red)
                 }
+                .padding(.horizontal, -8)
+
+                Picker(selection: $settings.preferredTransmitter, label: Text("Preferred")) {
+                    ForEach(TransmitterType.allCases) { t in
+                        Text(t.name).tag(t)
+                    }
+                }
+                .frame(height: 20)
+                .labelsHidden()
+                .disabled(settings.stoppedBluetooth)
+
+                TextField("device name pattern", text: $settings.preferredDevicePattern)
+                    .frame(height: 20)
+                    .disabled(settings.stoppedBluetooth)
+
+            }
+            .font(.footnote)
+            .foregroundColor(.blue)
+            .padding(.top, 16)
+
+            HStack {
 
                 Button {
-                    settings.usingOOP.toggle()
+                    settings.onlineInterval = settings.onlineInterval != 0 ? 0 : 5
+                    settings.usingOOP = settings.onlineInterval != 0
                     Task {
                         await app.main.applyOOP(sensor: app.sensor)
                         app.main.didParseSensor(app.sensor)
                     }
                 } label: {
-                    Image(systemName: settings.usingOOP ? "globe" : "wifi.slash").resizable().frame(width: 20, height: 20).foregroundColor(.blue)
+                    Image(systemName: settings.onlineInterval != 0 ? "network" : "wifi.slash").resizable().frame(width: 20, height: 20).foregroundColor(.cyan)
                 }
+
+                Picker(selection: $settings.onlineInterval, label: Text("")) {
+                    ForEach([0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 45, 60],
+                            id: \.self) { t in
+                        Text("\(t) min")
+                    }
+                }
+                .font(.footnote)
+                .foregroundColor(.cyan)
+                .labelsHidden()
+                .frame(width: 62, height: 20)
 
                 Picker(selection: $settings.displayingMillimoles, label: Text("Unit")) {
                     ForEach(GlucoseUnit.allCases) { unit in
@@ -67,18 +80,16 @@ struct SettingsView: View {
                 }
                 .font(.footnote)
                 .labelsHidden()
-                .frame(width: 80, height: 20)
+                .frame(width: 68, height: 20)
 
                 Button {
                     settings.calibrating.toggle()
                     app.main.didParseSensor(app.sensor)
                 } label: {
-                    Image(systemName: settings.calibrating ? "tuningfork" : "tuningfork").resizable().frame(width: 20, height: 20).foregroundColor(settings.calibrating ? .blue : .primary)
+                    Image(systemName: settings.calibrating ? "tuningfork" : "tuningfork").resizable().frame(width: 20, height: 20)
+                        .foregroundColor(settings.calibrating ? .blue : .primary)
                 }
 
-                Spacer()
-
-                Spacer()
             }
 
             VStack {
@@ -109,8 +120,6 @@ struct SettingsView: View {
             }
 
             HStack {
-
-                Spacer()
 
                 HStack(spacing: 3) {
                     NavigationLink(destination: Monitor()) {
@@ -155,10 +164,11 @@ struct SettingsView: View {
                 }
 
                 Spacer()
-            }.padding(.top, 6)
+
+            }
 
         }
-        .edgesIgnoringSafeArea([.top, .bottom])
+        .edgesIgnoringSafeArea([.bottom])
         .navigationTitle("Settings")
         .font(Font.body.monospacedDigit())
         .buttonStyle(.plain)
