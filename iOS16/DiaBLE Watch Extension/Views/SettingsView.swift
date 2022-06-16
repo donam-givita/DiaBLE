@@ -53,11 +53,6 @@ struct SettingsView: View {
 
                 Button {
                     settings.onlineInterval = settings.onlineInterval != 0 ? 0 : 5
-                    settings.usingOOP = settings.onlineInterval != 0
-                    Task {
-                        await app.main.applyOOP(sensor: app.sensor)
-                        app.main.didParseSensor(app.sensor)
-                    }
                 } label: {
                     Image(systemName: settings.onlineInterval != 0 ? "network" : "wifi.slash").resizable().frame(width: 20, height: 20).foregroundColor(.cyan)
                 }
@@ -84,7 +79,11 @@ struct SettingsView: View {
 
                 Button {
                     settings.calibrating.toggle()
-                    app.main.didParseSensor(app.sensor)
+                    settings.usingOOP = settings.calibrating
+                    Task {
+                        await app.main.applyOOP(sensor: app.sensor)
+                        app.main.didParseSensor(app.sensor)
+                    }
                 } label: {
                     Image(systemName: settings.calibrating ? "tuningfork" : "tuningfork").resizable().frame(width: 20, height: 20)
                         .foregroundColor(settings.calibrating ? .blue : .primary)
