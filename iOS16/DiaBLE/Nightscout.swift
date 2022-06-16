@@ -91,6 +91,7 @@ class Nightscout: NSObject, Logging {
 
 
     func read(handler: (([Glucose]) -> Void)? = nil) {
+        guard main.settings.onlineInterval > 0 else { return }
         request("api/v1/entries.json", "count=100") { data, response, error, array in
             var values = [Glucose]()
             for item in array {
@@ -109,6 +110,7 @@ class Nightscout: NSObject, Logging {
     }
 
     func read() async throws -> ([Glucose], URLResponse) {
+        guard await main.settings.onlineInterval > 0 else { return ([Glucose](), URLResponse()) }
         let (data, response) = try await request("api/v1/entries.json", "count=100")
         var values = [Glucose]()
         if let array = data as? [[String: Any]?] {
@@ -195,6 +197,7 @@ class Nightscout: NSObject, Logging {
 
 
     func post(entries: [Glucose], handler: (((Data?, URLResponse?, Error?) -> Void))? = nil) {
+        guard main.settings.onlineInterval > 0 else { return }
         let dictionaryArray = entries.map { [
             "type": "sgv",
             "dateString": ISO8601DateFormatter().string(from: $0.date),
@@ -212,6 +215,7 @@ class Nightscout: NSObject, Logging {
 
 
     func post(entries: [Glucose]) async throws {
+        guard await main.settings.onlineInterval > 0 else { return }
         let dictionaryArray = entries.map { [
             "type": "sgv",
             "dateString": ISO8601DateFormatter().string(from: $0.date),
