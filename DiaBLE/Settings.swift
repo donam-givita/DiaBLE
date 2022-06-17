@@ -31,9 +31,10 @@ class Settings: ObservableObject {
         "libreLinkUpPassword": "",
         "libreLinkUpPatientId": "",
         "libreLinkUpToken": "",
-        "libreLinkUpTokenExpires": 0.0,
+        "libreLinkUpTokenExpirationDate": Date.distantPast,
 
         "onlineInterval": 5,
+        "lastOnlineDate": Date.distantPast,
 
         "activeSensorSerial": "",
         "activeSensorAddress": Data(),
@@ -161,12 +162,16 @@ class Settings: ObservableObject {
         didSet { UserDefaults.standard.set(self.libreLinkUpToken, forKey: "libreLinkUpToken") }
     }
 
-    @Published var libreLinkUpTokenExpires: Double = UserDefaults.standard.double(forKey: "libreLinkUpTokenExpires") {
-        didSet { UserDefaults.standard.set(self.libreLinkUpTokenExpires, forKey: "libreLinkUpTokenExpires") }
+    @Published var libreLinkUpTokenExpirationDate: Date = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "libreLinkUpTokenExpirationDate")) {
+        didSet { UserDefaults.standard.set(self.libreLinkUpTokenExpirationDate.timeIntervalSince1970, forKey: "libreLinkUpTokenExpirationDate") }
     }
 
     @Published var onlineInterval: Int = UserDefaults.standard.integer(forKey: "onlineInterval") {
         didSet { UserDefaults.standard.set(self.onlineInterval, forKey: "onlineInterval") }
+    }
+
+    @Published var lastOnlineDate: Date = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "lastOnlineDate")) {
+        didSet { UserDefaults.standard.set(self.lastOnlineDate.timeIntervalSince1970, forKey: "lastOnlineDate") }
     }
 
     @Published var activeSensorSerial: String = UserDefaults.standard.string(forKey: "activeSensorSerial")! {

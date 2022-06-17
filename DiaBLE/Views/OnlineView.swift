@@ -39,7 +39,7 @@ struct OnlineView: View {
             do {
                 if settings.libreLinkUpPatientId.isEmpty ||
                     settings.libreLinkUpToken.isEmpty ||
-                    Date(timeIntervalSince1970: settings.libreLinkUpTokenExpires) < Date() ||
+                    settings.libreLinkUpTokenExpirationDate < Date() ||
                     retries == 1 {
                     do {
                         try await libreLinkUp.login()

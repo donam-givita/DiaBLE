@@ -125,7 +125,7 @@ class LibreLinkUp: Logging {
                         DispatchQueue.main.async {
                             self.main.settings.libreLinkUpPatientId = id
                             self.main.settings.libreLinkUpToken = authTicket.token
-                            self.main.settings.libreLinkUpTokenExpires = Double(authTicket.expires)
+                            self.main.settings.libreLinkUpTokenExpirationDate = Date(timeIntervalSince1970: Double(authTicket.expires))
                         }
                     }
                 }
