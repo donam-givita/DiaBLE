@@ -60,7 +60,7 @@ struct SettingsView: View {
                 Picker(selection: $settings.onlineInterval, label: Text("")) {
                     ForEach([0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 45, 60],
                             id: \.self) { t in
-                        Text("\(t) min")
+                        Text(t != 0 ? "\(t) min" : "offline")
                     }
                 }
                 .font(.footnote)
