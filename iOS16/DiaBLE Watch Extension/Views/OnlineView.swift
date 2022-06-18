@@ -8,6 +8,7 @@ extension MeasurementColor {
         switch self {
         case .green:  return .green
         case .yellow: return .yellow
+        case .orange: return .orange
         case .red:    return .red
         }
     }

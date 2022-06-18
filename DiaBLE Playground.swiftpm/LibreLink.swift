@@ -29,7 +29,8 @@ struct AuthTicket: Codable {
 enum MeasurementColor: Int, Codable {
     case green  = 1
     case yellow = 2
-    case red    = 3
+    case orange = 3
+    case red    = 4
 }
 
 
