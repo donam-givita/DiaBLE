@@ -51,9 +51,9 @@ struct OnlineView: View {
                 }
                 if !(settings.libreLinkUpPatientId.isEmpty ||
                      settings.libreLinkUpToken.isEmpty) {
-                    let (data, _, history) = try await libreLinkUp.getPatientGraph()
+                    let (data, _, history, logbookData, _, _) = try await libreLinkUp.getPatientGraph()
                     dataString = (data as! Data).string
-                    libreLinkUpResponse = dataString
+                    libreLinkUpResponse = dataString + (logbookData as! Data).string
                     libreLinkUpHistory = history.reversed()
                     // TODO
                     if dataString != "{\"message\":\"MissingCachedUser\"}" {

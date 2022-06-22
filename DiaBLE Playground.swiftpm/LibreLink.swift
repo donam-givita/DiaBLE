@@ -37,9 +37,9 @@ enum MeasurementColor: Int, Codable {
 struct GlucoseMeasurement: Codable {
     let factoryTimestamp: String
     let timestamp: String
-    let type: Int
+    let type: Int  // 1  (2 for alarms)
     let valueInMgPerDl: Int
-    let trendArrow: OOP.TrendArrow?    // not in graphData
+    let trendArrow: OOP.TrendArrow?    // in logbook but not in graph data
     let trendMessage: String?
     let measurementColor: MeasurementColor
     let glucoseUnits: Int
@@ -53,7 +53,21 @@ struct GlucoseMeasurement: Codable {
 struct LibreLinkUpGlucose: Identifiable, Codable {
     let glucose: Glucose
     let color: MeasurementColor
+    let trendArrow: OOP.TrendArrow?
     var id: Int { glucose.id }
+}
+
+
+struct LibreLinkUpAlarm: Identifiable, Codable, CustomStringConvertible {
+    let factoryTimestamp: String
+    let timestamp: String
+    let type: Int  // 2 (1 for measurements)
+    let alarmType: Int  // 0: low, 1: high
+    enum CodingKeys: String, CodingKey { case factoryTimestamp = "FactoryTimestamp", timestamp = "Timestamp", type, alarmType }
+    var id: Int { Int(date.timeIntervalSince1970) }
+    var date: Date = Date()
+    var alarmDescription: String { alarmType == 0 ? "LOW" : "HIGH" }
+    var description: String { "\(date): \(alarmDescription)" }
 }
 
 
@@ -139,18 +153,26 @@ class LibreLinkUp: Logging {
     }
 
 
-    func getPatientGraph() async throws -> (Any, URLResponse, [LibreLinkUpGlucose]) {
-        var request = URLRequest(url: URL(string: "\(siteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/graph")!)
+    func getPatientGraph() async throws -> (Any, URLResponse, [LibreLinkUpGlucose], Any, [LibreLinkUpGlucose], [LibreLinkUpAlarm]) {
+        var request = URLRequest(url: URL(string: "\(localSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/graph")!)
         var authenticatedHeaders = headers
-        authenticatedHeaders["authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
+        authenticatedHeaders["Authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
         for (header, value) in authenticatedHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
-        debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(authenticatedHeaders)")
+        debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
+
         var history: [LibreLinkUpGlucose] = []
+        var logbookData: Data = Data()
+        var logbookHistory: [LibreLinkUpGlucose] = []
+        var alarms:  [LibreLinkUpAlarm] = []
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M/d/yyyy h:mm:ss a"
+
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
-            debugLog("LibreLinkUp: response data: \(data.string)")
+            debugLog("LibreLinkUp: response data: \(data.string), status: \((response as! HTTPURLResponse).statusCode)")
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                    let data = json["data"] as? [String: Any],
@@ -164,28 +186,69 @@ class LibreLinkUp: Logging {
                        let a = sensor["a"] as? Int {
                         log("LibreLinkUp: sensor serial: \(sn), activation date: \(Date(timeIntervalSince1970: Double(a))) (timestamp = \(a))")
                     }
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "M/d/yyyy h:mm:ss a"
-                    var id = 1
+                    var id = 0
                     if let graphData = data["graphData"] as? [[String: Any]] {
-                        _ = graphData.map { glucoseMeasurement in
+                        for glucoseMeasurement in graphData {
                             if let measurementData = try? JSONSerialization.data(withJSONObject: glucoseMeasurement),
                                let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
-                                history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
-                                log("LibreLinkUp: graph measurement #\(id): \(measurement) (JSON: \(glucoseMeasurement))")
                                 id += 1
+                                history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
+                                log("LibreLinkUp: graph measurement #\(id) of \(graphData.count): \(measurement) (JSON: \(glucoseMeasurement))")
                             }
                         }
                     }
                     if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any],
                        let measurementData = try? JSONSerialization.data(withJSONObject: glucoseMeasurement),
                        let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
-                        log("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(glucoseMeasurement))")
-                        history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor))
+                        id += 1
+                        history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
+                        log("LibreLinkUp: last glucose measurement #\(id) of \(history.count): \(measurement) (JSON: \(glucoseMeasurement))")
                     }
                     log("LibreLinkUp: graph values: \(history.map { ($0.glucose.id, $0.glucose.value, $0.glucose.date.shortDateTime, $0.color) })")
+
+                    // TODO: settings whether to scrape also the logbook
+
+                    if let ticketDict = json["ticket"] as? [String: Any],
+                       let token = ticketDict["token"] as? String {
+                        self.log("LibreLinkUp: new token for logbook: \(token)")
+                        request.setValue(await "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                        request.url =  URL(string: "\(localSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/logbook")!
+                        debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
+                        let (data, response) = try await URLSession.shared.data(for: request)
+                        debugLog("LibreLinkUp: response data: \(data.string), status: \((response as! HTTPURLResponse).statusCode)")
+                        logbookData = data
+                        if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                           let data = json["data"] as? [[String: Any]] {
+                            for entry in data {
+                                let type = entry["type"] as! Int
+
+                                if type == 1 {  // measurement
+                                    if let measurementData = try? JSONSerialization.data(withJSONObject: entry),
+                                       let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
+                                        id += 1
+                                        logbookHistory.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: formatter.date(from: measurement.timestamp)!, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
+                                        log("LibreLinkUp: logbook measurement #\(id - history.count) of \(data.count): \(measurement) (JSON: \(entry))")
+                                    }
+
+                                } else if type == 2 {  // alarm
+                                    if let alarmData = try? JSONSerialization.data(withJSONObject: entry),
+                                       var alarm = try? JSONDecoder().decode(LibreLinkUpAlarm.self, from: alarmData) {
+                                        alarm.date = formatter.date(from: entry["Timestamp"] as! String)!
+                                        alarms.append(alarm)
+                                        log("LibreLinkUp: logbook alarm: \(alarm) (JSON: \(entry))")
+                                    }
+                                }
+
+                            }
+
+                            // TODO: merge with history and display trend arrow
+                            log("LibreLinkUp: logbook values: \(logbookHistory.map { ($0.glucose.id, $0.glucose.value, $0.glucose.date.shortDateTime, $0.color, $0.trendArrow!.symbol) }), alarms: \(alarms.map(\.description))")
+                        }
+                    }
                 }
-                return (data, response, history)
+
+                return (data, response, history, logbookData, logbookHistory, alarms)
+
             } catch {
                 log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
                 throw LibreLinkUpError.jsonDecoding
