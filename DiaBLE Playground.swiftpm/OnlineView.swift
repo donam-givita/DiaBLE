@@ -238,7 +238,7 @@ struct OnlineView: View {
                                     List {
                                         ForEach(libreLinkUpLogbookHistory) { libreLinkUpGlucose in
                                             let glucose = libreLinkUpGlucose.glucose
-                                            (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(libreLinkUpGlucose.trendArrow!.symbol).font(.title3))
+                                            (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(libreLinkUpGlucose.trendArrow!.symbol).font(.subheadline))
                                                 .foregroundColor(libreLinkUpGlucose.color.color)
                                                 .fixedSize(horizontal: false, vertical: true).listRowInsets(EdgeInsets())
                                         }
