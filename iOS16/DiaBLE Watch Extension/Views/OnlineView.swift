@@ -24,6 +24,7 @@ struct OnlineView: View {
 
     @State private var libreLinkUpResponse: String = "[...]"
     @State private var libreLinkUpHistory: [LibreLinkUpGlucose] = []
+    @State private var showingCredentials: Bool = true
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     // TODO: one-minute timer for Libre 3
@@ -77,9 +78,26 @@ struct OnlineView: View {
                     Image(app.selectedService.description).resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
                 }
 
-                Text("\(app.selectedService.description)").foregroundColor(.accentColor)
+                VStack(spacing: 0) {
 
-                Spacer()
+                    Text("\(app.selectedService.description)").foregroundColor(.accentColor)
+
+                    HStack {
+
+                        Button {
+                            withAnimation { showingCredentials.toggle() }
+                        } label: {
+                            Image(systemName: showingCredentials ? "person.crop.circle.fill" : "person.crop.circle").resizable().frame(width: 20, height: 20).foregroundColor(.blue)
+                        }
+
+                        Button {
+                            settings.libreLinkUpScrapingLogbook.toggle()
+                        } label: {
+                            Image(systemName: settings.libreLinkUpScrapingLogbook ? "book.closed.circle.fill" : "book.closed.circle").resizable().frame(width: 20, height: 20).foregroundColor(.blue)
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity)
 
                 VStack(spacing: 0) {
                     Button {
@@ -104,32 +122,35 @@ struct OnlineView: View {
 
             }
 
-            HStack {
-                if app.selectedService == .nightscout {
-                    TextField("Nightscout URL", text: $settings.nightscoutSite)
-                        .textContentType(.URL)
-                    SecureField("token", text: $settings.nightscoutToken)
-                } else {
-                    TextField("email", text: $settings.libreLinkUpEmail)
-                        .textContentType(.emailAddress)
-                        .onSubmit {
-                            settings.libreLinkUpPatientId = ""
-                            libreLinkUpResponse = "[Logging in...]"
-                            Task {
-                                await reloadLibreLinkUp()
-                            }
-                        }
-                    SecureField("password", text: $settings.libreLinkUpPassword)
-                        .onSubmit {
-                            settings.libreLinkUpPatientId = ""
-                            libreLinkUpResponse = "[Logging in...]"
-                            Task {
-                                await reloadLibreLinkUp()
-                            }
-                        }
-                }
-            }.font(.footnote)
+            if showingCredentials {
+                HStack {
 
+                    if app.selectedService == .nightscout {
+                        TextField("Nightscout URL", text: $settings.nightscoutSite)
+                            .textContentType(.URL)
+                        SecureField("token", text: $settings.nightscoutToken)
+
+                    } else if app.selectedService == .libreLinkUp {
+                        TextField("email", text: $settings.libreLinkUpEmail)
+                            .textContentType(.emailAddress)
+                            .onSubmit {
+                                settings.libreLinkUpPatientId = ""
+                                libreLinkUpResponse = "[Logging in...]"
+                                Task {
+                                    await reloadLibreLinkUp()
+                                }
+                            }
+                        SecureField("password", text: $settings.libreLinkUpPassword)
+                            .onSubmit {
+                                settings.libreLinkUpPatientId = ""
+                                libreLinkUpResponse = "[Logging in...]"
+                                Task {
+                                    await reloadLibreLinkUp()
+                                }
+                            }
+                    }
+                }.font(.footnote)
+            }
 
             if app.selectedService == .nightscout {
 

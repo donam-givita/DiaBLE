@@ -32,6 +32,7 @@ class Settings: ObservableObject {
         "libreLinkUpPatientId": "",
         "libreLinkUpToken": "",
         "libreLinkUpTokenExpirationDate": Date.distantPast,
+        "libreLinkUpScrapingLogbook": false,
 
         "onlineInterval": 5,
         "lastOnlineDate": Date.distantPast,
@@ -164,6 +165,10 @@ class Settings: ObservableObject {
 
     @Published var libreLinkUpTokenExpirationDate: Date = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "libreLinkUpTokenExpirationDate")) {
         didSet { UserDefaults.standard.set(self.libreLinkUpTokenExpirationDate.timeIntervalSince1970, forKey: "libreLinkUpTokenExpirationDate") }
+    }
+
+    @Published var libreLinkUpScrapingLogbook: Bool = UserDefaults.standard.bool(forKey: "libreLinkUpScrapingLogbook") {
+        didSet { UserDefaults.standard.set(self.libreLinkUpScrapingLogbook, forKey: "libreLinkUpScrapingLogbook") }
     }
 
     @Published var onlineInterval: Int = UserDefaults.standard.integer(forKey: "onlineInterval") {
