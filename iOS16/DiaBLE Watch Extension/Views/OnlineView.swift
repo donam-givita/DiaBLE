@@ -234,15 +234,31 @@ struct OnlineView: View {
                             .frame(minHeight: 64)
                         }
 
-                        List {
-                            ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
-                                let glucose = libreLinkUpGlucose.glucose
-                                (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                                    .foregroundColor(libreLinkUpGlucose.color.color)
-                                    .padding(.vertical, 1)
-                                    .fixedSize(horizontal: false, vertical: true)
+                        HStack {
+                            List {
+                                ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
+                                    let glucose = libreLinkUpGlucose.glucose
+                                    (Text("\(!settings.libreLinkUpScrapingLogbook ? String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)]) + " " : "") \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
+                                        .foregroundColor(libreLinkUpGlucose.color.color)
+                                        .padding(.vertical, 1)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .topLeading)
                             }
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
+
+                            if settings.libreLinkUpScrapingLogbook {
+                                // TODO: alarms
+                                List {
+                                    ForEach(libreLinkUpLogbookHistory) { libreLinkUpGlucose in
+                                        let glucose = libreLinkUpGlucose.glucose
+                                        (Text("\(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(libreLinkUpGlucose.trendArrow!.symbol).font(.title3))
+                                            .foregroundColor(libreLinkUpGlucose.color.color)
+                                            .padding(.vertical, 1)
+                                            .fixedSize(horizontal: false, vertical: true)
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                }
+                            }
                         }
                         // .font(.system(.footnote, design: .monospaced))
                         .frame(minHeight: 64)

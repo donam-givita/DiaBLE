@@ -90,7 +90,7 @@ struct SettingsView: View {
                         Stepper {
                             HStack {
                                 Image(systemName: settings.onlineInterval > 0 ? "network" : "wifi.slash").resizable().frame(width: 24, height: 24)
-                                Text(settings.onlineInterval > 0 ? "\(settings.onlineInterval) min" : "off-line")
+                                Text(settings.onlineInterval > 0 ? "\(settings.onlineInterval) min" : "offline")
                             }
                         } onIncrement: {
                             settings.onlineInterval += settings.onlineInterval >= 5 ? 5 : 1
