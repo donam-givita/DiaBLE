@@ -75,7 +75,8 @@ struct OnlineView: View {
             GeometryReader { _ in
                 VStack(spacing: 0) {
 
-                    HStack {
+                    HStack(alignment: .top) {
+
                         Button {
                             app.selectedService = app.selectedService == .nightscout ? .libreLinkUp : .nightscout
                         } label: {
@@ -97,7 +98,7 @@ struct OnlineView: View {
                                     SecureField("token", text: $settings.nightscoutToken)
                                 }
 
-                            } else {
+                            } else if app.selectedService == .libreLinkUp {
                                 HStack(alignment: .firstTextBaseline, spacing: 0) {
                                     Text("email: ").foregroundColor(Color(.lightGray))
                                     TextField("email", text: $settings.libreLinkUpEmail)
@@ -125,6 +126,20 @@ struct OnlineView: View {
                                 }
                             }
                         }
+
+                        Button {
+                            settings.libreLinkUpScrapingLogbook.toggle()
+                            if settings.libreLinkUpScrapingLogbook {
+                                libreLinkUpResponse = "[...]"
+                                Task {
+                                    await reloadLibreLinkUp()
+                                }
+                            }
+                        } label: {
+                            Image(systemName: settings.libreLinkUpScrapingLogbook ? "book.closed.circle.fill" : "book.closed.circle").resizable().frame(width: 32, height: 32).foregroundColor(.blue)
+                        }
+
+                        Spacer()
 
                         VStack(spacing: 0) {
                             // TODO: reload web page

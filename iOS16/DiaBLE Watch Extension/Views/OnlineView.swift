@@ -92,6 +92,12 @@ struct OnlineView: View {
 
                         Button {
                             settings.libreLinkUpScrapingLogbook.toggle()
+                            if settings.libreLinkUpScrapingLogbook {
+                                libreLinkUpResponse = "[...]"
+                                Task {
+                                    await reloadLibreLinkUp()
+                                }
+                            }
                         } label: {
                             Image(systemName: settings.libreLinkUpScrapingLogbook ? "book.closed.circle.fill" : "book.closed.circle").resizable().frame(width: 20, height: 20).foregroundColor(.blue)
                         }

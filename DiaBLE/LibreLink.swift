@@ -206,9 +206,8 @@ class LibreLinkUp: Logging {
                     }
                     log("LibreLinkUp: graph values: \(history.map { ($0.glucose.id, $0.glucose.value, $0.glucose.date.shortDateTime, $0.color) })")
 
-                    // TODO: settings whether to scrape also the logbook
-
-                    if let ticketDict = json["ticket"] as? [String: Any],
+                    if await main.settings.libreLinkUpScrapingLogbook,
+                       let ticketDict = json["ticket"] as? [String: Any],
                        let token = ticketDict["token"] as? String {
                         self.log("LibreLinkUp: new token for logbook: \(token)")
                         request.setValue(await "Bearer \(token)", forHTTPHeaderField: "Authorization")
