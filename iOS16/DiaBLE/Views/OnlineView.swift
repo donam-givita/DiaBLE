@@ -86,6 +86,7 @@ struct OnlineView: View {
                         } label: {
                             Image(app.selectedService.description).resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
                         }
+                        .padding(.top, 8).padding(.trailing, 4)
 
                         VStack(spacing: 0) {
 
