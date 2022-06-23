@@ -23,6 +23,7 @@ struct OnlineView: View {
 
     @State private var libreLinkUpResponse: String = "[...]"
     @State private var libreLinkUpHistory: [LibreLinkUpGlucose] = []
+    @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
     @State private var showingCredentials: Bool = true
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -31,6 +32,7 @@ struct OnlineView: View {
 
     func reloadLibreLinkUp() async {
         libreLinkUpHistory = []
+        libreLinkUpLogbookHistory = []
         if let libreLinkUp = app.main?.libreLinkUp {
             var dataString = ""
             var retries = 0
@@ -48,10 +50,11 @@ struct OnlineView: View {
                 }
                 if !(settings.libreLinkUpPatientId.isEmpty ||
                      settings.libreLinkUpToken.isEmpty) {
-                    let (data, _, history, logbookData, _, _) = try await libreLinkUp.getPatientGraph()
+                    let (data, _, history, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
                     dataString = (data as! Data).string
                     libreLinkUpResponse = dataString + (logbookData as! Data).string
                     libreLinkUpHistory = history.reversed()
+                    libreLinkUpLogbookHistory = logbookHistory
                     // TODO
                     if dataString != "{\"message\":\"MissingCachedUser\"}" {
                         break loop
@@ -90,7 +93,7 @@ struct OnlineView: View {
                         }
 
                         Button {
-                            settings.libreLinkUpScrapingLogbook.toggle()
+                            withAnimation { settings.libreLinkUpScrapingLogbook.toggle() }
                             if settings.libreLinkUpScrapingLogbook {
                                 libreLinkUpResponse = "[...]"
                                 Task {

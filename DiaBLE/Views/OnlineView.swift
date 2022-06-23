@@ -26,6 +26,7 @@ struct OnlineView: View {
 
     @State private var libreLinkUpResponse: String = "[...]"
     @State private var libreLinkUpHistory: [LibreLinkUpGlucose] = []
+    @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     // TODO: one-minute timer for Libre 3
@@ -33,6 +34,7 @@ struct OnlineView: View {
 
     func reloadLibreLinkUp() async {
         libreLinkUpHistory = []
+        libreLinkUpLogbookHistory = []
         if let libreLinkUp = app.main?.libreLinkUp {
             var dataString = ""
             var retries = 0
@@ -50,10 +52,11 @@ struct OnlineView: View {
                 }
                 if !(settings.libreLinkUpPatientId.isEmpty ||
                      settings.libreLinkUpToken.isEmpty) {
-                    let (data, _, history, logbookData, _, _) = try await libreLinkUp.getPatientGraph()
+                    let (data, _, history, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
                     dataString = (data as! Data).string
                     libreLinkUpResponse = dataString + (logbookData as! Data).string
                     libreLinkUpHistory = history.reversed()
+                    libreLinkUpLogbookHistory = logbookHistory
                     // TODO
                     if dataString != "{\"message\":\"MissingCachedUser\"}" {
                         break loop
@@ -128,7 +131,7 @@ struct OnlineView: View {
                         }
 
                         Button {
-                            settings.libreLinkUpScrapingLogbook.toggle()
+                            withAnimation { settings.libreLinkUpScrapingLogbook.toggle() }
                             if settings.libreLinkUpScrapingLogbook {
                                 libreLinkUpResponse = "[...]"
                                 Task {
@@ -217,25 +220,41 @@ struct OnlineView: View {
 #if targetEnvironment(macCatalyst)
                             .padding()
 #endif
-                            List {
-                                ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
-                                    let glucose = libreLinkUpGlucose.glucose
-                                    (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                                        .foregroundColor(libreLinkUpGlucose.color.color)
-                                        .fixedSize(horizontal: false, vertical: true).listRowInsets(EdgeInsets())
+
+                            HStack {
+
+                                List {
+                                    ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
+                                        let glucose = libreLinkUpGlucose.glucose
+                                        (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
+                                            .foregroundColor(libreLinkUpGlucose.color.color)
+                                            .fixedSize(horizontal: false, vertical: true).listRowInsets(EdgeInsets())
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
                                 }
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
+
+                                if settings.libreLinkUpScrapingLogbook {
+                                    // TODO: alarms
+                                    List {
+                                        ForEach(libreLinkUpLogbookHistory) { libreLinkUpGlucose in
+                                            let glucose = libreLinkUpGlucose.glucose
+                                            (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(libreLinkUpGlucose.trendArrow!.symbol).font(.title3))
+                                                .foregroundColor(libreLinkUpGlucose.color.color)
+                                                .fixedSize(horizontal: false, vertical: true).listRowInsets(EdgeInsets())
+                                        }
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    }
+                                }
                             }
                             .listStyle(.plain)
                             .font(.system(.caption, design: .monospaced))
-#if targetEnvironment(macCatalyst)
-                            .padding(.leading, 15)
-#endif
                         }
                         .task {
                             await reloadLibreLinkUp()
                         }
-
+#if targetEnvironment(macCatalyst)
+                        .padding(.leading, 15)
+#endif
                     }
                 }
             }
