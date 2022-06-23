@@ -207,7 +207,7 @@ class Libre3: Sensor {
         /// Advertised primary data service
         case data = "089810CC-EF89-11E9-81B4-2A2AE2DBCCE4"
 
-        /// Requests data by writing 13 bytes embedding a "patch control command" (7 bytes?)
+        /// Requests data by writing 13 bytes embedding a "patch control command" (7 bytes)
         /// and a final sequential Int (starting by 01 00) since it is enqueued
         /// Notifies at the end of the data stream 10 bytes ending in the enqueued id
         /// (for example 01 00 and 02 00 when receiving historic and clinical data on 195A and 1AB8)
@@ -218,11 +218,10 @@ class Libre3: Sensor {
         case patchStatus = "08981482-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Read"]
 
         /// Notifies every minute 35 bytes as two packets of 15 + 20 bytes ending in a sequential id
-        /// Very probably 10 recent readings of 3 bytes are encoded
         case oneMinuteReading = "0898177A-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify"]
 
         /// Notifies a first stream of historic data
-        /// Very probably 6 readings of 3 bytes are encoded in each packet (12 readings per hour)
+        /// Very probably 6 readings of 3 bytes are indexed in each packet (12 readings = 2 packets per hour) and sent as FastData on .clinicalData
         /// (`ABT_HISTORICAL_POINTS_PER_NOTIFICATION` = 6)
         case historicalData = "0898195A-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify"]
 
@@ -307,11 +306,11 @@ class Libre3: Sensor {
     // enable notifications for 1338, 1BEE, 195A, 1AB8, 1D24, 1482
     // notify 1482  18 bytes            // patch status
     // enable notifications for 177A
-    // write  1338  13 bytes            // ending in 01 00
+    // write  1338  13 bytes            // command ending in 01 00
     // notify 177A  15 + 20 bytes       // one-minute reading
     // notify 195A  20-byte packets     // historical data
     // notify 1338  10 bytes            // ending in 01 00
-    // write  1338  13 bytes            // ending in 02 00
+    // write  1338  13 bytes            // command ending in 02 00
     // notify 1AB8  20-byte packets     // clinical data
     // notify 1338  10 bytes            // ending in 02 00
     //
@@ -340,17 +339,17 @@ class Libre3: Sensor {
     // enable notifications for 1338, 1BEE, 195A, 1AB8, 1D24, 1482
     // notify 1482  18 bytes            // patch status
     // enable notifications for 177A
-    // write  1338  13 bytes            // ending in 01 00
+    // write  1338  13 bytes            // command ending in 01 00
     // notify 1BEE  20 + 20 bytes       // event log
     // notify 1338  10 bytes            // ending in 01 00
-    // write  1338  13 bytes            // ending in 02 00
+    // write  1338  13 bytes            // command ending in 02 00
     // notify 1D24  20 * 10 + 15 bytes  // 204-byte factory data
     // notify 1338  10 bytes            // ending in 02 00
     //
     // Shutdown:
-    // write  1338  13 bytes            // ending in 03 00
+    // write  1338  13 bytes            // command ending in 03 00
     // notify 1BEE  20 bytes            // event log
-    // write  1338  13 bytes            // ending in 04 00
+    // write  1338  13 bytes            // command ending in 04 00
 
 
     /// Single byte command written to the .securityCommands characteristic 0x2198

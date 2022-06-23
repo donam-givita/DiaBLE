@@ -6,7 +6,7 @@ struct DiaBLEApp: App {
 #if !os(watchOS)
     @UIApplicationDelegateAdaptor(MainDelegate.self) var main
 #else
-    var main: MainDelegate = MainDelegate()
+    @WKExtensionDelegateAdaptor(MainDelegate.self) var main
 #endif
 
     @SceneBuilder var body: some Scene {
@@ -93,9 +93,12 @@ struct LogEntry: Identifiable {
     var label: String
     var level: LogLevel
     init(message: String, label: String = "", level: LogLevel = .info) {
+        var label = label
         self.message = message
         self.time = Date()
-        let label = String(message[message.startIndex ..< (message.firstIndex(of: ":") ?? message.startIndex)])
+        if label.isEmpty {
+            label = String(message[message.startIndex ..< (message.firstIndex(of: ":") ?? message.startIndex)])
+        }
         self.label = !label.contains(" ") ? label : ""
         self.level = level
     }
