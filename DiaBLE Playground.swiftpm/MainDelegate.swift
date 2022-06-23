@@ -83,10 +83,10 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
     }
 
 
-    public func log(_ msg: String, level: LogLevel = .info) {
+    public func log(_ msg: String, level: LogLevel = .info, label: String = "") {
         if settings.logging || msg.hasPrefix("Log") {
             DispatchQueue.main.async {
-                let entry = LogEntry(message: msg, level: level)
+                let entry = LogEntry(message: msg, level: level, label: label)
                 if self.settings.reversedLog {
                     self.log.entries.insert(entry, at: 0)
                 } else {
