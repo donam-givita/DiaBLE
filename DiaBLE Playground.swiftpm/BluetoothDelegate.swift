@@ -326,7 +326,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
         if app.device.type == .transmitter(.abbott) && (serviceUUID == Abbott.dataServiceUUID || serviceUUID == Libre3.UUID.data.rawValue || serviceUUID == Libre3.UUID.security.rawValue) {
             var sensor: Sensor! = app.sensor
-            if app.sensor == nil || app.sensor.transmitter?.type != app.device.type {
+            if app.sensor == nil || (app.sensor.transmitter?.type != app.device.type && sensor.uid != (app.device as! Abbott).sensorUid) {
                 if serviceUUID == Libre3.UUID.data.rawValue {
                     sensor = Libre3(transmitter: app.transmitter)
                 } else {
