@@ -24,7 +24,7 @@ struct OnlineView: View {
     @State private var libreLinkUpResponse: String = "[...]"
     @State private var libreLinkUpHistory: [LibreLinkUpGlucose] = []
     @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
-    @State private var showingCredentials: Bool = true
+    @State private var showingCredentials: Bool = false
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     // TODO: one-minute timer for Libre 3
