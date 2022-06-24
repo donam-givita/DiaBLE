@@ -230,19 +230,35 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
         Task {
 
-            do {
-                try await session.connect(to: firstTag)
-                connectedTag = tag
-            } catch {
-                log("NFC: \(error.localizedDescription)")
-                session.invalidate(errorMessage: "Connection failure: \(error.localizedDescription)")
-                return
-            }
-
-            var patchInfo: PatchInfo = Data()
             let retries = 5
             var requestedRetry = 0
             var failedToScan = false
+
+            repeat {
+                failedToScan = false
+                if requestedRetry > 0 {
+                    AudioServicesPlaySystemSound(1520)    // "pop" vibration
+                    log("NFC: retry # \(requestedRetry)...")
+                    try await Task.sleep(nanoseconds: 250_000_000)
+                }
+                do {
+                    try await session.connect(to: firstTag)
+                    connectedTag = tag
+                } catch {
+                    if requestedRetry > retries {
+                        session.invalidate(errorMessage: "Connection failure: \(error.localizedDescription)")
+                        return
+                    }
+                    failedToScan = true
+                    requestedRetry += 1
+                    log("NFC: \(error.localizedDescription)")
+                }
+            } while failedToScan && requestedRetry > 0
+
+            var patchInfo: PatchInfo = Data()
+
+            requestedRetry = 0
+
             repeat {
                 failedToScan = false
                 if requestedRetry > 0 {
