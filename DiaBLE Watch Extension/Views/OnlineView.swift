@@ -19,6 +19,7 @@ struct OnlineView: View {
     @EnvironmentObject var history: History
     @EnvironmentObject var settings: Settings
 
+    @State private var onlineCountdown: Int = 0
     @State private var readingCountdown: Int = 0
 
     @State private var libreLinkUpResponse: String = "[...]"
@@ -26,13 +27,11 @@ struct OnlineView: View {
     @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
     @State private var showingCredentials: Bool = false
 
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    // TODO: one-minute timer for Libre 3
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
 
     func reloadLibreLinkUp() async {
-        libreLinkUpHistory = []
-        libreLinkUpLogbookHistory = []
         if let libreLinkUp = app.main?.libreLinkUp {
             var dataString = ""
             var retries = 0
@@ -53,9 +52,12 @@ struct OnlineView: View {
                     let (data, _, history, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
                     dataString = (data as! Data).string
                     libreLinkUpResponse = dataString + (logbookData as! Data).string
+                    // TODO: just merge with newer valuew
                     libreLinkUpHistory = history.reversed()
                     libreLinkUpLogbookHistory = logbookHistory
-                    // TODO
+                    if history.count > 0 {
+                        settings.lastOnlineDate = Date()
+                    }
                     if dataString != "{\"message\":\"MissingCachedUser\"}" {
                         break loop
                     }
@@ -103,6 +105,18 @@ struct OnlineView: View {
                         } label: {
                             Image(systemName: settings.libreLinkUpScrapingLogbook ? "book.closed.circle.fill" : "book.closed.circle").resizable().frame(width: 20, height: 20).foregroundColor(.blue)
                         }
+
+                        Text(onlineCountdown > -1 ? "\(onlineCountdown) s" : "...")
+                            .fixedSize()
+                            .foregroundColor(.orange).font(Font.footnote.monospacedDigit())
+                            .onReceive(timer) { _ in
+                                // workaround: watchOS fails converting the interval to an Int32
+                                if settings.lastOnlineDate == Date.distantPast {
+                                    onlineCountdown = 0
+                                } else {
+                                    onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
+                                }
+                            }
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -192,6 +206,12 @@ struct OnlineView: View {
                                         .fixedSize(horizontal: false, vertical: true)
                                 }
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
+                            }
+                            // TODO: respect onlineInterval
+                            .onReceive(minuteTimer) { _ in
+                                Task {
+                                    await reloadLibreLinkUp()
+                                }
                             }
 
                             if settings.libreLinkUpScrapingLogbook {

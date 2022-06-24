@@ -23,19 +23,18 @@ struct OnlineView: View {
     @Environment(\.colorScheme) var colorScheme
 
     @State private var showingNFCAlert = false
+    @State private var onlineCountdown: Int = 0
     @State private var readingCountdown: Int = 0
 
     @State private var libreLinkUpResponse: String = "[...]"
     @State private var libreLinkUpHistory: [LibreLinkUpGlucose] = []
     @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
 
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    // TODO: one-minute timer for Libre 3
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
 
     func reloadLibreLinkUp() async {
-        libreLinkUpHistory = []
-        libreLinkUpLogbookHistory = []
         if let libreLinkUp = app.main?.libreLinkUp {
             var dataString = ""
             var retries = 0
@@ -56,9 +55,12 @@ struct OnlineView: View {
                     let (data, _, history, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
                     dataString = (data as! Data).string
                     libreLinkUpResponse = dataString + (logbookData as! Data).string
+                    // TODO: just merge with newer valuew
                     libreLinkUpHistory = history.reversed()
                     libreLinkUpLogbookHistory = logbookHistory
-                    // TODO
+                    if history.count > 0 {
+                        settings.lastOnlineDate = Date()
+                    }
                     if dataString != "{\"message\":\"MissingCachedUser\"}" {
                         break loop
                     }
@@ -132,22 +134,34 @@ struct OnlineView: View {
                             }
                         }
 
-                        Button {
-                            withAnimation { settings.libreLinkUpScrapingLogbook.toggle() }
-                            if settings.libreLinkUpScrapingLogbook {
-                                libreLinkUpResponse = "[...]"
-                                Task {
-                                    await reloadLibreLinkUp()
+                        VStack(spacing: 0) {
+
+                            Button {
+                                withAnimation { settings.libreLinkUpScrapingLogbook.toggle() }
+                                if settings.libreLinkUpScrapingLogbook {
+                                    libreLinkUpResponse = "[...]"
+                                    Task {
+                                        await reloadLibreLinkUp()
+                                    }
                                 }
+                            } label: {
+                                Image(systemName: settings.libreLinkUpScrapingLogbook ? "book.closed.circle.fill" : "book.closed.circle").resizable().frame(width: 32, height: 32).foregroundColor(.blue)
                             }
-                        } label: {
-                            Image(systemName: settings.libreLinkUpScrapingLogbook ? "book.closed.circle.fill" : "book.closed.circle").resizable().frame(width: 32, height: 32).foregroundColor(.blue)
+
+                            Text(onlineCountdown > -1 ? "\(onlineCountdown) s" : "...")
+                                .fixedSize()
+                                .foregroundColor(.orange).font(Font.caption.monospacedDigit())
+                                .onReceive(timer) { _ in
+                                    onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
+                                }
                         }
 
                         Spacer()
 
                         VStack(spacing: 0) {
+
                             // TODO: reload web page
+
                             Button {
                                 app.main.rescan()
                             } label: {
@@ -172,12 +186,13 @@ struct OnlineView: View {
                                 showingNFCAlert = true
                             }
                         } label: {
-                            Image("NFC").renderingMode(.template).resizable().frame(width: 39, height: 27).padding(.bottom, 12)
+                            Image("NFC").renderingMode(.template).resizable().frame(width: 39, height: 27)
                         }
                         .alert("NFC not supported", isPresented: $showingNFCAlert) {
                         } message: {
                             Text("This device doesn't allow scanning the Libre.")
                         }
+                        .padding(.top, 2)
 
                     }.foregroundColor(.accentColor)
                         .padding(.bottom, 4)
@@ -252,6 +267,12 @@ struct OnlineView: View {
                                     }
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                 }
+                                // TODO: respect onlineInterval
+                                .onReceive(minuteTimer) { _ in
+                                    Task {
+                                        await reloadLibreLinkUp()
+                                    }
+                                }
 
                                 if settings.libreLinkUpScrapingLogbook {
                                     // TODO: alarms
@@ -273,7 +294,7 @@ struct OnlineView: View {
                             await reloadLibreLinkUp()
                         }
 #if targetEnvironment(macCatalyst)
-                            .padding(.leading, 15)
+                        .padding(.leading, 15)
 #endif
 
                     }
