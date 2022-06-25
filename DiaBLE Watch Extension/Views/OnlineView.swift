@@ -108,7 +108,7 @@ struct OnlineView: View {
 
                         Text(onlineCountdown > -1 ? "\(onlineCountdown) s" : "...")
                             .fixedSize()
-                            .foregroundColor(.orange).font(Font.footnote.monospacedDigit())
+                            .foregroundColor(.cyan).font(Font.footnote.monospacedDigit())
                             .onReceive(timer) { _ in
                                 // workaround: watchOS fails converting the interval to an Int32
                                 if settings.lastOnlineDate == Date.distantPast {

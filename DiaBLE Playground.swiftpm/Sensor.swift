@@ -182,6 +182,7 @@ class Sensor: ObservableObject, Logging {
 
     @Published var state: SensorState = .unknown
     @Published var lastReadingDate = Date.distantPast
+    var activationTime: UInt32 = 0
     @Published var age: Int = 0
     @Published var maxLife: Int = 0
     @Published var initializations: Int = 0

@@ -149,7 +149,7 @@ struct OnlineView: View {
 
                             Text(onlineCountdown > -1 ? "\(onlineCountdown) s" : "...")
                                 .fixedSize()
-                                .foregroundColor(.orange).font(Font.caption.monospacedDigit())
+                                .foregroundColor(.cyan).font(Font.caption.monospacedDigit())
                                 .onReceive(timer) { _ in
                                     onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
                                 }

@@ -402,7 +402,6 @@ class Libre3: Sensor {
         case shutdownPatch(Data)  // 5 - CTRL_CMD_SHUTDOWN_PATCH
     }
 
-    var activationTime: UInt32 = 0
     var receiverId: UInt32 = 0    // fnv32Hash of LibreView ID string
 
     var buffer: Data = Data()

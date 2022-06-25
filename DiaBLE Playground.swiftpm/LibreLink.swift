@@ -183,8 +183,13 @@ class LibreLinkUp: Logging {
                     }
                     if let sensor = connection["sensor"] as? [String: Any],
                        let sn = sensor["sn"] as? String,
-                       let a = sensor["a"] as? Int {
-                        log("LibreLinkUp: sensor serial: \(sn), activation date: \(Date(timeIntervalSince1970: Double(a))) (timestamp = \(a))")
+                       let a = sensor["a"] as? Int,
+                        let pt = sensor["pt"] as? Int {
+                        let activationDate = Date(timeIntervalSince1970: Double(a))
+                        DispatchQueue.main.async {
+                            self.main.app.sensor?.activationTime = UInt32(a)
+                        }
+                        log("LibreLinkUp: sensor serial: \(sn), pt: \(pt) (3: Libre 1/2, 4: Libre 3), activation date: \(activationDate) (timestamp = \(a))")
                     }
                     var id = 0
                     if let graphData = data["graphData"] as? [[String: Any]] {
