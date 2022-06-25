@@ -151,7 +151,8 @@ struct Details: View {
                                 .onReceive(minuteTimer) { _ in
                                     minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate)/60)
                                 }
-                            Row("Ends in", (app.sensor.maxLife - app.sensor.age).formattedInterval)
+                            Row("Ends in", (app.sensor.maxLife - app.sensor.age).formattedInterval,
+                                foregroundColor: (app.sensor.maxLife - app.sensor.age) > 360 ? .green : .red)
                             Row("Started on", (app.sensor.lastReadingDate - Double(app.sensor.age) * 60).shortDateTime)
                         }
 
@@ -302,11 +303,11 @@ struct Details: View {
 
                     Text(!app.deviceState.isEmpty && app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
                          "\(readingCountdown) s" : "...")
-                        .fixedSize()
-                        .foregroundColor(.orange).font(Font.caption.monospacedDigit())
-                        .onReceive(timer) { _ in
-                            readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
-                        }
+                    .fixedSize()
+                    .foregroundColor(.orange).font(Font.caption.monospacedDigit())
+                    .onReceive(timer) { _ in
+                        readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
+                    }
                 }
 
                 Button {

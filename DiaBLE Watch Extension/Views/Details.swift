@@ -148,7 +148,8 @@ struct Details: View {
                                 .onReceive(minuteTimer) { _ in
                                     minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate)/60)
                                 }
-                            Row("Ends in", (app.sensor.maxLife - app.sensor.age).formattedInterval)
+                            Row("Ends in", (app.sensor.maxLife - app.sensor.age).formattedInterval,
+                                foregroundColor: (app.sensor.maxLife - app.sensor.age) > 360 ? .green : .red)
                             Row("Started on", (app.sensor.lastReadingDate - Double(app.sensor.age) * 60).shortDateTime)
                         }
 
