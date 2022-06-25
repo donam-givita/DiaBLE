@@ -7,6 +7,7 @@ struct Console: View {
     @EnvironmentObject var log: Log
     @EnvironmentObject var settings: Settings
 
+    @State private var onlineCountdown: Int = 0
     @State private var readingCountdown: Int = 0
 
     @State private var showingFilterField = false
@@ -141,7 +142,7 @@ struct Console: View {
                         .hidden()
                 }
 
-                if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
+                if onlineCountdown <= 0 && !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
                     VStack(spacing: 0) {
                         Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                              "\(readingCountdown)" : " ")
@@ -163,6 +164,18 @@ struct Console: View {
                 } else {
                     Text(" ").font(Font.footnote.monospacedDigit()).frame(width: 24, height: 24).fixedSize().hidden()
                 }
+
+                Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
+                    .fixedSize()
+                    .foregroundColor(.cyan).font(Font.footnote.monospacedDigit())
+                    .onReceive(timer) { _ in
+                        // workaround: watchOS fails converting the interval to an Int32
+                        if settings.lastOnlineDate == Date.distantPast {
+                            onlineCountdown = 0
+                        } else {
+                            onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
+                        }
+                    }
 
                 Spacer()
 

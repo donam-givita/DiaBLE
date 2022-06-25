@@ -271,6 +271,7 @@ struct ConsoleSidebar: View {
 
     @Binding var showingNFCAlert: Bool
 
+    @State private var onlineCountdown: Int = 0
     @State private var readingCountdown: Int = 0
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -328,16 +329,27 @@ struct ConsoleSidebar: View {
                     .hidden()
             }
 
-            if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
-                Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
-                     "\(readingCountdown) s" : "")
-                .fixedSize()
-                .font(Font.caption.monospacedDigit()).foregroundColor(.orange)
-                .onReceive(timer) { _ in
-                    readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
+            VStack(spacing: 6) {
+
+                if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
+                    Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
+                         "\(readingCountdown) s" : "")
+                    .fixedSize()
+                    .font(Font.caption.monospacedDigit()).foregroundColor(.orange)
+                    .onReceive(timer) { _ in
+                        readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
+                    }
+                } else {
+                    Text("").fixedSize().font(Font.caption.monospacedDigit()).hidden()
                 }
-            } else {
-                Text("").fixedSize().font(Font.caption.monospacedDigit()).hidden()
+
+                Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
+                    .fixedSize()
+                    .foregroundColor(.cyan).font(Font.caption.monospacedDigit())
+                    .onReceive(timer) { _ in
+                        onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
+                    }
+
             }
 
             Spacer()
