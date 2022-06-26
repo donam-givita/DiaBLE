@@ -37,7 +37,8 @@ enum MeasurementColor: Int, Codable {
 struct GlucoseMeasurement: Codable {
     let factoryTimestamp: String
     let timestamp: String
-    let type: Int  // 1  (2 for alarms)
+    let type: Int  // 1  (2: alarm, 3: hybrid)
+    let alarmType: Int?  // when type = 3 1: low, 2: high
     let valueInMgPerDl: Int
     let trendArrow: OOP.TrendArrow?    // in logbook but not in graph data
     let trendMessage: String?
@@ -46,7 +47,7 @@ struct GlucoseMeasurement: Codable {
     let value: Int
     let isHigh: Bool
     let isLow: Bool
-    enum CodingKeys: String, CodingKey { case factoryTimestamp = "FactoryTimestamp", timestamp = "Timestamp", type, valueInMgPerDl = "ValueInMgPerDl", trendArrow = "TrendArrow", trendMessage = "TrendMessage", measurementColor = "MeasurementColor", glucoseUnits = "GlucoseUnits", value = "Value", isHigh, isLow }
+    enum CodingKeys: String, CodingKey { case factoryTimestamp = "FactoryTimestamp", timestamp = "Timestamp", type, alarmType, valueInMgPerDl = "ValueInMgPerDl", trendArrow = "TrendArrow", trendMessage = "TrendMessage", measurementColor = "MeasurementColor", glucoseUnits = "GlucoseUnits", value = "Value", isHigh, isLow }
 }
 
 
@@ -226,7 +227,7 @@ class LibreLinkUp: Logging {
                             for entry in data {
                                 let type = entry["type"] as! Int
 
-                                if type == 1 {  // measurement
+                                if type == 1 || type == 3 {  // measurement  (type 3 has an alarmType 1: low, 2: high  // TODO
                                     if let measurementData = try? JSONSerialization.data(withJSONObject: entry),
                                        let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
                                         id += 1
