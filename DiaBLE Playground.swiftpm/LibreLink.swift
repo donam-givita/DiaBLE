@@ -37,8 +37,8 @@ enum MeasurementColor: Int, Codable {
 struct GlucoseMeasurement: Codable {
     let factoryTimestamp: String
     let timestamp: String
-    let type: Int  // 1  (2: alarm, 3: hybrid)
-    let alarmType: Int?  // when type = 3 1: low, 2: high
+    let type: Int  //  0: graph, 1: logbook, 2: alarm, 3: hybrid
+    let alarmType: Int?  // when type = 3  1: low, 2: high
     let valueInMgPerDl: Int
     let trendArrow: OOP.TrendArrow?    // in logbook but not in graph data
     let trendMessage: String?
