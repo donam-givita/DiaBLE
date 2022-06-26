@@ -201,7 +201,7 @@ class LibreLinkUp: Logging {
                                     }
                                 }
                                 if let appSensor = await main.app.sensor,
-                                   appSensor.serial.hasPrefix(sn) {  // TEST always choose the Libre 3 activation date when wearing multiple sensors
+                                   appSensor.serial.hasSuffix(sn) {
                                     activeSensorActivationDate = activationDate
                                     DispatchQueue.main.async {
                                         self.main.app.sensor.activationTime = UInt32(a)
