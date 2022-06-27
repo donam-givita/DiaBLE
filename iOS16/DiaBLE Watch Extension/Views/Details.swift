@@ -152,7 +152,7 @@ struct Details: View {
                                 Row("Ends in", (app.sensor.maxLife - app.sensor.age).formattedInterval,
                                     foregroundColor: (app.sensor.maxLife - app.sensor.age) > 360 ? .green : .red)
                             }
-                            Row("Started on", (app.sensor.lastReadingDate - Double(app.sensor.age) * 60).shortDateTime)
+                            Row("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
                         }
 
                         Row("UID", app.sensor.uid.hex)
