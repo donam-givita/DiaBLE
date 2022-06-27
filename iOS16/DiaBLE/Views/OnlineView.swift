@@ -61,9 +61,18 @@ struct OnlineView: View {
                     if graphHistory.count > 0 {
                         DispatchQueue.main.async {
                             settings.lastOnlineDate = Date()
-                            app.lastReadingDate = libreLinkUpHistory[0].glucose.date
-                            app.currentGlucose = libreLinkUpHistory[0].glucose.value
+                            let lastMeasurement = libreLinkUpHistory[0]
+                            app.lastReadingDate = lastMeasurement.glucose.date
+                            app.currentGlucose = lastMeasurement.glucose.value
+                            // TODO: fill the gaps with -1 values
                             history.factoryValues = libreLinkUpHistory.dropFirst().map(\.glucose) // TEST
+                            var trend = history.factoryTrend
+                            if trend.isEmpty || lastMeasurement.id > trend[0].id {
+                                trend.insert(lastMeasurement.glucose, at: 0)
+                            }
+                            trend = trend.filter { lastMeasurement.id - $0.id < 16 }
+                            history.factoryTrend = trend
+                            // TODO: merge and update sensor history / trend
                             app.main.didParseSensor(app.sensor)
                         }
                     }
