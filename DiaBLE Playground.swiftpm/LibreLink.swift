@@ -219,27 +219,29 @@ class LibreLinkUp: Logging {
                         let activationDate = Date(timeIntervalSince1970: Double(a))
                         log("LibreLinkUp: sensor serial: \(sn), product type: \(pt) (3: Libre 1/2, 4: Libre 3), activation date: \(activationDate) (timestamp = \(a))")
                     }
-                    var id = 0
+                    var i = 0
                     if let graphData = data["graphData"] as? [[String: Any]] {
                         for glucoseMeasurement in graphData {
                             if let measurementData = try? JSONSerialization.data(withJSONObject: glucoseMeasurement),
                                let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
-                                id += 1
+                                i += 1
                                 let date = formatter.date(from: measurement.timestamp)!
-                                // TODO: assign lifeCount as id
-                                let lifeCount = Int(date.timeIntervalSince(activeSensorActivationDate)) / 60
-                                history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
-                                debugLog("LibreLinkUp: graph measurement #\(id) of \(graphData.count): \(measurement) (JSON: \(glucoseMeasurement)), lifeCount = \(lifeCount)")
+                                var lifeCount = Int(date.timeIntervalSince(activeSensorActivationDate)) / 60
+                                // FIXME: lifeCount not always multiple of 5
+                                if lifeCount % 5 == 1 { lifeCount -= 1 }
+                                history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: lifeCount, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
+                                debugLog("LibreLinkUp: graph measurement #\(i) of \(graphData.count): \(measurement) (JSON: \(glucoseMeasurement)), lifeCount = \(lifeCount)")
                             }
                         }
                     }
                     if let glucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any],
                        let measurementData = try? JSONSerialization.data(withJSONObject: glucoseMeasurement),
                        let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
-                        id += 1
+                        i += 1
                         let date = formatter.date(from: measurement.timestamp)!
-                        history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
-                        debugLog("LibreLinkUp: last glucose measurement #\(id) of \(history.count): \(measurement) (JSON: \(glucoseMeasurement))")
+                        let lifeCount = Int(date.timeIntervalSince(activeSensorActivationDate)) / 60
+                        history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: lifeCount, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
+                        debugLog("LibreLinkUp: last glucose measurement #\(i) of \(history.count): \(measurement) (JSON: \(glucoseMeasurement))")
                     }
                     log("LibreLinkUp: graph values: \(history.map { ($0.glucose.id, $0.glucose.value, $0.glucose.date.shortDateTime, $0.color) })")
 
@@ -261,10 +263,10 @@ class LibreLinkUp: Logging {
                                 if type == 1 || type == 3 {  // measurement  (type 3 has an alarmType 1: low, 2: high)  // TODO
                                     if let measurementData = try? JSONSerialization.data(withJSONObject: entry),
                                        let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
-                                        id += 1
+                                        i += 1
                                         let date = formatter.date(from: measurement.timestamp)!
-                                        logbookHistory.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: id, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
-                                        debugLog("LibreLinkUp: logbook measurement #\(id - history.count) of \(data.count): \(measurement) (JSON: \(entry))")
+                                        logbookHistory.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: i, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
+                                        debugLog("LibreLinkUp: logbook measurement #\(i - history.count) of \(data.count): \(measurement) (JSON: \(entry))")
                                     }
 
                                 } else if type == 2 {  // alarm

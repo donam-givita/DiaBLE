@@ -52,14 +52,20 @@ struct OnlineView: View {
                 }
                 if !(settings.libreLinkUpPatientId.isEmpty ||
                      settings.libreLinkUpToken.isEmpty) {
-                    let (data, _, history, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
+                    let (data, _, graphHistory, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
                     dataString = (data as! Data).string
                     libreLinkUpResponse = dataString + (logbookData as! Data).string
-                    // TODO: just merge with newer valuew
-                    libreLinkUpHistory = history.reversed()
+                    // TODO: just merge with newer values
+                    libreLinkUpHistory = graphHistory.reversed()
                     libreLinkUpLogbookHistory = logbookHistory
-                    if history.count > 0 {
-                        settings.lastOnlineDate = Date()
+                    if graphHistory.count > 0 {
+                        DispatchQueue.main.async {
+                            settings.lastOnlineDate = Date()
+                            app.lastReadingDate = libreLinkUpHistory[0].glucose.date
+                            app.currentGlucose = libreLinkUpHistory[0].glucose.value
+                            history.factoryValues = libreLinkUpHistory.dropFirst().map(\.glucose) // TEST
+                            app.main.didParseSensor(app.sensor)
+                        }
                     }
                     if dataString != "{\"message\":\"MissingCachedUser\"}" {
                         break loop

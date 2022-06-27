@@ -325,7 +325,7 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
         //
         //        eventKit?.sync()
 
-        if history.values.count > 0 || history.factoryValues.count > 0 {
+        if history.values.count > 0 || history.factoryValues.count > 0 || currentGlucose > 0 {
             var entries = [Glucose]()
             if history.values.count > 0 {
                 entries += history.values
