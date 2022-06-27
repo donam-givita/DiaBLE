@@ -23,6 +23,9 @@ Still too early to decide the final design (but I really like already the evil l
 <p align="center"><img src="https://pbs.twimg.com/media/FTS7QtEXEAEEGYW?format=jpg&name=large" width="33.3%" align="middle" /> &nbsp; &nbsp; <img src="https://pbs.twimg.com/media/FU4-COuWUAAjQGf?format=png&name=small" width="16.7%" align="middle" /></p>
 <h4 align ="center">Ups and Downs... &nbsp; - &nbsp; WWDC22: Swift  Charts on your wrist</h4>
 <br><br>
+<p align="center"><img src="https://pbs.twimg.com/media/FWQiIkVXoAAM0MK?format=jpg&name=large" width="33.3%" align="middle" /></p>
+<h4 align ="center">Libre 3 Linked Companions</h4>
+<br><br>
 
 The project started as a single script for the iPad Swift Playgrounds to test the workings of the several troublesome BLE devices I bought, mainly the **Bubble** and the **MiaoMiao**. It was then quickly converted to an app when the Libre 2 came out at last by using a standard Xcode template: it should compile fine without external dependencies just after changing the _Bundle Identifier_ in the _General_ panel of the _Targets_ settings and the _Team_ in the _Signing and Capabilities_ tab of Xcode -- Spike and xDrip4iO5 users know already very well what that means... ;-)
 
