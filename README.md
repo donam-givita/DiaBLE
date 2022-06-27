@@ -23,7 +23,7 @@ Still too early to decide the final design (but I really like already the evil l
 <p align="center"><img src="https://pbs.twimg.com/media/FTS7QtEXEAEEGYW?format=jpg&name=large" width="33.3%" align="middle" /> &nbsp; &nbsp; <img src="https://pbs.twimg.com/media/FU4-COuWUAAjQGf?format=png&name=small" width="16.7%" align="middle" /></p>
 <h4 align ="center">Ups and Downs... &nbsp; - &nbsp; WWDC22: Swift  Charts on your wrist</h4>
 <br><br>
-<p align="center"><img src="https://pbs.twimg.com/media/FWQiIkVXoAAM0MK?format=jpg&name=large" width="33.3%" align="middle" /></p>
+<p align="center"><img src="https://pbs.twimg.com/media/FWQiIkVXoAAM0MK?format=jpg&name=large" width="33.3%" align="middle" /> &nbsp; &nbsp; <img src="https://pbs.twimg.com/media/FWQovniXwAAdBnM?format=png&name=small" width="16.7%" align="middle" /></p>
 <h4 align ="center">Libre 3 Linked Companions</h4>
 <br><br>
 
