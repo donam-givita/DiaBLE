@@ -1167,6 +1167,8 @@ struct anonymous_type_19 {
 - (void)tableView:(id)v1 didUpdateFocusInContext:(id)v2 withAnimationCoordinator:(id)v3;
 - (id)indexPathForPreferredFocusedViewInTableView:(id)v1;
 - (id)indexPathForPreferredFocusedViewInTableView:(id)v1;
+- (bool)tableView:(id)v1 selectionFollowsFocusForRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 selectionFollowsFocusForRowAtIndexPath:(id)v2;
 - (bool)tableView:(id)v1 shouldSpringLoadRowAtIndexPath:(id)v2 withContext:(id)v3;
 - (bool)tableView:(id)v1 shouldSpringLoadRowAtIndexPath:(id)v2 withContext:(id)v3;
 - (bool)tableView:(id)v1 shouldBeginMultipleSelectionInteractionAtIndexPath:(id)v2;
@@ -1319,6 +1321,9 @@ struct anonymous_type_19 {
 - (void)collectionView:(id)v1 didUpdateFocusInContext:(id)v2 withAnimationCoordinator:(id)v3;
 - (id)indexPathForPreferredFocusedViewInCollectionView:(id)v1;
 - (id)indexPathForPreferredFocusedViewInCollectionView:(id)v1;
+- (bool)collectionView:(id)v1 selectionFollowsFocusForItemAtIndexPath:(id)v2;
+- (bool)collectionView:(id)v1 selectionFollowsFocusForItemAtIndexPath:(id)v2;
+- (id)collectionView:(id)v1 targetIndexPathForMoveOfItemFromOriginalIndexPath:(id)v2 atCurrentIndexPath:(id)v3 toProposedIndexPath:(id)v4;
 - (id)collectionView:(id)v1 targetIndexPathForMoveFromItemAtIndexPath:(id)v2 toProposedIndexPath:(id)v3;
 - (id)collectionView:(id)v1 targetIndexPathForMoveFromItemAtIndexPath:(id)v2 toProposedIndexPath:(id)v3;
 - (struct CGPoint)collectionView:(id)v1 targetContentOffsetForProposedContentOffset:(struct CGPoint)v2;
@@ -1341,6 +1346,8 @@ struct anonymous_type_19 {
 - (void)collectionView:(id)v1 willDisplayContextMenuWithConfiguration:(id)v2 animator:(id)v3;
 - (void)collectionView:(id)v1 willEndContextMenuInteractionWithConfiguration:(id)v2 animator:(id)v3;
 - (void)collectionView:(id)v1 willEndContextMenuInteractionWithConfiguration:(id)v2 animator:(id)v3;
+- (id)collectionView:(id)v1 sceneActivationConfigurationForItemAtIndexPath:(id)v2 point:(struct CGPoint)v3;
+- (id)collectionView:(id)v1 sceneActivationConfigurationForItemAtIndexPath:(id)v2 point:(struct CGPoint)v3;
 @end
 
 
@@ -1497,6 +1504,8 @@ struct anonymous_type_19 {
 - (long long)adaptivePresentationStyleForPresentationController:(id)v1;
 - (long long)adaptivePresentationStyleForPresentationController:(id)v1 traitCollection:(id)v2;
 - (long long)adaptivePresentationStyleForPresentationController:(id)v1 traitCollection:(id)v2;
+- (void)presentationController:(id)v1 prepareAdaptivePresentationController:(id)v2;
+- (void)presentationController:(id)v1 prepareAdaptivePresentationController:(id)v2;
 - (id)presentationController:(id)v1 viewControllerForAdaptivePresentationStyle:(long long)v2;
 - (void)presentationController:(id)v1 willPresentWithAdaptiveStyle:(long long)v2 transitionCoordinator:(id)v3;
 - (bool)presentationControllerShouldDismiss:(id)v1;
@@ -1604,6 +1613,10 @@ struct anonymous_type_19 {
 - (void)webView:(id)v1 didReceiveAuthenticationChallenge:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
 - (void)webViewWebContentProcessDidTerminate:(id)v1;
 - (void)webView:(id)v1 authenticationChallenge:(id)v2 shouldAllowDeprecatedTLS:(void (^ /* unknown block signature */)(void))v3;
+- (void)webView:(id)v1 navigationAction:(id)v2 didBecomeDownload:(id)v3;
+- (void)webView:(id)v1 navigationAction:(id)v2 didBecomeDownload:(id)v3;
+- (void)webView:(id)v1 navigationResponse:(id)v2 didBecomeDownload:(id)v3;
+- (void)webView:(id)v1 navigationResponse:(id)v2 didBecomeDownload:(id)v3;
 @end
 
 
@@ -1685,6 +1698,7 @@ struct anonymous_type_19 {
 - (id)application:(id)v1 configurationForConnectingSceneSession:(id)v2 options:(id)v3;
 - (id)application:(id)v1 configurationForConnectingSceneSession:(id)v2 options:(id)v3;
 - (void)application:(id)v1 didDiscardSceneSessions:(id)v2;
+- (bool)applicationShouldAutomaticallyLocalizeKeyCommands:(id)v1;
 @end
 
 
@@ -2942,6 +2956,29 @@ struct anonymous_type_19 {
 
 /*****************************************************************/
 
+@interface _TtC6Libre327PhoneWarningsViewController : _TtC6Libre330LabelingResourceViewController {
+    id nextButton;
+    id buttonAction;
+    id isViewingFromSettings;
+    id accountLessFlowType;
+    id isNewPhoneWarningsAvailable;
+    id phoneWarningsUpdatedDialog;
+}
+@property (nonatomic) _TtC6Libre39LLButton1 * nextButton;
+- (void)viewDidLoad;
+- (void)viewWillAppear:(bool)v1;
+- (void)goBack;
+- (void)nextButtonPressed:(id)v1;
+- (void)webView:(id)v1 didFinishNavigation:(id)v2;
+- (void)viewWillDisappear:(bool)v1;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC6Libre329AlarmTonePickerViewController : _TtC6Libre321TridentViewController {
     id cancelButton;
     id saveButton;
@@ -3097,7 +3134,7 @@ struct anonymous_type_19 {
 @property (nonatomic) int _rssi;
 @property (nonatomic) bool _isWarmup;
 @property (nonatomic) double _uncappedHistoric;
-@property (nonatomic) long long _compositeKey;
+@property (nonatomic) int _compositeKey;
 @property (nonatomic,readonly) long long hash;
 + (id)primaryKey;
 + (id)indexedProperties;
@@ -3241,9 +3278,11 @@ struct anonymous_type_19 {
 @interface _TtC6Libre322UserNotificationSystem : NSObject {
     id unitOfMeasure;
     id subscribedToEvents;
+    id tag;
+    id center;
+    id alarmUNavailableManager;
 }
 - (id)init;
-- (void)dealloc;
 - (void).cxx_destruct;
 @end
 
@@ -3296,6 +3335,8 @@ struct anonymous_type_19 {
     id dailyGraphContainer;
     id addNoteButton;
     id sensorLifeView;
+    id alarmsUnavailableBanner;
+    id alarmsBannerContainer;
     id scanBanner;
     id warningBanner;
     id dailyGraphViewController;
@@ -3313,6 +3354,8 @@ struct anonymous_type_19 {
 @property (nonatomic,retain) UIView * dailyGraphContainer;
 @property (nonatomic,retain) _TtC6Libre39LLButton2 * addNoteButton;
 @property (nonatomic,retain) _TtC6Libre314SensorLifeView * sensorLifeView;
+@property (nonatomic,retain) _TtC6Libre323AlarmsUnavailableBanner * alarmsUnavailableBanner;
+@property (nonatomic,retain) UIView * alarmsBannerContainer;
 - (void)viewWillAppear:(bool)v1;
 - (void)viewWillDisappear:(bool)v1;
 - (void)viewDidAppear:(bool)v1;
@@ -3605,7 +3648,6 @@ struct anonymous_type_19 {
     id drivers;
     id controllers;
     id internalDeviceNumber;
-    id eventBus;
 }
 - (id)init;
 - (void).cxx_destruct;
@@ -4001,28 +4043,11 @@ struct anonymous_type_19 {
 /*****************************************************************/
 
 @interface _TtC6Libre323RMCleanupForEntityEvent : _TtC6Libre37NMEvent {
-    id dateTime;
     id userInfo;
 }
-@property (nonatomic,readonly) NSDate * dateTime;
 @property (nonatomic,readonly) NSDictionary * userInfo;
 @property (nonatomic,readonly) NSString * description;
-- (id)initWithUserInfo:(id)v1 dateTime:(id)v2;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC6Libre332RMEntitiesWithNotificationsEvent : _TtC6Libre37RMEvent {
-    id dateTime;
-    id entityIds;
-}
-@property (nonatomic,readonly) NSDate * dateTime;
-@property (nonatomic,readonly) NSSet * entityIds;
-@property (nonatomic,readonly) NSString * description;
-- (id)initWithEntityIds:(id)v1 dateTime:(id)v2;
+- (id)initWithUserInfo:(id)v1;
 - (id)init;
 - (void).cxx_destruct;
 @end
@@ -4051,6 +4076,19 @@ struct anonymous_type_19 {
 @property (nonatomic,readonly) NSDate * dateTime;
 @property (nonatomic,readonly) NSString * description;
 - (id)initWithDateTime:(id)v1;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre329RMRefreshScreenForEntityEvent : _TtC6Libre37NMEvent {
+    id userInfo;
+}
+@property (nonatomic,readonly) NSDictionary * userInfo;
+@property (nonatomic,readonly) NSString * description;
+- (id)initWithUserInfo:(id)v1;
 - (id)init;
 - (void).cxx_destruct;
 @end
@@ -4138,6 +4176,8 @@ struct anonymous_type_19 {
     id safetyInformationVersion;
     id termsOfUse;
     id termsOfUseVersion;
+    id phoneWarnings;
+    id phoneWarningsVersion;
 }
 @end
 
@@ -4152,6 +4192,7 @@ struct anonymous_type_19 {
     id activeDeviceStatus;
     id activeDeviceSerial;
     id transitionableSensorSerialNumber;
+    id puckGen;
 }
 - (id)init;
 - (void).cxx_destruct;
@@ -4218,6 +4259,35 @@ struct anonymous_type_19 {
 - (id)init;
 - (void)dealloc;
 - (void)handleTimeChange;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre329OSCompatibilityViewController : _TtC6Libre320ApolloViewController {
+    id presentation;
+    id imageView;
+    id messageLabel;
+    id secondaryLabel;
+    id nextButton;
+    id compatibilityGuideButton;
+    id presentedFromMenu;
+    id router;
+}
+@property (nonatomic) UIImageView * imageView;
+@property (nonatomic) _TtC6Libre317StandardizedLabel * messageLabel;
+@property (nonatomic) _TtC6Libre317StandardizedLabel * secondaryLabel;
+@property (nonatomic) _TtC6Libre39LLButton1 * nextButton;
+@property (nonatomic) UIButton * compatibilityGuideButton;
+- (void)viewDidLoad;
+- (void)viewDidAppear:(bool)v1;
+- (void)viewDidDisappear:(bool)v1;
+- (void)nextButtonTapped;
+- (void)goBack;
+- (void)webLinkbutton:(id)v1;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
 
@@ -4299,13 +4369,12 @@ struct anonymous_type_19 {
 
 @interface _TtC6Libre39Reminders : _TtCs12_SwiftObject {
     id eventBus;
-    id notificationSerialQueue;
-    id databaseSerialQueue;
     id mSubscribed;
-    id timerIds;
-    id alarmIds;
+    id alarmTimers;
+    id reminders;
+    id $__lazy_storage_$_hourDateComponentsFormatter;
+    id $__lazy_storage_$_minuteDateComponentsFormatter;
 }
-- (void)updateReminders;
 @end
 
 
@@ -4322,7 +4391,7 @@ struct anonymous_type_19 {
     id recordNumber;
     id recordType;
 }
-@property (nonatomic) long long recordNumber;
+@property (nonatomic) int recordNumber;
 - (id)init;
 @end
 
@@ -4405,20 +4474,6 @@ struct anonymous_type_19 {
 
 /*****************************************************************/
 
-@interface _TtC6Libre324APAppWentBackgroundEvent : _TtC6Libre38AppEvent
-- (id)init;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC6Libre320APAppTerminatedEvent : _TtC6Libre38AppEvent
-- (id)init;
-@end
-
-
-/*****************************************************************/
-
 @interface _TtC6Libre33Log : _TtCs12_SwiftObject
 @end
 
@@ -4433,6 +4488,10 @@ struct anonymous_type_19 {
     id phoneStateManager;
     id usedSerialNumbers;
     id isHomeViewDisplayed;
+    id alarmUnavailableDialogNeedsDisplay;
+    id onGoingEpisodesDismissalPending;
+    id alarmUnavailableCurrentReason;
+    id kRequiredPermissionLastState;
 }
 - (id)init;
 - (void).cxx_destruct;
@@ -4480,6 +4539,9 @@ struct anonymous_type_19 {
     id topBar;
     id backArrowButton;
     id actionButton;
+    id alarmWarningBanner;
+    id alarmWarningViewHeightConstraint;
+    id topBarHeightConstraint;
     id delegate;
     id tutorialCompletionHandler;
     id pages;
@@ -4489,6 +4551,9 @@ struct anonymous_type_19 {
 @property (nonatomic,retain) UINavigationBar * topBar;
 @property (nonatomic,retain) UIBarButtonItem * backArrowButton;
 @property (nonatomic,retain) _TtC6Libre39LLButton1 * actionButton;
+@property (nonatomic) _TtC6Libre323AlarmsUnavailableBanner * alarmWarningBanner;
+@property (nonatomic) NSLayoutConstraint * alarmWarningViewHeightConstraint;
+@property (nonatomic) NSLayoutConstraint * topBarHeightConstraint;
 - (void)viewDidLoad;
 - (void)actionButtonPressed:(id)v1;
 - (void)backArrowButtonPressed:(id)v1;
@@ -4577,11 +4642,15 @@ struct anonymous_type_19 {
 
 @interface _TtC6Libre315AppUserSettings : _TtCs12_SwiftObject {
     id lastUpdateCheckTimestamp;
+    id lastUpdateCheckTimestampPhoneWarnings;
     id didAcceptHIPAAAuth;
     id rwe_status;
+    id hipaa_status;
+    id acceptedPhoneWarningsVersion;
     id acceptedTermsOfUseVersion;
     id acceptedPrivacyNoticeVersion;
     id acceptedHIPAAVersion;
+    id latestPhoneWarningsVersion;
     id latestTermsOfUseVersion;
     id latestPrivacyNoticeVersion;
     id latestHIPAAVersion;
@@ -4597,7 +4666,7 @@ struct anonymous_type_19 {
     id didSeeContinousGlucoseReadings;
     id didSeeTreatmentDecisions1Explanation;
     id didSeeTreatmentDecisions2Explanation;
-    id scanReminderDuration;
+    id didSeeAlarmsAudioExplanation;
     id isTextToSpeechOn;
 }
 @end
@@ -5368,6 +5437,19 @@ struct anonymous_type_19 {
 
 /*****************************************************************/
 
+@interface _TtC6Libre328OSCompatibilityConfiguration : _TtCs12_SwiftObject {
+    id toViewController;
+    id defaults;
+    id kCompatibilityChangeAck;
+    id kCompatibilityStatusKey;
+    id kCompatibilityStatusReasonKey;
+    id kCompatibilityStatusCodeKey;
+}
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC6Libre339libre3ActivityWaitCertificateAcceptance : _TtC6Libre314libre3Activity
 @end
 
@@ -5624,16 +5706,20 @@ struct anonymous_type_19 {
     id bannerLabel;
     id tableView;
     id bannerView;
+    id alarmsUnavailableBanner;
     id alarmsViewModel;
     id showAlarmsUnavailableModalOnDidAppear;
+    id RECEIVER_ID_ALARMS_VIEW_CONTROLLER;
 }
 @property (nonatomic,retain) _TtC6Libre312RegularLabel * bannerLabel;
 @property (nonatomic,retain) UITableView * tableView;
 @property (nonatomic) _TtC6Libre38LLBanner * bannerView;
+@property (nonatomic,retain) _TtC6Libre323AlarmsUnavailableBanner * alarmsUnavailableBanner;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(bool)v1;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidAppear:(bool)v1;
+- (void)viewDidDisappear:(bool)v1;
 - (void)alarmsSettingsDidAppear;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
@@ -5660,7 +5746,7 @@ struct anonymous_type_19 {
     id _recordType;
 }
 @property (nonatomic) int _id;
-@property (nonatomic) long long _recordNumber;
+@property (nonatomic) int _recordNumber;
 @property (nonatomic,copy) NSString * _recordType;
 @property (nonatomic,readonly) long long hash;
 + (id)primaryKey;
@@ -5878,7 +5964,6 @@ struct anonymous_type_19 {
     id menuShadeView;
     id menuContainerWidthConstraint;
     id menuContainerLeadingConstraint;
-    id neweSensorViewController;
     id isMenuOpen;
     id isAnimatingMenu;
     id currentViewController;
@@ -5893,6 +5978,9 @@ struct anonymous_type_19 {
 @property (nonatomic,retain) NSLayoutConstraint * menuContainerWidthConstraint;
 @property (nonatomic,retain) NSLayoutConstraint * menuContainerLeadingConstraint;
 - (void)viewDidLoad;
+- (void)viewDidDisappear:(bool)v1;
+- (void)viewWillAppear:(bool)v1;
+- (void)traitCollectionDidChange:(id)v1;
 - (void)dealloc;
 - (void)menuShadeViewTapped:(id)v1;
 - (void)prepareForSegue:(id)v1 sender:(id)v2;
@@ -5900,6 +5988,7 @@ struct anonymous_type_19 {
 - (void)displayLoginViewController:(id)v1;
 - (void)menuButtonTapped:(id)v1 forEvent:(id)v2;
 - (void)menuSwipeWithRecognizer:(id)v1;
+- (void)toggleMenu;
 - (void)showConnectedApps;
 - (void)showAlarmsSettingsWithTutorialAndModal:(id)v1;
 - (void)sensorManagerDidDetectScan:(id)v1;
@@ -6175,6 +6264,7 @@ struct anonymous_type_19 {
     id _interval;
     id _intervalType;
     id _createdTime;
+    id _timeZone;
 }
 @property (nonatomic) int _id;
 @property (nonatomic) int _reminderType;
@@ -6185,6 +6275,7 @@ struct anonymous_type_19 {
 @property (nonatomic) int _interval;
 @property (nonatomic) int _intervalType;
 @property (nonatomic) long long _createdTime;
+@property (nonatomic,copy) NSString * _timeZone;
 @property (nonatomic,readonly) long long hash;
 + (id)primaryKey;
 - (id)init;
@@ -6341,6 +6432,7 @@ struct anonymous_type_19 {
 
 @interface _TtC6Libre326MSLibre3ActivationResponse : _TtC6Libre320MSActivationResponse {
     id patchState;
+    id puckGeneration;
     id warmupDuration;
     id wearDuration;
     id activationTime;
@@ -6428,11 +6520,14 @@ struct anonymous_type_19 {
     id countdownLabel;
     id sensorCanBeUsedLabel;
     id timeRemainingLabel;
+    id alarmsUnavailableBanner;
 }
 @property (nonatomic,retain) _TtC6Libre39BoldLabel * countdownLabel;
 @property (nonatomic,retain) _TtC6Libre312RegularLabel * sensorCanBeUsedLabel;
 @property (nonatomic,retain) UILabel * timeRemainingLabel;
+@property (nonatomic,retain) _TtC6Libre323AlarmsUnavailableBanner * alarmsUnavailableBanner;
 - (void)viewDidLoad;
+- (void)viewWillAppear:(bool)v1;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
@@ -6579,7 +6674,7 @@ struct anonymous_type_19 {
 @interface _TtC6Libre318MenuViewController : _TtC6Libre325ApolloTableViewController {
     id menuManager;
     id delegate;
-    id priviousMenuItem;
+    id previousMenuItem;
     id currentMenuItem;
     id exclusiveMenuItem;
     id accountHeader;
@@ -6667,8 +6762,27 @@ struct anonymous_type_19 {
 
 /*****************************************************************/
 
+@interface _TtC6Libre322ShowPhoneWarningsEvent : _TtC6Libre35Event
+- (id)init;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC6Libre326MSLibre3InvalidSensorEvent : _TtC6Libre313MSLibre3Event
 - (id)init;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre323CompatibilityFlowRouter : _TtCs12_SwiftObject {
+    id parent;
+    id fromViewController;
+    id toViewController;
+    id shortcutSelected;
+}
+- (void)legalAgreementAcceptedWithNotification:(id)v1;
 @end
 
 
@@ -6700,6 +6814,24 @@ struct anonymous_type_19 {
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre339MSLibre3RequiredPermissionsChangedEvent : _TtC6Libre313MSLibre3Event {
+    id isCriticalAlertsEnabled;
+}
+- (id)init;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre340MSLibre3RequiredPermissionUIChangedEvent : _TtC6Libre313MSLibre3Event {
+    id requiredPermissionUIState;
+}
+- (id)init;
 @end
 
 
@@ -7196,6 +7328,17 @@ struct anonymous_type_19 {
 
 /*****************************************************************/
 
+@interface _TtC6Libre315CombineEventBus : _TtCs12_SwiftObject {
+    id subjectMap;
+    id subjectCancellableMap;
+    id receiveOnQueue;
+    id isDuplicateSubscriptionAllowed;
+}
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC6Libre322ActivityFlowController : NSObject {
     id definitionFile;
     id version;
@@ -7577,6 +7720,7 @@ struct anonymous_type_19 {
 
 @interface _TtC6Libre332MSLibre3AuthorizationFailedEvent : _TtC6Libre313MSLibre3Event {
     id serialNumber;
+    id lifeCount;
 }
 - (id)init;
 - (void).cxx_destruct;
@@ -7678,6 +7822,12 @@ struct anonymous_type_19 {
     id skipAgreementUpdatesThisSession;
     id $__lazy_storage_$_fileLogger;
     id signalLossLog;
+    id compatibilityRouter;
+    id backgroundTaskID;
+    id launchContext;
+    id shortcut3DTouch;
+    id didShowWarningScreen;
+    id requiredPermissionEnabled;
 }
 @property (nonatomic,retain) UIWindow * window;
 - (bool)application:(id)v1 didFinishLaunchingWithOptions:(id)v2;
@@ -7865,6 +8015,7 @@ struct anonymous_type_19 {
 /*****************************************************************/
 
 @interface _TtC6Libre327HomeContainerViewController : _TtC6Libre320ApolloViewController {
+    id transitionDialogType;
     id embedContainer;
     id currentViewController;
     id animationDuration;
@@ -8089,6 +8240,8 @@ struct anonymous_type_19 {
     id superviewTopConstraint;
     id allowCriticalAlertsBoolSwitch;
     id alllowCriticalAlertsOnOffLabel;
+    id urgentLowView;
+    id lblUrgentLowMessage;
     id criticalAlertsTitleLabel;
     id criticalAlertsDetailLabel;
     id alarmFormViewModel;
@@ -8103,6 +8256,8 @@ struct anonymous_type_19 {
 @property (nonatomic,retain) NSLayoutConstraint * superviewTopConstraint;
 @property (nonatomic,retain) UISwitch * allowCriticalAlertsBoolSwitch;
 @property (nonatomic,retain) _TtC6Libre312RegularLabel * alllowCriticalAlertsOnOffLabel;
+@property (nonatomic) UIView * urgentLowView;
+@property (nonatomic) UILabel * lblUrgentLowMessage;
 @property (nonatomic,retain) _TtC6Libre312RegularLabel * criticalAlertsTitleLabel;
 @property (nonatomic,retain) UILabel * criticalAlertsDetailLabel;
 - (void)viewDidLoad;
@@ -8183,25 +8338,6 @@ struct anonymous_type_19 {
 
 /*****************************************************************/
 
-@interface _TtC6Libre313EventBusError : NSError
-- (id)initWithDomain:(id)v1 code:(long long)v2 userInfo:(id)v3;
-- (id)initWithCoder:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC6Libre315CombineEventBus : _TtCs12_SwiftObject {
-    id subjectMap;
-    id subjectCancellableMap;
-    id receiveOnQueue;
-    id isDuplicateSubscriptionAllowed;
-}
-@end
-
-
-/*****************************************************************/
-
 @interface _TtC6Libre37NMEvent : _TtC6Libre35Event
 - (id)init;
 @end
@@ -8261,12 +8397,12 @@ struct anonymous_type_19 {
 @interface _TtC6Libre317AMSignalLossEvent : _TtC6Libre37NMEvent {
     id repeatCount;
     id type;
-    id dateTimeArray;
+    id dateTime;
 }
 @property (nonatomic,readonly) long long repeatCount;
-@property (nonatomic,readonly) NSArray * dateTimeArray;
+@property (nonatomic,readonly) NSDate * dateTime;
 @property (nonatomic,readonly) NSString * description;
-- (id)initWithRepeatCount:(long long)v1 dateTimeArray:(id)v2;
+- (id)initWithRepeatCount:(long long)v1 dateTime:(id)v2;
 - (id)init;
 - (void).cxx_destruct;
 @end
@@ -8309,12 +8445,14 @@ struct anonymous_type_19 {
     id dateTime;
     id title;
     id body;
+    id index;
 }
 @property (nonatomic,readonly) NSDate * dateTime;
 @property (nonatomic,readonly) NSString * title;
 @property (nonatomic,readonly) NSString * body;
+@property (nonatomic,readonly) long long index;
 @property (nonatomic,readonly) NSString * description;
-- (id)initWithTitle:(id)v1 body:(id)v2 dateTime:(id)v3;
+- (id)initWithTitle:(id)v1 body:(id)v2 dateTime:(id)v3 index:(long long)v4;
 - (id)init;
 - (void).cxx_destruct;
 @end
@@ -8330,7 +8468,6 @@ struct anonymous_type_19 {
 @property (nonatomic,readonly) NSDate * dateTime;
 @property (nonatomic,readonly) NSString * reason;
 @property (nonatomic,readonly) NSString * description;
-- (id)initWithReason:(id)v1 dateTime:(id)v2;
 - (id)init;
 - (void).cxx_destruct;
 @end
@@ -8395,14 +8532,12 @@ struct anonymous_type_19 {
     id title;
     id body;
     id dateTime;
-    id skipNotification;
 }
 @property (nonatomic,readonly) NSString * title;
 @property (nonatomic,readonly) NSString * body;
 @property (nonatomic,readonly) NSDate * dateTime;
-@property (nonatomic,readonly) bool skipNotification;
 @property (nonatomic,readonly) NSString * description;
-- (id)initWithTitle:(id)v1 body:(id)v2 dateTime:(id)v3 skipNotification:(bool)v4;
+- (id)initWithTitle:(id)v1 body:(id)v2 dateTime:(id)v3;
 - (id)init;
 - (void).cxx_destruct;
 @end
@@ -8838,6 +8973,7 @@ struct anonymous_type_19 {
 
 @interface _TtC6Libre333MSLibre3AuthenticationFailedEvent : _TtC6Libre313MSLibre3Event {
     id serialNumber;
+    id lifeCount;
 }
 - (id)init;
 - (void).cxx_destruct;
@@ -9266,7 +9402,7 @@ struct anonymous_type_19 {
     id hasReadingUnit;
     id readingUnit;
     id isValidGlucoseLevel;
-    id unitLableIshidden;
+    id unitLabelIsHidden;
     id accessibilityString;
     id sensorError;
     id otherError;
@@ -9289,6 +9425,7 @@ struct anonymous_type_19 {
     id associatedReportType;
     id accessibilityIdentifier;
     id selectable;
+    id iconImageAccessibilityIdentifier;
 }
 @end
 
@@ -9391,6 +9528,7 @@ struct anonymous_type_19 {
     id sb32;
     id sb9;
     id sb18;
+    id sb16;
     id th16;
     id th17;
     id th1;
@@ -9632,7 +9770,6 @@ struct anonymous_type_19 {
 }
 @property (nonatomic,retain) UIButton * learnMoreButton;
 - (void)learnMorePressed:(id)v1;
-- (void)layoutSubviews;
 - (id)initWithReuseIdentifier:(id)v1;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
@@ -9644,11 +9781,13 @@ struct anonymous_type_19 {
 @interface _TtC6Libre320AlarmFormOptionField : UITableViewCell {
     id titleLabel;
     id valueLabel;
+    id rightCaretView;
     id alarm;
     id delegate;
 }
 @property (nonatomic,retain) UILabel * titleLabel;
 @property (nonatomic,retain) UILabel * valueLabel;
+@property (nonatomic) UIView * rightCaretView;
 - (void)awakeFromNib;
 - (void)setSelected:(bool)v1 animated:(bool)v2;
 - (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
@@ -9682,6 +9821,7 @@ struct anonymous_type_19 {
     id menuViewController;
     id accountLessFlowType;
     id analyticsFlowType;
+    id anchor;
     id webView;
     id checkboxImageView;
     id checkboxLabel;
@@ -9729,6 +9869,7 @@ struct anonymous_type_19 {
 @property (nonatomic) _TtC6Libre312RegularLabel * agreeLabel;
 @property (nonatomic) _TtC6Libre312RegularLabel * disagreeLabel;
 - (void)viewDidLoad;
+- (void)viewWillAppear:(bool)v1;
 - (void)goBack;
 - (void)nextAction:(id)v1;
 - (void)agreeButtonAction:(id)v1;
@@ -9880,17 +10021,18 @@ struct anonymous_type_19 {
 @interface _TtC6Libre323TourBasicViewController : _TtC6Libre327TutorialSlideViewController {
     id tutorialImageView;
     id explanationTextLabel;
-    id tutorialImageHeightContraint;
+    id tutorialImageHeightConstraint;
     id tutorialImageTopConstraint;
     id explanationLabelTopConstraint;
     id tutorialImageLeftConstraint;
     id tutorialImageRightConstraint;
     id containerView;
+    id pageType;
     id tutorialImageHugsEdges;
 }
 @property (nonatomic,retain) UIImageView * tutorialImageView;
 @property (nonatomic,retain) UILabel * explanationTextLabel;
-@property (nonatomic,retain) NSLayoutConstraint * tutorialImageHeightContraint;
+@property (nonatomic,retain) NSLayoutConstraint * tutorialImageHeightConstraint;
 @property (nonatomic,retain) NSLayoutConstraint * tutorialImageTopConstraint;
 @property (nonatomic,retain) NSLayoutConstraint * explanationLabelTopConstraint;
 @property (nonatomic,retain) NSLayoutConstraint * tutorialImageLeftConstraint;
@@ -9959,17 +10101,19 @@ struct anonymous_type_19 {
     id eventLabel;
     id refreshButton;
     id toggleSwitch;
+    id reminderEntity;
     id delegate;
+    id countDownCancellable;
+    id countDownTimer;
 }
 @property (nonatomic,retain) UILabel * timeLabel;
 @property (nonatomic,retain) UILabel * eventLabel;
 @property (nonatomic,retain) UILabel * refreshButton;
 @property (nonatomic,retain) UISwitch * toggleSwitch;
+- (void)switchToggled:(id)v1;
+- (void)dealloc;
 - (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
 - (id)initWithCoder:(id)v1;
-- (void)awakeFromNib;
-- (void)prepareForReuse;
-- (void)switchToggled:(id)v1;
 - (void).cxx_destruct;
 @end
 
@@ -10126,6 +10270,9 @@ struct anonymous_type_19 {
     id signalLost;
     id alarmsUnavailableNotificationIsDelivered;
     id alarmsUnavailableNotificationIsPending;
+    id alarmsUnavailableReqPermNotificationIsDelivered;
+    id alarmsUnavailableReqPermNotificationIsPending;
+    id requiredPermissionCheckEnabled;
     id notificationDisplayAction;
     id alarmState;
 }
@@ -10376,16 +10523,19 @@ struct anonymous_type_19 {
 /*****************************************************************/
 
 @interface _TtC6Libre323NewSensorViewController : _TtC6Libre320ApolloViewController {
+    id RECEIVER_ID_NEW_SENSOR_VIEW;
     id instructionImageView;
     id instructionLabel;
     id nextContainer;
     id tourButton;
     id navButton;
     id scanGlucoseButton;
+    id alarmsUnavailableBanner;
     id delegate;
     id type;
     id updateTimer;
     id dialog;
+    id isViewLoadedFirstTime;
 }
 @property (nonatomic,retain) UIImageView * instructionImageView;
 @property (nonatomic,retain) _TtC6Libre317StandardizedLabel * instructionLabel;
@@ -10393,10 +10543,10 @@ struct anonymous_type_19 {
 @property (nonatomic,retain) UIButton * tourButton;
 @property (nonatomic,retain) UIButton * navButton;
 @property (nonatomic,retain) _TtC6Libre313LLCheckButton * scanGlucoseButton;
+@property (nonatomic,retain) _TtC6Libre323AlarmsUnavailableBanner * alarmsUnavailableBanner;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(bool)v1;
 - (void)showSensorTransistionModal;
-- (void)traitCollectionDidChange:(id)v1;
 - (void)backPressed;
 - (void)dismissAndSwitchToHome;
 - (void)scanGlucoseButtonPressed:(id)v1;
@@ -10687,21 +10837,22 @@ struct anonymous_type_19 {
     id remindersTable;
     id nextReminderView;
     id nextReminderLabel;
-    id addReminderView;
     id addReminderButton;
-    id updateDynamicDataTimer;
-    id dbSerialQueue;
+    id RECEIVER_ID_REMINDERS_VIEW;
+    id countDownCancellable;
+    id countDownTimer;
+    id nextReminder;
+    id subscribeToBus;
 }
 @property (nonatomic,retain) UITableView * remindersTable;
 @property (nonatomic,retain) UIView * nextReminderView;
 @property (nonatomic,retain) UILabel * nextReminderLabel;
-@property (nonatomic,retain) UIView * addReminderView;
 @property (nonatomic,retain) _TtC6Libre39LLButton2 * addReminderButton;
 - (void)viewDidLoad;
+- (void)dealloc;
+- (void)removeFromParentViewController;
 - (void)viewWillAppear:(bool)v1;
-- (void)viewDidAppear:(bool)v1;
 - (void)viewDidDisappear:(bool)v1;
-- (void)updateDynamicData;
 - (void)addReminder:(id)v1;
 - (long long)numberOfSectionsInTableView:(id)v1;
 - (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
@@ -10710,7 +10861,6 @@ struct anonymous_type_19 {
 - (id)tableView:(id)v1 trailingSwipeActionsConfigurationForRowAtIndexPath:(id)v2;
 - (long long)tableView:(id)v1 editingStyleForRowAtIndexPath:(id)v2;
 - (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
-- (void)remindersChanged:(id)v1;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
@@ -10739,6 +10889,7 @@ struct anonymous_type_19 {
     id type;
     id getStartNowBtn;
     id signInBtn;
+    id progressHUD;
     id tourViewModel;
     id launchScreenView;
 }
@@ -10756,7 +10907,6 @@ struct anonymous_type_19 {
 - (void)getStartedTapped:(id)v1;
 - (void)signInTapped:(id)v1;
 - (void)pageAction:(id)v1;
-- (void)traitCollectionDidChange:(id)v1;
 - (long long)numberOfSectionsInCollectionView:(id)v1;
 - (long long)collectionView:(id)v1 numberOfItemsInSection:(long long)v2;
 - (id)collectionView:(id)v1 cellForItemAtIndexPath:(id)v2;
@@ -10890,7 +11040,7 @@ struct anonymous_type_19 {
     id reminderTable;
     id reminderTextCellReference;
     id reminder;
-    id timer;
+    id alarmTimer;
     id timerTypeToCreate;
     id showingDaysOfWeek;
     id alarmText;
@@ -10898,11 +11048,10 @@ struct anonymous_type_19 {
     id daysRepeating;
     id timerHour;
     id timerMinute;
-    id isSaving;
     id isEditingText;
     id isModal;
-    id defaults;
     id reminderAction;
+    id delegate;
     id daysOfWeek;
 }
 @property (nonatomic,retain) UIView * buttonsContainer;
@@ -10928,7 +11077,7 @@ struct anonymous_type_19 {
     id kWeekdaySymbolsHeight;
     id kWeekdayHeight;
     id headerHeight;
-    id interSectionmargin;
+    id interSectionMargin;
     id kWeekdaySymbolFontSize;
     id kWeekdayFontSize;
     id selectedDate;
@@ -10945,7 +11094,6 @@ struct anonymous_type_19 {
 @property (nonatomic,retain) _TtC6Libre312RegularLabel * dateLabel;
 @property (nonatomic,retain) UICollectionView * collectionView;
 - (void)viewDidLoad;
-- (void)traitCollectionDidChange:(id)v1;
 - (void)viewWillAppear:(bool)v1;
 - (void)viewDidAppear:(bool)v1;
 - (void)viewDidLayoutSubviews;
@@ -11115,6 +11263,7 @@ struct anonymous_type_19 {
     id tutorialPageViewModel;
 }
 - (void)viewDidLoad;
+- (void)alertPermissionChanged:(id)v1;
 - (void)viewWillLayoutSubviews;
 - (void)viewWillAppear:(bool)v1;
 - (void)viewDidAppear:(bool)v1;
@@ -11163,6 +11312,25 @@ struct anonymous_type_19 {
     id phoneState;
 }
 - (id)init;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre323AlarmsUnavailableBanner : UIView {
+    id titleLabel;
+    id iconImageView;
+    id bannerDidTap;
+}
+@property (nonatomic,retain) UILabel * titleLabel;
+@property (nonatomic,retain) UIImageView * iconImageView;
+- (void)awakeFromNib;
+- (void)prepareForInterfaceBuilder;
+- (void)viewTappedWithSender:(id)v1;
+- (void)layoutSubviews;
+- (id)initWithFrame:(struct CGRect)v1;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
 @end
 
 
@@ -16500,7 +16668,7 @@ struct anonymous_type_19 {
 - (id)init;
 - (bool)loadBinaryImagesFromFile:(id)v1;
 - (id)loadedBinaryImageForPC:(unsigned long long)v1;
-fillInImageDetails:forUUID: (IMP @0x1009cf75c);
+fillInImageDetails:forUUID: (IMP @0x100990164);
 - (id)frameForAddress:(unsigned long long)v1;
 - (bool)updateStackFrame:(id)v1;
 - (void).cxx_destruct;
