@@ -6,14 +6,18 @@ class Settings: ObservableObject {
     static let defaults: [String: Any] = [
         "preferredTransmitter": TransmitterType.none.id,
         "preferredDevicePattern": BLE.knownDevicesIds.joined(separator: " "),
-        "readingInterval": 5,
         "stoppedBluetooth": false,
 
+        "readingInterval": 5,
+
+        "displayingMillimoles": false,
         "targetLow": 80.0,
         "targetHigh": 170.0,
+
+        "alarmSnoozeInterval": 5,
+        "lastAlarmDate": Date.distantPast,
         "alarmLow": 70.0,
         "alarmHigh": 200.0,
-        "displayingMillimoles": false,
         "mutedAudio": false,
         "disabledNotifications": false,
 
@@ -84,12 +88,16 @@ class Settings: ObservableObject {
         didSet { UserDefaults.standard.set(self.preferredDevicePattern, forKey: "preferredDevicePattern") }
     }
 
+    @Published var stoppedBluetooth: Bool = UserDefaults.standard.bool(forKey: "stoppedBluetooth") {
+        didSet { UserDefaults.standard.set(self.stoppedBluetooth, forKey: "stoppedBluetooth") }
+    }
+
     @Published var readingInterval: Int = UserDefaults.standard.integer(forKey: "readingInterval") {
         didSet { UserDefaults.standard.set(self.readingInterval, forKey: "readingInterval") }
     }
 
-    @Published var stoppedBluetooth: Bool = UserDefaults.standard.bool(forKey: "stoppedBluetooth") {
-        didSet { UserDefaults.standard.set(self.stoppedBluetooth, forKey: "stoppedBluetooth") }
+    @Published var displayingMillimoles: Bool = UserDefaults.standard.bool(forKey: "displayingMillimoles") {
+        didSet { UserDefaults.standard.set(self.displayingMillimoles, forKey: "displayingMillimoles") }
     }
 
     @Published var numberFormatter: NumberFormatter = NumberFormatter()
@@ -97,18 +105,25 @@ class Settings: ObservableObject {
     @Published var targetLow: Double = UserDefaults.standard.double(forKey: "targetLow") {
         didSet { UserDefaults.standard.set(self.targetLow, forKey: "targetLow") }
     }
+
     @Published var targetHigh: Double = UserDefaults.standard.double(forKey: "targetHigh") {
         didSet { UserDefaults.standard.set(self.targetHigh, forKey: "targetHigh") }
     }
+
+    @Published var alarmSnoozeInterval: Int = UserDefaults.standard.integer(forKey: "alarmSnoozeInterval") {
+        didSet { UserDefaults.standard.set(self.alarmSnoozeInterval, forKey: "alarmSnoozeInterval") }
+    }
+
+    @Published var lastAlarmDate: Date = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "lastAlarmDate")) {
+        didSet { UserDefaults.standard.set(self.lastAlarmDate.timeIntervalSince1970, forKey: "lastAlarmDate") }
+    }
+
     @Published var alarmLow: Double = UserDefaults.standard.double(forKey: "alarmLow") {
         didSet { UserDefaults.standard.set(self.alarmLow, forKey: "alarmLow") }
     }
+
     @Published var alarmHigh: Double = UserDefaults.standard.double(forKey: "alarmHigh") {
         didSet { UserDefaults.standard.set(self.alarmHigh, forKey: "alarmHigh") }
-    }
-
-    @Published var displayingMillimoles: Bool = UserDefaults.standard.bool(forKey: "displayingMillimoles") {
-        didSet { UserDefaults.standard.set(self.displayingMillimoles, forKey: "displayingMillimoles") }
     }
 
     @Published var mutedAudio: Bool = UserDefaults.standard.bool(forKey: "mutedAudio") {
