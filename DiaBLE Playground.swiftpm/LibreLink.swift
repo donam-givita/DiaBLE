@@ -197,6 +197,7 @@ class LibreLinkUp: Logging {
                                         self.main.app.sensor.serial = sn
                                         self.main.app.sensor.state = .active
                                         self.main.app.sensor.lastReadingDate = Date()
+                                        self.main.status("\(self.main.app.sensor.type)  +  LLU")
                                     }
                                 }
                                 if let appSensor = await main.app.sensor,

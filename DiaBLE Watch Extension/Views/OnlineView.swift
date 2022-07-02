@@ -67,7 +67,7 @@ struct OnlineView: View {
                             if trend.isEmpty || lastMeasurement.id > trend[0].id {
                                 trend.insert(lastMeasurement.glucose, at: 0)
                             }
-                            trend = trend.filter { lastMeasurement.id - $0.id < 16 }
+                            trend = trend.filter { lastMeasurement.id - $0.id < 18 }
                             history.factoryTrend = trend
                             // TODO: merge and update sensor history / trend
                             app.main.didParseSensor(app.sensor)
