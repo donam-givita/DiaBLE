@@ -8,6 +8,7 @@ struct DataView: View {
     @EnvironmentObject var log: Log
     @EnvironmentObject var settings: Settings
 
+    @State private var onlineCountdown: Int = 0
     @State private var readingCountdown: Int = 0
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -19,20 +20,29 @@ struct DataView: View {
 
                 Text("\((app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime)")
 
-                if app.status.hasPrefix("Scanning") {
-                    Text("Scanning...").foregroundColor(.orange)
-                } else {
-                    HStack {
-                        if !app.deviceState.isEmpty && app.deviceState != "Connected" {
-                            Text(app.deviceState).foregroundColor(.red)
-                        }
-                        Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
-                             "\(readingCountdown) s" : " ")
-                        .foregroundColor(.orange)
-                        .onReceive(timer) { _ in
-                            readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
+                HStack {
+
+                    if app.status.hasPrefix("Scanning") {
+                        Text("Scanning...").foregroundColor(.orange)
+                    } else {
+                        HStack {
+                            if !app.deviceState.isEmpty && app.deviceState != "Connected" {
+                                Text(app.deviceState).foregroundColor(.red)
+                            }
+                            Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
+                                 "\(readingCountdown) s" : " ")
+                            .foregroundColor(.orange)
+                            .onReceive(timer) { _ in
+                                readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
+                            }
                         }
                     }
+
+                    Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
+                        .foregroundColor(.cyan)
+                        .onReceive(timer) { _ in
+                            onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
+                        }
                 }
 
                 VStack {

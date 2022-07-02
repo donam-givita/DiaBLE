@@ -259,7 +259,9 @@ class LibreLinkUp: Logging {
                                 for entry in data {
                                     let type = entry["type"] as! Int
 
-                                    if type == 1 || type == 3 {  // measurement  (type 3 has an alarmType 1: low, 2: high)  // TODO
+                                    // TODO: type 3 has also an alarmType: 1 = low, 2 = high
+
+                                    if type == 1 || type == 3 {  // measurement  
                                         if let measurementData = try? JSONSerialization.data(withJSONObject: entry),
                                            let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
                                             i += 1
