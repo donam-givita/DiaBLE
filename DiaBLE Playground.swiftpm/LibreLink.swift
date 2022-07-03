@@ -183,17 +183,26 @@ class LibreLinkUp: Logging {
                     if let activeSensors = data["activeSensors"] as? [[String: Any]] {
                         log("LibreLinkUp: active sensors: \(activeSensors)")
                         for (i, activeSensor) in activeSensors.enumerated() {
-                            // TODO: activeSensor["device"]
                             if let sensor = activeSensor["sensor"] as? [String: Any],
+                               let device = activeSensor["device"] as? [String: Any],
+                               let dtid = device["dtid"] as? Int,
+                               let alarms = device["alarms"] as? Bool,
                                let deviceId = sensor["deviceId"] as? String,
                                let sn = sensor["sn"] as? String,
                                let a = sensor["a"] as? Int,
+                               // pruduct type should be 0: .libre1, 3: .libre2, 4: .libre3 but happening a Libre 1 with `pt` = 3...
                                let pt = sensor["pt"] as? Int {
+                                let sensorType: SensorType =
+                                dtid == 40068 ? .libre3 :
+                                dtid == 40067 ? .libre2 :
+                                dtid == 40066 ? .libre1 : .unknown
+                                // according to bundle.js, if `alarms` is true 40066 is also a .libre2
+                                // but happening a Libre 1 with `alarms` = true...
                                 let activationDate = Date(timeIntervalSince1970: Double(a))
-                                if await main.app.sensor == nil && pt == 4 {  // TEST create and prioritize a Libre 3
+                                if await main.app.sensor == nil || sensorType == .libre3 {  // TEST prioritize a Libre 3
                                     DispatchQueue.main.async {
-                                        self.main.app.sensor = Libre3(main: self.main)
-                                        self.main.app.sensor.type = .libre3
+                                        self.main.app.sensor = sensorType == .libre3 ? Libre3(main: self.main) : sensorType == .libre2 ? Libre2(main: self.main) : Sensor(main: self.main)
+                                        self.main.app.sensor.type = sensorType
                                         self.main.app.sensor.serial = sn
                                         self.main.app.sensor.state = .active
                                         self.main.app.sensor.lastReadingDate = Date()
@@ -208,7 +217,7 @@ class LibreLinkUp: Logging {
                                         self.main.app.sensor.age = Int(Date().timeIntervalSince(activationDate)) / 60
                                     }
                                 }
-                                log("LibreLinkUp: active sensor #\(i) of \(activeSensors.count): serial: \(sn), product type: \(pt) (3: Libre 1/2, 4: Libre 3), activation date: \(activationDate) (timestamp = \(a)), device id: \(deviceId)")
+                                log("LibreLinkUp: active sensor #\(i + 1) of \(activeSensors.count): serial: \(sn), activation date: \(activationDate) (timestamp = \(a)), device id: \(deviceId), product type: \(pt), sensor type: \(sensorType), alarms: \(alarms)")
                             }
                         }
                     }
@@ -217,7 +226,7 @@ class LibreLinkUp: Logging {
                        let a = sensor["a"] as? Int,
                        let pt = sensor["pt"] as? Int {
                         let activationDate = Date(timeIntervalSince1970: Double(a))
-                        log("LibreLinkUp: sensor serial: \(sn), product type: \(pt) (3: Libre 1/2, 4: Libre 3), activation date: \(activationDate) (timestamp = \(a))")
+                        log("LibreLinkUp: sensor serial: \(sn), activation date: \(activationDate) (timestamp = \(a)), product type: \(pt)")
                     }
                     if let lastGlucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any],
                        let measurementData = try? JSONSerialization.data(withJSONObject: lastGlucoseMeasurement),
