@@ -79,6 +79,7 @@ class LibreLinkUp: Logging {
     let siteURL = "https://api.libreview.io"
     let localSiteURL = "https://api-eu.libreview.io"
     let loginEndpoint = "llu/auth/login"
+    let configEndpoint = "llu/config"
     let connectionsEndpoint = "llu/connections"
     let measurementsEndpoint = "lsl/api/measurements"
 
@@ -143,6 +144,29 @@ class LibreLinkUp: Logging {
                             self.main.settings.libreLinkUpCountry = country
                             self.main.settings.libreLinkUpToken = authTicket.token
                             self.main.settings.libreLinkUpTokenExpirationDate = Date(timeIntervalSince1970: Double(authTicket.expires))
+                        }
+
+                        // TODO: determine regional server
+                        if await !main.settings.libreLinkUpCountry.isEmpty {
+                            var request = URLRequest(url: URL(string: "\(siteURL)/\(configEndpoint)/country?country=\(await main.settings.libreLinkUpCountry)")!)
+                            var authenticatedHeaders = headers
+                            authenticatedHeaders["Authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
+                            for (header, value) in authenticatedHeaders {
+                                request.setValue(value, forHTTPHeaderField: header)
+                            }
+                            debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
+                            let (data, response) = try await URLSession.shared.data(for: request)
+                            debugLog("LibreLinkUp: response data: \(data.string), status: \((response as! HTTPURLResponse).statusCode)")
+                            do {
+                                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                                   let data = json["data"] as? [String: Any],
+                                   let server = data["lslApi"] as? String {
+                                    log("LibreLinkUp: regional server: \(server)")
+                                }
+                            } catch {
+                                log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
+                                throw LibreLinkUpError.jsonDecoding
+                            }
                         }
                     }
                 }
