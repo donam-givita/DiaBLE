@@ -86,7 +86,7 @@ class LibreLinkUp: Logging {
         "User-Agent": "Mozilla/5.0",
         "Content-Type": "application/json",
         "product": "llu.ios",
-        "version": "4.2.0",
+        "version": "4.2.2",
         "Accept-Encoding": "gzip, deflate, br",
         "Connection": "keep-alive",
         "Pragma": "no-cache",
@@ -133,12 +133,14 @@ class LibreLinkUp: Logging {
                     if let data = json["data"] as? [String: Any],
                        let user = data["user"] as? [String: Any],
                        let id = user["id"] as? String,
+                       let country = user["country"] as? String,
                        let authTicketDict = data["authTicket"] as? [String: Any],
                        let authTicketData = try? JSONSerialization.data(withJSONObject: authTicketDict),
                        let authTicket = try? JSONDecoder().decode(AuthTicket.self, from: authTicketData) {
-                        self.log("LibreLinkUp: user id: \(id), authTicket: \(authTicket), expires on \(Date(timeIntervalSince1970: Double(authTicket.expires)))")
+                        self.log("LibreLinkUp: user id: \(id), country: \(country), authTicket: \(authTicket), expires on \(Date(timeIntervalSince1970: Double(authTicket.expires)))")
                         DispatchQueue.main.async {
                             self.main.settings.libreLinkUpPatientId = id
+                            self.main.settings.libreLinkUpCountry = country
                             self.main.settings.libreLinkUpToken = authTicket.token
                             self.main.settings.libreLinkUpTokenExpirationDate = Date(timeIntervalSince1970: Double(authTicket.expires))
                         }
@@ -217,7 +219,7 @@ class LibreLinkUp: Logging {
                                         self.main.app.sensor.age = Int(Date().timeIntervalSince(activationDate)) / 60
                                     }
                                 }
-                                log("LibreLinkUp: active sensor #\(i + 1) of \(activeSensors.count): serial: \(sn), activation date: \(activationDate) (timestamp = \(a)), device id: \(deviceId), product type: \(pt), sensor type: \(sensorType), alarms: \(alarms)")
+                                log("LibreLinkUp: active sensor # \(i + 1) of \(activeSensors.count): serial: \(sn), activation date: \(activationDate) (timestamp = \(a)), device id: \(deviceId), product type: \(pt), sensor type: \(sensorType), alarms: \(alarms)")
                             }
                         }
                     }
@@ -247,7 +249,7 @@ class LibreLinkUp: Logging {
                                     // FIXME: lifeCount not always multiple of 5
                                     if lifeCount % 5 == 1 { lifeCount -= 1 }
                                     history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: lifeCount, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
-                                    debugLog("LibreLinkUp: graph measurement #\(i) of \(graphData.count): \(measurement) (JSON: \(glucoseMeasurement)), lifeCount = \(lifeCount)")
+                                    debugLog("LibreLinkUp: graph measurement # \(i) of \(graphData.count): \(measurement) (JSON: \(glucoseMeasurement)), lifeCount = \(lifeCount)")
                                 }
                             }
                         }
@@ -277,7 +279,7 @@ class LibreLinkUp: Logging {
                                             i += 1
                                             let date = formatter.date(from: measurement.timestamp)!
                                             logbookHistory.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: i, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
-                                            debugLog("LibreLinkUp: logbook measurement #\(i - history.count) of \(data.count): \(measurement) (JSON: \(entry))")
+                                            debugLog("LibreLinkUp: logbook measurement # \(i - history.count) of \(data.count): \(measurement) (JSON: \(entry))")
                                         }
 
                                     } else if type == 2 {  // alarm

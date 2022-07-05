@@ -34,6 +34,7 @@ class Settings: ObservableObject {
         "libreLinkUpEmail": "",
         "libreLinkUpPassword": "",
         "libreLinkUpPatientId": "",
+        "libreLinkUpCountry": "",
         "libreLinkUpToken": "",
         "libreLinkUpTokenExpirationDate": Date.distantPast,
         "libreLinkUpScrapingLogbook": false,
@@ -172,6 +173,10 @@ class Settings: ObservableObject {
 
     @Published var libreLinkUpPatientId: String = UserDefaults.standard.string(forKey: "libreLinkUpPatientId")! {
         didSet { UserDefaults.standard.set(self.libreLinkUpPatientId, forKey: "libreLinkUpPatientId") }
+    }
+
+    @Published var libreLinkUpCountry: String = UserDefaults.standard.string(forKey: "libreLinkUpCountry")! {
+        didSet { UserDefaults.standard.set(self.libreLinkUpCountry, forKey: "libreLinkUpCountry") }
     }
 
     @Published var libreLinkUpToken: String = UserDefaults.standard.string(forKey: "libreLinkUpToken")! {
