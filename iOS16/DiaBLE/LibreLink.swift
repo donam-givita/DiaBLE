@@ -22,7 +22,7 @@ enum LibreLinkUpError: LocalizedError {
 struct AuthTicket: Codable {
     let token: String
     let expires: Int
-    let duration: Int
+    let duration: UInt64
 }
 
 
@@ -171,6 +171,9 @@ class LibreLinkUp: Logging {
                     }
                 }
                 return (data, response)
+            } catch {
+                log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
+                throw LibreLinkUpError.jsonDecoding
             }
         } catch {
             log("LibreLinkUp: server error: \(error.localizedDescription)")
