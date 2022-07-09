@@ -128,7 +128,9 @@ class LibreLinkUp: Logging {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                    let status = json["status"] as? Int {
-                    if status == 2 {  // {"status":2,"error":{"message":"notAuthenticated"}}
+                    if status == 2 || status == 429 {
+                        // {"status":2,"error":{"message":"notAuthenticated"}}
+                        // {"status":429,"data":{"code":60,"data":{"failures":3,"interval":60,"lockout":300},"message":"locked"}}
                         throw LibreLinkUpError.notAuthenticated
                     }
                     if let data = json["data"] as? [String: Any],
@@ -177,7 +179,7 @@ class LibreLinkUp: Logging {
             }
         } catch {
             log("LibreLinkUp: server error: \(error.localizedDescription)")
-            throw error
+            throw LibreLinkUpError.noConnection
         }
     }
 

@@ -56,6 +56,11 @@ class Nightscout: NSObject, Logging {
                         }
                     }
                 }
+            } else if let error {
+                log("Nightscout: server error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    handler(data, response, error, [])
+                }
             }
         }.resume()
     }
