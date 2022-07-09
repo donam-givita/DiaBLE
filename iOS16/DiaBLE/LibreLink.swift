@@ -173,10 +173,13 @@ class LibreLinkUp: Logging {
                     }
                 }
                 return (data, response)
-            } catch {
-                log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
-                throw LibreLinkUpError.jsonDecoding
             }
+        } catch LibreLinkUpError.jsonDecoding {
+            log("LibreLinkUp: error while decoding response: \(LibreLinkUpError.jsonDecoding.localizedDescription)")
+            throw LibreLinkUpError.jsonDecoding
+        } catch LibreLinkUpError.notAuthenticated {
+            log("LibreLinkUp: error: \(LibreLinkUpError.notAuthenticated.localizedDescription)")
+            throw LibreLinkUpError.notAuthenticated
         } catch {
             log("LibreLinkUp: server error: \(error.localizedDescription)")
             throw LibreLinkUpError.noConnection
