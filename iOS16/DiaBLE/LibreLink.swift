@@ -2,6 +2,7 @@ import Foundation
 
 
 // https://github.com/timoschlueter/nightscout-librelink-up
+// https://gist.github.com/khskekec/6c13ba01b10d3018d816706a32ae8ab2
 
 
 enum LibreLinkUpError: LocalizedError {

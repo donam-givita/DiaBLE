@@ -788,7 +788,7 @@ struct Libre3SKBCryptoLib {
 
 // MARK: - PacketLogger logs
 
-// Written to the .certificationData 0x23FA characteristic after the commands 01 and 02 during both activation and repairing a sensor:
+// Written to the .certificateData 0x23FA characteristic after the commands 01 and 02 during both activation and repairing a sensor:
 
 // 00 00 03 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10
 // 12 00 00 01 5F 14 9F E1 01 00 00 00 00 00 00 00 00 04 E2 36
