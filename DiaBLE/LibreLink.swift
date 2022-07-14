@@ -78,11 +78,14 @@ class LibreLinkUp: Logging {
     var main: MainDelegate!
 
     let siteURL = "https://api.libreview.io"
-    let localSiteURL = "https://api-eu.libreview.io"
     let loginEndpoint = "llu/auth/login"
     let configEndpoint = "llu/config"
     let connectionsEndpoint = "llu/connections"
     let measurementsEndpoint = "lsl/api/measurements"
+
+    let regions = ["us", "eu", "de", "fr", "jp", "ap", "au", "ae"]
+
+    var regionalSiteURL: String { "https://api-\(main.settings.libreLinkUpRegion).libreview.io" }
 
     let headers = [
         "User-Agent": "Mozilla/5.0",
@@ -151,6 +154,10 @@ class LibreLinkUp: Logging {
 
                         // TODO: determine regional server
                         if await !main.settings.libreLinkUpCountry.isEmpty {
+
+                            // default "de" and "fr" regional servers
+                            let defaultRegion = await regions.contains(country.lowercased()) ? country.lowercased() : main.settings.libreLinkUpRegion
+
                             var request = URLRequest(url: URL(string: "\(siteURL)/\(configEndpoint)/country?country=\(await main.settings.libreLinkUpCountry)")!)
                             var authenticatedHeaders = headers
                             authenticatedHeaders["Authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
@@ -164,7 +171,12 @@ class LibreLinkUp: Logging {
                                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                                    let data = json["data"] as? [String: Any],
                                    let server = data["lslApi"] as? String {
-                                    log("LibreLinkUp: regional server: \(server)")
+                                    let regionIndex = server.firstIndex(of: "-")
+                                    let region = regionIndex == nil ? defaultRegion : String( server[server.index(regionIndex!, offsetBy: 1) ... server.index(regionIndex!, offsetBy: 2)])
+                                    log("LibreLinkUp: regional server: \(server), saved default region: \(region)")
+                                    DispatchQueue.main.async {
+                                        self.main.settings.libreLinkUpRegion = region
+                                    }
                                 }
                             } catch {
                                 log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
@@ -189,7 +201,7 @@ class LibreLinkUp: Logging {
 
 
     func getPatientGraph() async throws -> (Any, URLResponse, [LibreLinkUpGlucose], Any, [LibreLinkUpGlucose], [LibreLinkUpAlarm]) {
-        var request = URLRequest(url: URL(string: "\(localSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/graph")!)
+        var request = URLRequest(url: URL(string: "\(regionalSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/graph")!)
         var authenticatedHeaders = headers
         authenticatedHeaders["Authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
         for (header, value) in authenticatedHeaders {
@@ -294,7 +306,7 @@ class LibreLinkUp: Logging {
                            let token = ticketDict["token"] as? String {
                             self.log("LibreLinkUp: new token for logbook: \(token)")
                             request.setValue(await "Bearer \(token)", forHTTPHeaderField: "Authorization")
-                            request.url =  URL(string: "\(localSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/logbook")!
+                            request.url =  URL(string: "\(regionalSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/logbook")!
                             debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
                             let (data, response) = try await URLSession.shared.data(for: request)
                             debugLog("LibreLinkUp: response data: \(data.string), status: \((response as! HTTPURLResponse).statusCode)")
