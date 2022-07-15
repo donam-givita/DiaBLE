@@ -159,12 +159,10 @@ class LibreLinkUp: Logging {
                             let defaultRegion = await regions.contains(country.lowercased()) ? country.lowercased() : main.settings.libreLinkUpRegion
 
                             var request = URLRequest(url: URL(string: "\(siteURL)/\(configEndpoint)/country?country=\(await main.settings.libreLinkUpCountry)")!)
-                            var authenticatedHeaders = headers
-                            authenticatedHeaders["Authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
-                            for (header, value) in authenticatedHeaders {
+                            for (header, value) in headers {
                                 request.setValue(value, forHTTPHeaderField: header)
                             }
-                            debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
+                            debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), headers: \(request.allHTTPHeaderFields!)")
                             let (data, response) = try await URLSession.shared.data(for: request)
                             debugLog("LibreLinkUp: response data: \(data.string), status: \((response as! HTTPURLResponse).statusCode)")
                             do {
@@ -172,7 +170,7 @@ class LibreLinkUp: Logging {
                                    let data = json["data"] as? [String: Any],
                                    let server = data["lslApi"] as? String {
                                     let regionIndex = server.firstIndex(of: "-")
-                                    let region = regionIndex == nil ? defaultRegion : String( server[server.index(regionIndex!, offsetBy: 1) ... server.index(regionIndex!, offsetBy: 2)])
+                                    let region = regionIndex == nil ? defaultRegion : String(server[server.index(regionIndex!, offsetBy: 1) ... server.index(regionIndex!, offsetBy: 2)])
                                     log("LibreLinkUp: regional server: \(server), saved default region: \(region)")
                                     DispatchQueue.main.async {
                                         self.main.settings.libreLinkUpRegion = region
