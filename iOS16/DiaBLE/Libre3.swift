@@ -202,6 +202,25 @@ class Libre3: Sensor {
     }
 
 
+    struct CGMSensor {
+        var sensor: Sensor
+        var deviceType: Int
+        var cryptoLib: Any
+        var securityContext: Int    // ISecurityContext
+        var patchEphemeral: Data
+        var r1: Data
+        var r2: Data
+        var nonce1: Data
+        var kEnc: Data
+        var ivEnc: Data
+        var exportedkAuth: Data
+        var securityLibInitialized: Bool
+        var isPreAuthorized: Bool
+        var initParam: Any
+        var securityVersion: Int
+    }
+
+
     enum UUID: String, CustomStringConvertible, CaseIterable {
 
         /// Advertised primary data service
