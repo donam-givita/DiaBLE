@@ -574,7 +574,7 @@ class Libre3: Sensor {
                 }
             }
 
-        case .challengeData:
+        case .challengeData, .certificateData:
             if buffer.count == 0 {
                 buffer = Data(data)
             } else {
