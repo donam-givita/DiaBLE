@@ -73,7 +73,7 @@ struct OnlineView: View {
                             app.main.didParseSensor(app.sensor)
                         }
                     }
-                    if dataString != "{\"message\":\"MissingCachedUser\"}" {
+                    if dataString != "{\"message\":\"MissingCachedUser\"}\n" {
                         break loop
                     }
                     retries += 1
