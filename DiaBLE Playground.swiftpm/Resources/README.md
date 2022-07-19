@@ -11,6 +11,13 @@ Since the latest **FreeStyle Libre glucose sensors** are **B**luetooth **L**ow *
 * varying the **reading interval** instead of the usual 5-minute one;
 * a detailed **log** to check the traffic from/to the BLE devices and remote servers.
 
+Still too early to decide the final design (but I really like already the evil logo 😈), here there are some recent screenshots I tweeted:
+
+ <br><br>
+ <p align="center"><img src="https://pbs.twimg.com/media/FYBVuXAXkAMwNuq?format=png&name=small" width="16.7%" align="middle" /></p>
+ <h4 align ="center">Libre 3 Challenge</h4>
+ <br><<br>
+
 The project started as a single script for the iPad Swift Playgrounds to test the workings of the several troublesome BLE devices I bought, mainly the **Bubble** and the **MiaoMiao**. It was then quickly converted to an app when the Libre 2 came out at last by using a standard Xcode template: it should compile fine without external dependencies just after changing the _Bundle Identifier_ in the _General_ panel of the _Targets_ settings and the _Team_ in the _Signing and Capabilities_ tab of Xcode -- Spike and xDrip4iO5 users know already very well what that means... ;-)
 
 If you own an iPad you can just download the [zipped archive](https://github.com/gui-dos/DiaBLE/archive/refs/heads/main.zip) of this repository and tap _DiaBLE Playground.swiftpm_.
