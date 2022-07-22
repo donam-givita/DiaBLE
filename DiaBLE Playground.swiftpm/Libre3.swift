@@ -368,6 +368,7 @@ class Libre3: Sensor {
     // Shutdown:
     // write  1338  13 bytes            // command ending in 03 00
     // notify 1BEE  20 bytes            // event log
+    // notify 1338  10 bytes            // ending in 03 00
     // write  1338  13 bytes            // command ending in 04 00
 
 
@@ -572,6 +573,8 @@ class Libre3: Sensor {
                 } else if data[1] == 67 {
                     currentSecurityCommand = .getSessionInfo
                 }
+
+                // TODO: 140 and 65 .certificateData bytes received during activation/repair
             }
 
         case .challengeData, .certificateData:
