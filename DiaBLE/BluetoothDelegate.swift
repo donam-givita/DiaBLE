@@ -374,6 +374,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 if sensor.transmitter == nil { sensor.transmitter = app.transmitter }
                 if settings.debugLevel < 2 { // TEST: sniff Trident
                     ((app.device as? Abbott)?.sensor as? Libre3)?.send(securityCommand: .readChallenge)
+                    // ((app.device as? Abbott)?.sensor as? Libre3)?.pair()  // TEST
                 }
 
             } else if (app.transmitter as! Abbott).securityGeneration == 2 && (app.transmitter as! Abbott).authenticationState == .notAuthenticated {
