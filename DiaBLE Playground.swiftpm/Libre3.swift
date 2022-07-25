@@ -108,12 +108,12 @@ class Libre3: Sensor {
 
     struct PatchInfo {
         let NFC_Key: Int
-        let localization: Int
+        let localization: Int         // 1: Europe ?
         let generation: Int
         let puckGeneration: Int
         let wearDuration: Int
         let warmupTime: Int
-        let productType: Int
+        let productType: ProductType
         let state: State
         let fwVersion: Data
         let compressedSN: Data
@@ -598,11 +598,6 @@ class Libre3: Sensor {
                         let challengeCount = UInt16(payload[16...17])
                         log("\(type) \(transmitter!.peripheral!.name!): security challenge # \(challengeCount.hex): \(payload.hex)")
 
-                        // TODO
-                        if main.settings.debugLevel > 2 {
-                            let certificate = "03 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 00 01 5F 14 9F E1 01 00 00 00 00 00 00 00 00 04 E2 36 95 4F FD 06 A2 25 22 57 FA A7 17 6A D9 0A 69 02 E6 1D DA FF 40 FB 36 B8 FB 52 AA 09 2C 33 A8 02 32 63 2E 94 AF A8 28 86 AE 75 CE F9 22 CD 88 85 CE 8C DA B5 3D AB 2A 4F 23 9B CB 17 C2 6C DE 74 9E A1 6F 75 89 76 04 98 9F DC B3 F0 C7 BC 1D A5 E6 54 1D C3 CE C6 3E 72 0C D9 B3 6A 7B 59 3C FC C5 65 D6 7F 1E E1 84 64 B9 B9 7C CF 06 BE D0 40 C7 BB D5 D2 2F 35 DF DB 44 58 AC 7C 46 15".bytes
-                            write(certificate, for: .certificateData)
-                        }
 
                         if main.settings.debugLevel < 2 { // TEST: sniff Trident
                             log("\(type) \(transmitter!.peripheral!.name!): writing 40-zero challenge data (it should be the unlock payload)")
@@ -636,6 +631,273 @@ class Libre3: Sensor {
         }
 
     }
+
+
+    func pair() {
+        send(securityCommand: .security_01)
+        send(securityCommand: .security_02)
+        let certificate = "03 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 00 01 5F 14 9F E1 01 00 00 00 00 00 00 00 00 04 E2 36 95 4F FD 06 A2 25 22 57 FA A7 17 6A D9 0A 69 02 E6 1D DA FF 40 FB 36 B8 FB 52 AA 09 2C 33 A8 02 32 63 2E 94 AF A8 28 86 AE 75 CE F9 22 CD 88 85 CE 8C DA B5 3D AB 2A 4F 23 9B CB 17 C2 6C DE 74 9E A1 6F 75 89 76 04 98 9F DC B3 F0 C7 BC 1D A5 E6 54 1D C3 CE C6 3E 72 0C D9 B3 6A 7B 59 3C FC C5 65 D6 7F 1E E1 84 64 B9 B9 7C CF 06 BE D0 40 C7 BB D5 D2 2F 35 DF DB 44 58 AC 7C 46 15".bytes
+        send(securityCommand: .security_03)
+        write(certificate, for: .certificateData)
+        // TODO
+    }
+
+
+    static let appFlowJSON = """
+{
+  "flowControllerVersion":"1.0",
+  "controllerType":"Libre3Sensor",
+  "initialActivity":"libre3ActivityScanSensor",
+  "errorHandler":"libre3ActivityError",
+  "activities" :[
+    {
+      "activity":"libre3ActivityScanSensor",
+      "eventFlows": [
+        { "MSLibre3DeviceFoundEvent":"libre3ActivityConnect" },
+        { "MSLibre3ScanError":"_FlowContinue"}
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityConnect",
+      "eventFlows": [
+        { "MSLibre3SecuredConnectedEvent": "libre3ActivityEnableSecurityNotifications"},
+        { "MSLibre3ConnectedEvent":"libre3ActivityEnableNotification" },
+        { "MSLibre3DisconnectEvent": "libre3ActivityScanSensor"}
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityEnableSecurityNotifications",
+      "eventFlows": [
+        { "MSLibre3SecurityNotificationsEnabledEvent":"libre3ActivityCheckAuthentication" },
+        { "MSLibre3RealtimeReadingEvent": "_FlowContinue"},
+        { "MSLibre3DisconnectEvent": "libre3ActivityConnect"}
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityEnableNotification",
+      "eventFlows": [
+        { "MSLibre3NotificationEnabledEvent":"libre3ActivityGetRealtimeReadings" },
+        { "MSLibre3RealtimeReadingEvent": "_FlowContinue"},
+        { "MSLibre3DisconnectEvent": "libre3ActivityConnect"}
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityCheckAuthentication",
+      "eventFlows": [
+        { "MSLibre3AuthenticationRequiredEvent":"libre3ActivityStartAuthentication" },
+        { "MSLibre3AuthorizationRequiredEvent": "libre3ActivityStartAuthorization"}
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityStartAuthentication",
+      "eventFlows": [
+        { "MSLibre3CommandSentEvent":"libre3ActivityLoadCertificate" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityLoadCertificate",
+      "eventFlows": [
+        { "MSLibre3CommandSentEvent":"libre3ActivitySendCertificate" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivitySendCertificate",
+      "eventFlows": [
+        { "MSLibre3CertificateSentEvent":"libre3ActivitySendCertificateLoadDone" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivitySendCertificateLoadDone",
+      "eventFlows": [
+        { "MSLibre3CommandSentEvent":"libre3ActivityWaitCertificateAcceptance" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityWaitCertificateAcceptance",
+      "eventFlows": [
+        { "MSLibre3CertificateAcceptedEvent":"libre3ActivityGetCertificate" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityGetCertificate",
+      "eventFlows": [
+        { "MSLibre3CommandSentEvent":"libre3ActivityWaitCertificateReady" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityWaitCertificateReady",
+      "eventFlows": [
+        { "MSLibre3CertificateReadyEvent":"libre3ActivityReadCertificate" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityReadCertificate",
+      "eventFlows": [
+        { "MSLibre3CertificateReadEvent":"libre3ActivityValidateCertificate" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityValidateCertificate",
+      "eventFlows": [
+        { "MSLibre3CommandSentEvent":"libre3ActivitySendEphemeral" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivitySendEphemeral",
+      "eventFlows": [
+        { "MSLibre3CertificateSentEvent":"libre3ActivitySendEphemeralDone" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivitySendEphemeralDone",
+      "eventFlows": [
+        { "MSLibre3CommandSentEvent":"libre3ActivityPatchEphemeralWait" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityPatchEphemeralWait",
+      "eventFlows": [
+        { "MSLibre3EphemeralReadyEvent":"libre3ActivityReadPatchEphemeral" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityReadPatchEphemeral",
+      "eventFlows": [
+        { "MSLibre3CertificateReadEvent":"libre3ActivityFinalizeAuthentication" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityFinalizeAuthentication",
+      "eventFlows": [
+        { "MSLibre3ECDHCompleteEvent":"libre3ActivityStartAuthorization" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityStartAuthorization",
+      "eventFlows": [
+        { "MSLibre3CommandSentEvent":"libre3ActivityWaitChallengeLoad" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityWaitChallengeLoad",
+      "eventFlows": [
+        { "MSLibre3ChallengeLoadDoneEvent":"libre3ActivityReadR1" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityReadR1",
+      "eventFlows": [
+        { "MSLibre3ChallengeDataReadEvent":"libre3ActivitySendChallengeResponse" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivitySendChallengeResponse",
+      "eventFlows": [
+        { "MSLibre3ChallengeDataSentEvent":"libre3ActivitySendChallengeLoadDone" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivitySendChallengeLoadDone",
+      "eventFlows": [
+        { "MSLibre3CommandSentEvent":"libre3ActivityWaitPatchChallengeLoadDone" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityWaitPatchChallengeLoadDone",
+      "eventFlows": [
+        { "MSLibre3ChallengeLoadDoneEvent":"libre3ActivityReadPatchChallengeResponse" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityReadPatchChallengeResponse",
+      "eventFlows": [
+        { "MSLibre3ChallengeDataReadEvent":"libre3ActivityFinalizeAuthorization" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityFinalizeAuthorization",
+      "eventFlows": [
+        { "MSLibre3RealtimeReadingEvent": "_FlowContinue"},
+        { "MSLibre3NotificationEnabledEvent": "libre3ActivityGetRealtimeReadings"}
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityGetRealtimeReadings",
+      "eventFlows": [
+        { "MSLibre3RealtimeReadingEvent": "_FlowContinue"},
+        { "MSLibre3HistoricalReadingEvent":"_FlowContinue" },
+        { "MSLibre3HistoricalReadingEndEvent":"_FlowContinue" },
+        { "MSLibre3FastDataEvent":"_FlowContinue" },
+        { "MSLibre3DisconnectEvent": "libre3ActivityConnect"}
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityError",
+      "eventFlows": [
+        { "MSLibre3DisconnectEvent": "libre3ActivityConnect"},
+        { "MSLibre3SecurityErrorEvent" : "libre3ActivityDisconnect"},
+        { "MSLibre3ConnectTimedOutEvent" : "libre3ActivityScanSensor"}
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityDisconnect",
+      "eventFlows": [
+        { "MSLibre3DisconnectEvent":"libre3ActivityConnect" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityCloseDevice",
+      "eventFlows": [
+        { "MSLibre3DisconnectEvent":"libre3ActivityConnect" }
+      ]
+    },
+
+    {
+      "activity":"libre3ActivityGetEventLog",
+      "eventFlows": [
+        { "MSLibre3HistoricalReadingEvent":"_FlowContinue" },
+        { "MSLibre3RealtimeReadingEvent": "_FlowContinue"},
+        { "MSLibre3FactoryDataEvent" :  "_FlowContinue"},
+        { "MSLibre3HistoricalReadingEvent":"_FlowContinue" },
+        { "MSLibre3HistoricalReadingEndEvent":"_FlowContinue" },
+        { "MSLibre3EventLogEvent":"_FlowContinue" },
+        { "MSLibre3FastDataEvent":"_FlowContinue" },
+        { "MSLibre3EventLogEndEvent": "libre3ActivityGetRealtimeReadings"}
+      ]
+    }
+  ]
+}
+"""
 
 
     // MARK: - Constants
