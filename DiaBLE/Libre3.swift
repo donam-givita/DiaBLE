@@ -258,9 +258,9 @@ class Libre3: Sensor {
         /// Security service
         case security = "0898203A-EF89-11E9-81B4-2A2AE2DBCCE4"
 
-        /// Writes a single byte command as defined in libre3SecurityConstants' `CMD_`
-        /// May notify two bytes: the successful status (also defined as `CMD_READY/DONE/FAILURE`)
-        /// and the effective length of the payload streamed on 22CE / 23FA
+        /// - Writes a single byte command as defined in libre3SecurityConstants' `CMD_`
+        /// - May notify two bytes: the successful status (also defined as `CMD_READY/DONE/FAILURE`)
+        ///   and the effective length of the payload streamed on 22CE / 23FA
         /// 01: very first command when activating a sensor
         /// 02: written immediately after 01
         /// 03: third command sent during activation
@@ -268,7 +268,7 @@ class Libre3: Sensor {
         /// 08: read the final 67-byte session info, notifies 08 43 -> 22CE notifies 67 bytes + prefixes
         /// 09: during activation notifies A0 8C -> 23FA notifies 140 bytes + prefixes
         /// 0D: during activation is written before 0E
-        /// 0E: during activation notifies 0F 41 -> 23FA notifies 69 bytes
+        /// 0E: during activation notifies 0F 41 -> 23FA notifies 65 bytes + prefixes
         /// 11: read the 23-byte security challenge, notifies 08 17
         case securityCommands = "08982198-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Write"]
 
@@ -308,10 +308,10 @@ class Libre3: Sensor {
     class var knownUUIDs: [String] { UUID.allCases.map(\.rawValue) }
 
 
-    // maximum packet size is 20
-    // notified packets are prefixed by 00, 01, 02, ...
-    // written packets are prefixed by 00 00, 12 00, 24 00, 36 00, ...
-    // data packets end in a sequential Int: 01 00, 02 00, ...
+    // - maximum packet size is 20
+    // - notified packets are prefixed by 00, 01, 02, ...
+    // - written packets are prefixed by 00 00, 12 00, 24 00, 36 00, ...
+    // - data packets end in a sequential Int: 01 00, 02 00, ...
     //
     // Connection:
     // enable notifications for 2198, 23FA and 22CE
@@ -578,6 +578,8 @@ class Libre3: Sensor {
             }
             if currentSecurityCommand == .security_03 && data.count == 1 && data[0] == 0x04 {
                 debugLog("\(type) \(transmitter!.peripheral!.name!): received security 0x04 aknowledgment after sending command 0x03")
+                currentSecurityCommand = .security_09
+                send(securityCommand: .security_09)
             }
 
         case .challengeData, .certificateData:
@@ -641,8 +643,8 @@ class Libre3: Sensor {
         send(securityCommand: .security_02)
         let certificate = "03 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 00 01 5F 14 9F E1 01 00 00 00 00 00 00 00 00 04 E2 36 95 4F FD 06 A2 25 22 57 FA A7 17 6A D9 0A 69 02 E6 1D DA FF 40 FB 36 B8 FB 52 AA 09 2C 33 A8 02 32 63 2E 94 AF A8 28 86 AE 75 CE F9 22 CD 88 85 CE 8C DA B5 3D AB 2A 4F 23 9B CB 17 C2 6C DE 74 9E A1 6F 75 89 76 04 98 9F DC B3 F0 C7 BC 1D A5 E6 54 1D C3 CE C6 3E 72 0C D9 B3 6A 7B 59 3C FC C5 65 D6 7F 1E E1 84 64 B9 B9 7C CF 06 BE D0 40 C7 BB D5 D2 2F 35 DF DB 44 58 AC 7C 46 15".bytes
         write(certificate, for: .certificateData)
-        send(securityCommand: .security_03)
         currentSecurityCommand = .security_03
+        send(securityCommand: .security_03)
         // TODO
     }
 
