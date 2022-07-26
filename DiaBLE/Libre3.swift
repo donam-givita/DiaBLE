@@ -594,6 +594,10 @@ class Libre3: Sensor {
 
                     switch currentSecurityCommand {
 
+                    case .security_09:
+                        send(securityCommand: .security_0D)
+                        // TODO
+
                     case .readChallenge:
 
                         // getting: df4bd2f783178e3ab918183e5fed2b2b c201 0000 e703a7
@@ -616,16 +620,16 @@ class Libre3: Sensor {
                         log("\(type) \(transmitter!.peripheral!.name!): session info: \(payload.hex) (security challenge # + 1: \(challengeCountPlusOne.hex))")
                         transmitter!.peripheral?.setNotifyValue(true, for: transmitter!.characteristics[UUID.patchStatus.rawValue]!)
                         log("\(type) \(transmitter!.peripheral!.name!): enabling notifications on the patch status characteristic")
+                        currentSecurityCommand = nil
 
 
                     default:
-                        break // currentCommand
+                        break // currentSecurityCommand
                     }
 
                     buffer = Data()
                     expectedStreamSize = 0
                     currentControlCommand = nil
-                    currentSecurityCommand = nil
 
                 }
             }
