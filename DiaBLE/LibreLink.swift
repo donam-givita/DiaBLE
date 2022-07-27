@@ -39,7 +39,7 @@ struct GlucoseMeasurement: Codable {
     let factoryTimestamp: String
     let timestamp: String
     let type: Int  //  0: graph, 1: logbook, 2: alarm, 3: hybrid
-    let alarmType: Int?  // when type = 3  1: low, 2: high
+    let alarmType: Int?  // when type = 3  0: fixedLow, 1: low, 2: high
     let valueInMgPerDl: Int
     let trendArrow: OOP.TrendArrow?    // in logbook but not in graph data
     let trendMessage: String?
@@ -64,11 +64,11 @@ struct LibreLinkUpAlarm: Identifiable, Codable, CustomStringConvertible {
     let factoryTimestamp: String
     let timestamp: String
     let type: Int  // 2 (1 for measurements)
-    let alarmType: Int  // 0: low, 1: high
+    let alarmType: Int  // 0: low, 1: high, 2: fixedLow
     enum CodingKeys: String, CodingKey { case factoryTimestamp = "FactoryTimestamp", timestamp = "Timestamp", type, alarmType }
     var id: Int { Int(date.timeIntervalSince1970) }
     var date: Date = Date()
-    var alarmDescription: String { alarmType == 0 ? "LOW" : "HIGH" }
+    var alarmDescription: String { alarmType == 1 ? "HIGH" : "LOW" }
     var description: String { "\(date): \(alarmDescription)" }
 }
 
@@ -314,7 +314,7 @@ class LibreLinkUp: Logging {
                                 for entry in data {
                                     let type = entry["type"] as! Int
 
-                                    // TODO: type 3 has also an alarmType: 1 = low, 2 = high
+                                    // TODO: type 3 has also an alarmType: 0 = fixedLow, 1 = low, 2 = high
 
                                     if type == 1 || type == 3 {  // measurement
                                         if let measurementData = try? JSONSerialization.data(withJSONObject: entry),
