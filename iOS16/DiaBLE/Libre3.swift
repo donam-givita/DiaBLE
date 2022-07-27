@@ -202,7 +202,7 @@ class Libre3: Sensor {
 
 
     struct PatchStatus {
-        let patchState: Int
+        let patchState: LifeState
         let totalEvents: Int
         let lifeCount: Int
         let errorData: Int
