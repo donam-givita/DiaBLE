@@ -14,15 +14,15 @@ class Libre3: Sensor {
 
 
     enum State: UInt8, CustomStringConvertible {
-        case manufacturing      = 0x00    // PATCH_STATE_MANUFACTURING
-        case storage            = 0x01    // PATCH_STATE_STORAGE
-        case insertionDetection = 0x02    // PATCH_STATE_INSERTION_DETECTION
-        case insertionFailed    = 0x03    // PATCH_STATE_INSERTION_FAILED
-        case paired             = 0x04    // PATCH_STATE_PAIRED
-        case expired            = 0x05    // PATCH_STATE_EXPIRED
-        case terminated         = 0x06    // PATCH_STATE_TERMINATED_NORMAL
-        case error              = 0x07    // PATCH_STATE_ERROR
-        case errorTerminated    = 0x08    // PATCH_STATE_ERROR_TERMINATED
+        case manufacturing      = 0    // PATCH_STATE_MANUFACTURING
+        case storage            = 1    // PATCH_STATE_STORAGE
+        case insertionDetection = 2    // PATCH_STATE_INSERTION_DETECTION
+        case insertionFailed    = 3    // PATCH_STATE_INSERTION_FAILED
+        case paired             = 4    // PATCH_STATE_PAIRED
+        case expired            = 5    // PATCH_STATE_EXPIRED
+        case terminated         = 6    // PATCH_STATE_TERMINATED_NORMAL
+        case error              = 7    // PATCH_STATE_ERROR
+        case errorTerminated    = 8    // PATCH_STATE_ERROR_TERMINATED
 
         var description: String {
             switch self {
@@ -40,7 +40,7 @@ class Libre3: Sensor {
     }
 
 
-    enum LifeState: Int {           // SensorLifeState
+    enum LifeState: Int, CustomStringConvertible {  // SensorLifeState
         case missing         = 1    // MISSING
         case warmup          = 2    // WARMUP
         case ready           = 3    // READY
@@ -48,6 +48,18 @@ class Libre3: Sensor {
         case active          = 5    // ACTIVE
         case ended           = 6    // ENDED
         case insertionFailed = 7    // INSERTION_FAILED
+
+        var description: String {
+            switch self {
+            case .missing:         return "missing"
+            case .warmup:          return "warmup"
+            case .ready:           return "ready"
+            case .expired:         return "expired"
+            case .active:          return "active"
+            case .ended:           return "ended"
+            case .insertionFailed: return "insertionFailed"
+            }
+        }
     }
 
 
