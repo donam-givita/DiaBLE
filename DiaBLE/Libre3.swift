@@ -57,7 +57,7 @@ class Libre3: Sensor {
             case .expired:         return "expired"
             case .active:          return "active"
             case .ended:           return "ended"
-            case .insertionFailed: return "insertionFailed"
+            case .insertionFailed: return "insertion failed"
             }
         }
     }
@@ -486,7 +486,7 @@ class Libre3: Sensor {
 
 
     func send(securityCommand cmd: SecurityCommand) {
-        log("Bluetooth: sending to \(type) \(transmitter!.peripheral!.name!) `\(cmd.description)` command 0x\(cmd.rawValue.hex)")
+        log("Bluetooth: sending to \(type) \(transmitter!.peripheral!.name ?? "(unnamed)") `\(cmd.description)` command 0x\(cmd.rawValue.hex)")
         currentSecurityCommand = cmd
         transmitter!.write(Data([cmd.rawValue]), for: UUID.securityCommands.rawValue, .withResponse)
     }
