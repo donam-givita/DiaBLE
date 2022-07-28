@@ -28,6 +28,7 @@ TODO
 * Apple Watch app: snapshots, workout and extended runtime background sessions, complications
 * Libre 3 / Gen2:
   - native and/or online en/decryption
+* alarm snooze
 * scrollable graph, offline trend arrow, landscape mode, realtime RSSI
 * smooth the historic values and project the trend ones (see [LibreTransmitter](https://github.com/dabear/LibreTransmitter/commit/49b50d7995955b76861440e5e34a0accd064d18f))
 * log: limit to a number of readings, prepend time, Share menu, record to a file, add Logger support
