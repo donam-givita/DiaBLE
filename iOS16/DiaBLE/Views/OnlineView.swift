@@ -63,6 +63,7 @@ struct OnlineView: View {
                             settings.lastOnlineDate = Date()
                             let lastMeasurement = libreLinkUpHistory[0]
                             app.lastReadingDate = lastMeasurement.glucose.date
+                            app.sensor?.lastReadingDate = app.lastReadingDate
                             app.currentGlucose = lastMeasurement.glucose.value
                             // TODO: fill the gaps with -1 values
                             history.factoryValues = libreLinkUpHistory.dropFirst().map(\.glucose) // TEST
