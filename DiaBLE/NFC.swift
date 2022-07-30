@@ -245,8 +245,9 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     try await session.connect(to: firstTag)
                     connectedTag = tag
                 } catch {
-                    if requestedRetry > retries {
+                    if requestedRetry >= retries {
                         session.invalidate(errorMessage: "Connection failure: \(error.localizedDescription)")
+                        log("NFC: stopped retrying to connect after \(requestedRetry) reattempts: \(error.localizedDescription)")
                         return
                     }
                     failedToScan = true
@@ -282,8 +283,9 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     AudioServicesPlaySystemSound(1520)    // initial "pop" vibration
                 } catch {
                     log("NFC: error while getting system info: \(error.localizedDescription)")
-                    if requestedRetry > retries {
+                    if requestedRetry >= retries {
                         session.invalidate(errorMessage: "Error while getting system info: \(error.localizedDescription)")
+                        log("NFC: stopped retrying to get the system info after \(requestedRetry) reattempts: \(error.localizedDescription)")
                         return
                     }
                     failedToScan = true
@@ -294,7 +296,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     patchInfo = Data(try await tag.customCommand(requestFlags: .highDataRate, customCommandCode: 0xA1, customRequestParameters: Data()))
                 } catch {
                     log("NFC: error while getting patch info: \(error.localizedDescription)")
-                    if requestedRetry > retries && systemInfo != nil {
+                    if requestedRetry >= retries && systemInfo != nil {
                         requestedRetry = 0 // break repeat
                     } else {
                         if !failedToScan {
