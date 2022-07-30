@@ -107,7 +107,7 @@ struct Monitor: View {
                 HStack(spacing: 2) {
 
                     if app.sensor != nil && (app.sensor.state != .unknown || app.sensor.serial != "") {
-                        VStack(spacing: 0) {
+                        VStack(spacing: -4) {
                             Text(app.sensor.state.description)
                                 .foregroundColor(app.sensor.state == .active ? .green : .red)
 
