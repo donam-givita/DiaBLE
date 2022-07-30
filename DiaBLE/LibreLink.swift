@@ -305,7 +305,7 @@ class LibreLinkUp: Logging {
                            let measurementData = try? JSONSerialization.data(withJSONObject: lastGlucoseMeasurement),
                            let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
                             let date = dateFormatter.date(from: measurement.timestamp)!
-                            let lifeCount = Int(date.timeIntervalSince(activationDate)) / 60
+                            let lifeCount = Int(round(date.timeIntervalSince(activationDate) / 60))
                             let lastGlucose = LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: lifeCount, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow)
                             debugLog("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(lastGlucoseMeasurement))")
                             // TODO: scrape historic data only when the 17-minute delay has passed

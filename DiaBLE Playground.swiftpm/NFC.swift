@@ -285,7 +285,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     log("NFC: error while getting system info: \(error.localizedDescription)")
                     if requestedRetry >= retries {
                         session.invalidate(errorMessage: "Error while getting system info: \(error.localizedDescription)")
-                        log("NFC: stopped retrying to get the system info after \(requestedRetry) reattempts: \(error.localizedDescription)")
+                        log("NFC: stopped retrying to get the system info after \(requestedRetry) attempts")
                         return
                     }
                     failedToScan = true
