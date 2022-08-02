@@ -245,7 +245,7 @@ class Libre3: Sensor {
         case patchControl = "08981338-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Write"]
 
         // Receiving "Encryption is insufficient" error when activating notifications before the security commands
-        /// Notifies 18 bytes ending in 01 00 during a connection
+        /// Notifies one or more 18-byte packets during a connection
         case patchStatus = "08981482-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Read"]
 
         /// Notifies every minute 35 bytes as two packets of 15 + 20 bytes ending in a sequential id
@@ -335,7 +335,7 @@ class Libre3: Sensor {
     // notify 2198  08 43
     // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info
     // enable notifications for 1338, 1BEE, 195A, 1AB8, 1D24, 1482
-    // notify 1482  18 bytes            // patch status
+    // notify 1482  18-byte packets     // patch status
     // enable notifications for 177A
     // write  1338  13 bytes            // command ending in 01 00
     // notify 177A  15 + 20 bytes       // one-minute reading
@@ -472,7 +472,7 @@ class Libre3: Sensor {
             // 05 (.expired) lasts more than further 12 hours, almost 24, before BLE shutdown (06 = .terminated)
             // TODO: verify
             let warmupTime = patchInfo[15]
-            log("Libre 3: warmup time: \(warmupTime * 5) minutes (0x\(warmupTime.hex))")
+            log("Libre 3: warmup time: \(warmupTime * 5) minutes (0x\(warmupTime.hex) * 5?)")
             let sensorState = patchInfo[16]
             // TODO: manage specific Libre 3 states
             state = SensorState(rawValue: sensorState <= 2 ? sensorState: sensorState - 1) ?? .unknown

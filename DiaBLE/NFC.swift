@@ -451,6 +451,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
                     securityChallenge = try await send(sensor.nfcCommand(.readChallenge))
                     do {
+                        log("NFC: Gen2 security challenge: \(securityChallenge.hex)")
 
                         // FIXME: "404 Not Found"
                         _ = try await main.post(OOPServer.gen2.nfcAuthEndpoint!, ["patchUid": sensor.uid.hex, "authData": securityChallenge.hex])

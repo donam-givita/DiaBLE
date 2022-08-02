@@ -223,8 +223,9 @@ class LibreLinkUp: Logging {
                    let data = json["data"] as? [String: Any],
                    let connection = data["connection"] as? [String: Any] {
                     log("LibreLinkUp: connection data: \(connection)")
-                    var deviceIds: [String: String] = [:]
-                    var activationTimes: [String: Int] = [:]
+                    var deviceSerials: [String: String] = [:]
+                    var deviceActivationTimes: [String: Int] = [:]
+                    var deviceTypes: [String: SensorType] = [:]
                     if let activeSensors = data["activeSensors"] as? [[String: Any]] {
                         log("LibreLinkUp: active sensors: \(activeSensors)")
                         for (i, activeSensor) in activeSensors.enumerated() {
@@ -241,48 +242,28 @@ class LibreLinkUp: Logging {
                                 dtid == 40068 ? .libre3 :
                                 dtid == 40067 ? .libre2 :
                                 dtid == 40066 ? .libre1 : .unknown
+                                deviceTypes[deviceId] = sensorType
                                 // according to bundle.js, if `alarms` is true 40066 is also a .libre2
                                 // but happening a Libre 1 with `alarms` = true...
                                 if sensorType == .libre3 && sn.count == 10 {
                                     sn = String(sn.prefix(9)) // trim final 0
                                 }
-                                deviceIds[sn] = deviceId
-                                if activationTimes[sn] == nil || activationTimes[sn]! > a {
-                                    activationTimes[sn] = a
+                                deviceSerials[deviceId] = sn
+                                if deviceActivationTimes[deviceId] == nil || deviceActivationTimes[deviceId]! < a {
+                                    deviceActivationTimes[deviceId] = a
                                 }
                                 let activationDate = Date(timeIntervalSince1970: Double(a))
                                 log("LibreLinkUp: active sensor # \(i + 1) of \(activeSensors.count): serial: \(sn), activation date: \(activationDate) (timestamp = \(a)), device id: \(deviceId), product type: \(pt), sensor type: \(sensorType), alarms: \(alarms)")
                             }
                         }
                     }
-                    if let sensor = connection["sensor"] as? [String: Any],
-                       let device = connection["patientDevice"] as? [String: Any],
-                       let dtid = device["dtid"] as? Int,
-                       let alarms = device["alarms"] as? Bool,
-                       var deviceId = sensor["deviceId"] as? String,
-                       var sn = sensor["sn"] as? String,
-                       var a = sensor["a"] as? Int,
-                       // pruduct type should be 0: .libre1, 3: .libre2, 4: .libre3 but happening a Libre 1 with `pt` = 3...
-                       let pt = sensor["pt"] as? Int {
-                        let sensorType: SensorType =
-                        dtid == 40068 ? .libre3 :
-                        dtid == 40067 ? .libre2 :
-                        dtid == 40066 ? .libre1 : .unknown
-                        // according to bundle.js, if `alarms` is true 40066 is also a .libre2
-                        // but happening a Libre 1 with `alarms` = true...
-                        if sensorType == .libre3 && sn.count == 10 {
-                            sn = String(sn.prefix(9)) // trim final 0
-                        }
-                        if deviceId.isEmpty && deviceIds[sn] != nil {
-                            deviceId = deviceIds[sn]!
-                        }
-                        if activationTimes[sn] != nil && activationTimes[sn]! < a {
-                            a = activationTimes[sn]!
-                        }
-                        let activationDate = Date(timeIntervalSince1970: Double(a))
-                        // silent warnings on referencing captured vars in concurrently-executing code
-                        let serial = sn
-                        let activationTime = a
+                    if let device = connection["patientDevice"] as? [String: Any],
+                       let deviceId = device["did"] as? String,
+                       let alarms = device["alarms"] as? Bool {
+                        let serial = deviceSerials[deviceId]!
+                        let sensorType = deviceTypes[deviceId]!
+                        let activationTime = deviceActivationTimes[deviceId]!
+                        let activationDate = Date(timeIntervalSince1970: Double(activationTime))
                         if await main.app.sensor == nil {
                             DispatchQueue.main.async {
                                 self.main.app.sensor = sensorType == .libre3 ? Libre3(main: self.main) : sensorType == .libre2 ? Libre2(main: self.main) : Sensor(main: self.main)
@@ -291,7 +272,7 @@ class LibreLinkUp: Logging {
                                 self.main.app.sensor.maxLife = 20160
                             }
                         }
-                        if await main.app.sensor.serial.hasSuffix(sn) {
+                        if await main.app.sensor.serial.hasSuffix(serial) {
                             DispatchQueue.main.async {
                                 self.main.app.sensor.activationTime = UInt32(activationTime)
                                 self.main.app.sensor.age = Int(Date().timeIntervalSince(activationDate)) / 60
@@ -300,7 +281,7 @@ class LibreLinkUp: Logging {
                                 self.main.status("\(self.main.app.sensor.type)  +  LLU")
                             }
                         }
-                        log("LibreLinkUp: sensor serial: \(sn), activation date: \(activationDate) (timestamp = \(a)), device id: \(deviceId), product type: \(pt), sensor type: \(sensorType), alarms: \(alarms)")
+                        log("LibreLinkUp: sensor serial: \(serial), activation date: \(activationDate) (timestamp = \(activationTime)), device id: \(deviceId), sensor type: \(sensorType), alarms: \(alarms)")
                         if let lastGlucoseMeasurement = connection["glucoseMeasurement"] as? [String: Any],
                            let measurementData = try? JSONSerialization.data(withJSONObject: lastGlucoseMeasurement),
                            let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {

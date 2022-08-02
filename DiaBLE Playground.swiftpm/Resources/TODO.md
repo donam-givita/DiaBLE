@@ -3,8 +3,6 @@ FIXME
 
 * Libre 3:
   - Gen2 `.getSessionInfo` outpassed by new certificate data and ECDH ephemeral keys (whiteCryption's Secure Key Box)
-* iOS 15:
-  - *"NFC scan success sheet displayed when NFC scan time out"* (https://developer.apple.com/forums/thread/687264)
 * watchOS 9:
   - NavigationStack navigates directly back to the root
 * Xcode 13:
@@ -28,7 +26,7 @@ TODO
 * Apple Watch app: snapshots, workout and extended runtime background sessions, complications
 * Libre 3 / Gen2:
   - native and/or online en/decryption
-* alarm snooze
+* alarm snooze, public timers instead of SwiftUI private ones
 * scrollable graph, offline trend arrow, landscape mode, realtime RSSI
 * smooth the historic values and project the trend ones (see [LibreTransmitter](https://github.com/dabear/LibreTransmitter/commit/49b50d7995955b76861440e5e34a0accd064d18f))
 * log: limit to a number of readings, prepend time, Share menu, record to a file, add Logger support
@@ -40,5 +38,5 @@ TODO
 PLANS / WISHES
 ---------------
 
-* a predictive meal log using Machine Learning (see [WoofWoof](https://github.com/gshaviv/ninety-two))
+* a predictive meal log using Machine Learning (see [WoofWoof](https://github.com/gshaviv/ninety-two), [glupreview](https://github.com/solanovisitor/glupreview))
 * LoopKit integrations
