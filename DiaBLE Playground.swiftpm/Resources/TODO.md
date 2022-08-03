@@ -5,8 +5,6 @@ FIXME
   - Gen2 `.getSessionInfo` outpassed by new certificate data and ECDH ephemeral keys (whiteCryption's Secure Key Box)
 * watchOS 9:
   - NavigationStack navigates directly back to the root
-* Xcode 13:
-  - *"No 'async' operations occur within 'await' expression"* warnings
 * Playgrounds 4:
   - missing entitlements for HealthKit, NFC and Bluetooth background mode
 * Libre Pro / MiaoMiao:

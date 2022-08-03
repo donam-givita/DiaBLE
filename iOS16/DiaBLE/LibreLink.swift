@@ -312,7 +312,7 @@ class LibreLinkUp: Logging {
                                let ticketDict = json["ticket"] as? [String: Any],
                                let token = ticketDict["token"] as? String {
                                 self.log("LibreLinkUp: new token for logbook: \(token)")
-                                request.setValue(await "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
                                 request.url =  URL(string: "\(regionalSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/logbook")!
                                 debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
                                 let (data, response) = try await URLSession.shared.data(for: request)
