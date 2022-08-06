@@ -7,9 +7,6 @@ FIXME
   - NavigationStack navigates directly back to the root
 * Playgrounds 4:
   - missing entitlements for HealthKit, NFC and Bluetooth background mode
-* Libre Pro / MiaoMiao:
-  - `buffer[3...4]` doesn't match the real sensor age in `body[2...3]`
-  - the appended 21 historic blocks aren't dated properly
 * AppleWatch:
   - *"How do I add 'com.apple.developer.bluetooth-central-background' entitlement for WatchOS?"*
     (https://developer.apple.com/forums/thread/109947)

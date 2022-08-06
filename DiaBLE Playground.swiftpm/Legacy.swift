@@ -270,7 +270,7 @@ class Bubble: Transmitter {
 
 
 class MiaoMiao: Transmitter {
-    override class var type: DeviceType { DeviceType.transmitter(.miaomiao) }
+    // override class var type: DeviceType { DeviceType.transmitter(.miaomiao) }
     override class var name: String { "MiaoMiao" }
 
     enum UUID: String, CustomStringConvertible, CaseIterable {
@@ -419,6 +419,26 @@ class MiaoMiao: Transmitter {
         }
     }
 }
+
+// Legacy code from bluetoothDelegate didDiscoverCharacteristicsFor:
+
+// if app.device.type == .transmitter(.miaomiao) && serviceUUID == MiaoMiao.dataServiceUUID {
+//     let readCommand = app.device.readCommand(interval: settings.readingInterval)
+//     app.device.write(readCommand)
+//     log("\(app.device.name): writing start reading command 0x\(Data(readCommand).hex)")
+//     // app.device.write([0xD3, 0x01]); log("MiaoMiao: writing start new sensor command D301")
+// }
+
+// Legacy code from bluetoothDelegate didUpdateValueFor:
+
+// var headerLength = 0
+// if app.device.type == .transmitter(.miaomiao) && characteristic.uuid.uuidString == MiaoMiao.dataReadCharacteristicUUID {
+//     headerLength = 18 + 1
+// }
+// if let sensor = app.transmitter.sensor, sensor.fram.count > 0, app.transmitter.buffer.count >= (sensor.fram.count + headerLength) {
+//     main.parseSensorData(sensor)
+//     app.transmitter.buffer = Data()
+// }
 
 
 // https://github.com/NightscoutFoundation/xDrip/blob/master/app/src/main/java/com/eveningoutpost/dexdrip/UtilityModels/Blukon.java
