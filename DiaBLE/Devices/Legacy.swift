@@ -1,4 +1,5 @@
 import Foundation
+import CoreBluetooth
 import SwiftUI
 
 
@@ -126,6 +127,506 @@ class Limitter: Droplet {
 //    app.transmitter.peripheral?.readValue(for: app.transmitter.readCharacteristic!)
 //    log("Droplet (LimiTTer): reading data")
 // }
+
+
+// https://github.com/bubbledevteam/bubble-client-swift/
+
+
+class Bubble: Transmitter {
+    override class var type: DeviceType { DeviceType.transmitter(.bubble) }
+    override class var name: String { "Bubble" }
+
+    enum UUID: String, CustomStringConvertible, CaseIterable {
+        case data      = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
+        case dataWrite = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
+        case dataRead  = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
+
+        var description: String {
+            switch self {
+            case .data:      return "data"
+            case .dataWrite: return "data write"
+            case .dataRead:  return "data read"
+            }
+        }
+    }
+
+    override class var knownUUIDs: [String] { UUID.allCases.map(\.rawValue) }
+
+    override class var dataServiceUUID: String             { UUID.data.rawValue }
+    override class var dataWriteCharacteristicUUID: String { UUID.dataWrite.rawValue }
+    override class var dataReadCharacteristicUUID: String  { UUID.dataRead.rawValue }
+
+    enum ResponseType: UInt8, CustomStringConvertible {
+        case dataInfo            = 0x80
+        case dataPacket          = 0x82
+        case decryptedDataPacket = 0x88
+        case securityChallenge   = 0x8A
+        case noSensor            = 0xBF
+        case serialNumber        = 0xC0
+        case patchInfo           = 0xC1
+
+        var description: String {
+            switch self {
+            case .dataInfo:            return "data info"
+            case .dataPacket:          return "data packet"
+            case .decryptedDataPacket: return "decrypted data packet"
+            case .securityChallenge:   return "security challenge"
+            case .noSensor:            return "no sensor"
+            case .serialNumber:        return "serial number"
+            case .patchInfo:           return "patch info"
+            }
+        }
+    }
+
+
+    override func readCommand(interval: Int = 5) -> Data {
+        return Data([0x00, 0x00, UInt8(interval)])
+    }
+
+
+    override func parseManufacturerData(_ data: Data) {
+        let transmitterData = Data(data[8...11])
+        firmware = "\(Int(transmitterData[0])).\(Int(transmitterData[1]))"
+        hardware = "\(Int(transmitterData[2])).\(Int(transmitterData[3]))"
+        macAddress = Data(data[2...7].reversed())
+        var msg = "\(Self.name): advertised manufacturer data: firmware: \(firmware), hardware: \(hardware), MAC address: \(macAddress.hexAddress)"
+        if data.count > 12 {
+            battery = Int(data[12])
+            msg += ", battery: \(battery)"
+        }
+        log(msg)
+    }
+
+
+    override func read(_ data: Data, for uuid: String) {
+
+        // https://github.com/NightscoutFoundation/xDrip/blob/master/app/src/main/java/com/eveningoutpost/dexdrip/Models/Bubble.java
+
+        let response = ResponseType(rawValue: data[0])
+        log("\(name) response: \(response?.description ?? "unknown") (0x\(data[0...0].hex))")
+
+        if response == .noSensor {
+            main.status("\(name): no sensor")
+
+        } else if response == .dataInfo {
+            battery = Int(data[4])
+            firmware = "\(data[2]).\(data[3])"
+            hardware = "\(data[data.count - 2]).\(data[data.count - 1])"
+            log("\(name): battery: \(battery), firmware: \(firmware), hardware: \(hardware)")
+            let libreType = main.settings.patchInfo.count > 0 ? SensorType(patchInfo: main.settings.patchInfo) : .unknown
+            if Double(firmware)! >= 2.6 && (libreType == .libre2 || libreType == .libreUS14day) {
+                write(Data([0x08, 0x01, 0x00, 0x00, 0x00, 0x2B]))
+            } else {
+                write(Data([0x02, 0x01, 0x00, 0x00, 0x00, 0x2B]))
+            }
+
+        } else {
+            // TODO: instantiate specifically a Libre2() (when detecting A4 in the uid, i. e.)
+            if sensor == nil {
+                sensor = Sensor(transmitter: self)
+                main.app.sensor = sensor
+            }
+            if response == .serialNumber {
+                sensorUid = Data(data[2...9])
+                sensor!.uid = sensorUid
+                main.settings.patchUid = sensorUid
+                log("\(name): patch uid: \(sensor!.uid.hex)")
+
+            } else if response == .patchInfo {
+                sensor!.patchInfo = Data(Double(firmware)! < 1.35 ? data[3...8] : data[5...10])
+                main.settings.patchInfo = sensor!.patchInfo
+                main.settings.activeSensorSerial = sensor!.serial
+                log("\(name): patch info: \(sensor!.patchInfo.hex), sensor type: \(sensor!.type.rawValue), serial number: \(sensor!.serial)")
+
+            } else if response == .securityChallenge {
+                if buffer.count == 0 {
+                    buffer.append(data.suffix(from: 5))
+                } else if buffer.count == 15 {
+                    buffer.append(data.suffix(from: 4))
+                }
+                log("\(name): partial buffer size: \(buffer.count)")
+                if buffer.count == 28 {
+                    log("\(name): gen2 security challenge: \(buffer.prefix(25).hex)")
+                    buffer = Data()
+                }
+
+            } else if response == .dataPacket || response == .decryptedDataPacket {
+                if buffer.count == 0 {
+                    main.app.lastReadingDate = main.app.lastConnectionDate
+                    sensor!.lastReadingDate = main.app.lastConnectionDate
+                }
+                buffer.append(data.suffix(from: 4))
+                log("\(name): partial buffer size: \(buffer.count)")
+                if buffer.count >= 344 {
+                    let fram = buffer[..<344]
+                    // let footer = buffer.suffix(8)    // when firmware < 2.0
+                    sensor!.fram = Data(fram)
+                    main.status("\(sensor!.type)  +  \(name)")
+                }
+            }
+        }
+    }
+}
+
+
+class MiaoMiao: Transmitter {
+    override class var type: DeviceType { DeviceType.transmitter(.miaomiao) }
+    override class var name: String { "MiaoMiao" }
+
+    enum UUID: String, CustomStringConvertible, CaseIterable {
+        case data      = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
+        case dataWrite = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
+        case dataRead  = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
+
+        var description: String {
+            switch self {
+            case .data:      return "data"
+            case .dataWrite: return "data write"
+            case .dataRead:  return "data read"
+            }
+        }
+    }
+
+    override class var knownUUIDs: [String] { UUID.allCases.map(\.rawValue) }
+
+    override class var dataServiceUUID: String             { UUID.data.rawValue }
+    override class var dataWriteCharacteristicUUID: String { UUID.dataWrite.rawValue }
+    override class var dataReadCharacteristicUUID: String  { UUID.dataRead.rawValue }
+
+    enum ResponseType: UInt8, CustomStringConvertible {
+        case dataPacket = 0x28
+        case newSensor  = 0x32
+        case noSensor   = 0x34
+        case frequencyChange = 0xD1
+
+        var description: String {
+            switch self {
+            case .dataPacket:      return "data packet"
+            case .newSensor:       return "new sensor"
+            case .noSensor:        return "no sensor"
+            case .frequencyChange: return "frequency change"
+            }
+        }
+    }
+
+    override init(peripheral: CBPeripheral?, main: MainDelegate) {
+        super.init(peripheral: peripheral!, main: main)
+        if let peripheral = peripheral, peripheral.name!.contains("miaomiao2") {
+            name += " 2"
+        }
+    }
+
+    override func readCommand(interval: Int = 5) -> Data {
+        var command = [UInt8(0xF0)]
+        if [1, 3].contains(interval) {
+            command.insert(contentsOf: [0xD1, UInt8(interval)], at: 0)
+        }
+        return Data(command)
+    }
+
+    override func parseManufacturerData(_ data: Data) {
+        if data.count >= 8 {
+            macAddress = data.suffix(6)
+            log("\(Self.name): MAC address: \(macAddress.hexAddress)")
+        }
+    }
+
+    override func read(_ data: Data, for uuid: String) {
+
+        // https://github.com/NightscoutFoundation/xDrip/blob/master/app/src/main/java/com/eveningoutpost/dexdrip/Models/Tomato.java
+        // https://github.com/UPetersen/LibreMonitor/blob/Swift4/LibreMonitor/Bluetooth/MiaoMiaoManager.swift
+        // https://github.com/gshaviv/ninety-two/blob/master/WoofWoof/MiaoMiao.swift
+
+        let response = ResponseType(rawValue: data[0])
+        if buffer.count == 0 {
+            log("\(name) response: \(response?.description ?? "unknown") (0x\(data[0...0].hex))")
+        }
+        if data.count == 1 {
+            if response == .noSensor {
+                main.status("\(name): no sensor")
+            }
+            // TODO: prompt the user and allow writing the command 0xD301 to change sensor
+            if response == .newSensor {
+                main.status("\(name): detected a new sensor")
+            }
+        } else if data.count == 2 {
+            if response == .frequencyChange {
+                if data[1] == 0x01 {
+                    log("\(name): success changing frequency")
+                } else {
+                    log("\(name): failed to change frequency")
+                }
+            }
+        } else {
+            // TODO: instantiate specifically a Libre2() (when detecting A4 in the uid, i. e.)
+            if sensor == nil {
+                sensor = Sensor(transmitter: self)
+                main.app.sensor = sensor
+            }
+            if buffer.count == 0 {
+                main.app.lastReadingDate = main.app.lastConnectionDate
+                sensor!.lastReadingDate = main.app.lastConnectionDate
+            }
+            buffer.append(data)
+            log("\(name): partial buffer size: \(buffer.count)")
+
+            var framBlocks = 43
+
+            if buffer.count >= 363 {  // 18 + framBlocks * 8 + 1
+                log("\(name): data size: \(Int(buffer[1]) << 8 + Int(buffer[2]))")
+
+                battery = Int(buffer[13])
+                firmware = buffer[14...15].hex
+                hardware = buffer[16...17].hex
+                log("\(name): battery: \(battery), firmware: \(firmware), hardware: \(hardware)")
+
+                sensor!.age = Int(buffer[3]) << 8 + Int(buffer[4])
+                sensorUid = Data(buffer[5...12])
+                sensor!.uid = sensorUid
+                main.settings.patchUid = sensorUid
+                log("\(name): sensor age: \(sensor!.age) minutes (\(String(format: "%.1f", Double(sensor!.age)/60/24)) days), patch uid: \(sensor!.uid.hex)")
+
+
+                if buffer.count >= 369 {  // 18 + 43 * 8 + 1 + 6
+                    // TODO: verify that buffer[362] is the end marker 0x29
+                    sensor!.patchInfo = Data(buffer[363...368])
+                    main.settings.patchInfo = sensor!.patchInfo
+                    main.settings.activeSensorSerial = sensor!.serial
+                    log("\(name): patch info: \(sensor!.patchInfo.hex), sensor type: \(sensor!.type.rawValue), serial number: \(sensor!.serial)")
+
+                    if sensor != nil && sensor!.type == .libreProH {
+                        let libreProSensor = LibrePro(transmitter: self)
+                        // FIXME: buffer[3...4] doesn't match the real sensor age in body[2...3]
+                        libreProSensor.age = sensor!.age
+                        libreProSensor.uid = sensor!.uid
+                        libreProSensor.patchInfo = sensor!.patchInfo
+                        libreProSensor.lastReadingDate = sensor!.lastReadingDate
+                        sensor = libreProSensor
+                        main.app.sensor = sensor
+
+                        // TODO: manage the 21 partial historic blocks (28 measurements)
+                        framBlocks = 43 // 22
+
+                    }
+                } else {
+                    // https://github.com/dabear/LibreOOPAlgorithm/blob/master/app/src/main/java/com/hg4/oopalgorithm/oopalgorithm/AlgorithmRunner.java
+                    sensor!.patchInfo = Data([0xDF, 0x00, 0x00, 0x01, 0x01, 0x02])
+                }
+                sensor!.fram = Data(buffer[18 ..< 18 + framBlocks * 8])
+
+                main.status("\(sensor!.type)  +  \(name)")
+            }
+        }
+    }
+}
+
+
+// https://github.com/NightscoutFoundation/xDrip/blob/master/app/src/main/java/com/eveningoutpost/dexdrip/UtilityModels/Blukon.java
+// https://github.com/JohanDegraeve/xdripswift/tree/master/xdrip/BluetoothTransmitter/CGM/Libre/Blucon
+
+
+class BluCon: Transmitter {
+    override class var type: DeviceType { DeviceType.transmitter(.blu) }
+    override class var name: String { "BluCon" }
+
+    /// 6-digit pairing pass code, i.e. 415420
+    var passCode: Data = Data()
+
+    enum UUID: String, CustomStringConvertible, CaseIterable {
+        case data      = "436A62C0-082E-4CE8-A08B-01D81F195B24"
+        case dataWrite = "436AA6E9-082E-4CE8-A08B-01D81F195B24"
+        case dataRead  = "436A0C82-082E-4CE8-A08B-01D81F195B24"
+
+        var description: String {
+            switch self {
+            case .data:      return "data"
+            case .dataWrite: return "data write"
+            case .dataRead:  return "data read"
+            }
+        }
+    }
+
+    override class var knownUUIDs: [String] { UUID.allCases.map(\.rawValue) }
+
+    override class var dataServiceUUID: String             { UUID.data.rawValue }
+    override class var dataWriteCharacteristicUUID: String { UUID.dataWrite.rawValue }
+    override class var dataReadCharacteristicUUID: String  { UUID.dataRead.rawValue }
+
+
+    enum ResponseType: String, CustomStringConvertible {
+        case ack            = "8b0a00"
+        case patchUidInfo   = "8b0e"
+        case noSensor       = "8b1a02000f"
+        case readingError   = "8b1a020011"
+        case timeout        = "8b1a020014"
+        case sensorInfo     = "8bd9"
+        case battery        = "8bda"
+        case firmware       = "8bdb"
+        case singleBlock    = "8bde"
+        case multipleBlocks = "8bdf"
+        case wakeup         = "cb010000"
+        case batteryLow1    = "cb020000"
+        case batteryLow2    = "cbdb0000"
+
+        var description: String {
+            switch self {
+            case .ack:            return "ack"
+            case .patchUidInfo:   return "patch uid/info"
+            case .noSensor:       return "no sensor"
+            case .readingError:   return "reading error"
+            case .timeout:        return "timeout"
+            case .sensorInfo:     return "sensor info"
+            case .battery:        return "battery"
+            case .firmware:       return "firmware"
+            case .singleBlock:    return "single block"
+            case .multipleBlocks: return "multiple blocks"
+            case .wakeup:         return "wake up"
+            case .batteryLow1:    return "battery low 1"
+            case .batteryLow2:    return "battery low 2"
+            }
+        }
+    }
+
+
+    // read single block:    01 0d 0e 01 <block number>
+    // read multiple blocks: 01 0d 0f 02 <start block> <end block>
+
+    enum RequestType: String, CustomStringConvertible {
+        case none         = ""
+        case ack          = "81 0a 00"
+        case sleep        = "01 0c 0e 00"
+        case wakeupReply  = "01 0c 0f 00"
+        case sensorInfo   = "01 0d 09 00"
+        case fram         = "01 0d 0f 02 00 2b"
+        case battery      = "01 0d 0a 00"
+        case firmware     = "01 0d 0b 00"
+        case patchUid     = "01 0e 00 03 26 01 00"
+        case patchInfo    = "01 0e 00 03 02 a1 07"
+
+        var description: String {
+            switch self {
+            case .none:        return "none"
+            case .ack:         return "ack"
+            case .sleep:       return "sleep"
+            case .wakeupReply: return "wake up response"
+            case .sensorInfo:  return "sensor info"
+            case .fram:        return "fram"
+            case .battery:     return "battery"
+            case .firmware:    return "firmware"
+            case .patchUid:    return "patch uid"
+            case .patchInfo:   return "patch info"
+            }
+        }
+    }
+
+    var currentRequest: RequestType = .none
+
+    func write(request: RequestType) {
+        write(request.rawValue.bytes, .withResponse)
+        currentRequest = request
+        log("\(name): did write request for \(request)")
+    }
+
+
+    override func readCommand(interval: Int = 5) -> Data {
+        return Data([0x00]) // TODO
+    }
+
+
+    override func read(_ data: Data, for uuid: String) {
+
+        let dataHex = data.hex
+
+        let response = ResponseType(rawValue: dataHex)
+        log("\(name) response: \(response?.description ?? "data") (0x\(dataHex))")
+
+        guard data.count > 0 else { return }
+
+        if response == .timeout {
+            main.status("\(name): timeout")
+            write(request: .sleep)
+
+        } else if response == .noSensor {
+            main.status("\(name): no sensor")
+            // write(request: .sleep) // FIXME: causes an immediate .wakeup
+
+        } else if response == .wakeup {
+            write(request: .sensorInfo)
+
+        } else {
+            // TODO: instantiate specifically a Libre2() (when detecting A4 in the uid, i. e.)
+            if sensor == nil {
+                sensor = Sensor(transmitter: self)
+                main.app.sensor = sensor
+            }
+            if dataHex.hasPrefix(ResponseType.sensorInfo.rawValue) {
+                sensorUid = Data(data[3...10])
+                sensor!.uid = sensorUid
+                main.settings.patchUid = sensorUid
+                // FIXME: doesn't work with Libre 2
+                if let sensorState = SensorState(rawValue: data[17]) {
+                    sensor!.state = sensorState
+                }
+                log("\(name): patch uid: \(sensor!.uid.hex), serial number: \(sensor!.serial), sensor state: \(sensor!.state)")
+                if sensor!.state == .active {
+                    write(request: .ack)
+                } else {
+                    write(request: .sleep)
+                }
+
+            } else if response == .ack {
+                if currentRequest == .ack {
+                    write(request: .firmware)
+                } else { // after a .sleep request
+                    currentRequest = .none
+                }
+
+            } else if dataHex.hasPrefix(ResponseType.firmware.rawValue) {
+                let firmware = dataHex.bytes.dropFirst(2).map { String($0) }.joined(separator: ".")
+                self.firmware = firmware
+                log("\(name): firmware: \(firmware)")
+                write(request: .battery)
+
+            } else if dataHex.hasPrefix(ResponseType.battery.rawValue) {
+                if data[2] == 0xaa {
+                    // battery = 100 // TODO
+                } else if data[2] == 0x02 {
+                    battery = 5
+                }
+                write(request: .patchInfo)
+                // write(request: .patchUid) // will give same .patchUidInfo response type
+
+            } else if dataHex.hasPrefix(ResponseType.patchUidInfo.rawValue) {
+                if currentRequest == .patchInfo {
+                    let patchInfo = Data(data[3...])
+                    sensor!.patchInfo = patchInfo
+                    main.settings.patchInfo = sensor!.patchInfo
+                    log("\(name): patch info: \(sensor!.patchInfo.hex) (sensor type: \(sensor!.type.rawValue))")
+                } else if currentRequest == .patchUid {
+                    sensorUid = Data(data[4...])
+                    sensor!.uid = sensorUid
+                    main.settings.patchUid = sensorUid
+                    main.settings.activeSensorSerial = sensor!.serial
+                    log("\(name): patch uid: \(sensor!.uid.hex), serial number: \(sensor!.serial)")
+                }
+                write(request: .fram)
+
+            } else if dataHex.hasPrefix(ResponseType.multipleBlocks.rawValue) {
+                if buffer.count == 0 {
+                    main.app.lastReadingDate = main.app.lastConnectionDate
+                    sensor!.lastReadingDate = main.app.lastConnectionDate
+                }
+                buffer.append(data.suffix(from: 4))
+                log("\(name): partial buffer size: \(buffer.count)")
+                if buffer.count == 344 {
+                    write(request: .sleep)
+                    sensor!.fram = Data(buffer)
+                    main.status("\(sensor!.type)  +  \(name)")
+                }
+            }
+        }
+    }
+}
 
 
 class Watlaa: Watch {

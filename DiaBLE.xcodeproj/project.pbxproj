@@ -10,8 +10,6 @@
 		C501BE47242A1ABD006C7F30 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C501BE46242A1ABD006C7F30 /* Settings.swift */; };
 		C50FA49323CA7B9400928229 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C50FA49223CA7B9400928229 /* HealthKit.framework */; };
 		C513933123B8EB7600CB245F /* alarm_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C513933023B8EB7600CB245F /* alarm_high.mp3 */; };
-		C517F87126404B0A0038FEAB /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517F87026404B0A0038FEAB /* Bubble.swift */; };
-		C517F87226404B0A0038FEAB /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = C517F87026404B0A0038FEAB /* Bubble.swift */; };
 		C51BF8CF25DD04C2003D64FB /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51BF8CE25DD04C2003D64FB /* Plan.swift */; };
 		C522C77123D4D363002021F7 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C522C77023D4D363002021F7 /* Details.swift */; };
 		C5248A9E26FD00D300DF1ED7 /* LibrePro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5248A9D26FD00D300DF1ED7 /* LibrePro.swift */; };
@@ -31,12 +29,8 @@
 		C5521C8223BB5D5A00826CFB /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5521C8123BB5D5A00826CFB /* App.swift */; };
 		C55A7F9B253F3EBD00423648 /* NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C597AF6A23AB9E3E0012926C /* NFC.swift */; };
 		C55AE3B5245EB1A3009636E0 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55AE3B4245EB1A3009636E0 /* DataView.swift */; };
-		C55B173C27395AC1001D3214 /* BluCon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B173B27395AC1001D3214 /* BluCon.swift */; };
-		C55B173D27395AC1001D3214 /* BluCon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B173B27395AC1001D3214 /* BluCon.swift */; };
 		C55B5D16245FCBE50004FE3B /* OnlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B5D15245FCBE50004FE3B /* OnlineView.swift */; };
 		C566341323B14D55001EB5F3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566341223B14D55001EB5F3 /* Extensions.swift */; };
-		C572310C2643C17800F51A47 /* MiaoMiao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572310B2643C17800F51A47 /* MiaoMiao.swift */; };
-		C572310D2643C17800F51A47 /* MiaoMiao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572310B2643C17800F51A47 /* MiaoMiao.swift */; };
 		C5841EBE26CCD40200922DFC /* Gen2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5841EBD26CCD40200922DFC /* Gen2.swift */; };
 		C5841EBF26CCD40200922DFC /* Gen2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5841EBD26CCD40200922DFC /* Gen2.swift */; };
 		C58507A123C50BF30079539D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58507A023C50BF30079539D /* Assets.xcassets */; };
@@ -148,7 +142,6 @@
 		C501BE46242A1ABD006C7F30 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C50FA49223CA7B9400928229 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		C513933023B8EB7600CB245F /* alarm_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_high.mp3; sourceTree = "<group>"; };
-		C517F87026404B0A0038FEAB /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
 		C51BF8CE25DD04C2003D64FB /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		C522C77023D4D363002021F7 /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		C5248A9D26FD00D300DF1ED7 /* LibrePro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibrePro.swift; sourceTree = "<group>"; };
@@ -163,10 +156,8 @@
 		C54B46CA26CC3EF700870B6E /* OOP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OOP.swift; sourceTree = "<group>"; };
 		C5521C8123BB5D5A00826CFB /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		C55AE3B4245EB1A3009636E0 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
-		C55B173B27395AC1001D3214 /* BluCon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluCon.swift; sourceTree = "<group>"; };
 		C55B5D15245FCBE50004FE3B /* OnlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
 		C566341223B14D55001EB5F3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		C572310B2643C17800F51A47 /* MiaoMiao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiaoMiao.swift; sourceTree = "<group>"; };
 		C5841EBD26CCD40200922DFC /* Gen2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gen2.swift; sourceTree = "<group>"; };
 		C585079B23C50BF20079539D /* DiaBLE Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaBLE Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58507A023C50BF30079539D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -309,9 +300,6 @@
 			isa = PBXGroup;
 			children = (
 				C5D1AFE52599D5FA00F6C4C9 /* Abbott.swift */,
-				C55B173B27395AC1001D3214 /* BluCon.swift */,
-				C517F87026404B0A0038FEAB /* Bubble.swift */,
-				C572310B2643C17800F51A47 /* MiaoMiao.swift */,
 				C5FE8E9F2752732E00372495 /* Legacy.swift */,
 			);
 			path = Devices;
@@ -534,7 +522,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5E9C7572444964700D52B32 /* Glucose.swift in Sources */,
-				C517F87226404B0A0038FEAB /* Bubble.swift in Sources */,
 				C5ADAF40245B4CCF003A2E8B /* BluetoothDelegate.swift in Sources */,
 				C5E9C75A2444967300D52B32 /* Sensor.swift in Sources */,
 				C5AE0C332746F21200B3F6B9 /* Libre3.swift in Sources */,
@@ -544,7 +531,6 @@
 				C5E9C7592444966A00D52B32 /* Bluetooth.swift in Sources */,
 				C58507AD23C50BF40079539D /* ContentView.swift in Sources */,
 				C53C0D0924471FF200DB08EE /* Details.swift in Sources */,
-				C55B173D27395AC1001D3214 /* BluCon.swift in Sources */,
 				C58507B323C50BF40079539D /* NotificationController.swift in Sources */,
 				C55AE3B5245EB1A3009636E0 /* DataView.swift in Sources */,
 				C528E18324450BC000BFDA73 /* Graph.swift in Sources */,
@@ -552,7 +538,6 @@
 				C5F329D4244998230053A8FB /* Nightscout.swift in Sources */,
 				C5E9C7582444966500D52B32 /* Settings.swift in Sources */,
 				C58507B523C50BF40079539D /* NotificationView.swift in Sources */,
-				C572310D2643C17800F51A47 /* MiaoMiao.swift in Sources */,
 				C5E9C756244495D700D52B32 /* App.swift in Sources */,
 				C5ADAF43245B4E56003A2E8B /* Device.swift in Sources */,
 				C58507B723C50BF40079539D /* ComplicationController.swift in Sources */,
@@ -588,7 +573,6 @@
 				C5F06F7B282E516200CC1297 /* LibreLink.swift in Sources */,
 				C5DF10F623C7838B0023E0E2 /* Graph.swift in Sources */,
 				C593F91525976AED00DA3010 /* HamburgerMenu.swift in Sources */,
-				C517F87126404B0A0038FEAB /* Bubble.swift in Sources */,
 				C566341323B14D55001EB5F3 /* Extensions.swift in Sources */,
 				C549DD0023F198B700088A4C /* Events.swift in Sources */,
 				C5965CC323DCC13300B3C5D8 /* ViewRepresentables.swift in Sources */,
@@ -605,10 +589,8 @@
 				C5ADAF42245B4E56003A2E8B /* Device.swift in Sources */,
 				C5C7187B23E2FB5000D04EA7 /* Glucose.swift in Sources */,
 				C54B46CB26CC3EF700870B6E /* OOP.swift in Sources */,
-				C55B173C27395AC1001D3214 /* BluCon.swift in Sources */,
 				C5C937E423CBA0AE00A87BAB /* Health.swift in Sources */,
 				C5DF10F423C783140023E0E2 /* Console.swift in Sources */,
-				C572310C2643C17800F51A47 /* MiaoMiao.swift in Sources */,
 				C5A5797023A2CF0700945F72 /* Sensor.swift in Sources */,
 				C5D1B001259A167A00F6C4C9 /* Libre2.swift in Sources */,
 			);
