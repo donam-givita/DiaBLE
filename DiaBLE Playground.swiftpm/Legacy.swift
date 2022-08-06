@@ -133,7 +133,7 @@ class Limitter: Droplet {
 
 
 class Bubble: Transmitter {
-    override class var type: DeviceType { DeviceType.transmitter(.bubble) }
+    // override class var type: DeviceType { DeviceType.transmitter(.bubble) }
     override class var name: String { "Bubble" }
 
     enum UUID: String, CustomStringConvertible, CaseIterable {
@@ -267,6 +267,24 @@ class Bubble: Transmitter {
         }
     }
 }
+
+// Legacy code from bluetoothDelegate didDiscoverCharacteristicsFor:
+
+// if app.device.type == .transmitter(.bubble) && serviceUUID == Bubble.dataServiceUUID {
+//     let readCommand = app.transmitter.readCommand(interval: settings.readingInterval)
+//     app.device.write(readCommand)
+//     log("Bubble: writing start reading command 0x\(Data(readCommand).hex)")
+//     // app.device.write([0x00, 0x01, 0x05])
+//     // log("Bubble: writing reset and send data every 5 minutes command 0x000105")
+// }
+
+// Legacy code from bluetoothDelegate didUpdateValueFor:
+
+// } else if app.device.type == .transmitter(.bubble) {
+//     if let sensor = app.transmitter.sensor, sensor.fram.count > 0, app.transmitter.buffer.count >= sensor.fram.count {
+//         main.parseSensorData(sensor)
+//         app.transmitter.buffer = Data()
+//     }
 
 
 class MiaoMiao: Transmitter {
