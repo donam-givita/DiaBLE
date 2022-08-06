@@ -446,7 +446,7 @@ class MiaoMiao: Transmitter {
 
 
 class BluCon: Transmitter {
-    override class var type: DeviceType { DeviceType.transmitter(.blu) }
+    // override class var type: DeviceType { DeviceType.transmitter(.blu) }
     override class var name: String { "BluCon" }
 
     /// 6-digit pairing pass code, i.e. 415420

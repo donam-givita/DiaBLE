@@ -68,8 +68,7 @@ struct SettingsView: View {
                     HStack {
                         Spacer()
                         Stepper(value: $settings.readingInterval,
-                                in: settings.preferredTransmitter == .blu || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.blu)) ?
-                                5 ... 5 : settings.preferredTransmitter == .abbott || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.abbott)) ?
+                                in: settings.preferredTransmitter == .abbott || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.abbott)) ?
                                 1 ... 1 : 1 ... 15,
                                 step: 1,
                                 label: {
