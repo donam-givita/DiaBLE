@@ -259,8 +259,8 @@ class LibreLinkUp: Logging {
                     }
                     if let device = connection["patientDevice"] as? [String: Any],
                        let deviceId = device["did"] as? String,
-                       let alarms = device["alarms"] as? Bool {
-                        let serial = deviceSerials[deviceId]!
+                       let alarms = device["alarms"] as? Bool,
+                       let serial = deviceSerials[deviceId] {
                         let sensorType = deviceTypes[deviceId]!
                         let activationTime = deviceActivationTimes[deviceId]!
                         let activationDate = Date(timeIntervalSince1970: Double(activationTime))
