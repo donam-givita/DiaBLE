@@ -148,7 +148,7 @@
 		C528E1802445097400BFDA73 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
 		C528E18224450BC000BFDA73 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		C528E1842445A60200BFDA73 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		C52F1A5D24975F12004C2F90 /* company_ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_ids.json; sourceTree = "<group>"; };
+		C52F1A5D24975F12004C2F90 /* company_ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = company_ids.json; path = ../../DiaBLE/company_ids.json; sourceTree = "<group>"; };
 		C53C0D0824471FF200DB08EE /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		C53C76EC23D9AFD700B59A98 /* Nightscout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nightscout.swift; sourceTree = "<group>"; };
 		C53C76EE23D9B87A00B59A98 /* OnlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
@@ -235,15 +235,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C52F1A5C24975E4F004C2F90 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				C52F1A5D24975F12004C2F90 /* company_ids.json */,
-			);
-			name = Data;
-			path = ../../DiaBLE/Data;
-			sourceTree = "<group>";
-		};
 		C52F1A6024976D3D004C2F90 /* Media */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,15 +289,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C5D1AFE12599D5A300F6C4C9 /* Devices */ = {
-			isa = PBXGroup;
-			children = (
-				C5D1AFE52599D5FA00F6C4C9 /* Abbott.swift */,
-				C5FE8E9F2752732E00372495 /* Legacy.swift */,
-			);
-			path = Devices;
-			sourceTree = "<group>";
-		};
 		C5E1012D23A2774C00678DF6 = {
 			isa = PBXGroup;
 			children = (
@@ -334,8 +316,6 @@
 		C5E1013823A2774C00678DF6 /* DiaBLE */ = {
 			isa = PBXGroup;
 			children = (
-				C52F1A5C24975E4F004C2F90 /* Data */,
-				C5D1AFE12599D5A300F6C4C9 /* Devices */,
 				C52F1A6024976D3D004C2F90 /* Media */,
 				C5C20E4323C77F7700475327 /* Views */,
 				C566341223B14D55001EB5F3 /* Extensions.swift */,
@@ -347,6 +327,7 @@
 				C5FB2EF223A2794D0046F4F9 /* MainDelegate.swift */,
 				C5C7187A23E2FB5000D04EA7 /* Glucose.swift */,
 				C5A5796F23A2CF0700945F72 /* Sensor.swift */,
+				C5D1AFE52599D5FA00F6C4C9 /* Abbott.swift */,
 				C5D1B000259A167A00F6C4C9 /* Libre2.swift */,
 				C5AE0C312746F21200B3F6B9 /* Libre3.swift */,
 				C5248A9D26FD00D300DF1ED7 /* LibrePro.swift */,
@@ -355,9 +336,11 @@
 				C5C937E323CBA0AE00A87BAB /* Health.swift */,
 				C597AF6A23AB9E3E0012926C /* NFC.swift */,
 				C59FE28B26AFD7A600F7F18F /* NFCTools.swift */,
+				C5F06F7A282E516200CC1297 /* LibreLink.swift */,
 				C53C76EC23D9AFD700B59A98 /* Nightscout.swift */,
 				C54B46CA26CC3EF700870B6E /* OOP.swift */,
-				C5F06F7A282E516200CC1297 /* LibreLink.swift */,
+				C5FE8E9F2752732E00372495 /* Legacy.swift */,
+				C52F1A5D24975F12004C2F90 /* company_ids.json */,
 				C5E1014223A2774D00678DF6 /* Assets.xcassets */,
 				C5E1014A23A2774D00678DF6 /* Info.plist */,
 				C5C80BCA23A27EFA00ACFDE9 /* DiaBLE.entitlements */,
