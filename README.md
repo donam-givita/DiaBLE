@@ -11,9 +11,7 @@ Since the latest **FreeStyle Libre glucose sensors** are **B**luetooth **L**ow *
 * varying the **reading interval** instead of the usual 5-minute one;
 * a detailed **log** to check the traffic from/to the BLE devices and remote servers.
 
-The project started as a single script for the iPad Swift Playgrounds to test the workings of the several BLE transmitters I bought and then quickly converted to an app when the Libre 2 came out at last by using a standard Xcode template: it should compile fine without external dependencies just after changing the _Bundle Identifier_ in the _General_ panel of the _Targets_ settings and the _Team_ in the _Signing and Capabilities_ tab of Xcode -- Spike and xDrip4iO5 users know already very well what that means... ;-)
-
-If you own an iPad you can just download the [zipped archive](https://github.com/gui-dos/DiaBLE/archive/refs/heads/main.zip) of this repository and tap _DiaBLE Playground.swiftpm_.
+The project should compile fine without external dependencies just after changing the _Bundle Identifier_ in the _General_ panel of the _Targets_ settings and the _Team_ in the _Signing and Capabilities_ tab of Xcode -- Spike and xDrip4iO5 users know already very well what that means... ;-)
 
 I am targeting only the latest betas of Xcode and iOS. The new _async / await_ and _actors_ introduced in Swift 5.5 and iOS 15 probably would require a total rewrite of DiaBLE's foundations, as well as the enhanced *Gen2* protocols adopted by the recent Libre 2 Sense/US/CA/AU which haven't been reversed yet.
 
