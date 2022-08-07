@@ -5,7 +5,6 @@ import Foundation
 
 extension String {
     /// Converts a LibreView account ID string into a receiverID
-    /// i.e. "2977dec2-492a-11ea-9702-0242ac110002" -> 524381581
     var fnv32Hash: UInt32 { UInt32(self.reduce(0) { 0xFFFFFFFF & (UInt64($0) * 0x811C9DC5) ^ UInt64($1.asciiValue!) }) }
 }
 
@@ -14,15 +13,15 @@ class Libre3: Sensor {
 
 
     enum State: UInt8, CustomStringConvertible {
-        case manufacturing      = 0    // PATCH_STATE_MANUFACTURING
-        case storage            = 1    // PATCH_STATE_STORAGE
-        case insertionDetection = 2    // PATCH_STATE_INSERTION_DETECTION
-        case insertionFailed    = 3    // PATCH_STATE_INSERTION_FAILED
-        case paired             = 4    // PATCH_STATE_PAIRED
-        case expired            = 5    // PATCH_STATE_EXPIRED
-        case terminated         = 6    // PATCH_STATE_TERMINATED_NORMAL
-        case error              = 7    // PATCH_STATE_ERROR
-        case errorTerminated    = 8    // PATCH_STATE_ERROR_TERMINATED
+        case manufacturing      = 0
+        case storage            = 1
+        case insertionDetection = 2
+        case insertionFailed    = 3
+        case paired             = 4
+        case expired            = 5
+        case terminated         = 6
+        case error              = 7
+        case errorTerminated    = 8
 
         var description: String {
             switch self {
@@ -40,14 +39,14 @@ class Libre3: Sensor {
     }
 
 
-    enum LifeState: Int, CustomStringConvertible {  // SensorLifeState
-        case missing         = 1    // MISSING
-        case warmup          = 2    // WARMUP
-        case ready           = 3    // READY
-        case expired         = 4    // EXPIRED
-        case active          = 5    // ACTIVE
-        case ended           = 6    // ENDED
-        case insertionFailed = 7    // INSERTION_FAILED
+    enum LifeState: Int, CustomStringConvertible {
+        case missing         = 1
+        case warmup          = 2
+        case ready           = 3
+        case expired         = 4
+        case active          = 5
+        case ended           = 6
+        case insertionFailed = 7
 
         var description: String {
             switch self {
@@ -63,10 +62,10 @@ class Libre3: Sensor {
     }
 
 
-    enum Condition: Int, CustomStringConvertible {   // SensorCondition
-        case ok      = 0    // LIBRE3_SENSOR_CONDITION_OK        - OK
-        case invalid = 1    // LIBRE3_SENSOR_CONDITION_INVALID   - INVALID
-        case esa     = 2    // LIBRE3_SENSOR_CONDITION_ESA_CHECK - ESA
+    enum Condition: Int, CustomStringConvertible {
+        case ok      = 0
+        case invalid = 1
+        case esa     = 2
 
         var description: String {
             switch self {
@@ -92,9 +91,9 @@ class Libre3: Sensor {
 
 
     enum ResultRange: Int, CustomStringConvertible {
-        case `in`  = 0    // IN_RANGE
-        case below = 1    // BELOW_RANGE
-        case above = 2    // ABOVE_RANGE
+        case `in`  = 0
+        case below = 1
+        case above = 2
 
         var description: String {
             switch self {
@@ -107,8 +106,6 @@ class Libre3: Sensor {
 
 
     // TODO: var members, struct references
-
-    // libre3DPCRLInterface
 
 
     struct PatchInfo {
@@ -164,11 +161,6 @@ class Libre3: Sensor {
     }
 
 
-    // - The payload to append to `A8` to activate a sensor (CMD_SWITCH_RECEIVER)
-    //   is formed by the activation time - 1 (4 bytes), the `receiverID` (4 bytes)
-    //   and a final CRC (NFC_ACTIVATION_COMMAND_PAYLOAD_SIZE = 10 bytes)
-    // - The 18-byte reply starts with the dummy bytes `A5 00` and ends in a CRC16
-
     struct ActivationResponse {
         let bdAddress: Data         // 6 bytes
         let BLE_Pin: Data           // 4 bytes
@@ -211,7 +203,7 @@ class Libre3: Sensor {
         var sensor: Sensor
         var deviceType: Int
         var cryptoLib: Any
-        var securityContext: Int    // ISecurityContext
+        var securityContext: Int
         var patchEphemeral: Data
         var r1: Data
         var r2: Data
@@ -228,66 +220,22 @@ class Libre3: Sensor {
 
     enum UUID: String, CustomStringConvertible, CaseIterable {
 
-        /// Advertised primary data service
-        case data = "089810CC-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case data             = "089810CC-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case patchControl     = "08981338-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case patchStatus      = "08981482-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case oneMinuteReading = "0898177A-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case historicalData   = "0898195A-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case clinicalData     = "08981AB8-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case eventLog         = "08981BEE-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case factoryData      = "08981D24-EF89-11E9-81B4-2A2AE2DBCCE4"
 
-        /// Requests data by writing 13 bytes embedding a "patch control command" (7 bytes)
-        /// and a final sequential Int (starting by 01 00) since it is enqueued
-        /// Notifies at the end of the data stream 10 bytes ending in the enqueued id
-        /// (for example 01 00 and 02 00 when receiving historic and clinical data on 195A and 1AB8)
-        case patchControl = "08981338-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Write"]
+        case security         = "0898203A-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case securityCommands = "08982198-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case challengeData    = "089822CE-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case certificateData  = "089823FA-EF89-11E9-81B4-2A2AE2DBCCE4"
 
-        // Receiving "Encryption is insufficient" error when activating notifications before the security commands
-        /// Notifies one or more 18-byte packets during a connection
-        case patchStatus = "08981482-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Read"]
-
-        /// Notifies every minute 35 bytes as two packets of 15 + 20 bytes ending in a sequential id
-        case oneMinuteReading = "0898177A-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify"]
-
-        /// Notifies a first stream of historic data
-        /// Very probably 6 readings of 3 bytes are indexed in each packet (12 readings = 2 packets per hour) and sent as FastData on .clinicalData
-        /// (`ABT_HISTORICAL_POINTS_PER_NOTIFICATION` = 6)
-        case historicalData = "0898195A-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify"]
-
-        /// Notifies a second longer stream of clinical data (max 128 packets when reconnecting aftert some hours)
-        case clinicalData = "08981AB8-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify"]
-
-        /// Notifies 20 + 20 bytes towards the end of activation
-        /// Notifies 20 bytes when shutting down a sensor (CTRL_CMD_SHUTDOWN_PATCH)
-        /// and at the first connection after activation
-        case eventLog = "08981BEE-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify"]
-
-        /// Notifies the final stream of data during activation
-        case factoryData = "08981D24-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify"]
-
-        /// Security service
-        case security = "0898203A-EF89-11E9-81B4-2A2AE2DBCCE4"
-
-        /// - Writes a single byte command
-        /// - May notify two bytes: the successful status and the effective length of the payload streamed on 22CE / 23FA
-        /// - 01: very first command when activating a sensor
-        /// - 02: written immediately after 01
-        /// - 03: third command sent during activation
-        /// - 04: notified immediately after 03
-        /// - 08: read the final 67-byte session info, notifies 08 43 -> 22CE notifies 67 bytes + prefixes
-        /// - 09: during activation notifies A0 8C -> 23FA notifies 140 bytes + prefixes
-        /// - 0D: during activation is written before 0E
-        /// - 0E: during activation notifies 0F 41 -> 23FA notifies 65 bytes + prefixes
-        /// - 11: read the 23-byte security challenge, notifies 08 17
-        case securityCommands = "08982198-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Write"]
-
-        /// Notifies the 23-byte security challenge + prefixes
-        /// Writes the 40-byte unlock payload + prefixes
-        /// Notifies the 67-byte session info + prefixes
-        /// The first two of the last seven notified bytes (16 + 7, 60 + 7) are a progressive Int since activation
-        case challengeData = "089822CE-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Write"]
-
-        /// Writes and notifies 20-byte packets during activation and repairing a sensor
-        case certificateData = "089823FA-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Write"]
-
-        // TODO:
-        case debug = "08982400-EF89-11E9-81B4-2A2AE2DBCCE4"
-        case bleLogin = "F001"
+        case debug =            "08982400-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case bleLogin =         "F001"
 
         var description: String {
             switch self {
@@ -311,22 +259,15 @@ class Libre3: Sensor {
 
     class var knownUUIDs: [String] { UUID.allCases.map(\.rawValue) }
 
-
-    /// Single byte command written to the .securityCommands characteristic 0x2198
     enum SecurityCommand: UInt8, CustomStringConvertible {
 
-        // can be sent sequentially during both the initial activation and when repairing a sensor
-        case security_01 = 0x01
-        case security_02 = 0x02
-        case security_03 = 0x03
-        case security_09 = 0x09
-        case security_0D = 0x0D
-        case security_0E = 0x0E
-
-        /// final command to get a 67-byte session info
+        case security_01    = 0x01
+        case security_02    = 0x02
+        case security_03    = 0x03
+        case security_09    = 0x09
+        case security_0D    = 0x0D
+        case security_0E    = 0x0E
         case getSessionInfo = 0x08
-
-        /// first command sent when reconnecting
         case readChallenge  = 0x11
 
         var description: String {
@@ -343,23 +284,23 @@ class Libre3: Sensor {
         }
     }
 
-    /// 13 bytes written to the .patchControl characteristic 0x1338:
+    /// 13 bytes written to .patchControl:
     /// - PATCH_CONTROL_COMMAND_SIZE = 7
     /// - a final sequential Int starting by 01 00 since it is enqueued
     enum ControlCommand {
-        case historic(Data)       // 1 - CTRL_CMD_HISTORIC
+        case historic(Data)       // 1
 
         /// Requests past clinical data
         /// - 010101 9B48 0000 requests clinical data from lifeCount 18587 (0x9B48)
-        case backfill(Data)       // 2 - CTRL_CMD_BACKFILL
+        case backfill(Data)       // 2
 
         /// - 040100 0000 0000
-        case eventLog(Data)       // 3 - CTRL_CMD_EVENTLOG
+        case eventLog(Data)       // 3
 
         /// - 060000 0000 0000
-        case factoryData(Data)    // 4 - CTRL_CMD_FACTORY_DATA
+        case factoryData(Data)    // 4
 
-        case shutdownPatch(Data)  // 5 - CTRL_CMD_SHUTDOWN_PATCH
+        case shutdownPatch(Data)  // 5
     }
 
     var receiverId: UInt32 = 0    // fnv32Hash of LibreView ID string
@@ -513,7 +454,6 @@ class Libre3: Sensor {
                 } else if data[1] == 67 {
                     currentSecurityCommand = .getSessionInfo
                 }
-
                 // TODO: 140 and 65 .certificateData bytes received during activation/repair
             }
             if currentSecurityCommand == .security_03 && data.count == 1 && data[0] == 0x04 {
