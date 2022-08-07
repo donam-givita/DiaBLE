@@ -48,7 +48,7 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
         extendedSession.delegate = self
         bluetoothDelegate.main = self
 
-        if let healthKit = healthKit {
+        if let healthKit {
             healthKit.main = self
             healthKit.authorize {
                 self.log("HealthKit: \( $0 ? "" : "not ")authorized")
@@ -121,7 +121,7 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
 
     public func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         log("TODO: handling background tasks")
-    }
+    }    
 
 
     public func rescan() {
@@ -236,7 +236,7 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
 
     func applyCalibration(sensor: Sensor?) {
 
-        if let sensor = sensor, sensor.history.count > 0, settings.calibrating {
+        if let sensor, sensor.history.count > 0, settings.calibrating {
 
             if app.calibration != .empty {
 
@@ -270,7 +270,7 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
 
         applyCalibration(sensor: sensor)
 
-        guard let sensor = sensor else {
+        guard let sensor else {
             extendedSession.start(at: max(app.lastReadingDate, app.lastConnectionDate) + Double(settings.readingInterval * 60) - 5.0)
             log("Watch: extended session to be started in \(Double(settings.readingInterval * 60) - 5.0) seconds")
             return

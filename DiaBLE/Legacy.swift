@@ -133,7 +133,7 @@ class Limitter: Droplet {
 
 
 class Bubble: Transmitter {
-   // override class var type: DeviceType { DeviceType.transmitter(.bubble) }
+    // override class var type: DeviceType { DeviceType.transmitter(.bubble) }
     override class var name: String { "Bubble" }
 
     enum UUID: String, CustomStringConvertible, CaseIterable {
@@ -329,7 +329,7 @@ class MiaoMiao: Transmitter {
 
     override init(peripheral: CBPeripheral?, main: MainDelegate) {
         super.init(peripheral: peripheral!, main: main)
-        if let peripheral = peripheral, peripheral.name!.contains("miaomiao2") {
+        if let peripheral, peripheral.name!.contains("miaomiao2") {
             name += " 2"
         }
     }
@@ -1383,7 +1383,7 @@ func postToOOP(server: OOPServer, bytes: Data = Data(), date: Date = Date(), pat
 
     var queryItems: [URLQueryItem] = bytes.count > 0 ? [URLQueryItem(name: "content", value: bytes.hex)] : []
     let date = Int64((date.timeIntervalSince1970 * 1000.0).rounded())
-    if let patchInfo = patchInfo {
+    if let patchInfo {
         queryItems += [
             URLQueryItem(name: "accesstoken", value: server.token),
             URLQueryItem(name: "patchUid", value: patchUid!.hex),
@@ -1462,7 +1462,7 @@ extension MainDelegate {
             return
         }
 
-        guard let sensor = sensor else {
+        guard let sensor else {
             return
         }
 
@@ -1476,7 +1476,7 @@ extension MainDelegate {
                 log("OOP: posting sensor data to \(settings.oopServer.siteURL)/\(settings.oopServer.calibrationEndpoint!)...")
                 let (data, urlResponse, queryItems) = try await postToOOP(server: settings.oopServer, bytes: sensor.fram, date: app.lastReadingDate)
                 log("OOP: post query parameters: \(queryItems)")
-                if let data = data {
+                if let data {
                     log("OOP: server calibration response: \(data.string)")
                     if let oopCalibration = try? JSONDecoder().decode(OOPCalibrationResponse.self, from: data) {
                         if oopCalibration.parameters.offsetOffset == -2.0 &&
@@ -1557,7 +1557,7 @@ extension MainDelegate {
         do {
             let (data, urlResponse, queryItems) = try await postToOOP(server: settings.oopServer, bytes: fram, date: app.lastReadingDate, patchUid: sensor.uid, patchInfo: sensor.patchInfo, session: session)
             log("OOP: post query parameters: \(queryItems)")
-            if let data = data {
+            if let data {
                 log("OOP: history response: \(data.string)")
                 if data.string.contains("errcode") {
                     errorStatus("OOP history error: \(data.string)")
@@ -1577,7 +1577,7 @@ extension MainDelegate {
                     } else {
                         oopData = try? JSONDecoder().decode(GlucoseSpaceHistoryResponse.self, from: data)
                     }
-                    if let oopData = oopData {
+                    if let oopData {
                         let realTimeGlucose = oopData.realTimeGlucose.value
                         if realTimeGlucose > 0 {
                             app.oopGlucose = realTimeGlucose
@@ -1631,7 +1631,7 @@ extension Sensor {
         do {
             let (data, _, queryItems) = try await postToOOP(server: server, patchUid: uid, patchInfo: patchInfo)
             debugLog("OOP: query parameters: \(queryItems)")
-            if let data = data {
+            if let data {
                 debugLog("OOP: server activation response: \(data.string)")
                 if let oopActivationResponse = try? JSONDecoder().decode(GlucoseSpaceActivationResponse.self, from: data) {
                     log("OOP: activation response: \(oopActivationResponse), activation command: \(UInt8(Int16(oopActivationResponse.activationCommand) & 0xFF).hex)")

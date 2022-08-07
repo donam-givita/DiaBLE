@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Charts
 
 
 extension MeasurementColor {
@@ -202,7 +203,7 @@ struct OnlineView: View {
                                 showingNFCAlert = true
                             }
                         } label: {
-                            Image("NFC").renderingMode(.template).resizable().frame(width: 39, height: 27).padding(.bottom, 12)
+                            Image("NFC").renderingMode(.template).resizable().frame(width: 39, height: 27)
                         }
                         .alert("NFC not supported", isPresented: $showingNFCAlert) {
                         } message: {
@@ -254,6 +255,24 @@ struct OnlineView: View {
                             .padding()
 #endif
 
+                            if libreLinkUpHistory.count > 0 {
+                                Chart(libreLinkUpHistory) {
+                                    PointMark(x: .value("Time", $0.glucose.date),
+                                              y: .value("Glucose", $0.glucose.value)
+                                    )
+                                    .foregroundStyle($0.color.color)
+                                    .symbolSize(12)
+                                }
+                                .chartXAxis {
+                                    AxisMarks(values: .stride(by: .hour, count: 3)) { _ in
+                                        AxisGridLine()
+                                        AxisTick()
+                                        AxisValueLabel(format: .dateTime.hour().minute())
+                                    }
+                                }
+                                .padding()
+                            }
+
                             HStack {
 
                                 List {
@@ -294,6 +313,7 @@ struct OnlineView: View {
 #if targetEnvironment(macCatalyst)
                         .padding(.leading, 15)
 #endif
+
                     }
                 }
             }

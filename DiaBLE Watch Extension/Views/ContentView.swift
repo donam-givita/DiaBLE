@@ -8,18 +8,16 @@ struct ContentView: View {
     @EnvironmentObject var history: History
     @EnvironmentObject var settings: Settings
 
-    @State var isMonitorActive = false
-
     var body: some View {
 
-        NavigationView {
+        NavigationStack {
 
             ScrollView {
 
                 VStack(spacing: 4) {
 
                     HStack(spacing: 10) {
-                        NavigationLink(destination: Monitor(), isActive: $isMonitorActive) {
+                        NavigationLink(destination: Monitor()) {
                             VStack {
                                 Image(systemName: "gauge").resizable().frame(width: 40, height: 40).offset(y: 4)
                                 Text("Monitor").bold().foregroundColor(.blue)
@@ -44,7 +42,7 @@ struct ContentView: View {
                         NavigationLink(destination: SettingsView()) {
                             VStack {
                                 Image(systemName: "gear").resizable().frame(width: 40, height: 40).offset(y: 4)
-                                Text("Settings").bold().tracking(-0.5).foregroundColor(.blue)
+                                Text("Settings").bold().foregroundColor(.blue)
                             }.frame(maxWidth: .infinity)
                         }
                     }
@@ -70,6 +68,7 @@ struct ContentView: View {
             }
             .navigationTitle("DiaBLE  \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)")
             .navigationBarTitleDisplayMode(.inline)
+
         }
         .edgesIgnoringSafeArea([.bottom])
     }
