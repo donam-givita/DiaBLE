@@ -79,9 +79,7 @@ struct SettingsView: View {
 
                 Button {
                     settings.calibrating.toggle()
-                    settings.usingOOP = settings.calibrating
                     Task {
-                        await app.main.applyOOP(sensor: app.sensor)
                         app.main.didParseSensor(app.sensor)
                     }
                 } label: {

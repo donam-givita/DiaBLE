@@ -53,8 +53,6 @@ class Settings: ObservableObject {
 
         "calibrating": false,
         "calibration": try! JSONEncoder().encode(Calibration()),
-        "usingOOP": false,
-        "oopCalibration": try! JSONEncoder().encode(Calibration()),
 
         // TODO: rename to currentSensorUid/PatchInfo
         "patchUid": Data(),
@@ -236,16 +234,6 @@ class Settings: ObservableObject {
 
     @Published var calibration: Calibration = try! JSONDecoder().decode(Calibration.self, from: UserDefaults.standard.data(forKey: "calibration")!) {
         didSet { UserDefaults.standard.set(try! JSONEncoder().encode(self.calibration), forKey: "calibration") }
-    }
-
-    @Published var oopServer: OOPServer = OOPServer.default
-
-    @Published var usingOOP: Bool = UserDefaults.standard.bool(forKey: "usingOOP") {
-        didSet { UserDefaults.standard.set(self.usingOOP, forKey: "usingOOP") }
-    }
-
-    @Published var oopCalibration: Calibration = try! JSONDecoder().decode(Calibration.self, from: UserDefaults.standard.data(forKey: "oopCalibration")!) {
-        didSet { UserDefaults.standard.set(try! JSONEncoder().encode(self.oopCalibration), forKey: "oopCalibration") }
     }
 
     @Published var patchUid: SensorUid = UserDefaults.standard.data(forKey: "patchUid")! {

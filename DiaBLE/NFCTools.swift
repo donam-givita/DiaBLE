@@ -269,10 +269,6 @@ extension NFC {
             }
 
             do {
-                if await sensor.main.settings.debugLevel > 0 {
-                    await sensor.testOOPActivation()
-                }
-
 
                 if sensor.type == .libreProH {
                     var readCommand = sensor.readBlockCommand

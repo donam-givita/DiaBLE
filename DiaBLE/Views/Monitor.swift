@@ -156,21 +156,6 @@ struct Monitor: View {
 
                     VStack {
 
-                        HStack {
-
-                            Toggle(isOn: $settings.usingOOP.animation()) {
-                                Text("OOP")
-                            }
-                            .toggleStyle(SwitchToggleStyle(tint: Color.blue))
-                            .onChange(of: settings.usingOOP) { usingOOP in
-                                Task {
-                                    await app.main.applyOOP(sensor: app.sensor)
-                                    app.main.didParseSensor(app.sensor)
-                                }
-                            }
-
-                        }
-
                         CalibrationView(showingCalibrationParameters: $showingCalibrationParameters, editingCalibration: $editingCalibration)
 
                     }
@@ -383,7 +368,7 @@ struct CalibrationView: View {
                                     Text("Use").bold().padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
                                 }
 
-                                if app.calibration != settings.calibration && app.calibration != settings.oopCalibration {
+                                if app.calibration != settings.calibration {
                                     Button {
                                         endEditingCalibration()
                                         settings.calibration = app.calibration
@@ -399,16 +384,6 @@ struct CalibrationView: View {
                                     app.calibration = settings.calibration
                                 } label: {
                                     Text("Load").bold().padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
-                                }
-                            }
-
-                            if settings.oopCalibration != .empty && ((app.calibration != settings.oopCalibration && editingCalibration) || app.calibration == .empty) {
-                                Button {
-                                    endEditingCalibration()
-                                    app.calibration = settings.oopCalibration
-                                    settings.calibration = Calibration()
-                                } label: {
-                                    Text("Restore OOP").bold().padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
                                 }
                             }
 

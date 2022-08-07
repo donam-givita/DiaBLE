@@ -243,8 +243,6 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
         Task {
 
-            await applyOOP(sensor: sensor)
-
             didParseSensor(sensor)
 
         }
@@ -292,14 +290,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             return
         }
 
-        if settings.usingOOP {
-            app.currentGlucose = app.oopGlucose
-            if history.values.count > 0 && history.values[0].value > 0 {
-                if history.factoryTrend.count == 0 || (history.factoryTrend.count > 0 && history.factoryTrend[0].id < history.values[0].id) {
-                    app.currentGlucose = history.factoryValues[0].value
-                }
-            }
-        } else if history.calibratedTrend.count == 0 && history.factoryTrend.count > 0 {
+        if history.calibratedTrend.count == 0 && history.factoryTrend.count > 0 {
             app.currentGlucose = history.factoryTrend[0].value
         }
 
