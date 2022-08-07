@@ -9,9 +9,6 @@ struct Monitor: View {
 
     @State var showingHamburgerMenu = false
 
-    @State private var showingCalibrationParameters = false
-    @State private var editingCalibration = false
-
     @State private var showingNFCAlert = false
 
     @State private var readingCountdown: Int = 0
@@ -27,9 +24,7 @@ struct Monitor: View {
 
                 VStack {
 
-                    if !(editingCalibration && showingCalibrationParameters)  {
-                        Spacer()
-                    }
+                    Spacer()
 
                     VStack {
 
@@ -98,70 +93,54 @@ struct Monitor: View {
 
                     Graph().frame(width: 31 * 7 + 60, height: 150)
 
-                    if !(editingCalibration && showingCalibrationParameters) {
-
-                        VStack {
-
-                            HStack(spacing: 12) {
-
-                                if app.sensor != nil && (app.sensor.state != .unknown || app.sensor.serial != "") {
-                                    VStack {
-                                        Text(app.sensor.state.description)
-                                            .foregroundColor(app.sensor.state == .active ? .green : .red)
-
-                                        if app.sensor.age > 0 {
-                                            Text(app.sensor.age.shortFormattedInterval)
-                                        }
-                                    }
-                                }
-
-                                if app.device != nil {
-                                    VStack {
-                                        if app.device.battery > -1 {
-                                            let battery = app.device.battery
-                                            HStack(spacing: 4) {
-                                                let ext = battery > 95 ? 100 :
-                                                battery > 65 ? 75 :
-                                                battery > 35 ? 50 :
-                                                battery > 10 ? 25 : 0
-                                                Image(systemName: "battery.\(ext)")
-                                                Text("\(app.device.battery)%")
-                                            }
-                                            .foregroundColor(app.device.battery > 10 ? .green : .red)
-                                        }
-                                        if app.device.rssi != 0 {
-                                            Text("RSSI: ").foregroundColor(Color(.lightGray)) +
-                                            Text("\(app.device.rssi) dB")
-                                        }
-                                    }
-                                }
-
-                            }.font(.footnote).foregroundColor(.yellow)
-
-                            Text(app.status)
-                                .font(.footnote)
-                                .padding(.vertical, 5)
-                                .frame(maxWidth: .infinity)
-
-                            NavigationLink(destination: Details()) {
-                                Text("Details").font(.footnote).bold().fixedSize()
-                                    .padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
-                            }
-                        }
-
-                        Spacer()
-                        Spacer()
-
-                    }
-
                     VStack {
 
-                        CalibrationView(showingCalibrationParameters: $showingCalibrationParameters, editingCalibration: $editingCalibration)
+                        HStack(spacing: 12) {
 
+                            if app.sensor != nil && (app.sensor.state != .unknown || app.sensor.serial != "") {
+                                VStack {
+                                    Text(app.sensor.state.description)
+                                        .foregroundColor(app.sensor.state == .active ? .green : .red)
+
+                                    if app.sensor.age > 0 {
+                                        Text(app.sensor.age.shortFormattedInterval)
+                                    }
+                                }
+                            }
+
+                            if app.device != nil {
+                                VStack {
+                                    if app.device.battery > -1 {
+                                        let battery = app.device.battery
+                                        HStack(spacing: 4) {
+                                            let ext = battery > 95 ? 100 :
+                                            battery > 65 ? 75 :
+                                            battery > 35 ? 50 :
+                                            battery > 10 ? 25 : 0
+                                            Image(systemName: "battery.\(ext)")
+                                            Text("\(app.device.battery)%")
+                                        }
+                                        .foregroundColor(app.device.battery > 10 ? .green : .red)
+                                    }
+                                    if app.device.rssi != 0 {
+                                        Text("RSSI: ").foregroundColor(Color(.lightGray)) +
+                                        Text("\(app.device.rssi) dB")
+                                    }
+                                }
+                            }
+
+                        }.font(.footnote).foregroundColor(.yellow)
+
+                        Text(app.status)
+                            .font(.footnote)
+                            .padding(.vertical, 5)
+                            .frame(maxWidth: .infinity)
+
+                        NavigationLink(destination: Details()) {
+                            Text("Details").font(.footnote).bold().fixedSize()
+                                .padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
+                        }
                     }
-#if targetEnvironment(macCatalyst)
-                    .padding(.horizontal, 15)
-#endif
 
                     Spacer()
                     Spacer()
@@ -238,168 +217,6 @@ struct Monitor: View {
                     .offset(x: showingHamburgerMenu ? 0 : -180)
             }
         }.navigationViewStyle(.stack)
-    }
-}
-
-
-struct CalibrationView: View {
-
-    @EnvironmentObject var app: AppState
-    @EnvironmentObject var history: History
-    @EnvironmentObject var settings: Settings
-
-    @Binding var showingCalibrationParameters: Bool
-    @Binding var editingCalibration: Bool
-
-    func endEditingCalibration() {
-        withAnimation { editingCalibration = false }
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-
-    }
-
-    var body: some View {
-        VStack(spacing: 0) {
-
-            Toggle(isOn: $settings.calibrating.animation()) {
-                Text("Calibration")
-            }
-            .toggleStyle(SwitchToggleStyle(tint: Color.purple))
-            .onChange(of: settings.calibrating) { calibrating in
-
-                if !calibrating {
-                    withAnimation {
-                        editingCalibration = false
-                    }
-                }
-                app.main.didParseSensor(app.sensor)
-            }
-
-            if settings.calibrating {
-
-                DisclosureGroup(isExpanded: $showingCalibrationParameters) {
-
-                    VStack(spacing: 6) {
-                        HStack {
-                            VStack(spacing: 0) {
-                                HStack {
-                                    Text("Slope slope:")
-                                    TextField("Slope slope", value: $app.calibration.slopeSlope,
-                                              formatter: settings.numberFormatter) { editing in
-                                        if !editing {
-                                            // TODO: update when loosing focus
-                                        }
-                                    }
-                                              .foregroundColor(.purple)
-                                              .keyboardType(.numbersAndPunctuation)
-                                              .onTapGesture { withAnimation { editingCalibration = true } }
-                                }
-                                if editingCalibration {
-                                    Slider(value: $app.calibration.slopeSlope, in: 0.00001 ... 0.00002, step: 0.00000005)
-                                }
-                            }
-
-                            VStack(spacing: 0) {
-                                HStack {
-                                    Text("Slope offset:")
-                                    TextField("Slope offset", value: $app.calibration.offsetSlope,
-                                              formatter: settings.numberFormatter) { editing in
-                                        if !editing {
-                                            // TODO: update when loosing focus
-                                        }
-                                    }
-                                              .foregroundColor(.purple)
-                                              .keyboardType(.numbersAndPunctuation)
-                                              .onTapGesture { withAnimation { editingCalibration = true } }
-                                }
-                                if editingCalibration {
-                                    Slider(value: $app.calibration.offsetSlope, in: -0.02 ... 0.02, step: 0.0001)
-                                }
-                            }
-                        }
-
-                        HStack {
-                            VStack(spacing: 0) {
-                                HStack {
-                                    Text("Offset slope:")
-                                    TextField("Offset slope", value: $app.calibration.slopeOffset,
-                                              formatter: settings.numberFormatter) { editing in
-                                        if !editing {
-                                            // TODO: update when loosing focus
-                                        }
-                                    }
-                                              .foregroundColor(.purple)
-                                              .keyboardType(.numbersAndPunctuation)
-                                              .onTapGesture { withAnimation { editingCalibration = true } }
-                                }
-                                if editingCalibration {
-                                    Slider(value: $app.calibration.slopeOffset, in: -0.01 ... 0.01, step: 0.00005)
-                                }
-                            }
-
-                            VStack(spacing: 0) {
-                                HStack {
-                                    Text("Offset offset:")
-                                    TextField("Offset offset", value: $app.calibration.offsetOffset,
-                                              formatter: settings.numberFormatter) { editing in
-                                        if !editing {
-                                            // TODO: update when loosing focus
-                                        }
-                                    }
-                                              .foregroundColor(.purple)
-                                              .keyboardType(.numbersAndPunctuation)
-                                              .onTapGesture {  withAnimation { editingCalibration = true } }
-                                }
-                                if editingCalibration {
-                                    Slider(value: $app.calibration.offsetOffset, in: -100 ... 100, step: 0.5)
-                                }
-                            }
-                        }
-                    }.font(.footnote)
-                        .keyboardType(.numbersAndPunctuation)
-
-                    if editingCalibration || history.calibratedValues.count == 0 {
-                        Spacer()
-                        HStack(spacing: 20) {
-
-                            if editingCalibration {
-                                Button {
-                                    endEditingCalibration()
-                                } label: {
-                                    Text("Use").bold().padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
-                                }
-
-                                if app.calibration != settings.calibration {
-                                    Button {
-                                        endEditingCalibration()
-                                        settings.calibration = app.calibration
-                                    } label: {
-                                        Text("Save").bold().padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
-                                    }
-                                }
-                            }
-
-                            if settings.calibration != .empty && (app.calibration != settings.calibration || app.calibration == .empty) {
-                                Button {
-                                    endEditingCalibration()
-                                    app.calibration = settings.calibration
-                                } label: {
-                                    Text("Load").bold().padding(.horizontal, 4).padding(2).overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
-                                }
-                            }
-
-                        }.font(.footnote)
-                    }
-
-                } label: {
-                    Button {
-                        withAnimation { showingCalibrationParameters.toggle() }
-                    } label: {
-                        Text("Parameters")}.foregroundColor(.purple)
-                }
-
-            }
-
-        }.accentColor(.purple)
     }
 }
 

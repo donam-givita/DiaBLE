@@ -67,13 +67,6 @@ class AppState: ObservableObject {
     @Published var lastConnectionDate: Date = Date.distantPast
     @Published var status: String = "Welcome to DiaBLE!"
 
-    @Published var calibration: Calibration = Calibration() {
-        didSet(value) {
-            main?.applyCalibration(sensor: sensor)
-        }
-    }
-    @Published var editingCalibration = false
-
     @Published var showingJavaScriptConfirmAlert = false
     @Published var JavaScriptConfirmAlertMessage: String = ""
     @Published var JavaScriptAlertReturn: String = ""
@@ -122,8 +115,6 @@ class History: ObservableObject {
     @Published var rawTrend:      [Glucose] = []
     @Published var factoryValues: [Glucose] = []
     @Published var factoryTrend:  [Glucose] = []
-    @Published var calibratedValues: [Glucose] = []
-    @Published var calibratedTrend:  [Glucose] = []
     @Published var storedValues:     [Glucose] = []
     @Published var nightscoutValues: [Glucose] = []
 }
@@ -179,19 +170,11 @@ extension History {
         let factoryValues = factoryArray.enumerated().map { Glucose($0.1, id: 5000 - $0.1 * 15, date: Date() - Double($0.1) * 15 * 60) }
         history.factoryValues = factoryValues
 
-        let calibratedArray = factoryArray.map { $0 + 5 - Int.random(in: 0...10) }
-
-        let calibratedValues = calibratedArray.enumerated().map { Glucose($0.1, id: 5000 - $0.0 * 15, date: Date() - Double($0.1) * 15 * 60) }
-        history.calibratedValues = calibratedValues
-
         let rawTrend = [241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 241, 242, 243, 244, 245].enumerated().map { Glucose($0.1, id: 5000 - $0.0, date: Date() - Double($0.1) * 60) }
         history.rawTrend = rawTrend
 
         let factoryTrend = [231, 232, 233, 234, 235, 236, 237, 238, 239, 230, 231, 232, 233, 234, 235].enumerated().map { Glucose($0.1, id: 5000 - $0.0, date: Date() - Double($0.1) * 60) }
         history.factoryTrend = factoryTrend
-
-        let calibratedTrend = [231, 232, 233, 234, 235, 236, 237, 238, 239, 230, 231, 232, 233, 234, 235].enumerated().map { Glucose($0.1, id: 5000 - $0.0, date: Date() - Double($0.1) * 60) }
-        history.calibratedTrend = calibratedTrend
 
         let storedValues = [231, 252, 253, 254, 245, 196, 177, 128, 149, 150, 101, 122, 133, 144, 155, 166, 177, 178, 149, 140, 141, 142, 143, 144, 155, 166, 177, 178, 169, 150, 141, 132].enumerated().map { Glucose($0.1, id: $0.0, date: Date() - Double($0.1) * 15 * 60, source: "SourceApp com.example.sourceapp") }
         history.storedValues = storedValues

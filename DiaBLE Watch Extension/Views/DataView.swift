@@ -123,33 +123,6 @@ struct DataView: View {
                 }
             }.frame(idealHeight: 300)
 
-
-            HStack {
-
-                if history.calibratedValues.count > 0 {
-                    VStack(spacing: 4) {
-                        Text("Calibrated history").bold()
-                        List {
-                            ForEach(history.calibratedValues) { glucose in
-                                (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold()).frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                        }.frame(maxWidth: .infinity, alignment: .topLeading)
-                    }.foregroundColor(.purple)
-                }
-
-                if history.calibratedTrend.count > 0 {
-                    VStack(spacing: 4) {
-                        Text("Calibrated trend").bold()
-                        List {
-                            ForEach(history.calibratedTrend) { glucose in
-                                (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold()).frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                        }.frame(maxWidth: .infinity, alignment: .topLeading)
-                    }.foregroundColor(.purple)
-                }
-            }.frame(idealHeight: 200)
-
-
             HStack {
 
                 VStack {

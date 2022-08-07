@@ -90,16 +90,9 @@ struct Glucose: Identifiable, Codable {
     let dataQualityFlags: Int
     var value: Int = 0
     var temperature: Double = 0
-    var calibration: Calibration? {
-        willSet(newCalibration) {
-            let slope  = (newCalibration!.slope + newCalibration!.slopeSlope  * Double(rawTemperature) + newCalibration!.offsetSlope) * newCalibration!.extraSlope
-            let offset = newCalibration!.offset + newCalibration!.slopeOffset * Double(rawTemperature) + newCalibration!.offsetOffset + newCalibration!.extraOffset
-            value = Int(round(slope * Double(rawValue) + offset))
-        }
-    }
     var source: String = "DiaBLE"
 
-    init(rawValue: Int, rawTemperature: Int = 0, temperatureAdjustment: Int = 0, id: Int = 0, date: Date = Date(), hasError: Bool = false, dataQuality: DataQuality = .OK, dataQualityFlags: Int = 0, calibration: Calibration? = nil) {
+    init(rawValue: Int, rawTemperature: Int = 0, temperatureAdjustment: Int = 0, id: Int = 0, date: Date = Date(), hasError: Bool = false, dataQuality: DataQuality = .OK, dataQualityFlags: Int = 0) {
         self.id = id
         self.date = date
         self.rawValue = rawValue
@@ -109,14 +102,13 @@ struct Glucose: Identifiable, Codable {
         self.hasError = hasError
         self.dataQuality = dataQuality
         self.dataQualityFlags = dataQualityFlags
-        self.calibration = calibration
     }
 
-    init(bytes: [UInt8], id: Int = 0, date: Date = Date(), calibration: Calibration? = nil) {
+    init(bytes: [UInt8], id: Int = 0, date: Date = Date()) {
         let rawValue = Int(bytes[0]) + Int(bytes[1] & 0x1F) << 8
         let rawTemperature = Int(bytes[3]) + Int(bytes[4] & 0x3F) << 8
         // TODO: temperatureAdjustment
-        self.init(rawValue: rawValue, rawTemperature: rawTemperature, id: id, date: date, calibration: calibration)
+        self.init(rawValue: rawValue, rawTemperature: rawTemperature, id: id, date: date)
     }
 
     init(_ value: Int, temperature: Double = 0, id: Int = 0, date: Date = Date(), dataQuality: Glucose.DataQuality = .OK, source: String = "DiaBLE") {
@@ -415,57 +407,4 @@ func factoryGlucose(rawGlucose: Glucose, calibrationInfo: CalibrationInfo) -> Gl
     glucose.temperature = temperature
 
     return glucose
-}
-
-
-struct Calibration: Codable, Equatable {
-    var slope: Double = 0.0
-    var offset: Double = 0.0
-    var slopeSlope: Double = 0.0
-    var slopeOffset: Double = 0.0
-    var offsetOffset: Double = 0.0
-    var offsetSlope: Double = 0.0
-    var extraSlope: Double = 1.0
-    var extraOffset: Double = 0.0
-
-    enum CodingKeys: String, CodingKey, CustomStringConvertible {
-        case slopeSlope   = "slope_slope"
-        case slopeOffset  = "slope_offset"
-        case offsetOffset = "offset_offset"
-        case offsetSlope  = "offset_slope"
-
-        // Pay attention to the inversions:
-        // enums are intended to be read as "term + subfix", therefore .slopeOffset = "slope of the offset" => "Offset slope"
-        var description: String {
-            switch self {
-            case .slopeSlope:   return "Slope slope"
-            case .slopeOffset:  return "Offset slope"
-            case .offsetOffset: return "Offset offset"
-            case .offsetSlope:  return "Slope offset"
-            }
-        }
-    }
-
-    static var empty = Calibration()
-}
-
-
-// https://github.com/gshaviv/ninety-two/blob/master/WoofWoof/TrendSymbol.swift
-
-public func trendSymbol(for trend: Double) -> String {
-    if trend > 2.0 {
-        return "⇈"
-    } else if trend > 1.0 {
-        return "↑"
-    } else if trend > 0.33 {
-        return "↗︎"
-    } else if trend > -0.33 {
-        return "→"
-    } else if trend > -1.0 {
-        return "↘︎"
-    } else if trend > -2.0 {
-        return "↓"
-    } else {
-        return "⇊"
-    }
 }

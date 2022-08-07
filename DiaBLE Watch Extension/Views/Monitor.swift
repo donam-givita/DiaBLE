@@ -12,8 +12,6 @@ struct Monitor: View {
 
     @State private var showingHamburgerMenu = false
 
-    @State private var editingCalibration = false
-
     @State private var readingCountdown: Int = 0
     @State private var minutesSinceLastReading: Int = 0
 

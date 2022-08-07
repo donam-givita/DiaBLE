@@ -250,47 +250,13 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
     }
 
 
-    func applyCalibration(sensor: Sensor?) {
-
-        if let sensor, sensor.history.count > 0, settings.calibrating {
-
-            if app.calibration != .empty {
-
-                var calibratedTrend = sensor.trend
-                for i in 0 ..< calibratedTrend.count {
-                    calibratedTrend[i].calibration = app.calibration
-                }
-
-                var calibratedHistory = sensor.history
-                for i in 0 ..< calibratedHistory.count {
-                    calibratedHistory[i].calibration = app.calibration
-                }
-
-                self.history.calibratedTrend = calibratedTrend
-                self.history.calibratedValues = calibratedHistory
-                if calibratedTrend.count > 0 {
-                    app.currentGlucose = calibratedTrend[0].value
-                }
-                return
-            }
-
-        } else {
-            history.calibratedTrend = []
-            history.calibratedValues = []
-        }
-
-    }
-
-
     func didParseSensor(_ sensor: Sensor?) {
-
-        applyCalibration(sensor: sensor)
 
         guard let sensor else {
             return
         }
 
-        if history.calibratedTrend.count == 0 && history.factoryTrend.count > 0 {
+        if history.factoryTrend.count > 0 {
             app.currentGlucose = history.factoryTrend[0].value
         }
 

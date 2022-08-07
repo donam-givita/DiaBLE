@@ -102,17 +102,6 @@ struct DataView: View {
                                 }.foregroundColor(.orange)
                             }
 
-                            if history.calibratedValues.count > 0 {
-                                VStack(spacing: 4) {
-                                    Text("Calibrated history").bold()
-                                    ScrollView {
-                                        ForEach(history.calibratedValues) { glucose in
-                                            (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                        }
-                                    }.frame(maxWidth: .infinity, alignment: .topLeading)
-                                }.foregroundColor(.purple)
-                            }
-
                         }
 
                         VStack {
@@ -126,17 +115,6 @@ struct DataView: View {
                                         }
                                     }.frame(maxWidth: .infinity, alignment: .topLeading)
                                 }.foregroundColor(.yellow)
-                            }
-
-                            if history.calibratedTrend.count > 0 {
-                                VStack(spacing: 4) {
-                                    Text("Calibrated trend").bold()
-                                    ScrollView {
-                                        ForEach(history.calibratedTrend) { glucose in
-                                            (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                        }
-                                    }.frame(maxWidth: .infinity, alignment: .topLeading)
-                                }.foregroundColor(.purple)
                             }
 
                         }

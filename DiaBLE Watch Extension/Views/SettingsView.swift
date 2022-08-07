@@ -77,16 +77,6 @@ struct SettingsView: View {
                 .labelsHidden()
                 .frame(width: 68, height: 20)
 
-                Button {
-                    settings.calibrating.toggle()
-                    Task {
-                        app.main.didParseSensor(app.sensor)
-                    }
-                } label: {
-                    Image(systemName: settings.calibrating ? "tuningfork" : "tuningfork").resizable().frame(width: 20, height: 20)
-                        .foregroundColor(settings.calibrating ? .blue : .primary)
-                }
-
             }
 
             VStack {
