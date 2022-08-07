@@ -31,8 +31,6 @@
 		C55AE3B5245EB1A3009636E0 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55AE3B4245EB1A3009636E0 /* DataView.swift */; };
 		C55B5D16245FCBE50004FE3B /* OnlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B5D15245FCBE50004FE3B /* OnlineView.swift */; };
 		C566341323B14D55001EB5F3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566341223B14D55001EB5F3 /* Extensions.swift */; };
-		C5841EBE26CCD40200922DFC /* Gen2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5841EBD26CCD40200922DFC /* Gen2.swift */; };
-		C5841EBF26CCD40200922DFC /* Gen2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5841EBD26CCD40200922DFC /* Gen2.swift */; };
 		C58507A123C50BF30079539D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58507A023C50BF30079539D /* Assets.xcassets */; };
 		C58507A823C50BF40079539D /* DiaBLE Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C58507A723C50BF40079539D /* DiaBLE Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C58507AD23C50BF40079539D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58507AC23C50BF40079539D /* ContentView.swift */; };
@@ -158,7 +156,6 @@
 		C55AE3B4245EB1A3009636E0 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 		C55B5D15245FCBE50004FE3B /* OnlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
 		C566341223B14D55001EB5F3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		C5841EBD26CCD40200922DFC /* Gen2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gen2.swift; sourceTree = "<group>"; };
 		C585079B23C50BF20079539D /* DiaBLE Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaBLE Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58507A023C50BF30079539D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C58507A223C50BF30079539D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -330,7 +327,6 @@
 				C5D1B000259A167A00F6C4C9 /* Libre2.swift */,
 				C5AE0C312746F21200B3F6B9 /* Libre3.swift */,
 				C5248A9D26FD00D300DF1ED7 /* LibrePro.swift */,
-				C5841EBD26CCD40200922DFC /* Gen2.swift */,
 				C549DCFF23F198B700088A4C /* Events.swift */,
 				C5C937E323CBA0AE00A87BAB /* Health.swift */,
 				C597AF6A23AB9E3E0012926C /* NFC.swift */,
@@ -532,7 +528,6 @@
 				C5E9C7672444A13600D52B32 /* Console.swift in Sources */,
 				C5F06F7C282E516200CC1297 /* LibreLink.swift in Sources */,
 				C5FE8EA12752732E00372495 /* Legacy.swift in Sources */,
-				C5841EBF26CCD40200922DFC /* Gen2.swift in Sources */,
 				C55B5D16245FCBE50004FE3B /* OnlineView.swift in Sources */,
 				C5E9C763244496C800D52B32 /* MainDelegate.swift in Sources */,
 				C528E1852445A60200BFDA73 /* SettingsView.swift in Sources */,
@@ -560,7 +555,6 @@
 				C566341323B14D55001EB5F3 /* Extensions.swift in Sources */,
 				C549DD0023F198B700088A4C /* Events.swift in Sources */,
 				C5965CC323DCC13300B3C5D8 /* ViewRepresentables.swift in Sources */,
-				C5841EBE26CCD40200922DFC /* Gen2.swift in Sources */,
 				C5DF10F823C783F90023E0E2 /* SettingsView.swift in Sources */,
 				C5FE8EA02752732E00372495 /* Legacy.swift in Sources */,
 				C51BF8CF25DD04C2003D64FB /* Plan.swift in Sources */,
