@@ -263,18 +263,17 @@ class Libre3: Sensor {
         /// Security service
         case security = "0898203A-EF89-11E9-81B4-2A2AE2DBCCE4"
 
-        /// - Writes a single byte command as defined in libre3SecurityConstants' `CMD_`
-        /// - May notify two bytes: the successful status (also defined as `CMD_READY/DONE/FAILURE`)
-        ///   and the effective length of the payload streamed on 22CE / 23FA
-        /// 01: very first command when activating a sensor
-        /// 02: written immediately after 01
-        /// 03: third command sent during activation
-        /// 04: notified immediately after 03
-        /// 08: read the final 67-byte session info, notifies 08 43 -> 22CE notifies 67 bytes + prefixes
-        /// 09: during activation notifies A0 8C -> 23FA notifies 140 bytes + prefixes
-        /// 0D: during activation is written before 0E
-        /// 0E: during activation notifies 0F 41 -> 23FA notifies 65 bytes + prefixes
-        /// 11: read the 23-byte security challenge, notifies 08 17
+        /// - Writes a single byte command
+        /// - May notify two bytes: the successful status and the effective length of the payload streamed on 22CE / 23FA
+        /// - 01: very first command when activating a sensor
+        /// - 02: written immediately after 01
+        /// - 03: third command sent during activation
+        /// - 04: notified immediately after 03
+        /// - 08: read the final 67-byte session info, notifies 08 43 -> 22CE notifies 67 bytes + prefixes
+        /// - 09: during activation notifies A0 8C -> 23FA notifies 140 bytes + prefixes
+        /// - 0D: during activation is written before 0E
+        /// - 0E: during activation notifies 0F 41 -> 23FA notifies 65 bytes + prefixes
+        /// - 11: read the 23-byte security challenge, notifies 08 17
         case securityCommands = "08982198-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Write"]
 
         /// Notifies the 23-byte security challenge + prefixes
