@@ -234,8 +234,8 @@ class Libre3: Sensor {
         case challengeData    = "089822CE-EF89-11E9-81B4-2A2AE2DBCCE4"
         case certificateData  = "089823FA-EF89-11E9-81B4-2A2AE2DBCCE4"
 
-        case debug =            "08982400-EF89-11E9-81B4-2A2AE2DBCCE4"
-        case bleLogin =         "F001"
+        case debug            = "08982400-EF89-11E9-81B4-2A2AE2DBCCE4"
+        case bleLogin         = "F001"
 
         var description: String {
             switch self {

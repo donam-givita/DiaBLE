@@ -274,7 +274,9 @@ class LibreLinkUp: Logging {
                                 self.main.app.sensor = sensorType == .libre3 ? Libre3(main: self.main) : sensorType == .libre2 ? Libre2(main: self.main) : Sensor(main: self.main)
                                 self.main.app.sensor.type = sensorType
                                 self.main.app.sensor.serial = serial
-                                self.main.app.sensor.maxLife = 20160
+                                if sensorType == .libre3 {
+                                    self.main.app.sensor.maxLife = 20160
+                                }
                             }
                         }
                         if await main.app.sensor.serial.hasSuffix(serial) {
