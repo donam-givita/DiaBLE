@@ -15,8 +15,8 @@ I am targeting only the latest betas of Xcode and iOS. The new _async / await_ a
 Please refer to the [**TODOs**](https://github.com/gui-dos/DiaBLE/blob/main/TODO.md) list for the up-to-date status of all the current limitations and known bugs of this **prototype**.
 
 **Warnings:**
-  * the temperature-based algorithm has been derived from the old LibreLink 2.3: it is known that the Vendor improves its algorithms at every new release
-  * activating the BLE streaming of data on a Libre 2 will break other apps' pairings and you will have to reinstall them to get their alarms again: in Test mode it is possible however to sniff the incoming data of mjultiple apps running side-by-side by just activating the notifications on the same BLE characteristics; the same technique is used to analyze the Libre 3 incoming traffic since the Core Bluetooth connections are reference-counted.
+  * the temperature-based calibration algorithm has been derived from the old LibreLink 2.3: it is known that the Vendor improves its algorithms at every new release
+  * activating the BLE streaming of data on a Libre 2 will break other apps' pairings and you will have to reinstall them to get their alarms again: in Test mode it is possible however to sniff the incoming data of multiple apps running side-by-side by just activating the notifications on the same BLE characteristics; the same technique is used to analyze the Libre 3 incoming traffic since the Core Bluetooth connections are reference-counted.
 
 ***Note***: the exploitation which allows to reset and reactivate a Libre 1 is well known to the Vendor and was unveiled already during [BlackAlps 2019](https://www.youtube.com/watch?v=Y9vtGmxh1IQ) and in [PoC||GTFO 0x20](https://archive.org/stream/pocorgtfo20#page/n6/mode/1up).
 
