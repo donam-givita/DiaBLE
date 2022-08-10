@@ -77,6 +77,8 @@ struct SettingsView: View {
                 .labelsHidden()
                 .frame(width: 68, height: 20)
 
+                Spacer()
+
             }
 
             VStack {
