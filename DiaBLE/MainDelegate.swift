@@ -309,8 +309,13 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             entries = entries.filter { $0.value > 0 && $0.id > -1 }
 
             // TODO
-            healthKit?.write(entries.filter { $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())! })
-            healthKit?.read()
+            let newEntries = (entries.filter { $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())! })
+            if newEntries.count > 0 {
+                healthKit?.write(newEntries)
+                if settings.debugLevel > 0 {
+                    healthKit?.read()
+                }
+            }
 
             // TODO
             // nightscout?.delete(query: "find[device]=OOP&count=32") { data, response, error in
@@ -321,7 +326,9 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                 }
                 self.nightscout?.post(entries: entries) {
                     data, response, error in
-                    self.nightscout?.read()
+                    if self.settings.debugLevel > 0 {
+                        self.nightscout?.read()
+                    }
                 }
             }
         }
