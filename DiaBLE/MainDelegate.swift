@@ -312,9 +312,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             let newEntries = (entries.filter { $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())! })
             if newEntries.count > 0 {
                 healthKit?.write(newEntries)
-                if settings.debugLevel > 0 {
-                    healthKit?.read()
-                }
+                healthKit?.read()
             }
 
             // TODO
@@ -326,9 +324,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                 }
                 self.nightscout?.post(entries: entries) {
                     data, response, error in
-                    if self.settings.debugLevel > 0 {
-                        self.nightscout?.read()
-                    }
+                    self.nightscout?.read()
                 }
             }
         }

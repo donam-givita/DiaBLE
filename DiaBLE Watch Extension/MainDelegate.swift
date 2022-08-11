@@ -121,7 +121,7 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
 
     public func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         log("TODO: handling background tasks")
-    }    
+    }
 
 
     public func rescan() {
@@ -296,9 +296,7 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
             let newEntries = (entries.filter { $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())! })
             if newEntries.count > 0 {
                 healthKit?.write(newEntries)
-                if settings.debugLevel > 0 {
-                    healthKit?.read()
-                }
+                healthKit?.read()
             }
 
             // TODO
@@ -310,9 +308,7 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
                 }
                 self.nightscout?.post(entries: entries) {
                     data, response, error in
-                    if self.settings.debugLevel > 0 {
-                        self.nightscout?.read()
-                    }
+                    self.nightscout?.read()
                 }
             }
         }
