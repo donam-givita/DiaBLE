@@ -1,6 +1,16 @@
+<p align="center"><img src="./DiaBLE/Assets.xcassets/AppIcon.appiconset/Icon.png" width="25%" /></p>
+
 The project should compile fine without external dependencies just after changing the _Bundle Identifier_ in the _General_ panel of the _Targets_ settings and the _Team_ in the _Signing and Capabilities_ tab of Xcode -- Spike and xDrip4iO5 users know already very well what that means... ;-)
 
-I am targeting only the latest betas of Xcode and iOS. The new _async / await_ and _actors_ introduced in Swift 5.5 and iOS 15 probably would require a total rewrite of DiaBLE's foundations, as well as the enhanced *Gen2* protocols adopted by the recent Libre 2 Sense/US/CA/AU which haven't been reversed yet.
+If you own an iPad you can download the [zipped archive](https://github.com/gui-dos/DiaBLE/archive/refs/heads/main.zip) of this repository and tap _DiaBLE Playground.swiftpm_: DiaBLE was born in fact as a single script for the iPad Swift Playgrounds to test the internal workings of the several troublesome BLE devices I bought, mainly the **Bubble** and the **MiaoMiao**. I upgraded it to the version 4.1 of the Playgrounds which still support iOS 15 but I cannot afford to support such transmitters and the WebOOP glucose.space server anymore.
+
+Currently I am targeting now only the latest betas of Xcode and iOS and focusing on the new Libre 3. The new _async / await_ and _actors_ introduced in Swift 5.5 and iOS 15 probably would require a total rewrite of DiaBLE's foundations, as well as the enhanced *Gen2* protocols adopted by the recent Libre 2 Sense/US/CA/AU which haven't been reversed yet.
+
+Still too early to decide the final design (but I really like already the evil logo 😈), here there are some recent screenshots I tweeted or posted in the comments:
+
+<br><br>
+<p align="center"><img src="https://user-images.githubusercontent.com/7220550/181923772-f9b35a52-1ff7-47a4-ba7a-445233cb8e25.PNG" width="25%" align="middle" /> &nbsp; &nbsp; <img src="https://user-images.githubusercontent.com/7220550/181924382-8b325de0-e457-4dbf-a3fc-ea87e85fd231.PNG" width="25%" align="middle" /></p>
+<br><br>
 
 Please refer to the [**TODOs**](https://github.com/gui-dos/DiaBLE/blob/main/TODO.md) list for the up-to-date status of all the current limitations and known bugs of this **prototype**.
 
