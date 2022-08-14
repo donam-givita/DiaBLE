@@ -4,7 +4,7 @@ The project should compile fine without external dependencies just after changin
 
 If you own an iPad you can download the [zipped archive](https://github.com/gui-dos/DiaBLE/archive/refs/heads/main.zip) of this repository and tap _DiaBLE Playground.swiftpm_: DiaBLE was born in fact as a single script for the iPad Swift Playgrounds to test the internal workings of the several troublesome BLE devices I bought, mainly the **Bubble** and the **MiaoMiao**. I upgraded it to the version 4.1 of the Playgrounds which still support iOS 15 but I cannot afford to support such transmitters and the WebOOP glucose.space server anymore.
 
-Currently I am targeting now only the latest betas of Xcode and iOS and focusing on the new Libre 3. The new _async / await_ and _actors_ introduced in Swift 5.5 and iOS 15 probably would require a total rewrite of DiaBLE's foundations, as well as the enhanced *Gen2* protocols adopted by the recent Libre 2 Sense/US/CA/AU which haven't been reversed yet.
+Currently I am targeting only the latest betas of Xcode and iOS and focusing on the new Libre 3. The new _async / await_ and _actors_ introduced in Swift 5.5 and iOS 15 probably would require a total rewrite of DiaBLE's foundations, as well as the enhanced *Gen2* protocols already adopted by the Libre 2 Sense/US/CA/AU which haven't been reversed yet.
 
 Still too early to decide the final design (but I really like already the evil logo 😈), here there are some recent screenshots I tweeted or posted in the comments:
 
@@ -15,8 +15,8 @@ Still too early to decide the final design (but I really like already the evil l
 Please refer to the [**TODOs**](https://github.com/gui-dos/DiaBLE/blob/main/TODO.md) list for the up-to-date status of all the current limitations and known bugs of this **prototype**.
 
 **Warnings:**
-  * the temperature-based calibration algorithm has been derived from the old LibreLink 2.3: it is known that the Vendor improves its algorithms at every new release;
-  * activating the BLE streaming of data on a Libre 2 will break other apps' pairings and you will have to reinstall them to get their alarms again; in Test mode it is possible however to sniff the incoming data of multiple apps running side-by-side by just activating the notifications on the same BLE characteristics: the same technique is used to analyze the Libre 3 incoming traffic since the Core Bluetooth connections are reference-counted;
+  * the temperature-based calibration algorithm has been derived from the old LibreLink 2.3: it is known that the Vendor improves its algorithms at every new release, smoothing the historical values and projecting the trend ones into the future to compensate the interstitial delay but these further stages aren't understood yet; I never was convinced by the simple linear regression models that others apply on finger pricks;
+  * activating the BLE streaming of data on a Libre 2 will break other apps' pairings and you will have to reinstall them to get their alarms back again; in Test mode it is possible however to sniff the incoming data of multiple apps running side-by-side by just activating the notifications on the same BLE characteristics: the same technique is used to analyze the Libre 3 incoming traffic since the Core Bluetooth connections are reference-counted;
   * connecting directly to a Libre 2/3 from an AppleWatch is currently just a proof of concept that it is technically possiBLE: keeping the connection will require additional work and AFAIK nobody else is capable to do the job... :-P
 
 ### DON'T TRUST THE GROWING NUMBER OF "METABOLIC HEALTH" STARTUPS WHICH RESELL LIBRE SENSORS AND REUSE MY NAIVE NFC CODE: IT IS A SCANDAL WHICH WOULD DESERVE A CLASS ACTION THAT THE VENDOR PROMOTES SUCH PSEUDOSCIENTIFIC FRAUDS AND RESELLS TO HYPOCHONDRIACS "BIOSENSORS" THAT ARE JUST A REBRAND OF THE SECURED GEN2 MODEL BECAUSE THEY COULDN'T PROMOTE IT AS A CGM DEVICE IN 2021 GIVEN THE LEGAL BATTLE WITH DEXCOM.

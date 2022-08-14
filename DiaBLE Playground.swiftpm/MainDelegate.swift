@@ -359,19 +359,24 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             entries = entries.filter { $0.value > 0 && $0.id > -1 }
 
             // TODO
-            healthKit?.write(entries.filter { $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())! })
-            healthKit?.read()
+            let newEntries = (entries.filter { $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())! })
+            if newEntries.count > 0 {
+                healthKit?.write(newEntries)
+                healthKit?.read()
+            }
 
             // TODO
             // nightscout?.delete(query: "find[device]=OOP&count=32") { data, response, error in
 
             nightscout?.read { values in
                 if values.count > 0 {
-                    entries = entries.filter { $0.date > values[0].date }
-                }
-                self.nightscout?.post(entries: entries) {
-                    data, response, error in
-                    self.nightscout?.read()
+                    let newEntries = entries.filter { $0.date > values[0].date }
+                    if newEntries.count > 0 {
+                        self.nightscout?.post(entries: newEntries) {
+                            data, response, error in
+                            self.nightscout?.read()
+                        }
+                    }
                 }
             }
         }

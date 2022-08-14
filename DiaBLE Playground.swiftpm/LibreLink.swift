@@ -245,8 +245,13 @@ class LibreLinkUp: Logging {
                                 deviceTypes[deviceId] = sensorType
                                 // according to bundle.js, if `alarms` is true 40066 is also a .libre2
                                 // but happening a Libre 1 with `alarms` = true...
-                                if sensorType == .libre3 && sn.count == 10 {
-                                    sn = String(sn.prefix(9)) // trim final 0
+                                if sn.count == 10 {
+                                    switch sensorType {
+                                    case .libre1: sn = "0" + sn
+                                    case .libre2: sn = "3" + sn
+                                    case .libre3: sn = String(sn.dropLast()) // trim final 0
+                                    default: break
+                                    }
                                 }
                                 deviceSerials[deviceId] = sn
                                 if deviceActivationTimes[deviceId] == nil || deviceActivationTimes[deviceId]! < a {
@@ -269,7 +274,9 @@ class LibreLinkUp: Logging {
                                 self.main.app.sensor = sensorType == .libre3 ? Libre3(main: self.main) : sensorType == .libre2 ? Libre2(main: self.main) : Sensor(main: self.main)
                                 self.main.app.sensor.type = sensorType
                                 self.main.app.sensor.serial = serial
-                                self.main.app.sensor.maxLife = 20160
+                                if sensorType == .libre3 {
+                                    self.main.app.sensor.maxLife = 20160
+                                }
                             }
                         }
                         if await main.app.sensor.serial.hasSuffix(serial) {

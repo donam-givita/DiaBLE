@@ -320,11 +320,13 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
             nightscout?.read { values in
                 if values.count > 0 {
-                    entries = entries.filter { $0.date > values[0].date }
-                }
-                self.nightscout?.post(entries: entries) {
-                    data, response, error in
-                    self.nightscout?.read()
+                    let newEntries = entries.filter { $0.date > values[0].date }
+                    if newEntries.count > 0 {
+                        self.nightscout?.post(entries: newEntries) {
+                            data, response, error in
+                            self.nightscout?.read()
+                        }
+                    }
                 }
             }
         }

@@ -13,13 +13,17 @@ struct HamburgerMenu: View {
     let credits = [
         "@bubbledevteam": "https://github.com/bubbledevteam",
         "@captainbeeheart": "https://github.com/captainbeeheart",
+        "@creepymonster": "https://github.com/creepymonster",
         "@cryptax": "https://github.com/cryptax",
         "@dabear": "https://github.com/dabear",
+        "@DecentWoodpecker67": "https://github.com/DecentWoodpecker67",
         "@ivalkou": "https://github.com/ivalkou",
+        "Jaap Korthals Altes": "https://www.reddit.com/user/jka512",
         "@keencave": "https://github.com/keencave",
         "LibreMonitor": "https://github.com/UPetersen/LibreMonitor/tree/Swift4",
         "Loop": "https://github.com/LoopKit/Loop",
         "Marek Macner": "https://github.com/MarekM60",
+        "@monder": "https://github.com/monder",
         "Nightguard": "https://github.com/nightscout/nightguard",
         "Nightscout LibreLink Up Uploader": "https://github.com/timoschlueter/nightscout-librelink-up",
         "@travisgoodspeed": "https://github.com/travisgoodspeed",
@@ -99,7 +103,7 @@ struct HamburgerMenu: View {
 
                         VStack {
                             Image(systemName: "giftcard")
-                            Link("PayPal", destination: URL(string: "https://paypal.me/guisor")!)
+                            Link("PayPal", destination: URL(string: Data(base64Encoded: "aHR0cHM6Ly9wYXlwYWwubWUvZ3Vpc29y")!.string)!)
                         }
 
                         VStack {
