@@ -199,9 +199,9 @@ struct OnlineView: View {
                     VStack(spacing: 0) {
 
                         if history.nightscoutValues.count > 0 {
-                            let twelveHours = Double(8 * 60 * 60)  // TODO: the same as LLU
+                            let twelveHours = Double(12 * 60 * 60)  // TODO: the same as LLU
                             let now = Date()
-                            let nightscoutHistory = history.nightscoutValues.filter { $0.date.timeIntervalSince(now) <=
+                            let nightscoutHistory = history.nightscoutValues.filter { now.timeIntervalSince($0.date) <=
                                 twelveHours }
                             Chart(nightscoutHistory) {
                                 PointMark(x: .value("Time", $0.date),
