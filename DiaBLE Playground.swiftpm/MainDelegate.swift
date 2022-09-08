@@ -369,13 +369,11 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             // nightscout?.delete(query: "find[device]=OOP&count=32") { data, response, error in
 
             nightscout?.read { values in
-                if values.count > 0 {
-                    let newEntries = entries.filter { $0.date > values[0].date }
-                    if newEntries.count > 0 {
-                        self.nightscout?.post(entries: newEntries) {
-                            data, response, error in
-                            self.nightscout?.read()
-                        }
+                let newEntries = values.count > 0 ? entries.filter { $0.date > values[0].date } : entries
+                if newEntries.count > 0 {
+                    self.nightscout?.post(entries: newEntries) {
+                        data, response, error in
+                        self.nightscout?.read()
                     }
                 }
             }
