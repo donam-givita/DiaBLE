@@ -284,6 +284,23 @@ class Libre3: Sensor {
         }
     }
 
+    enum SecurityEvent: UInt8, CustomStringConvertible {
+
+        case certificateAccepted = 0x04
+        case challengeLoadDone   = 0x08
+        case certificateReady    = 0x0A
+        case ephemeralReady      = 0x0F
+
+        var description: String {
+            switch self {
+            case .certificateAccepted: return "certificate accepted"
+            case .challengeLoadDone:   return "challenge load done"
+            case .certificateReady:    return "certificate ready"
+            case .ephemeralReady:      return "ephemeral ready"
+            }
+        }
+    }
+
     /// 13 bytes written to .patchControl:
     /// - PATCH_CONTROL_COMMAND_SIZE = 7
     /// - a final sequential Int starting by 01 00 since it is enqueued

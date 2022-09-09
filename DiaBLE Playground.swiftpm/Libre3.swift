@@ -351,14 +351,14 @@ class Libre3: Sensor {
     // write  2198  02
     // write  23FA  20 * 9 bytes        // 162-byte fixed certificate data
     // write  2198  03
-    // notify 2198  04
+    // notify 2198  04                  // certificate accepted event
     // write  2198  09
-    // notify 2198  A0 8C
+    // notify 2198  0A 8C               // certificate ready event
     // notify 23FA  20 * 7 + 8 bytes    // 140-byte payload
     // write  2198  0D
     // write  23FA  20 * 3 + 13 bytes   // 65-byte payload
     // write  2198  0E
-    // notify 2198  0F 41
+    // notify 2198  0F 41               // ephemeral ready event
     // notify 23FA  20 * 3 + 9 bytes    // 65-byte paylod
     // write  2198  11
     // notify 2198  08 17
@@ -411,6 +411,23 @@ class Libre3: Sensor {
             case .security_0E:    return "security 0x0E command"
             case .getSessionInfo: return "get session info"
             case .readChallenge:  return "read security challenge"
+            }
+        }
+    }
+
+    enum SecurityEvent: UInt8, CustomStringConvertible {
+
+        case certificateAccepted = 0x04
+        case challengeLoadDone   = 0x08
+        case certificateReady    = 0x0A
+        case ephemeralReady      = 0x0F
+
+        var description: String {
+            switch self {
+            case .certificateAccepted: return "certificate accepted"
+            case .challengeLoadDone:   return "challenge load done"
+            case .certificateReady:    return "certificate ready"
+            case .ephemeralReady:      return "ephemeral ready"
             }
         }
     }
