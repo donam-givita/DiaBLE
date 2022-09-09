@@ -593,6 +593,8 @@ class Libre3: Sensor {
 
 
         case .securityCommands:
+            let securityEvent = SecurityEvent(rawValue: data[0])!
+            log("\(type) \(transmitter!.peripheral!.name!): security event: \(securityEvent)")
             if data.count == 2 {
                 expectedStreamSize = Int(data[1] + data[1] / 20 + 1)
                 log("\(type) \(transmitter!.peripheral!.name!): expected response size: \(expectedStreamSize) bytes (payload: \(data[1]) bytes)")
@@ -602,11 +604,9 @@ class Libre3: Sensor {
                 } else if data[1] == 67 {
                     currentSecurityCommand = .getSessionInfo
                 }
-
                 // TODO: 140 and 65 .certificateData bytes received during activation/repair
             }
-            if currentSecurityCommand == .security_03 && data.count == 1 && data[0] == 0x04 {
-                debugLog("\(type) \(transmitter!.peripheral!.name!): received security 0x04 aknowledgment after sending command 0x03")
+            if currentSecurityCommand == .security_03 && securityEvent == .certificateAccepted {
                 send(securityCommand: .security_09)
             }
 
