@@ -417,6 +417,7 @@ class Libre3: Sensor {
 
     enum SecurityEvent: UInt8, CustomStringConvertible {
 
+        case unknown             = 0x00
         case certificateAccepted = 0x04
         case challengeLoadDone   = 0x08
         case certificateReady    = 0x0A
@@ -424,6 +425,7 @@ class Libre3: Sensor {
 
         var description: String {
             switch self {
+            case .unknown:             return "unknown [TODO]"
             case .certificateAccepted: return "certificate accepted"
             case .challengeLoadDone:   return "challenge load done"
             case .certificateReady:    return "certificate ready"
@@ -593,8 +595,8 @@ class Libre3: Sensor {
 
 
         case .securityCommands:
-            let securityEvent = SecurityEvent(rawValue: data[0])!
-            log("\(type) \(transmitter!.peripheral!.name!): security event: \(securityEvent)")
+            let securityEvent = SecurityEvent(rawValue: data[0]) ?? .unknown
+            log("\(type) \(transmitter!.peripheral!.name!): security event: \(securityEvent)\(securityEvent == .unknown ? " (" + data[0].hex + ")" : "")")
             if data.count == 2 {
                 expectedStreamSize = Int(data[1] + data[1] / 20 + 1)
                 log("\(type) \(transmitter!.peripheral!.name!): expected response size: \(expectedStreamSize) bytes (payload: \(data[1]) bytes)")
