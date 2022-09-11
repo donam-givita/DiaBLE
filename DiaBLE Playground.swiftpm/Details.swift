@@ -161,6 +161,7 @@ struct Details: View {
                         Row("UID", app.sensor.uid.hex)
 
                         if !app.sensor.patchInfo.isEmpty {
+                            Row("Firmware", app.sensor.firmware)
                             Row("Patch Info", app.sensor.patchInfo.hex)
                             Row("Security Generation", "\(app.sensor.securityGeneration)")
                         }

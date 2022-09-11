@@ -484,7 +484,8 @@ class Libre3: Sensor {
             maxLife = Int(UInt16(wearDuration))
             log("Libre 3: wear duration: \(maxLife) minutes (\(maxLife.formattedInterval), 0x\(maxLife.hex))")
             let fwVersion = patchInfo.subdata(in: 10 ..< 14)
-            log("Libre 3: firmware version: \(fwVersion[3]).\(fwVersion[2]).\(fwVersion[1]).\(fwVersion[0])")
+            firmware = "\(fwVersion[3]).\(fwVersion[2]).\(fwVersion[1]).\(fwVersion[0])"
+            log("Libre 3: firmware version: \(firmware)")
             let productType = Int(patchInfo[14])  // 04 = SENSOR
             log("Libre 3: product type: \(ProductType(rawValue: productType)?.description ?? "unknown") (0x\(productType.hex))")
             // state 04 (.paired) detected already after 15 minutes, 08 for a detached sensor (ERROR_TERMINATED)

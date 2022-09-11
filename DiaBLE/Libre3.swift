@@ -259,6 +259,71 @@ class Libre3: Sensor {
 
     class var knownUUIDs: [String] { UUID.allCases.map(\.rawValue) }
 
+
+    // - maximum packet size is 20
+    // - notified packets are prefixed by 00, 01, 02, ...
+    // - written packets are prefixed by 00 00, 12 00, 24 00, 36 00, ...
+    // - data packets end in a sequential Int: 01 00, 02 00, ...
+    //
+    // Connection:
+    // enable notifications for 2198, 23FA and 22CE
+    // write  2198  11
+    // notify 2198  08 17
+    // notify 22CE  20 + 5 bytes        // 23-byte challenge
+    // write  22CE  20 + 20 + 6 bytes   // 40-byte unlock payload
+    // write  2198  08
+    // notify 2198  08 43
+    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info
+    // enable notifications for 1338, 1BEE, 195A, 1AB8, 1D24, 1482
+    // notify 1482  18-byte packets     // patch status
+    // enable notifications for 177A
+    // write  1338  13 bytes            // command ending in 01 00
+    // notify 177A  15 + 20 bytes       // one-minute reading
+    // notify 195A  20-byte packets     // historical data
+    // notify 1338  10 bytes            // ending in 01 00
+    // write  1338  13 bytes            // command ending in 02 00
+    // notify 1AB8  20-byte packets     // clinical data
+    // notify 1338  10 bytes            // ending in 02 00
+    //
+    // Activation:
+    // enable notifications for 2198, 23FA and 22CE
+    // write  2198  01
+    // write  2198  02
+    // write  23FA  20 * 9 bytes        // 162-byte fixed certificate data
+    // write  2198  03
+    // notify 2198  04                  // certificate accepted event
+    // write  2198  09
+    // notify 2198  0A 8C               // certificate ready event
+    // notify 23FA  20 * 7 + 8 bytes    // 140-byte payload
+    // write  2198  0D
+    // write  23FA  20 * 3 + 13 bytes   // 65-byte payload
+    // write  2198  0E
+    // notify 2198  0F 41               // ephemeral ready event
+    // notify 23FA  20 * 3 + 9 bytes    // 65-byte paylod
+    // write  2198  11
+    // notify 2198  08 17
+    // notify 22CE  20 + 5 bytes        // 23-byte challenge
+    // write  22CE  20 * 2 + 6 bytes    // 40-byte unlock payload
+    // write  2198  08
+    // notify 2198  08 43
+    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info - wrapped kAuth?
+    // enable notifications for 1338, 1BEE, 195A, 1AB8, 1D24, 1482
+    // notify 1482  18 bytes            // patch status
+    // enable notifications for 177A
+    // write  1338  13 bytes            // command ending in 01 00
+    // notify 1BEE  20 + 20 bytes       // event log
+    // notify 1338  10 bytes            // ending in 01 00
+    // write  1338  13 bytes            // command ending in 02 00
+    // notify 1D24  20 * 10 + 15 bytes  // 204-byte factory data
+    // notify 1338  10 bytes            // ending in 02 00
+    //
+    // Shutdown:
+    // write  1338  13 bytes            // command ending in 03 00
+    // notify 1BEE  20 bytes            // event log
+    // notify 1338  10 bytes            // ending in 03 00
+    // write  1338  13 bytes            // command ending in 04 00
+
+
     enum SecurityCommand: UInt8, CustomStringConvertible {
 
         case security_01    = 0x01
@@ -353,7 +418,8 @@ class Libre3: Sensor {
             maxLife = Int(UInt16(wearDuration))
             log("Libre 3: wear duration: \(maxLife) minutes (\(maxLife.formattedInterval), 0x\(maxLife.hex))")
             let fwVersion = patchInfo.subdata(in: 10 ..< 14)
-            log("Libre 3: firmware version: \(fwVersion[3]).\(fwVersion[2]).\(fwVersion[1]).\(fwVersion[0])")
+            firmware = "\(fwVersion[3]).\(fwVersion[2]).\(fwVersion[1]).\(fwVersion[0])"
+            log("Libre 3: firmware version: \(firmware)")
             let productType = Int(patchInfo[14])  // 04 = SENSOR
             log("Libre 3: product type: \(ProductType(rawValue: productType)?.description ?? "unknown") (0x\(productType.hex))")
             // state 04 (.paired) detected already after 15 minutes, 08 for a detached sensor (ERROR_TERMINATED)

@@ -346,14 +346,18 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             log("NFC: IC manufacturer code: 0x\(manufacturer)")
             debugLog("NFC: IC serial number: \(tag.icSerialNumber.hex)")
 
-            var firmware = "RF430"
-            switch tag.identifier[2] {
-            case 0xA0: firmware += "TAL152H Libre 1 A0 "
-            case 0xA4: firmware += "TAL160H Libre 2/Pro A4 "
-            case 0x00: firmware = "unknown Libre 3 "
-            default:   firmware += " unknown "
+            if let sensor = sensor as? Libre3 {
+                sensor.parsePatchInfo()
+                do {
+                    let aa = try await send(NFCCommand(code: 0xAA))
+                    log("NFC: Libre 3 `AA` command output: \(aa.hexBytes), CRC: \(Data(aa.suffix(2).reversed()).hex), computed CRC: \(aa.prefix(aa.count-2).crc16.hex), string: \"\(aa.string)\"")
+                    // TODO
+                } catch { }
+
+            } else {
+                sensor.firmware = tag.identifier[2].hex
+                log("NFC: firmware version: \(sensor.firmware)")
             }
-            log("NFC: \(firmware)firmware")
 
             debugLog(String(format: "NFC: IC reference: 0x%X", systemInfo.icReference))
             if systemInfo.applicationFamilyIdentifier != -1 {
@@ -368,6 +372,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
             sensor.uid = Data(tag.identifier.reversed())
             log("NFC: sensor uid: \(sensor.uid.hex)")
+            log("NFC: sensor serial number: \(sensor.serial)")
 
             if sensor.patchInfo.count > 0 {
                 log("NFC: patch info: \(sensor.patchInfo.hex)")
@@ -379,17 +384,6 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     self.main.settings.patchInfo = self.sensor.patchInfo
                 }
             }
-
-            // TODO: Libre 3
-            if let sensor = sensor as? Libre3 {
-                sensor.parsePatchInfo()
-                do {
-                    let aa = try await send(NFCCommand(code: 0xAA))
-                    log("NFC: Libre 3 `AA` command output: \(aa.hexBytes), CRC: \(Data(aa.suffix(2).reversed()).hex), computed CRC: \(aa.prefix(aa.count-2).crc16.hex), string: \"\(aa.string)\"")
-                } catch { }
-            }
-
-            log("NFC: sensor serial number: \(sensor.serial)")
 
             if taskRequest != .none {
 

@@ -176,6 +176,7 @@ class Sensor: ObservableObject, Logging {
     var region: SensorRegion = .unknown
     var serial: String = ""
     var readerSerial: Data = Data()
+    var firmware: String = ""
 
     var transmitter: Transmitter?
     var main: MainDelegate!
@@ -219,7 +220,9 @@ class Sensor: ObservableObject, Logging {
 
     var uid: SensorUid = Data() {
         willSet(uid) {
-            serial = serialNumber(uid: uid, family: self.family)
+            if type != .libre3 {
+                serial = serialNumber(uid: uid, family: self.family)
+            }
         }
     }
 
