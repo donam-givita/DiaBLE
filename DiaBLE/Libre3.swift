@@ -392,6 +392,7 @@ class Libre3: Sensor {
     var buffer: Data = Data()
     var currentControlCommand:  ControlCommand?
     var currentSecurityCommand: SecurityCommand?
+    var lastSecurityEvent: SecurityEvent = .unknown
     var expectedStreamSize = 0
 
 
@@ -414,6 +415,9 @@ class Libre3: Sensor {
             let localization    = UInt16(patchInfo[4...5])
             let puckGeneration  = UInt16(patchInfo[6...7])
             log("Libre 3: security version: \(securityVersion) (0x\(securityVersion.hex)), localization: \(localization) (0x\(localization.hex)), puck generation: \(puckGeneration) (0x\(puckGeneration.hex))")
+            // TODO: verify that 01 stands for Europe
+            region = SensorRegion(rawValue: Int(localization)) ?? .unknown
+            log("DEBUG: region: \(region)")
             let wearDuration = patchInfo[8...9]
             maxLife = Int(UInt16(wearDuration))
             log("Libre 3: wear duration: \(maxLife) minutes (\(maxLife.formattedInterval), 0x\(maxLife.hex))")
@@ -530,8 +534,8 @@ class Libre3: Sensor {
 
 
         case .securityCommands:
-            let securityEvent = SecurityEvent(rawValue: data[0]) ?? .unknown
-            log("\(type) \(transmitter!.peripheral!.name!): security event: \(securityEvent)\(securityEvent == .unknown ? " (" + data[0].hex + ")" : "")")
+            lastSecurityEvent = SecurityEvent(rawValue: data[0]) ?? .unknown
+            log("\(type) \(transmitter!.peripheral!.name!): security event: \(lastSecurityEvent)\(lastSecurityEvent == .unknown ? " (" + data[0].hex + ")" : "")")
             if data.count == 2 {
                 expectedStreamSize = Int(data[1] + data[1] / 20 + 1)
                 log("\(type) \(transmitter!.peripheral!.name!): expected response size: \(expectedStreamSize) bytes (payload: \(data[1]) bytes)")
@@ -543,7 +547,7 @@ class Libre3: Sensor {
                 }
                 // TODO: 140 and 65 .certificateData bytes received during activation/repair
             }
-            if currentSecurityCommand == .security_03 && securityEvent == .certificateAccepted {
+            if currentSecurityCommand == .security_03 && lastSecurityEvent == .certificateAccepted {
                 send(securityCommand: .security_09)
             }
 

@@ -199,20 +199,22 @@ class Sensor: ObservableObject, Logging {
             } else {
                 type = .unknown
             }
-            if info.count > 3 {
-                region = SensorRegion(rawValue: Int(info[3])) ?? .unknown
-            }
-            if info.count >= 6 {
-                family = SensorFamily(rawValue: Int(info[2] >> 4)) ?? .libre
-                if serial != "" {
-                    serial = "\(family.rawValue)\(serial.dropFirst())"
+            if type != .libre3 {
+                if info.count > 3 {
+                    region = SensorRegion(rawValue: Int(info[3])) ?? .unknown
                 }
-                let generation = info[2] & 0x0F
-                if family == .libre2 {
-                    securityGeneration = generation < 9 ? 1 : 2
-                }
-                if family == .libreSense {
-                    securityGeneration = generation < 4 ? 1 : 2
+                if info.count >= 6 {
+                    family = SensorFamily(rawValue: Int(info[2] >> 4)) ?? .libre
+                    if serial != "" {
+                        serial = "\(family.rawValue)\(serial.dropFirst())"
+                    }
+                    let generation = info[2] & 0x0F
+                    if family == .libre2 {
+                        securityGeneration = generation < 9 ? 1 : 2
+                    }
+                    if family == .libreSense {
+                        securityGeneration = generation < 4 ? 1 : 2
+                    }
                 }
             }
         }
