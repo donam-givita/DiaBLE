@@ -256,7 +256,7 @@ class Libre3: Sensor {
         /// (`ABT_HISTORICAL_POINTS_PER_NOTIFICATION` = 6)
         case historicalData = "0898195A-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify"]
 
-        /// Notifies a second longer stream of clinical data (max 128 packets when reconnecting aftert some hours)
+        /// Notifies a second longer stream of clinical data (max 120 packets when reconnecting aftert some hours)
         case clinicalData = "08981AB8-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify"]
 
         /// Notifies 20 + 20 bytes towards the end of activation
