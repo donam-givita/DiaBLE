@@ -122,7 +122,6 @@ class Libre3: Sensor {
         let NFC_Key: Int
         let localization: Int         // 1: Europe ?
         let generation: Int
-        let puckGeneration: Int
         let wearDuration: Int
         let warmupTime: Int
         let productType: ProductType
@@ -479,8 +478,8 @@ class Libre3: Sensor {
             // TODO: verify
             let securityVersion = UInt16(patchInfo[2...3])
             let localization    = UInt16(patchInfo[4...5])
-            let puckGeneration  = UInt16(patchInfo[6...7])
-            log("Libre 3: security version: \(securityVersion) (0x\(securityVersion.hex)), localization: \(localization) (0x\(localization.hex)), puck generation: \(puckGeneration) (0x\(puckGeneration.hex))")
+            let generation  = UInt16(patchInfo[6...7])
+            log("Libre 3: security version: \(securityVersion) (0x\(securityVersion.hex)), localization: \(localization) (0x\(localization.hex)), generation: \(generation) (0x\(generation.hex))")
             // TODO: verify that 01 stands for Europe
             region = SensorRegion(rawValue: Int(localization)) ?? .unknown
             let wearDuration = patchInfo[8...9]
