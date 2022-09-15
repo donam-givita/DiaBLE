@@ -153,13 +153,11 @@ class Libre3: Sensor {
         let actionableStatus: Int
         let glycemicAlarmStatus: OOP.Alarm
         let glucoseRangeStatus: ResultRange
-        let resultRangeStatus: ResultRange
         let sensorCondition: Condition
         let uncappedCurrentMgDl: Int
         let uncappedHistoricMgDl: Int
         let temperature: Int
         let fastData: Data
-        let reservedData: Data
     }
 
 
@@ -213,6 +211,24 @@ class Libre3: Sensor {
     }
 
 
+    struct InitParam {
+        let activationTime: UInt32
+        var firstConnect: Bool
+        let serialNumber: String
+        var lastLifeCountReceived: Int
+        let hybridModeEnabled: Bool
+        let dataFile: Any
+        let blePIN: Data
+        let lastEventReceived: Int
+        let deviceAddress: Data
+        let warmupDuration: Int
+        let wearDuration: Int
+        var lastHistoricLifeCountReceived: Int
+        let exportedKAuth: Data
+        let securityVersion: Int
+    }
+
+
     struct CGMSensor {
         var sensor: Sensor
         var deviceType: Int
@@ -227,7 +243,7 @@ class Libre3: Sensor {
         var exportedkAuth: Data
         var securityLibInitialized: Bool
         var isPreAuthorized: Bool
-        var initParam: Any
+        var initParam: InitParam
         var securityVersion: Int
     }
 
@@ -478,7 +494,7 @@ class Libre3: Sensor {
             // TODO: verify
             let securityVersion = UInt16(patchInfo[2...3])
             let localization    = UInt16(patchInfo[4...5])
-            let generation  = UInt16(patchInfo[6...7])
+            let generation      = UInt16(patchInfo[6...7])
             log("Libre 3: security version: \(securityVersion) (0x\(securityVersion.hex)), localization: \(localization) (0x\(localization.hex)), generation: \(generation) (0x\(generation.hex))")
             // TODO: verify that 01 stands for Europe
             region = SensorRegion(rawValue: Int(localization)) ?? .unknown
