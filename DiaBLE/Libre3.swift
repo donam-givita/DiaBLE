@@ -204,7 +204,7 @@ class Libre3: Sensor {
         let hybridModeEnabled: Bool
         let dataFile: Any
         let blePIN: Data
-        let lastEventReceived: Int
+        var lastEventReceived: Int
         let deviceAddress: Data
         let warmupDuration: Int
         let wearDuration: Int
@@ -288,7 +288,7 @@ class Libre3: Sensor {
     // write  22CE  20 + 20 + 6 bytes   // 40-byte unlock payload
     // write  2198  08
     // notify 2198  08 43
-    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info
+    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info (wrapped kAuth?)
     // enable notifications for 1338, 1BEE, 195A, 1AB8, 1D24, 1482
     // notify 1482  18-byte packets     // patch status
     // enable notifications for 177A
@@ -321,7 +321,7 @@ class Libre3: Sensor {
     // write  22CE  20 * 2 + 6 bytes    // 40-byte unlock payload
     // write  2198  08
     // notify 2198  08 43
-    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info - wrapped kAuth?
+    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info (wrapped kAuth?)
     // enable notifications for 1338, 1BEE, 195A, 1AB8, 1D24, 1482
     // notify 1482  18 bytes            // patch status
     // enable notifications for 177A
@@ -432,7 +432,6 @@ class Libre3: Sensor {
             log("Libre 3: security version: \(securityVersion) (0x\(securityVersion.hex)), localization: \(localization) (0x\(localization.hex)), generation: \(generation) (0x\(generation.hex))")
             // TODO: verify that 01 stands for Europe
             region = SensorRegion(rawValue: Int(localization)) ?? .unknown
-            log("DEBUG: region: \(region)")
             let wearDuration = patchInfo[8...9]
             maxLife = Int(UInt16(wearDuration))
             log("Libre 3: wear duration: \(maxLife) minutes (\(maxLife.formattedInterval), 0x\(maxLife.hex))")

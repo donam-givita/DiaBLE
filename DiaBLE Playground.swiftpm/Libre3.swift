@@ -219,7 +219,7 @@ class Libre3: Sensor {
         let hybridModeEnabled: Bool
         let dataFile: Any
         let blePIN: Data
-        let lastEventReceived: Int
+        var lastEventReceived: Int
         let deviceAddress: Data
         let warmupDuration: Int
         let wearDuration: Int
@@ -348,7 +348,7 @@ class Libre3: Sensor {
     // write  22CE  20 + 20 + 6 bytes   // 40-byte unlock payload
     // write  2198  08
     // notify 2198  08 43
-    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info
+    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info (wrapped kAuth?)
     // enable notifications for 1338, 1BEE, 195A, 1AB8, 1D24, 1482
     // notify 1482  18-byte packets     // patch status
     // enable notifications for 177A
@@ -381,7 +381,7 @@ class Libre3: Sensor {
     // write  22CE  20 * 2 + 6 bytes    // 40-byte unlock payload
     // write  2198  08
     // notify 2198  08 43
-    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info - wrapped kAuth?
+    // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info (wrapped kAuth?)
     // enable notifications for 1338, 1BEE, 195A, 1AB8, 1D24, 1482
     // notify 1482  18 bytes            // patch status
     // enable notifications for 177A
@@ -699,263 +699,6 @@ class Libre3: Sensor {
         send(securityCommand: .security_03)
         // TODO
     }
-
-
-    static let appFlowJSON = """
-{
-  "flowControllerVersion":"1.0",
-  "controllerType":"Libre3Sensor",
-  "initialActivity":"libre3ActivityScanSensor",
-  "errorHandler":"libre3ActivityError",
-  "activities" :[
-    {
-      "activity":"libre3ActivityScanSensor",
-      "eventFlows": [
-        { "MSLibre3DeviceFoundEvent":"libre3ActivityConnect" },
-        { "MSLibre3ScanError":"_FlowContinue"}
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityConnect",
-      "eventFlows": [
-        { "MSLibre3SecuredConnectedEvent": "libre3ActivityEnableSecurityNotifications"},
-        { "MSLibre3ConnectedEvent":"libre3ActivityEnableNotification" },
-        { "MSLibre3DisconnectEvent": "libre3ActivityScanSensor"}
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityEnableSecurityNotifications",
-      "eventFlows": [
-        { "MSLibre3SecurityNotificationsEnabledEvent":"libre3ActivityCheckAuthentication" },
-        { "MSLibre3RealtimeReadingEvent": "_FlowContinue"},
-        { "MSLibre3DisconnectEvent": "libre3ActivityConnect"}
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityEnableNotification",
-      "eventFlows": [
-        { "MSLibre3NotificationEnabledEvent":"libre3ActivityGetRealtimeReadings" },
-        { "MSLibre3RealtimeReadingEvent": "_FlowContinue"},
-        { "MSLibre3DisconnectEvent": "libre3ActivityConnect"}
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityCheckAuthentication",
-      "eventFlows": [
-        { "MSLibre3AuthenticationRequiredEvent":"libre3ActivityStartAuthentication" },
-        { "MSLibre3AuthorizationRequiredEvent": "libre3ActivityStartAuthorization"}
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityStartAuthentication",
-      "eventFlows": [
-        { "MSLibre3CommandSentEvent":"libre3ActivityLoadCertificate" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityLoadCertificate",
-      "eventFlows": [
-        { "MSLibre3CommandSentEvent":"libre3ActivitySendCertificate" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivitySendCertificate",
-      "eventFlows": [
-        { "MSLibre3CertificateSentEvent":"libre3ActivitySendCertificateLoadDone" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivitySendCertificateLoadDone",
-      "eventFlows": [
-        { "MSLibre3CommandSentEvent":"libre3ActivityWaitCertificateAcceptance" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityWaitCertificateAcceptance",
-      "eventFlows": [
-        { "MSLibre3CertificateAcceptedEvent":"libre3ActivityGetCertificate" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityGetCertificate",
-      "eventFlows": [
-        { "MSLibre3CommandSentEvent":"libre3ActivityWaitCertificateReady" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityWaitCertificateReady",
-      "eventFlows": [
-        { "MSLibre3CertificateReadyEvent":"libre3ActivityReadCertificate" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityReadCertificate",
-      "eventFlows": [
-        { "MSLibre3CertificateReadEvent":"libre3ActivityValidateCertificate" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityValidateCertificate",
-      "eventFlows": [
-        { "MSLibre3CommandSentEvent":"libre3ActivitySendEphemeral" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivitySendEphemeral",
-      "eventFlows": [
-        { "MSLibre3CertificateSentEvent":"libre3ActivitySendEphemeralDone" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivitySendEphemeralDone",
-      "eventFlows": [
-        { "MSLibre3CommandSentEvent":"libre3ActivityPatchEphemeralWait" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityPatchEphemeralWait",
-      "eventFlows": [
-        { "MSLibre3EphemeralReadyEvent":"libre3ActivityReadPatchEphemeral" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityReadPatchEphemeral",
-      "eventFlows": [
-        { "MSLibre3CertificateReadEvent":"libre3ActivityFinalizeAuthentication" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityFinalizeAuthentication",
-      "eventFlows": [
-        { "MSLibre3ECDHCompleteEvent":"libre3ActivityStartAuthorization" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityStartAuthorization",
-      "eventFlows": [
-        { "MSLibre3CommandSentEvent":"libre3ActivityWaitChallengeLoad" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityWaitChallengeLoad",
-      "eventFlows": [
-        { "MSLibre3ChallengeLoadDoneEvent":"libre3ActivityReadR1" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityReadR1",
-      "eventFlows": [
-        { "MSLibre3ChallengeDataReadEvent":"libre3ActivitySendChallengeResponse" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivitySendChallengeResponse",
-      "eventFlows": [
-        { "MSLibre3ChallengeDataSentEvent":"libre3ActivitySendChallengeLoadDone" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivitySendChallengeLoadDone",
-      "eventFlows": [
-        { "MSLibre3CommandSentEvent":"libre3ActivityWaitPatchChallengeLoadDone" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityWaitPatchChallengeLoadDone",
-      "eventFlows": [
-        { "MSLibre3ChallengeLoadDoneEvent":"libre3ActivityReadPatchChallengeResponse" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityReadPatchChallengeResponse",
-      "eventFlows": [
-        { "MSLibre3ChallengeDataReadEvent":"libre3ActivityFinalizeAuthorization" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityFinalizeAuthorization",
-      "eventFlows": [
-        { "MSLibre3RealtimeReadingEvent": "_FlowContinue"},
-        { "MSLibre3NotificationEnabledEvent": "libre3ActivityGetRealtimeReadings"}
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityGetRealtimeReadings",
-      "eventFlows": [
-        { "MSLibre3RealtimeReadingEvent": "_FlowContinue"},
-        { "MSLibre3HistoricalReadingEvent":"_FlowContinue" },
-        { "MSLibre3HistoricalReadingEndEvent":"_FlowContinue" },
-        { "MSLibre3FastDataEvent":"_FlowContinue" },
-        { "MSLibre3DisconnectEvent": "libre3ActivityConnect"}
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityError",
-      "eventFlows": [
-        { "MSLibre3DisconnectEvent": "libre3ActivityConnect"},
-        { "MSLibre3SecurityErrorEvent" : "libre3ActivityDisconnect"},
-        { "MSLibre3ConnectTimedOutEvent" : "libre3ActivityScanSensor"}
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityDisconnect",
-      "eventFlows": [
-        { "MSLibre3DisconnectEvent":"libre3ActivityConnect" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityCloseDevice",
-      "eventFlows": [
-        { "MSLibre3DisconnectEvent":"libre3ActivityConnect" }
-      ]
-    },
-
-    {
-      "activity":"libre3ActivityGetEventLog",
-      "eventFlows": [
-        { "MSLibre3HistoricalReadingEvent":"_FlowContinue" },
-        { "MSLibre3RealtimeReadingEvent": "_FlowContinue"},
-        { "MSLibre3FactoryDataEvent" :  "_FlowContinue"},
-        { "MSLibre3HistoricalReadingEvent":"_FlowContinue" },
-        { "MSLibre3HistoricalReadingEndEvent":"_FlowContinue" },
-        { "MSLibre3EventLogEvent":"_FlowContinue" },
-        { "MSLibre3FastDataEvent":"_FlowContinue" },
-        { "MSLibre3EventLogEndEvent": "libre3ActivityGetRealtimeReadings"}
-      ]
-    }
-  ]
-}
-"""
 
 
     // MARK: - Constants

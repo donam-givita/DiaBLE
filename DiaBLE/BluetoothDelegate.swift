@@ -475,6 +475,17 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     }
 
 
+    public func peripheral(_ peripheral: CBPeripheral, didReadRSSI rssi: NSNumber, error: Error?) {
+        let name = peripheral.name ?? "an unnamed peripheral"
+        if let error {
+            debugLog("Bluetooth: error reading \(name)'s RSSI: \(error.localizedDescription)")
+        } else {
+            debugLog("Bluetooth: did read \(name)'s RSSI: \(rssi) dB")
+            app.device.rssi = Int(truncating: rssi)
+        }
+    }
+
+
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         let name = peripheral.name ?? "an unnamed peripheral"
         var characteristicString = characteristic.uuid.uuidString
@@ -530,6 +541,8 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
 
             if app.device == nil { return }     // the connection timed out in the meantime
+
+            app.device.peripheral!.readRSSI()
 
             app.device.lastConnectionDate = Date()
             app.lastConnectionDate = app.device.lastConnectionDate
