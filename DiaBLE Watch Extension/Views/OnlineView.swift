@@ -218,7 +218,7 @@ struct OnlineView: View {
                                 }
                             }
                             .padding()
-                            .frame(minHeight: 64)
+                            .frame(maxHeight: 64)
                         }
 
                         List {
@@ -262,7 +262,7 @@ struct OnlineView: View {
                                 }
                             }
                             .padding()
-                            .frame(minHeight: 64)
+                            .frame(maxHeight: 64)
                         }
 
                         HStack {
