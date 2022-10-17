@@ -198,6 +198,7 @@ class LibreLinkUp: Logging {
     }
 
 
+    /// - Returns: (data, response, history, logbookData, logbookHistory, logbookAlarms)
     func getPatientGraph() async throws -> (Any, URLResponse, [LibreLinkUpGlucose], Any, [LibreLinkUpGlucose], [LibreLinkUpAlarm]) {
         var request = URLRequest(url: URL(string: "\(regionalSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/graph")!)
         var authenticatedHeaders = headers

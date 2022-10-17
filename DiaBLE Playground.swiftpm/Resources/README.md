@@ -3,6 +3,8 @@
 
 The project should compile fine without external dependencies just after changing the _Bundle Identifier_ in the _General_ panel of the _Targets_ settings and the _Team_ in the _Signing and Capabilities_ tab of Xcode -- Spike and xDrip4iO5 users know already very well what that means... ;-)
 
+The NFC capabilities require a paid ADC annual membership.
+
 If you own an iPad you can download the [zipped archive](https://github.com/gui-dos/DiaBLE/archive/refs/heads/main.zip) of this repository and tap _DiaBLE Playground.swiftpm_: DiaBLE was born in fact as a single script for the iPad Swift Playgrounds to test the internal workings of the several troublesome BLE devices I bought, mainly the **Bubble** and the **MiaoMiao**. I upgraded it to the version 4.1 of the Playgrounds which still support iOS 15 but I cannot afford to support such transmitters and the WebOOP glucose.space server anymore.
 
 Currently I am targeting only the latest betas of Xcode and iOS and focusing on the new Libre 3. The new _async / await_ and _actors_ introduced in Swift 5.5 and iOS 15 probably would require a total rewrite of DiaBLE's foundations, as well as the enhanced *Gen2* protocols already adopted by the Libre 2 Sense/US/CA/AU which haven't been reversed yet.
