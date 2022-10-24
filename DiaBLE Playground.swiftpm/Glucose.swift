@@ -132,6 +132,10 @@ func factoryGlucose(rawGlucose: Glucose, calibrationInfo: CalibrationInfo) -> Gl
 
     guard rawGlucose.id >= 0 && rawGlucose.rawValue > 0 && calibrationInfo != .empty else { return rawGlucose }
 
+
+    // FIXME: crashes when receiving bogus Libre Pro data (https://github.com/gui-dos/DiaBLE/issues/9: "libreProH Crash")
+    guard calibrationInfo.i2 != 0 else { return rawGlucose }
+
     let x: Double = 1000 + 71500
     let y: Double = 1000
 
