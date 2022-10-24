@@ -404,6 +404,8 @@ class Libre3: Sensor {
 
     var receiverId: UInt32 = 0    // fnv32Hash of LibreView ID string
 
+    var blePIN: Data = Data()    // 4 bytes returned by the activation command
+
     var buffer: Data = Data()
     var currentControlCommand:  ControlCommand?
     var currentSecurityCommand: SecurityCommand?
@@ -603,7 +605,13 @@ class Libre3: Sensor {
 
 
                     if main.settings.debugLevel < 2 { // TEST: sniff Trident
-                        log("\(type) \(transmitter!.peripheral!.name!): writing 40-zero challenge data (it should be the unlock payload)")
+                        log("\(type) \(transmitter!.peripheral!.name!): writing 40-zero challenge response")
+
+                        // The effective challenge response is computed from a 36-byte array:
+                        // - received challenge (first 16 bytes)
+                        // - random 16 bytes
+                        // - BLE PIN (4 bytes)
+
                         let challengeData = Data(count: 40)
                         write(challengeData)
                         // writing .getSessionInfo makes the Libre 3 disconnect
