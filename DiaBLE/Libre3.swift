@@ -609,7 +609,7 @@ class Libre3: Sensor {
 
                         // The effective challenge response is computed from a 36-byte array:
                         // - received challenge (first 16 bytes)
-                        // - random 16 bytes
+                        // - random 16 bytes (nounce1)
                         // - BLE PIN (4 bytes)
 
                         let challengeData = Data(count: 40)
