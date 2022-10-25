@@ -345,7 +345,7 @@ class Libre3: Sensor {
     // write  2198  11
     // notify 2198  08 17
     // notify 22CE  20 + 5 bytes        // 23-byte challenge
-    // write  22CE  20 + 20 + 6 bytes   // 40-byte unlock payload
+    // write  22CE  20 + 20 + 6 bytes   // 40-byte challenge response
     // write  2198  08
     // notify 2198  08 43
     // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info (wrapped kAuth?)
@@ -378,7 +378,7 @@ class Libre3: Sensor {
     // write  2198  11
     // notify 2198  08 17
     // notify 22CE  20 + 5 bytes        // 23-byte challenge
-    // write  22CE  20 * 2 + 6 bytes    // 40-byte unlock payload
+    // write  22CE  20 * 2 + 6 bytes    // 40-byte challenge response
     // write  2198  08
     // notify 2198  08 43
     // notify 22CE  20 * 3 + 11 bytes   // 67-byte session info (wrapped kAuth?)

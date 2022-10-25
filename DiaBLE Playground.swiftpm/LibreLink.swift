@@ -118,6 +118,9 @@ class LibreLinkUp: Logging {
         let jsonData = try? JSONSerialization.data(withJSONObject: credentials)
         request.httpBody = jsonData
         do {
+            var redirected = false
+        loop: repeat {
+            redirected = false
             debugLog("LibreLinkUp: posting to \(request.url!.absoluteString) \(jsonData!.string), headers: \(headers)")
             let (data, response) = try await URLSession.shared.data(for: request)
             debugLog("LibreLinkUp: response data: \(data.string)")
@@ -132,12 +135,29 @@ class LibreLinkUp: Logging {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                    let status = json["status"] as? Int {
-                    if status == 2 || status == 429 {
+                    if status == 2 || status == 429 || status == 911 {
                         // {"status":2,"error":{"message":"notAuthenticated"}}
                         // {"status":429,"data":{"code":60,"data":{"failures":3,"interval":60,"lockout":300},"message":"locked"}}
+                        // {"status":911} when logging in at a stranger regional server
                         throw LibreLinkUpError.notAuthenticated
                     }
-                    if let data = json["data"] as? [String: Any],
+
+                    let data = json["data"] as? [String: Any]
+
+                    // TODO: redirect
+                    // {"status":0,"data":{"redirect":true,"region":"fr"}}
+                    if let redirect = data?["redirect"] as? Bool,
+                       let region = data?["region"] as? String {
+                        redirected = redirect
+                        DispatchQueue.main.async {
+                            self.main.settings.libreLinkUpRegion = region
+                        }
+                        log("LibreLinkUp: redirecting to \(regionalSiteURL)/\(loginEndpoint) ")
+                        request.url = URL(string: "\(regionalSiteURL)/\(loginEndpoint)")!
+                        continue loop
+                    }
+
+                    if let data = data,
                        let user = data["user"] as? [String: Any],
                        let id = user["id"] as? String,
                        let country = user["country"] as? String,
@@ -185,6 +205,8 @@ class LibreLinkUp: Logging {
                 }
                 return (data, response)
             }
+        } while redirected
+            return (Data(), URLResponse())
         } catch LibreLinkUpError.jsonDecoding {
             log("LibreLinkUp: error while decoding response: \(LibreLinkUpError.jsonDecoding.localizedDescription)")
             throw LibreLinkUpError.jsonDecoding
