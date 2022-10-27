@@ -236,6 +236,7 @@ class LibreLinkUp: Logging {
         var logbookAlarms: [LibreLinkUpAlarm] = []
 
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")  // https://github.com/creepymonster/GlucoseDirect/commit/b84deb7
         dateFormatter.dateFormat = "M/d/yyyy h:mm:ss a"
 
         do {
