@@ -214,7 +214,7 @@ struct OnlineView: View {
                                 AxisMarks(values: .stride(by: .hour, count: 3)) { _ in
                                     AxisGridLine()
                                     AxisTick()
-                                    AxisValueLabel(format: .dateTime.hour().minute())
+                                    AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .omitted)).minute(), anchor: .top)
                                 }
                             }
                             .padding()
@@ -258,7 +258,7 @@ struct OnlineView: View {
                                 AxisMarks(values: .stride(by: .hour, count: 3)) { _ in
                                     AxisGridLine()
                                     AxisTick()
-                                    AxisValueLabel(format: .dateTime.hour().minute())
+                                    AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .omitted)).minute(), anchor: .top)
                                 }
                             }
                             .padding()
