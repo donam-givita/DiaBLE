@@ -17,6 +17,9 @@ Still too early to decide the final design (but I really like already the evil l
 <p align="center"><img src="https://user-images.githubusercontent.com/7220550/184549737-6e931282-9817-47be-aaf8-1f94ad6be8b9.png" width="33.3%" align="middle" /> &nbsp; &nbsp; <img src="https://user-images.githubusercontent.com/7220550/184549763-4d984707-d58f-4f80-a2b6-374193a10c73.png" width="16.7%" align="middle" /></p>
 <h4 align ="center">Libre 3 Details</h4>
 <br><br>
+<p align="center"><img src="https://user-images.githubusercontent.com/7220550/200558485-ca29b560-0697-4ab5-ac1c-6aa3dd8b5422.png" width="33.3%" /></p>
+<h4 align ="center">Libre 1 Brownout</h4>
+<br><br>
 
 Please refer to the [**TODOs**](https://github.com/gui-dos/DiaBLE/blob/main/TODO.md) list for the up-to-date status of all the current limitations and known bugs of this **prototype**.
 
