@@ -273,7 +273,7 @@ class Sensor: ObservableObject, Logging {
 
     func parseFRAM() {
         updateCRCReport()
-        guard !crcReport.contains("FAILED") else {
+        guard crcReport.contains("OK") else {
             state = .unknown
             return
         }
@@ -372,7 +372,7 @@ class Sensor: ObservableObject, Logging {
         }
         if crcReport.count > 0 {
             log(crcReport)
-            if crcReport.contains("FAILED") {
+            if !crcReport.contains("OK") {
                 if history.count > 0 && type != .libre2 { // bogus raw data with Libre 1
                     main?.errorStatus("Error while validating sensor data")
                     return

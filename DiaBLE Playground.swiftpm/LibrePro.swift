@@ -92,7 +92,7 @@ class LibrePro: Sensor {
 
     override func parseFRAM() {
         updateCRCReport()
-        guard !crcReport.contains("FAILED") else {
+        guard crcReport.contains("OK") else {
             state = .unknown
             return
         }
@@ -209,7 +209,7 @@ class LibrePro: Sensor {
 
         if crcReport.count > 0 {
             log(crcReport)
-            if crcReport.contains("FAILED") {
+            if !crcReport.contains("OK") {
                 if history.count > 0 { // bogus raw data
                     main?.errorStatus("Error while validating sensor data")
                     return
