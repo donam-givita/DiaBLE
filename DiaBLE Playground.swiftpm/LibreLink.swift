@@ -256,6 +256,7 @@ class LibreLinkUp: Logging {
                             if let sensor = activeSensor["sensor"] as? [String: Any],
                                let device = activeSensor["device"] as? [String: Any],
                                let dtid = device["dtid"] as? Int,
+                               let v = device["v"] as? String,
                                let alarms = device["alarms"] as? Bool,
                                let deviceId = sensor["deviceId"] as? String,
                                var sn = sensor["sn"] as? String,
@@ -282,7 +283,7 @@ class LibreLinkUp: Logging {
                                     deviceActivationTimes[deviceId] = a
                                 }
                                 let activationDate = Date(timeIntervalSince1970: Double(a))
-                                log("LibreLinkUp: active sensor # \(i + 1) of \(activeSensors.count): serial: \(sn), activation date: \(activationDate) (timestamp = \(a)), device id: \(deviceId), product type: \(pt), sensor type: \(sensorType), alarms: \(alarms)")
+                                log("LibreLinkUp: active sensor # \(i + 1) of \(activeSensors.count): serial: \(sn), activation date: \(activationDate) (timestamp = \(a)), LibreLink version: \(v), device id: \(deviceId), product type: \(pt), sensor type: \(sensorType), alarms: \(alarms)")
                             }
                         }
                     }

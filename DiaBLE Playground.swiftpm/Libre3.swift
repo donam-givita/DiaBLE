@@ -520,8 +520,9 @@ class Libre3: Sensor {
         let warmupTime = patchInfo[15]
         log("Libre 3: warmup time: \(warmupTime * 5) minutes (0x\(warmupTime.hex) * 5?)")
 
-        // state 04 (.paired) detected already after 15 minutes, 08 for a detached sensor (ERROR_TERMINATED)
+        // state 04 (.paired) detected already after 10/15 minutes
         // 05 (.expired) lasts more than further 12 hours, almost 24, before BLE shutdown (06 = .terminated)
+        // 08 for a detached sensor (ERROR_TERMINATED)
         let sensorState = patchInfo[16]
         // TODO: manage specific Libre 3 states
         state = SensorState(rawValue: sensorState <= 2 ? sensorState: sensorState - 1) ?? .unknown
