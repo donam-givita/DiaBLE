@@ -12,6 +12,9 @@ Currently I am targeting only the latest betas of Xcode and iOS and focusing on 
 Still too early to decide the final design (but I really like already the evil logo 😈), here there are some recent screenshots I tweeted or posted in the comments:
 
 <br><br>
+<p align="center"><img src="https://user-images.githubusercontent.com/7220550/201089112-7c15993c-9574-43cf-8371-3821cc854903.png" width="33.3%"></p>
+<h4 align ="center">Companion Comparison</h4>
+<br><br>
 <p align="center"><img src="https://user-images.githubusercontent.com/7220550/181923772-f9b35a52-1ff7-47a4-ba7a-445233cb8e25.PNG" width="25%" align="middle" /> &nbsp; &nbsp; <img src="https://user-images.githubusercontent.com/7220550/181924382-8b325de0-e457-4dbf-a3fc-ea87e85fd231.PNG" width="25%" align="middle" /></p>
 <br><br>
 <p align="center"><img src="https://user-images.githubusercontent.com/7220550/184549737-6e931282-9817-47be-aaf8-1f94ad6be8b9.png" width="33.3%" align="middle" /> &nbsp; &nbsp; <img src="https://user-images.githubusercontent.com/7220550/184549763-4d984707-d58f-4f80-a2b6-374193a10c73.png" width="16.7%" align="middle" /></p>
