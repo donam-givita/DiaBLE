@@ -262,7 +262,21 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
             playAlarm()
             //            if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications {
             //                title += "  \(settings.glucoseUnit)"
-            //                title += "  \(app.oopAlarm.shortDescription)  \(app.oopTrend.symbol)"
+            //                                let oopAlarm = self.main.app.oopAlarm
+            //                if oopAlarm != .unknown {
+            //                    title += "  \(oopAlarm.shortDescription)"
+            //                } else {
+            //                    if currentGlucose > Int(self.main.settings.alarmHigh) {
+            //                        title += "  HIGH"
+            //                    }
+            //                    if currentGlucose < Int(self.main.settings.alarmLow) {
+            //                        title += "  LOW"
+            //                    }
+            //                }
+            //                let oopTrend = self.main.app.oopTrend
+            //                if oopTrend != .unknown {
+            //                    title += "  \(oopTrend.symbol)"
+            //                }
             //                let content = UNMutableNotificationContent()
             //                content.title = title
             //                content.subtitle = ""

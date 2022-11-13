@@ -63,7 +63,23 @@ class EventKit: Logging {
 
             if currentGlucose != 0 {
                 title += "  \(self.main.settings.displayingMillimoles ? GlucoseUnit.mmoll : GlucoseUnit.mgdl)"
-                title += "  \(self.main.app.oopAlarm.shortDescription)  \(self.main.app.oopTrend.symbol)"
+
+                let oopAlarm = self.main.app.oopAlarm
+                if oopAlarm != .unknown {
+                    title += "  \(oopAlarm.shortDescription)"
+                } else {
+                    if currentGlucose > Int(self.main.settings.alarmHigh) {
+                        title += "  HIGH"
+                    }
+                    if currentGlucose < Int(self.main.settings.alarmLow) {
+                        title += "  LOW"
+                    }
+                }
+
+                let oopTrend = self.main.app.oopTrend
+                if oopTrend != .unknown {
+                    title += "  \(oopTrend.symbol)"
+                }
 
                 // TODO: delta
 
