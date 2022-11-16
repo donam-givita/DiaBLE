@@ -120,7 +120,7 @@ class Libre3: Sensor {
 
     struct PatchInfo {
         let NFC_Key: Int
-        let localization: Int         // 1: Europe ?
+        let localization: Int  // 1: Europe, 2: US
         let generation: Int
         let wearDuration: Int
         let warmupTime: Int
@@ -676,7 +676,7 @@ class Libre3: Sensor {
 
                         // The effective challenge response is computed from a 36-byte array:
                         // - received challenge (first 16 bytes)
-                        // - random 16 bytes (nounce1)
+                        // - random 16 bytes (nonce1)
                         // - BLE PIN (4 bytes)
 
                         let challengeData = Data(count: 40)
