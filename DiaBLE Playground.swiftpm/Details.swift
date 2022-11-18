@@ -160,10 +160,15 @@ struct Details: View {
 
                         Row("UID", app.sensor.uid.hex)
 
-                        if !app.sensor.patchInfo.isEmpty {
-                            Row("Patch Info", app.sensor.patchInfo.hex)
-                            Row("Firmware", app.sensor.firmware)
-                            Row("Security Generation", "\(app.sensor.securityGeneration)")
+                        Group {
+                            if app.sensor.type == .libre3 {
+                                Row("Receiver ID", "\((app.sensor as! Libre3).receiverId)")
+                            }
+                            if !app.sensor.patchInfo.isEmpty {
+                                Row("Patch Info", app.sensor.patchInfo.hex)
+                                Row("Firmware", app.sensor.firmware)
+                                Row("Security Generation", "\(app.sensor.securityGeneration)")
+                            }
                         }
 
                     }.font(.callout)

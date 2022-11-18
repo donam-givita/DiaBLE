@@ -310,6 +310,11 @@ class LibreLinkUp: Logging {
                                 self.main.app.sensor.age = Int(Date().timeIntervalSince(activationDate)) / 60
                                 self.main.app.sensor.state = .active
                                 self.main.app.sensor.lastReadingDate = Date()
+                                if self.main.app.sensor.type == .libre3 {
+                                    let receiverId = self.main.settings.libreLinkUpPatientId.fnv32Hash
+                                    (self.main.app.sensor as! Libre3).receiverId = receiverId
+                                    self.log("LibreLinkUp: LibreView receiver ID: \(receiverId)")
+                                }
                                 self.main.status("\(self.main.app.sensor.type)  +  LLU")
                             }
                         }
