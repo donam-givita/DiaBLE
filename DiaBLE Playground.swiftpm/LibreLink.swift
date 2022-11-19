@@ -279,7 +279,7 @@ class LibreLinkUp: Logging {
                                     }
                                 }
                                 deviceSerials[deviceId] = sn
-                                if deviceActivationTimes[deviceId] == nil || deviceActivationTimes[deviceId]! < a {
+                                if deviceActivationTimes[deviceId] == nil || deviceActivationTimes[deviceId]! > a {
                                     deviceActivationTimes[deviceId] = a
                                 }
                                 let activationDate = Date(timeIntervalSince1970: Double(a))
