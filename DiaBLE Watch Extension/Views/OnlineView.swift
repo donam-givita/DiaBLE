@@ -279,8 +279,8 @@ struct OnlineView: View {
                             // TODO: respect onlineInterval
                             .onReceive(minuteTimer) { _ in
                                 Task {
-                                    app.main.log("DEBUG: fired onlineView minuteTimer: timeInterval : \(Int(Date().timeIntervalSince(settings.lastOnlineDate)))")
-                                    if settings.onlineInterval > 0 && Int(Date().timeIntervalSince(settings.lastOnlineDate)) >= settings.onlineInterval * 60 - 2 {
+                                    app.main.log("DEBUG: fired onlineView minuteTimer: timeInterval: \(Int(Date().timeIntervalSince(settings.lastOnlineDate)))")
+                                    if settings.onlineInterval > 0 && Int(Date().timeIntervalSince(settings.lastOnlineDate)) >= settings.onlineInterval * 60 - 5 {
                                         await reloadLibreLinkUp()
                                     }
                                 }

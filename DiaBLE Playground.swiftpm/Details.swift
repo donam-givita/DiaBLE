@@ -147,15 +147,17 @@ struct Details: View {
                         }
 
                         if app.sensor.age > 0 {
-                            Row("Age", (app.sensor.age + minutesSinceLastReading).formattedInterval)
-                                .onReceive(minuteTimer) { _ in
-                                    minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate)/60)
+                            Group {
+                                Row("Age", (app.sensor.age + minutesSinceLastReading).formattedInterval)
+                                if app.sensor.maxLife - app.sensor.age - minutesSinceLastReading > 0 {
+                                    Row("Ends in", (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading).formattedInterval,
+                                        foregroundColor: (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading) > 360 ? .green : .red)
                                 }
-                            if app.sensor.maxLife - app.sensor.age > 0 {
-                                Row("Ends in", (app.sensor.maxLife - app.sensor.age).formattedInterval,
-                                    foregroundColor: (app.sensor.maxLife - app.sensor.age) > 360 ? .green : .red)
+                                Row("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
                             }
-                            Row("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
+                            .onReceive(minuteTimer) { _ in
+                                minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate)/60)
+                            }
                         }
 
                         Row("UID", app.sensor.uid.hex)
