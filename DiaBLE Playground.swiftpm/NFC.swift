@@ -279,7 +279,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     log("NFC: error while getting patch info: \(error.localizedDescription)")
                 }
 
-                if systemInfo != nil {
+                if systemInfo != nil && !(patchInfo.count == 0 && retry < maxRetries) {
                     break
                 } else if retry >= maxRetries {
                     session.invalidate(errorMessage: "Error while getting system info")
