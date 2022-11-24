@@ -42,6 +42,7 @@ class Nightscout: NSObject, Logging {
 
         if !endpoint.isEmpty { url += ("/" + endpoint) }
         if !query.isEmpty    { url += ("?" + query) }
+        if !main.settings.nightscoutToken.isEmpty { url += "&token=" + main.settings.nightscoutToken }
 
         var request = URLRequest(url: URL(string: url)!)
         debugLog("Nightscout: URL request: \(request.url!.absoluteString)")
@@ -71,6 +72,7 @@ class Nightscout: NSObject, Logging {
 
         if !endpoint.isEmpty { url += ("/" + endpoint) }
         if !query.isEmpty    { url += ("?" + query) }
+        if await !main.settings.nightscoutToken.isEmpty { await url += "&token=" + main.settings.nightscoutToken }
 
         var request = URLRequest(url: URL(string: url)!)
         debugLog("Nightscout: URL request: \(request.url!.absoluteString)")
