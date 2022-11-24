@@ -268,16 +268,6 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     // try await Task.sleep(nanoseconds: 250_000_000) not needed: too long
                 }
 
-                // Libre 3 workaround: calling A1 before tag.sytemInfo makes them work
-                // The first reading prepends further 7 0xA5 dummy bytes
-
-                do {
-                    patchInfo = Data(try await tag.customCommand(requestFlags: .highDataRate, customCommandCode: 0xA1, customRequestParameters: Data()))
-                    debugLog("NFC: patch info (first reading): \(patchInfo.hex) (\(patchInfo.count) bytes), string: \"\(patchInfo.string)\"")
-                } catch {
-                    failedToScan = true
-                }
-
                 do {
                     systemInfo = try await tag.systemInfo(requestFlags: .highDataRate)
                     AudioServicesPlaySystemSound(1520)    // initial "pop" vibration
@@ -310,6 +300,17 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
             let uid = tag.identifier.hex
             log("NFC: IC identifier: \(uid)")
+
+            // Libre 3: extract the 24-byte patchInfo trimming the leading (A5)+ 00 dummy bytes and verifying the final CRC16
+            if patchInfo.count >= 28 && patchInfo[0] == 0xA5 {
+                let crc = Data(patchInfo.suffix(2).reversed()).hex
+                let info = Data(patchInfo[patchInfo.count - 26 ... patchInfo.count - 3])
+                let computedCrc = info.crc16.hex
+                if crc == computedCrc {
+                    log("Libre 3: patch info: \(info.hexBytes) (scanned \(patchInfo.hex)), CRC: \(crc), computed CRC: \(computedCrc)")
+                    patchInfo = info
+                }
+            }
 
             let currentSensor = await main.app.sensor
             if currentSensor != nil && currentSensor!.uid == Data(tag.identifier.reversed()) {

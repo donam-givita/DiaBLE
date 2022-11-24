@@ -425,44 +425,37 @@ class Libre3: Sensor {
 
     func parsePatchInfo() {
 
-        guard patchInfo.count == 28 else { return }
-
-        // TODO: ignore the first two bytes A5 00?
-        log("Libre 3: patch info: \(patchInfo.hexBytes), CRC: \(Data(patchInfo.suffix(2).reversed()).hex), computed CRC: \(patchInfo[2...25].crc16.hex)")
-
-        // TODO: verify
-        let securityVersion = UInt16(patchInfo[2...3])
-        let localization    = UInt16(patchInfo[4...5])
-        let generation      = UInt16(patchInfo[6...7])
+        let securityVersion = UInt16(patchInfo[0...1])
+        let localization    = UInt16(patchInfo[2...3])
+        let generation      = UInt16(patchInfo[4...5])
         log("Libre 3: security version: \(securityVersion) (0x\(securityVersion.hex)), localization: \(localization) (0x\(localization.hex)), generation: \(generation) (0x\(generation.hex))")
 
-        // TODO: verify that 01 stands for Europe
         region = SensorRegion(rawValue: Int(localization)) ?? .unknown
 
-        let wearDuration = patchInfo[8...9]
+        let wearDuration = patchInfo[6...7]
         maxLife = Int(UInt16(wearDuration))
         log("Libre 3: wear duration: \(maxLife) minutes (\(maxLife.formattedInterval), 0x\(maxLife.hex))")
 
-        let fwVersion = patchInfo.subdata(in: 10 ..< 14)
+        let fwVersion = patchInfo.subdata(in: 8 ..< 12)
         firmware = "\(fwVersion[3]).\(fwVersion[2]).\(fwVersion[1]).\(fwVersion[0])"
         log("Libre 3: firmware version: \(firmware)")
 
-        let productType = Int(patchInfo[14])  // 04 = SENSOR
+        let productType = Int(patchInfo[12])  // 04 = SENSOR
         log("Libre 3: product type: \(ProductType(rawValue: productType)?.description ?? "unknown") (0x\(productType.hex))")
 
         // TODO: verify
-        let warmupTime = patchInfo[15]
+        let warmupTime = patchInfo[13]
         log("Libre 3: warmup time: \(warmupTime * 5) minutes (0x\(warmupTime.hex) * 5?)")
 
         // state 04 (.paired) detected already after 10/15 minutes
         // 05 (.expired) lasts more than further 12 hours, almost 24, before BLE shutdown (06 = .terminated)
         // 08 for a detached sensor (ERROR_TERMINATED)
-        let sensorState = patchInfo[16]
+        let sensorState = patchInfo[14]
         // TODO: manage specific Libre 3 states
         state = SensorState(rawValue: sensorState <= 2 ? sensorState: sensorState - 1) ?? .unknown
         log("Libre 3: specific state: \(State(rawValue: sensorState)!.description.lowercased()) (0x\(sensorState.hex)), state: \(state.description.lowercased()) ")
 
-        let serialNumber = Data(patchInfo[17...25])
+        let serialNumber = Data(patchInfo[15...23])
         serial = serialNumber.string
         log("Libre 3: serial number: \(serial) (0x\(serialNumber.hex))")
 
