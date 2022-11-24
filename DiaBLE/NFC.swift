@@ -230,73 +230,63 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
         Task {
 
-            let retries = 5
-            var requestedRetry = 0
-            var failedToScan = false
+            var patchInfo: PatchInfo = Data()
+            let maxRetries = 5
 
-            repeat {
-                failedToScan = false
-                if requestedRetry > 0 {
+            for retry in 0 ... maxRetries {
+
+                if retry > 0 {
                     AudioServicesPlaySystemSound(1520)    // "pop" vibration
-                    log("NFC: retry # \(requestedRetry)...")
+                    log("NFC: retry # \(retry)...")
                     try await Task.sleep(nanoseconds: 250_000_000)
                 }
                 do {
                     try await session.connect(to: firstTag)
                     connectedTag = tag
+                    break
                 } catch {
-                    if requestedRetry >= retries {
+                    if retry >= maxRetries {
                         session.invalidate(errorMessage: "Connection failure: \(error.localizedDescription)")
-                        log("NFC: stopped retrying to connect after \(requestedRetry) reattempts: \(error.localizedDescription)")
+                        log("NFC: stopped retrying to connect after \(retry) reattempts: \(error.localizedDescription)")
                         return
                     }
-                    failedToScan = true
-                    requestedRetry += 1
                     log("NFC: \(error.localizedDescription)")
                 }
-            } while failedToScan && requestedRetry > 0
+            }
 
-            var patchInfo: PatchInfo = Data()
+            for retry in 0 ... maxRetries {
 
-            requestedRetry = 0
+                AudioServicesPlaySystemSound(1520)    // "pop" vibration
 
-            repeat {
-                failedToScan = false
-                if requestedRetry > 0 {
-                    AudioServicesPlaySystemSound(1520)    // "pop" vibration
-                    log("NFC: retry # \(requestedRetry)...")
+                if retry > 0 {
+                    log("NFC: retry # \(retry)...")
                     // try await Task.sleep(nanoseconds: 250_000_000) not needed: too long
                 }
 
                 do {
-                    systemInfo = try await tag.systemInfo(requestFlags: .highDataRate)
-                    AudioServicesPlaySystemSound(1520)    // initial "pop" vibration
+                    if systemInfo == nil {
+                        systemInfo = try await tag.systemInfo(requestFlags: .highDataRate)
+                    }
                 } catch {
                     log("NFC: error while getting system info: \(error.localizedDescription)")
-                    if requestedRetry >= retries {
-                        session.invalidate(errorMessage: "Error while getting system info: \(error.localizedDescription)")
-                        log("NFC: stopped retrying to get the system info after \(requestedRetry) attempts")
-                        return
-                    }
-                    failedToScan = true
-                    requestedRetry += 1
                 }
 
                 do {
-                    patchInfo = Data(try await tag.customCommand(requestFlags: .highDataRate, customCommandCode: 0xA1, customRequestParameters: Data()))
+                    if patchInfo.count == 0 {
+                        patchInfo = Data(try await tag.customCommand(requestFlags: .highDataRate, customCommandCode: 0xA1, customRequestParameters: Data()))
+                    }
                 } catch {
                     log("NFC: error while getting patch info: \(error.localizedDescription)")
-                    if requestedRetry >= retries && systemInfo != nil {
-                        requestedRetry = 0 // break repeat
-                    } else {
-                        if !failedToScan {
-                            failedToScan = true
-                            requestedRetry += 1
-                        }
-                    }
                 }
 
-            } while failedToScan && requestedRetry > 0
+                if systemInfo != nil {
+                    break
+                } else if retry >= maxRetries {
+                    session.invalidate(errorMessage: "Error while getting system info")
+                    log("NFC: stopped retrying to get the system info after \(retry) attempts")
+                    return
+                }
+            }
 
             let uid = tag.identifier.hex
             log("NFC: IC identifier: \(uid)")
@@ -307,7 +297,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 let info = Data(patchInfo[patchInfo.count - 26 ... patchInfo.count - 3])
                 let computedCrc = info.crc16.hex
                 if crc == computedCrc {
-                    log("Libre 3: patch info: \(info.hexBytes) (scanned \(patchInfo.hex)), CRC: \(crc), computed CRC: \(computedCrc)")
+                    log("Libre 3: patch info: \(info.hexBytes) (scanned \(patchInfo.hex), CRC: \(crc), computed CRC: \(computedCrc))")
                     patchInfo = info
                 }
             }
@@ -317,16 +307,20 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 sensor = await main.app.sensor
                 sensor.patchInfo = patchInfo
             } else {
-                let sensorType = SensorType(patchInfo: patchInfo)
-                switch sensorType {
-                case .libre3:
-                    sensor = Libre3(main: main)
-                case .libre2:
-                    sensor = Libre2(main: main)
-                case .libreProH:
-                    sensor = LibrePro(main: main)
-                default:
+                if patchInfo.count == 0 {
                     sensor = Sensor(main: main)
+                } else {
+                    let sensorType = SensorType(patchInfo: patchInfo)
+                    switch sensorType {
+                    case .libre3:
+                        sensor = Libre3(main: main)
+                    case .libre2:
+                        sensor = Libre2(main: main)
+                    case .libreProH:
+                        sensor = LibrePro(main: main)
+                    default:
+                        sensor = Sensor(main: main)
+                    }
                 }
                 sensor.patchInfo = patchInfo
                 DispatchQueue.main.async {
