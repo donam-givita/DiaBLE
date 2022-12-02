@@ -28,7 +28,7 @@ class Settings: ObservableObject {
         "reversedLog": true,
         "debugLevel": 0,
 
-        "nightscoutSite": "dashboard.heroku.com/apps",
+        "nightscoutSite": "www.gluroo.com",
         "nightscoutToken": "",
 
         "libreLinkUpEmail": "",

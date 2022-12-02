@@ -21,4 +21,4 @@ TODO
 * smooth the historic values and project the trend ones (see [LibreTransmitter](https://github.com/dabear/LibreTransmitter/commit/49b50d7995955b76861440e5e34a0accd064d18f))
 * log: limit to a number of readings, prepend time, Share menu, record to a file, add Logger support
 * new iOS 16 Widgets and App Intents
-* TabularData as persistence layer
+* TabularData as persistence layer (see [Glupreview](https://github.com/solanovisitor/glupreview) for CoreML use)

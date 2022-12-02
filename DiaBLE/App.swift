@@ -53,7 +53,7 @@ class AppState: ObservableObject {
 
     // FIXME: @AppStorage prevents managing the "More..." fifth tab item
     @AppStorage("selectedTab") var selectedTab: Tab = .monitor
-    @AppStorage("selectedService") var selectedService: OnlineService = .nightscout
+    @AppStorage("selectedService") var selectedService: OnlineService = .libreLinkUp
 
     @Published var currentGlucose: Int = 0
     @Published var lastReadingDate: Date = Date.distantPast
