@@ -23,6 +23,9 @@ Still too early to decide the final design (but I really like already the evil l
 <p align="center"><img src="https://user-images.githubusercontent.com/7220550/200558485-ca29b560-0697-4ab5-ac1c-6aa3dd8b5422.png" width="33.3%" /> &nbsp; &nbsp; <img src="https://user-images.githubusercontent.com/7220550/200558284-54e69a55-a790-41af-84a9-293c8e12574d.png" width="33.3%" /></p>
 <h4 align ="center">Libre 1 Brownout</h4>
 <br><br>
+<p align="center"><img src="https://user-images.githubusercontent.com/7220550/205249892-05eb4d83-9d10-4407-9100-fe4971a8ef3e.PNG" width="33.3%" /> &nbsp; &nbsp; <img src="https://user-images.githubusercontent.com/7220550/205249921-69aa3e13-1dc6-4332-bd22-4797d36af9c4.PNG" width="33.3%" /></p>
+<h4 align ="center">Welcome Gluroo, Heroku adieu!</h4>
+<br><br>
 
 Please refer to the [**TODOs**](https://github.com/gui-dos/DiaBLE/blob/main/TODO.md) list for the up-to-date status of all the current limitations and known bugs of this **prototype**.
 
