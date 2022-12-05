@@ -8886,7 +8886,6 @@ tableView (IMP @0x0);
     id isFirstAfterTimeChangeHistoric;
     id isBackfillInProgress;
 }
-@property (nonatomic,readonly) NSString * description;
 - (id)init;
 - (void).cxx_destruct;
 @end
@@ -11291,14 +11290,6 @@ tableView (IMP @0x0);
 
 /*****************************************************************/
 
-@interface _TtC6Libre313EventBusError : NSError
-- (id)initWithDomain:(id)v1 code:(long long)v2 userInfo:(id)v3;
-- (id)initWithCoder:(id)v1;
-@end
-
-
-/*****************************************************************/
-
 @interface _TtC6Libre315CombineEventBus : _TtCs12_SwiftObject {
     id subjectMap;
     id subjectCancellableMap;
@@ -11540,6 +11531,46 @@ tableView (IMP @0x0);
 
 @interface _TtC6Libre329MSLibre3BackFillRequiredEvent : _TtC6Libre313MSLibre3Event
 - (id)init;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre38FSLError : NSError
+- (id)initWithDomain:(id)v1 code:(long long)v2 userInfo:(id)v3;
+- (id)initWithCoder:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre321DatabaseListenerError : _TtC6Libre38FSLError
+- (id)initWithDomain:(id)v1 code:(long long)v2 userInfo:(id)v3;
+- (id)initWithCoder:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre317AlarmManagerError : _TtC6Libre38FSLError
+- (id)initWithDomain:(id)v1 code:(long long)v2 userInfo:(id)v3;
+- (id)initWithCoder:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre328SendTroubleshootingDataError : _TtC6Libre38FSLError
+- (id)initWithDomain:(id)v1 code:(long long)v2 userInfo:(id)v3;
+- (id)initWithCoder:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC6Libre313EventBusError : _TtC6Libre38FSLError
+- (id)initWithDomain:(id)v1 code:(long long)v2 userInfo:(id)v3;
+- (id)initWithCoder:(id)v1;
 @end
 
 
@@ -14927,7 +14958,6 @@ tableView (IMP @0x0);
     id countDownCancellable;
     id countDownTimer;
     id nextReminder;
-    id subscribeToBus;
 }
 @property (nonatomic,retain) UITableView * remindersTable;
 @property (nonatomic,retain) UIView * nextReminderView;
@@ -14935,7 +14965,6 @@ tableView (IMP @0x0);
 @property (nonatomic,retain) _TtC6Libre39LLButton2 * addReminderButton;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (void)removeFromParentViewController;
 - (void)viewWillAppear:(bool)v1;
 - (void)viewDidDisappear:(bool)v1;
 - (void)addReminder:(id)v1;
@@ -16214,7 +16243,7 @@ tableView (IMP @0x0);
 @property (readonly,nonatomic) void * objectInfo;
 @property (readonly,nonatomic) unsigned long long count;
 + (id)objectWithThreadSafeReference:(struct ThreadSafeReference)v1 metadata:(id)v2 realm:(id)v3;
-initWithBackingCollection:parentInfo:property: (IMP @0x1007d90ec);
+initWithBackingCollection:parentInfo:property: (IMP @0x1007d56c4);
 - (id)initWithParent:(id)v1 property:(id)v2;
 - (id)initWithParent:(struct Obj)v1 property:(id)v2 parentInfo:(void *)v3;
 - (bool)isInvalidated;
@@ -16248,7 +16277,7 @@ initWithBackingCollection:parentInfo:property: (IMP @0x1007d90ec);
 - (unsigned long long)indexOfObjectWithPredicate:(id)v1;
 - (id)objectsAtIndexes:(id)v1;
 - (void)addObserver:(id)v1 forKeyPath:(id)v2 options:(unsigned long long)v3 context:(void *)v4;
-tableView (IMP @0x1007dc2a8);
+tableView (IMP @0x1007d8880);
 - (id)fastEnumerator;
 - (bool)isFrozen;
 - (id)resolveInRealm:(id)v1;
@@ -16309,7 +16338,7 @@ tableView (IMP @0x1007dc2a8);
 @property (readonly,nonatomic) void * objectInfo;
 @property (readonly,nonatomic) unsigned long long count;
 + (id)objectWithThreadSafeReference:(struct ThreadSafeReference)v1 metadata:(id)v2 realm:(id)v3;
-initWithBackingCollection:parentInfo:property: (IMP @0x1007de5f0);
+initWithBackingCollection:parentInfo:property: (IMP @0x1007dabc8);
 - (id)initWithParent:(id)v1 property:(id)v2;
 - (id)initWithParent:(struct Obj)v1 property:(id)v2 parentInfo:(void *)v3;
 - (id)allKeys;
@@ -16340,7 +16369,7 @@ initWithBackingCollection:parentInfo:property: (IMP @0x1007de5f0);
 - (id)distinctResultsUsingKeyPaths:(id)v1;
 - (id)objectsWithPredicate:(id)v1;
 - (void)addObserver:(id)v1 forKeyPath:(id)v2 options:(unsigned long long)v3 context:(void *)v4;
-tableView (IMP @0x1007e0f64);
+tableView (IMP @0x1007dd53c);
 - (id)fastEnumerator;
 - (bool)isFrozen;
 - (id)resolveInRealm:(id)v1;
@@ -16386,7 +16415,7 @@ tableView (IMP @0x1007e0f64);
 @property (readonly,nonatomic) void * objectInfo;
 @property (readonly,nonatomic) unsigned long long count;
 + (id)objectWithThreadSafeReference:(struct ThreadSafeReference)v1 metadata:(id)v2 realm:(id)v3;
-initWithBackingCollection:parentInfo:property: (IMP @0x1007e3d34);
+initWithBackingCollection:parentInfo:property: (IMP @0x1007e030c);
 - (id)initWithParent:(id)v1 property:(id)v2;
 - (id)initWithParent:(struct Obj)v1 property:(id)v2 parentInfo:(void *)v3;
 - (id)allObjects;
@@ -16425,7 +16454,7 @@ initWithBackingCollection:parentInfo:property: (IMP @0x1007e3d34);
 - (id)objectsWithPredicate:(id)v1;
 - (void)addObserver:(id)v1 forKeyPath:(id)v2 options:(unsigned long long)v3 context:(void *)v4;
 - (id)fastEnumerator;
-tableView (IMP @0x1007e6e4c);
+tableView (IMP @0x1007e3424);
 - (bool)isFrozen;
 - (id)resolveInRealm:(id)v1;
 - (id)freeze;
@@ -17167,9 +17196,9 @@ tableView (IMP @0x1007e6e4c);
 + (id)emptyDetachedResults;
 + (id)objectWithThreadSafeReference:(struct ThreadSafeReference)v1 metadata:(id)v2 realm:(id)v3;
 - (id)initPrivate;
-initWithResults: (IMP @0x1008ca888);
+initWithResults: (IMP @0x1008c6e60);
 - (id)initWithObjectInfo:(void *)v1 results:(void *)v2;
-subresultsWithResults: (IMP @0x1008cac8c);
+subresultsWithResults: (IMP @0x1008c7264);
 - (unsigned long long)countByEnumeratingWithState:(struct anonymous_type_325 *)v1 objects:(id *)v2 count:(unsigned long long)v3;
 - (unsigned long long)indexOfObjectWhere:(id)v1;
 - (unsigned long long)indexOfObjectWhere:(id)v1 args:(char *)v2;
@@ -17204,7 +17233,7 @@ subresultsWithResults: (IMP @0x1008cac8c);
 - (id)sumOfProperty:(id)v1;
 - (id)averageOfProperty:(id)v1;
 - (void)deleteObjectsFromRealm;
-tableView (IMP @0x1008ccf5c);
+tableView (IMP @0x1008c9534);
 - (id)fastEnumerator;
 - (id)snapshot;
 - (id)resolveInRealm:(id)v1;
@@ -25308,7 +25337,7 @@ tableView (IMP @0x1008ccf5c);
 - (id)init;
 - (bool)loadBinaryImagesFromFile:(id)v1;
 - (id)loadedBinaryImageForPC:(unsigned long long)v1;
-fillInImageDetails:forUUID: (IMP @0x100e28c38);
+fillInImageDetails:forUUID: (IMP @0x100e25210);
 - (id)frameForAddress:(unsigned long long)v1;
 - (bool)updateStackFrame:(id)v1;
 - (void).cxx_destruct;
