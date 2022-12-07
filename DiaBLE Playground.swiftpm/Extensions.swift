@@ -33,16 +33,13 @@ extension Data {
     func dump() { try! self.write(to: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("dump.bin")) }
 
     var crc16: UInt16 {
-        var crc: UInt32 = 0xffff
+        var crc: UInt16 = 0xffff
         for byte in self {
             for i in 0...7 {
-                crc <<= 1
-                if ((crc >> 16) & 1) ^ (UInt32(byte >> i) & 1) == 1 {
-                    crc ^= 0x1021
-                }
+                crc = UInt8(crc >> 15 & 1) ^ (byte >> i & 1) == 1 ? crc << 1 ^ 0x1021 : crc << 1
             }
         }
-        return UInt16(crc & 0xffff)
+        return crc
     }
 
 }
