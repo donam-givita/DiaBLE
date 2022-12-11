@@ -15,13 +15,26 @@ class Libre3: Sensor {
 
     enum State: UInt8, CustomStringConvertible {
         case manufacturing      = 0    // PATCH_STATE_MANUFACTURING
+
+        /// out of package, not activated yet
         case storage            = 1    // PATCH_STATE_STORAGE
+
         case insertionDetection = 2    // PATCH_STATE_INSERTION_DETECTION
         case insertionFailed    = 3    // PATCH_STATE_INSERTION_FAILED
+
+        /// advertising via BLE already 10/15 minutes after activation
         case paired             = 4    // PATCH_STATE_PAIRED
+
+        /// if Trident is not run on the 15th day, still advertising further than 12 hours, almost 24
         case expired            = 5    // PATCH_STATE_EXPIRED
+
+        /// Trident sent the shutdown command as soon as run on the 15th day or
+        /// the sensor stopped advertising vie BLE by itself on the 16th day anyway
         case terminated         = 6    // PATCH_STATE_TERMINATED_NORMAL
+
+        /// detected for a sensor that fell off
         case error              = 7    // PATCH_STATE_ERROR
+
         case errorTerminated    = 8    // PATCH_STATE_ERROR_TERMINATED
 
         var description: String {
@@ -66,6 +79,8 @@ class Libre3: Sensor {
     enum Condition: Int, CustomStringConvertible {   // SensorCondition
         case ok      = 0    // LIBRE3_SENSOR_CONDITION_OK        - OK
         case invalid = 1    // LIBRE3_SENSOR_CONDITION_INVALID   - INVALID
+
+        /// Early Signal Attenuation
         case esa     = 2    // LIBRE3_SENSOR_CONDITION_ESA_CHECK - ESA
 
         var description: String {
@@ -513,9 +528,6 @@ class Libre3: Sensor {
         let warmupTime = patchInfo[13]
         log("Libre 3: warmup time: \(warmupTime * 5) minutes (0x\(warmupTime.hex) * 5?)")
 
-        // state 04 (.paired) detected already after 10/15 minutes
-        // 05 (.expired) lasts more than further 12 hours, almost 24, before BLE shutdown (06 = .terminated)
-        // 08 for a detached sensor (ERROR_TERMINATED)
         let sensorState = patchInfo[14]
         // TODO: manage specific Libre 3 states
         state = SensorState(rawValue: sensorState <= 2 ? sensorState: sensorState - 1) ?? .unknown
