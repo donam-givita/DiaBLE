@@ -180,11 +180,11 @@ struct Console: View {
                 Spacer()
 
                 Button {
-                    settings.debugLevel = (settings.debugLevel + 1) % 3
+                    settings.debugLevel = DebugLevel(rawValue:(settings.debugLevel.rawValue + 1) % DebugLevel.allCases.count)!
                 } label: {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 5).fill(settings.debugLevel != 0 ? Color.blue : Color.clear)
-                        Image(systemName: ["doc.plaintext", "ladybug", "testtube.2"][settings.debugLevel]).resizable().frame(width: 22, height: 22).foregroundColor(settings.debugLevel != 0 ? .black : .blue)
+                        RoundedRectangle(cornerRadius: 5).fill(settings.debugLevel != .basic ? Color.blue : Color.clear)
+                        Image(systemName: ["doc.plaintext", "ladybug", "testtube.2"][settings.debugLevel.rawValue]).resizable().frame(width: 22, height: 22).foregroundColor(settings.debugLevel != .basic ? .black : .blue)
                     }.frame(width: 24, height: 24)
                 }
 

@@ -73,6 +73,17 @@ class AppState: ObservableObject {
 }
 
 
+public enum DebugLevel: Int, CaseIterable, Comparable {
+    case basic = 0
+    case devel = 1
+    case test  = 2
+
+    public static func < (lhs: DebugLevel, rhs: DebugLevel) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+}
+
+
 /// https://github.com/apple/swift-log/blob/main/Sources/Logging/Logging.swift
 public enum LogLevel: UInt8, Codable, CaseIterable {
     case trace, debug, info, notice, warning, error, critical

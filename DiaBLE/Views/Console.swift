@@ -355,16 +355,16 @@ struct ConsoleSidebar: View {
             Spacer()
 
             Button {
-                settings.debugLevel = (settings.debugLevel + 1) % 3
+                settings.debugLevel = DebugLevel(rawValue: (settings.debugLevel.rawValue + 1) % DebugLevel.allCases.count)!
             } label: {
                 VStack {
-                    Image(systemName: ["doc.plaintext", "ladybug", "testtube.2"][settings.debugLevel]).resizable().frame(width: 24, height: 24).offset(y: 2)
-                    Text(["Basic", "Devel", "Test  "][settings.debugLevel]).font(.caption).offset(y: -4)
+                    Image(systemName: ["doc.plaintext", "ladybug", "testtube.2"][settings.debugLevel.rawValue]).resizable().frame(width: 24, height: 24).offset(y: 2)
+                    Text(["Basic", "Devel", "Test  "][settings.debugLevel.rawValue]).font(.caption).offset(y: -4)
                 }
             }
-            .background(settings.debugLevel != 0 ? Color.accentColor : Color.clear)
+            .background(settings.debugLevel != .basic ? Color.accentColor : Color.clear)
             .clipShape(RoundedRectangle(cornerRadius: 5))
-            .foregroundColor(settings.debugLevel != 0 ? Color(.systemBackground) : .accentColor)
+            .foregroundColor(settings.debugLevel != .basic ? Color(.systemBackground) : .accentColor)
             .padding(.bottom, 6)
 
             VStack(spacing: 0) {

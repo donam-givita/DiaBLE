@@ -79,7 +79,7 @@ struct Details: View {
                                 }
                             }
 
-                            if settings.debugLevel > 0 && app.device.peripheral != nil {
+                            if settings.debugLevel > .basic && app.device.peripheral != nil {
                                 Row("Identifier", app.device.peripheral!.identifier.uuidString)
                             }
 
@@ -282,7 +282,7 @@ struct Details: View {
                 // }
 
 
-                if settings.debugLevel > 0 {
+                if settings.debugLevel > .basic {
                     Section(header: Text("Known Devices")) {
                         VStack(alignment: .leading) {
                             ForEach(app.main.bluetoothDelegate.knownDevices.sorted(by: <), id: \.key) { key, value in

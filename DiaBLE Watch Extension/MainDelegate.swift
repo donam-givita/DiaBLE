@@ -73,7 +73,7 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
         settings.numberFormatter = numberFormatter
 
         // features currently in beta testing
-        if settings.debugLevel > 1 {
+        if settings.debugLevel >= .test {
             // app.sensor = LibrePro.test(main: self)
         }
 
@@ -99,7 +99,7 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
 
 
     public func debugLog(_ msg: String) {
-        if settings.debugLevel > 0 {
+        if settings.debugLevel > .basic {
             log(msg, level: .debug)
         }
     }

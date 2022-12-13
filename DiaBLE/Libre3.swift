@@ -28,7 +28,7 @@ class Libre3: Sensor {
         case expired            = 5
 
         /// Trident sent the shutdown command as soon as run on the 15th day or
-        /// the sensor stopped advertising vie BLE by itself on the 16th day anyway
+        /// the sensor stopped advertising via BLE by itself on the 16th day anyway
         case terminated         = 6
 
         /// detected for a sensor that fell off
@@ -610,7 +610,7 @@ class Libre3: Sensor {
                     log("\(type) \(transmitter!.peripheral!.name!): security challenge # \(challengeCount.hex): \(payload.hex)")
 
 
-                    if main.settings.debugLevel < 2 { // TEST: sniff Trident
+                    if main.settings.debugLevel < .test { // TEST: sniff Trident
                         log("\(type) \(transmitter!.peripheral!.name!): writing 40-zero challenge response")
 
                         // The effective challenge response is computed from a 36-byte array:
