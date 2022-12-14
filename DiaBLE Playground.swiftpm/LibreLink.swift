@@ -123,13 +123,13 @@ class LibreLinkUp: Logging {
             redirected = false
             debugLog("LibreLinkUp: posting to \(request.url!.absoluteString) \(jsonData!.string), headers: \(headers)")
             let (data, response) = try await URLSession.shared.data(for: request)
-            debugLog("LibreLinkUp: response data: \(data.string)")
             if let response = response as? HTTPURLResponse {
                 let status = response.statusCode
+                debugLog("LibreLinkUp: response data: \(data.string.trimmingCharacters(in: .newlines)), status: \(status)")
                 if status == 401 {
                     log("LibreLinkUp: POST not authorized")
                 } else {
-                    log("LibreLinkUp: POST \((200..<300).contains(status) ? "success" : "error") (status: \(status))")
+                    log("LibreLinkUp: POST \((200..<300).contains(status) ? "success" : "error")")
                 }
             }
             do {
@@ -184,7 +184,7 @@ class LibreLinkUp: Logging {
                             }
                             debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), headers: \(request.allHTTPHeaderFields!)")
                             let (data, response) = try await URLSession.shared.data(for: request)
-                            debugLog("LibreLinkUp: response data: \(data.string), status: \((response as! HTTPURLResponse).statusCode)")
+                            debugLog("LibreLinkUp: response data: \(data.string.trimmingCharacters(in: .newlines)), status: \((response as! HTTPURLResponse).statusCode)")
                             do {
                                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                                    let data = json["data"] as? [String: Any],
@@ -241,7 +241,9 @@ class LibreLinkUp: Logging {
 
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
-            debugLog("LibreLinkUp: response data: \(data.string), status: \((response as! HTTPURLResponse).statusCode)")
+            let status = (response as! HTTPURLResponse).statusCode
+            debugLog("LibreLinkUp: response data: \(data.string.trimmingCharacters(in: .newlines)), status: \(status)")
+            // TODO: {"status":911}: server maintainance
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                    let data = json["data"] as? [String: Any],
@@ -353,7 +355,7 @@ class LibreLinkUp: Logging {
                                 request.url =  URL(string: "\(regionalSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/logbook")!
                                 debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
                                 let (data, response) = try await URLSession.shared.data(for: request)
-                                debugLog("LibreLinkUp: response data: \(data.string), status: \((response as! HTTPURLResponse).statusCode)")
+                                debugLog("LibreLinkUp: response data: \(data.string.trimmingCharacters(in: .newlines)), status: \((response as! HTTPURLResponse).statusCode)")
                                 logbookData = data
                                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                                    let data = json["data"] as? [[String: Any]] {
