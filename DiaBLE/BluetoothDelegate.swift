@@ -99,7 +99,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                     msg += " because not connectable"
                     main.errorStatus("(not connectable)")
                 }
-                if main.settings.debugLevel > .basic { msg += " (advertised data: \(advertisement))" }
+                if main.settings.userLevel > .basic { msg += " (advertised data: \(advertisement))" }
             }
             msg += ", \(scanningFor.lowercased())..."
             log(msg)
@@ -249,7 +249,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 msg += " (data read)"
 
                 // enable notifications only in didWriteValueFor() unless sniffing the Libre 2 in TEST mode
-                if uuid != Abbott.dataReadCharacteristicUUID || settings.debugLevel >= .test {
+                if uuid != Abbott.dataReadCharacteristicUUID || settings.userLevel >= .test {
                     app.device.peripheral?.setNotifyValue(true, for: app.device.readCharacteristic!)
                     msg += "; enabling notifications"
                 }
@@ -351,7 +351,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             // TODO: Libre 3
             if serviceUUID == Libre3.UUID.security.rawValue {
                 if sensor.transmitter == nil { sensor.transmitter = app.transmitter }
-                if settings.debugLevel < .test { // TEST: sniff Trident
+                if settings.userLevel < .test { // TEST: sniff Trident
                     ((app.device as? Abbott)?.sensor as? Libre3)?.send(securityCommand: .readChallenge)
                     // ((app.device as? Abbott)?.sensor as? Libre3)?.pair()  // TEST
                 }
@@ -366,7 +366,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 debugLog("Bluetooth: sent \(app.device.name) read security challenge")
 
             } else if sensor.uid.count > 0 && settings.activeSensorInitialPatchInfo.count > 0 {
-                if settings.debugLevel < .test {  // TEST: sniff Libre 2
+                if settings.userLevel < .test {  // TEST: sniff Libre 2
                     sensor.streamingUnlockCount += 1
                     settings.activeSensorStreamingUnlockCount += 1
                     let unlockPayload = Libre2.streamingUnlockPayload(id: sensor.uid, info: settings.activeSensorInitialPatchInfo, enableTime: sensor.streamingUnlockCode, unlockCount: sensor.streamingUnlockCount)

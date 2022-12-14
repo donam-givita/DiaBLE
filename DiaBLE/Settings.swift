@@ -26,7 +26,7 @@ class Settings: ObservableObject {
 
         "logging": false,
         "reversedLog": true,
-        "debugLevel": DebugLevel.basic.rawValue,
+        "userLevel": UserLevel.basic.rawValue,
 
         "nightscoutSite": "www.gluroo.com",
         "nightscoutToken": "",
@@ -145,8 +145,8 @@ class Settings: ObservableObject {
         didSet { UserDefaults.standard.set(self.reversedLog, forKey: "reversedLog") }
     }
 
-    @Published var debugLevel: DebugLevel = DebugLevel(rawValue: UserDefaults.standard.integer(forKey: "debugLevel"))! {
-        didSet { UserDefaults.standard.set(self.debugLevel.rawValue, forKey: "debugLevel") }
+    @Published var userLevel: UserLevel = UserLevel(rawValue: UserDefaults.standard.integer(forKey: "userLevel"))! {
+        didSet { UserDefaults.standard.set(self.userLevel.rawValue, forKey: "userLevel") }
     }
 
     @Published var nightscoutSite: String = UserDefaults.standard.string(forKey: "nightscoutSite")! {

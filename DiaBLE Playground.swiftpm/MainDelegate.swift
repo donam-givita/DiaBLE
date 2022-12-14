@@ -76,7 +76,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         settings.numberFormatter = numberFormatter
 
         // features currently in beta testing
-        if settings.debugLevel >= .test {
+        if settings.userLevel >= .test {
             // app.sensor = LibrePro.test(main: self)
         }
 
@@ -102,7 +102,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
 
     public func debugLog(_ msg: String) {
-        if settings.debugLevel > .basic {
+        if settings.userLevel > .basic {
             log(msg, level: .debug)
         }
     }

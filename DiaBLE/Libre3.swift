@@ -610,7 +610,7 @@ class Libre3: Sensor {
                     log("\(type) \(transmitter!.peripheral!.name!): security challenge # \(challengeCount.hex): \(payload.hex)")
 
 
-                    if main.settings.debugLevel < .test { // TEST: sniff Trident
+                    if main.settings.userLevel < .test { // TEST: sniff Trident
                         log("\(type) \(transmitter!.peripheral!.name!): writing 40-zero challenge response")
 
                         // The effective challenge response is computed from a 36-byte array:

@@ -392,7 +392,7 @@ class Sensor: ObservableObject, Logging {
 
         if fram.count >= 344 {
 
-            if main.settings.debugLevel > .basic {
+            if main.settings.userLevel > .basic {
                 log("Sensor factory values: raw minimum threshold: \(fram[330]) (tied to SENSOR_SIGNAL_LOW error, should be 150 for a Libre 1), maximum ADC delta: \(fram[332]) (tied to FILTER_DELTA error, should be 90 for a Libre 1)")
             }
 

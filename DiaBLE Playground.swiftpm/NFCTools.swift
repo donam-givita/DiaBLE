@@ -83,7 +83,7 @@ extension NFC {
                 log(data.hexDump(header: "\'\(command)' command output (\(blocks) blocks):", startBlock: start))
 
                 // await main actor
-                if await main.settings.debugLevel > .basic {
+                if await main.settings.userLevel > .basic {
                     let bytes = min(89 * 8 + 34 + 10, data.count)
                     var offset = 0
                     var i = offset + 2
@@ -269,7 +269,7 @@ extension NFC {
             }
 
             do {
-                if await sensor.main.settings.debugLevel > .basic {
+                if await sensor.main.settings.userLevel > .basic {
                     await sensor.testOOPActivation()
                 }
 

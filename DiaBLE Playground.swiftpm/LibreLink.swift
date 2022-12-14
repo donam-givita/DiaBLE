@@ -243,7 +243,7 @@ class LibreLinkUp: Logging {
             let (data, response) = try await URLSession.shared.data(for: request)
             let status = (response as! HTTPURLResponse).statusCode
             debugLog("LibreLinkUp: response data: \(data.string.trimmingCharacters(in: .newlines)), status: \(status)")
-            // TODO: {"status":911}: server maintainance
+            // TODO: {"status":911}: server maintenance
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                    let data = json["data"] as? [String: Any],

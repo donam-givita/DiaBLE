@@ -419,7 +419,7 @@ extension MainDelegate {
 
         var session = UUID().uuidString
 
-        if settings.debugLevel > .basic { session = "" } // test the old calibrationEndpoint and historyEndpoint
+        if settings.userLevel > .basic { session = "" } // test the old calibrationEndpoint and historyEndpoint
 
         if session.isEmpty {
 
