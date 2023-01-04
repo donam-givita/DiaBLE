@@ -293,11 +293,11 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
             // Libre 3: extract the 24-byte patchInfo trimming the leading (A5)+ 00 dummy bytes and verifying the final CRC16
             if patchInfo.count >= 28 && patchInfo[0] == 0xA5 {
-                let crc = Data(patchInfo.suffix(2).reversed()).hex
+                let crc = UInt16(patchInfo.suffix(2))
                 let info = Data(patchInfo[patchInfo.count - 26 ... patchInfo.count - 3])
-                let computedCrc = info.crc16.hex
+                let computedCrc = info.crc16
                 if crc == computedCrc {
-                    log("Libre 3: patch info: \(info.hexBytes) (scanned \(patchInfo.hex), CRC: \(crc), computed CRC: \(computedCrc))")
+                    log("Libre 3: patch info: \(info.hexBytes) (scanned \(patchInfo.hex), CRC: \(crc.hex), computed CRC: \(computedCrc.hex))")
                     patchInfo = info
                 }
             }

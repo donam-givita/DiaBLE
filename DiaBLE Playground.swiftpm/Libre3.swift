@@ -121,7 +121,7 @@ class Libre3: Sensor {
     }
 
 
-    // TODO: var members, struct references
+    // TODO: var members, struct references, enums
 
     // libre3DPCRLInterface
 
@@ -315,7 +315,7 @@ class Libre3: Sensor {
         case securityCommands = "08982198-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Write"]
 
         /// Notifies the 23-byte security challenge + prefixes
-        /// Writes the 40-byte unlock payload + prefixes
+        /// Writes the 40-byte challenge response + prefixes
         /// Notifies the 67-byte session info + prefixes
         /// The first two of the last seven notified bytes (16 + 7, 60 + 7) are a progressive Int since activation
         case challengeData = "089822CE-EF89-11E9-81B4-2A2AE2DBCCE4"  // ["Notify", "Write"]

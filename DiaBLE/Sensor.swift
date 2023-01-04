@@ -239,7 +239,7 @@ class Sensor: ObservableObject, Logging {
     var fram: Data = Data() {
         didSet {
             encryptedFram = Data()
-            if (type == .libre2 || type == .libreUS14day) && UInt16(fram[0...1]) != crc16(fram[2...23]) {
+            if (family == .libre2 || type == .libreUS14day) && UInt16(fram[0...1]) != crc16(fram[2...23]) {
                 encryptedFram = fram
                 if fram.count >= 344 {
                     if let decryptedFRAM = try? Libre2.decryptFRAM(type: type, id: uid, info: patchInfo, data: fram) {
@@ -389,7 +389,7 @@ class Sensor: ObservableObject, Logging {
 
         // TODO:
 
-        if fram.count >= 344 {
+        if fram.count >= 344 && !crcReport.contains("FAILED") {
 
             if main.settings.userLevel > .basic {
                 log("Sensor factory values: raw minimum threshold: \(fram[330]) (tied to SENSOR_SIGNAL_LOW error, should be 150 for a Libre 1), maximum ADC delta: \(fram[332]) (tied to FILTER_DELTA error, should be 90 for a Libre 1)")

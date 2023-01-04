@@ -120,7 +120,7 @@ class Libre3: Sensor {
     }
 
 
-    // TODO: var members, struct references
+    // TODO: var members, struct references, enums
 
 
     struct PatchInfo {
