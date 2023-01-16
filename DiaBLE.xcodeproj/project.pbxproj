@@ -26,6 +26,8 @@
 		C549DD0023F198B700088A4C /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C549DCFF23F198B700088A4C /* Events.swift */; };
 		C54B46CB26CC3EF700870B6E /* OOP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B46CA26CC3EF700870B6E /* OOP.swift */; };
 		C54B46CC26CC3EF700870B6E /* OOP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B46CA26CC3EF700870B6E /* OOP.swift */; };
+		C54B708F29754F9B000A2277 /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B708E29754F9B000A2277 /* Bubble.swift */; };
+		C54B709029754F9B000A2277 /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B708E29754F9B000A2277 /* Bubble.swift */; };
 		C5521C8223BB5D5A00826CFB /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5521C8123BB5D5A00826CFB /* App.swift */; };
 		C55A7F9B253F3EBD00423648 /* NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C597AF6A23AB9E3E0012926C /* NFC.swift */; };
 		C55AE3B5245EB1A3009636E0 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55AE3B4245EB1A3009636E0 /* DataView.swift */; };
@@ -150,6 +152,7 @@
 		C53C76EE23D9B87A00B59A98 /* OnlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
 		C549DCFF23F198B700088A4C /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		C54B46CA26CC3EF700870B6E /* OOP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OOP.swift; sourceTree = "<group>"; };
+		C54B708E29754F9B000A2277 /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
 		C5521C8123BB5D5A00826CFB /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		C55AE3B4245EB1A3009636E0 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 		C55B5D15245FCBE50004FE3B /* OnlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
@@ -321,6 +324,7 @@
 				C5C7187A23E2FB5000D04EA7 /* Glucose.swift */,
 				C5A5796F23A2CF0700945F72 /* Sensor.swift */,
 				C5D1AFE52599D5FA00F6C4C9 /* Abbott.swift */,
+				C54B708E29754F9B000A2277 /* Bubble.swift */,
 				C5D1B000259A167A00F6C4C9 /* Libre2.swift */,
 				C5AE0C312746F21200B3F6B9 /* Libre3.swift */,
 				C5248A9D26FD00D300DF1ED7 /* LibrePro.swift */,
@@ -499,6 +503,7 @@
 			files = (
 				C5E9C7572444964700D52B32 /* Glucose.swift in Sources */,
 				C5ADAF40245B4CCF003A2E8B /* BluetoothDelegate.swift in Sources */,
+				C54B709029754F9B000A2277 /* Bubble.swift in Sources */,
 				C5E9C75A2444967300D52B32 /* Sensor.swift in Sources */,
 				C5AE0C332746F21200B3F6B9 /* Libre3.swift in Sources */,
 				C5248A9F26FD00D300DF1ED7 /* LibrePro.swift in Sources */,
@@ -553,6 +558,7 @@
 				C5DF10F823C783F90023E0E2 /* SettingsView.swift in Sources */,
 				C51BF8CF25DD04C2003D64FB /* Plan.swift in Sources */,
 				C5ADAF3F245B4CCF003A2E8B /* BluetoothDelegate.swift in Sources */,
+				C54B708F29754F9B000A2277 /* Bubble.swift in Sources */,
 				C5AE0C322746F21200B3F6B9 /* Libre3.swift in Sources */,
 				C5C20E4523C77FD800475327 /* DataView.swift in Sources */,
 				C501BE47242A1ABD006C7F30 /* Settings.swift in Sources */,
