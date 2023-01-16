@@ -132,6 +132,12 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             }
             settings.activeSensorSerial = app.device.serial
 
+        } else if name!.prefix(6) == "Bubble" {
+            app.transmitter = Bubble(peripheral: peripheral, main: main)
+            app.device = app.transmitter
+            app.device.name = name!  // include "Mini"
+
+
             // } else if name.matches("custom") {
             //    custom = Custom(peripheral: peripheral, main: main)
             //    app.device = custom
@@ -244,7 +250,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             if uuid == Libre3.UUID.patchStatus.rawValue {
                 msg += "; avoid enabling notifications because of 'Encryption is insufficient' error"
 
-            } else if uuid == Abbott.dataReadCharacteristicUUID {
+            } else if uuid == Abbott.dataReadCharacteristicUUID || uuid == Bubble.dataReadCharacteristicUUID {
                 app.device.readCharacteristic = characteristic
                 msg += " (data read)"
 
@@ -254,7 +260,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                     msg += "; enabling notifications"
                 }
 
-            } else if uuid == Abbott.dataWriteCharacteristicUUID {
+            } else if uuid == Abbott.dataWriteCharacteristicUUID || uuid == Bubble.dataWriteCharacteristicUUID {
                 msg += " (data write)"
                 app.device.writeCharacteristic = characteristic
 
@@ -376,6 +382,14 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             }
         }
 
+        if app.device.type == .transmitter(.bubble) && serviceUUID == Bubble.dataServiceUUID {
+            let readCommand = app.transmitter.readCommand(interval: settings.readingInterval)
+            app.device.write(readCommand)
+            log("Bubble: writing start reading command 0x\(Data(readCommand).hex)")
+            // app.device.write([0x00, 0x01, 0x05])
+            // log("Bubble: writing reset and send data every 5 minutes command 0x000105")
+        }
+
     }
 
 
@@ -433,7 +447,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         let name = peripheral.name ?? "an unnamed peripheral"
         var characteristicString = characteristic.uuid.uuidString
-        if [Abbott.dataWriteCharacteristicUUID].contains(characteristicString) {
+        if [Abbott.dataWriteCharacteristicUUID, Bubble.dataWriteCharacteristicUUID].contains(characteristicString) {
             characteristicString = "data write"
         }
         if let characteristicDescription = Libre3.UUID(rawValue: characteristicString)?.description {
@@ -454,7 +468,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     public func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         let name = peripheral.name ?? "an unnamed peripheral"
         var characteristicString = characteristic.uuid.uuidString
-        if [Abbott.dataReadCharacteristicUUID].contains(characteristicString) {
+        if [Abbott.dataReadCharacteristicUUID, Bubble.dataReadCharacteristicUUID].contains(characteristicString) {
             characteristicString = "data read"
         }
         if let characteristicDescription = Libre3.UUID(rawValue: characteristicString)?.description {
@@ -489,7 +503,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         let name = peripheral.name ?? "an unnamed peripheral"
         var characteristicString = characteristic.uuid.uuidString
-        if [Abbott.dataReadCharacteristicUUID].contains(characteristicString) {
+        if [Abbott.dataReadCharacteristicUUID, Bubble.dataReadCharacteristicUUID].contains(characteristicString) {
             characteristicString = "data read"
         }
         if let characteristicDescription = Libre3.UUID(rawValue: characteristicString)?.description {
@@ -553,6 +567,12 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             if app.device.type == .transmitter(.abbott) {
                 if app.transmitter.buffer.count == 46 {
                     main.didParseSensor(app.transmitter.sensor!)
+                    app.transmitter.buffer = Data()
+                }
+
+            } else if app.device.type == .transmitter(.bubble) {
+                if let sensor = app.transmitter.sensor, sensor.fram.count > 0, app.transmitter.buffer.count >= sensor.fram.count {
+                    main.parseSensorData(sensor)
                     app.transmitter.buffer = Data()
                 }
 
