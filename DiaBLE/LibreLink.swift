@@ -301,18 +301,17 @@ class LibreLinkUp: Logging {
                                 self.main.app.sensor = sensorType == .libre3 ? Libre3(main: self.main) : sensorType == .libre2 ? Libre2(main: self.main) : Sensor(main: self.main)
                                 self.main.app.sensor.type = sensorType
                                 self.main.app.sensor.serial = serial
-                                if sensorType == .libre3 {
-                                    self.main.app.sensor.maxLife = 20160
-                                }
                             }
                         }
-                        if await main.app.sensor.serial.hasSuffix(serial) {
+                        if await main.app.sensor.serial.hasSuffix(serial) || deviceTypes.count == 1 {
                             DispatchQueue.main.async {
                                 self.main.app.sensor.activationTime = UInt32(activationTime)
                                 self.main.app.sensor.age = Int(Date().timeIntervalSince(activationDate)) / 60
                                 self.main.app.sensor.state = .active
                                 self.main.app.sensor.lastReadingDate = Date()
                                 if self.main.app.sensor.type == .libre3 {
+                                    self.main.app.sensor.serial = serial
+                                    self.main.app.sensor.maxLife = 20160
                                     let receiverId = self.main.settings.libreLinkUpPatientId.fnv32Hash
                                     (self.main.app.sensor as! Libre3).receiverId = receiverId
                                     self.log("LibreLinkUp: LibreView receiver ID: \(receiverId)")

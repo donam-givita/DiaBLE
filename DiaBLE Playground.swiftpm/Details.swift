@@ -163,8 +163,8 @@ struct Details: View {
                         Row("UID", app.sensor.uid.hex)
 
                         Group {
-                            if app.sensor.type == .libre3 {
-                                Row("Receiver ID", "\((app.sensor as! Libre3).receiverId)")
+                            if app.sensor.type == .libre3 && (app.sensor as! Libre3).receiverId != 0 {
+                                    Row("Receiver ID", "\((app.sensor as! Libre3).receiverId)")
                             }
                             if !app.sensor.patchInfo.isEmpty {
                                 Row("Patch Info", app.sensor.patchInfo.hex)
