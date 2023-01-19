@@ -3,7 +3,7 @@ FIXME
 
 * Libre 3:
   - Gen2 `.getSessionInfo` outpassed by new certificate data and ECDH ephemeral keys (whiteCryption's Secure Key Box)
-* AppleWatch:
+* Apple Watch:
   - *"How do I add 'com.apple.developer.bluetooth-central-background' entitlement for WatchOS?"*
     (https://developer.apple.com/forums/thread/109947)
 * iOS 16:

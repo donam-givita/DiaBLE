@@ -130,8 +130,12 @@ public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessi
         }
         if centralManager.state == .poweredOn {
             settings.stoppedBluetooth = false
-            centralManager.scanForPeripherals(withServices: nil, options: nil)
-            status("Scanning...")
+            if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Libre3.UUID.data.rawValue)]).first {
+                bluetoothDelegate.centralManager(centralManager, didDiscover: peripheral, advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Libre3.UUID.data.rawValue)]], rssi: 0)
+            } else {
+                centralManager.scanForPeripherals(withServices: nil, options: nil)
+                status("Scanning...")
+            }
         }
         healthKit?.read()
         nightscout?.read()

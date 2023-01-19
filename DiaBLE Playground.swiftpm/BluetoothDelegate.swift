@@ -27,8 +27,12 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 main.errorStatus("Bluetooth on but stopped")
             } else {
                 log("Bluetooth: state: powered on")
-                centralManager.scanForPeripherals(withServices: nil, options: nil)
-                main.status("Scanning...")
+                if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Libre3.UUID.data.rawValue)]).first {
+                    centralManager(centralManager, didDiscover: peripheral, advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Libre3.UUID.data.rawValue)]], rssi: 0)
+                } else {
+                    centralManager.scanForPeripherals(withServices: nil, options: nil)
+                    main.status("Scanning...")
+                }
             }
         case .resetting:    log("Bluetooth: state: resetting")
         case .unauthorized: log("Bluetooth: state: unauthorized")
