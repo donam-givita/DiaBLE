@@ -766,14 +766,14 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
         }
 
-        if sensor.type ==  .libre3 {
+        if sensor.type == .libre3 {
             do {
                 let aa = try await send(NFCCommand(code: 0xAA))
                 log("NFC: Libre 3 `AA` command output: \(aa.hexBytes), CRC: \(Data(aa.suffix(2).reversed()).hex), computed CRC: \(aa.prefix(aa.count-2).crc16.hex), string: \"\(aa.string)\"")
                 let params = "0102030405060708090A0B0C0D0E0F10".bytes
                 for c in [0xA9, 0xC8, 0xC9] {
                     for p in 1 ... 16 {
-                        commands.append(NFCCommand(code: c, parameters: params.prefix(p), description: "\(c.hex) \( params.prefix(p))"))
+                        commands.append(NFCCommand(code: c, parameters: params.prefix(p), description: "\(c.hex) \(params.prefix(p).hex)"))
                     }
                 }
                 // TODO
