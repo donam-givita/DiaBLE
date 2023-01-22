@@ -343,12 +343,6 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
             if let sensor = sensor as? Libre3 {
                 sensor.parsePatchInfo()
-                do {
-                    let aa = try await send(NFCCommand(code: 0xAA))
-                    log("NFC: Libre 3 `AA` command output: \(aa.hexBytes), CRC: \(Data(aa.suffix(2).reversed()).hex), computed CRC: \(aa.prefix(aa.count-2).crc16.hex), string: \"\(aa.string)\"")
-                    // TODO
-                } catch { }
-
             } else {
                 sensor.firmware = tag.identifier[2].hex
                 log("NFC: firmware version: \(sensor.firmware)")
@@ -805,12 +799,26 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
         }
 
+        if sensor.type ==  .libre3 {
+            do {
+                let aa = try await send(NFCCommand(code: 0xAA))
+                log("NFC: Libre 3 `AA` command output: \(aa.hexBytes), CRC: \(Data(aa.suffix(2).reversed()).hex), computed CRC: \(aa.prefix(aa.count-2).crc16.hex), string: \"\(aa.string)\"")
+                let params = "0102030405060708090A0B0C0D0E0F10".bytes
+                for c in [0xA9, 0xC8, 0xC9] {
+                    for p in 1 ... 16 {
+                        commands.append(NFCCommand(code: c, parameters: params.prefix(p), description: "\(c.hex) \( params.prefix(p))"))
+                    }
+                }
+                // TODO
+            } catch { }
+        }
+
         for cmd in commands {
             log("NFC: sending \(sensor.type) '\(cmd.description)' command: code: 0x\(cmd.code.hex), parameters: \(cmd.parameters.count == 0 ? "[]" : "0x\(cmd.parameters.hex)")")
             do {
                 let output = try await connectedTag!.customCommand(requestFlags: .highDataRate, customCommandCode: cmd.code, customRequestParameters: cmd.parameters)
                 log("NFC: '\(cmd.description)' command output (\(output.count) bytes): 0x\(output.hex)")
-                if output.count == 6 { // .readAttribute
+                if sensor.securityGeneration == 2 && output.count == 6 { // .readAttribute
                     let state = SensorState(rawValue: output[0]) ?? .unknown
                     sensor.state = state
                     log("\(sensor.type) state: \(state.description.lowercased()) (0x\(state.rawValue.hex))")

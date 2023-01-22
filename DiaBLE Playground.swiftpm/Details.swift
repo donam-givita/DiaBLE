@@ -164,7 +164,7 @@ struct Details: View {
 
                         Group {
                             if app.sensor.type == .libre3 && (app.sensor as! Libre3).receiverId != 0 {
-                                    Row("Receiver ID", "\((app.sensor as! Libre3).receiverId)")
+                                Row("Receiver ID", "\((app.sensor as! Libre3).receiverId)")
                             }
                             if !app.sensor.patchInfo.isEmpty {
                                 Row("Patch Info", app.sensor.patchInfo.hex)
