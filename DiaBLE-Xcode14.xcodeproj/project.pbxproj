@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C59960DF2981E381005999C2 /* DiaBLE Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaBLE Watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C59960DF2981E381005999C2 /* DiaBLE Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaBLE Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59960E12981E381005999C2 /* DiaBLE_WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaBLE_WatchApp.swift; sourceTree = "<group>"; };
 		C59960E32981E381005999C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C59960E52981E383005999C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -27,7 +27,7 @@
 		C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaBLEApp.swift; sourceTree = "<group>"; };
 		C5AAA61A2981CF7000CA3EC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C5AAA61E2981CF7200CA3EC1 /* DiaBLE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DiaBLE.entitlements; sourceTree = "<group>"; };
+		C5AAA61E2981CF7200CA3EC1 /* DiaBLE-Xcode14.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DiaBLE-Xcode14.entitlements"; sourceTree = "<group>"; };
 		C5AAA6202981CF7200CA3EC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,7 +49,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C59960E02981E381005999C2 /* DiaBLE Watch Watch App */ = {
+		C59960E02981E381005999C2 /* DiaBLE Watch App */ = {
 			isa = PBXGroup;
 			children = (
 				C59960E12981E381005999C2 /* DiaBLE_WatchApp.swift */,
@@ -57,7 +57,7 @@
 				C59960E52981E383005999C2 /* Assets.xcassets */,
 				C59960E72981E383005999C2 /* Preview Content */,
 			);
-			path = "DiaBLE Watch Watch App";
+			path = "DiaBLE Watch App";
 			sourceTree = "<group>";
 		};
 		C59960E72981E383005999C2 /* Preview Content */ = {
@@ -72,7 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				C5AAA6172981CF7000CA3EC1 /* DiaBLE */,
-				C59960E02981E381005999C2 /* DiaBLE Watch Watch App */,
+				C59960E02981E381005999C2 /* DiaBLE Watch App */,
 				C5AAA6162981CF7000CA3EC1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				C5AAA6152981CF7000CA3EC1 /* DiaBLE.app */,
-				C59960DF2981E381005999C2 /* DiaBLE Watch Watch App.app */,
+				C59960DF2981E381005999C2 /* DiaBLE Watch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,7 +92,7 @@
 				C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */,
 				C5AAA61A2981CF7000CA3EC1 /* ContentView.swift */,
 				C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */,
-				C5AAA61E2981CF7200CA3EC1 /* DiaBLE.entitlements */,
+				C5AAA61E2981CF7200CA3EC1 /* DiaBLE-Xcode14.entitlements */,
 				C5AAA61F2981CF7200CA3EC1 /* Preview Content */,
 			);
 			path = DiaBLE;
@@ -109,9 +109,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C59960DE2981E381005999C2 /* DiaBLE Watch Watch App */ = {
+		C59960DE2981E381005999C2 /* DiaBLE Watch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C59960EC2981E383005999C2 /* Build configuration list for PBXNativeTarget "DiaBLE Watch Watch App" */;
+			buildConfigurationList = C59960EC2981E383005999C2 /* Build configuration list for PBXNativeTarget "DiaBLE Watch" */;
 			buildPhases = (
 				C59960DB2981E381005999C2 /* Sources */,
 				C59960DC2981E381005999C2 /* Frameworks */,
@@ -121,9 +121,9 @@
 			);
 			dependencies = (
 			);
-			name = "DiaBLE Watch Watch App";
+			name = "DiaBLE Watch";
 			productName = "DiaBLE Watch Watch App";
-			productReference = C59960DF2981E381005999C2 /* DiaBLE Watch Watch App.app */;
+			productReference = C59960DF2981E381005999C2 /* DiaBLE Watch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C5AAA6142981CF7000CA3EC1 /* DiaBLE */ = {
@@ -175,7 +175,7 @@
 			projectRoot = "";
 			targets = (
 				C5AAA6142981CF7000CA3EC1 /* DiaBLE */,
-				C59960DE2981E381005999C2 /* DiaBLE Watch Watch App */,
+				C59960DE2981E381005999C2 /* DiaBLE Watch */,
 			);
 		};
 /* End PBXProject section */
@@ -230,7 +230,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DiaBLE Watch Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"DiaBLE Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -260,7 +260,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DiaBLE Watch Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"DiaBLE Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -472,7 +472,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C59960EC2981E383005999C2 /* Build configuration list for PBXNativeTarget "DiaBLE Watch Watch App" */ = {
+		C59960EC2981E383005999C2 /* Build configuration list for PBXNativeTarget "DiaBLE Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C59960EA2981E383005999C2 /* Debug */,
