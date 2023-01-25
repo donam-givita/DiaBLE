@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C59960E22981E381005999C2 /* DiaBLE_WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59960E12981E381005999C2 /* DiaBLE_WatchApp.swift */; };
+		C59184462981E73400A6DA89 /* DiaBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */; };
 		C59960E42981E381005999C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59960E32981E381005999C2 /* ContentView.swift */; };
 		C59960E62981E383005999C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C59960E52981E383005999C2 /* Assets.xcassets */; };
 		C59960E92981E383005999C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C59960E82981E383005999C2 /* Preview Assets.xcassets */; };
@@ -19,7 +19,6 @@
 
 /* Begin PBXFileReference section */
 		C59960DF2981E381005999C2 /* DiaBLE Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaBLE Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C59960E12981E381005999C2 /* DiaBLE_WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaBLE_WatchApp.swift; sourceTree = "<group>"; };
 		C59960E32981E381005999C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C59960E52981E383005999C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C59960E82981E383005999C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -52,7 +51,6 @@
 		C59960E02981E381005999C2 /* DiaBLE Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				C59960E12981E381005999C2 /* DiaBLE_WatchApp.swift */,
 				C59960E32981E381005999C2 /* ContentView.swift */,
 				C59960E52981E383005999C2 /* Assets.xcassets */,
 				C59960E72981E383005999C2 /* Preview Content */,
@@ -206,8 +204,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C59184462981E73400A6DA89 /* DiaBLEApp.swift in Sources */,
 				C59960E42981E381005999C2 /* ContentView.swift in Sources */,
-				C59960E22981E381005999C2 /* DiaBLE_WatchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
