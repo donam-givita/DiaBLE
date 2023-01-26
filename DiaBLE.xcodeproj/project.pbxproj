@@ -271,15 +271,15 @@
 			isa = PBXGroup;
 			children = (
 				C5E1014023A2774C00678DF6 /* ContentView.swift */,
-				C5C20E4423C77FD800475327 /* DataView.swift */,
-				C522C77023D4D363002021F7 /* Details.swift */,
-				C5DF10F523C7838A0023E0E2 /* Graph.swift */,
-				C5DF10F323C783140023E0E2 /* Console.swift */,
 				C5C20E4623C780FB00475327 /* Monitor.swift */,
-				C53C76EE23D9B87A00B59A98 /* OnlineView.swift */,
-				C5DF10F723C783F90023E0E2 /* SettingsView.swift */,
-				C51BF8CE25DD04C2003D64FB /* Plan.swift */,
 				C593F91425976AED00DA3010 /* HamburgerMenu.swift */,
+				C5DF10F523C7838A0023E0E2 /* Graph.swift */,
+				C522C77023D4D363002021F7 /* Details.swift */,
+				C53C76EE23D9B87A00B59A98 /* OnlineView.swift */,
+				C5DF10F323C783140023E0E2 /* Console.swift */,
+				C5DF10F723C783F90023E0E2 /* SettingsView.swift */,
+				C5C20E4423C77FD800475327 /* DataView.swift */,
+				C51BF8CE25DD04C2003D64FB /* Plan.swift */,
 				C5965CC223DCC13300B3C5D8 /* ViewRepresentables.swift */,
 			);
 			path = Views;
