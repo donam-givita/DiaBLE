@@ -4,7 +4,7 @@ import AVFoundation
 
 
 //public class MainDelegate: NSObject, UNUserNotificationCenterDelegate {
-public class MainDelegate: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessionDelegate {
+public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDelegate {
 
     var app: AppState
     var log: Log
