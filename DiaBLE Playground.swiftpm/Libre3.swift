@@ -468,19 +468,20 @@ class Libre3: Sensor {
     /// - PATCH_CONTROL_COMMAND_SIZE = 7
     /// - a final sequential Int starting by 01 00 since it is enqueued
     enum ControlCommand {
-        case historic(Data)       // 1 - CTRL_CMD_HISTORIC
+        /// - 010001 EC2C 0000 requests historical data from lifeCount 11500 (0x2CEC)
+        case historic(Data)       // type 1
 
         /// Requests past clinical data
-        /// - 010101 9B48 0000 requests clinical data from lifeCount 18587 (0x9B48)
-        case backfill(Data)       // 2 - CTRL_CMD_BACKFILL
+        /// - 010101 9B48 0000 requests clinical data from lifeCount 18587 (0x489B)
+        case backfill(Data)       // type 2
 
         /// - 040100 0000 0000
-        case eventLog(Data)       // 3 - CTRL_CMD_EVENTLOG
+        case eventLog(Data)       // type 3
 
         /// - 060000 0000 0000
-        case factoryData(Data)    // 4 - CTRL_CMD_FACTORY_DATA
+        case factoryData(Data)    // type 4
 
-        case shutdownPatch(Data)  // 5 - CTRL_CMD_SHUTDOWN_PATCH
+        case shutdownPatch(Data)  // type 5
     }
 
     var receiverId: UInt32 = 0    // fnv32Hash of LibreView ID string

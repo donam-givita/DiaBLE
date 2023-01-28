@@ -402,10 +402,11 @@ class Libre3: Sensor {
     /// - PATCH_CONTROL_COMMAND_SIZE = 7
     /// - a final sequential Int starting by 01 00 since it is enqueued
     enum ControlCommand {
+        /// - 010001 EC2C 0000 requests historical data from lifeCount 11520 (0x2CEC)
         case historic(Data)       // 1
 
         /// Requests past clinical data
-        /// - 010101 9B48 0000 requests clinical data from lifeCount 18587 (0x9B48)
+        /// - 010101 9B48 0000 requests clinical data from lifeCount 18587 (0x489B)
         case backfill(Data)       // 2
 
         /// - 040100 0000 0000
