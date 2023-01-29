@@ -214,7 +214,7 @@ class Libre3: Sensor {
 
 
     struct PatchStatus {
-        let patchState: LifeState
+        let patchState: State
         let totalEvents: Int
         let lifeCount: Int
         let errorData: Int
@@ -223,6 +223,15 @@ class Libre3: Sensor {
         let currentLifeCount: Int
         let stackDisconnectReason: Int
         let appDisconnectReason: Int
+
+        // PatchStatus FC2C00000D002104FC2C1603:
+        //   [...]
+        //   21: index 33
+        //   04: patch state 4
+        //   FC2C: lifeCount 11516 (0x2CFC)
+        //   16: stackDisconnectReason 22
+        //   03: appDisconnectReason 3
+        //   ?? eventData 4013, errorData 0
     }
 
 
@@ -469,19 +478,19 @@ class Libre3: Sensor {
     /// - a final sequential Int starting by 01 00 since it is enqueued
     enum ControlCommand {
         /// - 010001 EC2C 0000 requests historical data from lifeCount 11500 (0x2CEC)
-        case historic(Data)       // type 1
+        case historic(Data)       // type 1 - CTRL_CMD_HISTORIC
 
         /// Requests past clinical data
         /// - 010101 9B48 0000 requests clinical data from lifeCount 18587 (0x489B)
-        case backfill(Data)       // type 2
+        case backfill(Data)       // type 2 - CTRL_CMD_BACKFILL
 
         /// - 040100 0000 0000
-        case eventLog(Data)       // type 3
+        case eventLog(Data)       // type 3 - CTRL_CMD_EVENTLOG
 
         /// - 060000 0000 0000
-        case factoryData(Data)    // type 4
+        case factoryData(Data)    // type 4 - CTRL_CMD_FACTORY_DATA
 
-        case shutdownPatch(Data)  // type 5
+        case shutdownPatch(Data)  // type 5 - CTRL_CMD_SHUTDOWN_PATCH
     }
 
     var receiverId: UInt32 = 0    // fnv32Hash of LibreView ID string
