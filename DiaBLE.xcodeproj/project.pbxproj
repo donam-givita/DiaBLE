@@ -449,7 +449,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DiaBLE Watch/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "DiaBLE Watch";
+				INFOPLIST_KEY_CFBundleDisplayName = DiaBLE;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
@@ -485,7 +485,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DiaBLE Watch/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "DiaBLE Watch";
+				INFOPLIST_KEY_CFBundleDisplayName = DiaBLE;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
@@ -632,6 +632,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiaBLE/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DiaBLE;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "DiaBLE uses NFC to scan Libre sensors.";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "DiaBLE creates events to be displayed in Apple Watch complications.";
@@ -676,6 +678,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiaBLE/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DiaBLE;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "DiaBLE uses NFC to scan Libre sensors.";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "DiaBLE creates events to be displayed in Apple Watch complications.";
