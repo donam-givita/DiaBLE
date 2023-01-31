@@ -81,7 +81,6 @@
 
 /* Begin PBXFileReference section */
 		C53F77C529894478004F275A /* Info-Xcode14.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Xcode14.plist"; sourceTree = "<group>"; };
-		C56C1C9829898BAF00AAE5F3 /* DiaBLE-Watch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DiaBLE-Watch-Info.plist"; sourceTree = "<group>"; };
 		C5916E4629827E860051AC06 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 		C5916E4729827E860051AC06 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C5916E4829827E860051AC06 /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
@@ -97,6 +96,7 @@
 		C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaBLEApp.swift; sourceTree = "<group>"; };
 		C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5AAA61E2981CF7200CA3EC1 /* DiaBLE-Xcode14.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DiaBLE-Xcode14.entitlements"; sourceTree = "<group>"; };
+		C5DED87529899B8A00164AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5E4004429825C710021C6B7 /* alarm_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_high.mp3; sourceTree = "<group>"; };
 		C5E4004529825C710021C6B7 /* alarm_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_low.mp3; sourceTree = "<group>"; };
 		C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_signal_loss.mp3; sourceTree = "<group>"; };
@@ -172,6 +172,7 @@
 			children = (
 				C5916E4529827E860051AC06 /* Views */,
 				C5916E5629827EB10051AC06 /* MainDelegate.swift */,
+				C5DED87529899B8A00164AEF /* Info.plist */,
 				C5A14842298985E000A0E510 /* DiaBLE Watch.entitlements */,
 			);
 			path = "DiaBLE Watch App";
@@ -180,7 +181,6 @@
 		C5AAA60C2981CF7000CA3EC1 = {
 			isa = PBXGroup;
 			children = (
-				C56C1C9829898BAF00AAE5F3 /* DiaBLE-Watch-Info.plist */,
 				C5AAA6172981CF7000CA3EC1 /* DiaBLE */,
 				C59960E02981E381005999C2 /* DiaBLE Watch App */,
 				C5AAA6162981CF7000CA3EC1 /* Products */,
@@ -448,7 +448,7 @@
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "DiaBLE-Watch-Info.plist";
+				INFOPLIST_FILE = "DiaBLE Watch App/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "DiaBLE Watch";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
@@ -484,7 +484,7 @@
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "DiaBLE-Watch-Info.plist";
+				INFOPLIST_FILE = "DiaBLE Watch App/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "DiaBLE Watch";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
