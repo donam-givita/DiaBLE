@@ -302,6 +302,10 @@ class LibreLinkUp: Logging {
                                 self.main.app.sensor.type = sensorType
                                 self.main.app.sensor.serial = serial
                             }
+                        } else {
+                            if await self.main.app.sensor.serial.isEmpty {
+                                await self.main.app.sensor.serial = serial
+                            }
                         }
                         if await main.app.sensor.serial.hasSuffix(serial) || deviceTypes.count == 1 {
                             DispatchQueue.main.async {
