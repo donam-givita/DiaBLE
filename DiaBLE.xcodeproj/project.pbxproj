@@ -3,357 +3,257 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C501BE47242A1ABD006C7F30 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C501BE46242A1ABD006C7F30 /* Settings.swift */; };
-		C50FA49323CA7B9400928229 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C50FA49223CA7B9400928229 /* HealthKit.framework */; };
-		C513933123B8EB7600CB245F /* alarm_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C513933023B8EB7600CB245F /* alarm_high.mp3 */; };
-		C51BF8CF25DD04C2003D64FB /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51BF8CE25DD04C2003D64FB /* Plan.swift */; };
-		C522C77123D4D363002021F7 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C522C77023D4D363002021F7 /* Details.swift */; };
-		C5248A9E26FD00D300DF1ED7 /* LibrePro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5248A9D26FD00D300DF1ED7 /* LibrePro.swift */; };
-		C5248A9F26FD00D300DF1ED7 /* LibrePro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5248A9D26FD00D300DF1ED7 /* LibrePro.swift */; };
-		C528E1812445097400BFDA73 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E1802445097400BFDA73 /* Monitor.swift */; };
-		C528E18324450BC000BFDA73 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E18224450BC000BFDA73 /* Graph.swift */; };
-		C528E1852445A60200BFDA73 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E1842445A60200BFDA73 /* SettingsView.swift */; };
-		C52BDADE275E2B4E001D3872 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C5DC03902667679700C499DC /* README.md */; };
-		C52F1A5E24975F12004C2F90 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C52F1A5D24975F12004C2F90 /* company_ids.json */; };
-		C52F1A5F24975F12004C2F90 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C52F1A5D24975F12004C2F90 /* company_ids.json */; };
-		C53C0D0924471FF200DB08EE /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53C0D0824471FF200DB08EE /* Details.swift */; };
-		C53C76ED23D9AFD700B59A98 /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53C76EC23D9AFD700B59A98 /* Nightscout.swift */; };
-		C53C76EF23D9B87A00B59A98 /* OnlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53C76EE23D9B87A00B59A98 /* OnlineView.swift */; };
-		C549DD0023F198B700088A4C /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C549DCFF23F198B700088A4C /* Events.swift */; };
-		C54B46CB26CC3EF700870B6E /* OOP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B46CA26CC3EF700870B6E /* OOP.swift */; };
-		C54B46CC26CC3EF700870B6E /* OOP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B46CA26CC3EF700870B6E /* OOP.swift */; };
-		C54B708F29754F9B000A2277 /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B708E29754F9B000A2277 /* Bubble.swift */; };
-		C54B709029754F9B000A2277 /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B708E29754F9B000A2277 /* Bubble.swift */; };
-		C5521C8223BB5D5A00826CFB /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5521C8123BB5D5A00826CFB /* App.swift */; };
-		C55A7F9B253F3EBD00423648 /* NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C597AF6A23AB9E3E0012926C /* NFC.swift */; };
-		C55AE3B5245EB1A3009636E0 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55AE3B4245EB1A3009636E0 /* DataView.swift */; };
-		C55B5D16245FCBE50004FE3B /* OnlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B5D15245FCBE50004FE3B /* OnlineView.swift */; };
-		C566341323B14D55001EB5F3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566341223B14D55001EB5F3 /* Extensions.swift */; };
-		C58507A123C50BF30079539D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58507A023C50BF30079539D /* Assets.xcassets */; };
-		C58507A823C50BF40079539D /* DiaBLE Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C58507A723C50BF40079539D /* DiaBLE Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C58507AD23C50BF40079539D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58507AC23C50BF40079539D /* ContentView.swift */; };
-		C58507B323C50BF40079539D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58507B223C50BF40079539D /* NotificationController.swift */; };
-		C58507B523C50BF40079539D /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58507B423C50BF40079539D /* NotificationView.swift */; };
-		C58507B723C50BF40079539D /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58507B623C50BF40079539D /* ComplicationController.swift */; };
-		C58507B923C50BF40079539D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58507B823C50BF40079539D /* Assets.xcassets */; };
-		C58507C123C50BF40079539D /* DiaBLE Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C585079B23C50BF20079539D /* DiaBLE Watch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C5908FB82428E6B600CF6C83 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5908FB72428E6B600CF6C83 /* alarm_signal_loss.mp3 */; };
-		C593F91525976AED00DA3010 /* HamburgerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593F91425976AED00DA3010 /* HamburgerMenu.swift */; };
-		C5965CC323DCC13300B3C5D8 /* ViewRepresentables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5965CC223DCC13300B3C5D8 /* ViewRepresentables.swift */; };
-		C597AF6B23AB9E3E0012926C /* NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C597AF6A23AB9E3E0012926C /* NFC.swift */; };
-		C59FE28C26AFD7A600F7F18F /* NFCTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59FE28B26AFD7A600F7F18F /* NFCTools.swift */; };
-		C59FE28D26AFD7A600F7F18F /* NFCTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59FE28B26AFD7A600F7F18F /* NFCTools.swift */; };
-		C5A1B8B023C6410A00D60962 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A1B8AF23C6410A00D60962 /* Bluetooth.swift */; };
-		C5A5797023A2CF0700945F72 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A5796F23A2CF0700945F72 /* Sensor.swift */; };
-		C5AAE9FE2765E4BC00546CE1 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = C5AAE9FD2765E4BC00546CE1 /* LICENSE.md */; };
-		C5AAE9FF2765E4BC00546CE1 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = C5AAE9FD2765E4BC00546CE1 /* LICENSE.md */; };
-		C5ADAF3F245B4CCF003A2E8B /* BluetoothDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ADAF3E245B4CCF003A2E8B /* BluetoothDelegate.swift */; };
-		C5ADAF40245B4CCF003A2E8B /* BluetoothDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ADAF3E245B4CCF003A2E8B /* BluetoothDelegate.swift */; };
-		C5ADAF42245B4E56003A2E8B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ADAF41245B4E56003A2E8B /* Device.swift */; };
-		C5ADAF43245B4E56003A2E8B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ADAF41245B4E56003A2E8B /* Device.swift */; };
-		C5AE0C322746F21200B3F6B9 /* Libre3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AE0C312746F21200B3F6B9 /* Libre3.swift */; };
-		C5AE0C332746F21200B3F6B9 /* Libre3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AE0C312746F21200B3F6B9 /* Libre3.swift */; };
-		C5B7AC6E270ADF2100EB1F87 /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = C5B7AC6D270ADF2100EB1F87 /* TODO.md */; };
-		C5B7AC6F270ADF2100EB1F87 /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = C5B7AC6D270ADF2100EB1F87 /* TODO.md */; };
-		C5C20E4523C77FD800475327 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C20E4423C77FD800475327 /* DataView.swift */; };
-		C5C20E4723C780FB00475327 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C20E4623C780FB00475327 /* Monitor.swift */; };
-		C5C7187B23E2FB5000D04EA7 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7187A23E2FB5000D04EA7 /* Glucose.swift */; };
-		C5C84482241B884F009D3EAF /* alarm_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5C84481241B884F009D3EAF /* alarm_low.mp3 */; };
-		C5C937E423CBA0AE00A87BAB /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C937E323CBA0AE00A87BAB /* Health.swift */; };
-		C5D1AFE62599D5FA00F6C4C9 /* Abbott.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1AFE52599D5FA00F6C4C9 /* Abbott.swift */; };
-		C5D1AFE72599D5FA00F6C4C9 /* Abbott.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1AFE52599D5FA00F6C4C9 /* Abbott.swift */; };
-		C5D1B001259A167A00F6C4C9 /* Libre2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1B000259A167A00F6C4C9 /* Libre2.swift */; };
-		C5D1B002259A167A00F6C4C9 /* Libre2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1B000259A167A00F6C4C9 /* Libre2.swift */; };
-		C5DC03912667679700C499DC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C5DC03902667679700C499DC /* README.md */; };
-		C5DF10F423C783140023E0E2 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF10F323C783140023E0E2 /* Console.swift */; };
-		C5DF10F623C7838B0023E0E2 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF10F523C7838A0023E0E2 /* Graph.swift */; };
-		C5DF10F823C783F90023E0E2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF10F723C783F90023E0E2 /* SettingsView.swift */; };
-		C5E1014123A2774C00678DF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1014023A2774C00678DF6 /* ContentView.swift */; };
-		C5E1014323A2774D00678DF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5E1014223A2774D00678DF6 /* Assets.xcassets */; };
-		C5E7EDD3275E2382001473C7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E7EDD2275E2382001473C7 /* HealthKit.framework */; };
-		C5E9C755244495B000D52B32 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566341223B14D55001EB5F3 /* Extensions.swift */; };
-		C5E9C756244495D700D52B32 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5521C8123BB5D5A00826CFB /* App.swift */; };
-		C5E9C7572444964700D52B32 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7187A23E2FB5000D04EA7 /* Glucose.swift */; };
-		C5E9C7582444966500D52B32 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C501BE46242A1ABD006C7F30 /* Settings.swift */; };
-		C5E9C7592444966A00D52B32 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A1B8AF23C6410A00D60962 /* Bluetooth.swift */; };
-		C5E9C75A2444967300D52B32 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A5796F23A2CF0700945F72 /* Sensor.swift */; };
-		C5E9C75D2444968000D52B32 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C937E323CBA0AE00A87BAB /* Health.swift */; };
-		C5E9C75F2444969000D52B32 /* alarm_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C513933023B8EB7600CB245F /* alarm_high.mp3 */; };
-		C5E9C7602444969400D52B32 /* alarm_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5C84481241B884F009D3EAF /* alarm_low.mp3 */; };
-		C5E9C7612444969800D52B32 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5908FB72428E6B600CF6C83 /* alarm_signal_loss.mp3 */; };
-		C5E9C763244496C800D52B32 /* MainDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E9C762244496C800D52B32 /* MainDelegate.swift */; };
-		C5E9C7672444A13600D52B32 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E9C7662444A13600D52B32 /* Console.swift */; };
-		C5F06F7B282E516200CC1297 /* LibreLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F06F7A282E516200CC1297 /* LibreLink.swift */; };
-		C5F06F7C282E516200CC1297 /* LibreLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F06F7A282E516200CC1297 /* LibreLink.swift */; };
-		C5F329D4244998230053A8FB /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53C76EC23D9AFD700B59A98 /* Nightscout.swift */; };
-		C5FB2EF323A2794D0046F4F9 /* MainDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB2EF223A2794D0046F4F9 /* MainDelegate.swift */; };
+		C5916E4E29827E860051AC06 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4629827E860051AC06 /* DataView.swift */; };
+		C5916E4F29827E860051AC06 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4729827E860051AC06 /* SettingsView.swift */; };
+		C5916E5029827E860051AC06 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4829827E860051AC06 /* Details.swift */; };
+		C5916E5129827E860051AC06 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4929827E860051AC06 /* Console.swift */; };
+		C5916E5229827E860051AC06 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4A29827E860051AC06 /* Graph.swift */; };
+		C5916E5329827E860051AC06 /* OnlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4B29827E860051AC06 /* OnlineView.swift */; };
+		C5916E5429827E860051AC06 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4C29827E860051AC06 /* Monitor.swift */; };
+		C5916E5529827E860051AC06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4D29827E860051AC06 /* ContentView.swift */; };
+		C5916E5729827EB10051AC06 /* MainDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E5629827EB10051AC06 /* MainDelegate.swift */; };
+		C59184462981E73400A6DA89 /* DiaBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */; };
+		C59184472981E9B000A6DA89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
+		C5AAA6192981CF7000CA3EC1 /* DiaBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */; };
+		C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
+		C5E4004729825C710021C6B7 /* alarm_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004429825C710021C6B7 /* alarm_high.mp3 */; };
+		C5E4004829825C710021C6B7 /* alarm_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004429825C710021C6B7 /* alarm_high.mp3 */; };
+		C5E4004929825C710021C6B7 /* alarm_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004529825C710021C6B7 /* alarm_low.mp3 */; };
+		C5E4004A29825C710021C6B7 /* alarm_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004529825C710021C6B7 /* alarm_low.mp3 */; };
+		C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */; };
+		C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */; };
+		C5E4005929825C930021C6B7 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004E29825C930021C6B7 /* DataView.swift */; };
+		C5E4005A29825C930021C6B7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004F29825C930021C6B7 /* SettingsView.swift */; };
+		C5E4005B29825C930021C6B7 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005029825C930021C6B7 /* Details.swift */; };
+		C5E4005C29825C930021C6B7 /* ViewRepresentables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005129825C930021C6B7 /* ViewRepresentables.swift */; };
+		C5E4005D29825C930021C6B7 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005229825C930021C6B7 /* Console.swift */; };
+		C5E4005E29825C930021C6B7 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005329825C930021C6B7 /* Graph.swift */; };
+		C5E4005F29825C930021C6B7 /* OnlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005429825C930021C6B7 /* OnlineView.swift */; };
+		C5E4006029825C930021C6B7 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005529825C930021C6B7 /* Monitor.swift */; };
+		C5E4006129825C930021C6B7 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005629825C930021C6B7 /* Plan.swift */; };
+		C5E4006229825C930021C6B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005729825C930021C6B7 /* ContentView.swift */; };
+		C5E4006329825C930021C6B7 /* HamburgerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005829825C930021C6B7 /* HamburgerMenu.swift */; };
+		C5E4006529825D1F0021C6B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006429825D1F0021C6B7 /* Extensions.swift */; };
+		C5E4006629825D1F0021C6B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006429825D1F0021C6B7 /* Extensions.swift */; };
+		C5E4006829825DCD0021C6B7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006729825DCD0021C6B7 /* Settings.swift */; };
+		C5E4006929825DCD0021C6B7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006729825DCD0021C6B7 /* Settings.swift */; };
+		C5E4006B29825DDE0021C6B7 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006A29825DDD0021C6B7 /* Bluetooth.swift */; };
+		C5E4006C29825DDE0021C6B7 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006A29825DDD0021C6B7 /* Bluetooth.swift */; };
+		C5E4006E29825DEA0021C6B7 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006D29825DEA0021C6B7 /* Device.swift */; };
+		C5E4006F29825DEA0021C6B7 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006D29825DEA0021C6B7 /* Device.swift */; };
+		C5E4007129825DF50021C6B7 /* BluetoothDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007029825DF50021C6B7 /* BluetoothDelegate.swift */; };
+		C5E4007229825DF50021C6B7 /* BluetoothDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007029825DF50021C6B7 /* BluetoothDelegate.swift */; };
+		C5E4007429825E050021C6B7 /* MainDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007329825E050021C6B7 /* MainDelegate.swift */; };
+		C5E4007629825E370021C6B7 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007529825E370021C6B7 /* Glucose.swift */; };
+		C5E4007729825E370021C6B7 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007529825E370021C6B7 /* Glucose.swift */; };
+		C5E4007929825E450021C6B7 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007829825E450021C6B7 /* Sensor.swift */; };
+		C5E4007A29825E450021C6B7 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007829825E450021C6B7 /* Sensor.swift */; };
+		C5E4007C29825E4E0021C6B7 /* Abbott.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007B29825E4E0021C6B7 /* Abbott.swift */; };
+		C5E4007D29825E4E0021C6B7 /* Abbott.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007B29825E4E0021C6B7 /* Abbott.swift */; };
+		C5E4007F29825E7C0021C6B7 /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007E29825E7B0021C6B7 /* Bubble.swift */; };
+		C5E4008029825E7C0021C6B7 /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007E29825E7B0021C6B7 /* Bubble.swift */; };
+		C5E4008229825E8B0021C6B7 /* Libre2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008129825E8B0021C6B7 /* Libre2.swift */; };
+		C5E4008329825E8B0021C6B7 /* Libre2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008129825E8B0021C6B7 /* Libre2.swift */; };
+		C5E4008529825E990021C6B7 /* Libre3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008429825E990021C6B7 /* Libre3.swift */; };
+		C5E4008629825E990021C6B7 /* Libre3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008429825E990021C6B7 /* Libre3.swift */; };
+		C5E4008829825EA20021C6B7 /* LibrePro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008729825EA20021C6B7 /* LibrePro.swift */; };
+		C5E4008929825EA20021C6B7 /* LibrePro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008729825EA20021C6B7 /* LibrePro.swift */; };
+		C5E4008B29825EC40021C6B7 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008A29825EC40021C6B7 /* Events.swift */; };
+		C5E4008D29825ED00021C6B7 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008C29825ED00021C6B7 /* Health.swift */; };
+		C5E4008E29825ED00021C6B7 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008C29825ED00021C6B7 /* Health.swift */; };
+		C5E4009029825EEE0021C6B7 /* NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008F29825EED0021C6B7 /* NFC.swift */; };
+		C5E4009129825EEE0021C6B7 /* NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008F29825EED0021C6B7 /* NFC.swift */; };
+		C5E4009329825EF90021C6B7 /* NFCTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009229825EF90021C6B7 /* NFCTools.swift */; };
+		C5E4009429825EF90021C6B7 /* NFCTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009229825EF90021C6B7 /* NFCTools.swift */; };
+		C5E4009629825F120021C6B7 /* LibreLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009529825F120021C6B7 /* LibreLink.swift */; };
+		C5E4009729825F120021C6B7 /* LibreLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009529825F120021C6B7 /* LibreLink.swift */; };
+		C5E4009929825F1C0021C6B7 /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009829825F1C0021C6B7 /* Nightscout.swift */; };
+		C5E4009A29825F1C0021C6B7 /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009829825F1C0021C6B7 /* Nightscout.swift */; };
+		C5E4009C29825F260021C6B7 /* OOP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009B29825F250021C6B7 /* OOP.swift */; };
+		C5E4009D29825F260021C6B7 /* OOP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009B29825F250021C6B7 /* OOP.swift */; };
+		C5E4009F29825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
+		C5E400A029825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		C58507A923C50BF40079539D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C5E1012E23A2774C00678DF6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C58507A623C50BF40079539D;
-			remoteInfo = "DiaBLE Watch Extension";
-		};
-		C58507BF23C50BF40079539D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C5E1012E23A2774C00678DF6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C585079A23C50BF20079539D;
-			remoteInfo = "DiaBLE Watch";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		C58507C223C50BF40079539D /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				C58507C123C50BF40079539D /* DiaBLE Watch.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C58507C523C50BF40079539D /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				C58507A823C50BF40079539D /* DiaBLE Watch Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		C500E45824448C4000171BCA /* DiaBLE Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DiaBLE Watch Extension.entitlements"; sourceTree = "<group>"; };
-		C501BE46242A1ABD006C7F30 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		C50FA49223CA7B9400928229 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		C513933023B8EB7600CB245F /* alarm_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_high.mp3; sourceTree = "<group>"; };
-		C51BF8CE25DD04C2003D64FB /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
-		C522C77023D4D363002021F7 /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
-		C5248A9D26FD00D300DF1ED7 /* LibrePro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibrePro.swift; sourceTree = "<group>"; };
-		C528E1802445097400BFDA73 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
-		C528E18224450BC000BFDA73 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
-		C528E1842445A60200BFDA73 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		C52F1A5D24975F12004C2F90 /* company_ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_ids.json; sourceTree = "<group>"; };
-		C53C0D0824471FF200DB08EE /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
-		C53C76EC23D9AFD700B59A98 /* Nightscout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nightscout.swift; sourceTree = "<group>"; };
-		C53C76EE23D9B87A00B59A98 /* OnlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
-		C549DCFF23F198B700088A4C /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
-		C54B46CA26CC3EF700870B6E /* OOP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OOP.swift; sourceTree = "<group>"; };
-		C54B708E29754F9B000A2277 /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
-		C5521C8123BB5D5A00826CFB /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		C55AE3B4245EB1A3009636E0 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
-		C55B5D15245FCBE50004FE3B /* OnlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
-		C566341223B14D55001EB5F3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		C585079B23C50BF20079539D /* DiaBLE Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaBLE Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C58507A023C50BF30079539D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C58507A223C50BF30079539D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C58507A723C50BF40079539D /* DiaBLE Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DiaBLE Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C58507AC23C50BF40079539D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		C58507B223C50BF40079539D /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		C58507B423C50BF40079539D /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		C58507B623C50BF40079539D /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
-		C58507B823C50BF40079539D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C58507BD23C50BF40079539D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C58507BE23C50BF40079539D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		C5908FB72428E6B600CF6C83 /* alarm_signal_loss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_signal_loss.mp3; sourceTree = "<group>"; };
-		C593F91425976AED00DA3010 /* HamburgerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenu.swift; sourceTree = "<group>"; };
-		C5965CC223DCC13300B3C5D8 /* ViewRepresentables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRepresentables.swift; sourceTree = "<group>"; };
-		C597AF6A23AB9E3E0012926C /* NFC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFC.swift; sourceTree = "<group>"; };
-		C59FE28B26AFD7A600F7F18F /* NFCTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCTools.swift; sourceTree = "<group>"; };
-		C5A1B8AF23C6410A00D60962 /* Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
-		C5A5796F23A2CF0700945F72 /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
-		C5AAE9FD2765E4BC00546CE1 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		C5ADAF3E245B4CCF003A2E8B /* BluetoothDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDelegate.swift; sourceTree = "<group>"; };
-		C5ADAF41245B4E56003A2E8B /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		C5AE0C312746F21200B3F6B9 /* Libre3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Libre3.swift; sourceTree = "<group>"; };
-		C5B7AC6D270ADF2100EB1F87 /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
-		C5C20E4423C77FD800475327 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
-		C5C20E4623C780FB00475327 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
-		C5C7187A23E2FB5000D04EA7 /* Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
-		C5C80BCA23A27EFA00ACFDE9 /* DiaBLE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DiaBLE.entitlements; sourceTree = "<group>"; };
-		C5C84481241B884F009D3EAF /* alarm_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_low.mp3; sourceTree = "<group>"; };
-		C5C937E323CBA0AE00A87BAB /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
-		C5D1AFE52599D5FA00F6C4C9 /* Abbott.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abbott.swift; sourceTree = "<group>"; };
-		C5D1B000259A167A00F6C4C9 /* Libre2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Libre2.swift; sourceTree = "<group>"; };
-		C5DC03902667679700C499DC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C5DF10F323C783140023E0E2 /* Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
-		C5DF10F523C7838A0023E0E2 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
-		C5DF10F723C783F90023E0E2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		C5E1013623A2774C00678DF6 /* DiaBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5E1014023A2774C00678DF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		C5E1014223A2774D00678DF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C5E1014A23A2774D00678DF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5E7EDD2275E2382001473C7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.3.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
-		C5E9C762244496C800D52B32 /* MainDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDelegate.swift; sourceTree = "<group>"; };
-		C5E9C7662444A13600D52B32 /* Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
-		C5F06F7A282E516200CC1297 /* LibreLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibreLink.swift; sourceTree = "<group>"; };
-		C5FB2EF223A2794D0046F4F9 /* MainDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDelegate.swift; sourceTree = "<group>"; };
+		C53F77C529894478004F275A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5916E4629827E860051AC06 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
+		C5916E4729827E860051AC06 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C5916E4829827E860051AC06 /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
+		C5916E4929827E860051AC06 /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
+		C5916E4A29827E860051AC06 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		C5916E4B29827E860051AC06 /* OnlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
+		C5916E4C29827E860051AC06 /* Monitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
+		C5916E4D29827E860051AC06 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C5916E5629827EB10051AC06 /* MainDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDelegate.swift; sourceTree = "<group>"; };
+		C59960DF2981E381005999C2 /* DiaBLE Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaBLE Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5A14842298985E000A0E510 /* DiaBLE Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "DiaBLE Watch.entitlements"; path = "../DiaBLE Watch/DiaBLE Watch.entitlements"; sourceTree = "<group>"; };
+		C5AAA6152981CF7000CA3EC1 /* DiaBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaBLEApp.swift; sourceTree = "<group>"; };
+		C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C5AAA61E2981CF7200CA3EC1 /* DiaBLE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DiaBLE.entitlements; sourceTree = "<group>"; };
+		C5DED87529899B8A00164AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5E4004429825C710021C6B7 /* alarm_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_high.mp3; sourceTree = "<group>"; };
+		C5E4004529825C710021C6B7 /* alarm_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_low.mp3; sourceTree = "<group>"; };
+		C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_signal_loss.mp3; sourceTree = "<group>"; };
+		C5E4004E29825C930021C6B7 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
+		C5E4004F29825C930021C6B7 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C5E4005029825C930021C6B7 /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
+		C5E4005129825C930021C6B7 /* ViewRepresentables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRepresentables.swift; sourceTree = "<group>"; };
+		C5E4005229825C930021C6B7 /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
+		C5E4005329825C930021C6B7 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		C5E4005429825C930021C6B7 /* OnlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
+		C5E4005529825C930021C6B7 /* Monitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
+		C5E4005629825C930021C6B7 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
+		C5E4005729825C930021C6B7 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C5E4005829825C930021C6B7 /* HamburgerMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerMenu.swift; sourceTree = "<group>"; };
+		C5E4006429825D1F0021C6B7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C5E4006729825DCD0021C6B7 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		C5E4006A29825DDD0021C6B7 /* Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
+		C5E4006D29825DEA0021C6B7 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		C5E4007029825DF50021C6B7 /* BluetoothDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDelegate.swift; sourceTree = "<group>"; };
+		C5E4007329825E050021C6B7 /* MainDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDelegate.swift; sourceTree = "<group>"; };
+		C5E4007529825E370021C6B7 /* Glucose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
+		C5E4007829825E450021C6B7 /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
+		C5E4007B29825E4E0021C6B7 /* Abbott.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Abbott.swift; sourceTree = "<group>"; };
+		C5E4007E29825E7B0021C6B7 /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
+		C5E4008129825E8B0021C6B7 /* Libre2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Libre2.swift; sourceTree = "<group>"; };
+		C5E4008429825E990021C6B7 /* Libre3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Libre3.swift; sourceTree = "<group>"; };
+		C5E4008729825EA20021C6B7 /* LibrePro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibrePro.swift; sourceTree = "<group>"; };
+		C5E4008A29825EC40021C6B7 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		C5E4008C29825ED00021C6B7 /* Health.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
+		C5E4008F29825EED0021C6B7 /* NFC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFC.swift; sourceTree = "<group>"; };
+		C5E4009229825EF90021C6B7 /* NFCTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFCTools.swift; sourceTree = "<group>"; };
+		C5E4009529825F120021C6B7 /* LibreLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibreLink.swift; sourceTree = "<group>"; };
+		C5E4009829825F1C0021C6B7 /* Nightscout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nightscout.swift; sourceTree = "<group>"; };
+		C5E4009B29825F250021C6B7 /* OOP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OOP.swift; sourceTree = "<group>"; };
+		C5E4009E29825F580021C6B7 /* company_ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_ids.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C58507A423C50BF40079539D /* Frameworks */ = {
+		C59960DC2981E381005999C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5E7EDD3275E2382001473C7 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C5E1013323A2774C00678DF6 /* Frameworks */ = {
+		C5AAA6122981CF7000CA3EC1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C50FA49323CA7B9400928229 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C50FA49123CA7B9400928229 /* Frameworks */ = {
+		C5916E4529827E860051AC06 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C5E7EDD2275E2382001473C7 /* HealthKit.framework */,
-				C50FA49223CA7B9400928229 /* HealthKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C52F1A6024976D3D004C2F90 /* Media */ = {
-			isa = PBXGroup;
-			children = (
-				C513933023B8EB7600CB245F /* alarm_high.mp3 */,
-				C5C84481241B884F009D3EAF /* alarm_low.mp3 */,
-				C5908FB72428E6B600CF6C83 /* alarm_signal_loss.mp3 */,
-			);
-			path = Media;
-			sourceTree = "<group>";
-		};
-		C585079C23C50BF20079539D /* DiaBLE Watch */ = {
-			isa = PBXGroup;
-			children = (
-				C58507A023C50BF30079539D /* Assets.xcassets */,
-				C58507A223C50BF30079539D /* Info.plist */,
-			);
-			path = "DiaBLE Watch";
-			sourceTree = "<group>";
-		};
-		C58507AB23C50BF40079539D /* DiaBLE Watch Extension */ = {
-			isa = PBXGroup;
-			children = (
-				C5E9C7652444A10A00D52B32 /* Views */,
-				C5E9C762244496C800D52B32 /* MainDelegate.swift */,
-				C58507B223C50BF40079539D /* NotificationController.swift */,
-				C58507B423C50BF40079539D /* NotificationView.swift */,
-				C58507B623C50BF40079539D /* ComplicationController.swift */,
-				C58507B823C50BF40079539D /* Assets.xcassets */,
-				C58507BD23C50BF40079539D /* Info.plist */,
-				C500E45824448C4000171BCA /* DiaBLE Watch Extension.entitlements */,
-				C58507BE23C50BF40079539D /* PushNotificationPayload.apns */,
-			);
-			path = "DiaBLE Watch Extension";
-			sourceTree = "<group>";
-		};
-		C5C20E4323C77F7700475327 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C5E1014023A2774C00678DF6 /* ContentView.swift */,
-				C5C20E4623C780FB00475327 /* Monitor.swift */,
-				C593F91425976AED00DA3010 /* HamburgerMenu.swift */,
-				C5DF10F523C7838A0023E0E2 /* Graph.swift */,
-				C522C77023D4D363002021F7 /* Details.swift */,
-				C53C76EE23D9B87A00B59A98 /* OnlineView.swift */,
-				C5DF10F323C783140023E0E2 /* Console.swift */,
-				C5DF10F723C783F90023E0E2 /* SettingsView.swift */,
-				C5C20E4423C77FD800475327 /* DataView.swift */,
-				C51BF8CE25DD04C2003D64FB /* Plan.swift */,
-				C5965CC223DCC13300B3C5D8 /* ViewRepresentables.swift */,
+				C5916E4629827E860051AC06 /* DataView.swift */,
+				C5916E4729827E860051AC06 /* SettingsView.swift */,
+				C5916E4829827E860051AC06 /* Details.swift */,
+				C5916E4929827E860051AC06 /* Console.swift */,
+				C5916E4A29827E860051AC06 /* Graph.swift */,
+				C5916E4B29827E860051AC06 /* OnlineView.swift */,
+				C5916E4C29827E860051AC06 /* Monitor.swift */,
+				C5916E4D29827E860051AC06 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C5E1012D23A2774C00678DF6 = {
+		C59960E02981E381005999C2 /* DiaBLE Watch */ = {
 			isa = PBXGroup;
 			children = (
-				C5DC03902667679700C499DC /* README.md */,
-				C5B7AC6D270ADF2100EB1F87 /* TODO.md */,
-				C5AAE9FD2765E4BC00546CE1 /* LICENSE.md */,
-				C5E1013823A2774C00678DF6 /* DiaBLE */,
-				C58507AB23C50BF40079539D /* DiaBLE Watch Extension */,
-				C585079C23C50BF20079539D /* DiaBLE Watch */,
-				C5E1013723A2774C00678DF6 /* Products */,
-				C50FA49123CA7B9400928229 /* Frameworks */,
+				C5916E4529827E860051AC06 /* Views */,
+				C5916E5629827EB10051AC06 /* MainDelegate.swift */,
+				C5DED87529899B8A00164AEF /* Info.plist */,
+				C5A14842298985E000A0E510 /* DiaBLE Watch.entitlements */,
+			);
+			path = "DiaBLE Watch";
+			sourceTree = "<group>";
+		};
+		C5AAA60C2981CF7000CA3EC1 = {
+			isa = PBXGroup;
+			children = (
+				C5AAA6172981CF7000CA3EC1 /* DiaBLE */,
+				C59960E02981E381005999C2 /* DiaBLE Watch */,
+				C5AAA6162981CF7000CA3EC1 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C5E1013723A2774C00678DF6 /* Products */ = {
+		C5AAA6162981CF7000CA3EC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C5E1013623A2774C00678DF6 /* DiaBLE.app */,
-				C585079B23C50BF20079539D /* DiaBLE Watch.app */,
-				C58507A723C50BF40079539D /* DiaBLE Watch Extension.appex */,
+				C5AAA6152981CF7000CA3EC1 /* DiaBLE.app */,
+				C59960DF2981E381005999C2 /* DiaBLE Watch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C5E1013823A2774C00678DF6 /* DiaBLE */ = {
+		C5AAA6172981CF7000CA3EC1 /* DiaBLE */ = {
 			isa = PBXGroup;
 			children = (
-				C52F1A6024976D3D004C2F90 /* Media */,
-				C5C20E4323C77F7700475327 /* Views */,
-				C566341223B14D55001EB5F3 /* Extensions.swift */,
-				C5521C8123BB5D5A00826CFB /* App.swift */,
-				C501BE46242A1ABD006C7F30 /* Settings.swift */,
-				C5A1B8AF23C6410A00D60962 /* Bluetooth.swift */,
-				C5ADAF41245B4E56003A2E8B /* Device.swift */,
-				C5ADAF3E245B4CCF003A2E8B /* BluetoothDelegate.swift */,
-				C5FB2EF223A2794D0046F4F9 /* MainDelegate.swift */,
-				C5C7187A23E2FB5000D04EA7 /* Glucose.swift */,
-				C5A5796F23A2CF0700945F72 /* Sensor.swift */,
-				C5D1AFE52599D5FA00F6C4C9 /* Abbott.swift */,
-				C54B708E29754F9B000A2277 /* Bubble.swift */,
-				C5D1B000259A167A00F6C4C9 /* Libre2.swift */,
-				C5AE0C312746F21200B3F6B9 /* Libre3.swift */,
-				C5248A9D26FD00D300DF1ED7 /* LibrePro.swift */,
-				C549DCFF23F198B700088A4C /* Events.swift */,
-				C5C937E323CBA0AE00A87BAB /* Health.swift */,
-				C597AF6A23AB9E3E0012926C /* NFC.swift */,
-				C59FE28B26AFD7A600F7F18F /* NFCTools.swift */,
-				C5F06F7A282E516200CC1297 /* LibreLink.swift */,
-				C53C76EC23D9AFD700B59A98 /* Nightscout.swift */,
-				C54B46CA26CC3EF700870B6E /* OOP.swift */,
-				C52F1A5D24975F12004C2F90 /* company_ids.json */,
-				C5E1014223A2774D00678DF6 /* Assets.xcassets */,
-				C5E1014A23A2774D00678DF6 /* Info.plist */,
-				C5C80BCA23A27EFA00ACFDE9 /* DiaBLE.entitlements */,
+				C5E4004329825C710021C6B7 /* Media */,
+				C5E4004D29825C930021C6B7 /* Views */,
+				C5E4006429825D1F0021C6B7 /* Extensions.swift */,
+				C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */,
+				C5E4006729825DCD0021C6B7 /* Settings.swift */,
+				C5E4006A29825DDD0021C6B7 /* Bluetooth.swift */,
+				C5E4006D29825DEA0021C6B7 /* Device.swift */,
+				C5E4007029825DF50021C6B7 /* BluetoothDelegate.swift */,
+				C5E4007329825E050021C6B7 /* MainDelegate.swift */,
+				C5E4007529825E370021C6B7 /* Glucose.swift */,
+				C5E4007829825E450021C6B7 /* Sensor.swift */,
+				C5E4007B29825E4E0021C6B7 /* Abbott.swift */,
+				C5E4007E29825E7B0021C6B7 /* Bubble.swift */,
+				C5E4008129825E8B0021C6B7 /* Libre2.swift */,
+				C5E4008429825E990021C6B7 /* Libre3.swift */,
+				C5E4008729825EA20021C6B7 /* LibrePro.swift */,
+				C5E4008A29825EC40021C6B7 /* Events.swift */,
+				C5E4008C29825ED00021C6B7 /* Health.swift */,
+				C5E4008F29825EED0021C6B7 /* NFC.swift */,
+				C5E4009229825EF90021C6B7 /* NFCTools.swift */,
+				C5E4009529825F120021C6B7 /* LibreLink.swift */,
+				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
+				C5E4009B29825F250021C6B7 /* OOP.swift */,
+				C5E4009E29825F580021C6B7 /* company_ids.json */,
+				C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */,
+				C53F77C529894478004F275A /* Info.plist */,
+				C5AAA61E2981CF7200CA3EC1 /* DiaBLE.entitlements */,
 			);
 			path = DiaBLE;
 			sourceTree = "<group>";
 		};
-		C5E9C7652444A10A00D52B32 /* Views */ = {
+		C5E4004329825C710021C6B7 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				C58507AC23C50BF40079539D /* ContentView.swift */,
-				C55AE3B4245EB1A3009636E0 /* DataView.swift */,
-				C53C0D0824471FF200DB08EE /* Details.swift */,
-				C528E18224450BC000BFDA73 /* Graph.swift */,
-				C5E9C7662444A13600D52B32 /* Console.swift */,
-				C528E1802445097400BFDA73 /* Monitor.swift */,
-				C55B5D15245FCBE50004FE3B /* OnlineView.swift */,
-				C528E1842445A60200BFDA73 /* SettingsView.swift */,
+				C5E4004429825C710021C6B7 /* alarm_high.mp3 */,
+				C5E4004529825C710021C6B7 /* alarm_low.mp3 */,
+				C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		C5E4004D29825C930021C6B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4005729825C930021C6B7 /* ContentView.swift */,
+				C5E4005529825C930021C6B7 /* Monitor.swift */,
+				C5E4005829825C930021C6B7 /* HamburgerMenu.swift */,
+				C5E4005329825C930021C6B7 /* Graph.swift */,
+				C5E4005029825C930021C6B7 /* Details.swift */,
+				C5E4005429825C930021C6B7 /* OnlineView.swift */,
+				C5E4005229825C930021C6B7 /* Console.swift */,
+				C5E4004F29825C930021C6B7 /* SettingsView.swift */,
+				C5E4004E29825C930021C6B7 /* DataView.swift */,
+				C5E4005629825C930021C6B7 /* Plan.swift */,
+				C5E4005129825C930021C6B7 /* ViewRepresentables.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,336 +261,262 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C585079A23C50BF20079539D /* DiaBLE Watch */ = {
+		C59960DE2981E381005999C2 /* DiaBLE Watch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C58507C923C50BF40079539D /* Build configuration list for PBXNativeTarget "DiaBLE Watch" */;
+			buildConfigurationList = C59960EC2981E383005999C2 /* Build configuration list for PBXNativeTarget "DiaBLE Watch" */;
 			buildPhases = (
-				C585079923C50BF20079539D /* Resources */,
-				C58507C523C50BF40079539D /* Embed App Extensions */,
+				C59960DB2981E381005999C2 /* Sources */,
+				C59960DC2981E381005999C2 /* Frameworks */,
+				C59960DD2981E381005999C2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C58507AA23C50BF40079539D /* PBXTargetDependency */,
 			);
 			name = "DiaBLE Watch";
-			productName = "DiaBLE Watch";
-			productReference = C585079B23C50BF20079539D /* DiaBLE Watch.app */;
-			productType = "com.apple.product-type.application.watchapp2";
+			productName = "DiaBLE Watch Watch App";
+			productReference = C59960DF2981E381005999C2 /* DiaBLE Watch.app */;
+			productType = "com.apple.product-type.application";
 		};
-		C58507A623C50BF40079539D /* DiaBLE Watch Extension */ = {
+		C5AAA6142981CF7000CA3EC1 /* DiaBLE */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C58507C823C50BF40079539D /* Build configuration list for PBXNativeTarget "DiaBLE Watch Extension" */;
+			buildConfigurationList = C5AAA6242981CF7200CA3EC1 /* Build configuration list for PBXNativeTarget "DiaBLE" */;
 			buildPhases = (
-				C58507A323C50BF40079539D /* Sources */,
-				C58507A423C50BF40079539D /* Frameworks */,
-				C58507A523C50BF40079539D /* Resources */,
+				C5AAA6112981CF7000CA3EC1 /* Sources */,
+				C5AAA6122981CF7000CA3EC1 /* Frameworks */,
+				C5AAA6132981CF7000CA3EC1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = "DiaBLE Watch Extension";
-			productName = "DiaBLE Watch Extension";
-			productReference = C58507A723C50BF40079539D /* DiaBLE Watch Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
-		};
-		C5E1013523A2774C00678DF6 /* DiaBLE */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C5E1016323A2774D00678DF6 /* Build configuration list for PBXNativeTarget "DiaBLE" */;
-			buildPhases = (
-				C5E1013223A2774C00678DF6 /* Sources */,
-				C5E1013323A2774C00678DF6 /* Frameworks */,
-				C5E1013423A2774C00678DF6 /* Resources */,
-				C58507C223C50BF40079539D /* Embed Watch Content */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C58507C023C50BF40079539D /* PBXTargetDependency */,
 			);
 			name = DiaBLE;
 			productName = DiaBLE;
-			productReference = C5E1013623A2774C00678DF6 /* DiaBLE.app */;
+			productReference = C5AAA6152981CF7000CA3EC1 /* DiaBLE.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C5E1012E23A2774C00678DF6 /* Project object */ = {
+		C5AAA60D2981CF7000CA3EC1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1200;
-				ORGANIZATIONNAME = "Guido Soranzio";
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					C585079A23C50BF20079539D = {
-						CreatedOnToolsVersion = 11.3;
+					C59960DE2981E381005999C2 = {
+						CreatedOnToolsVersion = 14.2;
 					};
-					C58507A623C50BF40079539D = {
-						CreatedOnToolsVersion = 11.3;
-					};
-					C5E1013523A2774C00678DF6 = {
-						CreatedOnToolsVersion = 11.3;
+					C5AAA6142981CF7000CA3EC1 = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
-			buildConfigurationList = C5E1013123A2774C00678DF6 /* Build configuration list for PBXProject "DiaBLE" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = C5AAA6102981CF7000CA3EC1 /* Build configuration list for PBXProject "DiaBLE" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = C5E1012D23A2774C00678DF6;
-			productRefGroup = C5E1013723A2774C00678DF6 /* Products */;
+			mainGroup = C5AAA60C2981CF7000CA3EC1;
+			productRefGroup = C5AAA6162981CF7000CA3EC1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C5E1013523A2774C00678DF6 /* DiaBLE */,
-				C585079A23C50BF20079539D /* DiaBLE Watch */,
-				C58507A623C50BF40079539D /* DiaBLE Watch Extension */,
+				C5AAA6142981CF7000CA3EC1 /* DiaBLE */,
+				C59960DE2981E381005999C2 /* DiaBLE Watch */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C585079923C50BF20079539D /* Resources */ = {
+		C59960DD2981E381005999C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C58507A123C50BF30079539D /* Assets.xcassets in Resources */,
+				C5E400A029825F580021C6B7 /* company_ids.json in Resources */,
+				C5E4004A29825C710021C6B7 /* alarm_low.mp3 in Resources */,
+				C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
+				C5E4004829825C710021C6B7 /* alarm_high.mp3 in Resources */,
+				C59184472981E9B000A6DA89 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C58507A523C50BF40079539D /* Resources */ = {
+		C5AAA6132981CF7000CA3EC1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5E9C7602444969400D52B32 /* alarm_low.mp3 in Resources */,
-				C5B7AC6F270ADF2100EB1F87 /* TODO.md in Resources */,
-				C52F1A5F24975F12004C2F90 /* company_ids.json in Resources */,
-				C5E9C7612444969800D52B32 /* alarm_signal_loss.mp3 in Resources */,
-				C58507B923C50BF40079539D /* Assets.xcassets in Resources */,
-				C5AAE9FF2765E4BC00546CE1 /* LICENSE.md in Resources */,
-				C52BDADE275E2B4E001D3872 /* README.md in Resources */,
-				C5E9C75F2444969000D52B32 /* alarm_high.mp3 in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C5E1013423A2774C00678DF6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C5C84482241B884F009D3EAF /* alarm_low.mp3 in Resources */,
-				C513933123B8EB7600CB245F /* alarm_high.mp3 in Resources */,
-				C5DC03912667679700C499DC /* README.md in Resources */,
-				C5B7AC6E270ADF2100EB1F87 /* TODO.md in Resources */,
-				C5908FB82428E6B600CF6C83 /* alarm_signal_loss.mp3 in Resources */,
-				C5AAE9FE2765E4BC00546CE1 /* LICENSE.md in Resources */,
-				C5E1014323A2774D00678DF6 /* Assets.xcassets in Resources */,
-				C52F1A5E24975F12004C2F90 /* company_ids.json in Resources */,
+				C5E4009F29825F580021C6B7 /* company_ids.json in Resources */,
+				C5E4004929825C710021C6B7 /* alarm_low.mp3 in Resources */,
+				C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
+				C5E4004729825C710021C6B7 /* alarm_high.mp3 in Resources */,
+				C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C58507A323C50BF40079539D /* Sources */ = {
+		C59960DB2981E381005999C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5E9C7572444964700D52B32 /* Glucose.swift in Sources */,
-				C5ADAF40245B4CCF003A2E8B /* BluetoothDelegate.swift in Sources */,
-				C54B709029754F9B000A2277 /* Bubble.swift in Sources */,
-				C5E9C75A2444967300D52B32 /* Sensor.swift in Sources */,
-				C5AE0C332746F21200B3F6B9 /* Libre3.swift in Sources */,
-				C5248A9F26FD00D300DF1ED7 /* LibrePro.swift in Sources */,
-				C54B46CC26CC3EF700870B6E /* OOP.swift in Sources */,
-				C5D1AFE72599D5FA00F6C4C9 /* Abbott.swift in Sources */,
-				C5E9C7592444966A00D52B32 /* Bluetooth.swift in Sources */,
-				C58507AD23C50BF40079539D /* ContentView.swift in Sources */,
-				C53C0D0924471FF200DB08EE /* Details.swift in Sources */,
-				C58507B323C50BF40079539D /* NotificationController.swift in Sources */,
-				C55AE3B5245EB1A3009636E0 /* DataView.swift in Sources */,
-				C528E18324450BC000BFDA73 /* Graph.swift in Sources */,
-				C59FE28D26AFD7A600F7F18F /* NFCTools.swift in Sources */,
-				C5F329D4244998230053A8FB /* Nightscout.swift in Sources */,
-				C5E9C7582444966500D52B32 /* Settings.swift in Sources */,
-				C58507B523C50BF40079539D /* NotificationView.swift in Sources */,
-				C5E9C756244495D700D52B32 /* App.swift in Sources */,
-				C5ADAF43245B4E56003A2E8B /* Device.swift in Sources */,
-				C58507B723C50BF40079539D /* ComplicationController.swift in Sources */,
-				C5E9C75D2444968000D52B32 /* Health.swift in Sources */,
-				C55A7F9B253F3EBD00423648 /* NFC.swift in Sources */,
-				C5E9C755244495B000D52B32 /* Extensions.swift in Sources */,
-				C528E1812445097400BFDA73 /* Monitor.swift in Sources */,
-				C5E9C7672444A13600D52B32 /* Console.swift in Sources */,
-				C5F06F7C282E516200CC1297 /* LibreLink.swift in Sources */,
-				C55B5D16245FCBE50004FE3B /* OnlineView.swift in Sources */,
-				C5E9C763244496C800D52B32 /* MainDelegate.swift in Sources */,
-				C528E1852445A60200BFDA73 /* SettingsView.swift in Sources */,
-				C5D1B002259A167A00F6C4C9 /* Libre2.swift in Sources */,
+				C59184462981E73400A6DA89 /* DiaBLEApp.swift in Sources */,
+				C5E4007D29825E4E0021C6B7 /* Abbott.swift in Sources */,
+				C5916E5529827E860051AC06 /* ContentView.swift in Sources */,
+				C5E4006C29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
+				C5916E4E29827E860051AC06 /* DataView.swift in Sources */,
+				C5916E5429827E860051AC06 /* Monitor.swift in Sources */,
+				C5E4009429825EF90021C6B7 /* NFCTools.swift in Sources */,
+				C5E4008629825E990021C6B7 /* Libre3.swift in Sources */,
+				C5E4007729825E370021C6B7 /* Glucose.swift in Sources */,
+				C5916E5729827EB10051AC06 /* MainDelegate.swift in Sources */,
+				C5E4006629825D1F0021C6B7 /* Extensions.swift in Sources */,
+				C5916E5029827E860051AC06 /* Details.swift in Sources */,
+				C5916E5229827E860051AC06 /* Graph.swift in Sources */,
+				C5E4008929825EA20021C6B7 /* LibrePro.swift in Sources */,
+				C5E4007A29825E450021C6B7 /* Sensor.swift in Sources */,
+				C5E4008029825E7C0021C6B7 /* Bubble.swift in Sources */,
+				C5E4009729825F120021C6B7 /* LibreLink.swift in Sources */,
+				C5E4008329825E8B0021C6B7 /* Libre2.swift in Sources */,
+				C5E4006F29825DEA0021C6B7 /* Device.swift in Sources */,
+				C5E4009129825EEE0021C6B7 /* NFC.swift in Sources */,
+				C5E4009D29825F260021C6B7 /* OOP.swift in Sources */,
+				C5E4006929825DCD0021C6B7 /* Settings.swift in Sources */,
+				C5916E5129827E860051AC06 /* Console.swift in Sources */,
+				C5E4008E29825ED00021C6B7 /* Health.swift in Sources */,
+				C5E4007229825DF50021C6B7 /* BluetoothDelegate.swift in Sources */,
+				C5916E5329827E860051AC06 /* OnlineView.swift in Sources */,
+				C5E4009A29825F1C0021C6B7 /* Nightscout.swift in Sources */,
+				C5916E4F29827E860051AC06 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C5E1013223A2774C00678DF6 /* Sources */ = {
+		C5AAA6112981CF7000CA3EC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C597AF6B23AB9E3E0012926C /* NFC.swift in Sources */,
-				C5C20E4723C780FB00475327 /* Monitor.swift in Sources */,
-				C5521C8223BB5D5A00826CFB /* App.swift in Sources */,
-				C5D1AFE62599D5FA00F6C4C9 /* Abbott.swift in Sources */,
-				C5A1B8B023C6410A00D60962 /* Bluetooth.swift in Sources */,
-				C522C77123D4D363002021F7 /* Details.swift in Sources */,
-				C59FE28C26AFD7A600F7F18F /* NFCTools.swift in Sources */,
-				C5E1014123A2774C00678DF6 /* ContentView.swift in Sources */,
-				C5248A9E26FD00D300DF1ED7 /* LibrePro.swift in Sources */,
-				C53C76EF23D9B87A00B59A98 /* OnlineView.swift in Sources */,
-				C5F06F7B282E516200CC1297 /* LibreLink.swift in Sources */,
-				C5DF10F623C7838B0023E0E2 /* Graph.swift in Sources */,
-				C593F91525976AED00DA3010 /* HamburgerMenu.swift in Sources */,
-				C566341323B14D55001EB5F3 /* Extensions.swift in Sources */,
-				C549DD0023F198B700088A4C /* Events.swift in Sources */,
-				C5965CC323DCC13300B3C5D8 /* ViewRepresentables.swift in Sources */,
-				C5DF10F823C783F90023E0E2 /* SettingsView.swift in Sources */,
-				C51BF8CF25DD04C2003D64FB /* Plan.swift in Sources */,
-				C5ADAF3F245B4CCF003A2E8B /* BluetoothDelegate.swift in Sources */,
-				C54B708F29754F9B000A2277 /* Bubble.swift in Sources */,
-				C5AE0C322746F21200B3F6B9 /* Libre3.swift in Sources */,
-				C5C20E4523C77FD800475327 /* DataView.swift in Sources */,
-				C501BE47242A1ABD006C7F30 /* Settings.swift in Sources */,
-				C53C76ED23D9AFD700B59A98 /* Nightscout.swift in Sources */,
-				C5FB2EF323A2794D0046F4F9 /* MainDelegate.swift in Sources */,
-				C5ADAF42245B4E56003A2E8B /* Device.swift in Sources */,
-				C5C7187B23E2FB5000D04EA7 /* Glucose.swift in Sources */,
-				C54B46CB26CC3EF700870B6E /* OOP.swift in Sources */,
-				C5C937E423CBA0AE00A87BAB /* Health.swift in Sources */,
-				C5DF10F423C783140023E0E2 /* Console.swift in Sources */,
-				C5A5797023A2CF0700945F72 /* Sensor.swift in Sources */,
-				C5D1B001259A167A00F6C4C9 /* Libre2.swift in Sources */,
+				C5E4008B29825EC40021C6B7 /* Events.swift in Sources */,
+				C5E4005E29825C930021C6B7 /* Graph.swift in Sources */,
+				C5E4007929825E450021C6B7 /* Sensor.swift in Sources */,
+				C5E4009029825EEE0021C6B7 /* NFC.swift in Sources */,
+				C5E4006B29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
+				C5E4007129825DF50021C6B7 /* BluetoothDelegate.swift in Sources */,
+				C5E4005929825C930021C6B7 /* DataView.swift in Sources */,
+				C5E4006229825C930021C6B7 /* ContentView.swift in Sources */,
+				C5E4008D29825ED00021C6B7 /* Health.swift in Sources */,
+				C5E4008229825E8B0021C6B7 /* Libre2.swift in Sources */,
+				C5E4005C29825C930021C6B7 /* ViewRepresentables.swift in Sources */,
+				C5E4006829825DCD0021C6B7 /* Settings.swift in Sources */,
+				C5E4005F29825C930021C6B7 /* OnlineView.swift in Sources */,
+				C5E4006E29825DEA0021C6B7 /* Device.swift in Sources */,
+				C5E4006129825C930021C6B7 /* Plan.swift in Sources */,
+				C5E4009929825F1C0021C6B7 /* Nightscout.swift in Sources */,
+				C5E4005B29825C930021C6B7 /* Details.swift in Sources */,
+				C5E4008829825EA20021C6B7 /* LibrePro.swift in Sources */,
+				C5E4009C29825F260021C6B7 /* OOP.swift in Sources */,
+				C5E4005D29825C930021C6B7 /* Console.swift in Sources */,
+				C5E4006529825D1F0021C6B7 /* Extensions.swift in Sources */,
+				C5E4006029825C930021C6B7 /* Monitor.swift in Sources */,
+				C5E4008529825E990021C6B7 /* Libre3.swift in Sources */,
+				C5E4006329825C930021C6B7 /* HamburgerMenu.swift in Sources */,
+				C5E4007429825E050021C6B7 /* MainDelegate.swift in Sources */,
+				C5E4007F29825E7C0021C6B7 /* Bubble.swift in Sources */,
+				C5E4005A29825C930021C6B7 /* SettingsView.swift in Sources */,
+				C5E4009329825EF90021C6B7 /* NFCTools.swift in Sources */,
+				C5E4007629825E370021C6B7 /* Glucose.swift in Sources */,
+				C5AAA6192981CF7000CA3EC1 /* DiaBLEApp.swift in Sources */,
+				C5E4009629825F120021C6B7 /* LibreLink.swift in Sources */,
+				C5E4007C29825E4E0021C6B7 /* Abbott.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		C58507AA23C50BF40079539D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C58507A623C50BF40079539D /* DiaBLE Watch Extension */;
-			targetProxy = C58507A923C50BF40079539D /* PBXContainerItemProxy */;
-		};
-		C58507C023C50BF40079539D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = C585079A23C50BF20079539D /* DiaBLE Watch */;
-			targetProxy = C58507BF23C50BF40079539D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		C58507C323C50BF40079539D /* Debug */ = {
+		C59960EA2981E383005999C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DiaBLE Watch/DiaBLE Watch.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z25SC9UDC8;
-				IBSC_MODULE = DiaBLE_Watch_Extension;
-				INFOPLIST_FILE = "DiaBLE Watch/Info.plist";
-				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = name.soranzio.guido.diable.DiaBLE.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-			};
-			name = Debug;
-		};
-		C58507C423C50BF40079539D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z25SC9UDC8;
-				IBSC_MODULE = DiaBLE_Watch_Extension;
-				INFOPLIST_FILE = "DiaBLE Watch/Info.plist";
-				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = name.soranzio.guido.diable.DiaBLE.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-			};
-			name = Release;
-		};
-		C58507C623C50BF40079539D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "DiaBLE Watch Extension/DiaBLE Watch Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "DiaBLE Watch Extension/Info.plist";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DiaBLE Watch/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "DiaBLE Watch";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "DiaBLE reminds to check the glucose level at scheduled times.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.DiaBLE;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = name.soranzio.guido.diable.DiaBLE.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = name.DiaBLE.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Debug;
 		};
-		C58507C723C50BF40079539D /* Release */ = {
+		C59960EB2981E383005999C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "DiaBLE Watch Extension/DiaBLE Watch Extension.entitlements";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DiaBLE Watch/DiaBLE Watch.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "DiaBLE Watch Extension/Info.plist";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DiaBLE Watch/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "DiaBLE Watch";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "DiaBLE reminds to check the glucose level at scheduled times.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.DiaBLE;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = name.soranzio.guido.diable.DiaBLE.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = name.DiaBLE.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
-		C5E1016123A2774D00678DF6 /* Debug */ = {
+		C5AAA6222981CF7200CA3EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -737,20 +563,18 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		C5E1016223A2774D00678DF6 /* Release */ = {
+		C5AAA6232981CF7200CA3EC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -790,58 +614,94 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		C5E1016423A2774D00678DF6 /* Debug */ = {
+		C5AAA6252981CF7200CA3EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DiaBLE/DiaBLE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
-				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiaBLE/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				INFOPLIST_KEY_NFCReaderUsageDescription = "DiaBLE uses NFC to scan Libre sensors.";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "DiaBLE creates events to be displayed in Apple Watch complications.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "DiaBLE reminds to check the glucose level at scheduled times.";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = name.soranzio.guido.diable.DiaBLE;
+				PRODUCT_BUNDLE_IDENTIFIER = name.DiaBLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		C5E1016523A2774D00678DF6 /* Release */ = {
+		C5AAA6262981CF7200CA3EC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DiaBLE/DiaBLE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
-				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiaBLE/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				INFOPLIST_KEY_NFCReaderUsageDescription = "DiaBLE uses NFC to scan Libre sensors.";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "DiaBLE creates events to be displayed in Apple Watch complications.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "DiaBLE reminds to check the glucose level at scheduled times.";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = name.soranzio.guido.diable.DiaBLE;
+				PRODUCT_BUNDLE_IDENTIFIER = name.DiaBLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -850,43 +710,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C58507C823C50BF40079539D /* Build configuration list for PBXNativeTarget "DiaBLE Watch Extension" */ = {
+		C59960EC2981E383005999C2 /* Build configuration list for PBXNativeTarget "DiaBLE Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C58507C623C50BF40079539D /* Debug */,
-				C58507C723C50BF40079539D /* Release */,
+				C59960EA2981E383005999C2 /* Debug */,
+				C59960EB2981E383005999C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C58507C923C50BF40079539D /* Build configuration list for PBXNativeTarget "DiaBLE Watch" */ = {
+		C5AAA6102981CF7000CA3EC1 /* Build configuration list for PBXProject "DiaBLE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C58507C323C50BF40079539D /* Debug */,
-				C58507C423C50BF40079539D /* Release */,
+				C5AAA6222981CF7200CA3EC1 /* Debug */,
+				C5AAA6232981CF7200CA3EC1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C5E1013123A2774C00678DF6 /* Build configuration list for PBXProject "DiaBLE" */ = {
+		C5AAA6242981CF7200CA3EC1 /* Build configuration list for PBXNativeTarget "DiaBLE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C5E1016123A2774D00678DF6 /* Debug */,
-				C5E1016223A2774D00678DF6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C5E1016323A2774D00678DF6 /* Build configuration list for PBXNativeTarget "DiaBLE" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C5E1016423A2774D00678DF6 /* Debug */,
-				C5E1016523A2774D00678DF6 /* Release */,
+				C5AAA6252981CF7200CA3EC1 /* Debug */,
+				C5AAA6262981CF7200CA3EC1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C5E1012E23A2774C00678DF6 /* Project object */;
+	rootObject = C5AAA60D2981CF7000CA3EC1 /* Project object */;
 }
