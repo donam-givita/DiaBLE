@@ -450,6 +450,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DiaBLE-Watch-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "DiaBLE Watch";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "DiaBLE reminds to check the glucose level at scheduled times.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.DiaBLE;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -482,6 +486,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DiaBLE-Watch-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "DiaBLE Watch";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "DiaBLE reminds to check the glucose level at scheduled times.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.DiaBLE;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -624,6 +632,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DiaBLE/Info-Xcode14.plist";
+				INFOPLIST_KEY_NFCReaderUsageDescription = "DiaBLE uses NFC to scan Libre sensors.";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "DiaBLE creates events to be displayed in Apple Watch complications.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "DiaBLE reminds to check the glucose level at scheduled times.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -662,6 +676,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DiaBLE/Info-Xcode14.plist";
+				INFOPLIST_KEY_NFCReaderUsageDescription = "DiaBLE uses NFC to scan Libre sensors.";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "DiaBLE uses Bluetooth to receive glucose data from Libre sensors.";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "DiaBLE creates events to be displayed in Apple Watch complications.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "DiaBLE reads blood glucose and insulin delivery data.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "DiaBLE reminds to check the glucose level at scheduled times.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

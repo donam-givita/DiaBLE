@@ -23,7 +23,7 @@
 	<key>CLKComplicationPrincipalClass</key>
 	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>DiaBLE uses Bluetooth to receive glucose data and alarms from several transmitters and Libre 2 sensors.</string>
+	<string>DiaBLE uses Bluetooth to receive glucose data from Libre sensors.</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -35,9 +35,9 @@
 		<string>com.apple.watchkit</string>
 	</dict>
 	<key>NSHealthShareUsageDescription</key>
-	<string>DiaBLE reads blood glucose and insulin delivery data</string>
+	<string>DiaBLE reads blood glucose and insulin delivery data.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>DiaBLE tracks your blood glucose and saves the insulin delivery data</string>
+	<string>DiaBLE tracks your blood glucose and saves the insulin delivery data.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
