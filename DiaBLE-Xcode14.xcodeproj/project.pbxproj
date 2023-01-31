@@ -81,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		C53F77C529894478004F275A /* Info-Xcode14.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Xcode14.plist"; sourceTree = "<group>"; };
+		C56C1C9829898BAF00AAE5F3 /* DiaBLE-Watch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DiaBLE-Watch-Info.plist"; sourceTree = "<group>"; };
 		C5916E4629827E860051AC06 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 		C5916E4729827E860051AC06 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C5916E4829827E860051AC06 /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
@@ -91,7 +92,7 @@
 		C5916E4D29827E860051AC06 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C5916E5629827EB10051AC06 /* MainDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDelegate.swift; sourceTree = "<group>"; };
 		C59960DF2981E381005999C2 /* DiaBLE Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaBLE Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5A14842298985E000A0E510 /* DiaBLE Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DiaBLE Watch.entitlements"; sourceTree = "<group>"; };
+		C5A14842298985E000A0E510 /* DiaBLE Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "DiaBLE Watch.entitlements"; path = "../DiaBLE Watch/DiaBLE Watch.entitlements"; sourceTree = "<group>"; };
 		C5AAA6152981CF7000CA3EC1 /* DiaBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaBLEApp.swift; sourceTree = "<group>"; };
 		C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -179,6 +180,7 @@
 		C5AAA60C2981CF7000CA3EC1 = {
 			isa = PBXGroup;
 			children = (
+				C56C1C9829898BAF00AAE5F3 /* DiaBLE-Watch-Info.plist */,
 				C5AAA6172981CF7000CA3EC1 /* DiaBLE */,
 				C59960E02981E381005999C2 /* DiaBLE Watch App */,
 				C5AAA6162981CF7000CA3EC1 /* Products */,
@@ -446,6 +448,7 @@
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DiaBLE-Watch-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "DiaBLE Watch";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.DiaBLE;
@@ -477,6 +480,7 @@
 				DEVELOPMENT_TEAM = Z25SC9UDC8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DiaBLE-Watch-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "DiaBLE Watch";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.DiaBLE;
