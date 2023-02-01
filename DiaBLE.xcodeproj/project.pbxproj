@@ -164,14 +164,14 @@
 		C5916E4529827E860051AC06 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C5916E4629827E860051AC06 /* DataView.swift */,
-				C5916E4729827E860051AC06 /* SettingsView.swift */,
-				C5916E4829827E860051AC06 /* Details.swift */,
-				C5916E4929827E860051AC06 /* Console.swift */,
-				C5916E4A29827E860051AC06 /* Graph.swift */,
-				C5916E4B29827E860051AC06 /* OnlineView.swift */,
-				C5916E4C29827E860051AC06 /* Monitor.swift */,
 				C5916E4D29827E860051AC06 /* ContentView.swift */,
+				C5916E4C29827E860051AC06 /* Monitor.swift */,
+				C5916E4A29827E860051AC06 /* Graph.swift */,
+				C5916E4829827E860051AC06 /* Details.swift */,
+				C5916E4B29827E860051AC06 /* OnlineView.swift */,
+				C5916E4929827E860051AC06 /* Console.swift */,
+				C5916E4729827E860051AC06 /* SettingsView.swift */,
+				C5916E4629827E860051AC06 /* DataView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,10 +233,10 @@
 				C5E4009229825EF90021C6B7 /* NFCTools.swift */,
 				C5E4009529825F120021C6B7 /* LibreLink.swift */,
 				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
-				C5E4009B29825F250021C6B7 /* OOP.swift */,
 				C5E4009E29825F580021C6B7 /* company_ids.json */,
 				C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */,
 				C53F77C529894478004F275A /* Info.plist */,
+				C5E4009B29825F250021C6B7 /* OOP.swift */,
 				C5AAA61E2981CF7200CA3EC1 /* DiaBLE.entitlements */,
 			);
 			path = DiaBLE;

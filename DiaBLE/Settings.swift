@@ -14,7 +14,7 @@ class Settings: ObservableObject {
         "targetLow": 80.0,
         "targetHigh": 170.0,
 
-        "alarmSnoozeInterval": 5,
+        "alarmSnoozeInterval": 15,
         "lastAlarmDate": Date.distantPast,
         "alarmLow": 70.0,
         "alarmHigh": 200.0,

@@ -152,16 +152,25 @@ struct SettingsView: View {
                         Image(systemName: settings.mutedAudio ? "speaker.slash.fill" : "speaker.2.fill").resizable().frame(width: 24, height: 24).foregroundColor(.accentColor)
                     }
 
-                    Button {
-                        settings.disabledNotifications.toggle()
-                        if settings.disabledNotifications {
-                            UIApplication.shared.applicationIconBadgeNumber = 0
-                        } else {
-                            UIApplication.shared.applicationIconBadgeNumber = settings.displayingMillimoles ?
-                            Int(Float(app.currentGlucose.units)! * 10) : Int(app.currentGlucose.units)!
+                    HStack(spacing: 0) {
+                        Button {
+                            withAnimation { settings.disabledNotifications.toggle() }
+                            if settings.disabledNotifications {
+                                UIApplication.shared.applicationIconBadgeNumber = 0
+                            } else {
+                                UIApplication.shared.applicationIconBadgeNumber = settings.displayingMillimoles ?
+                                Int(Float(app.currentGlucose.units)! * 10) : Int(app.currentGlucose.units)!
+                            }
+                        } label: {
+                            Image(systemName: settings.disabledNotifications ? "zzz" : "app.badge.fill").resizable().frame(width: 24, height: 24).foregroundColor(.accentColor)
                         }
-                    } label: {
-                        Image(systemName: settings.disabledNotifications ? "zzz" : "app.badge.fill").resizable().frame(width: 24, height: 24).foregroundColor(.accentColor)
+                        if settings.disabledNotifications {
+                            Picker(selection: $settings.alarmSnoozeInterval, label: Text("")) {
+                                ForEach([5, 15, 30, 60, 120], id: \.self) { t in
+                                    Text("\([5: "5 min", 15: "15 min", 30: "30 min", 60: "1 h", 120: "2 h"][t]!)")
+                                }
+                            }.labelsHidden()
+                        }
                     }
 
                     Button {

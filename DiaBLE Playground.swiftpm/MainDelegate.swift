@@ -327,36 +327,42 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
         var title = currentGlucose > 0 ? currentGlucose.units : "---"
 
+        let snoozed = settings.lastAlarmDate.timeIntervalSinceNow >= -Double(settings.alarmSnoozeInterval * 60)
+
         if currentGlucose > 0 && (currentGlucose > Int(settings.alarmHigh) || currentGlucose < Int(settings.alarmLow)) {
-            log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted: \(settings.mutedAudio ? "yes" : "no"))")
-            playAlarm()
-            if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications { // TODO: notifications settings
-                title += "  \(settings.displayingMillimoles ? GlucoseUnit.mmoll : GlucoseUnit.mgdl)"
+            log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted audio: \(settings.mutedAudio ? "yes" : "no")), snoozed: \(snoozed ? "yes" : "no")")
 
-                let oopAlarm = app.oopAlarm
-                if oopAlarm != .unknown {
-                    title += "  \(oopAlarm.shortDescription)"
-                } else {
-                    if currentGlucose > Int(settings.alarmHigh) {
-                        title += "  HIGH"
+
+            if !snoozed {
+                playAlarm()
+                if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications { // TODO: notifications settings
+                    title += "  \(settings.displayingMillimoles ? GlucoseUnit.mmoll : GlucoseUnit.mgdl)"
+
+                    let oopAlarm = app.oopAlarm
+                    if oopAlarm != .unknown {
+                        title += "  \(oopAlarm.shortDescription)"
+                    } else {
+                        if currentGlucose > Int(settings.alarmHigh) {
+                            title += "  HIGH"
+                        }
+                        if currentGlucose < Int(settings.alarmLow) {
+                            title += "  LOW"
+                        }
                     }
-                    if currentGlucose < Int(settings.alarmLow) {
-                        title += "  LOW"
+
+                    let oopTrend = app.oopTrend
+                    if oopTrend != .unknown {
+                        title += "  \(oopTrend.symbol)"
                     }
-                }
 
-                let oopTrend = app.oopTrend
-                if oopTrend != .unknown {
-                    title += "  \(oopTrend.symbol)"
+                    let content = UNMutableNotificationContent()
+                    content.title = title
+                    content.subtitle = ""
+                    content.sound = UNNotificationSound.default
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                    let request = UNNotificationRequest(identifier: "DiaBLE", content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request)
                 }
-
-                let content = UNMutableNotificationContent()
-                content.title = title
-                content.subtitle = ""
-                content.sound = UNNotificationSound.default
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                let request = UNNotificationRequest(identifier: "DiaBLE", content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request)
             }
         }
 
@@ -368,6 +374,10 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         }
 
         eventKit?.sync()
+
+        if !snoozed {
+            settings.lastAlarmDate = Date.now
+        }
 
         if history.values.count > 0 || history.factoryValues.count > 0 || currentGlucose > 0 {
             var entries = [Glucose]()

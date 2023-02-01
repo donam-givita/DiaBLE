@@ -138,16 +138,26 @@ struct SettingsView: View {
 
                 Spacer()
 
-                Button(action: {
-                    settings.disabledNotifications.toggle()
-                    if settings.disabledNotifications {
-                        // UIApplication.shared.applicationIconBadgeNumber = 0
-                    } else {
-                        // UIApplication.shared.applicationIconBadgeNumber = settings.displayingMillimoles ?
-                        //     Int(Float(app.currentGlucose.units)! * 10) : Int(app.currentGlucose.units)!
+                HStack(spacing: 2) {
+                    Button(action: {
+                        withAnimation { settings.disabledNotifications.toggle() }
+                        if settings.disabledNotifications {
+                            // UIApplication.shared.applicationIconBadgeNumber = 0
+                        } else {
+                            // UIApplication.shared.applicationIconBadgeNumber = settings.displayingMillimoles ?
+                            //     Int(Float(app.currentGlucose.units)! * 10) : Int(app.currentGlucose.units)!
+                        }
+                    }) {
+                        Image(systemName: settings.disabledNotifications ? "zzz" : "app.badge.fill").resizable().frame(width: 20, height: 20).foregroundColor(.blue)
                     }
-                }) {
-                    Image(systemName: settings.disabledNotifications ? "zzz" : "app.badge.fill").resizable().frame(width: 20, height: 20).foregroundColor(.blue)
+                    if settings.disabledNotifications {
+                        Picker(selection: $settings.alarmSnoozeInterval, label: Text("")) {
+                            ForEach([5, 15, 30, 60, 120], id: \.self) { t in
+                                Text("\([5: "5m", 15: "15 m", 30: "30m", 60: "1h", 120: "2h"][t]!)")
+                            }
+                        }.labelsHidden().frame(width: 48, height: 20)
+                            .font(.footnote).foregroundColor(.blue)
+                    }
                 }
 
                 Spacer()
