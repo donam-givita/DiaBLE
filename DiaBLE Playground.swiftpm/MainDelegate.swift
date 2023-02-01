@@ -332,7 +332,6 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         if currentGlucose > 0 && (currentGlucose > Int(settings.alarmHigh) || currentGlucose < Int(settings.alarmLow)) {
             log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted audio: \(settings.mutedAudio ? "yes" : "no")), snoozed: \(snoozed ? "yes" : "no")")
 
-
             if !snoozed {
                 playAlarm()
                 if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications { // TODO: notifications settings

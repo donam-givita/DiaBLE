@@ -90,7 +90,9 @@ class EventKit: Logging {
                 event.endDate = Date(timeIntervalSinceNow: TimeInterval(60 * self.main.settings.readingInterval + 5))
                 event.calendar = calendar
 
-                if self.main.settings.calendarAlarmIsOn {
+                let snoozed = self.main.settings.lastAlarmDate.timeIntervalSinceNow >= -Double(self.main.settings.alarmSnoozeInterval * 60)
+
+                if !snoozed && self.main.settings.calendarAlarmIsOn {
                     if currentGlucose > 0 && (currentGlucose > Int(self.main.settings.alarmHigh) || currentGlucose < Int(self.main.settings.alarmLow)) {
                         let alarm = EKAlarm(relativeOffset: 1)
                         event.addAlarm(alarm)
