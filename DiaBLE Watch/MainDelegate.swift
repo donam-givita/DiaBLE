@@ -261,12 +261,12 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
 
         // var title = currentGlucose > 0 ? currentGlucose.units : "---"
 
-        let snoozed = settings.lastAlarmDate.timeIntervalSinceNow >= -Double(settings.alarmSnoozeInterval * 60)
+        let snoozed = settings.lastAlarmDate.timeIntervalSinceNow >= -Double(settings.alarmSnoozeInterval * 60) && settings.disabledNotifications
 
         if currentGlucose > 0 && (currentGlucose > Int(settings.alarmHigh) || currentGlucose < Int(settings.alarmLow)) {
-            log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted audio: \(settings.mutedAudio ? "yes" : "no")), snoozed: \(snoozed ? "yes" : "no")")
+            log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted audio: \(settings.mutedAudio ? "yes" : "no")), \(snoozed ? "" : "not ")snoozed")
     
-            if !(snoozed && settings.disabledNotifications) {
+            if !snoozed {
                 playAlarm()
                 //            if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications {
                 //                title += "  \(settings.glucoseUnit)"
@@ -305,7 +305,7 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
             //        eventKit?.sync()
         }
 
-        if !(snoozed && settings.disabledNotifications) {
+        if !snoozed {
             settings.lastAlarmDate = Date.now
         }
 

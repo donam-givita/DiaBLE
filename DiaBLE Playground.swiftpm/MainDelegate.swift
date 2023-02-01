@@ -327,12 +327,12 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
         var title = currentGlucose > 0 ? currentGlucose.units : "---"
 
-        let snoozed = settings.lastAlarmDate.timeIntervalSinceNow >= -Double(settings.alarmSnoozeInterval * 60)
+        let snoozed = settings.lastAlarmDate.timeIntervalSinceNow >= -Double(settings.alarmSnoozeInterval * 60) && settings.disabledNotifications
 
         if currentGlucose > 0 && (currentGlucose > Int(settings.alarmHigh) || currentGlucose < Int(settings.alarmLow)) {
-            log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted audio: \(settings.mutedAudio ? "yes" : "no")), snoozed: \(snoozed ? "yes" : "no")")
+            log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted audio: \(settings.mutedAudio ? "yes" : "no")), \(snoozed ? "" : "not ")snoozed")
 
-            if !(snoozed && settings.disabledNotifications) {
+            if !snoozed {
                 playAlarm()
                 if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications { // TODO: notifications settings
                     title += "  \(settings.displayingMillimoles ? GlucoseUnit.mmoll : GlucoseUnit.mgdl)"
@@ -374,7 +374,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
         eventKit?.sync()
 
-        if !(snoozed && settings.disabledNotifications) {
+        if !snoozed {
             settings.lastAlarmDate = Date.now
         }
 
