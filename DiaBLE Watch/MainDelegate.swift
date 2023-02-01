@@ -266,7 +266,7 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
         if currentGlucose > 0 && (currentGlucose > Int(settings.alarmHigh) || currentGlucose < Int(settings.alarmLow)) {
             log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted audio: \(settings.mutedAudio ? "yes" : "no")), snoozed: \(snoozed ? "yes" : "no")")
     
-            if !snoozed {
+            if !(snoozed && settings.disabledNotifications) {
                 playAlarm()
                 //            if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications {
                 //                title += "  \(settings.glucoseUnit)"
@@ -305,7 +305,7 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
             //        eventKit?.sync()
         }
 
-        if !snoozed {
+        if !(snoozed && settings.disabledNotifications) {
             settings.lastAlarmDate = Date.now
         }
 

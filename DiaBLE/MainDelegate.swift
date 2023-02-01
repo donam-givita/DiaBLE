@@ -282,7 +282,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         if currentGlucose > 0 && (currentGlucose > Int(settings.alarmHigh) || currentGlucose < Int(settings.alarmLow)) {
             log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted audio: \(settings.mutedAudio ? "yes" : "no")), snoozed: \(snoozed ? "yes" : "no")")
 
-            if !snoozed {
+            if !(snoozed && settings.disabledNotifications) {
                 playAlarm()
                 if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications { // TODO: notifications settings
                     title += "  \(settings.displayingMillimoles ? GlucoseUnit.mmoll : GlucoseUnit.mgdl)"
@@ -324,7 +324,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
         eventKit?.sync()
 
-        if !snoozed {
+        if !(snoozed && settings.disabledNotifications) {
             settings.lastAlarmDate = Date.now
         }
 
