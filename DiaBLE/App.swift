@@ -6,7 +6,7 @@ struct DiaBLEApp: App {
 #if !os(watchOS)
     @UIApplicationDelegateAdaptor(MainDelegate.self) var main
 #else
-    @WKExtensionDelegateAdaptor(MainDelegate.self) var main
+    @WKApplicationDelegateAdaptor(MainDelegate.self) var main
 #endif
 
     @SceneBuilder var body: some Scene {
@@ -17,10 +17,6 @@ struct DiaBLEApp: App {
                 .environmentObject(main.history)
                 .environmentObject(main.settings)
         }
-
-#if os(watchOS)
-        WKNotificationScene(controller: NotificationController.self, category: "myCategory")
-#endif
     }
 }
 

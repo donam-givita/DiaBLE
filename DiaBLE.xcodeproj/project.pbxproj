@@ -16,9 +16,9 @@
 		C5916E5429827E860051AC06 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4C29827E860051AC06 /* Monitor.swift */; };
 		C5916E5529827E860051AC06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4D29827E860051AC06 /* ContentView.swift */; };
 		C5916E5729827EB10051AC06 /* MainDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E5629827EB10051AC06 /* MainDelegate.swift */; };
-		C59184462981E73400A6DA89 /* DiaBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */; };
+		C59184462981E73400A6DA89 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* App.swift */; };
 		C59184472981E9B000A6DA89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
-		C5AAA6192981CF7000CA3EC1 /* DiaBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */; };
+		C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* App.swift */; };
 		C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
 		C5E015E02989B0EA00F6EDF9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C5E015DF2989B0EA00F6EDF9 /* README.md */; };
 		C5E015E12989B0EA00F6EDF9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C5E015DF2989B0EA00F6EDF9 /* README.md */; };
@@ -99,7 +99,7 @@
 		C59960DF2981E381005999C2 /* DiaBLE Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaBLE Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A14842298985E000A0E510 /* DiaBLE Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "DiaBLE Watch.entitlements"; path = "../DiaBLE Watch/DiaBLE Watch.entitlements"; sourceTree = "<group>"; };
 		C5AAA6152981CF7000CA3EC1 /* DiaBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaBLEApp.swift; sourceTree = "<group>"; };
+		C5AAA6182981CF7000CA3EC1 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5AAA61E2981CF7200CA3EC1 /* DiaBLE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DiaBLE.entitlements; sourceTree = "<group>"; };
 		C5DED87529899B8A00164AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 				C5E4004329825C710021C6B7 /* Media */,
 				C5E4004D29825C930021C6B7 /* Views */,
 				C5E4006429825D1F0021C6B7 /* Extensions.swift */,
-				C5AAA6182981CF7000CA3EC1 /* DiaBLEApp.swift */,
+				C5AAA6182981CF7000CA3EC1 /* App.swift */,
 				C5E4006729825DCD0021C6B7 /* Settings.swift */,
 				C5E4006A29825DDD0021C6B7 /* Bluetooth.swift */,
 				C5E4006D29825DEA0021C6B7 /* Device.swift */,
@@ -382,7 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C59184462981E73400A6DA89 /* DiaBLEApp.swift in Sources */,
+				C59184462981E73400A6DA89 /* App.swift in Sources */,
 				C5E4007D29825E4E0021C6B7 /* Abbott.swift in Sources */,
 				C5916E5529827E860051AC06 /* ContentView.swift in Sources */,
 				C5E4006C29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
@@ -446,7 +446,7 @@
 				C5E4005A29825C930021C6B7 /* SettingsView.swift in Sources */,
 				C5E4009329825EF90021C6B7 /* NFCTools.swift in Sources */,
 				C5E4007629825E370021C6B7 /* Glucose.swift in Sources */,
-				C5AAA6192981CF7000CA3EC1 /* DiaBLEApp.swift in Sources */,
+				C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */,
 				C5E4009629825F120021C6B7 /* LibreLink.swift in Sources */,
 				C5E4007C29825E4E0021C6B7 /* Abbott.swift in Sources */,
 			);
