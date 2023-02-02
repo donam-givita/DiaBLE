@@ -18,7 +18,7 @@ struct HamburgerMenu: View {
         "@dabear": "https://github.com/dabear",
         "@DecentWoodpecker67": "https://github.com/DecentWoodpecker67",
         "@ivalkou": "https://github.com/ivalkou",
-        "Jaap Korthals Altes": "https://www.reddit.com/user/jka512",
+        "Jaap Korthals Altes": "https://github.com/j-kaltes",
         "@keencave": "https://github.com/keencave",
         "LibreMonitor": "https://github.com/UPetersen/LibreMonitor/tree/Swift4",
         "Loop": "https://github.com/LoopKit/Loop",
