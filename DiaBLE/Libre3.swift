@@ -184,7 +184,7 @@ class Libre3: Sensor {
         let lifeCount: Int
         let errorData: Int
         let eventData: Int
-        let index: Int
+        let index: UInt8    // 255 means no data
     }
 
 
@@ -204,19 +204,20 @@ class Libre3: Sensor {
         let lifeCount: Int
         let errorData: Int
         let eventData: Int
-        let index: Int
+        let index: UInt8
         let currentLifeCount: Int
-        let stackDisconnectReason: Int
-        let appDisconnectReason: Int
+        let stackDisconnectReason: UInt8
+        let appDisconnectReason: UInt8
 
         // PatchStatus FC2C00000D002104FC2C1603:
-        //   [...]
-        //   21: index 33
-        //   04: patch state 4
         //   FC2C: lifeCount 11516 (0x2CFC)
+        //   0000: errorData
+        //   000D: evenData 4013 (?)
+        //   21: index 33
+        //   04: patchState 4
+        //   FC2C: currentLlifeCount 11516 (0x2CFC)
         //   16: stackDisconnectReason 22
         //   03: appDisconnectReason 3
-        //   ?? eventData 4013, errorData 0
     }
 
 

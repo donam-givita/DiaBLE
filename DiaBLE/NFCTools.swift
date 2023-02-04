@@ -307,13 +307,13 @@ extension NFC {
                     if output[0] == 0x00 && output.count == 17 {
 
                         // i.e. 00A5002BC7291932189F36B26CD01E306209F0 ->
-                        // BD_Addr = 2B C7 29 19 32 18
+                        // BD_Addr = 2B C7 29 19 32 18 (18:32:19:29:C7:2B)
                         // BLE_Key(BLE_Pin) = 9F36B26C
                         // A_UTC = 1647320784 (0xD01E3062)
                         // APP_CRC16 = 09 F0
 
                         let activationResponse = Libre3.ActivationResponse(
-                            bdAddress: output.subdata(in: 1 ..< 7 ),
+                            bdAddress: Data(output[1 ..< 7].reversed()),
                             BLE_Pin:   output.subdata(in: 7 ..< 11),
                             activationTime: UInt32(output.subdata(in: 11 ..< 15))
                         )
