@@ -254,6 +254,18 @@ class Libre3: Sensor {
     }
 
 
+    enum PacketType: UInt8 {
+        case controlCommand   = 0    // PACKET_TYPE_CONTROL_COMMAND
+        case controlResponse  = 1    // PACKET_TYPE_CONTROL_RESPONSE
+        case patchStatus      = 2    // PACKET_TYPE_PATCH_STATUS
+        case currentGlucose   = 3    // PACKET_TYPE_CURRENT_GLUCOSE
+        case backfillHistoric = 4    // PACKET_TYPE_BACKFILL_HISTORIC
+        case backfillClinical = 5    // PACKET_TYPE_BACKFILL_CLINICAL
+        case eventLog         = 6    // PACKET_TYPE_EVENT_LOG
+        case factoryData      = 7    // PACKET_TYPE_FACTORY_DATA
+    }
+
+
     struct CGMSensor {
         var sensor: Sensor
         var deviceType: Int

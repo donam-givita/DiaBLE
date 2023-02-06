@@ -184,7 +184,7 @@ class Libre3: Sensor {
         let lifeCount: Int
         let errorData: Int
         let eventData: Int
-        let index: UInt8    // 255 means no data
+        let index: UInt8
     }
 
 
@@ -208,16 +208,6 @@ class Libre3: Sensor {
         let currentLifeCount: Int
         let stackDisconnectReason: UInt8
         let appDisconnectReason: UInt8
-
-        // PatchStatus FC2C00000D002104FC2C1603:
-        //   FC2C: lifeCount 11516 (0x2CFC)
-        //   0000: errorData
-        //   000D: evenData 4013 (?)
-        //   21: index 33
-        //   04: patchState 4
-        //   FC2C: currentLlifeCount 11516 (0x2CFC)
-        //   16: stackDisconnectReason 22
-        //   03: appDisconnectReason 3
     }
 
 
@@ -236,6 +226,18 @@ class Libre3: Sensor {
         var lastHistoricLifeCountReceived: Int
         let exportedKAuth: Data
         let securityVersion: Int
+    }
+
+
+    enum PacketType: UInt8 {
+        case controlCommand   = 0
+        case controlResponse  = 1
+        case patchStatus      = 2
+        case currentGlucose   = 3
+        case backfillHistoric = 4
+        case backfillClinical = 5
+        case eventLog         = 6
+        case factoryData      = 7
     }
 
 
