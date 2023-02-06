@@ -20,6 +20,7 @@
 		C59184472981E9B000A6DA89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
 		C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* App.swift */; };
 		C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
+		C5BE8E5B29916D3600604237 /* DiaBLE Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C59960DF2981E381005999C2 /* DiaBLE Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5D3B2692991302000CE92A0 /* MiaoMiao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D3B2682991302000CE92A0 /* MiaoMiao.swift */; };
 		C5D3B26A2991302000CE92A0 /* MiaoMiao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D3B2682991302000CE92A0 /* MiaoMiao.swift */; };
 		C5E015E02989B0EA00F6EDF9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C5E015DF2989B0EA00F6EDF9 /* README.md */; };
@@ -86,6 +87,30 @@
 		C5E4009F29825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
 		C5E400A029825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C5BE8E5C29916D3600604237 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5AAA60D2981CF7000CA3EC1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C59960DE2981E381005999C2;
+			remoteInfo = "DiaBLE Watch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C5BE8E5E29916D3600604237 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C5BE8E5B29916D3600604237 /* DiaBLE Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C53F77C529894478004F275A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -199,6 +224,7 @@
 				C5AAA6172981CF7000CA3EC1 /* DiaBLE */,
 				C59960E02981E381005999C2 /* DiaBLE Watch */,
 				C5AAA6162981CF7000CA3EC1 /* Products */,
+				C5BE8E5A29916D3600604237 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -244,6 +270,13 @@
 				C5AAA61E2981CF7200CA3EC1 /* DiaBLE.entitlements */,
 			);
 			path = DiaBLE;
+			sourceTree = "<group>";
+		};
+		C5BE8E5A29916D3600604237 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C5E4004329825C710021C6B7 /* Media */ = {
@@ -301,10 +334,12 @@
 				C5AAA6112981CF7000CA3EC1 /* Sources */,
 				C5AAA6122981CF7000CA3EC1 /* Frameworks */,
 				C5AAA6132981CF7000CA3EC1 /* Resources */,
+				C5BE8E5E29916D3600604237 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C5BE8E5D29916D3600604237 /* PBXTargetDependency */,
 			);
 			name = DiaBLE;
 			productName = DiaBLE;
@@ -459,6 +494,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C5BE8E5D29916D3600604237 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C59960DE2981E381005999C2 /* DiaBLE Watch */;
+			targetProxy = C5BE8E5C29916D3600604237 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C59960EA2981E383005999C2 /* Debug */ = {
