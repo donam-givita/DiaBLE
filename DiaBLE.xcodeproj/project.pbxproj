@@ -20,6 +20,8 @@
 		C59184472981E9B000A6DA89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
 		C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* App.swift */; };
 		C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
+		C5D3B2692991302000CE92A0 /* MiaoMiao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D3B2682991302000CE92A0 /* MiaoMiao.swift */; };
+		C5D3B26A2991302000CE92A0 /* MiaoMiao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D3B2682991302000CE92A0 /* MiaoMiao.swift */; };
 		C5E015E02989B0EA00F6EDF9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C5E015DF2989B0EA00F6EDF9 /* README.md */; };
 		C5E015E12989B0EA00F6EDF9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C5E015DF2989B0EA00F6EDF9 /* README.md */; };
 		C5E015E32989B0F600F6EDF9 /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = C5E015E22989B0F600F6EDF9 /* TODO.md */; };
@@ -102,6 +104,7 @@
 		C5AAA6182981CF7000CA3EC1 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5AAA61E2981CF7200CA3EC1 /* DiaBLE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DiaBLE.entitlements; sourceTree = "<group>"; };
+		C5D3B2682991302000CE92A0 /* MiaoMiao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiaoMiao.swift; sourceTree = "<group>"; };
 		C5DED87529899B8A00164AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5E015DF2989B0EA00F6EDF9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C5E015E22989B0F600F6EDF9 /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
@@ -224,6 +227,7 @@
 				C5E4007829825E450021C6B7 /* Sensor.swift */,
 				C5E4007B29825E4E0021C6B7 /* Abbott.swift */,
 				C5E4007E29825E7B0021C6B7 /* Bubble.swift */,
+				C5D3B2682991302000CE92A0 /* MiaoMiao.swift */,
 				C5E4008129825E8B0021C6B7 /* Libre2.swift */,
 				C5E4008429825E990021C6B7 /* Libre3.swift */,
 				C5E4008729825EA20021C6B7 /* LibrePro.swift */,
@@ -399,6 +403,7 @@
 				C5E4007A29825E450021C6B7 /* Sensor.swift in Sources */,
 				C5E4008029825E7C0021C6B7 /* Bubble.swift in Sources */,
 				C5E4009729825F120021C6B7 /* LibreLink.swift in Sources */,
+				C5D3B26A2991302000CE92A0 /* MiaoMiao.swift in Sources */,
 				C5E4008329825E8B0021C6B7 /* Libre2.swift in Sources */,
 				C5E4006F29825DEA0021C6B7 /* Device.swift in Sources */,
 				C5E4009129825EEE0021C6B7 /* NFC.swift in Sources */,
@@ -440,6 +445,7 @@
 				C5E4006529825D1F0021C6B7 /* Extensions.swift in Sources */,
 				C5E4006029825C930021C6B7 /* Monitor.swift in Sources */,
 				C5E4008529825E990021C6B7 /* Libre3.swift in Sources */,
+				C5D3B2692991302000CE92A0 /* MiaoMiao.swift in Sources */,
 				C5E4006329825C930021C6B7 /* HamburgerMenu.swift in Sources */,
 				C5E4007429825E050021C6B7 /* MainDelegate.swift in Sources */,
 				C5E4007F29825E7C0021C6B7 /* Bubble.swift in Sources */,

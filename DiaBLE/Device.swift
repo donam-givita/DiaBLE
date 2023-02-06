@@ -118,13 +118,14 @@ class Device: ObservableObject, Logging {
 
 
 enum TransmitterType: String, CaseIterable, Hashable, Codable, Identifiable {
-    case none, abbott, bubble
+    case none, abbott, bubble, miaomiao
     var id: String { rawValue }
     var name: String {
         switch self {
         case .none:     return "Any"
         case .abbott:   return Abbott.name
         case .bubble:   return Bubble.name
+        case .miaomiao: return MiaoMiao.name
         }
     }
     var type: AnyClass {
@@ -132,6 +133,7 @@ enum TransmitterType: String, CaseIterable, Hashable, Codable, Identifiable {
         case .none:     return Transmitter.self
         case .abbott:   return Abbott.self
         case .bubble:   return Bubble.self
+        case .miaomiao: return MiaoMiao.self
         }
     }
 }

@@ -68,9 +68,11 @@ struct SettingsView: View {
                     HStack {
                         Spacer()
                         Stepper(value: $settings.readingInterval,
-                                in: settings.preferredTransmitter == .abbott || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.abbott)) ?
+                                in: settings.preferredTransmitter == .miaomiao || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.miaomiao)) ?
+                                1 ... 5 : settings.preferredTransmitter == .abbott || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.abbott)) ?
                                 1 ... 1 : 1 ... 15,
-                                step: 1,
+                                step: settings.preferredTransmitter == .miaomiao || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.miaomiao)) ?
+                                2 : 1,
                                 label: {
                             HStack {
                                 Image(systemName: "timer").resizable().frame(width: 24, height: 24)
