@@ -49,7 +49,29 @@ struct SettingsView: View {
             .foregroundColor(.blue)
             .padding(.top, 16)
 
-            HStack {
+            HStack  {
+
+                HStack {
+                    NavigationLink(destination: Monitor()) {
+                        Image(systemName: "timer").resizable().frame(width: 20, height: 20)
+                    }.simultaneousGesture(TapGesture().onEnded {
+                        // app.selectedTab = (settings.preferredTransmitter != .none) ? .monitor : .log
+                        app.main.rescan()
+                    })
+
+                    Picker(selection: $settings.readingInterval, label: Text("")) {
+                        ForEach(Array(stride(from: 1,
+                                             through: settings.preferredTransmitter == .miaomiao || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.miaomiao)) ? 5 :
+                                                settings.preferredTransmitter == .abbott || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.abbott)) ? 1 : 15,
+                                             by: settings.preferredTransmitter == .miaomiao || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.miaomiao)) ? 2 : 1)),
+
+                                id: \.self) { t in
+                            Text("\(t) min")
+                        }
+                    }.labelsHidden().frame(width: 60, height: 20)
+                }.font(.footnote).foregroundColor(.orange)
+
+                Spacer()
 
                 Button {
                     settings.onlineInterval = settings.onlineInterval != 0 ? 0 : 5
@@ -67,17 +89,6 @@ struct SettingsView: View {
                 .foregroundColor(.cyan)
                 .labelsHidden()
                 .frame(width: 62, height: 20)
-
-                Picker(selection: $settings.displayingMillimoles, label: Text("Unit")) {
-                    ForEach(GlucoseUnit.allCases) { unit in
-                        Text(unit.description).tag(unit == .mmoll)
-                    }
-                }
-                .font(.footnote)
-                .labelsHidden()
-                .frame(width: 68, height: 20)
-
-                Spacer()
 
             }
 
@@ -110,25 +121,14 @@ struct SettingsView: View {
 
             HStack {
 
-                HStack(spacing: 3) {
-                    NavigationLink(destination: Monitor()) {
-                        Image(systemName: "timer").resizable().frame(width: 20, height: 20)
-                    }.simultaneousGesture(TapGesture().onEnded {
-                        // app.selectedTab = (settings.preferredTransmitter != .none) ? .monitor : .log
-                        app.main.rescan()
-                    })
-
-                    Picker(selection: $settings.readingInterval, label: Text("")) {
-                        ForEach(Array(stride(from: 1,
-                                             through: settings.preferredTransmitter == .miaomiao || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.miaomiao)) ? 5 :
-                                                settings.preferredTransmitter == .abbott || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.abbott)) ? 1 : 15,
-                                             by: settings.preferredTransmitter == .miaomiao || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.miaomiao)) ? 2 : 1)),
-
-                                id: \.self) { t in
-                            Text("\(t) min")
-                        }
-                    }.labelsHidden().frame(width: 60, height: 20)
-                }.font(.footnote).foregroundColor(.orange)
+                Picker(selection: $settings.displayingMillimoles, label: Text("Unit")) {
+                    ForEach(GlucoseUnit.allCases) { unit in
+                        Text(unit.description).tag(unit == .mmoll)
+                    }
+                }
+                .font(.footnote)
+                .labelsHidden()
+                .frame(width: 68, height: 20)
 
                 Spacer()
 
@@ -140,7 +140,7 @@ struct SettingsView: View {
 
                 Spacer()
 
-                HStack(spacing: 2) {
+                HStack(spacing: 6) {
                     Button(action: {
                         withAnimation { settings.disabledNotifications.toggle() }
                         if settings.disabledNotifications {
