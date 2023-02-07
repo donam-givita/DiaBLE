@@ -16,7 +16,7 @@ let package = Package(
         .iOSApplication(
             name: "DiaBLE Playground",
             targets: ["AppModule"],
-            bundleIdentifier: "name.soranzio.guido.diable.DiaBLE-Playground",
+            bundleIdentifier: "name.DiaBLE-Playground",
             teamIdentifier: "Z25SC9UDC8",
             displayVersion: "0.0.1",
             bundleVersion: "1",
