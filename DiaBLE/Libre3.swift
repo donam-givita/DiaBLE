@@ -356,7 +356,7 @@ class Libre3: Sensor {
     // notify 1BEE  20 + 20 bytes       // event log
     // notify 1338  10 bytes            // ending in 01 00
     // write  1338  13 bytes            // command ending in 02 00
-    // notify 1D24  20 * 10 + 15 bytes  // 204-byte factory data
+    // notify 1D24  20 * 10 + 17 bytes  // 195-byte factory data
     // notify 1338  10 bytes            // ending in 02 00
     //
     // Shutdown:
@@ -533,14 +533,25 @@ class Libre3: Sensor {
             if data.count == 10 {
                 let suffix = data.suffix(2).hex
                 // TODO: manage enqueued id
-                if suffix == "0100" {
-                    log("\(type) \(transmitter!.peripheral!.name!): received \(buffer.count/20) packets of historical data")
-                    // TODO
-                } else if suffix == "0200" {
-                    log("\(type) \(transmitter!.peripheral!.name!): received \(buffer.count/20) packets of clinical data")
-                    // TODO
+                if buffer.count % 20 == 0 {
+                    if suffix == "0100" {
+                        log("\(type) \(transmitter!.peripheral!.name!): received \(buffer.count/20) packets of historical data")
+                        // TODO
+                    } else if suffix == "0200" {
+                        log("\(type) \(transmitter!.peripheral!.name!): received \(buffer.count/20) packets of clinical data")
+                        // TODO
+                    }
+                } else {
+                    var packets = [Data]()
+                    for i in 0 ..< (buffer.count + 19) / 20 {
+                        packets.append(Data(buffer[i * 20 ... min(i * 20 + 17, buffer.count - 3)]))
+                    }
+                    if buffer.count == 217 {
+                        log("\(type) \(transmitter!.peripheral!.name!): received \(packets.count) packets of factory data, payload: \(Data(packets.joined()).hexBytes)")
+                    }
                 }
                 buffer = Data()
+                currentControlCommand = nil
             }
 
             // The Libre 3 sends every minute 35 bytes as two packets of 15 + 20 bytes
@@ -651,7 +662,6 @@ class Libre3: Sensor {
 
                 buffer = Data()
                 expectedStreamSize = 0
-                currentControlCommand = nil
 
             }
 
