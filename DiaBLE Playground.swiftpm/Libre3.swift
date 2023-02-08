@@ -758,6 +758,15 @@ class Libre3: Sensor {
     }
 
 
+    // https://github.dev/j-kaltes/Juggluco/blob/primary/Common/src/libre3/java/tk/glucodata/ECDHCrypto.java
+
+    let appCertificates = [
+        "03 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 00 01 5f 14 9f e1 01 00 00 00 00 00 00 00 00 04 27 51 fd 1e f4 2b 14 5a 52 c5 93 ae 6b 5a 75 58 8a 9f 7e af 1c 0f 99 85 f9 93 d5 8f 14 7b b8 41 68 42 24 49 96 37 92 dc 43 f3 84 47 ef eb bb eb 4a 53 b3 25 5c 0b e0 fe 1f 23 58 44 a3 d3 29 9e ba 97 b8 e6 c3 17 09 39 f2 77 8f 64 86 6f 06 6d eb 91 5d d6 62 9e ee 47 30 a1 e1 4c ab 75 c1 8c 4f ec 53 f8 85 4c 87 64 3a 76 4f 40 87 ae c0 39 4c 21 0c 18 86 5a 8f f4 5a dc 37 27 f4 8b 53 a7",
+        "03 03 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 00 01 61 89 76 55 01 00 00 00 00 00 00 00 00 04 82 42 be 33 f1 a3 30 88 01 12 fa 62 cc 48 42 a4 3d 12 04 92 2a d2 01 d8 77 5b b2 26 f6 11 f7 5b 0e f3 d5 bc 6c c4 31 7c aa 45 75 84 ab 00 3f 17 12 33 60 89 d3 a4 f2 98 38 ed 0d c6 66 de ae a2 d6 5a 00 df ff 5d 7b ca e2 16 55 e3 02 e3 45 8e 77 4d aa aa ca 87 af 75 f1 b8 78 84 b1 8d 4c e8 75 d0 d1 08 c9 03 a8 34 47 1a 4f f6 74 b2 d3 0b cb a0 62 37 30 14 b7 78 6e 44 37 b1 77 ae c3 c8"
+    ]
+
+
+
     // MARK: - Constants
 
 

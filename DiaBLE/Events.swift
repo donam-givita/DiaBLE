@@ -83,14 +83,14 @@ class EventKit: Logging {
 
                 // TODO: delta
 
+                let snoozed = self.main.settings.lastAlarmDate.timeIntervalSinceNow >= -Double(self.main.settings.alarmSnoozeInterval * 60) && self.main.settings.disabledNotifications
+
                 let event = EKEvent(eventStore: self.store)
                 event.title = title
                 event.notes = "Created by DiaBLE"
                 event.startDate = Date()
-                event.endDate = Date(timeIntervalSinceNow: TimeInterval(60 * self.main.settings.readingInterval + 5))
+                event.endDate = Date(timeIntervalSinceNow: TimeInterval(60 * max(self.main.settings.readingInterval, snoozed ? self.main.settings.alarmSnoozeInterval : 0) + 5))
                 event.calendar = calendar
-
-                let snoozed = self.main.settings.lastAlarmDate.timeIntervalSinceNow >= -Double(self.main.settings.alarmSnoozeInterval * 60) && self.main.settings.disabledNotifications
 
                 if !snoozed && self.main.settings.calendarAlarmIsOn {
                     if currentGlucose > 0 && (currentGlucose > Int(self.main.settings.alarmHigh) || currentGlucose < Int(self.main.settings.alarmLow)) {
