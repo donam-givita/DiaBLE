@@ -89,7 +89,7 @@ class EventKit: Logging {
                 event.title = title
                 event.notes = "Created by DiaBLE"
                 event.startDate = Date()
-                event.endDate = Date(timeIntervalSinceNow: TimeInterval(60 * max(self.main.settings.readingInterval, snoozed ? self.main.settings.alarmSnoozeInterval : 0) + 5))
+                event.endDate = Date(timeIntervalSinceNow: TimeInterval(60 * max(self.main.settings.readingInterval, self.main.settings.onlineInterval, snoozed ? self.main.settings.alarmSnoozeInterval : 0) + 5))
                 event.calendar = calendar
 
                 if !snoozed && self.main.settings.calendarAlarmIsOn {

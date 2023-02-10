@@ -766,7 +766,6 @@ class Libre3: Sensor {
     ]
 
 
-
     // MARK: - Constants
 
 
