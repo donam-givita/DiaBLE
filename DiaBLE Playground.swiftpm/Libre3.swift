@@ -782,7 +782,7 @@ class Libre3: Sensor {
         parameters += parameters.crc16.data
 
         // A8 changes the BLE PIN on an activated sensor and returns the error 0x1B on an expired one.
-        // A0 returns the current BLE PIN on an activated sensor and returns a new one for an expired one...
+        // A0 returns the current BLE PIN on an activated sensor and returns a new one for an expired sensor...
         let code = patchInfo[14] == State.storage.rawValue ? 0xA8 : 0xA0
 
         return NFCCommand(code: code, parameters: parameters, description: "activate")
@@ -817,7 +817,7 @@ class Libre3: Sensor {
     ]
 
 
-    // Juggluco wrappers to Trident's proocess1() and process2() in liblibre3extension.so
+    // Juggluco wrappers to Trident's process1() and process2() in liblibre3extension.so
     //
     // setPatchCertificate:
     // Natives.processint(4, input, null);
@@ -833,12 +833,12 @@ class Libre3: Sensor {
     //
     // decrypt 67-byte exported kAuth ("session info")
     // arraycopy(rdtData, 0, first, 0, 60);
-    // arraycopy(rdtData, 60,n once, 0, 7);
+    // arraycopy(rdtData, 60, nonce, 0, 7);
     // byte[] decr=Natives.processbar(8, nonce, first);
     //
     // var kEnc=copyOfRange(decr, 32, 48);
     // var ivEnc=copyOfRange(decr, 48, 56);
-    // byte[] AuthKey = Natives.processbar(9, null, null); (149 bytes)
+    // byte[] AuthKey = Natives.processbar(9, null, null);  (149 bytes)
     // cryptptr = initcrypt(cryptptr, kEnc, ivEnc);
 
 
