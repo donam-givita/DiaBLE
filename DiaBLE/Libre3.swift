@@ -669,9 +669,9 @@ class Libre3: Sensor {
         parameters += (receiverId != 0 ? receiverId : main.settings.libreLinkUpPatientId.fnv32Hash).data
         parameters += parameters.crc16.data
 
-        // if the sensor state is 1 (.storage = "not activated") activate it
-        // otherwise switch the receiverId and get a new BLE PIN
-        let code = patchInfo[14] == State.storage.rawValue ? 0xA0 : 0xA8
+        // A8 changes the BLE PIN on an activated sensor and returns the error 0x1B on an expired one.
+        // A0 returns the current BLE PIN on an activated sensor and returns a new one for an expired one...
+        let code = patchInfo[14] == State.storage.rawValue ? 0xA8 : 0xA0
 
         return NFCCommand(code: code, parameters: parameters, description: "activate")
     }

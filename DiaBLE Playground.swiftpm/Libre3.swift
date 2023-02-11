@@ -738,6 +738,39 @@ class Libre3: Sensor {
     }
 
 
+    func parseCurrentReading(_ data: Data) {  // -> GlucoseData
+        // TODO
+        // 062DEE00FCFF0000945CF12CF0000BEE00F000010C530E72482F130000 (29 bytes):
+        // 062D: lifeCount 11526 (0x2D06)
+        // EE00: readingMgDl 238
+        // FCFF: rateOfChange -4 (2**16 - 0xFFFC)
+        // 0000: esaDuration
+        // 945C: projectedGlucose 23700 (0x5C94)
+        // F12C: historicalLifeCount 11505 (0x2CF1)
+        // F000: historicalReading 240
+        // 0B: 00001 011 (bitfields 3: trend, 5: rest)
+        // EE00: uncappedCurrentMgDl 228
+        // F000: uncappedHistoricMgDl 240
+        // 010C: temperature 3073 (0x0C01)
+        // 530E72482F130000: fastData
+    }
+
+
+    // TODO
+    var activationNFCCommand: NFCCommand {
+        var parameters: Data = Data()
+        parameters += ((activationTime != 0 ? activationTime : UInt32(Date().timeIntervalSince1970)) - 1).data
+        parameters += (receiverId != 0 ? receiverId : main.settings.libreLinkUpPatientId.fnv32Hash).data
+        parameters += parameters.crc16.data
+
+        // A8 changes the BLE PIN on an activated sensor and returns the error 0x1B on an expired one.
+        // A0 returns the current BLE PIN on an activated sensor and returns a new one for an expired one...
+        let code = patchInfo[14] == State.storage.rawValue ? 0xA8 : 0xA0
+
+        return NFCCommand(code: code, parameters: parameters, description: "activate")
+    }
+
+
     func pair() {
         send(securityCommand: .security_01)
         send(securityCommand: .security_02)
