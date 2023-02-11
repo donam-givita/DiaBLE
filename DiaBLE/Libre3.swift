@@ -441,16 +441,6 @@ class Libre3: Sensor {
     var expectedStreamSize = 0
 
 
-    // TODO
-    var activationNFCCommand: NFCCommand {
-        var parameters: Data = Data()
-        parameters += ((activationTime != 0 ? activationTime : UInt32(Date().timeIntervalSince1970)) - 1).data
-        parameters += (receiverId != 0 ? receiverId : main.settings.libreLinkUpPatientId.fnv32Hash).data
-        parameters += parameters.crc16.data
-        return NFCCommand(code: 0xA8, parameters: parameters, description: "activate")
-    }
-
-
     func parsePatchInfo() {
 
         let securityVersion = UInt16(patchInfo[0...1])
@@ -638,8 +628,8 @@ class Libre3: Sensor {
                         log("\(type) \(transmitter!.peripheral!.name!): writing 40-zero challenge response")
 
                         // The effective challenge response is computed from a 36-byte array:
-                        // - received challenge (first 16 bytes)
-                        // - random 16 bytes (nonce1)
+                        // - received challenge (first 16 bytes) -> r1
+                        // - random 16 bytes (nonce1) -> r2
                         // - BLE PIN (4 bytes)
 
                         let challengeData = Data(count: 40)
@@ -669,6 +659,21 @@ class Libre3: Sensor {
             break  // uuid
         }
 
+    }
+
+
+    // TODO
+    var activationNFCCommand: NFCCommand {
+        var parameters: Data = Data()
+        parameters += ((activationTime != 0 ? activationTime : UInt32(Date().timeIntervalSince1970)) - 1).data
+        parameters += (receiverId != 0 ? receiverId : main.settings.libreLinkUpPatientId.fnv32Hash).data
+        parameters += parameters.crc16.data
+
+        // if the sensor state is 1 (.storage = "not activated") activate it
+        // otherwise switch the receiverId and get a new BLE PIN
+        let code = patchInfo[14] == State.storage.rawValue ? 0xA0 : 0xA8
+
+        return NFCCommand(code: code, parameters: parameters, description: "activate")
     }
 
 
