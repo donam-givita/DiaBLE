@@ -403,7 +403,9 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     }
 
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                    sensor.detailFRAM()
+                    if sensor.type != .libre3 {
+                        sensor.detailFRAM()
+                    }
 
                     taskRequest = .none
 

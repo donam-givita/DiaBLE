@@ -327,6 +327,10 @@ extension NFC {
 
                         // TODO
                         (sensor as! Libre3).blePIN = activationResponse.BLE_Pin
+                        sensor.activationTime = activationResponse.activationTime
+                        sensor.lastReadingDate = Date()
+                        sensor.age = Int(Date().timeIntervalSince(Date(timeIntervalSince1970: Double(sensor.activationTime)))) / 60
+                        (sensor as! Libre3).parsePatchInfo()
                     }
                 }
 
@@ -336,8 +340,10 @@ extension NFC {
 
             }
 
-            let (_, data) = try await read(fromBlock: 0, count: 43)
-            sensor.fram = Data(data)
+            if sensor.type != .libre3 {
+                let (_, data) = try await read(fromBlock: 0, count: 43)
+                sensor.fram = Data(data)
+            }
 
 
         default:
