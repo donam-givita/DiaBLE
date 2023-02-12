@@ -166,6 +166,9 @@ struct Details: View {
                             if app.sensor.type == .libre3 && (app.sensor as! Libre3).receiverId != 0 {
                                 Row("Receiver ID", "\((app.sensor as! Libre3).receiverId)")
                             }
+                            if app.sensor.type == .libre3 && !(app.sensor as! Libre3).blePIN.isEmpty {
+                                Row("BLE PIN", "\((app.sensor as! Libre3).blePIN.hex)")
+                            }
                             if !app.sensor.patchInfo.isEmpty {
                                 Row("Patch Info", app.sensor.patchInfo.hex)
                                 Row("Firmware", app.sensor.firmware)

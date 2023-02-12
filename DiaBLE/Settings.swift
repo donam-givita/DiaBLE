@@ -50,6 +50,7 @@ class Settings: ObservableObject {
         "activeSensorStreamingUnlockCount": 0,
         "activeSensorMaxLife": 0,
         "activeSensorCalibrationInfo": try! JSONEncoder().encode(CalibrationInfo()),
+        "activeSensorBlePIN": Data(),
 
         // TODO: rename to currentSensorUid/PatchInfo
         "patchUid": Data(),
@@ -225,6 +226,10 @@ class Settings: ObservableObject {
 
     @Published var activeSensorCalibrationInfo: CalibrationInfo = try! JSONDecoder().decode(CalibrationInfo.self, from: UserDefaults.standard.data(forKey: "activeSensorCalibrationInfo")!) {
         didSet { UserDefaults.standard.set(try! JSONEncoder().encode(self.activeSensorCalibrationInfo), forKey: "activeSensorCalibrationInfo") }
+    }
+
+    @Published var activeSensorBlePIN: Data = UserDefaults.standard.data(forKey: "activeSensorBlePIN")! {
+        didSet { UserDefaults.standard.set(self.activeSensorInitialPatchInfo, forKey: "activeSensorBlePIN") }
     }
 
     @Published var patchUid: SensorUid = UserDefaults.standard.data(forKey: "patchUid")! {

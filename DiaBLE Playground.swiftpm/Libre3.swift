@@ -224,7 +224,7 @@ class Libre3: Sensor {
         //            uint16_t readingMgDl;
         //            uint16_t historicMgDl;
         //            int getHistoricLifeCount() const {
-        //                return round((lifeCount-19.0)/5.0)*5;
+        //                return round((lifeCount-19.0)/5.0)*5; //  -17?
         //                };
         //            } __attribute__ ((packed));
         //        static_assert(sizeof(fastData)==14);
@@ -767,14 +767,14 @@ class Libre3: Sensor {
         // F12C: historicalLifeCount 11505 (0x2CF1)
         // F000: historicalReading 240
         // 0B: 00001 011 (bitfields 3: trend, 5: rest)
-        // EE00: uncappedCurrentMgDl 228
+        // EE00: uncappedCurrentMgDl 238
         // F000: uncappedHistoricMgDl 240
         // 010C: temperature 3073 (0x0C01)
         // 530E72482F130000: fastData
     }
 
 
-    // TODO
+    // TODO: separate CMD_ACTIVATE_SENSOR and CMD_SWITCH_RECEIVER
     var activationNFCCommand: NFCCommand {
         var parameters: Data = Data()
         parameters += ((activationTime != 0 ? activationTime : UInt32(Date().timeIntervalSince1970)) - 1).data
