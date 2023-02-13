@@ -229,7 +229,7 @@ class Settings: ObservableObject {
     }
 
     @Published var activeSensorBlePIN: Data = UserDefaults.standard.data(forKey: "activeSensorBlePIN")! {
-        didSet { UserDefaults.standard.set(self.activeSensorInitialPatchInfo, forKey: "activeSensorBlePIN") }
+        didSet { UserDefaults.standard.set(self.activeSensorBlePIN, forKey: "activeSensorBlePIN") }
     }
 
     @Published var patchUid: SensorUid = UserDefaults.standard.data(forKey: "patchUid")! {
