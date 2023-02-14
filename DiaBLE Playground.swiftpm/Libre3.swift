@@ -228,6 +228,12 @@ class Libre3: Sensor {
         //                };
         //            } __attribute__ ((packed));
         //        static_assert(sizeof(fastData)==14);
+        //
+        // B43E7E091F4071140000B600B500:
+        //   B43E: lifeCount 16052 (0x3EB4)
+        //   7E091F4071140000: rawData
+        //   B600: readingMgDl 182
+        //   B500: historicMgDl 181
     }
 
 
