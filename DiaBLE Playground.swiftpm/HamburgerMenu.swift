@@ -90,7 +90,11 @@ struct HamburgerMenu: View {
                     VStack(spacing: 40) {
                         VStack {
                             // TODO: get AppIcon 1024x1024
-                            Image(uiImage: UIImage(named: "AppIcon")!).resizable().frame(width: 100, height: 100)
+                            // Image("AppIcon").resizable().frame(width: 100, height: 100)
+                            // FIXME: crashes in TestFlight (not in Release scheme)
+                            if UIImage(named: "AppIcon") != nil {
+                                Image(uiImage: UIImage(named: "AppIcon")!).resizable().frame(width: 100, height: 100)
+                            }
                             Link("https://github.com/gui-dos/DiaBLE",
                                  destination: URL(string: "https://github.com/gui-dos/DiaBLE")!)
                         }
