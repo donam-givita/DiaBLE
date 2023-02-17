@@ -687,8 +687,9 @@ class Libre3: Sensor {
         parameters += (receiverId != 0 ? receiverId : main.settings.libreLinkUpPatientId.fnv32Hash).data
         parameters += parameters.crc16.data
 
-        // A8 changes the BLE PIN on an activated sensor and returns the error 0x1B0 on an expired one.
-        // A0 returns the current BLE PIN on an activated sensor and returns a new one for an expired sensor...
+        // - A8 changes the BLE PIN on an activated sensor and returns the error 0x1B0 on an expired one.
+        // - A0 returns the current BLE PIN on an activated sensor, the error 0x1B2 on an expired one with a
+        //   firmware like 1.1.13.30 and a new BLE PIN with older firmwares like 1.0.25.30...
         let code = patchInfo[14] == State.storage.rawValue ? 0xA8 : 0xA0
 
         return NFCCommand(code: code, parameters: parameters, description: "activate")
