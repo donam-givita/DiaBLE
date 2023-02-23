@@ -289,6 +289,17 @@ class Libre3: Sensor {
         case factoryData      = 7    // PACKET_TYPE_FACTORY_DATA
     }
 
+    let packetDescriptors: [[UInt8]] = [
+        [0x00, 0x00, 0x00],
+        [0x00, 0x00, 0x0F],
+        [0x00, 0x00, 0xF0],
+        [0x00, 0x0F, 0x00],
+        [0x00, 0xF0, 0x00],
+        [0x0F, 0x00, 0x00],
+        [0xF0, 0x00, 0x00],
+        [0x44, 0x00, 0x00]
+    ]
+
 
     struct CGMSensor {
         var sensor: Sensor
@@ -1012,9 +1023,9 @@ struct Libre3SKBCryptoLib {
     let CRYPTO_PUBLIC_KEY_SIZE: Int
     let CRYPTO_EXTENSION_WRAP_DIAGNOSTIC_DATA: Int
     let CRYPTO_RETURN_INVALID_PARAM: Int
-    let patchSigningKey: Int
+    let patchSigningKey: Data
     let securityVersion: Int
     let max_key_index: Int
-    let app_private_key: Int
-    let app_certificate: Int
+    let app_private_key: Data
+    let app_certificate: Data
 }
