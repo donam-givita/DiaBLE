@@ -301,6 +301,15 @@ class Libre3: Sensor {
     ]
 
 
+    struct BCSecurityContext {
+        let packetDescriptorArray: [[UInt8]]
+        var key: Data
+        var iv_enc: Data   // 8 bytes
+        var nonce: Data    // 13 bytes, last 8 set to iv_enc
+        var outCryptoSequence: Int
+    }
+
+
     struct CGMSensor {
         var sensor: Sensor
         var deviceType: Int
@@ -551,6 +560,8 @@ class Libre3: Sensor {
     var lastSecurityEvent: SecurityEvent = .unknown
     var expectedStreamSize = 0
 
+    var outCryptoSequence: UInt16 = 0
+
 
     func parsePatchInfo() {
 
@@ -731,8 +742,8 @@ class Libre3: Sensor {
                     // getting: df4bd2f783178e3ab918183e5fed2b2b c201 0000 e703a7
                     //                                        increasing
 
-                    let challengeCount = UInt16(payload[16...17])
-                    log("\(type) \(transmitter!.peripheral!.name!): security challenge # \(challengeCount.hex): \(payload.hex)")
+                    outCryptoSequence = UInt16(payload[16...17])
+                    log("\(type) \(transmitter!.peripheral!.name!): security challenge: \(payload.hex) (crypto sequence #: \(outCryptoSequence.hex))")
 
 
                     if main.settings.userLevel < .test { // TEST: sniff Trident
@@ -750,8 +761,8 @@ class Libre3: Sensor {
                     }
 
                 case .getSessionInfo:
-                    let challengeCountPlusOne = UInt16(payload[60...61])
-                    log("\(type) \(transmitter!.peripheral!.name!): session info: \(payload.hex) (security challenge # + 1: \(challengeCountPlusOne.hex))")
+                    outCryptoSequence = UInt16(payload[60...61])
+                    log("\(type) \(transmitter!.peripheral!.name!): session info: \(payload.hex) (crypto sequence #: \(outCryptoSequence.hex))")
                     transmitter!.peripheral?.setNotifyValue(true, for: transmitter!.characteristics[UUID.patchStatus.rawValue]!)
                     log("\(type) \(transmitter!.peripheral!.name!): enabling notifications on the patch status characteristic")
                     currentSecurityCommand = nil
@@ -835,30 +846,72 @@ class Libre3: Sensor {
     ]
 
 
-    // Juggluco wrappers to Trident's process1() and process2() in liblibre3extension.so
+    // https://github.dev/j-kaltes/Juggluco/blob/primary/Common/src/libre3/java/tk/glucodata/Libre3GattCallback.java
+
+    // Juggluco wrappers to Trident's process1() and process2() in liblibre3extension.so (processint() and processbar())
     //
-    // setPatchCertificate:
-    // Natives.processint(4, input, null);
+    // public native boolean initECDH(byte[] bArr, int i):
+    //     public boolean initECDH(byte[] exportedKAuth, int level) {
+    //         if(level >= max_keys)
+    //             return true;
+    //         securityVersion = level;
+    //         int resp1 = Natives.processint(1, null, null);
+    //         byte[] privatekey= LIBRE3_APP_PRIVATE_KEYS[level];
+    //         int resp2 = Natives.processint(2, privatekey, exportedKAuth);
+    //         return true;
+    //   }
     //
-    // generateEphemeralKeys:
-    // var evikeys = Natives.processbar(5, null, null);
+    // byte[] getAppCertificate() {
+    //        return LIBRE3_APP_CERTIFICATES_B[securityVersion];
+    //  }
     //
-    // generateKAuth:
-    // Natives.processint(6, input, null);
+    // setPatchCertificate(byte[] bArr):
+    //     Natives.processint(4, input, null);
+    //
+    // generateEphemeralKeys():
+    //     var evikeys = Natives.processbar(5, null, null);
+    //
+    // boolean generateKAuth(byte[] bArr):
+    //     Natives.processint(6, patchEphemeral, null);
+    //     var uit = new byte[evikeys.length + 1];
+    //     arraycopy(evikeys, 0, uit, 1, evikeys.length);
+    //     uit[0] = (byte)0x4;
+    //     return uit;
     //
     // encrypt challenge response:
-    // var encrypted= Natives.processbar(7, nonce1, uit);
+    //     arraycopy(rdtData, 0, r1, 0, 16);
+    //     arraycopy(rdtData, 16, nonce1, 0, 7);
+    //     (new SecureRandom()).nextBytes(r2)
+    //     byte[] uit = new byte[36];
+    //     arraycopy(r1, 0, uit, 0, 16);
+    //     arraycopy(r2, 0, uit, 16, 16);
+    //     byte[] pin = Natives.getpin(sensorptr);
+    //     arraycopy(pin, 0, uit, 32, 4);
+    //     var encrypted = Natives.processbar(7, nonce1, uit);
     //
-    // decrypt 67-byte exported kAuth ("session info")
-    // arraycopy(rdtData, 0, first, 0, 60);
-    // arraycopy(rdtData, 60, nonce, 0, 7);
-    // byte[] decr=Natives.processbar(8, nonce, first);
+    // decrypt 67-byte exported kAuth ("session info" wrappedkAuth):
+    //     arraycopy(rdtData, 0, first, 0, 60);
+    //     arraycopy(rdtData, 60, nonce, 0, 7);
+    //     byte[] decr = Natives.processbar(8, nonce, first);
+    //     var backr2 = copyOfRange(decr, 0, 16);
+    //     var backr1 = copyOfRange(decr, 16, 32);
+    //     var kEnc = copyOfRange(decr, 32, 48);
+    //     var ivEnc = copyOfRange(decr, 48, 56);
     //
-    // var kEnc=copyOfRange(decr, 32, 48);
-    // var ivEnc=copyOfRange(decr, 48, 56);
-    // byte[] AuthKey = Natives.processbar(9, null, null);  (149 bytes)
-    // cryptptr = initcrypt(cryptptr, kEnc, ivEnc);
+    // byte[] exportAuthorizationKey():
+    //     byte[] AuthKey = Natives.processbar(9, null, null);  // 149 bytes
+    //     cryptptr = initcrypt(cryptptr, kEnc, ivEnc);
 
+
+    // https://github.dev/j-kaltes/Juggluco/blob/primary/Common/src/main/cpp/libre3/loadlibs.cpp
+
+    func process1(command: Int, _ d1: Data?, _ d2: Data?) -> Int {
+        return 0
+    }
+
+    func process2(command: Int, _ d1: Data?, _ d2: Data?) -> Data {
+        return Data()
+    }
 
 
     // MARK: - Constants

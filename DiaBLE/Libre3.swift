@@ -252,6 +252,15 @@ class Libre3: Sensor {
     ]
 
 
+    struct BCSecurityContext {
+        let packetDescriptorArray: [[UInt8]]
+        var key: Data
+        var iv_enc: Data   // 8 bytes
+        var nonce: Data    // 13 bytes, last 8 set to iv_enc
+        var outCryptoSequence: Int
+    }
+
+
     struct CGMSensor {
         var sensor: Sensor
         var deviceType: Int
@@ -451,6 +460,8 @@ class Libre3: Sensor {
     var lastSecurityEvent: SecurityEvent = .unknown
     var expectedStreamSize = 0
 
+    var outCryptoSequence: UInt16 = 0
+
 
     func parsePatchInfo() {
 
@@ -631,8 +642,8 @@ class Libre3: Sensor {
                     // getting: df4bd2f783178e3ab918183e5fed2b2b c201 0000 e703a7
                     //                                        increasing
 
-                    let challengeCount = UInt16(payload[16...17])
-                    log("\(type) \(transmitter!.peripheral!.name!): security challenge # \(challengeCount.hex): \(payload.hex)")
+                    outCryptoSequence = UInt16(payload[16...17])
+                    log("\(type) \(transmitter!.peripheral!.name!): security challenge: \(payload.hex) (crypto sequence #: \(outCryptoSequence.hex))")
 
 
                     if main.settings.userLevel < .test { // TEST: sniff Trident
@@ -650,8 +661,8 @@ class Libre3: Sensor {
                     }
 
                 case .getSessionInfo:
-                    let challengeCountPlusOne = UInt16(payload[60...61])
-                    log("\(type) \(transmitter!.peripheral!.name!): session info: \(payload.hex) (security challenge # + 1: \(challengeCountPlusOne.hex))")
+                    outCryptoSequence = UInt16(payload[60...61])
+                    log("\(type) \(transmitter!.peripheral!.name!): session info: \(payload.hex) (crypto sequence #: \(outCryptoSequence.hex))")
                     transmitter!.peripheral?.setNotifyValue(true, for: transmitter!.characteristics[UUID.patchStatus.rawValue]!)
                     log("\(type) \(transmitter!.peripheral!.name!): enabling notifications on the patch status characteristic")
                     currentSecurityCommand = nil
