@@ -289,7 +289,7 @@ class Libre3: Sensor {
         case factoryData      = 7    // PACKET_TYPE_FACTORY_DATA
     }
 
-    let packetDescriptors: [[UInt8]] = [
+    static let packetDescriptors: [[UInt8]] = [
         [0x00, 0x00, 0x00],
         [0x00, 0x00, 0x0F],
         [0x00, 0x00, 0xF0],
@@ -302,11 +302,17 @@ class Libre3: Sensor {
 
 
     struct BCSecurityContext {
-        let packetDescriptorArray: [[UInt8]]
-        var key: Data
-        var iv_enc: Data   // 8 bytes
-        var nonce: Data    // 13 bytes, last 8 set to iv_enc
-        var outCryptoSequence: UInt16
+        let packetDescriptorArray: [[UInt8]] = packetDescriptors
+        var key: Data    = Data(count: 16)
+        var iv_enc: Data = Data(count: 8)
+        var nonce: Data  = Data(count: 13)
+        var outCryptoSequence: UInt16 = 0
+
+        // when decrypting initialize:
+        // nonce[0...1]: outCryptoSequence
+        // nonce[2...4]: packetDesciptors(packetType)
+        // nonce[5...12]: iv:enc
+        // taglen = 4
     }
 
 
