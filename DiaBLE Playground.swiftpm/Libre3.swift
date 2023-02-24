@@ -306,7 +306,7 @@ class Libre3: Sensor {
         var key: Data
         var iv_enc: Data   // 8 bytes
         var nonce: Data    // 13 bytes, last 8 set to iv_enc
-        var outCryptoSequence: Int
+        var outCryptoSequence: UInt16
     }
 
 
