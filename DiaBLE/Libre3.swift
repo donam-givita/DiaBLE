@@ -271,7 +271,7 @@ class Libre3: Sensor {
         var sensor: Sensor
         var deviceType: Int
         var cryptoLib: Any
-        var securityContext: Int
+        var securityContext: BCSecurityContext
         var patchEphemeral: Data
         var r1: Data
         var r2: Data
