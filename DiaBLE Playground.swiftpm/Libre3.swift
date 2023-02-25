@@ -717,8 +717,11 @@ class Libre3: Sensor {
                     currentSecurityCommand = .readChallenge
                 } else if data[1] == 67 {
                     currentSecurityCommand = .getSessionInfo
+                } else if data[1] == 140 { // patchCertificate
+                    currentSecurityCommand = .security_09
+                } else if data[1] == 65 { // patchEphemeral
+                    currentSecurityCommand = .security_0E
                 }
-                // TODO: 140 and 65 .certificateData bytes received during activation/repair
             }
             if currentSecurityCommand == .security_03 && lastSecurityEvent == .certificateAccepted {
                 send(securityCommand: .security_09)
@@ -740,7 +743,12 @@ class Libre3: Sensor {
                 switch currentSecurityCommand {
 
                 case .security_09:
+                    log("\(type) \(transmitter!.peripheral!.name!): patch certificate: \(payload.hex)")
                     send(securityCommand: .security_0D)
+                    // TODO
+
+                case .security_0E:
+                    log("\(type) \(transmitter!.peripheral!.name!): patch ephemeral: \(payload.hex)")
                     // TODO
 
                 case .readChallenge:
