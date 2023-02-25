@@ -262,7 +262,7 @@ class Libre3: Sensor {
         // when decrypting initialize:
         // nonce[0...1]: outCryptoSequence
         // nonce[2...4]: packetDesciptors(packetType)
-        // nonce[5...12]: iv:enc
+        // nonce[5...12]: iv_enc
         // taglen = 4
     }
 
@@ -651,14 +651,16 @@ class Libre3: Sensor {
                     outCryptoSequence = UInt16(payload[16...17])
                     log("\(type) \(transmitter!.peripheral!.name!): security challenge: \(payload.hex) (crypto sequence #: \(outCryptoSequence.hex))")
 
+                    let r1 = payload.prefix(16)
+                    let nonce1 = payload.suffix(7)
+                    let r2 = Data((0 ..< 16).map { _ in UInt8.random(in: UInt8.min ... UInt8.max) })
+                    debugLog("\(type): r1: \(r1.hex), r2: \(r2.hex), nonce1: \(nonce1.hex)")
+
+                    // TODO:
+                    // let response = process2(command: 7, nonce1, Data(r1 + r2 + blePIN))
 
                     if main.settings.userLevel < .test { // TEST: sniff Trident
                         log("\(type) \(transmitter!.peripheral!.name!): writing 40-zero challenge response")
-
-                        // The effective challenge response is computed from a 36-byte array:
-                        // - received challenge (first 16 bytes) -> r1
-                        // - random 16 bytes (nonce1) -> r2
-                        // - BLE PIN (4 bytes)
 
                         let challengeData = Data(count: 40)
                         write(challengeData)
