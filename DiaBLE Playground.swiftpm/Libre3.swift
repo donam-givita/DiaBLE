@@ -556,6 +556,14 @@ class Libre3: Sensor {
         case shutdownPatch(Data)  // type 5 - CTRL_CMD_SHUTDOWN_PATCH
     }
 
+    // TODO
+    //  struct RequestData {
+    //      int8_t kind[2];
+    //      int8_t arg;
+    //      int32_t from;
+    //      } __attribute__ ((packed));
+
+
     var receiverId: UInt32 = 0    // fnv32Hash of LibreView ID string
 
     var blePIN: Data = Data()    // 4 bytes returned by the activation command
@@ -749,6 +757,7 @@ class Libre3: Sensor {
 
                 case .security_0E:
                     log("\(type) \(transmitter!.peripheral!.name!): patch ephemeral: \(payload.hex)")
+                    send(securityCommand: .readChallenge)
                     // TODO
 
                 case .readChallenge:

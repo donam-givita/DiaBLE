@@ -649,6 +649,7 @@ class Libre3: Sensor {
 
                 case .security_0E:
                     log("\(type) \(transmitter!.peripheral!.name!): patch ephemeral: \(payload.hex)")
+                    send(securityCommand: .readChallenge)
                     // TODO
 
                 case .readChallenge:
