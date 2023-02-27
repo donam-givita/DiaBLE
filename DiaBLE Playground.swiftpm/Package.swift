@@ -39,9 +39,15 @@ let package = Package(
             ]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/krzyzanowskim/CryptoSwift", "1.6.0"..<"2.0.0")
+    ],
     targets: [
         .executableTarget(
             name: "AppModule",
+            dependencies: [
+                .product(name: "CryptoSwift", package: "cryptoswift")
+            ],
             path: ".",
             resources: [
                 .process("Resources")

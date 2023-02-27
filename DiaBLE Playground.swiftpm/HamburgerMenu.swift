@@ -15,6 +15,7 @@ struct HamburgerMenu: View {
         "@captainbeeheart": "https://github.com/captainbeeheart",
         "@creepymonster": "https://github.com/creepymonster",
         "@cryptax": "https://github.com/cryptax",
+        "CryptoSwift": "https://github.com/krzyzanowskim/CryptoSwift",
         "@dabear": "https://github.com/dabear",
         "@DecentWoodpecker67": "https://github.com/DecentWoodpecker67",
         "@ivalkou": "https://github.com/ivalkou",
