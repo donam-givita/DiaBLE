@@ -2,4 +2,4 @@
 xcuserdata
 xcshareddata
 *.resolved
-ConfigOverride.xcconfig
+*Override.xcconfig

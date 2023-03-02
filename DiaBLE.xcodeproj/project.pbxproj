@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		49DE8D3529AFFB3000BB7CF4 /* DiaBLE.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */; };
 		49DE8D3629AFFB3000BB7CF4 /* DiaBLE.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */; };
-		49DE8D3729AFFB3000BB7CF4 /* ConfigOverride.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3429AFFB3000BB7CF4 /* ConfigOverride.xcconfig */; };
-		49DE8D3829AFFB3000BB7CF4 /* ConfigOverride.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3429AFFB3000BB7CF4 /* ConfigOverride.xcconfig */; };
+		49DE8D3729AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3429AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */; };
+		49DE8D3829AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3429AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */; };
 		C55D12B229ACAE8F0050F567 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C55D12B129ACAE8F0050F567 /* CryptoSwift */; };
 		C55D12B429ACB5E00050F567 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55D12B329ACB5E00050F567 /* Crypto.swift */; };
 		C55D12B529ACB5E00050F567 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55D12B329ACB5E00050F567 /* Crypto.swift */; };
@@ -122,7 +122,7 @@
 
 /* Begin PBXFileReference section */
 		49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DiaBLE.xcconfig; sourceTree = "<group>"; };
-		49DE8D3429AFFB3000BB7CF4 /* ConfigOverride.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ConfigOverride.xcconfig; sourceTree = "<group>"; };
+		49DE8D3429AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DiaBLEOverride.xcconfig; sourceTree = "<group>"; };
 		C53F77C529894478004F275A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C55D12B329ACB5E00050F567 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		C5916E4629827E860051AC06 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */,
-				49DE8D3429AFFB3000BB7CF4 /* ConfigOverride.xcconfig */,
+				49DE8D3429AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */,
 				C5E015DF2989B0EA00F6EDF9 /* README.md */,
 				C5E015E22989B0F600F6EDF9 /* TODO.md */,
 				C5E015E52989B10500F6EDF9 /* LICENSE.md */,
@@ -413,7 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49DE8D3829AFFB3000BB7CF4 /* ConfigOverride.xcconfig in Resources */,
+				49DE8D3829AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig in Resources */,
 				C5E015E12989B0EA00F6EDF9 /* README.md in Resources */,
 				C5E400A029825F580021C6B7 /* company_ids.json in Resources */,
 				C5E015E42989B0F600F6EDF9 /* TODO.md in Resources */,
@@ -430,7 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49DE8D3729AFFB3000BB7CF4 /* ConfigOverride.xcconfig in Resources */,
+				49DE8D3729AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig in Resources */,
 				C5E015E02989B0EA00F6EDF9 /* README.md in Resources */,
 				C5E4009F29825F580021C6B7 /* company_ids.json in Resources */,
 				C5E015E32989B0F600F6EDF9 /* TODO.md in Resources */,
