@@ -3,6 +3,8 @@
 
 The project should compile fine just after changing the _**Bundle Identifier**_ in the _General_ panel of the _Targets_ settings and the _**Team**_ in the _Signing and Capabilities_ tab of Xcode -- Spike and xDrip4iO5 users know already very well what that means... ;-)
 
+To compile the `dev` branch, duplicate the file DiaBLE.xcconfig, rename it to DiaBLEOverride.xcconfig (the missing reference displayed by Xcode in red should then point to it) and edit it by deleting the last line `#include?... ` and replacing `##TEAM_ID##` with you Apple Team ID so that the first line should read for example `DEVELOPMENT_TEAM = Z25SC9UDC8`.
+
 The NFC capabilities require a paid ADC annual membership. The simplest way to get invited to the internal TestFlight builds is to sponsor me $-)
 
 If you own an iPad you can download the [zipped archive](https://github.com/gui-dos/DiaBLE/archive/refs/heads/main.zip) of this repository and tap _DiaBLE Playground.swiftpm_: DiaBLE was born in fact as a single script for the iPad Swift Playgrounds to test the internal workings of the several troublesome BLE devices I bought, mainly the **Bubble** and the **MiaoMiao**. I upgraded it to the version 4.1 of the Playgrounds which still runs under iOS 15 and macOS Monterey but I cannot afford to support actively such transmitters and the LibreOOPWeb glucose.space server anymore.
