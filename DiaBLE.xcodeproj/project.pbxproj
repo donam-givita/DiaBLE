@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49DE8D3529AFFB3000BB7CF4 /* DiaBLE.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */; };
+		49DE8D3629AFFB3000BB7CF4 /* DiaBLE.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */; };
+		49DE8D3729AFFB3000BB7CF4 /* ConfigOverride.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3429AFFB3000BB7CF4 /* ConfigOverride.xcconfig */; };
+		49DE8D3829AFFB3000BB7CF4 /* ConfigOverride.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3429AFFB3000BB7CF4 /* ConfigOverride.xcconfig */; };
 		C55D12B229ACAE8F0050F567 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C55D12B129ACAE8F0050F567 /* CryptoSwift */; };
 		C55D12B429ACB5E00050F567 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55D12B329ACB5E00050F567 /* Crypto.swift */; };
 		C55D12B529ACB5E00050F567 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55D12B329ACB5E00050F567 /* Crypto.swift */; };
@@ -117,6 +121,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DiaBLE.xcconfig; sourceTree = "<group>"; };
+		49DE8D3429AFFB3000BB7CF4 /* ConfigOverride.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ConfigOverride.xcconfig; sourceTree = "<group>"; };
 		C53F77C529894478004F275A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C55D12B329ACB5E00050F567 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		C5916E4629827E860051AC06 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
@@ -225,6 +231,8 @@
 		C5AAA60C2981CF7000CA3EC1 = {
 			isa = PBXGroup;
 			children = (
+				49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */,
+				49DE8D3429AFFB3000BB7CF4 /* ConfigOverride.xcconfig */,
 				C5E015DF2989B0EA00F6EDF9 /* README.md */,
 				C5E015E22989B0F600F6EDF9 /* TODO.md */,
 				C5E015E52989B10500F6EDF9 /* LICENSE.md */,
@@ -405,10 +413,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49DE8D3829AFFB3000BB7CF4 /* ConfigOverride.xcconfig in Resources */,
 				C5E015E12989B0EA00F6EDF9 /* README.md in Resources */,
 				C5E400A029825F580021C6B7 /* company_ids.json in Resources */,
 				C5E015E42989B0F600F6EDF9 /* TODO.md in Resources */,
 				C5E4004A29825C710021C6B7 /* alarm_low.mp3 in Resources */,
+				49DE8D3629AFFB3000BB7CF4 /* DiaBLE.xcconfig in Resources */,
 				C5E015E72989B10500F6EDF9 /* LICENSE.md in Resources */,
 				C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
 				C5E4004829825C710021C6B7 /* alarm_high.mp3 in Resources */,
@@ -420,10 +430,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49DE8D3729AFFB3000BB7CF4 /* ConfigOverride.xcconfig in Resources */,
 				C5E015E02989B0EA00F6EDF9 /* README.md in Resources */,
 				C5E4009F29825F580021C6B7 /* company_ids.json in Resources */,
 				C5E015E32989B0F600F6EDF9 /* TODO.md in Resources */,
 				C5E4004929825C710021C6B7 /* alarm_low.mp3 in Resources */,
+				49DE8D3529AFFB3000BB7CF4 /* DiaBLE.xcconfig in Resources */,
 				C5E015E62989B10500F6EDF9 /* LICENSE.md in Resources */,
 				C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
 				C5E4004729825C710021C6B7 /* alarm_high.mp3 in Resources */,
@@ -525,13 +537,14 @@
 /* Begin XCBuildConfiguration section */
 		C59960EA2981E383005999C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DiaBLE Watch/DiaBLE Watch.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 13;
-				DEVELOPMENT_TEAM = Z25SC9UDC8;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DiaBLE Watch/Info.plist";
@@ -542,14 +555,14 @@
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "DiaBLE reminds to check the glucose level at scheduled times.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.DiaBLE;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "$(WATCHKIT_COMPANION_APP)";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = name.DiaBLE.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -562,13 +575,14 @@
 		};
 		C59960EB2981E383005999C2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DiaBLE Watch/DiaBLE Watch.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 13;
-				DEVELOPMENT_TEAM = Z25SC9UDC8;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DiaBLE Watch/Info.plist";
@@ -579,14 +593,14 @@
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "DiaBLE tracks your blood glucose and saves the insulin delivery data.";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "DiaBLE reminds to check the glucose level at scheduled times.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.DiaBLE;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "$(WATCHKIT_COMPANION_APP)";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = name.DiaBLE.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -711,13 +725,14 @@
 		};
 		C5AAA6252981CF7200CA3EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DiaBLE/DiaBLE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 13;
-				DEVELOPMENT_TEAM = Z25SC9UDC8;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -744,8 +759,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
-				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = name.DiaBLE;
+				MARKETING_VERSION = "${APP_VERSION}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -757,13 +771,14 @@
 		};
 		C5AAA6262981CF7200CA3EC1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DiaBLE/DiaBLE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 13;
-				DEVELOPMENT_TEAM = Z25SC9UDC8;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -790,8 +805,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
-				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = name.DiaBLE;
+				MARKETING_VERSION = "${APP_VERSION}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
