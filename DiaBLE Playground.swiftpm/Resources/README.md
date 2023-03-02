@@ -1,9 +1,7 @@
 <p align="center"><img src="./DiaBLE/Assets.xcassets/AppIcon.appiconset/Icon.png" width="25%" /></p>
 
 
-The project should compile fine just after changing the _**Bundle Identifier**_ in the _General_ panel of the _Targets_ settings and the _**Team**_ in the _Signing and Capabilities_ tab of Xcode -- Spike and xDrip4iO5 users know already very well what that means... ;-)
-
-To compile the `dev` branch, duplicate the file DiaBLE.xcconfig, rename it to DiaBLEOverride.xcconfig (the missing reference displayed by Xcode in red should then point to it) and edit it by deleting the last line `#include?... ` and replacing `##TEAM_ID##` with you Apple Team ID so that the first line should read for example `DEVELOPMENT_TEAM = Z25SC9UDC8`.
+To build the project duplicate the file _DiaBLE.xcconfig_, rename it to _DiaBLEOverride.xcconfig_ (the missing reference displayed by Xcode in red should then point to it) and edit it by deleting the last line `#include?... ` and replacing `##TEAM_ID##` with your Apple Team ID so that the first line should read for example `DEVELOPMENT_TEAM = Z25SC9UDC8`.
 
 The NFC capabilities require a paid ADC annual membership. The simplest way to get invited to the internal TestFlight builds is to sponsor me $-)
 
