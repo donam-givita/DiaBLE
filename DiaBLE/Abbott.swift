@@ -7,15 +7,15 @@ class Abbott: Transmitter {
     override class var name: String { "Libre" }
 
     enum UUID: String, CustomStringConvertible, CaseIterable {
-        case abbottCustom         = "FDE3"
-        case bleLogin             = "F001"
-        case compositeRawData     = "F002"
+        case abbottCustom     = "FDE3"
+        case bleLogin         = "F001"
+        case compositeRawData = "F002"
 
         var description: String {
             switch self {
-            case .abbottCustom:         return "Abbott custom"
-            case .bleLogin:             return "BLE login"
-            case .compositeRawData:     return "composite raw data"
+            case .abbottCustom:     return "Abbott custom"
+            case .bleLogin:         return "BLE login"
+            case .compositeRawData: return "composite raw data"
             }
         }
     }

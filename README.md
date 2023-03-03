@@ -1,6 +1,16 @@
 <p align="center"><img src="./DiaBLE/Assets.xcassets/AppIcon.appiconset/Icon.png" width="25%" /></p>
 
 
+Since the latest **FreeStyle Libre glucose sensors** are **B**luetooth **L**ow **E**nergy devices, Iam trying to leverage their capabilities to implement something new compared to the traditional apps:
+
+* a universal **SwiftUI** application for iPhone, iPad and Mac Catalyst;
+* an **independent Apple Watch app** connecting directly via Bluetooth;
+* scanning the Libre directly via **NFC** and exploring its internals;
+* using both online servers and offline methods for calibrating just like the **temperature-based** vendor algorithm;
+* showing for comparison the **HealthKit** and **Nightscout** data shared with other apps;
+* varying the **reading interval** instead of the usual 5-minute one;
+* a detailed **log** to check the traffic from/to the BLE devices and remote servers.
+
 To build the project duplicate the file _DiaBLE.xcconfig_, rename it to _DiaBLEOverride.xcconfig_ (the missing reference displayed by Xcode in red should then point to it) and edit it by deleting the last line `#include?... ` and replacing `##TEAM_ID##` with your Apple Team ID so that the first line should read for example `DEVELOPMENT_TEAM = Z25SC9UDC8`.
 
 The NFC capabilities require a paid ADC annual membership. The simplest way to get invited to the internal TestFlight builds is to sponsor me $-)
