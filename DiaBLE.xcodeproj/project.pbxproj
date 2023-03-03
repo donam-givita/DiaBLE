@@ -11,6 +11,8 @@
 		49DE8D3629AFFB3000BB7CF4 /* DiaBLE.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */; };
 		49DE8D3729AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3429AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */; };
 		49DE8D3829AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DE8D3429AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */; };
+		C51F1B0929B243AE0014A500 /* Dexcom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51F1B0829B243AE0014A500 /* Dexcom.swift */; };
+		C51F1B0A29B243AE0014A500 /* Dexcom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51F1B0829B243AE0014A500 /* Dexcom.swift */; };
 		C55D12B229ACAE8F0050F567 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C55D12B129ACAE8F0050F567 /* CryptoSwift */; };
 		C55D12B429ACB5E00050F567 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55D12B329ACB5E00050F567 /* Crypto.swift */; };
 		C55D12B529ACB5E00050F567 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55D12B329ACB5E00050F567 /* Crypto.swift */; };
@@ -123,6 +125,7 @@
 /* Begin PBXFileReference section */
 		49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DiaBLE.xcconfig; sourceTree = "<group>"; };
 		49DE8D3429AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DiaBLEOverride.xcconfig; sourceTree = "<group>"; };
+		C51F1B0829B243AE0014A500 /* Dexcom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dexcom.swift; sourceTree = "<group>"; };
 		C53F77C529894478004F275A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C55D12B329ACB5E00050F567 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		C5916E4629827E860051AC06 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
@@ -268,6 +271,7 @@
 				C5E4007829825E450021C6B7 /* Sensor.swift */,
 				C55D12B329ACB5E00050F567 /* Crypto.swift */,
 				C5E4007B29825E4E0021C6B7 /* Abbott.swift */,
+				C51F1B0829B243AE0014A500 /* Dexcom.swift */,
 				C5E4007E29825E7B0021C6B7 /* Bubble.swift */,
 				C5D3B2682991302000CE92A0 /* MiaoMiao.swift */,
 				C5E4008129825E8B0021C6B7 /* Libre2.swift */,
@@ -479,6 +483,7 @@
 				C5E4007229825DF50021C6B7 /* BluetoothDelegate.swift in Sources */,
 				C5916E5329827E860051AC06 /* OnlineView.swift in Sources */,
 				C5E4009A29825F1C0021C6B7 /* Nightscout.swift in Sources */,
+				C51F1B0A29B243AE0014A500 /* Dexcom.swift in Sources */,
 				C5916E4F29827E860051AC06 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +514,7 @@
 				C5E4009C29825F260021C6B7 /* OOP.swift in Sources */,
 				C5E4005D29825C930021C6B7 /* Console.swift in Sources */,
 				C5E4006529825D1F0021C6B7 /* Extensions.swift in Sources */,
+				C51F1B0929B243AE0014A500 /* Dexcom.swift in Sources */,
 				C5E4006029825C930021C6B7 /* Monitor.swift in Sources */,
 				C5E4008529825E990021C6B7 /* Libre3.swift in Sources */,
 				C5D3B2692991302000CE92A0 /* MiaoMiao.swift in Sources */,
