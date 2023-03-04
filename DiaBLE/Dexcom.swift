@@ -56,7 +56,7 @@ class Dexcom: Transmitter {
         switch UUID(rawValue: uuid) {
 
         default:
-            if let sensor = sensor as? DexcomOne {
+            if let sensor = sensor as? DexcomONE {
                 sensor.read(data, for: uuid)
             }
         }
@@ -65,7 +65,7 @@ class Dexcom: Transmitter {
 }
 
 
-class DexcomOne:  Sensor {
+class DexcomONE:  Sensor {
 
     /// called by Dexcom Transmitter class
     func read(_ data: Data, for uuid: String) {

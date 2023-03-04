@@ -1,7 +1,7 @@
 <p align="center"><img src="./DiaBLE/Assets.xcassets/AppIcon.appiconset/Icon.png" width="25%" /></p>
 
 
-Since the latest **FreeStyle Libre glucose sensors** are **B**luetooth **L**ow **E**nergy devices, Iam trying to leverage their capabilities to implement something new compared to the traditional apps:
+Since the latest **FreeStyle Libre glucose sensors** are **B**luetooth **L**ow **E**nergy devices, I am trying to leverage their capabilities to implement something new compared to the traditional apps:
 
 * a universal **SwiftUI** application for iPhone, iPad and Mac Catalyst;
 * an **independent Apple Watch app** connecting directly via Bluetooth;
