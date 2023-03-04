@@ -79,10 +79,11 @@ struct Monitor: View {
                     }
 
                     HStack {
-                        Text(app.deviceState)
-                            .foregroundColor(app.deviceState == "Connected" ? .green : .red)
-                            .font(.footnote).fixedSize()
-
+                        if !app.deviceState.isEmpty {
+                            Text(app.deviceState)
+                                .foregroundColor(app.deviceState == "Connected" ? .green : .red)
+                                .font(.footnote).fixedSize()
+                        }
                         if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
                             Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                                  "\(readingCountdown) s" : "")

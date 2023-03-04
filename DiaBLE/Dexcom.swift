@@ -27,7 +27,7 @@ class Dexcom: Transmitter {
             case .data:                   return "data service"
             case .communication:          return "communication"
             case .writeControl:           return "write control"
-            case .receiveAuthentication:  return "receive authenitcation"
+            case .receiveAuthentication:  return "receive authentication"
             case .backfill:               return "backfill"
             }
         }
@@ -65,7 +65,7 @@ class Dexcom: Transmitter {
 }
 
 
-class DexcomONE:  Sensor {
+class DexcomONE: Sensor {
 
     /// called by Dexcom Transmitter class
     func read(_ data: Data, for uuid: String) {
