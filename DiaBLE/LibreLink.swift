@@ -331,6 +331,11 @@ class LibreLinkUp: Logging {
                             let lifeCount = Int(round(date.timeIntervalSince(activationDate) / 60))
                             let lastGlucose = LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: lifeCount, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow)
                             debugLog("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(lastGlucoseMeasurement))")
+                            if lastGlucose.trendArrow != nil {
+                                DispatchQueue.main.async {
+                                    self.main.app.oopTrend = lastGlucose.trendArrow!
+                                }
+                            }
                             // TODO: scrape historic data only when the 17-minute delay has passed
                             var i = 0
                             if let graphData = data["graphData"] as? [[String: Any]] {

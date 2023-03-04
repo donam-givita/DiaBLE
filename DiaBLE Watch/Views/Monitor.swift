@@ -74,7 +74,7 @@ struct Monitor: View {
                     }
 
                     if app.oopAlarm.description.count + app.oopTrend.description.count != 0 {
-                        Text("\(app.oopAlarm.description.replacingOccurrences(of: "_", with: " ")) - \(app.oopTrend.description.replacingOccurrences(of: "_", with: " "))")
+                        Text("\(app.oopAlarm.description.replacingOccurrences(of: "_", with: " "))\(app.oopAlarm.description != "" ? " - " : "")\(app.oopTrend.description.replacingOccurrences(of: "_", with: " "))")
                             .font(.footnote).foregroundColor(.blue).lineLimit(1)
                     }
 
