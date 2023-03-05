@@ -219,7 +219,7 @@ class LibreLinkUp: Logging {
                                     let patientId = connection["patientId"] as! String
                                     log("LibreLinkUp: first patient Id: \(patientId)")
                                     DispatchQueue.main.async {
-                                        self.main.settings.libreLinkUpPatientId = id
+                                        self.main.settings.libreLinkUpPatientId = patientId
                                     }
                                 }
                             }
