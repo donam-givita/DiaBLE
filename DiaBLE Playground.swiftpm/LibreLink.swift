@@ -172,9 +172,7 @@ class LibreLinkUp: Logging {
                             self.main.settings.libreLinkUpTokenExpirationDate = Date(timeIntervalSince1970: Double(authTicket.expires))
                         }
 
-                        // TODO: determine regional server
                         if await !main.settings.libreLinkUpCountry.isEmpty {
-
                             // default "de" and "fr" regional servers
                             let defaultRegion = await regions.contains(country.lowercased()) ? country.lowercased() : main.settings.libreLinkUpRegion
 
@@ -201,6 +199,32 @@ class LibreLinkUp: Logging {
                                 throw LibreLinkUpError.jsonDecoding
                             }
                         }
+
+                        // TODO: follower mode
+                        if await main.settings.libreLinkUpFollowing {
+                            self.log("LibreLinkUp: getting connections for follower user id: \(id)")
+                            var request = URLRequest(url: URL(string: "\(regionalSiteURL)/\(connectionsEndpoint)")!)
+                            var authenticatedHeaders = headers
+                            authenticatedHeaders["Authorization"] = await "Bearer \(main.settings.libreLinkUpToken)"
+                            for (header, value) in authenticatedHeaders {
+                                request.setValue(value, forHTTPHeaderField: header)
+                            }
+                            debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
+                            let (data, response) = try await URLSession.shared.data(for: request)
+                            debugLog("LibreLinkUp: response data: \(data.string.trimmingCharacters(in: .newlines)), status: \((response as! HTTPURLResponse).statusCode)")
+                            if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                               let data = json["data"] as? [[String: Any]] {
+                                if data.count > 0 {
+                                    let connection = data[0]
+                                    let patientId = connection["patientId"] as! String
+                                    log("LibreLinkUp: first patient Id: \(patientId)")
+                                    DispatchQueue.main.async {
+                                        self.main.settings.libreLinkUpPatientId = id
+                                    }
+                                }
+                            }
+                        }
+
                     }
                 }
                 return (data, response)
@@ -360,7 +384,7 @@ class LibreLinkUp: Logging {
                                let token = ticketDict["token"] as? String {
                                 self.log("LibreLinkUp: new token for logbook: \(token)")
                                 request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-                                request.url =  URL(string: "\(regionalSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/logbook")!
+                                request.url = URL(string: "\(regionalSiteURL)/\(connectionsEndpoint)/\(await main.settings.libreLinkUpPatientId)/logbook")!
                                 debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
                                 let (data, response) = try await URLSession.shared.data(for: request)
                                 debugLog("LibreLinkUp: response data: \(data.string.trimmingCharacters(in: .newlines)), status: \((response as! HTTPURLResponse).statusCode)")

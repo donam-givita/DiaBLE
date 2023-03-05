@@ -38,6 +38,7 @@ class Settings: ObservableObject {
         "libreLinkUpRegion": "eu",
         "libreLinkUpToken": "",
         "libreLinkUpTokenExpirationDate": Date.distantPast,
+        "libreLinkUpFollowing": false,
         "libreLinkUpScrapingLogbook": false,
 
         "onlineInterval": 5,
@@ -191,6 +192,10 @@ class Settings: ObservableObject {
 
     @Published var libreLinkUpTokenExpirationDate: Date = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "libreLinkUpTokenExpirationDate")) {
         didSet { UserDefaults.standard.set(self.libreLinkUpTokenExpirationDate.timeIntervalSince1970, forKey: "libreLinkUpTokenExpirationDate") }
+    }
+
+    @Published var libreLinkUpFollowing: Bool = UserDefaults.standard.bool(forKey: "libreLinkUpFollowing") {
+        didSet { UserDefaults.standard.set(self.libreLinkUpFollowing, forKey: "libreLinkUpFollowing") }
     }
 
     @Published var libreLinkUpScrapingLogbook: Bool = UserDefaults.standard.bool(forKey: "libreLinkUpScrapingLogbook") {
