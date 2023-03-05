@@ -151,6 +151,16 @@ struct OnlineView: View {
                             }
                         }
 
+                        Button {
+                            withAnimation { settings.libreLinkUpFollowing.toggle() }
+                                libreLinkUpResponse = "[...]"
+                                Task {
+                                    await reloadLibreLinkUp()
+                            }
+                        } label: {
+                            Image(systemName: settings.libreLinkUpFollowing ? "f.circle.fill" : "f.circle").resizable().frame(width: 32, height: 32).foregroundColor(.blue)
+                        }
+
                         VStack(spacing: 0) {
 
                             Button {

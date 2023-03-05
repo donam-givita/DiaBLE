@@ -190,6 +190,17 @@ struct OnlineView: View {
                             }
                     }
                 }.font(.footnote)
+
+                Toggle(isOn: $settings.libreLinkUpFollowing) {
+                    Text("Follower")
+                }
+                .onChange(of: settings.libreLinkUpFollowing) { _ in
+                    settings.libreLinkUpPatientId = ""
+                    libreLinkUpResponse = "[Logging in...]"
+                    Task {
+                        await reloadLibreLinkUp()
+                    }
+                }
             }
 
             if app.selectedService == .nightscout {
