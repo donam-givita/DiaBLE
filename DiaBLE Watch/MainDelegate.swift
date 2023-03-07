@@ -3,7 +3,6 @@ import CoreBluetooth
 import AVFoundation
 
 
-//public class MainDelegate: NSObject, UNUserNotificationCenterDelegate {
 public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDelegate {
 
     var app: AppState
@@ -18,7 +17,6 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
     var healthKit: HealthKit?
     var libreLinkUp: LibreLinkUp?
     var nightscout: Nightscout?
-    //    var eventKit: EventKit?
 
 
     override init() {
@@ -61,12 +59,6 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
         libreLinkUp = LibreLinkUp(main: self)
         nightscout = Nightscout(main: self)
         nightscout!.read()
-        //        eventKit = EventKit(main: self)
-        //        eventKit?.sync()
-        //
-        //
-        //        UNUserNotificationCenter.current().delegate = self
-        //        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
 
         let numberFormatter = NumberFormatter()
         numberFormatter.minimumFractionDigits = 8
@@ -74,6 +66,7 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
 
         // features currently in beta testing
         if settings.userLevel >= .test {
+            Libre3.testAESCCM()
             // app.sensor = LibrePro.test(main: self)
         }
 
@@ -265,44 +258,10 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
 
         if currentGlucose > 0 && (currentGlucose > Int(settings.alarmHigh) || currentGlucose < Int(settings.alarmLow)) {
             log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted audio: \(settings.mutedAudio ? "yes" : "no")), \(snoozed ? "" : "not ")snoozed")
-    
+
             if !snoozed {
                 playAlarm()
-                //            if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications {
-                //                title += "  \(settings.glucoseUnit)"
-                //                                let oopAlarm = self.main.app.oopAlarm
-                //                if oopAlarm != .unknown {
-                //                    title += "  \(oopAlarm.shortDescription)"
-                //                } else {
-                //                    if currentGlucose > Int(self.main.settings.alarmHigh) {
-                //                        title += "  HIGH"
-                //                    }
-                //                    if currentGlucose < Int(self.main.settings.alarmLow) {
-                //                        title += "  LOW"
-                //                    }
-                //                }
-                //                let oopTrend = self.main.app.oopTrend
-                //                if oopTrend != .unknown {
-                //                    title += "  \(oopTrend.symbol)"
-                //                }
-                //                let content = UNMutableNotificationContent()
-                //                content.title = title
-                //                content.subtitle = ""
-                //                content.sound = UNNotificationSound.default
-                //                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                //                let request = UNNotificationRequest(identifier: "DiaBLE", content: content, trigger: trigger)
-                //                UNUserNotificationCenter.current().add(request)
-                //            }
             }
-
-            //        if !settings.disabledNotifications {
-            //            UIApplication.shared.applicationIconBadgeNumber = settings.displayingMillimoles ?
-            //                Int(Float(currentGlucose.units)! * 10) : glucoseunit
-            //        } else {
-            //            UIApplication.shared.applicationIconBadgeNumber = 0
-            //        }
-            //
-            //        eventKit?.sync()
         }
 
         if !snoozed {
@@ -325,9 +284,6 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
                 healthKit?.write(newEntries)
                 healthKit?.read()
             }
-
-            // TODO
-            // nightscout?.delete(query: "find[device]=OOP&count=32") { data, response, error in
 
             nightscout?.read { values in
                 let newEntries = values.count > 0 ? entries.filter { $0.date > values[0].date } : entries

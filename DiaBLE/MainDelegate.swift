@@ -70,6 +70,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
 
         // features currently in beta testing
         if settings.userLevel >= .test {
+            Libre3.testAESCCM()
             // app.sensor = LibrePro.test(main: self)
         }
 
@@ -344,9 +345,6 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                 healthKit?.write(newEntries)
                 healthKit?.read()
             }
-
-            // TODO
-            // nightscout?.delete(query: "find[device]=OOP&count=32") { data, response, error in
 
             nightscout?.read { values in
                 let newEntries = values.count > 0 ? entries.filter { $0.date > values[0].date } : entries
