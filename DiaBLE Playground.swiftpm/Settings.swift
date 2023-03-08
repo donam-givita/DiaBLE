@@ -53,6 +53,9 @@ class Settings: ObservableObject {
         "activeSensorCalibrationInfo": try! JSONEncoder().encode(CalibrationInfo()),
         "activeSensorBlePIN": Data(),
 
+        "activeTransmitterSerial": "",
+        "activeSensorCode": "",
+
         "calibrating": false,
         "calibration": try! JSONEncoder().encode(Calibration()),
         "usingOOP": false,
@@ -258,6 +261,14 @@ class Settings: ObservableObject {
 
     @Published var oopCalibration: Calibration = try! JSONDecoder().decode(Calibration.self, from: UserDefaults.standard.data(forKey: "oopCalibration")!) {
         didSet { UserDefaults.standard.set(try! JSONEncoder().encode(self.oopCalibration), forKey: "oopCalibration") }
+    }
+
+    @Published var activeTransmitterSerial: String = UserDefaults.standard.string(forKey: "activeTransmitterSerial")! {
+        didSet { UserDefaults.standard.set(self.activeTransmitterSerial, forKey: "activeTransmitterSerial") }
+    }
+
+    @Published var activeSensorCode: String = UserDefaults.standard.string(forKey: "activeSensorCode")! {
+        didSet { UserDefaults.standard.set(self.activeSensorCode, forKey: "activeSensorCode") }
     }
 
     @Published var patchUid: SensorUid = UserDefaults.standard.data(forKey: "patchUid")! {
