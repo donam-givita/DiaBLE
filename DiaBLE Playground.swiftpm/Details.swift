@@ -52,8 +52,9 @@ struct Details: View {
                     }
                 }
 
-                // TODO rescan
-                if (app.device != nil && app.device.type == .transmitter(.dexcom)) || settings.preferredTransmitter == .dexcom {
+                // TODO
+                if ((app.device != nil && app.device.type == .transmitter(.dexcom)) || settings.preferredTransmitter == .dexcom)
+                    && (settings.activeTransmitterSerial.isEmpty || settings.activeTransmitterSerial.prefix(4) == "XXXX" || settings.activeSensorCode.isEmpty) {
 
                     Section(header: Text("BLE Setup").font(.headline)) {
 
