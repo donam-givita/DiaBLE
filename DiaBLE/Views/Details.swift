@@ -212,7 +212,7 @@ struct Details: View {
                                     HStack {
                                         Text("i3")
                                         TextField("i3", value: $settings.activeSensorCalibrationInfo.i3,
-                                                  formatter: NumberFormatter()).keyboardType(.numbersAndPunctuation).multilineTextAlignment(.trailing).foregroundColor(.blue).foregroundColor(.blue)
+                                                  formatter: NumberFormatter()).keyboardType(.numbersAndPunctuation).multilineTextAlignment(.trailing).foregroundColor(.blue)
                                     }
                                     HStack {
                                         Text("i4")
