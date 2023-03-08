@@ -136,6 +136,13 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             }
             settings.activeSensorSerial = app.device.serial
 
+        } else if name!.hasPrefix("Dexcom") {
+            app.transmitter = Dexcom(peripheral: peripheral, main: main)
+            app.device = app.transmitter
+            app.device.name = String(name!.prefix(6))
+            app.device.serial = "XXXX" + name!.suffix(2)
+            // TODO: settings.activeTransmitterSerial
+
         } else if name!.lowercased().hasPrefix("blu") {
             app.transmitter = BluCon(peripheral: peripheral, main: main)
             app.device = app.transmitter

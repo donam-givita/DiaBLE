@@ -21,6 +21,10 @@ class Dexcom: Transmitter {
         case control        = "F8083534-849E-531C-C594-30F1F86A4EA5"
         case authentication = "F8083535-849E-531C-C594-30F1F86A4EA5"
         case backfill       = "F8083536-849E-531C-C594-30F1F86A4EA5"
+        // Unknown attribute present on older G6 transmitters
+        case unknown1       = "F8083537-849E-531C-C594-30F1F86A4EA5"
+        // Updated G6 characteristic (read/notify)
+        case unknown2       = "F8083538-849E-531C-C594-30F1F86A4EA5"
 
         var description: String {
             switch self {
@@ -30,6 +34,8 @@ class Dexcom: Transmitter {
             case .control:        return "control"
             case .authentication: return "authentication"
             case .backfill:       return "backfill"
+            case .unknown1:       return "unknown 1"
+            case .unknown2:       return "unknown 2"
             }
         }
     }
