@@ -50,6 +50,29 @@ struct Details: View {
                     }
                 }
 
+                // TODO
+                if (app.device != nil && app.device.type == .transmitter(.dexcom)) || settings.preferredTransmitter == .dexcom {
+
+                    Section(header: Text("BLE Setup")) {
+
+                        HStack {
+                            Text("Transmitter Serial")
+                            TextField("Transmitter Serial", text: $settings.activeTransmitterSerial)
+                                .multilineTextAlignment(.trailing)
+                                .foregroundColor(.blue)
+                        }
+
+                        HStack {
+                            Text("Sensor Code")
+                            TextField("Sensor Code", text: $settings.activeSensorCode)
+                                .multilineTextAlignment(.trailing)
+                                .foregroundColor(.blue)
+                        }
+
+                        // TODO repair button to rescan
+                    }
+                }
+
                 if app.device != nil {
 
                     Section(header: Text("Device")) {
@@ -281,16 +304,16 @@ struct Details: View {
                             .foregroundColor(.blue)
                         Text(!app.deviceState.isEmpty && app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
                              "\(readingCountdown) s" : "...")
-                            .fixedSize()
-                            .foregroundColor(.orange).font(Font.footnote.monospacedDigit())
-                            .onReceive(timer) { _ in
-                                // workaround: watchOS fails converting the interval to an Int32
-                                if app.lastConnectionDate == Date.distantPast {
-                                    readingCountdown = 0
-                                } else {
-                                    readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
-                                }
+                        .fixedSize()
+                        .foregroundColor(.orange).font(Font.footnote.monospacedDigit())
+                        .onReceive(timer) { _ in
+                            // workaround: watchOS fails converting the interval to an Int32
+                            if app.lastConnectionDate == Date.distantPast {
+                                readingCountdown = 0
+                            } else {
+                                readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                             }
+                        }
                     }
                 }
 
