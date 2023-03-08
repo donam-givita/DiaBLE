@@ -1,5 +1,10 @@
 import Foundation
+import CommonCrypto
 import CryptoSwift
+
+
+// https://github.com/LoopKit/OmniBLE/blob/dev/OmniBLE/Bluetooth/EnDecrypt/EnDecrypt.swift
+
 
 extension Libre3 {
 
@@ -21,5 +26,55 @@ extension Libre3 {
 }
 
 
-// https://github.com/LoopKit/OmniBLE/blob/dev/OmniBLE/Bluetooth/EnDecrypt/EnDecrypt.swift
+// https://github.com/LoopKit/CGMBLEKit/blob/dev/CGMBLEKit/AESCrypt.m
 // https://github.com/Faifly/xDrip/blob/develop/xDrip/Services/Bluetooth/DexcomG6/Logic/Messages/Outgoing/DexcomG6AuthChallengeTxMessage.swift
+
+
+private extension Data {
+    func aes128Encrypt(keyData: Data) -> Data? {
+        guard keyData.count == kCCKeySizeAES128 else { return nil }
+
+        let cryptLength = size_t(count + kCCBlockSizeAES128)
+        var cryptData = Data(count: cryptLength)
+
+        var numBytesEncrypted: size_t = 0
+        let options = CCOptions(kCCOptionPKCS7Padding | kCCOptionECBMode)
+
+        let cryptStatus: CCCryptorStatus = cryptData.withUnsafeMutableBytes {
+            guard let cryptBytes = $0.baseAddress else {
+                return CCCryptorStatus(kCCMemoryFailure)
+            }
+            let cryptStatus: CCCryptorStatus = self.withUnsafeBytes {
+                guard let dataBytes = $0.baseAddress else {
+                    return CCCryptorStatus(kCCMemoryFailure)
+                }
+                return keyData.withUnsafeBytes {
+                    guard let keyBytes = $0.baseAddress else {
+                        return CCCryptorStatus(kCCMemoryFailure)
+                    }
+                    return CCCrypt(
+                        CCOperation(kCCEncrypt),
+                        CCAlgorithm(kCCAlgorithmAES),
+                        options,
+                        keyBytes,
+                        kCCKeySizeAES128,
+                        nil,
+                        dataBytes,
+                        self.count,
+                        cryptBytes,
+                        cryptLength,
+                        &numBytesEncrypted
+                    )
+                }
+            }
+            return cryptStatus
+        }
+
+        if UInt32(cryptStatus) == UInt32(kCCSuccess) {
+            cryptData.count = numBytesEncrypted
+        } else {
+            return nil
+        }
+        return cryptData
+    }
+}

@@ -29,6 +29,7 @@ struct HamburgerMenu: View {
         "Nightscout LibreLink Up Uploader": "https://github.com/timoschlueter/nightscout-librelink-up",
         "@travisgoodspeed": "https://github.com/travisgoodspeed",
         "WoofWoof": "https://github.com/gshaviv/ninety-two",
+        "xDrip": "https://github.com/Faifly/xDrip",
         "xDrip+": "https://github.com/NightscoutFoundation/xDrip",
         "xDrip4iO5": "https://github.com/JohanDegraeve/xdripswift"
     ]
