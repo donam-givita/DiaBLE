@@ -282,10 +282,21 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 msg += " (\(Dexcom.UUID(rawValue: uuid)!.description))"
                 if uuid == Dexcom.dataReadCharacteristicUUID {
                     app.device.readCharacteristic = characteristic
+                    if settings.userLevel >= .test {
+                        peripheral.setNotifyValue(true, for: characteristic)
+                        msg += "; enabling notifications"
+                    }
                 } else if uuid == Dexcom.dataWriteCharacteristicUUID {
                     app.device.writeCharacteristic = characteristic
+                    if settings.userLevel >= .test {
+                        peripheral.setNotifyValue(true, for: characteristic)
+                        msg += "; enabling notifications"
+                    }
                 } else if uuid == Dexcom.UUID.backfill.rawValue {
-                    // don't activate notification also for it because of error: Encryption is insufficient
+                    if settings.userLevel >= .test {
+                        peripheral.setNotifyValue(true, for: characteristic)
+                        msg += "; enabling notifications"
+                    }
                 } else {
                     peripheral.setNotifyValue(true, for: characteristic)
                     msg += "; enabling notifications"
