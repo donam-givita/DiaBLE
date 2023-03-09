@@ -30,7 +30,8 @@ extension Libre3 {
 // https://github.com/Faifly/xDrip/blob/develop/xDrip/Services/Bluetooth/DexcomG6/Logic/Messages/Outgoing/DexcomG6AuthChallengeTxMessage.swift
 
 
-private extension Data {
+extension Data {
+
     func aes128Encrypt(keyData: Data) -> Data? {
         guard keyData.count == kCCKeySizeAES128 else { return nil }
 
