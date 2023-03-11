@@ -68,6 +68,7 @@ struct Details: View {
                         HStack {
                             Text("Sensor Code")
                             TextField("Sensor Code", text: $settings.activeSensorCode)
+                                .keyboardType(.numbersAndPunctuation)
                                 .multilineTextAlignment(.trailing)
                                 .foregroundColor(.blue)
                         }

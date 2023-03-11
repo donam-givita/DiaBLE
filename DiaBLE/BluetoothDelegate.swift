@@ -185,7 +185,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         }
         if let dataServiceUUIDs {
             // TODO: assign to device instance vars
-            log("Bluetooth: \(name!)'s data service UUIDs: \(dataServiceUUIDs)")
+            log("Bluetooth: \(name!)'s advertised data service UUIDs: \(dataServiceUUIDs)")
         }
         main.status("\(app.device.name)")
         app.device.peripheral?.delegate = self
