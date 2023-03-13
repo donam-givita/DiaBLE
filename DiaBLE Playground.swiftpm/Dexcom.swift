@@ -62,6 +62,9 @@ class Dexcom: Transmitter {
     // https://github.com/Faifly/xDrip/blob/develop/xDrip/Services/Bluetooth/DexcomG6/Logic/DexcomG6OpCode.swift
 
     enum Opcode: UInt8 {
+
+        case unknown = 0x00
+
         // Auth
         case authRequestTx = 0x01
 
@@ -106,11 +109,13 @@ class Dexcom: Transmitter {
         case transmitterVersionTx = 0x4a
         case transmitterVersionRx = 0x4b
 
-        case glucoseG6Tx = 0x4e
+        case glucoseG6Tx = 0x4e  // also G7
         case glucoseG6Rx = 0x4f
 
         case glucoseBackfillTx = 0x50
         case glucoseBackfillRx = 0x51
+
+        case backfillFinished = 0x59  // G7
 
         case keepAliveRx = 0xFF
     }
@@ -118,12 +123,36 @@ class Dexcom: Transmitter {
 
     override func read(_ data: Data, for uuid: String) {
 
+        let opCode = Opcode(rawValue: data[0]) ?? .unknown
+        log("\(name): opCode: \(String(describing: opCode))")
+
         switch UUID(rawValue: uuid) {
 
-        default:
-            if let sensor = sensor as? DexcomOne {
-                sensor.read(data, for: uuid)
+        case .authentication:
+
+            switch opCode {
+
+            case .authRequestRx:
+                let tokenHash = data.subdata(in: 1 ..< 9)
+                let challenge = data.subdata(in: 9 ..< 17)
+                log("\(name): tokenHash: \(tokenHash.hex), challenge: \(challenge.hex)")
+
+            case .authChallengeRx:
+                let isAuthenticated = data[1] == 1
+                let isBonded = data[2] == 1    // data[2] != 2
+                log("\(name): authenticated: \(isAuthenticated), bonded: \(isBonded)")
+
+            default:
+                break
+
             }
+
+        default:
+            break
+        }
+
+        if let sensor = sensor as? DexcomOne {
+            sensor.read(data, for: uuid)
         }
     }
 
