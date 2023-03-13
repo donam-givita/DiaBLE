@@ -121,13 +121,18 @@ class Dexcom: Transmitter {
     }
 
 
+    var activationTime: Date = Date.distantPast
     var isPaired: Bool = false
 
 
+    var opCode: Opcode = .unknown
+
     override func read(_ data: Data, for uuid: String) {
 
-        let opCode = Opcode(rawValue: data[0]) ?? .unknown
-        log("\(name): opCode: \(String(describing: opCode))")
+        if uuid == UUID.authentication.rawValue ||  uuid == UUID.control.rawValue {
+            opCode = Opcode(rawValue: data[0]) ?? .unknown
+            log("\(name): opCode: \(String(describing: opCode)) (0x\(data[0].hex))")
+        }
 
         switch UUID(rawValue: uuid) {
 
@@ -157,6 +162,48 @@ class Dexcom: Transmitter {
                 break
 
             }
+
+
+        case .control:
+
+            switch opCode {
+
+            case .transmitterTimeRx:
+                break
+                // TODO
+
+            case .glucoseG6Rx:
+                break
+                // TODO
+
+            case .calibrationDataRx:
+                break
+                // TODO
+
+            case .glucoseBackfillRx:
+                let status = data[1]
+                let backfillStatus = data[2]
+                let identifier = data[3]
+                let startTime = TimeInterval(UInt32(data[4..<8]))
+                let endTime = TimeInterval(UInt32(data[8..<12]))
+                let bufferLength = UInt32(data[12..<16])
+                let bufferCRC = UInt16(data[16..<18])
+                log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime), end time: \(endTime), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: TODO")
+                // TODO
+
+            default:
+                break
+            }
+
+
+            // https://github.com/LoopKit/CGMBLEKit/blob/dev/CGMBLEKit/Messages/GlucoseBackfillMessage.swift
+            // https://github.com/Faifly/xDrip/blob/develop/xDrip/Services/Bluetooth/DexcomG6/Logic/Messages/Incoming/DexcomG6BackfillStream.swift
+
+        case .backfill:
+            let index = data[0]
+            log("\(name): backfill stream: received packet # \(index)")
+            // TODO
+
 
         default:
             break
