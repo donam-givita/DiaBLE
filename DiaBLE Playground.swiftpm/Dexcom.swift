@@ -145,6 +145,14 @@ class Dexcom: Transmitter {
                 let isBonded = data[2] == 1    // data[2] != 2
                 log("\(name): authenticated: \(isAuthenticated), bonded: \(isBonded)")
 
+                // TODO
+                isPaired = isBonded
+                if isPaired {
+                    peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.communication.rawValue]!)
+                    peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.control.rawValue]!)
+                    peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.backfill.rawValue]!)
+                }
+
             default:
                 break
 
