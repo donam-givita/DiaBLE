@@ -27,8 +27,13 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 main.errorStatus("Bluetooth on but stopped")
             } else {
                 log("Bluetooth: state: powered on")
+                // TODO: check preferred transmitter
                 if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Libre3.UUID.data.rawValue)]).first {
                     centralManager(centralManager, didDiscover: peripheral, advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Libre3.UUID.data.rawValue)]], rssi: 0)
+                    log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
+                } else if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)]).first {
+                    centralManager(centralManager, didDiscover: peripheral, advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)]], rssi: 0)
+                    log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
                 } else {
                     centralManager.scanForPeripherals(withServices: nil, options: nil)
                     main.status("Scanning...")
@@ -280,23 +285,33 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
             if Dexcom.knownUUIDs.contains(uuid) {
                 msg += " (\(Dexcom.UUID(rawValue: uuid)!.description))"
+
                 if uuid == Dexcom.dataReadCharacteristicUUID {
                     app.device.readCharacteristic = characteristic
                     if settings.userLevel >= .test {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
+                    } else {
+                        msg += "; avoid enabling notifications because of 'Encryption is insufficient' error"
                     }
+
                 } else if uuid == Dexcom.dataWriteCharacteristicUUID {
                     app.device.writeCharacteristic = characteristic
                     if settings.userLevel >= .test {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
+                    } else {
+                        msg += "; avoid enabling notifications because of 'Encryption is insufficient' error"
                     }
+
                 } else if uuid == Dexcom.UUID.backfill.rawValue {
                     if settings.userLevel >= .test {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
+                    } else {
+                        msg += "; avoid enabling notifications because of 'Encryption is insufficient' error"
                     }
+
                 } else {
                     peripheral.setNotifyValue(true, for: characteristic)
                     msg += "; enabling notifications"
@@ -536,6 +551,9 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         if let characteristicDescription = Libre3.UUID(rawValue: characteristicString)?.description {
             characteristicString = characteristicDescription
         }
+        if let characteristicDescription = Dexcom.UUID(rawValue: characteristicString)?.description {
+            characteristicString = characteristicDescription
+        }
         var msg = "Bluetooth: \(name) did update notification state for \(characteristicString) characteristic"
         msg += ": \(characteristic.isNotifying ? "" : "not ")notifying"
         if let descriptors = characteristic.descriptors { msg += ", descriptors: \(descriptors)" }
@@ -569,6 +587,9 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             characteristicString = "data read"
         }
         if let characteristicDescription = Libre3.UUID(rawValue: characteristicString)?.description {
+            characteristicString = characteristicDescription
+        }
+        if let characteristicDescription = Dexcom.UUID(rawValue: characteristicString)?.description {
             characteristicString = characteristicDescription
         }
 

@@ -5,7 +5,7 @@ import CoreBluetooth
 // https://github.com/LoopKit/CGMBLEKit
 // https://github.com/LoopKit/G7SensorKit
 // https://github.com/Faifly/xDrip/blob/develop/xDrip/Services/Bluetooth/DexcomG6/
-// https://github.com/JohanDegraeve/xdripswift/blob/master/xdrip/BluetoothTransmitter/CGM/Dexcom/G6Firefly/
+// https://github.com/JohanDegraeve/xdripswift/blob/master/xdrip/BluetoothTransmitter/CGM/Dexcom/G5/CGMG5Transmitter.swift
 // https://github.com/NightscoutFoundation/xDrip/tree/master/app/src/main/java/com/eveningoutpost/dexdrip/G5Model/
 // https://github.com/NightscoutFoundation/xDrip/blob/master/app/src/main/java/com/eveningoutpost/dexdrip/services/G5CollectionService.java
 
@@ -119,6 +119,9 @@ class Dexcom: Transmitter {
 
         case keepAliveRx = 0xFF
     }
+
+
+    var isPaired: Bool = false
 
 
     override func read(_ data: Data, for uuid: String) {
