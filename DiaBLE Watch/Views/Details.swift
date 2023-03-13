@@ -72,13 +72,9 @@ struct Details: View {
 
                         Button {
                             app.main.rescan()
-                        } label: {
-                            VStack {
-                                Image("Bluetooth").renderingMode(.template).resizable().frame(width: 24, height: 24)
-                            }
+                        } label: { Label { Text("RePair") } icon: { Image("Bluetooth").renderingMode(.template).resizable().frame(width: 32, height: 32)
+                        }.foregroundColor(.blue)
                         }
-
-                        // TODO repair button to rescan
                     }
                 }
 
