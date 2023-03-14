@@ -144,6 +144,14 @@ class Dexcom: Transmitter {
                 let tokenHash = data.subdata(in: 1 ..< 9)
                 let challenge = data.subdata(in: 9 ..< 17)
                 log("\(name): tokenHash: \(tokenHash.hex), challenge: \(challenge.hex)")
+                // TODO
+                // guard serial.count == 6 else { throw Error }
+                let doubleChallenge = challenge + challenge
+                let cryptKey = "00\(serial)00\(serial)".data(using: .utf8)!
+                let encrypted = doubleChallenge.aes128Encrypt(keyData: cryptKey)!
+                let challengeResponse = Data([(Opcode.authChallengeTx.rawValue)]) + encrypted[0 ..< 8]
+                log("\(name): .authChallengeTx: plain: \(doubleChallenge.hex), key: \(cryptKey.hex), encrypted: \(encrypted.hex), response: \(challengeResponse.hex)")
+                // write(challengeResponse, for: UUID.authentication.rawValue, .withResponse)
 
             case .authChallengeRx:
                 let isAuthenticated = data[1] == 1

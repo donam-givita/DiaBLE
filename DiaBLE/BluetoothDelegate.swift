@@ -462,7 +462,6 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             if sensor == nil || sensor.type != .dexcomOne {
                 sensor = DexcomOne(transmitter: app.transmitter)
                 sensor.type = .dexcomOne
-                sensor.state = .active
                 app.sensor = sensor
             }
             app.transmitter.sensor = sensor
