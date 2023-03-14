@@ -169,8 +169,11 @@ class Dexcom: Transmitter {
             switch opCode {
 
             case .transmitterTimeRx:
-                break
-                // TODO
+                let status = data[1]  // 0: ok, 0x81: lowBattery
+                let age = TimeInterval(UInt32(data[2..<6]))
+                let sessionStartTime = TimeInterval(UInt32(data[6..<10]))
+                log("\(name): transmitter status: 0x\(status.hex), age \(Int(age/60).formattedInterval), session start time: \(Int(sessionStartTime/60).formattedInterval), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
+
 
             case .glucoseG6Rx:
                 break
@@ -235,4 +238,24 @@ class DexcomOne: Sensor {
 
     }
 
+}
+
+
+// crcCCITTXModem: https://github.com/LoopKit/CGMBLEKit/blob/dev/CGMBLEKit/NSData+CRC.swift
+
+extension Data {
+    var crc: UInt16 {
+        var crc: UInt16 = 0
+        for byte in self {
+            crc ^= UInt16(byte) << 8
+            for _ in 0..<8 {
+                if crc & 0x8000 != 0 {
+                    crc = crc << 1 ^ 0x1021
+                } else {
+                    crc = crc << 1
+                }
+            }
+        }
+        return crc
+    }
 }
