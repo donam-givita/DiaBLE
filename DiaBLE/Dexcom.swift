@@ -118,6 +118,9 @@ class Dexcom: Transmitter {
         case backfillFinished = 0x59  // G7
 
         case keepAliveRx = 0xFF
+
+
+        var data: Data { Data([rawValue]) }
     }
 
 
@@ -149,7 +152,7 @@ class Dexcom: Transmitter {
                 let doubleChallenge = challenge + challenge
                 let cryptKey = "00\(serial)00\(serial)".data(using: .utf8)!
                 let encrypted = doubleChallenge.aes128Encrypt(keyData: cryptKey)!
-                let challengeResponse = Data([(Opcode.authChallengeTx.rawValue)]) + encrypted[0 ..< 8]
+                let challengeResponse = Opcode.authChallengeTx.data + encrypted[0 ..< 8]
                 log("\(name): .authChallengeTx: plain: \(doubleChallenge.hex), key: \(cryptKey.hex), encrypted: \(encrypted.hex), response: \(challengeResponse.hex)")
                 // write(challengeResponse, for: UUID.authentication.rawValue, .withResponse)
 
