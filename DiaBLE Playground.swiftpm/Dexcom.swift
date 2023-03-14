@@ -121,7 +121,7 @@ class Dexcom: Transmitter {
     }
 
 
-    var activationTime: Date = Date.distantPast
+    var activationDate: Date = Date.distantPast
     var isPaired: Bool = false
 
 
@@ -169,22 +169,30 @@ class Dexcom: Transmitter {
             switch opCode {
 
             case .transmitterTimeRx:
-                let status = data[1]  // 0: ok, 0x81: lowBattery
+                let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
                 let age = TimeInterval(UInt32(data[2..<6]))
+                activationDate = Date.now - age
                 let sessionStartTime = TimeInterval(UInt32(data[6..<10]))
-                log("\(name): transmitter status: 0x\(status.hex), age \(Int(age/60).formattedInterval), session start time: \(Int(sessionStartTime/60).formattedInterval), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
-
+                log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), session start time: \(sessionStartTime.formattedInterval), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), activation date: \(activationDate)")
 
             case .glucoseG6Rx:
-                break
-                // TODO
+                let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
+                let sequence = UInt32(data[2..<6])
+                let timestamp = UInt32(data[6..<10])
+                let date = activationDate + TimeInterval(timestamp)
+                let glucoseBytes = UInt16(data[10..<12])
+                let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
+                let glucose = glucoseBytes & 0xfff
+                let state = data[12]  // CalibrationState, DexcomAlgorithmState
+                let trend = Int8(bitPattern: data[13])
+                log("\(name): glucose: status: 0x\(status.hex), sequence: \(sequence), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
 
             case .calibrationDataRx:
                 break
                 // TODO
 
             case .glucoseBackfillRx:
-                let status = data[1]
+                let status = data[1]   // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
                 let backfillStatus = data[2]
                 let identifier = data[3]
                 let startTime = TimeInterval(UInt32(data[4..<8]))
@@ -238,6 +246,63 @@ class DexcomOne: Sensor {
 
     }
 
+}
+
+
+// TODO: https://github.com/JohanDegraeve/xdripswift/blob/master/xdrip/BluetoothTransmitter/CGM/Dexcom/Generic/DexcomAlgorithmState.swift
+
+enum DexcomAlgorithmState: UInt8, CustomStringConvertible {
+    case none = 0x00
+    case sessionStopped = 0x01
+    case sensorWarmup = 0x02
+    case excessNoise = 0x03
+    case firstOfTwoBGsNeeded = 0x04
+    case secondOfTwoBGsNeeded = 0x05
+    case okay = 0x06
+    case needsCalibration = 0x07
+    case calibrationError1 = 0x08
+    case calibrationError2 = 0x09
+    case calibrationLinearityFitFailure = 0x0A
+    case sensorFailedDuetoCountsAberration = 0x0B
+    case sensorFailedDuetoResidualAberration = 0x0C
+    case outOfCalibrationDueToOutlier = 0x0D
+    case outlierCalibrationRequest = 0x0E
+    case sessionExpired = 0x0F
+    case sessionFailedDueToUnrecoverableError = 0x10
+    case sessionFailedDueToTransmitterError = 0x11
+    case temporarySensorIssue = 0x12
+    case sensorFailedDueToProgressiveSensorDecline = 0x13
+    case sensorFailedDueToHighCountsAberration = 0x14
+    case sensorFailedDueToLowCountsAberration = 0x15
+    case sensorFailedDueToRestart = 0x16
+
+    public var description: String {
+        switch self {
+        case .none: return "none"
+        case .sessionStopped: return "session stopped"
+        case .sensorWarmup: return "sensor warmup"
+        case .excessNoise: return "excess noise"
+        case .firstOfTwoBGsNeeded: return "First of two BGs needed"
+        case .secondOfTwoBGsNeeded: return "Second of two BGs needed"
+        case .okay: return "OK / Calibrated"
+        case .needsCalibration: return "needs calibration"
+        case .calibrationError1: return "calibration error 1"
+        case .calibrationError2: return "calibration error 2"
+        case .calibrationLinearityFitFailure: return "calibration linearity fit failure"
+        case .sensorFailedDuetoCountsAberration: return "sensor failed due to counts aberration"
+        case .sensorFailedDuetoResidualAberration: return "sensor failed due to residual aberration"
+        case .outOfCalibrationDueToOutlier: return "out of calibration due to outlier"
+        case .outlierCalibrationRequest: return "outlier calibration request"
+        case .sessionExpired: return "session expired"
+        case .sessionFailedDueToUnrecoverableError: return "session failed due to unrecoverable error"
+        case .sessionFailedDueToTransmitterError: return "session failed due to transmitter error"
+        case .temporarySensorIssue: return "temporary sensor issue"
+        case .sensorFailedDueToProgressiveSensorDecline: return "sensor failed due to progressive sensor decline"
+        case .sensorFailedDueToHighCountsAberration: return "sensor failed due to high counts aberration"
+        case .sensorFailedDueToLowCountsAberration: return "sensor failed due to low counts aberration"
+        case .sensorFailedDueToRestart: return "sensor failed due to restart"
+        }
+    }
 }
 
 
