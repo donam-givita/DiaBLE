@@ -467,6 +467,19 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             log("\(app.device.name): writing start reading command 0x\(Data(readCommand).hex)")
             // app.device.write([0xD3, 0x01]); log("MiaoMiao: writing start new sensor command D301")
         }
+
+        // TODO: Dexcom
+        if app.device.type == .transmitter(.dexcom) && serviceUUID == Dexcom.dataServiceUUID {
+            var sensor: Sensor! = app.sensor
+            if sensor == nil || sensor.type != .dexcomOne {
+                sensor = DexcomOne(transmitter: app.transmitter)
+                sensor.type = .dexcomOne
+                sensor.state = .active
+                app.sensor = sensor
+            }
+            app.transmitter.sensor = sensor
+        }
+
     }
 
 
@@ -528,6 +541,9 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             characteristicString = "data write"
         }
         if let characteristicDescription = Libre3.UUID(rawValue: characteristicString)?.description {
+            characteristicString = characteristicDescription
+        }
+        if let characteristicDescription = Dexcom.UUID(rawValue: characteristicString)?.description {
             characteristicString = characteristicDescription
         }
         if error != nil {
