@@ -125,7 +125,9 @@ class Dexcom: Transmitter {
 
 
     var activationDate: Date = Date.distantPast
-    var isPaired: Bool = false
+
+    var authenticated: Bool = false
+    var bonded: Bool = false
 
 
     var opCode: Opcode = .unknown
@@ -147,23 +149,22 @@ class Dexcom: Transmitter {
                 let tokenHash = data.subdata(in: 1 ..< 9)
                 let challenge = data.subdata(in: 9 ..< 17)
                 log("\(name): tokenHash: \(tokenHash.hex), challenge: \(challenge.hex)")
-                // TODO
-                // guard serial.count == 6 else { throw Error }
-                let doubleChallenge = challenge + challenge
-                let cryptKey = "00\(serial)00\(serial)".data(using: .utf8)!
-                let encrypted = doubleChallenge.aes128Encrypt(keyData: cryptKey)!
-                let challengeResponse = Opcode.authChallengeTx.data + encrypted[0 ..< 8]
-                log("\(name): .authChallengeTx: plain: \(doubleChallenge.hex), key: \(cryptKey.hex), encrypted: \(encrypted.hex), response: \(challengeResponse.hex)")
-                // write(challengeResponse, for: UUID.authentication.rawValue, .withResponse)
+                if main.settings.userLevel < .test { // not sniffing
+                    let doubleChallenge = challenge + challenge
+                    let cryptKey = "00\(serial)00\(serial)".data(using: .utf8)!
+                    let encrypted = doubleChallenge.aes128Encrypt(keyData: cryptKey)!
+                    let challengeResponse = Opcode.authChallengeTx.data + encrypted[0 ..< 8]
+                    log("\(name): replying to challenge for transmitter serial \(serial): doubled challenge: \(doubleChallenge.hex), key: \(cryptKey.hex), encrypted: \(encrypted.hex), response: \(challengeResponse.hex)")
+                    write(challengeResponse, for: UUID.authentication.rawValue, .withResponse)
+                }
 
             case .authChallengeRx:
-                let isAuthenticated = data[1] == 1
-                let isBonded = data[2] == 1    // data[2] != 2
-                log("\(name): authenticated: \(isAuthenticated), bonded: \(isBonded)")
+                authenticated = data[1] == 1
+                bonded = data[2] == 1    // data[2] != 2
+                log("\(name): authenticated: \(authenticated), bonded: \(bonded)")
 
                 // TODO
-                isPaired = isBonded
-                if isPaired {
+                if bonded {
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.communication.rawValue]!)
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.control.rawValue]!)
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.backfill.rawValue]!)
@@ -210,7 +211,7 @@ class Dexcom: Transmitter {
                 let endTime = TimeInterval(UInt32(data[8..<12]))
                 let bufferLength = UInt32(data[12..<16])
                 let bufferCRC = UInt16(data[16..<18])
-                log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime), end time: \(endTime), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: TODO")
+                log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: TODO")
                 // TODO
 
             default:

@@ -425,7 +425,6 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 app.device.macAddress = settings.activeSensorAddress
             }
 
-            // TODO: Libre 3
             if serviceUUID == Libre3.UUID.security.rawValue {
                 if sensor.transmitter == nil { sensor.transmitter = app.transmitter }
                 if settings.userLevel < .test { // TEST: sniff Trident
@@ -443,7 +442,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 debugLog("Bluetooth: sent \(app.device.name) read security challenge")
 
             } else if sensor.uid.count > 0 && settings.activeSensorInitialPatchInfo.count > 0 {
-                if settings.userLevel < .test {  // TEST: sniff Libre 2
+                if settings.userLevel < .test {  // not sniffing Libre 2
                     sensor.streamingUnlockCount += 1
                     settings.activeSensorStreamingUnlockCount += 1
                     let unlockPayload = Libre2.streamingUnlockPayload(id: sensor.uid, info: settings.activeSensorInitialPatchInfo, enableTime: sensor.streamingUnlockCode, unlockCount: sensor.streamingUnlockCount)
@@ -468,7 +467,6 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             // app.device.write([0xD3, 0x01]); log("MiaoMiao: writing start new sensor command D301")
         }
 
-        // TODO: Dexcom
         if app.device.type == .transmitter(.dexcom) && serviceUUID == Dexcom.dataServiceUUID {
             var sensor: Sensor! = app.sensor
             if sensor == nil || sensor.type != .dexcomOne {
@@ -477,6 +475,15 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 app.sensor = sensor
             }
             app.transmitter.sensor = sensor
+            if settings.userLevel < .test { // not sniffing
+                // TODO: pair
+                var message = Dexcom.Opcode.authRequestTx.data
+                let singleUseToken = UUID().uuidString.data(using: .utf8)!.prefix(8)
+                message += singleUseToken
+                message.append(0x02)
+                log("Bluetooth: sending \(app.device.name) authentication request: \(message.hex)")
+                app.device.write(message, for: Dexcom.UUID.authentication.rawValue, .withResponse)
+            }
         }
 
     }
