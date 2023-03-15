@@ -277,6 +277,8 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
                 if uuid == Dexcom.UUID.communication.rawValue {
                     app.device.readCharacteristic = characteristic
+                    app.device.peripheral?.readValue(for: characteristic)
+                    msg += "; reading it"
                     if settings.userLevel >= .test && transmitterIsBonded {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
@@ -497,8 +499,9 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 app.device.buffer = Data()
                 centralManager.connect(peripheral, options: nil)
             } else {
-                app.device.lastConnectionDate = Date()
-                app.lastConnectionDate = app.device.lastConnectionDate
+                let lastConnectionDate = Date()
+                app.device?.lastConnectionDate = lastConnectionDate
+                app.lastConnectionDate = lastConnectionDate
                 // app.device = nil
                 // app.transmitter = nil
             }

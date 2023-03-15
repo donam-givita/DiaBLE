@@ -248,7 +248,7 @@ class DexcomOne: Sensor {
         switch Dexcom.UUID(rawValue: uuid) {
 
         case .communication:
-            break
+            log("\(transmitter!.peripheral!.name!): received \(data.count) \(Dexcom.UUID(rawValue: uuid)!) bytes: \(data.hex)")
             // TODO
 
         default:
