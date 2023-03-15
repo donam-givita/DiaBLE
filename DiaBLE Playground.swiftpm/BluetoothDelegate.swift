@@ -285,19 +285,20 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
             if Dexcom.knownUUIDs.contains(uuid) {
                 msg += " (\(Dexcom.UUID(rawValue: uuid)!.description))"
+                let transmitterIsBonded = (app.transmitter as? Dexcom)?.bonded ?? false
 
-                if uuid == Dexcom.dataReadCharacteristicUUID {
+                if uuid == Dexcom.UUID.communication.rawValue {
                     app.device.readCharacteristic = characteristic
-                    if settings.userLevel >= .test {
+                    if settings.userLevel >= .test && transmitterIsBonded {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
                     } else {
                         msg += "; avoid enabling notifications because of 'Encryption is insufficient' error"
                     }
 
-                } else if uuid == Dexcom.dataWriteCharacteristicUUID {
+                } else if uuid == Dexcom.UUID.control.rawValue {
                     app.device.writeCharacteristic = characteristic
-                    if settings.userLevel >= .test {
+                    if settings.userLevel >= .test && transmitterIsBonded {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
                     } else {
@@ -305,7 +306,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                     }
 
                 } else if uuid == Dexcom.UUID.backfill.rawValue {
-                    if settings.userLevel >= .test {
+                    if settings.userLevel >= .test && transmitterIsBonded {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
                     } else {
@@ -498,6 +499,10 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             let errorCode = CBError.Code(rawValue: (error! as NSError).code)! // 6 = timed out when out of range
             log("Bluetooth: error type \(errorCode.rawValue): \(error!.localizedDescription)")
             if app.transmitter != nil && (settings.preferredTransmitter == .none || settings.preferredTransmitter.id == app.transmitter.type.id) {
+                // TODO: Dexcom reconnection
+                if app.transmitter.type == .transmitter(.dexcom) {
+                    debugLog("DEBUG: Dexcom: TODO: nap before reconnecting")
+                }
                 app.deviceState = "Reconnecting..."
                 log("Bluetooth: reconnecting to \(name)...")
                 if errorCode == .connectionTimeout { main.errorStatus("Connection timed out. Waiting...") }
