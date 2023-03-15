@@ -50,32 +50,6 @@ struct Details: View {
                     }
                 }
 
-                // TODO
-                if (app.device != nil && app.device.type == .transmitter(.dexcom)) || settings.preferredTransmitter == .dexcom {
-
-                    Section(header: Text("BLE Setup")) {
-
-                        HStack {
-                            Text("Transmitter Serial")
-                            TextField("Transmitter Serial", text: $settings.activeTransmitterSerial)
-                                .multilineTextAlignment(.trailing)
-                                .foregroundColor(.blue)
-                        }
-
-                        HStack {
-                            Text("Sensor Code")
-                            TextField("Sensor Code", text: $settings.activeSensorCode)
-                                .multilineTextAlignment(.trailing)
-                                .foregroundColor(.blue)
-                        }
-
-                        Button {
-                            app.main.rescan()
-                        } label: { Label { Text("RePair") } icon: { Image("Bluetooth").renderingMode(.template).resizable().frame(width: 32, height: 32)
-                        }.foregroundColor(.blue)
-                        }
-                    }
-                }
 
                 if app.device != nil {
 
@@ -282,6 +256,35 @@ struct Details: View {
 
                     }
                 }
+
+
+                // TODO
+                if (app.device != nil && app.device.type == .transmitter(.dexcom)) || settings.preferredTransmitter == .dexcom {
+
+                    Section(header: Text("BLE Setup")) {
+
+                        HStack {
+                            Text("Transmitter Serial")
+                            TextField("Transmitter Serial", text: $settings.activeTransmitterSerial)
+                                .multilineTextAlignment(.trailing)
+                                .foregroundColor(.blue)
+                        }
+
+                        HStack {
+                            Text("Sensor Code")
+                            TextField("Sensor Code", text: $settings.activeSensorCode)
+                                .multilineTextAlignment(.trailing)
+                                .foregroundColor(.blue)
+                        }
+
+                        Button {
+                            app.main.rescan()
+                        } label: { Label { Text("RePair") } icon: { Image("Bluetooth").renderingMode(.template).resizable().frame(width: 32, height: 32)
+                        }.foregroundColor(.blue)
+                        }
+                    }
+                }
+
 
                 if settings.userLevel > .basic {
                     Section(header: Text("Known Devices")) {

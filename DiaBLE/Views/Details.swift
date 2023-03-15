@@ -52,43 +52,6 @@ struct Details: View {
                     }
                 }
 
-                // TODO
-                if (app.device != nil && app.device.type == .transmitter(.dexcom)) || settings.preferredTransmitter == .dexcom {
-
-                    Section(header: Text("BLE Setup").font(.headline)) {
-
-                        HStack {
-                            Text("Transmitter Serial")
-                            TextField("Transmitter Serial", text: $settings.activeTransmitterSerial)
-                                .multilineTextAlignment(.trailing)
-                                .foregroundColor(.blue)
-                        }
-
-                        HStack {
-                            Text("Sensor Code")
-                            TextField("Sensor Code", text: $settings.activeSensorCode)
-                                .keyboardType(.numbersAndPunctuation)
-                                .multilineTextAlignment(.trailing)
-                                .foregroundColor(.blue)
-                        }
-
-                        HStack {
-                            Spacer()
-                            Button {
-                                // TODO
-                                app.main.rescan()
-                            } label: {
-                                VStack(spacing: 0) {
-                                    Image("Bluetooth").renderingMode(.template).resizable().frame(width: 32, height: 32) .padding(.horizontal, 12)
-                                    Text("RePair").font(.footnote).bold().padding(.bottom, 4)
-                                }.overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.accentColor, lineWidth: 2.5))
-                            }
-                            .foregroundColor(.accentColor)
-                            Spacer()
-                        }.padding(.vertical, 4)
-
-                    }.font(.callout)
-                }
 
                 if app.device != nil {
 
@@ -309,6 +272,45 @@ struct Details: View {
                             } message: {
                                 Text("This device doesn't allow scanning the Libre.")
                             }
+                            Spacer()
+                        }.padding(.vertical, 4)
+
+                    }.font(.callout)
+                }
+
+
+                // TODO
+                if (app.device != nil && app.device.type == .transmitter(.dexcom)) || settings.preferredTransmitter == .dexcom {
+
+                    Section(header: Text("BLE Setup").font(.headline)) {
+
+                        HStack {
+                            Text("Transmitter Serial")
+                            TextField("Transmitter Serial", text: $settings.activeTransmitterSerial)
+                                .multilineTextAlignment(.trailing)
+                                .foregroundColor(.blue)
+                        }
+
+                        HStack {
+                            Text("Sensor Code")
+                            TextField("Sensor Code", text: $settings.activeSensorCode)
+                                .keyboardType(.numbersAndPunctuation)
+                                .multilineTextAlignment(.trailing)
+                                .foregroundColor(.blue)
+                        }
+
+                        HStack {
+                            Spacer()
+                            Button {
+                                // TODO
+                                app.main.rescan()
+                            } label: {
+                                VStack(spacing: 0) {
+                                    Image("Bluetooth").renderingMode(.template).resizable().frame(width: 32, height: 32) .padding(.horizontal, 12)
+                                    Text("RePair").font(.footnote).bold().padding(.bottom, 4)
+                                }.overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.accentColor, lineWidth: 2.5))
+                            }
+                            .foregroundColor(.accentColor)
                             Spacer()
                         }.padding(.vertical, 4)
 
