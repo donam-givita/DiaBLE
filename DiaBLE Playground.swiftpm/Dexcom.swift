@@ -211,13 +211,13 @@ class Dexcom: Transmitter {
                 let endTime = TimeInterval(UInt32(data[8..<12]))
                 let bufferLength = UInt32(data[12..<16])
                 let bufferCRC = UInt16(data[16..<18])
-                log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: \(buffer.crc)")
+                log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: \(buffer.crc.hex)")
                 var packets = [Data]()
                 for i in 0 ..< (buffer.count + 19) / 20 {
                     packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
                 }
                 // Drop the first 2 bytes from each frame and the first 4 bytes from the combined message
-                let glucoseData = packets.reduce(into: Data(), { $0.append($1.dropFirst(2)) }).dropFirst(4)
+                let glucoseData = Data(packets.reduce(into: Data(), { $0.append($1.dropFirst(2)) }).dropFirst(4))
                 var history = [Glucose]()
                 for p in 0 ..< glucoseData.count / 8 {
                     let data = glucoseData.subdata(in: p * 8 ..< (p + 1) * 8)
