@@ -219,8 +219,8 @@ class Dexcom: Transmitter {
                 // Drop the first 2 bytes from each frame and the first 4 bytes from the combined message
                 let glucoseData = Data(packets.reduce(into: Data(), { $0.append($1.dropFirst(2)) }).dropFirst(4))
                 var history = [Glucose]()
-                for p in 0 ..< glucoseData.count / 8 {
-                    let data = glucoseData.subdata(in: p * 8 ..< (p + 1) * 8)
+                for i in 0 ..< glucoseData.count / 8 {
+                    let data = glucoseData.subdata(in: i * 8 ..< (i + 1) * 8)
                     // extract same fields as in .glucoseG6Rx
                     let timestamp = UInt32(data[0..<4])
                     let date = activationDate + TimeInterval(timestamp)
@@ -236,6 +236,17 @@ class Dexcom: Transmitter {
                 }
                 log("\(name): backfilled history (\(history.count) values): \(history)")
                 buffer = Data()
+                // TODO
+
+            case .batteryStatusRx:
+                let status = data[1]
+                let voltageA = Int(UInt16(data[2..<4]))
+                let voltageB = Int(UInt16(data[4..<6]))
+                let resistance = Int(UInt16(data[6..<8]))
+                let runtime = data.count == 10 ? -1 : Int(data[8])
+                // FIXME: [8...9] is a final CRC...
+                let temperature = Int(data[9])
+                log("\(name): battery status: status: 0x\(status.hex), voltage A: \(voltageA), voltage B: \(voltageB), resistance: \(resistance), run time: \(runtime), temperature: \(temperature), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
                 // TODO
 
             default:
