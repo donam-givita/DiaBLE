@@ -230,7 +230,7 @@ class Dexcom: Transmitter {
                     let state = data[6]  // CalibrationState, DexcomAlgorithmState
                     let trend = Int8(bitPattern: data[7])
                     log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
-                    let item = Glucose(glucose, id: Int(timestamp / 5), date: date)
+                    let item = Glucose(glucose, id: Int(Double(timestamp) / 60 / 5), date: date)
                     history.append(item)
                     // TODO: manage trend and state
                 }
