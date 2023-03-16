@@ -194,7 +194,7 @@ class Dexcom: Transmitter {
                 let date = activationDate + TimeInterval(timestamp)
                 let glucoseBytes = UInt16(data[10..<12])
                 let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
-                let glucose = glucoseBytes & 0xfff
+                let glucose = Int(glucoseBytes & 0xfff)
                 let state = data[12]  // CalibrationState, DexcomAlgorithmState
                 let trend = Int8(bitPattern: data[13])
                 log("\(name): glucose: status: 0x\(status.hex), sequence: \(sequence), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
@@ -211,7 +211,31 @@ class Dexcom: Transmitter {
                 let endTime = TimeInterval(UInt32(data[8..<12]))
                 let bufferLength = UInt32(data[12..<16])
                 let bufferCRC = UInt16(data[16..<18])
-                log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: TODO")
+                log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: \(buffer.crc)")
+                var packets = [Data]()
+                for i in 0 ..< (buffer.count + 19) / 20 {
+                    packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
+                }
+                // Drop the first 2 bytes from each frame and the first 4 bytes from the combined message
+                let glucoseData = packets.reduce(into: Data(), { $0.append($1.dropFirst(2)) }).dropFirst(4)
+                var history = [Glucose]()
+                for p in 0 ..< glucoseData.count / 8 {
+                    let data = glucoseData.subdata(in: p * 8 ..< (p + 1) * 8)
+                    // extract same fields as in .glucoseG6Rx
+                    let timestamp = UInt32(data[0..<4])
+                    let date = activationDate + TimeInterval(timestamp)
+                    let glucoseBytes = UInt16(data[4..<6])
+                    let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
+                    let glucose = Int(glucoseBytes & 0xfff)
+                    let state = data[6]  // CalibrationState, DexcomAlgorithmState
+                    let trend = Int8(bitPattern: data[7])
+                    log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
+                    let item = Glucose(glucose, id: Int(timestamp / 5), date: date)
+                    history.append(item)
+                    // TODO: manage trend and state
+                }
+                log("\(name): backfilled history (\(history.count) values): \(history)")
+                buffer = Data()
                 // TODO
 
             default:
@@ -224,7 +248,12 @@ class Dexcom: Transmitter {
 
         case .backfill:
             let index = data[0]
-            log("\(name): backfill stream: received packet # \(index)")
+            if buffer.count == 0 {
+                buffer = Data(data)
+            } else {
+                buffer += data
+            }
+            log("\(name): backfill stream: received packet # \(index), partial buffer size: \(buffer.count)")
             // TODO
 
 

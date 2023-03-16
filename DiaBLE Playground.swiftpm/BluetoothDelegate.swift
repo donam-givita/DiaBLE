@@ -693,6 +693,11 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                     app.transmitter.buffer = Data()
                 }
 
+            } else if app.device.type == .transmitter(.dexcom) {
+                // TODO:
+                // main.didParseSensor(app.transmitter.sensor!)
+                return
+
             } else if app.transmitter?.sensor != nil {
                 main.didParseSensor(app.transmitter.sensor!)
                 app.transmitter.buffer = Data()
