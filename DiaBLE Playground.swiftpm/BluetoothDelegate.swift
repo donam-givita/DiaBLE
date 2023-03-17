@@ -289,11 +289,11 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
                 if uuid == Dexcom.UUID.communication.rawValue {
                     app.device.readCharacteristic = characteristic
-                    app.device.peripheral?.readValue(for: characteristic)
-                    msg += "; reading it"
                     if settings.userLevel >= .test && transmitterIsBonded {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
+                        app.device.peripheral?.readValue(for: characteristic)
+                        msg += " and reading it"
                     } else {
                         msg += "; avoid enabling notifications because of 'Encryption is insufficient' error"
                     }

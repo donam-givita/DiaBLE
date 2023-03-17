@@ -134,7 +134,7 @@ class Dexcom: Transmitter {
 
     override func read(_ data: Data, for uuid: String) {
 
-        if uuid == UUID.authentication.rawValue ||  uuid == UUID.control.rawValue {
+        if uuid == UUID.authentication.rawValue || uuid == UUID.control.rawValue {
             opCode = Opcode(rawValue: data[0]) ?? .unknown
             log("\(name): opCode: \(String(describing: opCode)) (0x\(data[0].hex))")
         }
@@ -166,6 +166,7 @@ class Dexcom: Transmitter {
                 // TODO
                 if bonded {
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.communication.rawValue]!)
+                    peripheral?.readValue(for: characteristics[Dexcom.UUID.communication.rawValue]!)
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.control.rawValue]!)
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.backfill.rawValue]!)
                 }
