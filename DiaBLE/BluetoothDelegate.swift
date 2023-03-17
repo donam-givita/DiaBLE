@@ -467,8 +467,11 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             }
             app.transmitter.sensor = sensor
             if settings.userLevel < .test { // not sniffing
-                // TODO: pair
-                var message = Dexcom.Opcode.authRequestTx.data
+
+                // FIXME: The Dexcom ONE uses authRequest2Tx (0x02)
+                // see: https://github.com/NightscoutFoundation/xDrip/blob/master/libkeks/src/main/java/jamorham/keks/message/AuthRequestTxMessage2.java
+
+                var message = sensor.type == .dexcomOne ? Dexcom.Opcode.authRequest2Tx.data : Dexcom.Opcode.authRequestTx.data
                 let singleUseToken = UUID().uuidString.data(using: .utf8)!.prefix(8)
                 message += singleUseToken
                 message.append(0x02)
