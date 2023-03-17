@@ -67,7 +67,7 @@ class Dexcom: Transmitter {
 
         // Auth
         case authRequestTx = 0x01
-
+        case authRequest2Tx = 0x02  // Dexcom ONE
         case authRequestRx = 0x03
         case authChallengeTx = 0x04
         case authChallengeRx = 0x05
