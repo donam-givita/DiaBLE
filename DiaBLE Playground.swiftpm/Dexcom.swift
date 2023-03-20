@@ -8,6 +8,8 @@ import CoreBluetooth
 // https://github.com/JohanDegraeve/xdripswift/blob/master/xdrip/BluetoothTransmitter/CGM/Dexcom/G5/CGMG5Transmitter.swift
 // https://github.com/NightscoutFoundation/xDrip/tree/master/app/src/main/java/com/eveningoutpost/dexdrip/G5Model/
 // https://github.com/NightscoutFoundation/xDrip/blob/master/app/src/main/java/com/eveningoutpost/dexdrip/services/G5CollectionService.java
+// https://github.com/NightscoutFoundation/xDrip/blob/master/app/src/main/java/com/eveningoutpost/dexdrip/services/Ob1G5CollectionService.java
+// https://github.com/NightscoutFoundation/xDrip/tree/master/libkeks/src/main/java/jamorham/keks
 
 
 class Dexcom: Transmitter {
@@ -160,7 +162,7 @@ class Dexcom: Transmitter {
 
             case .authChallengeRx:
                 authenticated = data[1] == 1
-                bonded = data[2] == 1    // data[2] != 2
+                bonded = data[2] == 1    // data[2] != 2  // TODO: if bonded == 3 needsRefresh()
                 log("\(name): authenticated: \(authenticated), bonded: \(bonded)")
 
                 // TODO
@@ -189,16 +191,50 @@ class Dexcom: Transmitter {
                 log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), session start time: \(sessionStartTime.formattedInterval), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), activation date: \(activationDate)")
 
             case .glucoseG6Rx:
-                let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
-                let sequence = UInt32(data[2..<6])
-                let timestamp = UInt32(data[6..<10])
-                let date = activationDate + TimeInterval(timestamp)
-                let glucoseBytes = UInt16(data[10..<12])
-                let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
-                let glucose = Int(glucoseBytes & 0xfff)
-                let state = data[12]  // CalibrationState, DexcomAlgorithmState
-                let trend = Int8(bitPattern: data[13])
-                log("\(name): glucose: status: 0x\(status.hex), sequence: \(sequence), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
+
+                if sensor?.type != .dexcomG7 {
+                    let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
+                    let sequence = UInt32(data[2..<6])
+                    let timestamp = UInt32(data[6..<10])
+                    let date = activationDate + TimeInterval(timestamp)
+                    let glucoseBytes = UInt16(data[10..<12])
+                    let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
+                    let glucose = Int(glucoseBytes & 0xfff)
+                    let state = data[12]  // DexcomAlgorithmState
+                    let trend = Int8(bitPattern: data[13])
+                    log("\(name): glucose: status: 0x\(status.hex), sequence: \(sequence), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
+
+                } else {
+
+                    // https://github.com/LoopKit/G7SensorKit/blob/main/G7SensorKit/Messages/G7GlucoseMessage.swift
+
+                    //    0  1  2 3 4 5  6 7  8  9 10 11 1213 14 15 1617 18
+                    //         TTTTTTTT SQSQ       AG    BGBG SS TR PRPR C
+                    // 0x4e 00 d5070000 0900 00 01 05 00 6100 06 01 ffff 0e
+                    // TTTTTTTT = timestamp
+                    //     SQSQ = sequence
+                    //       AG = age
+                    //     BGBG = glucose
+                    //       SS = algorithm state
+                    //       TR = trend
+                    //     PRPR = predicted
+                    //        C = calibration
+
+                    let status = data[1]
+                    let messageTimestamp = UInt32(data[2..<6])  // seconds since pairing of the *message*. Subtract age to get timestamp of glucose
+                    let sequence = UInt16(data[6..<8])
+                    let age = data[10] // amount of time elapsed (seconds) from sensor reading to BLE comms
+                    let timestamp = messageTimestamp - UInt32(age)
+                    let glucoseData = UInt16(data[12..<14])
+                    let glucose: UInt16? = glucoseData != 0xffff ? glucoseData & 0xfff : nil
+                    let state = data[14]
+                    var trend: Double? = data[15] != 0x7f ? Double(Int8(bitPattern: data[15])) / 10 : nil
+                    let glucoseIsDisplayOnly: Bool? = glucoseData != 0xffff ? (data[18] & 0x10) > 0 : nil
+                    let predictionData = UInt16(data[16..<18])
+                    let predicted: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
+                    let calibration = data[18]
+                    log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sequence: \(sequence), age: \(age) seconds, glucose: \(glucose != nil ? String(glucose!) : "nil"), sequence: \(sequence), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
+                }
 
             case .calibrationDataRx:
                 break
@@ -232,8 +268,42 @@ class Dexcom: Transmitter {
                     let trend = Int8(bitPattern: data[7])
                     log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
                     let item = Glucose(glucose, id: Int(Double(timestamp) / 60 / 5), date: date)
-                    history.append(item)
                     // TODO: manage trend and state
+                    history.append(item)
+                }
+                log("\(name): backfilled history (\(history.count) values): \(history)")
+                buffer = Data()
+                // TODO
+
+            case .backfillFinished:
+                var packets = [Data]()
+                for i in 0 ..< (buffer.count + 8) / 9 {
+                    packets.append(Data(buffer[i * 9 ..< min((i + 1) * 9, buffer.count)]))
+                }
+                var history = [Glucose]()
+                for data in packets {
+
+                    // TODO
+
+                    // https://github.com/LoopKit/G7SensorKit/blob/main/G7SensorKit/G7CGMManager/G7BackfillMessage.swift
+                    //
+                    //    0 1 2  3  4 5  6  7  8
+                    //   TTTTTT    BGBG SS    TR
+                    //   45a100 00 9600 06 0f fc
+
+                    let timestamp = UInt32(data[0..<4]) // seconds since pairing
+                    let date = activationDate + TimeInterval(timestamp)
+                    let glucoseBytes = UInt16(data[4..<6])
+                    let glucose = glucoseBytes != 0xffff ? Int(glucoseBytes & 0xfff) : nil
+                    let glucoseIsDisplayOnly: Bool? = glucoseBytes != 0xffff ? (glucoseBytes & 0xf000) > 0 : nil
+                    let state = data[6]
+                    let trend: Double? = data[8] != 0x7f ? Double(Int8(bitPattern: data[8])) / 10 : nil
+                    log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil")")
+                    if let glucose {
+                        let item = Glucose(glucose, id: Int(Double(timestamp) / 60 / 5), date: date)
+                        // TODO: manage trend and state
+                        history.append(item)
+                    }
                 }
                 log("\(name): backfilled history (\(history.count) values): \(history)")
                 buffer = Data()
@@ -282,6 +352,27 @@ class Dexcom: Transmitter {
 
 
 class DexcomOne: Sensor {
+
+    /// called by Dexcom Transmitter class
+    func read(_ data: Data, for uuid: String) {
+
+        switch Dexcom.UUID(rawValue: uuid) {
+
+        case .communication:
+            log("\(transmitter!.peripheral!.name!): received \(data.count) \(Dexcom.UUID(rawValue: uuid)!) bytes: \(data.hex)")
+            // TODO
+
+        default:
+            break
+
+        }
+
+    }
+
+}
+
+
+class DexcomG7: Sensor {
 
     /// called by Dexcom Transmitter class
     func read(_ data: Data, for uuid: String) {

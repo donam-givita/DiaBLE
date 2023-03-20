@@ -19,6 +19,7 @@ enum SensorType: String, CustomStringConvertible {
     case libreSense   = "Libre Sense"
     case libre3       = "Libre 3"
     case dexcomOne    = "Dexcom ONE"
+    case dexcomG7     = "Dexcom G7"
     case unknown      = "Libre"
 
     init(patchInfo: PatchInfo) {
