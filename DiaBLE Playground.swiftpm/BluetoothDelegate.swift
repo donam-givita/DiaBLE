@@ -53,6 +53,10 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         var name = peripheral.name
         let manufacturerData = advertisement[CBAdvertisementDataManufacturerDataKey] as? Data
         let dataServiceUUIDs = advertisement[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID]
+        let advertisedLocalName = advertisement[CBAdvertisementDataLocalNameKey] as? String
+        if name == nil && advertisedLocalName != nil {
+            name = advertisedLocalName
+        }
 
         if let dataServiceUUIDs = dataServiceUUIDs, dataServiceUUIDs.count > 0, dataServiceUUIDs[0].uuidString == Libre3.UUID.data.rawValue {
             name = "ABBOTT\(name ?? "unnamedLibre")"    // Libre 3 device name is 12 chars long (hexadecimal MAC address)
@@ -142,6 +146,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             settings.activeSensorSerial = app.device.serial
 
         } else if name!.hasPrefix("Dexcom") {
+            // TODO: the Dexcom G7 advertises a peripheral name of "DXCMxx", and later reports a full name of "Dexcomxx"
             app.transmitter = Dexcom(peripheral: peripheral, main: main)
             app.device = app.transmitter
             app.device.name = String(name!.prefix(6))
