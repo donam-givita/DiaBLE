@@ -160,9 +160,10 @@ class Dexcom: Transmitter {
                     write(challengeResponse, for: UUID.authentication.rawValue, .withResponse)
                 }
 
+
             case .authChallengeRx:
                 authenticated = data[1] == 1
-                bonded = data[2] == 1    // data[2] != 2  // TODO: if bonded == 3 needsRefresh()
+                bonded = data[2] == 1    // data[2] != 2  // TODO: if data[2] == 3 needsRefresh()
                 log("\(name): authenticated: \(authenticated), bonded: \(bonded)")
 
                 // TODO
@@ -190,6 +191,7 @@ class Dexcom: Transmitter {
                 let sessionStartTime = TimeInterval(UInt32(data[6..<10]))
                 log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), session start time: \(sessionStartTime.formattedInterval), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), activation date: \(activationDate)")
 
+
             case .glucoseG6Rx:
 
                 if sensor?.type != .dexcomG7 {
@@ -200,9 +202,9 @@ class Dexcom: Transmitter {
                     let glucoseBytes = UInt16(data[10..<12])
                     let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
                     let glucose = Int(glucoseBytes & 0xfff)
-                    let state = data[12]  // DexcomAlgorithmState
+                    let state = data[12]  // AlgorithmState
                     let trend = Int8(bitPattern: data[13])
-                    log("\(name): glucose: status: 0x\(status.hex), sequence: \(sequence), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
+                    log("\(name): glucose: status: 0x\(status.hex), sequence: \(sequence), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
 
                 } else {
 
@@ -234,12 +236,14 @@ class Dexcom: Transmitter {
                     let predictionData = UInt16(data[16..<18])
                     let predicted: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
                     let calibration = data[18]
-                    log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sequence: \(sequence), age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), sequence: \(sequence), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
+                    log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sequence: \(sequence), age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), sequence: \(sequence), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
                 }
+
 
             case .calibrationDataRx:
                 break
                 // TODO
+
 
             case .glucoseBackfillRx:
                 let status = data[1]   // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
@@ -265,9 +269,9 @@ class Dexcom: Transmitter {
                     let glucoseBytes = UInt16(data[4..<6])
                     let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
                     let glucose = Int(glucoseBytes & 0xfff)
-                    let state = data[6]  // CalibrationState, DexcomAlgorithmState
+                    let state = data[6]  // CalibrationState, AlgorithmState
                     let trend = Int8(bitPattern: data[7])
-                    log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
+                    log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
                     let item = Glucose(glucose, id: Int(Double(timestamp) / 60 / 5), date: date)
                     // TODO: manage trend and state
                     history.append(item)
@@ -276,9 +280,10 @@ class Dexcom: Transmitter {
                 buffer = Data()
                 // TODO
 
-            case .backfillFinished:
+
+            case .backfillFinished:  // G7
                 var packets = [Data]()
-                for i in 0 ..< (buffer.count + 8) / 9 {
+                for i in 0 ..< (buffer.count / 9) {
                     packets.append(Data(buffer[i * 9 ..< min((i + 1) * 9, buffer.count)]))
                 }
                 var history = [Glucose]()
@@ -299,7 +304,7 @@ class Dexcom: Transmitter {
                     let glucoseIsDisplayOnly: Bool? = glucoseBytes != 0xffff ? (glucoseBytes & 0xf000) > 0 : nil
                     let state = data[6]
                     let trend: Double? = data[8] != 0x7f ? Double(Int8(bitPattern: data[8])) / 10 : nil
-                    log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(DexcomAlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil")")
+                    log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil")")
                     if let glucose {
                         let item = Glucose(glucose, id: Int(Double(timestamp) / 60 / 5), date: date)
                         // TODO: manage trend and state
@@ -309,6 +314,7 @@ class Dexcom: Transmitter {
                 log("\(name): backfilled history (\(history.count) values): \(history)")
                 buffer = Data()
                 // TODO
+
 
             case .batteryStatusRx:
                 let status = data[1]
@@ -330,14 +336,13 @@ class Dexcom: Transmitter {
             // https://github.com/Faifly/xDrip/blob/develop/xDrip/Services/Bluetooth/DexcomG6/Logic/Messages/Incoming/DexcomG6BackfillStream.swift
 
         case .backfill:
-            let index = data[0]
             if buffer.count == 0 {
                 buffer = Data(data)
             } else {
                 buffer += data
             }
+            let index = sensor?.type != .dexcomG7 ? Int(data[0]) : buffer.count / 9 - 1
             log("\(name): backfill stream: received packet # \(index), partial buffer size: \(buffer.count)")
-            // TODO
 
 
         default:
@@ -346,6 +351,63 @@ class Dexcom: Transmitter {
 
         if let sensor = sensor as? DexcomOne {
             sensor.read(data, for: uuid)
+        }
+    }
+
+
+    // TODO: https://github.com/JohanDegraeve/xdripswift/blob/master/xdrip/BluetoothTransmitter/CGM/Dexcom/Generic/DexcomAlgorithmState.swift
+
+    enum AlgorithmState: UInt8, CustomStringConvertible {
+        case none = 0x00
+        case sessionStopped = 0x01
+        case sensorWarmup = 0x02
+        case excessNoise = 0x03
+        case firstOfTwoBGsNeeded = 0x04
+        case secondOfTwoBGsNeeded = 0x05
+        case okay = 0x06
+        case needsCalibration = 0x07
+        case calibrationError1 = 0x08
+        case calibrationError2 = 0x09
+        case calibrationLinearityFitFailure = 0x0A
+        case sensorFailedDuetoCountsAberration = 0x0B
+        case sensorFailedDuetoResidualAberration = 0x0C
+        case outOfCalibrationDueToOutlier = 0x0D
+        case outlierCalibrationRequest = 0x0E
+        case sessionExpired = 0x0F
+        case sessionFailedDueToUnrecoverableError = 0x10
+        case sessionFailedDueToTransmitterError = 0x11
+        case temporarySensorIssue = 0x12
+        case sensorFailedDueToProgressiveSensorDecline = 0x13
+        case sensorFailedDueToHighCountsAberration = 0x14
+        case sensorFailedDueToLowCountsAberration = 0x15
+        case sensorFailedDueToRestart = 0x16
+
+        public var description: String {
+            switch self {
+            case .none: return "none"
+            case .sessionStopped: return "session stopped"
+            case .sensorWarmup: return "sensor warmup"
+            case .excessNoise: return "excess noise"
+            case .firstOfTwoBGsNeeded: return "first of two BGs needed"
+            case .secondOfTwoBGsNeeded: return "second of two BGs needed"
+            case .okay: return "OK / calibrated"
+            case .needsCalibration: return "needs calibration"
+            case .calibrationError1: return "calibration error 1"
+            case .calibrationError2: return "calibration error 2"
+            case .calibrationLinearityFitFailure: return "calibration linearity fit failure"
+            case .sensorFailedDuetoCountsAberration: return "sensor failed due to counts aberration"
+            case .sensorFailedDuetoResidualAberration: return "sensor failed due to residual aberration"
+            case .outOfCalibrationDueToOutlier: return "out of calibration due to outlier"
+            case .outlierCalibrationRequest: return "outlier calibration request"
+            case .sessionExpired: return "session expired"
+            case .sessionFailedDueToUnrecoverableError: return "session failed due to unrecoverable error"
+            case .sessionFailedDueToTransmitterError: return "session failed due to transmitter error"
+            case .temporarySensorIssue: return "temporary sensor issue"
+            case .sensorFailedDueToProgressiveSensorDecline: return "sensor failed due to progressive sensor decline"
+            case .sensorFailedDueToHighCountsAberration: return "sensor failed due to high counts aberration"
+            case .sensorFailedDueToLowCountsAberration: return "sensor failed due to low counts aberration"
+            case .sensorFailedDueToRestart: return "sensor failed due to restart"
+            }
         }
     }
 
@@ -391,63 +453,6 @@ class DexcomG7: Sensor {
 
     }
 
-}
-
-
-// TODO: https://github.com/JohanDegraeve/xdripswift/blob/master/xdrip/BluetoothTransmitter/CGM/Dexcom/Generic/DexcomAlgorithmState.swift
-
-enum DexcomAlgorithmState: UInt8, CustomStringConvertible {
-    case none = 0x00
-    case sessionStopped = 0x01
-    case sensorWarmup = 0x02
-    case excessNoise = 0x03
-    case firstOfTwoBGsNeeded = 0x04
-    case secondOfTwoBGsNeeded = 0x05
-    case okay = 0x06
-    case needsCalibration = 0x07
-    case calibrationError1 = 0x08
-    case calibrationError2 = 0x09
-    case calibrationLinearityFitFailure = 0x0A
-    case sensorFailedDuetoCountsAberration = 0x0B
-    case sensorFailedDuetoResidualAberration = 0x0C
-    case outOfCalibrationDueToOutlier = 0x0D
-    case outlierCalibrationRequest = 0x0E
-    case sessionExpired = 0x0F
-    case sessionFailedDueToUnrecoverableError = 0x10
-    case sessionFailedDueToTransmitterError = 0x11
-    case temporarySensorIssue = 0x12
-    case sensorFailedDueToProgressiveSensorDecline = 0x13
-    case sensorFailedDueToHighCountsAberration = 0x14
-    case sensorFailedDueToLowCountsAberration = 0x15
-    case sensorFailedDueToRestart = 0x16
-
-    public var description: String {
-        switch self {
-        case .none: return "none"
-        case .sessionStopped: return "session stopped"
-        case .sensorWarmup: return "sensor warmup"
-        case .excessNoise: return "excess noise"
-        case .firstOfTwoBGsNeeded: return "first of two BGs needed"
-        case .secondOfTwoBGsNeeded: return "second of two BGs needed"
-        case .okay: return "OK / calibrated"
-        case .needsCalibration: return "needs calibration"
-        case .calibrationError1: return "calibration error 1"
-        case .calibrationError2: return "calibration error 2"
-        case .calibrationLinearityFitFailure: return "calibration linearity fit failure"
-        case .sensorFailedDuetoCountsAberration: return "sensor failed due to counts aberration"
-        case .sensorFailedDuetoResidualAberration: return "sensor failed due to residual aberration"
-        case .outOfCalibrationDueToOutlier: return "out of calibration due to outlier"
-        case .outlierCalibrationRequest: return "outlier calibration request"
-        case .sessionExpired: return "session expired"
-        case .sessionFailedDueToUnrecoverableError: return "session failed due to unrecoverable error"
-        case .sessionFailedDueToTransmitterError: return "session failed due to transmitter error"
-        case .temporarySensorIssue: return "temporary sensor issue"
-        case .sensorFailedDueToProgressiveSensorDecline: return "sensor failed due to progressive sensor decline"
-        case .sensorFailedDueToHighCountsAberration: return "sensor failed due to high counts aberration"
-        case .sensorFailedDueToLowCountsAberration: return "sensor failed due to low counts aberration"
-        case .sensorFailedDueToRestart: return "sensor failed due to restart"
-        }
-    }
 }
 
 
