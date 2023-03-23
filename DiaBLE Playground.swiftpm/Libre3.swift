@@ -161,7 +161,7 @@ class Libre3: Sensor {
         let historicalReading: UInt16
         let projectedGlucose: UInt16
         let historicalReadingDQError: UInt16
-        let rateOfChange: UInt16
+        let rateOfChange: Int16
         let trend: OOP.TrendArrow
         let esaDuration: UInt16
         let temperatureStatus: Int
