@@ -90,6 +90,8 @@ struct Glucose: Identifiable, Codable {
     let dataQualityFlags: Int
     var value: Int = 0
     var temperature: Double = 0
+    var trendRate: Double = 0
+    var trendArrow: Int = 0  // TODO: enum
     var calibration: Calibration? {
         willSet(newCalibration) {
             let slope  = (newCalibration!.slope + newCalibration!.slopeSlope  * Double(rawTemperature) + newCalibration!.offsetSlope) * newCalibration!.extraSlope
@@ -99,13 +101,15 @@ struct Glucose: Identifiable, Codable {
     }
     var source: String = "DiaBLE"
 
-    init(rawValue: Int, rawTemperature: Int = 0, temperatureAdjustment: Int = 0, id: Int = 0, date: Date = Date(), hasError: Bool = false, dataQuality: DataQuality = .OK, dataQualityFlags: Int = 0, calibration: Calibration? = nil) {
+    init(rawValue: Int, rawTemperature: Int = 0, temperatureAdjustment: Int = 0, trendRate: Double = 0, trendArrow: Int = 0, id: Int = 0, date: Date = Date(), hasError: Bool = false, dataQuality: DataQuality = .OK, dataQualityFlags: Int = 0, calibration: Calibration? = nil) {
         self.id = id
         self.date = date
         self.rawValue = rawValue
         self.value = rawValue / 10
         self.rawTemperature = rawTemperature
         self.temperatureAdjustment = temperatureAdjustment
+        self.trendRate = trendRate
+        self.trendArrow = trendArrow
         self.hasError = hasError
         self.dataQuality = dataQuality
         self.dataQualityFlags = dataQualityFlags
@@ -119,9 +123,11 @@ struct Glucose: Identifiable, Codable {
         self.init(rawValue: rawValue, rawTemperature: rawTemperature, id: id, date: date, calibration: calibration)
     }
 
-    init(_ value: Int, temperature: Double = 0, id: Int = 0, date: Date = Date(), dataQuality: Glucose.DataQuality = .OK, source: String = "DiaBLE") {
+    init(_ value: Int, temperature: Double = 0, trendRate: Double = 0, trendArrow: Int = 0, id: Int = 0, date: Date = Date(), dataQuality: Glucose.DataQuality = .OK, source: String = "DiaBLE") {
         self.init(rawValue: value * 10, id: id, date: date, dataQuality: dataQuality)
         self.temperature = temperature
+        self.trendRate = trendRate
+        self.trendArrow = trendArrow
         self.source = source
     }
 
@@ -131,7 +137,6 @@ struct Glucose: Identifiable, Codable {
 func factoryGlucose(rawGlucose: Glucose, calibrationInfo: CalibrationInfo) -> Glucose {
 
     guard rawGlucose.id >= 0 && rawGlucose.rawValue > 0 && calibrationInfo != .empty else { return rawGlucose }
-
 
     // FIXME: crashes when receiving bogus Libre Pro data (https://github.com/gui-dos/DiaBLE/issues/9: "libreProH Crash")
     guard calibrationInfo.i2 != 0 else { return rawGlucose }

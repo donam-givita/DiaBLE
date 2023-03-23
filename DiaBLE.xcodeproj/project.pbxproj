@@ -283,10 +283,10 @@
 				C5E4009229825EF90021C6B7 /* NFCTools.swift */,
 				C5E4009529825F120021C6B7 /* LibreLink.swift */,
 				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
+				C5E4009B29825F250021C6B7 /* OOP.swift */,
 				C5E4009E29825F580021C6B7 /* company_ids.json */,
 				C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */,
 				C53F77C529894478004F275A /* Info.plist */,
-				C5E4009B29825F250021C6B7 /* OOP.swift */,
 				C5AAA61E2981CF7200CA3EC1 /* DiaBLE.entitlements */,
 			);
 			path = DiaBLE;

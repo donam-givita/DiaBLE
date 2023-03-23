@@ -149,7 +149,7 @@ class Dexcom: Transmitter {
 
             case .authRequestRx:
 
-                // TODO: the new Dexcom ONE/G7 use J-PAKE
+                // TODO: Dexcom ONE/G7 J-PAKE
                 // https://github.com/NightscoutFoundation/xDrip/commit/7ee3473 ("Add keks library")
                 // https://github.com/NightscoutFoundation/xDrip/blob/master/libkeks/src/main/java/jamorham/keks/Calc.java
 
