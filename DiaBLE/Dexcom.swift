@@ -148,6 +148,11 @@ class Dexcom: Transmitter {
             switch opCode {
 
             case .authRequestRx:
+
+                // TODO: the new Dexcom ONE/G7 use J-PAKE
+                // https://github.com/NightscoutFoundation/xDrip/commit/7ee3473 ("Add keks library")
+                // https://github.com/NightscoutFoundation/xDrip/blob/master/libkeks/src/main/java/jamorham/keks/Calc.java
+
                 let tokenHash = data.subdata(in: 1 ..< 9)
                 let challenge = data.subdata(in: 9 ..< 17)
                 log("\(name): tokenHash: \(tokenHash.hex), challenge: \(challenge.hex)")
@@ -410,6 +415,32 @@ class Dexcom: Transmitter {
             }
         }
     }
+
+
+    enum TrendArrow: Int,/* CustomStringConvertible, */ CaseIterable, Codable {
+        case none           = 0
+        case doubleUp       = 1
+        case singleUp       = 2
+        case fortyFiveUp    = 3
+        case flat           = 4
+        case fortyFiveDown  = 5
+        case singleDown     = 6
+        case doubleDown     = 7
+        case notComputable  = 8
+        case rateOutOfRange = 9
+
+        // enum PhoenixUIKit.TrendArrow {
+        //     case notComputable
+        //     case flat
+        //     case fortyFiveUp
+        //     case singleUp
+        //     case doubleUp
+        //     case fortyFiveDown
+        //     case singleDown
+        //     case doubleDown
+        // }
+    }
+
 
 }
 

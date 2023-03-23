@@ -53,6 +53,8 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                     healthKit.read { [self] in debugLog("HealthKit last 12 stored values: \($0[..<(min(12, $0.count))])") }
                 }
             }
+        } else {
+            self.log("HealthKit: not available")
         }
 
         libreLinkUp = LibreLinkUp(main: self)
