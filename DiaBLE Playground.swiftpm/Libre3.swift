@@ -203,12 +203,12 @@ class Libre3: Sensor {
         let eventData: Int
         let index: Int      // 255 means no data
 
-        //        struct EventLog {
-        //            int16_t lifeCount;
-        //            int16_t errorData;
-        //            int16_t eventData;
-        //            int8_t index; // index==255 means no data
-        //            } __attribute__ ((packed));
+        // struct EventLog {
+        //     int16_t lifeCount;
+        //     int16_t errorData;
+        //     int16_t eventData;
+        //     int8_t index; // index==255 means no data
+        // } __attribute__ ((packed));
     }
 
 
@@ -220,18 +220,17 @@ class Libre3: Sensor {
         let temperature: Int
         let rawData: Data
 
-        //        struct fastData {
-        //            uint16_t lifeCount;
-        //            uint8_t rawData[8];
-        //            uint16_t readingMgDl;
-        //            uint16_t historicMgDl;
-        //            int getHistoricLifeCount() const {
-        //                return round((lifeCount-19.0)/5.0)*5; //  -17?
-        //                };
-        //            } __attribute__ ((packed));
-        //        static_assert(sizeof(fastData)==14);
+        // struct fastData {
+        //     uint16_t lifeCount;
+        //     uint8_t rawData[8];
+        //     uint16_t readingMgDl;
+        //     uint16_t historicMgDl;
+        //     int getHistoricLifeCount() const {
+        //         return round((lifeCount-19.0)/5.0)*5; //  -17?
+        //     };
+        // }
         //
-        // B43E7E091F4071140000B600B500:
+        // B43E7E091F4071140000B600B500 (14 bytes):
         //   B43E: lifeCount 16052 (0x3EB4)
         //   7E091F4071140000: rawData
         //   B600: readingMgDl 182
@@ -250,10 +249,10 @@ class Libre3: Sensor {
         let stackDisconnectReason: UInt8
         let appDisconnectReason: UInt8
 
-        // PatchStatus FC2C00000D002104FC2C1603:
+        // FC2C00000D002104FC2C1603 (12 bytes):
         //   FC2C: lifeCount 11516 (0x2CFC)
         //   0000: errorData
-        //   000D: evenData 4013 (?)
+        //   000D: eventData 4013 (?)
         //   21: index 33
         //   04: patchState 4
         //   FC2C: currentLlifeCount 11516 (0x2CFC)
@@ -563,7 +562,7 @@ class Libre3: Sensor {
     //      int8_t kind[2];
     //      int8_t arg;
     //      int32_t from;
-    //      } __attribute__ ((packed));
+    //  }
 
 
     var receiverId: UInt32 = 0    // fnv32Hash of LibreView ID string

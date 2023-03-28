@@ -186,7 +186,14 @@ class Libre3: Sensor {
         let lifeCount: Int
         let errorData: Int
         let eventData: Int
-        let index: UInt8
+        let index: Int      // 255 means no data
+
+        // struct EventLog {
+        //     int16_t lifeCount;
+        //     int16_t errorData;
+        //     int16_t eventData;
+        //     int8_t index; // index==255 means no data
+        // } __attribute__ ((packed));
     }
 
 
@@ -197,6 +204,22 @@ class Libre3: Sensor {
         let dqError: Int
         let temperature: Int
         let rawData: Data
+
+        // struct fastData {
+        //     uint16_t lifeCount;
+        //     uint8_t rawData[8];
+        //     uint16_t readingMgDl;
+        //     uint16_t historicMgDl;
+        //     int getHistoricLifeCount() const {
+        //         return round((lifeCount-19.0)/5.0)*5; //  -17?
+        //     };
+        // }
+        //
+        // B43E7E091F4071140000B600B500 (14 bytes):
+        //   B43E: lifeCount 16052 (0x3EB4)
+        //   7E091F4071140000: rawData
+        //   B600: readingMgDl 182
+        //   B500: historicMgDl 181
     }
 
 
@@ -210,6 +233,16 @@ class Libre3: Sensor {
         let currentLifeCount: Int
         let stackDisconnectReason: UInt8
         let appDisconnectReason: UInt8
+
+        // FC2C00000D002104FC2C1603 (12 bytes):
+        //   FC2C: lifeCount 11516 (0x2CFC)
+        //   0000: errorData
+        //   000D: eventData 4013 (?)
+        //   21: index 33
+        //   04: patchState 4
+        //   FC2C: currentLlifeCount 11516 (0x2CFC)
+        //   16: stackDisconnectReason 22
+        //   03: appDisconnectReason 3
     }
 
 
@@ -457,6 +490,13 @@ class Libre3: Sensor {
 
         case shutdownPatch(Data)  // type 5
     }
+
+    // TODO
+    //  struct RequestData {
+    //      int8_t kind[2];
+    //      int8_t arg;
+    //      int32_t from;
+    //  }
 
     var receiverId: UInt32 = 0    // fnv32Hash of LibreView ID string
 
@@ -746,4 +786,90 @@ class Libre3: Sensor {
         // TODO
     }
 
+}
+
+
+// https://github.dev/j-kaltes/Juggluco/blob/primary/Common/src/libre3/java/tk/glucodata/ECDHCrypto.java
+
+let appCertificates = [
+    "03 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 00 01 5f 14 9f e1 01 00 00 00 00 00 00 00 00 04 27 51 fd 1e f4 2b 14 5a 52 c5 93 ae 6b 5a 75 58 8a 9f 7e af 1c 0f 99 85 f9 93 d5 8f 14 7b b8 41 68 42 24 49 96 37 92 dc 43 f3 84 47 ef eb bb eb 4a 53 b3 25 5c 0b e0 fe 1f 23 58 44 a3 d3 29 9e ba 97 b8 e6 c3 17 09 39 f2 77 8f 64 86 6f 06 6d eb 91 5d d6 62 9e ee 47 30 a1 e1 4c ab 75 c1 8c 4f ec 53 f8 85 4c 87 64 3a 76 4f 40 87 ae c0 39 4c 21 0c 18 86 5a 8f f4 5a dc 37 27 f4 8b 53 a7",
+    "03 03 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 00 01 61 89 76 55 01 00 00 00 00 00 00 00 00 04 82 42 be 33 f1 a3 30 88 01 12 fa 62 cc 48 42 a4 3d 12 04 92 2a d2 01 d8 77 5b b2 26 f6 11 f7 5b 0e f3 d5 bc 6c c4 31 7c aa 45 75 84 ab 00 3f 17 12 33 60 89 d3 a4 f2 98 38 ed 0d c6 66 de ae a2 d6 5a 00 df ff 5d 7b ca e2 16 55 e3 02 e3 45 8e 77 4d aa aa ca 87 af 75 f1 b8 78 84 b1 8d 4c e8 75 d0 d1 08 c9 03 a8 34 47 1a 4f f6 74 b2 d3 0b cb a0 62 37 30 14 b7 78 6e 44 37 b1 77 ae c3 c8"
+]
+
+let appPrivateKeys = [
+    "43 F2 C5 3D 02 00 00 00 01 00 00 01 00 00 00 00 00 96 95 77 4B 9A 04 53 51 FB 16 0B EC 5F 49 DB DF 57 45 48 50 67 78 6C DE 13 08 83 D8 3D F6 96 81 4E A4 1E A7 D2 F8 D2 30 84 76 B4 9A 01 2C 4E BB 00 00 00 01 7D 4D 61 51 06 81 BF 22 31 67 6B 90 3B 17 ED 53 98 0D 98 FE 68 2E E4 4B 00 00 00 20 5B 7B 96 AA E3 FF 22 2D 4D 37 1E 7A A6 2C FA A0 9B F8 42 1C C1 DA 7B 7B 0D F9 34 33 CC 49 FB 0E 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 96 9E DB 28 BF 6F C0 FF 76 0A F0 95 92 1D 9F 1E 3B 16 77 B5",
+    "1D 85 8F 06 02 00 00 00 01 00 00 01 00 00 00 00 00 96 95 77 4B 9A 04 53 51 FB 16 0B EC 5F 49 DB DF 0D C0 CE 52 FB 56 5F 84 E6 13 B8 19 AE D3 DF 91 9C E3 0A 3D D4 C0 12 EA EA 70 C8 CC E2 89 58 40 00 00 00 01 9B C7 79 12 3D 86 60 B3 7E 99 B4 BF 10 C1 C4 2C 11 35 B3 02 5B C9 B2 EF 00 00 00 20 E3 A1 FB 17 80 A1 63 80 2A A0 FE B1 F2 00 AC 26 9A 42 B2 29 03 8C A6 E1 4D 40 EF BC 6B 7B 6A E8 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 CE C6 67 E6 C0 9D 20 F5 C0 33 D0 61 B5 FC A1 8B 39 92 06 8B"
+]
+
+let patchSingningKeys = [
+    "04 B6 9D 17 34 F5 E4 25 BC C0 57 6A D1 F7 27 C1 31 1C 90 B6 EA 98 6F 00 6E 7E 9F 90 96 F6 A8 28 4F 12 BF 7D DF E1 54 A3 F1 D4 5A 0F 27 34 EC AB CA 6B 9E B5 6E E4 EC CA 87 85 3A D8 53 B6 A6 41 80",
+    "04 A2 D8 47 89 90 94 5F 70 A9 57 0A DE 07 B1 55 BC 90 4D 2D 38 06 47 58 7B 12 39 17 01 30 9B D1 0B 59 90 C4 C4 7C 47 F1 F0 80 46 CB 6F 2D E0 74 8D 1F A7 F7 37 90 EC 9D 8D D6 37 21 27 78 52 88 38"
+]
+
+
+// https://github.dev/j-kaltes/Juggluco/blob/primary/Common/src/libre3/java/tk/glucodata/Libre3GattCallback.java
+
+// Juggluco wrappers to Trident's process1() and process2() in liblibre3extension.so (processint() and processbar())
+//
+// public native boolean initECDH(byte[] bArr, int i):
+//     public boolean initECDH(byte[] exportedKAuth, int level) {
+//         if(level >= max_keys)
+//             return true;
+//         securityVersion = level;
+//         int resp1 = Natives.processint(1, null, null);
+//         byte[] privatekey= LIBRE3_APP_PRIVATE_KEYS[level];
+//         int resp2 = Natives.processint(2, privatekey, exportedKAuth);
+//         return true;
+//   }
+//
+// byte[] getAppCertificate() {
+//        return LIBRE3_APP_CERTIFICATES_B[securityVersion];
+//  }
+//
+// setPatchCertificate(byte[] bArr):
+//     Natives.processint(4, input, null);
+//
+// generateEphemeralKeys():
+//     var evikeys = Natives.processbar(5, null, null);
+//
+// boolean generateKAuth(byte[] bArr):
+//     Natives.processint(6, patchEphemeral, null);
+//     var uit = new byte[evikeys.length + 1];
+//     arraycopy(evikeys, 0, uit, 1, evikeys.length);
+//     uit[0] = (byte)0x4;
+//     return uit;
+//
+// encrypt challenge response:
+//     arraycopy(rdtData, 0, r1, 0, 16);
+//     arraycopy(rdtData, 16, nonce1, 0, 7);
+//     (new SecureRandom()).nextBytes(r2)
+//     byte[] uit = new byte[36];
+//     arraycopy(r1, 0, uit, 0, 16);
+//     arraycopy(r2, 0, uit, 16, 16);
+//     byte[] pin = Natives.getpin(sensorptr);
+//     arraycopy(pin, 0, uit, 32, 4);
+//     var encrypted = Natives.processbar(7, nonce1, uit);
+//
+// decrypt 67-byte exported kAuth ("session info" wrappedkAuth):
+//     arraycopy(rdtData, 0, first, 0, 60);
+//     arraycopy(rdtData, 60, nonce, 0, 7);
+//     byte[] decr = Natives.processbar(8, nonce, first);
+//     var backr2 = copyOfRange(decr, 0, 16);
+//     var backr1 = copyOfRange(decr, 16, 32);
+//     var kEnc = copyOfRange(decr, 32, 48);
+//     var ivEnc = copyOfRange(decr, 48, 56);
+//
+// byte[] exportAuthorizationKey():
+//     byte[] AuthKey = Natives.processbar(9, null, null);  // 149 bytes
+//     cryptptr = initcrypt(cryptptr, kEnc, ivEnc);
+
+
+// https://github.dev/j-kaltes/Juggluco/blob/primary/Common/src/main/cpp/libre3/loadlibs.cpp
+
+func process1(command: Int, _ d1: Data?, _ d2: Data?) -> Int {
+    return 0
+}
+
+func process2(command: Int, _ d1: Data?, _ d2: Data?) -> Data {
+    return Data()
 }

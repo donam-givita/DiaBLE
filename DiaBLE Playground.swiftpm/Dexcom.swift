@@ -364,6 +364,10 @@ class Dexcom: Transmitter {
         if let sensor = sensor as? DexcomOne {
             sensor.read(data, for: uuid)
         }
+
+        if let sensor = sensor as? DexcomG7 {
+            sensor.read(data, for: uuid)
+        }
     }
 
 
