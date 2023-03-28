@@ -68,17 +68,21 @@ class Dexcom: Transmitter {
         case unknown = 0x00
 
         // Auth
-        case authRequestTx = 0x01
-        case authRequest2Tx = 0x02  // Dexcom ONE
-        case authRequestRx = 0x03
+        case authRequestTx = 0x01  // TxIdChallenge
+        case authRequest2Tx = 0x02  // Dexcom ONE/G7  // AppKeyChallenge
+        case authRequestRx = 0x03  // ChallengeReply
         case authChallengeTx = 0x04
-        case authChallengeRx = 0x05
-        case keepAlive = 0x06 // auth; setAdvertisementParametersTx for control
-        case bondRequest = 0x07 // FaiFly: case pairRequestTx = 0x07
+        case authChallengeRx = 0x05  // StatusReply
+        case keepAlive = 0x06 // auth; setAdvertisementParametersTx for control  // KeepConnectionAlive
+        case bondRequest = 0x07 // Faifly: pairRequestTx
         case pairRequestRx = 0x08 // comes in after having accepted the bluetooth pairing request
 
         // Control
         case disconnectTx = 0x09
+
+        case exchangePakePayload = 0x0a  // Auth Dexcom ONE
+        case changeAppLevelKeyTx = 0x0f
+        case appLevelKeyAcceptedTx = 0x10
 
         case setAdvertisementParametersRx = 0x1c
 
@@ -114,8 +118,10 @@ class Dexcom: Transmitter {
         case glucoseG6Tx = 0x4e  // also G7
         case glucoseG6Rx = 0x4f
 
-        case glucoseBackfillTx = 0x50
+        case glucoseBackfillTx = 0x50  // DataStream
         case glucoseBackfillRx = 0x51
+
+        case transmitterVersionExtendedTx = 0x52 // Dexcom ONE
 
         case backfillFinished = 0x59  // G7
 
@@ -152,6 +158,7 @@ class Dexcom: Transmitter {
                 // TODO: Dexcom ONE/G7 J-PAKE
                 // https://github.com/NightscoutFoundation/xDrip/commit/7ee3473 ("Add keks library")
                 // https://github.com/NightscoutFoundation/xDrip/blob/master/libkeks/src/main/java/jamorham/keks/Calc.java
+                // https://github.com/NightscoutFoundation/xDrip/blob/master/libkeks/src/main/java/jamorham/keks/Plugin.java
 
                 let tokenHash = data.subdata(in: 1 ..< 9)
                 let challenge = data.subdata(in: 9 ..< 17)
@@ -329,7 +336,7 @@ class Dexcom: Transmitter {
                 let runtime = data.count == 10 ? -1 : Int(data[8])
                 // FIXME: [8...9] is a final CRC...
                 let temperature = Int(data[9])
-                log("\(name): battery status: status: 0x\(status.hex), voltage A: \(voltageA), voltage B: \(voltageB), resistance: \(resistance), run time: \(runtime), temperature: \(temperature), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
+                log("\(name): battery status: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), resistance: \(resistance), run time: \(runtime) days, temperature: \(temperature), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
                 // TODO
 
             default:
@@ -387,6 +394,22 @@ class Dexcom: Transmitter {
         case sensorFailedDueToLowCountsAberration = 0x15
         case sensorFailedDueToRestart = 0x16
 
+        // CalStateStartUp(129),
+        // CalStateFirstOfTwoCalibrationsNeeded(130),
+        // CalStateHighWedgeDisplayWithFirstBg(131),
+        // CalStateLowWedgeDisplayWithFirstBg(132),
+        // CalStateSecondOfTwoCalibrationsNeeded(133),
+        // CalStateInCalTransmitter(134),
+        // CalStateInCalDisplay(135),
+        // CalStateHighWedgeTransmitter(136),
+        // CalStateLowWedgeTransmitter(137),
+        // CalStateLinearityFitTransmitter(138),
+        // CalStateOutOfCalDueToOutlierTransmitter(139),
+        // CalStateHighWedgeDisplay(140),
+        // CalStateLowWedgeDisplay(141),
+        // CalStateLinearityFitDisplay(142),
+        // CalStateSessionNotInProgress(143);
+
         public var description: String {
             switch self {
             case .none: return "none"
@@ -428,17 +451,6 @@ class Dexcom: Transmitter {
         case doubleDown     = 7
         case notComputable  = 8
         case rateOutOfRange = 9
-
-        // enum PhoenixUIKit.TrendArrow {
-        //     case notComputable
-        //     case flat
-        //     case fortyFiveUp
-        //     case singleUp
-        //     case doubleUp
-        //     case fortyFiveDown
-        //     case singleDown
-        //     case doubleDown
-        // }
     }
 
 
@@ -505,3 +517,39 @@ extension Data {
         return crc
     }
 }
+
+
+// https://github.com/JohanDegraeve/xdripswift/blob/master/xdrip/BluetoothTransmitter/CGM/Dexcom/Generic/DexcomCalibrationParameters.swift
+
+// class com.dexcom.coresdk.transmitter.command.SensorCode
+//
+// Code5171; 2300, 2900
+// Code5177; 2400, 2900
+// Code5317; 2400, 3000
+// Code5375; 2500, 3100
+// Code5391; 2600, 3100
+// Code5397; 2600, 3200
+// Code5795; 2500, 3000
+// Code5915; 3100, 3600
+// Code5917; 3000, 3500
+// Code5931; 2900, 3400
+// Code5937; 2800, 3300
+// Code5951; 3100, 3500
+// Code5955; 3000, 3400
+// Code7135; 2700, 3200
+// Code7171; 2700, 3300
+// Code7197; 2800, 3300
+// Code7539; 2700, 3300
+// Code9117; 2700, 3200
+// Code9137; 2900, 3400
+// Code9159; 2600, 3200
+// Code9179; 3000, 3400
+// Code9311; 2600, 3100
+// Code9357; 3000, 3500
+// Code9371; 2500, 3100
+// Code9515; 2500, 3000
+// Code9517; 3100, 3500
+// Code9551; 2400, 3000
+// Code9577; 2400, 2900
+// Code9713; 2300, 2900
+// Code9759; 3100, 3600

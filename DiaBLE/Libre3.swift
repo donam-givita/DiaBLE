@@ -106,15 +106,17 @@ class Libre3: Sensor {
 
 
     enum ResultRange: Int, CustomStringConvertible {
-        case `in`  = 0
-        case below = 1
-        case above = 2
+        case `in`    = 0
+        case below   = 1
+        case above   = 2
+        case noRange = 3
 
         var description: String {
             switch self {
-            case .in:    return "in range"
-            case .below: return "below range"
-            case .above: return "above range"
+            case .in:      return "in range"
+            case .below:   return "below range"
+            case .above:   return "above range"
+            case .noRange: return "no range"
             }
         }
     }
