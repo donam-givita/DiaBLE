@@ -102,7 +102,7 @@ class Dexcom: Transmitter {
 
         case glucoseTx = 0x30
         case glucoseRx = 0x31
-        case calibrationDataTx = 0x32
+        case calibrationDataTx = 0x32  // G6Bounds
         case calibrationDataRx = 0x33
         case calibrateGlucoseTx = 0x34
         case calibrateGlucoseRx = 0x35
@@ -252,9 +252,18 @@ class Dexcom: Transmitter {
                 }
 
 
-            case .calibrationDataRx:
-                break
-                // TODO
+            case .calibrationDataRx:  // G6Bounds
+                // TODO: i.e. 3300325000440114005802000000000000018ba4
+                let weight = data[2]
+                let calBoundError1 = UInt16(data[3...4])
+                let calBoundError0 = UInt16(data[5...6])
+                let calBoundMin = UInt16(data[7...8])
+                let calBoundMax = UInt16(data[9...10])
+                let lastBGValue = UInt16(data[11...12])
+                let lastCalibrationTimeSeconds = UInt32(data[13...16])
+                let autoCalibration: Bool = data[17] == 1
+                let crc = UInt16(data[18...19])
+                log("\(name): bounds (TODO): weight: \(weight), calBoundError1: \(calBoundError1), calBoundError0: \(calBoundError0), calBoundMin: \(calBoundMin), calBoundMax: \(calBoundMax), lastBGValue: \(lastBGValue), lastCalibrationTimeSeconds: \(lastCalibrationTimeSeconds.formattedInterval), autoCalibration: \(autoCalibration), valid CRC: \(data.dropLast(2).crc == crc)")
 
 
             case .glucoseBackfillRx:
@@ -454,6 +463,15 @@ class Dexcom: Transmitter {
         case doubleDown     = 7
         case notComputable  = 8
         case rateOutOfRange = 9
+    }
+
+
+    enum DataStreamType: Int,/* CustomStringConvertible, */ CaseIterable, Codable {
+        // TODO
+        case manifestData   = 0
+        case privateData    = 1
+        case encryptionInfo = 2
+        case backFill       = 3
     }
 
 

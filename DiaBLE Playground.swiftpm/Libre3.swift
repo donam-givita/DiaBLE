@@ -201,14 +201,14 @@ class Libre3: Sensor {
         let lifeCount: Int
         let errorData: Int
         let eventData: Int
-        let index: Int      // 255 means no data
+        let index: Int
 
         // struct EventLog {
         //     int16_t lifeCount;
         //     int16_t errorData;
         //     int16_t eventData;
         //     int8_t index; // index==255 means no data
-        // } __attribute__ ((packed));
+        // }
     }
 
 
