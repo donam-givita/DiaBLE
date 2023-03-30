@@ -436,6 +436,25 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
                     securityChallenge = try await send(sensor.nfcCommand(.readChallenge))
                     log("NFC: Gen2 security challenge: \(securityChallenge.hex)")
+
+                    do {
+
+                        // FIXME: "404 Not Found"
+                        _ = try await main.post(OOPServer.gen2.nfcAuthEndpoint!, ["patchUid": sensor.uid.hex, "authData": securityChallenge.hex])
+
+                        let oopResponse = try await main.post(OOPServer.gen2.nfcDataEndpoint!, ["patchUid": sensor.uid.hex, "authData": securityChallenge.hex]) as! OOPGen2Response
+                        authContext = oopResponse.p1
+                        let authenticatedCommand = oopResponse.data.bytes
+                        log("OOP: context: \(authContext), authenticated `A1 1F get session info` command: \(authenticatedCommand.hex)")
+                        var getSessionInfoCommand = sensor.nfcCommand(.getSessionInfo)
+                        getSessionInfoCommand.parameters = authenticatedCommand.suffix(authenticatedCommand.count - 3)
+                        sessionInfo = try! await send(getSessionInfoCommand)
+                        // TODO: drop leading 0xA5s?
+                        // sessionInfo = sessionInfo.suffix(sessionInfo.count - 8)
+                        log("NFC: session info = \(sessionInfo.hex)")
+                    } catch {
+                        log("NFC: OOP error: \(error.localizedDescription)")
+                    }
                 }
 
                 var (start, data) = try await sensor.securityGeneration < 2 ?
