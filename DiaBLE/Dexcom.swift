@@ -49,7 +49,7 @@ class Dexcom: Transmitter {
 
     override class var dataServiceUUID: String { UUID.data.rawValue }
     override class var dataWriteCharacteristicUUID: String { UUID.control.rawValue }
-    override class var dataReadCharacteristicUUID: String  { UUID.communication.rawValue }
+    override class var dataReadCharacteristicUUID: String  { UUID.control.rawValue }
 
 
     override func parseManufacturerData(_ data: Data) {

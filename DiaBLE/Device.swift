@@ -102,9 +102,13 @@ class Device: ObservableObject, Logging {
     func read(_ data: Data, for uuid: String) {
     }
 
-    func readValue(for uuid: BLE.UUID) {
-        peripheral?.readValue(for: characteristics[uuid.rawValue]!)
-        debugLog("\(name): requested value for \(uuid)")
+    func readValue(for uuid: String = "") {
+        if let characteristic = characteristics[uuid] ?? readCharacteristic {
+            peripheral?.readValue(for: characteristic)
+            debugLog("\(name): requested value for \(!uuid.isEmpty ? uuid : "read characteristic")")
+        } else {
+            debugLog("\(name): cannor read value for unknown characteristic \(uuid)")
+        }
     }
 
     /// varying reading interval

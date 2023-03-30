@@ -293,7 +293,6 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 let transmitterIsBonded = (app.transmitter as? Dexcom)?.bonded ?? false
 
                 if uuid == Dexcom.UUID.communication.rawValue {
-                    app.device.readCharacteristic = characteristic
                     if settings.userLevel >= .test && transmitterIsBonded {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
@@ -304,6 +303,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                     }
 
                 } else if uuid == Dexcom.UUID.control.rawValue {
+                    app.device.readCharacteristic = characteristic
                     app.device.writeCharacteristic = characteristic
                     // TODO: app.device.write(Dexcom.Opcode.transmitterTimeTx.data.appendingCRC, .withResponse)
                     if settings.userLevel >= .test && transmitterIsBonded {
