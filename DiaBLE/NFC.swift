@@ -279,7 +279,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     log("NFC: error while getting patch info: \(error.localizedDescription)")
                 }
 
-                if systemInfo != nil && !(patchInfo.count == 0 && retry < maxRetries)  {
+                if systemInfo != nil && !(patchInfo.count == 0 && retry < maxRetries) {
                     break
                 } else if retry >= maxRetries {
                     session.invalidate(errorMessage: "Error while getting system info")
@@ -614,8 +614,10 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
         var buffer = Data()
         var remainingBytes = bytes
+        let retries = 5
+        var retry = 0
 
-        while remainingBytes > 0 {
+        while remainingBytes > 0 && retry <= retries {
 
             let addressToRead = address + buffer.count
             let bytesToRead = min(remainingBytes, 24)
@@ -640,7 +642,15 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
             } catch {
                 debugLog("NFC: error while reading \(wordsToRead) words at raw memory 0x\(addressToRead.hex): \(error.localizedDescription) (ISO 15693 error 0x\(error.iso15693Code.hex): \(error.iso15693Description))")
-                throw NFCError.customCommandError
+
+                retry += 1
+                if retry <= retries {
+                    AudioServicesPlaySystemSound(1520)    // "pop" vibration
+                    log("NFC: retry # \(retry)...")
+                    try await Task.sleep(nanoseconds: 250_000_000)
+                } else {
+                    throw NFCError.customCommandError
+                }
             }
         }
 

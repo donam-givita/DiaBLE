@@ -436,25 +436,6 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
                     securityChallenge = try await send(sensor.nfcCommand(.readChallenge))
                     log("NFC: Gen2 security challenge: \(securityChallenge.hex)")
-
-                    do {
-
-                        // FIXME: "404 Not Found"
-                        _ = try await main.post(OOPServer.gen2.nfcAuthEndpoint!, ["patchUid": sensor.uid.hex, "authData": securityChallenge.hex])
-
-                        let oopResponse = try await main.post(OOPServer.gen2.nfcDataEndpoint!, ["patchUid": sensor.uid.hex, "authData": securityChallenge.hex]) as! OOPGen2Response
-                        authContext = oopResponse.p1
-                        let authenticatedCommand = oopResponse.data.bytes
-                        log("OOP: context: \(authContext), authenticated `A1 1F get session info` command: \(authenticatedCommand.hex)")
-                        var getSessionInfoCommand = sensor.nfcCommand(.getSessionInfo)
-                        getSessionInfoCommand.parameters = authenticatedCommand.suffix(authenticatedCommand.count - 3)
-                        sessionInfo = try! await send(getSessionInfoCommand)
-                        // TODO: drop leading 0xA5s?
-                        // sessionInfo = sessionInfo.suffix(sessionInfo.count - 8)
-                        log("NFC: session info = \(sessionInfo.hex)")
-                    } catch {
-                        log("NFC: OOP error: \(error.localizedDescription)")
-                    }
                 }
 
                 var (start, data) = try await sensor.securityGeneration < 2 ?
@@ -647,8 +628,10 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
         var buffer = Data()
         var remainingBytes = bytes
+        let retries = 5
+        var retry = 0
 
-        while remainingBytes > 0 {
+        while remainingBytes > 0 && retry <= retries {
 
             let addressToRead = address + buffer.count
             let bytesToRead = min(remainingBytes, 24)
@@ -673,7 +656,15 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
 
             } catch {
                 debugLog("NFC: error while reading \(wordsToRead) words at raw memory 0x\(addressToRead.hex): \(error.localizedDescription) (ISO 15693 error 0x\(error.iso15693Code.hex): \(error.iso15693Description))")
-                throw NFCError.customCommandError
+
+                retry += 1
+                if retry <= retries {
+                    AudioServicesPlaySystemSound(1520)    // "pop" vibration
+                    log("NFC: retry # \(retry)...")
+                    try await Task.sleep(nanoseconds: 250_000_000)
+                } else {
+                    throw NFCError.customCommandError
+                }
             }
         }
 
