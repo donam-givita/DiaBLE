@@ -6,6 +6,7 @@ class Settings: ObservableObject {
     static let defaults: [String: Any] = [
         "preferredTransmitter": TransmitterType.none.id,
         "preferredDevicePattern": BLE.knownDevicesIds.joined(separator: " "),
+        "activeTransmitterIdentifier": "",
         "stoppedBluetooth": false,
 
         "readingInterval": 5,
@@ -78,7 +79,6 @@ class Settings: ObservableObject {
         didSet { UserDefaults.standard.set(self.preferredTransmitter.id, forKey: "preferredTransmitter") }
     }
 
-
     @Published var preferredDevicePattern: String = UserDefaults.standard.string(forKey: "preferredDevicePattern")! {
         willSet(pattern) {
             if !pattern.isEmpty {
@@ -88,6 +88,10 @@ class Settings: ObservableObject {
             }
         }
         didSet { UserDefaults.standard.set(self.preferredDevicePattern, forKey: "preferredDevicePattern") }
+    }
+
+    @Published var activeTransmitterIdentifier: String = UserDefaults.standard.string(forKey: "activeTransmitterIdentifier")! {
+        didSet { UserDefaults.standard.set(self.activeTransmitterIdentifier, forKey: "activeTransmitterIdentifier") }
     }
 
     @Published var stoppedBluetooth: Bool = UserDefaults.standard.bool(forKey: "stoppedBluetooth") {

@@ -68,14 +68,14 @@ class Dexcom: Transmitter {
         case unknown = 0x00
 
         // Auth
-        case authRequestTx = 0x01  // TxIdChallenge
-        case authRequest2Tx = 0x02  // Dexcom ONE/G7  // AppKeyChallenge
-        case authRequestRx = 0x03  // ChallengeReply
+        case authRequestTx = 0x01   // TxIdChallenge
+        case authRequest2Tx = 0x02  // Dexcom ONE/G7 AppKeyChallenge
+        case authRequestRx = 0x03   // ChallengeReply
         case authChallengeTx = 0x04
-        case authChallengeRx = 0x05  // StatusReply
-        case keepAlive = 0x06 // auth; setAdvertisementParametersTx for control  // KeepConnectionAlive
-        case bondRequest = 0x07 // Faifly: pairRequestTx
-        case pairRequestRx = 0x08 // comes in after having accepted the bluetooth pairing request
+        case authChallengeRx = 0x05 // StatusReply
+        case keepAlive = 0x06       // KeepConnectionAlive; setAdvertisementParametersTx for control
+        case bondRequest = 0x07     // pairRequestTx
+        case pairRequestRx = 0x08
 
         // Control
         case disconnectTx = 0x09
@@ -121,7 +121,7 @@ class Dexcom: Transmitter {
         case glucoseBackfillTx = 0x50  // DataStream
         case glucoseBackfillRx = 0x51
 
-        case transmitterVersionExtendedTx = 0x52 // Dexcom ONE
+        case transmitterVersionExtendedTx = 0x52  // Dexcom ONE
 
         case backfillFinished = 0x59  // G7
 
@@ -537,6 +537,7 @@ extension Data {
         }
         return crc
     }
+    var appendingCRC: Data { self + self.crc.data }
 }
 
 
