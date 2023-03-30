@@ -107,7 +107,7 @@ class Device: ObservableObject, Logging {
             peripheral?.readValue(for: characteristic)
             debugLog("\(name): requested value for \(!uuid.isEmpty ? uuid : "read characteristic")")
         } else {
-            debugLog("\(name): cannor read value for unknown characteristic \(uuid)")
+            debugLog("\(name): cannot read value for unknown characteristic \(uuid)")
         }
     }
 
