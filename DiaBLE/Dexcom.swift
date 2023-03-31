@@ -206,9 +206,8 @@ class Dexcom: Transmitter {
                 log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), session start time: \(sessionStartTime.formattedInterval), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), activation date: \(activationDate)")
 
 
-            // TODO: rename to G7 .glucoseRx
-            case .glucoseG6Tx:
-                if sensor?.type == .dexcomG7 {
+            case .glucoseG6Rx:
+                if sensor?.type != .dexcomG7 {
                     let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
                     let sequence = UInt32(data[2..<6])
                     let timestamp = UInt32(data[6..<10])
@@ -222,7 +221,8 @@ class Dexcom: Transmitter {
                 }
 
 
-            case .glucoseG6Rx:
+            // TODO: rename to G7 .glucoseRx
+            case .glucoseG6Tx:
 
                 // https://github.com/LoopKit/G7SensorKit/blob/main/G7SensorKit/Messages/G7GlucoseMessage.swift
 
