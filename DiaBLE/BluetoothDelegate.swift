@@ -91,12 +91,15 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         let identifier = peripheral.identifier
         var msg = "Bluetooth: \(name!)'s device identifier \(identifier)"
         if knownDevices[identifier.uuidString] == nil {
-            msg += " not yet"
+            msg += " not yet known"
             knownDevices[identifier.uuidString] = name
+            if main.settings.userLevel > .basic {
+                msg += " (advertised data: \(advertisement))"
+            }
         } else {
-            msg += " already"
+            msg += " already known"
         }
-        debugLog("\(msg) known")
+        debugLog("\(msg)")
 
         if advertisement[CBAdvertisementDataIsConnectable] as? Int == 0
             || (didFindATransmitter && !settings.preferredDevicePattern.isEmpty && !name!.matches(settings.preferredDevicePattern))
@@ -112,7 +115,6 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                     msg += " because not connectable"
                     main.errorStatus("(not connectable)")
                 }
-                if main.settings.userLevel > .basic { msg += " (advertised data: \(advertisement))" }
             }
             msg += ", \(scanningFor.lowercased())..."
             log(msg)
