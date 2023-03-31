@@ -115,7 +115,7 @@ class Dexcom: Transmitter {
         case transmitterVersionTx = 0x4a
         case transmitterVersionRx = 0x4b
 
-        case glucoseG6Tx = 0x4e  // also G7
+        case glucoseG6Tx = 0x4e  // TODO: rename to G7 .glucoseRx
         case glucoseG6Rx = 0x4f
 
         case glucoseBackfillTx = 0x50  // DataStream
@@ -206,9 +206,9 @@ class Dexcom: Transmitter {
                 log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), session start time: \(sessionStartTime.formattedInterval), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), activation date: \(activationDate)")
 
 
-            case .glucoseG6Rx:
-
-                if sensor?.type != .dexcomG7 {
+            // TODO: rename to G7 .glucoseRx
+            case .glucoseG6Tx:
+                if sensor?.type == .dexcomG7 {
                     let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
                     let sequence = UInt32(data[2..<6])
                     let timestamp = UInt32(data[6..<10])
@@ -219,39 +219,40 @@ class Dexcom: Transmitter {
                     let state = data[12]  // AlgorithmState
                     let trend = Int8(bitPattern: data[13])
                     log("\(name): glucose: status: 0x\(status.hex), sequence: \(sequence), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
-
-                } else {
-
-                    // https://github.com/LoopKit/G7SensorKit/blob/main/G7SensorKit/Messages/G7GlucoseMessage.swift
-
-                    //    0  1  2 3 4 5  6 7  8  9 10 11 1213 14 15 1617 18
-                    //         TTTTTTTT SQSQ       AG    BGBG SS TR PRPR C
-                    // 0x4e 00 d5070000 0900 00 01 05 00 6100 06 01 ffff 0e
-                    // TTTTTTTT = timestamp
-                    //     SQSQ = sequence
-                    //       AG = age
-                    //     BGBG = glucose
-                    //       SS = algorithm state
-                    //       TR = trend
-                    //     PRPR = predicted
-                    //        C = calibration
-
-                    let status = data[1]
-                    let messageTimestamp = UInt32(data[2..<6])  // seconds since pairing of the *message*. Subtract age to get timestamp of glucose
-                    let sequence = UInt16(data[6..<8])
-                    let age = data[10] // amount of time elapsed (seconds) from sensor reading to BLE comms
-                    let timestamp = messageTimestamp - UInt32(age)
-                    let date = activationDate + TimeInterval(timestamp)
-                    let glucoseData = UInt16(data[12..<14])
-                    let glucose: UInt16? = glucoseData != 0xffff ? glucoseData & 0xfff : nil
-                    let state = data[14]
-                    let trend: Double? = data[15] != 0x7f ? Double(Int8(bitPattern: data[15])) / 10 : nil
-                    let glucoseIsDisplayOnly: Bool? = glucoseData != 0xffff ? (data[18] & 0x10) > 0 : nil
-                    let predictionData = UInt16(data[16..<18])
-                    let predicted: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
-                    let calibration = data[18]
-                    log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sequence: \(sequence), age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), sequence: \(sequence), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
                 }
+
+
+            case .glucoseG6Rx:
+
+                // https://github.com/LoopKit/G7SensorKit/blob/main/G7SensorKit/Messages/G7GlucoseMessage.swift
+
+                //    0  1  2 3 4 5  6 7  8  9 10 11 1213 14 15 1617 18
+                //         TTTTTTTT SQSQ       AG    BGBG SS TR PRPR C
+                // 0x4e 00 d5070000 0900 00 01 05 00 6100 06 01 ffff 0e
+                // TTTTTTTT = timestamp
+                //     SQSQ = sequence
+                //       AG = age
+                //     BGBG = glucose
+                //       SS = algorithm state
+                //       TR = trend
+                //     PRPR = predicted
+                //        C = calibration
+
+                let status = data[1]
+                let messageTimestamp = UInt32(data[2..<6])  // seconds since pairing of the *message*. Subtract age to get timestamp of glucose
+                let sequence = UInt16(data[6..<8])
+                let age = data[10] // amount of time elapsed (seconds) from sensor reading to BLE comms
+                let timestamp = messageTimestamp - UInt32(age)
+                let date = activationDate + TimeInterval(timestamp)
+                let glucoseData = UInt16(data[12..<14])
+                let glucose: UInt16? = glucoseData != 0xffff ? glucoseData & 0xfff : nil
+                let state = data[14]
+                let trend: Double? = data[15] != 0x7f ? Double(Int8(bitPattern: data[15])) / 10 : nil
+                let glucoseIsDisplayOnly: Bool? = glucoseData != 0xffff ? (data[18] & 0x10) > 0 : nil
+                let predictionData = UInt16(data[16..<18])
+                let predicted: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
+                let calibration = data[18]
+                log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sequence: \(sequence), age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), sequence: \(sequence), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
 
 
             case .calibrationDataRx:  // G6Bounds
