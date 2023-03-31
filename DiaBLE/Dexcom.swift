@@ -124,6 +124,7 @@ class Dexcom: Transmitter {
         case transmitterVersionExtendedTx = 0x52  // Dexcom ONE
 
         case backfillFinished = 0x59  // G7
+        case unknown1_G7 = 0xEA       // TODO
 
         case keepAliveRx = 0xFF
 
@@ -252,7 +253,17 @@ class Dexcom: Transmitter {
                 let predictionData = UInt16(data[16..<18])
                 let predicted: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
                 let calibration = data[18]
-                log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sequence: \(sequence), age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), sequence: \(sequence), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
+                log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sequence: \(sequence), age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
+
+
+            case .calibrationDataTx:  // G7
+                // TODO: i.e. 3200014e000000000000000000010100e4000000
+                break
+
+
+            case .unknown1_G7:
+                // TODO: i.e. ea00030100000000000200000045ffffff
+                break
 
 
             case .calibrationDataRx:  // G6Bounds
