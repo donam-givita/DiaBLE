@@ -490,18 +490,23 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
         if app.device.type == .transmitter(.dexcom) && serviceUUID == Dexcom.dataServiceUUID {
             var sensor: Sensor! = app.sensor
-            if sensor == nil || sensor.type != .dexcomOne {
-                sensor = DexcomOne(transmitter: app.transmitter)
-                sensor.type = .dexcomOne
+            if sensor == nil || sensor.type != .dexcomOne || sensor.type != .dexcomG7 {
+                if app.device.name.suffix(2) == "G7" {
+                    sensor = DexcomG7(transmitter: app.transmitter)
+                    sensor.type = .dexcomG7
+                } else {
+                    sensor = DexcomOne(transmitter: app.transmitter)
+                    sensor.type = .dexcomOne
+                }
                 app.sensor = sensor
             }
             app.transmitter.sensor = sensor
             if settings.userLevel < .test { // not sniffing
 
-                // FIXME: The Dexcom ONE uses authRequest2Tx (0x02)
+                // FIXME: The Dexcom ONE and G7 use authRequest2Tx (0x02)
                 // see: https://github.com/NightscoutFoundation/xDrip/blob/master/libkeks/src/main/java/jamorham/keks/message/AuthRequestTxMessage2.java
 
-                var message = sensor.type == .dexcomOne ? Dexcom.Opcode.authRequest2Tx.data : Dexcom.Opcode.authRequestTx.data
+                var message = (sensor.type == .dexcomOne || sensor.type == .dexcomG7) ? Dexcom.Opcode.authRequest2Tx.data : Dexcom.Opcode.authRequestTx.data
                 let singleUseToken = UUID().uuidString.data(using: .utf8)!.prefix(8)
                 message += singleUseToken
                 message.append(0x02)
