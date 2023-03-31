@@ -365,7 +365,7 @@ class Dexcom: Transmitter {
             } else {
                 buffer += data
             }
-            let index = sensor?.type != .dexcomG7 ? Int(data[0]) : buffer.count / 9 - 1
+            let index = sensor?.type != .dexcomG7 ? Int(data[0]) : buffer.count / 9
             log("\(name): backfill stream: received packet # \(index), partial buffer size: \(buffer.count)")
 
 
