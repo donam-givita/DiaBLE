@@ -180,8 +180,10 @@ class Dexcom: Transmitter {
 
                 // TODO
                 if bonded {
-                    peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.communication.rawValue]!)
-                    peripheral?.readValue(for: characteristics[Dexcom.UUID.communication.rawValue]!)
+                    if let communicationCharacteristic = characteristics[Dexcom.UUID.communication.rawValue] {
+                        peripheral?.setNotifyValue(true, for: communicationCharacteristic)
+                        peripheral?.readValue(for: communicationCharacteristic)
+                    }
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.control.rawValue]!)
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.backfill.rawValue]!)
                 }
