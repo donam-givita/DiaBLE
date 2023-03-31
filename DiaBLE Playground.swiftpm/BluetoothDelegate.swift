@@ -62,6 +62,12 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             name = "ABBOTT\(name ?? "unnamedLibre")"    // Libre 3 device name is 12 chars long (hexadecimal MAC address)
         }
 
+        if let dataServiceUUIDs = dataServiceUUIDs, dataServiceUUIDs.count > 0, dataServiceUUIDs[0].uuidString == Dexcom.UUID.advertisement.rawValue {
+            if name!.hasPrefix("DXCM") {
+                name = "DEXCOM\(name!.suffix(2))"  // Dexcom G7 device name starts with "DXCM" instead of "Dexcom" (both end in the last two chars of the serial number)
+            }
+        }
+
         var didFindATransmitter = false
 
         if let name = name {
@@ -147,11 +153,15 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             }
             settings.activeSensorSerial = app.device.serial
 
-        } else if name!.hasPrefix("Dexcom") {
-            // TODO: the Dexcom G7 advertises a peripheral name of "DXCMxx", and later reports a full name of "Dexcomxx"
+        } else if name!.lowercased().hasPrefix("dexcom") {
             app.transmitter = Dexcom(peripheral: peripheral, main: main)
             app.device = app.transmitter
-            app.device.name = String(name!.prefix(6))
+            if name!.hasPrefix("Dexcom") {
+                app.device.name = "Dexcom"         // TODO: Dexcom ONE
+            } else if name!.hasPrefix("DEXCOM") {  // restore to the original G7 device name
+                app.device.name = "Dexcom G7"
+                name = "DXCM" + name!.suffix(2)
+            }
             let serialSuffix = name!.suffix(2)
             if !(settings.activeTransmitterSerial.count == 6 && settings.activeTransmitterSerial.suffix(2) == serialSuffix) {
                 app.device.serial = "XXXX" + name!.suffix(2)
