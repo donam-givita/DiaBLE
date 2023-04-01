@@ -1,6 +1,7 @@
 import SwiftUI
 import CoreBluetooth
 import AVFoundation
+import os.log
 
 
 public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
@@ -9,6 +10,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
     var log: Log
     var history: History
     var settings: Settings
+    var logger: Logger
 
     var centralManager: CBCentralManager
     var bluetoothDelegate: BluetoothDelegate
@@ -24,6 +26,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         UserDefaults.standard.register(defaults: Settings.defaults)
 
         app = AppState()
+        logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Debug")
         log = Log()
         history = History()
         settings = Settings()
@@ -96,6 +99,9 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                     self.log.entries.append(entry)
                 }
                 print(msg)
+                if self.settings.userLevel > .basic {
+                    self.logger.log("\(msg)")
+                }
                 if !entry.label.isEmpty {
                     self.log.labels.insert(entry.label)
                 }

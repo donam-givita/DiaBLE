@@ -1,11 +1,13 @@
 import SwiftUI
 import CoreBluetooth
 import AVFoundation
+import os.log
 
 
 public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDelegate {
 
     var app: AppState
+    var logger: Logger
     var log: Log
     var history: History
     var settings: Settings
@@ -24,6 +26,7 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
         UserDefaults.standard.register(defaults: Settings.defaults)
 
         app = AppState()
+        logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Debug")
         log = Log()
         history = History()
         settings = Settings()
@@ -85,6 +88,9 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
                     self.log.entries.append(entry)
                 }
                 print(msg)
+                if self.settings.userLevel > .basic {
+                    self.logger.log("\(msg)")
+                }
                 if !entry.label.isEmpty {
                     self.log.labels.insert(entry.label)
                 }
