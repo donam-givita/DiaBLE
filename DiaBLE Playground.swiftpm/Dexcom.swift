@@ -204,7 +204,15 @@ class Dexcom: Transmitter {
                 let age = TimeInterval(UInt32(data[2..<6]))
                 activationDate = Date.now - age
                 let sessionStartTime = TimeInterval(UInt32(data[6..<10]))
-                log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), session start time: \(sessionStartTime.formattedInterval), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), activation date: \(activationDate)")
+                let sensorActivationTime = activationDate.timeIntervalSince1970 + sessionStartTime
+                let sensorActivationDate = Date.init(timeIntervalSince1970: sensorActivationTime)
+                let sensorAge = Int(Date().timeIntervalSince(sensorActivationDate)) / 60
+                sensor?.activationTime = UInt32(sensorActivationTime)
+                sensor?.age = sensorAge
+                sensor?.state = .active
+                sensor?.lastReadingDate = Date()
+                sensor?.maxLife = 14400
+                log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), session start time: \(sessionStartTime.formattedInterval), sensor activation date: \(sensorActivationDate), sensor age: \(sensorAge.formattedInterval); valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), activation date: \(activationDate)")
 
 
             case .glucoseG6Rx:
@@ -243,10 +251,15 @@ class Dexcom: Transmitter {
                 let messageTimestamp = UInt32(data[2..<6])  // seconds since pairing of the *message*. Subtract age to get timestamp of glucose
                 activationDate = Date.now - TimeInterval(messageTimestamp)
                 sensor?.activationTime = UInt32(activationDate.timeIntervalSince1970)
+                let sensorAge = Int(Date().timeIntervalSince(activationDate)) / 60
+                sensor?.age = sensorAge
+                sensor?.state = .active
+                sensor?.maxLife = 14400
                 let sequence = UInt16(data[6..<8])
                 let age = data[10] // amount of time elapsed (seconds) from sensor reading to BLE comms
                 let timestamp = messageTimestamp - UInt32(age)
                 let date = activationDate + TimeInterval(timestamp)
+                sensor?.lastReadingDate = date
                 let glucoseData = UInt16(data[12..<14])
                 let glucose: UInt16? = glucoseData != 0xffff ? glucoseData & 0xfff : nil
                 let state = data[14]
@@ -255,7 +268,7 @@ class Dexcom: Transmitter {
                 let predictionData = UInt16(data[16..<18])
                 let predicted: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
                 let calibration = data[18]
-                log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sensor activation date: \(activationDate), sequence: \(sequence), age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
+                log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sensor activation date: \(activationDate), sensor age: \(sensorAge), sequence: \(sequence), reading age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
 
 
             case .calibrationDataTx:  // G7
