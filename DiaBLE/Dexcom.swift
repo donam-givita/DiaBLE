@@ -296,37 +296,47 @@ class Dexcom: Transmitter {
 
 
             case .glucoseBackfillRx:
-                let status = data[1]   // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
-                let backfillStatus = data[2]
-                let identifier = data[3]
-                let startTime = TimeInterval(UInt32(data[4..<8]))
-                let endTime = TimeInterval(UInt32(data[8..<12]))
-                let bufferLength = UInt32(data[12..<16])
-                let bufferCRC = UInt16(data[16..<18])
-                log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: \(buffer.crc.hex)")
-                var packets = [Data]()
-                for i in 0 ..< (buffer.count + 19) / 20 {
-                    packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
+                if sensor?.type != .dexcomG7 {
+                    let status = data[1]   // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
+                    let backfillStatus = data[2]
+                    let identifier = data[3]
+                    let startTime = TimeInterval(UInt32(data[4..<8]))
+                    let endTime = TimeInterval(UInt32(data[8..<12]))
+                    let bufferLength = UInt32(data[12..<16])
+                    let bufferCRC = UInt16(data[16..<18])
+                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: \(buffer.crc.hex)")
+                    var packets = [Data]()
+                    for i in 0 ..< (buffer.count + 19) / 20 {
+                        packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
+                    }
+                    // Drop the first 2 bytes from each frame and the first 4 bytes from the combined message
+                    let glucoseData = Data(packets.reduce(into: Data(), { $0.append($1.dropFirst(2)) }).dropFirst(4))
+                    var history = [Glucose]()
+                    for i in 0 ..< glucoseData.count / 8 {
+                        let data = glucoseData.subdata(in: i * 8 ..< (i + 1) * 8)
+                        // extract same fields as in .glucoseG6Rx
+                        let timestamp = UInt32(data[0..<4])
+                        let date = activationDate + TimeInterval(timestamp)
+                        let glucoseBytes = UInt16(data[4..<6])
+                        let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
+                        let glucose = Int(glucoseBytes & 0xfff)
+                        let state = data[6]  // CalibrationState, AlgorithmState
+                        let trend = Int8(bitPattern: data[7])
+                        log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
+                        let item = Glucose(glucose, id: Int(Double(timestamp) / 60 / 5), date: date)
+                        // TODO: manage trend and state
+                        history.append(item)
+                    }
+                    log("\(name): backfilled history (\(history.count) values): \(history)")
+
+                } else { // TODO: G7
+                    var packets = [Data]()
+                    for i in 0 ..< (buffer.count + 19) / 20 {
+                        packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
+                    }
+                    log("\(name): backfilled stream (TODO): buffer length: \(buffer.count), 20-byte packets: \(packets.count)")
                 }
-                // Drop the first 2 bytes from each frame and the first 4 bytes from the combined message
-                let glucoseData = Data(packets.reduce(into: Data(), { $0.append($1.dropFirst(2)) }).dropFirst(4))
-                var history = [Glucose]()
-                for i in 0 ..< glucoseData.count / 8 {
-                    let data = glucoseData.subdata(in: i * 8 ..< (i + 1) * 8)
-                    // extract same fields as in .glucoseG6Rx
-                    let timestamp = UInt32(data[0..<4])
-                    let date = activationDate + TimeInterval(timestamp)
-                    let glucoseBytes = UInt16(data[4..<6])
-                    let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
-                    let glucose = Int(glucoseBytes & 0xfff)
-                    let state = data[6]  // CalibrationState, AlgorithmState
-                    let trend = Int8(bitPattern: data[7])
-                    log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
-                    let item = Glucose(glucose, id: Int(Double(timestamp) / 60 / 5), date: date)
-                    // TODO: manage trend and state
-                    history.append(item)
-                }
-                log("\(name): backfilled history (\(history.count) values): \(history)")
+
                 buffer = Data()
                 // TODO
 
@@ -392,7 +402,7 @@ class Dexcom: Transmitter {
             } else {
                 buffer += data
             }
-            let index = sensor?.type != .dexcomG7 ? Int(data[0]) : buffer.count / 9
+            let index = sensor?.type != .dexcomG7 ? Int(data[0]) : data.count == 9 ? buffer.count / 9 : buffer.count / 20
             log("\(name): backfill stream: received packet # \(index), partial buffer size: \(buffer.count)")
 
 
