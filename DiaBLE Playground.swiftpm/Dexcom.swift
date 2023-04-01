@@ -268,7 +268,7 @@ class Dexcom: Transmitter {
                 let predictionData = UInt16(data[16..<18])
                 let predicted: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
                 let calibration = data[18]
-                log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sensor activation date: \(activationDate), sensor age: \(sensorAge), sequence: \(sequence), reading age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
+                log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sensor activation date: \(activationDate), sensor age: \(sensorAge.formattedInterval), sequence: \(sequence), reading age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
 
 
             case .calibrationDataTx:  // G7
@@ -323,7 +323,7 @@ class Dexcom: Transmitter {
                         let state = data[6]  // CalibrationState, AlgorithmState
                         let trend = Int8(bitPattern: data[7])
                         log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
-                        let item = Glucose(glucose, id: Int(Double(timestamp) / 60 / 5), date: date)
+                        let item = Glucose(glucose, trendRate: Double(trend), id: Int(Double(timestamp) / 60 / 5), date: date)
                         // TODO: manage trend and state
                         history.append(item)
                     }
@@ -367,7 +367,7 @@ class Dexcom: Transmitter {
                     let trend: Double? = data[8] != 0x7f ? Double(Int8(bitPattern: data[8])) / 10 : nil
                     log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil")")
                     if let glucose {
-                        let item = Glucose(glucose, id: Int(Double(timestamp) / 60 / 5), date: date)
+                        let item = Glucose(glucose, trendRate: trend ?? 0, id: Int(Double(timestamp) / 60 / 5), date: date)
                         // TODO: manage trend and state
                         history.append(item)
                     }
