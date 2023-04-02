@@ -329,7 +329,7 @@ class Dexcom: Transmitter {
                     }
                     log("\(name): backfilled history (\(history.count) values): \(history)")
 
-                } else { // TODO: G7
+                } else { // TODO: G7  i. e. 510000a01600009a44ea430200ec5f0200
                     var packets = [Data]()
                     for i in 0 ..< (buffer.count + 19) / 20 {
                         packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
@@ -402,7 +402,7 @@ class Dexcom: Transmitter {
             } else {
                 buffer += data
             }
-            let index = sensor?.type != .dexcomG7 ? Int(data[0]) : data.count == 9 ? buffer.count / 9 : buffer.count / 20
+            let index = sensor?.type != .dexcomG7 ? Int(data[0]) : data.count == 9 ? buffer.count / 9 : Int(ceil(Double(buffer.count) / 20))
             log("\(name): backfill stream: received packet # \(index), partial buffer size: \(buffer.count)")
 
 
