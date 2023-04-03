@@ -80,7 +80,7 @@ class Dexcom: Transmitter {
         // Control
         case disconnectTx = 0x09
 
-        case exchangePakePayload = 0x0a  // Auth Dexcom ONE: 0A00, 0A01, 0A02 sent during initial pairing
+        case exchangePakePayload = 0x0a  // Auth ONE/G7: 0A00, 0A01, 0A02 sent during initial pairing
         case changeAppLevelKeyTx = 0x0f
         case appLevelKeyAcceptedTx = 0x10
 
@@ -329,20 +329,25 @@ class Dexcom: Transmitter {
                     }
                     log("\(name): backfilled history (\(history.count) values): \(history)")
 
-                } else { // TODO: G7  i. e. 510000a01600009a44ea430200ec5f0200
+                } else { // TODO: G7  i. e. 510000a01600009a44ea430200ec5f0200 (17 bytes)
+                    let status = data[1]
+                    let backfillStatus = data[2]
+                    let bufferLength = UInt32(data[3...4])
+                    // TODO
+                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus),  buffer length: \(bufferLength)")
                     var packets = [Data]()
                     for i in 0 ..< (buffer.count + 19) / 20 {
                         packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
                     }
-                    log("\(name): backfilled stream (TODO): buffer length: \(buffer.count), 20-byte packets: \(packets.count)")
+                    log("\(name): backfilled stream (TODO): buffer length: \(buffer.count), computed CRC: \(buffer.crc.hex), 20-byte packets: \(packets.count)")
                 }
 
                 buffer = Data()
                 // TODO
 
 
-            case .backfillFinished:  // G7
-                // TODO: i. e. 5900003600000010382C01D25C0100AE620100 (19 bytes)
+            case .backfillFinished:  // G7 Tx/Rx
+                // TODO: i. e. 59E2960200EA9D0200, 5900003F000000AB933802E2960200EA9D0200 (19 bytes)
                 var packets = [Data]()
                 for i in 0 ..< (buffer.count / 9) {
                     packets.append(Data(buffer[i * 9 ..< min((i + 1) * 9, buffer.count)]))
