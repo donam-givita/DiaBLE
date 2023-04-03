@@ -333,13 +333,14 @@ class Dexcom: Transmitter {
                     let status = data[1]
                     let backfillStatus = data[2]
                     let bufferLength = UInt32(data[3...6])
+                    let bufferCRC = UInt16(data[7...8])
                     // TODO
-                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), buffer length: \(bufferLength)")
+                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex)")
                     var packets = [Data]()
                     for i in 0 ..< (buffer.count + 19) / 20 {
                         packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
                     }
-                    log("\(name): backfilled stream (TODO): buffer length: \(buffer.count), computed CRC: \(buffer.crc.hex), 20-byte packets: \(packets.count)")
+                    log("\(name): backfilled stream (TODO): buffer length: \(buffer.count), valid CRC: \(bufferCRC == buffer.crc), 20-byte packets: \(packets.count)")
                 }
 
                 buffer = Data()
