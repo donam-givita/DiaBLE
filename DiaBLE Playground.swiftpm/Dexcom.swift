@@ -332,7 +332,7 @@ class Dexcom: Transmitter {
                 } else { // TODO: G7  i. e. 510000a01600009a44ea430200ec5f0200 (17 bytes)
                     let status = data[1]
                     let backfillStatus = data[2]
-                    let bufferLength = UInt16(data[3...4])
+                    let bufferLength = UInt32(data[3...6])
                     // TODO
                     log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), buffer length: \(bufferLength)")
                     var packets = [Data]()
