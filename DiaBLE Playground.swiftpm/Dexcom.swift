@@ -334,8 +334,10 @@ class Dexcom: Transmitter {
                     let backfillStatus = data[2]
                     let bufferLength = UInt32(data[3...6])
                     let bufferCRC = UInt16(data[7...8])
+                    let startTime = TimeInterval(UInt32(data[9...12]))
+                    let endTime = TimeInterval(UInt32(data[13...16]))
                     // TODO
-                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex)")
+                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval)")
                     var packets = [Data]()
                     for i in 0 ..< (buffer.count + 19) / 20 {
                         packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
