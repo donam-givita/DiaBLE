@@ -302,14 +302,6 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                         msg += "; avoid enabling notifications because of 'Encryption is insufficient' error"
                     }
 
-                } else if uuid == Dexcom.UUID.authentication.rawValue {
-                    if settings.userLevel >= .test && !transmitterIsAuthenticated {
-                        peripheral.setNotifyValue(true, for: characteristic)
-                        msg += "; enabling notifications"
-                    } else {
-                        msg += "; avoid enabling notifications because already authenticated"
-                    }
-
                 } else if uuid == Dexcom.UUID.backfill.rawValue
                             || uuid == Dexcom.UUID.communication.rawValue {
                     if settings.userLevel >= .test && transmitterIsAuthenticated {
