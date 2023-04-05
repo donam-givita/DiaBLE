@@ -62,6 +62,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         }
 
         if let dataServiceUUIDs = dataServiceUUIDs, dataServiceUUIDs.count > 0, dataServiceUUIDs[0].uuidString == Dexcom.UUID.advertisement.rawValue {
+            if name!.hasPrefix("Dexcom") { name = "_Dexcom_ONE_" } // exclude ONE when rescanning
             if name!.hasPrefix("DXCM") {
                 name = "DEXCOM\(name!.suffix(2))"  // Dexcom G7 device name starts with "DXCM" instead of "Dexcom" (both end in the last two chars of the serial number)
             }
@@ -289,31 +290,30 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
 
             if Dexcom.knownUUIDs.contains(uuid) {
                 msg += " (\(Dexcom.UUID(rawValue: uuid)!.description))"
-                let transmitterIsBonded = (app.transmitter as? Dexcom)?.bonded ?? false
+                let transmitterIsAuthenticated = (app.transmitter as? Dexcom)?.authenticated ?? false
 
-                if uuid == Dexcom.UUID.communication.rawValue {
-                    if settings.userLevel >= .test && transmitterIsBonded {
-                        peripheral.setNotifyValue(true, for: characteristic)
-                        msg += "; enabling notifications"
-                        app.device.peripheral?.readValue(for: characteristic)
-                        msg += " and reading it"
-                    } else {
-                        msg += "; avoid enabling notifications because of 'Encryption is insufficient' error"
-                    }
-
-                } else if uuid == Dexcom.UUID.control.rawValue {
+                if uuid == Dexcom.UUID.control.rawValue {
                     app.device.readCharacteristic = characteristic
                     app.device.writeCharacteristic = characteristic
                     // TODO: app.device.write(Dexcom.Opcode.transmitterTimeTx.data.appendingCRC, .withResponse)
-                    if settings.userLevel >= .test && transmitterIsBonded {
+                    if settings.userLevel >= .test && transmitterIsAuthenticated {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
                     } else {
                         msg += "; avoid enabling notifications because of 'Encryption is insufficient' error"
                     }
 
-                } else if uuid == Dexcom.UUID.backfill.rawValue {
-                    if settings.userLevel >= .test && transmitterIsBonded {
+                } else if uuid == Dexcom.UUID.authentication.rawValue {
+                    if settings.userLevel >= .test && !transmitterIsAuthenticated {
+                        peripheral.setNotifyValue(true, for: characteristic)
+                        msg += "; enabling notifications"
+                    } else {
+                        msg += "; avoid enabling notifications because already authenticated"
+                    }
+
+                } else if uuid == Dexcom.UUID.backfill.rawValue
+                            || uuid == Dexcom.UUID.communication.rawValue {
+                    if settings.userLevel >= .test && transmitterIsAuthenticated {
                         peripheral.setNotifyValue(true, for: characteristic)
                         msg += "; enabling notifications"
                     } else {
@@ -514,15 +514,22 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             let errorCode = CBError.Code(rawValue: (error! as NSError).code)! // 6 = timed out when out of range
             log("Bluetooth: error type \(errorCode.rawValue): \(error!.localizedDescription)")
             if app.transmitter != nil && (settings.preferredTransmitter == .none || settings.preferredTransmitter.id == app.transmitter.type.id) {
-                // TODO: Dexcom reconnection
-                if app.transmitter.type == .transmitter(.dexcom) {
-                    debugLog("DEBUG: Dexcom: TODO: nap before reconnecting")
-                }
                 app.deviceState = "Reconnecting..."
                 log("Bluetooth: reconnecting to \(name)...")
                 if errorCode == .connectionTimeout { main.errorStatus("Connection timed out. Waiting...") }
                 app.device.buffer = Data()
-                centralManager.connect(peripheral, options: nil)
+                // TODO: Dexcom reconnection
+                if app.transmitter.type == .transmitter(.dexcom) {
+                    debugLog("DEBUG: Dexcom: sleeping 2 seconds before rescanning to reconnect")
+                    DispatchQueue.global(qos: .utility).async {
+                        Thread.sleep(forTimeInterval: 2)
+                        // self.centralManager.connect(peripheral, options: nil)
+                        // https://github.com/LoopKit/G7SensorKit/blob/14205c1/G7SensorKit/G7CGMManager/G7BluetoothManager.swift#L224-L229
+                        self.centralManager.scanForPeripherals(withServices: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)], options: nil)
+                    }
+                } else {
+                    centralManager.connect(peripheral, options: nil)
+                }
             } else {
                 let lastConnectionDate = Date()
                 app.device?.lastConnectionDate = lastConnectionDate

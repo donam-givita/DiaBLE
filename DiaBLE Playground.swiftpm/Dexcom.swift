@@ -180,7 +180,7 @@ class Dexcom: Transmitter {
                 log("\(name): authenticated: \(authenticated), bonded: \(bonded)")
 
                 // TODO
-                if bonded {
+                if authenticated {
                     if let communicationCharacteristic = characteristics[Dexcom.UUID.communication.rawValue] {
                         peripheral?.setNotifyValue(true, for: communicationCharacteristic)
                         peripheral?.readValue(for: communicationCharacteristic)

@@ -68,7 +68,7 @@ class Nightscout: NSObject, Logging {
 
 
     func request(_ endpoint: String = "", _ query: String = "") async throws -> (Any, URLResponse) {
-        var url = "https://\(settings.nightscoutSite)" // FIXME: "no async operations occur" warning
+        var url = "https://\(settings.nightscoutSite)"
 
         if !endpoint.isEmpty { url += ("/" + endpoint) }
         if !query.isEmpty    { url += ("?" + query) }
