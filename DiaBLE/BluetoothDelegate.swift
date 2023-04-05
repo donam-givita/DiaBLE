@@ -62,7 +62,6 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         }
 
         if let dataServiceUUIDs = dataServiceUUIDs, dataServiceUUIDs.count > 0, dataServiceUUIDs[0].uuidString == Dexcom.UUID.advertisement.rawValue {
-            if name!.hasPrefix("Dexcom") { name = "_Dexcom_ONE_" } // exclude ONE when rescanning
             if name!.hasPrefix("DXCM") {
                 name = "DEXCOM\(name!.suffix(2))"  // Dexcom G7 device name starts with "DXCM" instead of "Dexcom" (both end in the last two chars of the serial number)
             }
