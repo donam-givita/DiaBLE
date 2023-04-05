@@ -7,7 +7,6 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     var main: MainDelegate!
     var centralManager: CBCentralManager { main.centralManager }
     var app: AppState { main.app }
-    var settings: Settings { main.settings }
     @Published var knownDevices: [String: String] = [:]
 
 
@@ -99,7 +98,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         if knownDevices[identifier.uuidString] == nil {
             msg += " not yet known"
             knownDevices[identifier.uuidString] = name
-            if main.settings.userLevel > .basic {
+            if settings.userLevel > .basic {
                 msg += " (advertised data: \(advertisement))"
             }
         } else {

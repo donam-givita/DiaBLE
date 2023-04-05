@@ -115,15 +115,15 @@ class MiaoMiao: Transmitter {
                 sensor!.age = Int(buffer[3]) << 8 + Int(buffer[4])
                 sensorUid = Data(buffer[5...12])
                 sensor!.uid = sensorUid
-                main.settings.patchUid = sensorUid
+                settings.patchUid = sensorUid
                 log("\(name): sensor age: \(sensor!.age) minutes (\(String(format: "%.1f", Double(sensor!.age)/60/24)) days), patch uid: \(sensor!.uid.hex)")
 
 
                 if buffer.count >= 369 {  // 18 + 43 * 8 + 1 + 6
                     // TODO: verify that buffer[362] is the end marker 0x29
                     sensor!.patchInfo = Data(buffer[363...368])
-                    main.settings.patchInfo = sensor!.patchInfo
-                    main.settings.activeSensorSerial = sensor!.serial
+                    settings.patchInfo = sensor!.patchInfo
+                    settings.activeSensorSerial = sensor!.serial
                     log("\(name): patch info: \(sensor!.patchInfo.hex), sensor type: \(sensor!.type.rawValue), serial number: \(sensor!.serial)")
 
                     if sensor != nil && sensor!.type == .libreProH {

@@ -778,7 +778,7 @@ class Libre3: Sensor {
                     // let response = process2(command: 7, nonce1, Data(r1 + r2 + blePIN))
 
 
-                    if main.settings.userLevel < .test { // TEST: sniff Trident
+                    if settings.userLevel < .test { // TEST: sniff Trident
                         log("\(type) \(transmitter!.peripheral!.name!): writing 40-zero challenge response")
 
                         let challengeData = Data(count: 40)
@@ -833,7 +833,7 @@ class Libre3: Sensor {
     var activationNFCCommand: NFCCommand {
         var parameters: Data = Data()
         parameters += ((activationTime != 0 ? activationTime : UInt32(Date().timeIntervalSince1970)) - 1).data
-        parameters += (receiverId != 0 ? receiverId : main.settings.libreLinkUpPatientId.fnv32Hash).data
+        parameters += (receiverId != 0 ? receiverId : settings.libreLinkUpPatientId.fnv32Hash).data
         parameters += parameters.crc16.data
 
         // - A8 changes the BLE PIN on an activated sensor and returns the error 0x1B0 on an expired one.

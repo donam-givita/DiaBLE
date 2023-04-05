@@ -576,7 +576,6 @@ extension MainDelegate {
 extension Sensor {
 
     func testOOPActivation() async {
-        // FIXME: await main.settings.oopServer
         let server = OOPServer.default
         log("OOP: posting sensor data to \(server.siteURL)/\(server.activationEndpoint!)...")
         do {

@@ -369,8 +369,8 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 log("NFC: sensor security generation [0-3]: \(sensor.securityGeneration)")
 
                 DispatchQueue.main.async {
-                    self.main.settings.patchUid = self.sensor.uid
-                    self.main.settings.patchInfo = self.sensor.patchInfo
+                    self.settings.patchUid = self.sensor.uid
+                    self.settings.patchInfo = self.sensor.patchInfo
                 }
             }
 
@@ -446,7 +446,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 }
                 sensor.lastReadingDate = lastReadingDate
 
-                // if await main.settings.userLevel >= .test { sensor = LibrePro.test(main: main); data = sensor.fram }   // TEST
+                // if settings.userLevel >= .test { sensor = LibrePro.test(main: main); data = sensor.fram }   // TEST
                 if sensor.type == .libreProH {
                     data = try await (sensor as! LibrePro).scanHistory(nfc: self, fram: data)
                 }
@@ -760,7 +760,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                                       sensor.nfcCommand(.readChallenge)
         ]
 
-        if await main.settings.userLevel > .basic {
+        if settings.userLevel > .basic {
 
             for c in 0xA0 ... 0xDF {
                 commands.append(NFCCommand(code: c, parameters: Data(), description: c.hex))

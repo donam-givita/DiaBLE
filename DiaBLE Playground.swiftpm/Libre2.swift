@@ -193,7 +193,7 @@ class Libre2: Sensor {
             log("NFC: sending \(type) command to \(cmd.description): code: 0x\(cmd.code.hex), parameters: 0x\(cmd.parameters.hex)")
 
             let currentUnlockCode = streamingUnlockCode
-            streamingUnlockCode = UInt32(await main.settings.activeSensorStreamingUnlockCode)
+            streamingUnlockCode = UInt32(settings.activeSensorStreamingUnlockCode)
 
             do {
                 let output = try await nfc.connectedTag!.customCommand(requestFlags: .highDataRate, customCommandCode: cmd.code, customRequestParameters: cmd.parameters)
@@ -204,12 +204,12 @@ class Libre2: Sensor {
                     log("NFC: enabled BLE streaming on \(type) \(serial) (unlock code: \(streamingUnlockCode), MAC address: \(Data(output.reversed()).hexAddress))")
                     // "Publishing changes from background threads is not allowed"
                     DispatchQueue.main.async {
-                        self.main.settings.activeSensorSerial = self.serial
-                        self.main.settings.activeSensorAddress = Data(output.reversed())
+                        self.settings.activeSensorSerial = self.serial
+                        self.settings.activeSensorAddress = Data(output.reversed())
                         self.initialPatchInfo = self.patchInfo
-                        self.main.settings.activeSensorInitialPatchInfo = self.patchInfo
+                        self.settings.activeSensorInitialPatchInfo = self.patchInfo
                         self.streamingUnlockCount = 0
-                        self.main.settings.activeSensorStreamingUnlockCount = 0
+                        self.settings.activeSensorStreamingUnlockCount = 0
 
                         // TODO: cancel connections also before enabling streaming?
                         self.main.rescan()

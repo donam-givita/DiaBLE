@@ -38,11 +38,11 @@ class Nightscout: NSObject, Logging {
 
     // TODO: use URLQueryItems paramaters
     func request(_ endpoint: String = "", _ query: String = "", handler: @escaping (Data?, URLResponse?, Error?, [Any]) -> Void) {
-        var url = "https://\(main.settings.nightscoutSite)"
+        var url = "https://\(settings.nightscoutSite)"
 
         if !endpoint.isEmpty { url += ("/" + endpoint) }
         if !query.isEmpty    { url += ("?" + query) }
-        if !main.settings.nightscoutToken.isEmpty { url += "&token=" + main.settings.nightscoutToken }
+        if !settings.nightscoutToken.isEmpty { url += "&token=" + settings.nightscoutToken }
 
         var request = URLRequest(url: URL(string: url)!)
         debugLog("Nightscout: URL request: \(request.url!.absoluteString)")
@@ -68,11 +68,11 @@ class Nightscout: NSObject, Logging {
 
 
     func request(_ endpoint: String = "", _ query: String = "") async throws -> (Any, URLResponse) {
-        var url = await "https://\(main.settings.nightscoutSite)" // FIXME: "no async operations occur" warning
+        var url = "https://\(settings.nightscoutSite)" // FIXME: "no async operations occur" warning
 
         if !endpoint.isEmpty { url += ("/" + endpoint) }
         if !query.isEmpty    { url += ("?" + query) }
-        if await !main.settings.nightscoutToken.isEmpty { await url += "&token=" + main.settings.nightscoutToken }
+        if !settings.nightscoutToken.isEmpty { url += "&token=" + settings.nightscoutToken }
 
         var request = URLRequest(url: URL(string: url)!)
         debugLog("Nightscout: URL request: \(request.url!.absoluteString)")
@@ -98,7 +98,7 @@ class Nightscout: NSObject, Logging {
 
 
     func read(handler: (([Glucose]) -> Void)? = nil) {
-        guard main.settings.onlineInterval > 0 else { return }
+        guard settings.onlineInterval > 0 else { return }
         request("api/v1/entries.json", "count=100") { data, response, error, array in
             var values = [Glucose]()
             for item in array {
@@ -117,7 +117,7 @@ class Nightscout: NSObject, Logging {
     }
 
     func read() async throws -> ([Glucose], URLResponse) {
-        guard await main.settings.onlineInterval > 0 else { return ([Glucose](), URLResponse()) }
+        guard settings.onlineInterval > 0 else { return ([Glucose](), URLResponse()) }
         let (data, response) = try await request("api/v1/entries.json", "count=100")
         var values = [Glucose]()
         if let array = data as? [[String: Any]?] {
@@ -139,11 +139,11 @@ class Nightscout: NSObject, Logging {
 
     func post(_ endpoint: String = "", _ jsonObject: Any, handler: (((Data?, URLResponse?, Error?) -> Void))? = nil) {
         let json = try! JSONSerialization.data(withJSONObject: jsonObject, options: [])
-        var request = URLRequest(url: URL(string: "https://\(main.settings.nightscoutSite)/\(endpoint)")!)
+        var request = URLRequest(url: URL(string: "https://\(settings.nightscoutSite)/\(endpoint)")!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue(main.settings.nightscoutToken.sha1, forHTTPHeaderField: "api-secret")
+        request.setValue(settings.nightscoutToken.sha1, forHTTPHeaderField: "api-secret")
         URLSession.shared.uploadTask(with: request, from: json) { [self] data, response, error in
             if let error {
                 log("Nightscout: error: \(error.localizedDescription)")
@@ -165,8 +165,8 @@ class Nightscout: NSObject, Logging {
 
 
     func post(_ endpoint: String, _ jsonObject: Any) async throws -> (Any, URLResponse) {
-        let url = await "https://" + main.settings.nightscoutSite // FIXME: "no async operations occur" warning
-        let token = await main.settings.nightscoutToken.sha1 // FIXME: "no async operations occur" warning
+        let url = "https://" + settings.nightscoutSite
+        let token = settings.nightscoutToken.sha1
         let jsonData = try? JSONSerialization.data(withJSONObject: jsonObject)
         var request = URLRequest(url: URL(string: "\(url)/\(endpoint)")!)
         request.httpMethod = "POST"
@@ -204,7 +204,7 @@ class Nightscout: NSObject, Logging {
 
 
     func post(entries: [Glucose], handler: (((Data?, URLResponse?, Error?) -> Void))? = nil) {
-        guard main.settings.onlineInterval > 0 else { return }
+        guard settings.onlineInterval > 0 else { return }
         let dictionaryArray = entries.map { [
             "type": "sgv",
             "dateString": ISO8601DateFormatter().string(from: $0.date),
@@ -222,7 +222,7 @@ class Nightscout: NSObject, Logging {
 
 
     func post(entries: [Glucose]) async throws {
-        guard await main.settings.onlineInterval > 0 else { return }
+        guard settings.onlineInterval > 0 else { return }
         let dictionaryArray = entries.map { [
             "type": "sgv",
             "dateString": ISO8601DateFormatter().string(from: $0.date),
@@ -237,7 +237,7 @@ class Nightscout: NSObject, Logging {
 
 
     func delete(_ endpoint: String = "api/v1/entries", _ query: String = "", handler: (((Data?, URLResponse?, Error?) -> Void))? = nil) {
-        var url = "https://\(main.settings.nightscoutSite)"
+        var url = "https://\(settings.nightscoutSite)"
 
         if !endpoint.isEmpty { url += ("/" + endpoint) }
         if !query.isEmpty    { url += ("?" + query) }
@@ -247,7 +247,7 @@ class Nightscout: NSObject, Logging {
         request.httpMethod = "DELETE"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue(main.settings.nightscoutToken.sha1, forHTTPHeaderField: "api-secret")
+        request.setValue(settings.nightscoutToken.sha1, forHTTPHeaderField: "api-secret")
         URLSession.shared.dataTask(with: request) { [self] data, response, error in
             if let error {
                 log("Nightscout: error: \(error.localizedDescription)")
@@ -270,10 +270,10 @@ class Nightscout: NSObject, Logging {
 
     // TODO:
     func test(handler: (((Data?, URLResponse?, Error?) -> Void))? = nil) {
-        var request = URLRequest(url: URL(string: "https://\(main.settings.nightscoutSite)/api/v1/entries.json?token=\(main.settings.nightscoutToken)")!)
+        var request = URLRequest(url: URL(string: "https://\(settings.nightscoutSite)/api/v1/entries.json?token=\(settings.nightscoutToken)")!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue(main.settings.nightscoutToken.sha1, forHTTPHeaderField: "api-secret")
+        request.setValue(settings.nightscoutToken.sha1, forHTTPHeaderField: "api-secret")
         URLSession.shared.dataTask(with: request) { [self] data, response, error in
             if let error {
                 log("Nightscout: authorization error: \(error.localizedDescription)")

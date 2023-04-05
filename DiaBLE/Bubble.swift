@@ -86,7 +86,7 @@ class Bubble: Transmitter {
             firmware = "\(data[2]).\(data[3])"
             hardware = "\(data[data.count - 2]).\(data[data.count - 1])"
             log("\(name): battery: \(battery), firmware: \(firmware), hardware: \(hardware)")
-            let libreType = main.settings.patchInfo.count > 0 ? SensorType(patchInfo: main.settings.patchInfo) : .unknown
+            let libreType = settings.patchInfo.count > 0 ? SensorType(patchInfo: settings.patchInfo) : .unknown
             if Double(firmware)! >= 2.6 && (libreType == .libre2 || libreType == .libreUS14day) {
                 write(Data([0x08, 0x01, 0x00, 0x00, 0x00, 0x2B]))
             } else {
@@ -102,13 +102,13 @@ class Bubble: Transmitter {
             if response == .serialNumber {
                 sensorUid = Data(data[2...9])
                 sensor!.uid = sensorUid
-                main.settings.patchUid = sensorUid
+                settings.patchUid = sensorUid
                 log("\(name): patch uid: \(sensor!.uid.hex)")
 
             } else if response == .patchInfo {
                 sensor!.patchInfo = Data(Double(firmware)! < 1.35 ? data[3...8] : data[5...10])
-                main.settings.patchInfo = sensor!.patchInfo
-                main.settings.activeSensorSerial = sensor!.serial
+                settings.patchInfo = sensor!.patchInfo
+                settings.activeSensorSerial = sensor!.serial
                 log("\(name): patch info: \(sensor!.patchInfo.hex), sensor type: \(sensor!.type.rawValue), serial number: \(sensor!.serial)")
 
             } else if response == .securityChallenge {

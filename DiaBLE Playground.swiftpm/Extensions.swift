@@ -191,10 +191,7 @@ protocol Logging {
 }
 
 extension Logging {
-    func log(_ msg: String) {
-        if main != nil { main.log(msg) }
-    }
-    func debugLog(_ msg: String) {
-        if main != nil { main.debugLog(msg) }
-    }
+    func log(_ msg: String) { main?.log(msg) }
+    func debugLog(_ msg: String) { main?.debugLog(msg) }
+    var settings: Settings { main.settings }
 }
