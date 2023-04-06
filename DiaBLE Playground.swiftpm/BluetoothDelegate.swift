@@ -523,7 +523,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 app.device.buffer = Data()
                 // TODO: Dexcom reconnection
                 if app.transmitter.type == .transmitter(.dexcom) {
-                    self.app.deviceState = "Scanning..." //  allow stopping from Console
+                    self.main.status("Scanning for Dexcom...") //  allow stopping from Console
                     debugLog("DEBUG: Dexcom: sleeping 2 seconds before rescanning to reconnect")
                     DispatchQueue.main.async {
                         Thread.sleep(forTimeInterval: 2)
