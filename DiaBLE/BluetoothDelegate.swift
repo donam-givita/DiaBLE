@@ -512,7 +512,8 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 // TODO: Dexcom reconnection
                 if app.transmitter.type == .transmitter(.dexcom) {
                     debugLog("DEBUG: Dexcom: sleeping 2 seconds before rescanning to reconnect")
-                    DispatchQueue.global(qos: .utility).async {
+                    self.app.deviceState = "Scanning..." //  allow stopping from Console
+                    DispatchQueue.main.async {
                         Thread.sleep(forTimeInterval: 2)
                         // self.centralManager.connect(peripheral, options: nil)
                         // https://github.com/LoopKit/G7SensorKit/blob/14205c1/G7SensorKit/G7CGMManager/G7BluetoothManager.swift#L224-L229
