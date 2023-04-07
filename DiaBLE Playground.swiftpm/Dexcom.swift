@@ -316,7 +316,7 @@ class Dexcom: Transmitter {
 
             case .glucoseBackfillRx:
                 if sensor?.type != .dexcomG7 {
-                    let status = data[1]   // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
+                    let status = data[1]
                     let backfillStatus = data[2]
                     let identifier = data[3]
                     let startTime = TimeInterval(UInt32(data[4..<8]))
@@ -370,6 +370,15 @@ class Dexcom: Transmitter {
 
             case .backfillFinished:  // G7 Tx/Rx
                 // TODO: i. e. 59E2960200EA9D0200, 5900003F000000AB933802E2960200EA9D0200 (19 bytes)
+                let status = data[1]
+                // TODO: enum TxControllerG7.EGVBackfillResult { case success, noRecord, oversized }
+                let backfillStatus = Int(data[2])
+                let length = UInt32(data[3...6])
+                let crc = UInt16(data[7...8])
+                let firstSequenceNumber = UInt16(data[9...10])
+                let firstTimestamp = TimeInterval(UInt32(data[11...14]))
+                let lastTimestamp = TimeInterval(UInt32(data[15...18]))
+                log("\(name): backfill response: status: \(status), backfill status: \(["success", "no record", "oversized"][backfillStatus]), buffer length: \(length), buffer CRC: \(crc.hex), valid CRC \(crc == buffer.crc), first sequence number: \(firstSequenceNumber), first timestamp: \(firstTimestamp.formattedInterval), last timestamp: \(lastTimestamp.formattedInterval)")
                 var packets = [Data]()
                 for i in 0 ..< (buffer.count / 9) {
                     packets.append(Data(buffer[i * 9 ..< min((i + 1) * 9, buffer.count)]))
@@ -404,7 +413,7 @@ class Dexcom: Transmitter {
                 // TODO
 
 
-            case .batteryStatusRx, .batteryStatusTx:    // TODO G7 Tx trail (no CRC)
+            case .batteryStatusRx, .batteryStatusTx:    // TODO G7 Tx trailing (no CRC)
                 let status = data[1]
                 let voltageA = Int(UInt16(data[2..<4]))
                 let voltageB = Int(UInt16(data[4..<6]))
