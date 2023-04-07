@@ -28,6 +28,7 @@ class Dexcom: Transmitter {
         // Unknown attribute present on older G6 transmitters
         case unknown1       = "F8083537-849E-531C-C594-30F1F86A4EA5"
         // Updated G6 characteristic (read/notify)
+        // Receives ONE/G7 JPake exchange data
         case unknown2       = "F8083538-849E-531C-C594-30F1F86A4EA5"
 
         var description: String {
@@ -378,7 +379,7 @@ class Dexcom: Transmitter {
                 let firstSequenceNumber = UInt16(data[9...10])
                 let firstTimestamp = TimeInterval(UInt32(data[11...14]))
                 let lastTimestamp = TimeInterval(UInt32(data[15...18]))
-                log("\(name): backfill response: status: \(status), backfill status: \(["success", "no record", "oversized"][backfillStatus]), buffer length: \(length), buffer CRC: \(crc.hex), valid CRC \(crc == buffer.crc), first sequence number: \(firstSequenceNumber), first timestamp: \(firstTimestamp.formattedInterval), last timestamp: \(lastTimestamp.formattedInterval)")
+                log("\(name): backfill response: status: \(status), backfill status: \(["success", "no record", "oversized"][backfillStatus]), buffer length: \(length), buffer CRC: \(crc.hex), valid CRC: \(crc == buffer.crc), first sequence number: \(firstSequenceNumber), first timestamp: \(firstTimestamp.formattedInterval), last timestamp: \(lastTimestamp.formattedInterval)")
                 var packets = [Data]()
                 for i in 0 ..< (buffer.count / 9) {
                     packets.append(Data(buffer[i * 9 ..< min((i + 1) * 9, buffer.count)]))
@@ -554,6 +555,13 @@ class Dexcom: Transmitter {
             case .sensorFailedDueToRestart: return "sensor failed due to restart"
             }
         }
+    }
+
+
+    enum PakePhase: UInt8 {
+        case zero  = 0
+        case one
+        case two
     }
 
 

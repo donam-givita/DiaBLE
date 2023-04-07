@@ -481,6 +481,12 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             app.transmitter.sensor = sensor
             if settings.userLevel < .test { // not sniffing
 
+                // TEST: first JPake phase: send exchangePakePayload + 00 phase
+                if sensor.type == .dexcomOne || sensor.type == .dexcomG7 {
+                    log("DEBUG: sending \(app.device.name) 'exchangePakePayload phase zero' command")
+                    app.device.write(Dexcom.Opcode.exchangePakePayload.data + Dexcom.PakePhase.zero.rawValue.data, for: Dexcom.UUID.authentication.rawValue, .withResponse)
+                }
+
                 // FIXME: The Dexcom ONE and G7 use authRequest2Tx (0x02)
                 // see: https://github.com/NightscoutFoundation/xDrip/blob/master/libkeks/src/main/java/jamorham/keks/message/AuthRequestTxMessage2.java
 
@@ -513,7 +519,7 @@ class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                 if app.transmitter.type == .transmitter(.dexcom) {
                     debugLog("DEBUG: Dexcom: sleeping 2 seconds before rescanning to reconnect")
                     self.main.status("Scanning for Dexcom...") //  allow stopping from Console
-                    DispatchQueue.main.async {
+                    DispatchQueue.global(qos: .utility).async {
                         Thread.sleep(forTimeInterval: 2)
                         // self.centralManager.connect(peripheral, options: nil)
                         // https://github.com/LoopKit/G7SensorKit/blob/14205c1/G7SensorKit/G7CGMManager/G7BluetoothManager.swift#L224-L229

@@ -47,6 +47,7 @@ extension Data {
 
 extension UInt8 {
     var hex: String { String(format: "%.2X", self) }
+    var data: Data { Data([self]) }
 }
 
 
