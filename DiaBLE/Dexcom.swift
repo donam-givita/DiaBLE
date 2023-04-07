@@ -427,7 +427,7 @@ class Dexcom: Transmitter {
                 // TODO
 
 
-            case .batteryStatusRx, .batteryStatusTx:    // TODO G7 Tx trailing (no CRC)
+            case .batteryStatusRx:
                 let status = data[1]
                 let voltageA = Int(UInt16(data[2..<4]))
                 let voltageB = Int(UInt16(data[4..<6]))
@@ -436,6 +436,16 @@ class Dexcom: Transmitter {
                 // FIXME: [8...9] is a final CRC...
                 let temperature = Int(data[9])
                 log("\(name): battery status: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), resistance: \(resistance), run time: \(runtime) days, temperature: \(temperature), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
+                // TODO
+
+
+            case .batteryStatusTx:  // ONE/G7 Tx/Rx
+                let status = data[1]
+                let voltageA = Int(UInt16(data[2...3]))
+                let voltageB = Int(UInt16(data[4...5]))
+                let runtimeDays = Int(data[6])
+                let temperature = Int(data[7])
+                log("\(name): battery status: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), run time: \(runtimeDays) days, temperature: \(temperature)")
                 // TODO
 
 
