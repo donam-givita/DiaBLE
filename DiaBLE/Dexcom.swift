@@ -279,16 +279,16 @@ class Dexcom: Transmitter {
                 // TODO: i.e. 3200014e000000000000000000010100e4000000
                 break
 
-//                ; struct TxControllerG7.G7CalibrationBounds {
-//                ;     let sessionNumber: Swift.UInt
-//                ;     let sessionSignature: Swift.UInt
-//                ;     let lastBGvalue: Swift.UInt
-//                ;     let lastCalibrationTime: Swift.UInt
-//                ;     let calibrationProcessingStatus: TxControllerG7.G7CalibrationProcessingStatus
-//                ;     let calibrationsPermitted: Swift.Bool
-//                ;     let lastBGDisplay: TxControllerG7.G7DisplayType
-//                ;     let lastProcessingUpdateTime: Swift.UInt
-//                ; }
+                //                ; struct TxControllerG7.G7CalibrationBounds {
+                //                ;     let sessionNumber: Swift.UInt
+                //                ;     let sessionSignature: Swift.UInt
+                //                ;     let lastBGvalue: Swift.UInt
+                //                ;     let lastCalibrationTime: Swift.UInt
+                //                ;     let calibrationProcessingStatus: TxControllerG7.G7CalibrationProcessingStatus
+                //                ;     let calibrationsPermitted: Swift.Bool
+                //                ;     let lastBGDisplay: TxControllerG7.G7DisplayType
+                //                ;     let lastProcessingUpdateTime: Swift.UInt
+                //                ; }
 
 
             case .unknown1_G7:
@@ -428,17 +428,16 @@ class Dexcom: Transmitter {
                 log("\(name): version response: status: \(status), firmware: \(firmwareVersion), sw number: \(swNumber), silicon version: \(siliconVersion) (0x\(siliconVersion.hex)), serial number: \(serialNumber)")
 
 
-//                ; class TxControllerG7.ExtendedVersionResponse {
-//                ;     let sessionLength: Swift.UInt32
-//                ;     let warmupLength: Swift.UInt16
-//                ;     let algorithmVersion: Swift.UInt32
-//                ;     let hardwareVersion: Swift.UInt8
-//                ;     let maxLifetimeDays: Swift.UInt16
-//                ; }
-
             case  .transmitterVersionExtended:
-                // TODO: i.e. 5200c0d70d00540602010404ff0c00 (15 bytes)
-                break
+                // TODO: i.e. 52 00 c0d70d00 5406 02010404 ff 0c00 (15 bytes)
+                let status = data[1]
+                let sessionLength = TimeInterval(UInt32(data[2...5]))
+                let warmupLength = TimeInterval(UInt16(data[6...7]))
+                let algorithmVersion = UInt32(data[8...11])
+                let hardwareVersion = Int(data[12])
+                let maxLifetimeDays = UInt16(data[13...14])
+                log("\(name): extended version response: status: \(status), session length: \(sessionLength.formattedInterval), warmup length: \(warmupLength.formattedInterval), algorithm version: 0x\(algorithmVersion.hex), hardware version: \(hardwareVersion), max lifetime days: \(maxLifetimeDays)")
+
 
 
             default:
