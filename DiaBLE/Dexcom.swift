@@ -121,7 +121,7 @@ class Dexcom: Transmitter {
         case glucoseBackfillTx = 0x50  // DataStream
         case glucoseBackfillRx = 0x51  // Tx/Rx start/end of stream
 
-        case transmitterVersionExtendedTx = 0x52  // Dexcom ONE Tx/Rx
+        case transmitterVersionExtended = 0x52  // Dexcom ONE Tx/Rx
 
         case backfillFinished = 0x59  // G7 TX/Rx
         case unknown1_G7 = 0xEA       // TODO: Tx/Rx EA00
@@ -189,7 +189,7 @@ class Dexcom: Transmitter {
                     log("DEBUG: sending \(name) the 'transmitterVersion' command")
                     write(Opcode.transmitterVersionTx.data, .withResponse)
                     log("DEBUG: sending \(name) the 'transmitterVersionExtended' command")
-                    write(Opcode.transmitterVersionExtendedTx.data, .withResponse)
+                    write(Opcode.transmitterVersionExtended.data, .withResponse)
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.backfill.rawValue]!)
                 }
 
@@ -278,6 +278,17 @@ class Dexcom: Transmitter {
             case .calibrationDataTx:  // G7
                 // TODO: i.e. 3200014e000000000000000000010100e4000000
                 break
+
+//                ; struct TxControllerG7.G7CalibrationBounds {
+//                ;     let sessionNumber: Swift.UInt
+//                ;     let sessionSignature: Swift.UInt
+//                ;     let lastBGvalue: Swift.UInt
+//                ;     let lastCalibrationTime: Swift.UInt
+//                ;     let calibrationProcessingStatus: TxControllerG7.G7CalibrationProcessingStatus
+//                ;     let calibrationsPermitted: Swift.Bool
+//                ;     let lastBGDisplay: TxControllerG7.G7DisplayType
+//                ;     let lastProcessingUpdateTime: Swift.UInt
+//                ; }
 
 
             case .unknown1_G7:
@@ -399,6 +410,36 @@ class Dexcom: Transmitter {
                 let temperature = Int(data[9])
                 log("\(name): battery status: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), resistance: \(resistance), run time: \(runtime) days, temperature: \(temperature), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
                 // TODO
+
+
+            case .transmitterVersionTx:
+                // TODO: i.e. 4a 00 20c06852 2a340000 30454141 443499bb8c00 (20 bytes)
+                let status = data[1]
+                let versionMajor = data[2]
+                let versionMinor = data[3]
+                let versionRevision = data[4]
+                let versionBuild = data[5]
+                let firmwareVersion = "\(versionMajor).\(versionMinor).\(versionRevision).\(versionBuild)"
+                sensor?.firmware = firmwareVersion
+                let swNumber = UInt32(data[6...9])
+                let siliconVersion = UInt32(data[10...13])
+                let serialNumber: UInt64 = UInt64(data[14]) + UInt64(data[15]) << 8 + UInt64(data[16]) << 16 + UInt64(data[17]) << 24 + UInt64(data[18]) << 32 + UInt64(data[19]) << 40
+                sensor?.serial = String(serialNumber)
+                log("\(name): version response: status: \(status), firmware: \(firmwareVersion), sw number: \(swNumber), silicon version: \(siliconVersion) (0x\(siliconVersion.hex)), serial number: \(serialNumber)")
+
+
+//                ; class TxControllerG7.ExtendedVersionResponse {
+//                ;     let sessionLength: Swift.UInt32
+//                ;     let warmupLength: Swift.UInt16
+//                ;     let algorithmVersion: Swift.UInt32
+//                ;     let hardwareVersion: Swift.UInt8
+//                ;     let maxLifetimeDays: Swift.UInt16
+//                ; }
+
+            case  .transmitterVersionExtended:
+                // TODO: i.e. 5200c0d70d00540602010404ff0c00 (15 bytes)
+                break
+
 
             default:
                 break

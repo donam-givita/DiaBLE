@@ -75,6 +75,7 @@ extension UInt32 {
         let start = data.startIndex
         self = UInt32(data[start]) + UInt32(data[start + 1]) << 8 + UInt32(data[start + 2]) << 16 + UInt32(data[start + 3]) << 24
     }
+    var hex: String { String(format: "%08x", self) }
     var data: Data { Data([UInt8(self & 0xFF), UInt8(self >> 8 & 0xFF), UInt8(self >> 16 & 0xFF), UInt8(self >> 24)]) }
     var formattedInterval: String { Double(self).formattedInterval }
 }
