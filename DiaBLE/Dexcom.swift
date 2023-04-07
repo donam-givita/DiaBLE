@@ -198,6 +198,19 @@ class Dexcom: Transmitter {
                     write(Opcode.batteryStatusTx.data, .withResponse)
                 }
 
+
+            case .exchangePakePayload:
+                // TODO
+                let status = data[1]
+                let phase = data[2]
+                var packets = [Data]()
+                for i in 0 ..< (buffer.count + 19) / 20 {
+                    packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
+                }
+                log("\(name): J-PAKE payload (TODO): status: \(status), phase: \(phase), buffer length: \(buffer.count), 20-byte packets: \(packets.count)")
+                buffer = Data()
+
+
             default:
                 break
 
@@ -470,6 +483,16 @@ class Dexcom: Transmitter {
             }
             let index = sensor?.type != .dexcomG7 ? Int(data[0]) : data.count == 9 ? buffer.count / 9 : Int(ceil(Double(buffer.count) / 20))
             log("\(name): backfill stream: received packet # \(index), partial buffer size: \(buffer.count)")
+
+
+        case .unknown2:
+            if buffer.count == 0 {
+                buffer = Data(data)
+            } else {
+                buffer += data
+            }
+            let index = Int(ceil(Double(buffer.count) / 20))
+            log("\(name): authentication exchange: received packet # \(index), partial buffer size: \(buffer.count)")
 
 
         default:
