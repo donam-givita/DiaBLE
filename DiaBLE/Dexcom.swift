@@ -186,11 +186,15 @@ class Dexcom: Transmitter {
                         peripheral?.readValue(for: communicationCharacteristic)
                     }
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.control.rawValue]!)
-                    log("DEBUG: sending \(name) the 'transmitterVersion' command")
+                    log("DEBUG: sending \(name) the 'transmitterVersion' command (opcode 0x\(Opcode.transmitterVersionTx.rawValue.hex))")
                     write(Opcode.transmitterVersionTx.data, .withResponse)
-                    log("DEBUG: sending \(name) the 'transmitterVersionExtended' command")
+                    log("DEBUG: sending \(name) the 'transmitterVersionExtended' command (opcode 0x\(Opcode.transmitterVersionExtended.rawValue.hex))")
                     write(Opcode.transmitterVersionExtended.data, .withResponse)
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.backfill.rawValue]!)
+                    log("DEBUG: sending \(name) the 'transmitterTimeTx' command (opcode 0x\(Opcode.transmitterTimeTx.rawValue.hex))")
+                    write(Opcode.transmitterTimeTx.data, .withResponse) // FIXME: returns just 2402
+                    log("DEBUG: sending \(name) the 'batteryStatusTx' command (opcode 0x\(Opcode.batteryStatusTx.rawValue.hex))")
+                    write(Opcode.batteryStatusTx.data, .withResponse)
                 }
 
             default:
@@ -279,16 +283,16 @@ class Dexcom: Transmitter {
                 // TODO: i.e. 3200014e000000000000000000010100e4000000
                 break
 
-                //                ; struct TxControllerG7.G7CalibrationBounds {
-                //                ;     let sessionNumber: Swift.UInt
-                //                ;     let sessionSignature: Swift.UInt
-                //                ;     let lastBGvalue: Swift.UInt
-                //                ;     let lastCalibrationTime: Swift.UInt
-                //                ;     let calibrationProcessingStatus: TxControllerG7.G7CalibrationProcessingStatus
-                //                ;     let calibrationsPermitted: Swift.Bool
-                //                ;     let lastBGDisplay: TxControllerG7.G7DisplayType
-                //                ;     let lastProcessingUpdateTime: Swift.UInt
-                //                ; }
+                // struct TxControllerG7.G7CalibrationBounds {
+                //     let sessionNumber: Swift.UInt
+                //     let sessionSignature: Swift.UInt
+                //     let lastBGvalue: Swift.UInt
+                //     let lastCalibrationTime: Swift.UInt
+                //     let calibrationProcessingStatus: TxControllerG7.G7CalibrationProcessingStatus
+                //     let calibrationsPermitted: Swift.Bool
+                //     let lastBGDisplay: TxControllerG7.G7DisplayType
+                //     let lastProcessingUpdateTime: Swift.UInt
+                // }
 
 
             case .unknown1_G7:
@@ -400,7 +404,7 @@ class Dexcom: Transmitter {
                 // TODO
 
 
-            case .batteryStatusRx:
+            case .batteryStatusRx, .batteryStatusTx:    // TODO G7 Tx trail (no CRC)
                 let status = data[1]
                 let voltageA = Int(UInt16(data[2..<4]))
                 let voltageB = Int(UInt16(data[4..<6]))
