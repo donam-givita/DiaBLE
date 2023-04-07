@@ -233,7 +233,7 @@ class Dexcom: Transmitter {
                 sensor?.age = sensorAge
                 sensor?.state = .active
                 sensor?.lastReadingDate = Date()
-                sensor?.maxLife = 14400
+                if sensor?.maxLife == 0 { sensor?.maxLife = 14400 }
                 log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), session start time: \(sessionStartTime.formattedInterval), sensor activation date: \(sensorActivationDate.local), sensor age: \(sensorAge.formattedInterval); valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), activation date: \(activationDate.local)")
 
 
@@ -276,7 +276,7 @@ class Dexcom: Transmitter {
                 let sensorAge = Int(Date().timeIntervalSince(activationDate)) / 60
                 sensor?.age = sensorAge
                 sensor?.state = .active
-                sensor?.maxLife = 14400
+                if sensor?.maxLife == 0 { sensor?.maxLife = 14400 }
                 let sequence = UInt16(data[6..<8])
                 let age = data[10] // amount of time elapsed (seconds) from sensor reading to BLE comms
                 let timestamp = messageTimestamp - UInt32(age)
@@ -469,6 +469,7 @@ class Dexcom: Transmitter {
                 // TODO: i.e. 52 00 c0d70d00 5406 02010404 ff 0c00 (15 bytes)
                 let status = data[1]
                 let sessionLength = TimeInterval(UInt32(data[2...5]))
+                sensor?.maxLife = Int(UInt32(data[2...5]) / 60)  // inlcuding 12h grace period
                 let warmupLength = TimeInterval(UInt16(data[6...7]))
                 let algorithmVersion = UInt32(data[8...11])
                 let hardwareVersion = Int(data[12])
