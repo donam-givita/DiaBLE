@@ -186,6 +186,10 @@ class Dexcom: Transmitter {
                         peripheral?.readValue(for: communicationCharacteristic)
                     }
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.control.rawValue]!)
+                    log("DEBUG: sending \(name) the 'transmitterVersion' command")
+                    write(Opcode.transmitterVersionTx.data, .withResponse)
+                    log("DEBUG: sending \(name) the 'transmitterVersionExtended' command")
+                    write(Opcode.transmitterVersionExtendedTx.data, .withResponse)
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.backfill.rawValue]!)
                 }
 
