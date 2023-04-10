@@ -75,7 +75,7 @@ class Dexcom: Transmitter {
         case authChallengeTx = 0x04
         case authChallengeRx = 0x05 // StatusReply
         case keepAlive = 0x06       // KeepConnectionAlive; setAdvertisementParametersTx for control
-        case bondRequest = 0x07     // pairRequestTx
+        case bondRequest = 0x07     // RequestBond; pairRequestTx
         case pairRequestRx = 0x08
 
         // Control
@@ -103,9 +103,9 @@ class Dexcom: Transmitter {
 
         case glucoseTx = 0x30
         case glucoseRx = 0x31
-        case calibrationDataTx = 0x32  // G6Bounds Tx/Rx
+        case calibrationDataTx = 0x32   // G6Bounds Tx/Rx
         case calibrationDataRx = 0x33
-        case calibrateGlucoseTx = 0x34
+        case calibrateGlucoseTx = 0x34  // G7 Tx/Rx
         case calibrateGlucoseRx = 0x35
 
         case glucoseHistoryTx = 0x3e
@@ -307,6 +307,11 @@ class Dexcom: Transmitter {
                 //     let lastBGDisplay: TxControllerG7.G7DisplayType
                 //     let lastProcessingUpdateTime: Swift.UInt
                 // }
+
+
+            case .calibrateGlucoseTx:  // G7
+                // TODO: i.e. 346E00871F0D00 (110) -> 34000100
+                break
 
 
             case .unknown1_G7:
@@ -652,10 +657,6 @@ class DexcomG7: Sensor {
     func read(_ data: Data, for uuid: String) {
 
         switch Dexcom.UUID(rawValue: uuid) {
-
-        case .communication:
-            log("\(transmitter!.peripheral!.name!): received \(data.count) \(Dexcom.UUID(rawValue: uuid)!) bytes: \(data.hex)")
-            // TODO
 
         default:
             break
