@@ -113,7 +113,7 @@ class Dexcom: Transmitter {
         case resetTx = 0x42
         case resetRx = 0x43
 
-        case transmitterVersionTx = 0x4a  // Dexcom ONE Tx/Rx
+        case transmitterVersionTx = 0x4a  // G7 Tx/Rx
         case transmitterVersionRx = 0x4b
 
         case glucoseG6Tx = 0x4e  // TODO: rename to G7 .glucoseTx/Rx / .egv
@@ -122,7 +122,8 @@ class Dexcom: Transmitter {
         case glucoseBackfillTx = 0x50  // DataStream
         case glucoseBackfillRx = 0x51  // Tx/Rx start/end of stream
 
-        case transmitterVersionExtended = 0x52  // Dexcom ONE Tx/Rx
+        case transmitterVersionExtended = 0x52  // G7 Tx/Rx
+        case transmitterVersionExtendedRx = 0x53
 
         case backfillFinished = 0x59  // G7 TX/Rx
         case unknown1_G7 = 0xEA       // TODO: Tx/Rx EA00
@@ -215,7 +216,6 @@ class Dexcom: Transmitter {
                         write(Opcode.batteryStatusTx.data.appendingCRC, .withResponse)
                     }
                 }
-
 
 
             case .exchangePakePayload:
@@ -473,7 +473,7 @@ class Dexcom: Transmitter {
                 // TODO
 
 
-            case .transmitterVersionTx:
+            case .transmitterVersionTx:  // G7
                 // TODO: i.e. 4a 00 20c06852 2a340000 30454141 443499bb8c00 (20 bytes)
                 let status = data[1]
                 let versionMajor = data[2]
@@ -489,6 +489,24 @@ class Dexcom: Transmitter {
                 log("\(name): version response: status: \(status), firmware: \(firmwareVersion), sw number: \(swNumber), silicon version: \(siliconVersion) (0x\(siliconVersion.hex)), serial number: \(serialNumber)")
 
 
+            case .transmitterVersionRx:  // Dexcom ONE
+                // TODO: i.e. 4b 00 1ec06722 ba310000 8c00036e006d013cef (19 bytes)
+                let status = data[1]
+                let versionMajor = data[2]
+                let versionMinor = data[3]
+                let versionRevision = data[4]
+                let versionBuild = data[5]
+                let firmwareVersion = "\(versionMajor).\(versionMinor).\(versionRevision).\(versionBuild)"
+                sensor?.firmware = firmwareVersion
+                let swNumber = UInt32(data[6...9])
+                // TODO:
+                // let storageModeDays
+                // let apiVersion
+                // let maxRuntimeDays
+                // let maxStorageTimeDays
+                log("\(name): version response: status: \(status), firmware: \(firmwareVersion), sw number: \(swNumber)")
+
+
             case  .transmitterVersionExtended:
                 // TODO: i.e. 52 00 c0d70d00 5406 02010404 ff 0c00 (15 bytes)
                 let status = data[1]
@@ -500,6 +518,10 @@ class Dexcom: Transmitter {
                 let maxLifetimeDays = UInt16(data[13...14])
                 log("\(name): extended version response: status: \(status), session length: \(sessionLength.formattedInterval), warmup length: \(warmupLength.formattedInterval), algorithm version: 0x\(algorithmVersion.hex), hardware version: \(hardwareVersion), max lifetime days: \(maxLifetimeDays)")
 
+
+            case  .transmitterVersionExtendedRx:  // Dexcome ONE
+                // TODO
+                break
 
 
             default:
