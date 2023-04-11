@@ -193,7 +193,7 @@ class Dexcom: Transmitter {
                     write(Opcode.transmitterVersionExtended.data, .withResponse)
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.backfill.rawValue]!)
                     log("DEBUG: sending \(name) the 'transmitterTimeTx' command (opcode 0x\(Opcode.transmitterTimeTx.rawValue.hex))")
-                    write(Opcode.transmitterTimeTx.data, .withResponse) // FIXME: returns just 2402
+                    write(Opcode.transmitterTimeTx.data.appendingCRC, .withResponse) // FIXME: returns just 2402
                     log("DEBUG: sending \(name) the 'batteryStatusTx' command (opcode 0x\(Opcode.batteryStatusTx.rawValue.hex))")
                     write(Opcode.batteryStatusTx.data, .withResponse)
                 }

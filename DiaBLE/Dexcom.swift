@@ -187,16 +187,35 @@ class Dexcom: Transmitter {
                         peripheral?.readValue(for: communicationCharacteristic)
                     }
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.control.rawValue]!)
+
+                    if sensor?.type == .dexcomG7 {
+                        log("DEBUG: sending \(name) the 'transmitterTimeTx' command (opcode 0x\(Opcode.transmitterTimeTx.rawValue.hex))")
+                        write(Opcode.transmitterTimeTx.data, .withResponse) // FIXME: returns just 2402
+                    }
+
                     log("DEBUG: sending \(name) the 'transmitterVersion' command (opcode 0x\(Opcode.transmitterVersionTx.rawValue.hex))")
-                    write(Opcode.transmitterVersionTx.data, .withResponse)
+                    if sensor?.type == .dexcomG7 {
+                        write(Opcode.transmitterVersionTx.data, .withResponse)
+                    } else {
+                        write(Opcode.transmitterVersionTx.data.appendingCRC, .withResponse)
+                    }
+
                     log("DEBUG: sending \(name) the 'transmitterVersionExtended' command (opcode 0x\(Opcode.transmitterVersionExtended.rawValue.hex))")
-                    write(Opcode.transmitterVersionExtended.data, .withResponse)
+                    if sensor?.type == .dexcomG7 {
+                        write(Opcode.transmitterVersionExtended.data, .withResponse)
+                    } else {
+                        write(Opcode.transmitterVersionExtended.data.appendingCRC, .withResponse)
+                    }
                     peripheral?.setNotifyValue(true, for: characteristics[Dexcom.UUID.backfill.rawValue]!)
-                    log("DEBUG: sending \(name) the 'transmitterTimeTx' command (opcode 0x\(Opcode.transmitterTimeTx.rawValue.hex))")
-                    write(Opcode.transmitterTimeTx.data, .withResponse) // FIXME: returns just 2402
+
                     log("DEBUG: sending \(name) the 'batteryStatusTx' command (opcode 0x\(Opcode.batteryStatusTx.rawValue.hex))")
-                    write(Opcode.batteryStatusTx.data, .withResponse)
+                    if sensor?.type == .dexcomG7 {
+                        write(Opcode.batteryStatusTx.data, .withResponse)
+                    } else {
+                        write(Opcode.batteryStatusTx.data.appendingCRC, .withResponse)
+                    }
                 }
+
 
 
             case .exchangePakePayload:
@@ -444,7 +463,7 @@ class Dexcom: Transmitter {
                 // TODO
 
 
-            case .batteryStatusTx:  // ONE/G7 Tx/Rx
+            case .batteryStatusTx:  // G7 Tx/Rx
                 let status = data[1]
                 let voltageA = Int(UInt16(data[2...3]))
                 let voltageB = Int(UInt16(data[4...5]))
