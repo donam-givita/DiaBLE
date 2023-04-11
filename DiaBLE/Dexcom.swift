@@ -521,11 +521,13 @@ class Dexcom: Transmitter {
 
 
             case  .transmitterVersionExtendedRx:  // Dexcom ONE
-                // TODO:
-                // featureFlag: UInt16
+                // TODO: i.e. 53 00 0a0f0000000000303235302d50726f 771a (19 bytes)
                 // sessionLength: Uint8
+                // featureFlag: UInt16
                 // warmUpLength: Uint16
-                break
+                let status = data[1]
+                let crc = UInt16(data[17...18])
+                log("\(name): extended version response: status: \(status), CRC: \(crc.hex), valid CRC: \(crc == data.dropLast(2).crc)")
 
 
             default:
