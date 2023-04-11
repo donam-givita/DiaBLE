@@ -24,12 +24,8 @@ class Dexcom: Transmitter {
         case control        = "F8083534-849E-531C-C594-30F1F86A4EA5"
         case authentication = "F8083535-849E-531C-C594-30F1F86A4EA5"
         case backfill       = "F8083536-849E-531C-C594-30F1F86A4EA5"
-
-        // Unknown attribute present on older G6 transmitters
-        case unknown1       = "F8083537-849E-531C-C594-30F1F86A4EA5"
-        // Updated G6 characteristic (read/notify)
-        // Receives ONE/G7 JPake exchange data
-        case unknown2       = "F8083538-849E-531C-C594-30F1F86A4EA5"
+        case unknown1       = "F8083537-849E-531C-C594-30F1F86A4EA5"  // older G6
+        case unknown2       = "F8083538-849E-531C-C594-30F1F86A4EA5"  // ONE/G7 J-PAKE exchange data
 
         var description: String {
             switch self {
@@ -521,13 +517,14 @@ class Dexcom: Transmitter {
 
 
             case  .transmitterVersionExtendedRx:  // Dexcom ONE
-                // TODO: i.e. 53 00 0a0f0000000000303235302d50726f 771a (19 bytes)
-                // sessionLength: Uint8
-                // featureFlag: UInt16
-                // warmUpLength: Uint16
+                // TODO: i.e. 53 00 0a 0f0000000000303235302d50726f 771a (19 bytes
                 let status = data[1]
+                let sessionLength = data[2]
+                // TODO:
+                // featureFlag: UInt16
+                // warmUpLength: UInt16
                 let crc = UInt16(data[17...18])
-                log("\(name): extended version response: status: \(status), CRC: \(crc.hex), valid CRC: \(crc == data.dropLast(2).crc)")
+                log("\(name): extended version response: status: \(status), session length: \(sessionLength), days, CRC: \(crc.hex), valid CRC: \(crc == data.dropLast(2).crc)")
 
 
             default:
