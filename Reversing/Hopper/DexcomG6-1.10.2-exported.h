@@ -233,7 +233,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@protocol UIPickerViewDelegate
+@protocol UIPickerViewDelegate<NSObject>
 
 @optional
 - (double)pickerView:(id)v1 widthForComponent:(long long)v2;
@@ -248,7 +248,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@protocol UIPickerViewDataSource
+@protocol UIPickerViewDataSource<NSObject>
 - (long long)numberOfComponentsInPickerView:(id)v1;
 - (long long)numberOfComponentsInPickerView:(id)v1;
 - (long long)pickerView:(id)v1 numberOfRowsInComponent:(long long)v2;
@@ -257,7 +257,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@protocol UITableViewDelegate<UIScrollViewDelegate>
+@protocol UITableViewDelegate<NSObject,UIScrollViewDelegate>
 
 @optional
 - (void)tableView:(id)v1 willDisplayCell:(id)v2 forRowAtIndexPath:(id)v3;
@@ -296,6 +296,10 @@ struct anonymous_type_25 {
 - (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
 - (void)tableView:(id)v1 didDeselectRowAtIndexPath:(id)v2;
 - (void)tableView:(id)v1 didDeselectRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 canPerformPrimaryActionForRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 canPerformPrimaryActionForRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 performPrimaryActionForRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 performPrimaryActionForRowAtIndexPath:(id)v2;
 - (long long)tableView:(id)v1 editingStyleForRowAtIndexPath:(id)v2;
 - (long long)tableView:(id)v1 editingStyleForRowAtIndexPath:(id)v2;
 - (id)tableView:(id)v1 titleForDeleteConfirmationButtonForRowAtIndexPath:(id)v2;
@@ -354,7 +358,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@protocol UITableViewDataSource
+@protocol UITableViewDataSource<NSObject>
 - (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
 - (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
 - (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
@@ -395,7 +399,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@protocol UIScrollViewDelegate
+@protocol UIScrollViewDelegate<NSObject>
 
 @optional
 - (void)scrollViewDidScroll:(id)v1;
@@ -420,7 +424,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@protocol CGMSubscriberDataSource
+@protocol CGMSubscriberDataSource<NSObject>
 - (void)notifySubscriberOfNewCGMDataUpdate:(unsigned long long)v1;
 - (void)notifySubscriberOfNewCGMDataUpdate:(unsigned long long)v1;
 @end
@@ -453,7 +457,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@protocol CGMAlertLimitChangedDelegate
+@protocol CGMAlertLimitChangedDelegate<NSObject>
 - (void)alertLimitChanged:(id)v1;
 @end
 
@@ -620,6 +624,8 @@ struct anonymous_type_25 {
 - (id)tableView:(id)v1 willDeselectRowAtIndexPath:(id)v2;
 - (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
 - (void)tableView:(id)v1 didDeselectRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 canPerformPrimaryActionForRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 performPrimaryActionForRowAtIndexPath:(id)v2;
 - (long long)tableView:(id)v1 editingStyleForRowAtIndexPath:(id)v2;
 - (id)tableView:(id)v1 titleForDeleteConfirmationButtonForRowAtIndexPath:(id)v2;
 - (id)tableView:(id)v1 editActionsForRowAtIndexPath:(id)v2;
@@ -707,6 +713,9 @@ struct anonymous_type_25 {
 - (bool)textView:(id)v1 shouldInteractWithTextAttachment:(id)v2 inRange:(struct _NSRange)v3 interaction:(long long)v4;
 - (bool)textView:(id)v1 shouldInteractWithURL:(id)v2 inRange:(struct _NSRange)v3;
 - (bool)textView:(id)v1 shouldInteractWithTextAttachment:(id)v2 inRange:(struct _NSRange)v3;
+- (id)textView:(id)v1 editMenuForTextInRange:(struct _NSRange)v2 suggestedActions:(id)v3;
+- (void)textView:(id)v1 willPresentEditMenuWithAnimator:(id)v2;
+- (void)textView:(id)v1 willDismissEditMenuWithAnimator:(id)v2;
 @end
 
 
@@ -1022,6 +1031,9 @@ struct anonymous_type_25 {
 - (void)textFieldDidChangeSelection:(id)v1;
 - (bool)textFieldShouldClear:(id)v1;
 - (bool)textFieldShouldReturn:(id)v1;
+- (id)textField:(id)v1 editMenuForCharactersInRange:(struct _NSRange)v2 suggestedActions:(id)v3;
+- (void)textField:(id)v1 willPresentEditMenuWithAnimator:(id)v2;
+- (void)textField:(id)v1 willDismissEditMenuWithAnimator:(id)v2;
 @end
 
 
@@ -1638,7 +1650,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@interface _TtC3CGM32LocatingSensorCodeViewController : SetupWizardBaseViewController {
+@interface _TtC3CGM32LocatingSensorCodeViewController : SetupWizardBaseViewController<SetupWizardBaseViewControllerDelegate> {
     id $__lazy_storage_$_helper;
 }
 - (void)viewDidLoad;
@@ -1682,7 +1694,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@interface _TtC3CGM34CGMAlertSettingsTimeViewController : DXCMBaseViewController {
+@interface _TtC3CGM34CGMAlertSettingsTimeViewController : DXCMBaseViewController<_TtP3CGM27CGMTimeValueChangedDelegate_> {
     id navigationTitle;
     id userAlert;
     id timeDelegate;
@@ -1828,7 +1840,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@interface _TtC3CGM27SensorCodePostSetupWizardVC : SetupWizardBaseViewController {
+@interface _TtC3CGM27SensorCodePostSetupWizardVC : SetupWizardBaseViewController<SetupWizardBaseViewControllerDelegate> {
     id $__lazy_storage_$_helper;
 }
 - (void)viewDidLoad;
@@ -1858,7 +1870,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@interface _TtC3CGM24SensorCodeViewController : SetupWizardBaseViewController {
+@interface _TtC3CGM24SensorCodeViewController : SetupWizardBaseViewController<SetupWizardBaseViewControllerDelegate> {
     id customView;
     id scanCodeButton;
     id enterManuallyButton;
@@ -1882,7 +1894,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@interface _TtC3CGM32TreatmentDecisionsViewController : SetupWizardBaseViewController {
+@interface _TtC3CGM32TreatmentDecisionsViewController : SetupWizardBaseViewController<SetupWizardBaseViewControllerDelegate> {
     id $__lazy_storage_$_helper;
     id index;
 }
@@ -2043,7 +2055,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@interface _TtC3CGM29DefaultSettingsViewController : SetupWizardBaseViewController {
+@interface _TtC3CGM29DefaultSettingsViewController : SetupWizardBaseViewController<SetupWizardBaseViewControllerDelegate> {
     id nextButton;
 }
 - (void)viewDidLoad;
@@ -2181,7 +2193,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@interface _TtC3CGM28ImportSettingsViewController : SetupWizardBaseViewController {
+@interface _TtC3CGM28ImportSettingsViewController : SetupWizardBaseViewController<SetupWizardBaseViewControllerDelegate> {
     id $__lazy_storage_$_helper;
     id actionTimer;
     id actionTimerValue;
@@ -2263,7 +2275,7 @@ struct anonymous_type_25 {
 
 /*****************************************************************/
 
-@interface _TtC3CGM32CGMAlertSettingsMenuItemsManager : NSObject {
+@interface _TtC3CGM32CGMAlertSettingsMenuItemsManager : NSObject<CGMSubscriberDataSource> {
     id minUserDefinedAlertScheduleRowCount;
     id maxUserDefinedAlertScheduleRowCount;
     id resetAlertSettingsRowCount;
@@ -4016,6 +4028,7 @@ struct anonymous_type_25 {
 - (void)viewWillDisappear:(bool)v1;
 - (bool)isBlockingViewBeingShown;
 - (bool)shouldShowNoAlarmsOrAlertsBanner;
+- (bool)shouldSkipWhatsNewForThisVersion:(id)v1 :(id)v2;
 - (void)showWhatsNewIfNecessary;
 - (void)didBecomeActive:(id)v1;
 - (void)appDidEnterBackground:(id)v1;
@@ -4742,6 +4755,7 @@ struct anonymous_type_25 {
 @property bool isStartupComplete;
 @property (nonatomic) bool hasPostedStartupNotification;
 - (void)viewDidLoad;
+- (void)setAccessibilityIdentifiers;
 - (bool)prefersStatusBarHidden;
 - (unsigned long long)supportedInterfaceOrientations;
 - (void)viewDidAppear:(bool)v1;
@@ -6274,6 +6288,7 @@ struct anonymous_type_25 {
 - (id)initAlertWithTitle:(id)v1 message:(id)v2 cancelButtonTitle:(id)v3;
 - (id)initAlertModalWithTitle:(id)v1 message:(id)v2 cancelButtonTitle:(id)v3;
 - (id)initAlertModalWithTitle:(id)v1 customView:(id)v2 cancelButtonTitle:(id)v3;
+- (id)initErrorAlertModalWithBannerTitleAndGlobalSupportText:(id)v1 errorTitle:(id)v2 descriptionText:(id)v3;
 - (id)initErrorAlertModalWithBannerTitle:(id)v1 errorTitle:(id)v2 descriptionText:(id)v3;
 - (id)initTransmiterAndSensorExpiredWithTitle:(id)v1 errorTitle:(id)v2 descriptionText:(id)v3;
 - (id)initCriticalPermisionAlertModalWithBannerTitle:(id)v1 errorTitle:(id)v2 descriptionText:(id)v3;
@@ -6411,6 +6426,7 @@ struct anonymous_type_25 {
 + (bool)splashScreenHasBeenSeen;
 + (void)setCriticalAlertPermissionEnable:(bool)v1;
 + (bool)hasCriticalAlertPermissionEnable;
++ (id)lastSeenVersionBundleVersionString;
 + (void)setWhatsNewHasBeenSeenForThisVersion;
 + (bool)whatsNewHasBeenSeenForThisVersion;
 + (void)setCalibrationCoachmarkDismissed:(bool)v1;
@@ -11195,6 +11211,7 @@ struct anonymous_type_25 {
 - (void)viewDidLoad;
 - (void)viewDidAppear:(bool)v1;
 - (void)addContentWithBarTitle:(id)v1 errorTitle:(id)v2 description:(id)v3 accessibilityIdentifier:(id)v4;
+- (void)addContentWithBarTitleAndGlobalSupportText:(id)v1 errorTitle:(id)v2 description:(id)v3 accessibilityIdentifier:(id)v4;
 - (void)addTransmitterAndSensorExpiredContentWithBarTitle:(id)v1 errorTitle:(id)v2 description:(id)v3 accessibilityIdentifier:(id)v4;
 - (id)createTextViewWithAttributedText:(id)v1;
 - (void)okButtonPressed;
@@ -11203,6 +11220,7 @@ struct anonymous_type_25 {
 - (bool)textView:(id)v1 shouldInteractWithURL:(id)v2 inRange:(struct _NSRange)v3 interaction:(long long)v4;
 - (void)layoutConstraintsWithContentView:(id)v1;
 - (void)layoutConstraintsWithTopBarView:(id)v1 barTitleLabel:(id)v2 bannerIconImageView:(id)v3 errorTitleLabel:(id)v4 scrollView:(id)v5 scrollContentView:(id)v6 descriptionLabel:(id)v7 globalTextView:(id)v8 okButton:(id)v9 linkButton:(id)v10;
+- (void)layoutConstraintsWithTopBarView:(id)v1 barTitleLabel:(id)v2 bannerIconImageView:(id)v3 errorTitleLabel:(id)v4 scrollView:(id)v5 scrollContentView:(id)v6 descriptionLabel:(id)v7 okButton:(id)v8 linkButton:(id)v9;
 - (void)layoutConstraintsWithTopBarView2:(id)v1 barTitleLabel:(id)v2 bannerIconImageView:(id)v3 errorTitleLabel:(id)v4 scrollView:(id)v5 scrollContentView:(id)v6 descriptionLabel:(id)v7 okButton:(id)v8 linkButton:(id)v9;
 - (void)setCommonAttributesForLabel:(id)v1;
 - (void).cxx_destruct;
