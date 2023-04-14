@@ -1,7 +1,7 @@
 <p align="center"><img src="./DiaBLE/Assets.xcassets/AppIcon.appiconset/Icon.png" width="25%" /></p>
 
 
-Since the latest **FreeStyle Libre glucose sensors** are **B**luetooth **L**ow **E**nergy devices, I am trying to leverage their capabilities to implement something new compared to the traditional apps:
+Since the latest **FreeStyle Libre glucose sensors** are **B**luetooth **L**ow **E**nergy devices and the **Dexcom ONE/G7** are availaBLE for private purchase at affordaBLE prices at last, I am trying to leverage their capabilities to implement something new compared to the traditional apps:
 
 * a universal **SwiftUI** application for iPhone, iPad and Mac Catalyst;
 * an **independent Apple Watch app** connecting directly via Bluetooth;
@@ -11,13 +11,13 @@ Since the latest **FreeStyle Libre glucose sensors** are **B**luetooth **L**ow *
 * varying the **reading interval** instead of the usual 5-minute one;
 * a detailed **log** to check the traffic from/to the BLE devices and remote servers.
 
-To build the project duplicate the file _DiaBLE.xcconfig_, rename the copy to _DiaBLEOverride.xcconfig_ (the missing reference displayed by Xcode in red should then point to it) and edit it by deleting the last line `#include?... ` and replacing `##TEAM_ID##` with your Apple Team ID so that the first line should read for example `DEVELOPMENT_TEAM = Z25SC9UDC8`.
+To build the project you have duplicate the file _DiaBLE.xcconfig_, rename the copy to _DiaBLEOverride.xcconfig_ (the missing reference displayed by Xcode in red should then point to it) and edit it by deleting the last line `#include?... ` and replacing `##TEAM_ID##` with your Apple Team ID so that the first line should read for example `DEVELOPMENT_TEAM = Z25SC9UDC8`.
 
 The NFC capabilities require a paid ADC annual membership. The simplest way to get invited to the internal TestFlight builds is to sponsor me $-)
 
-If you own an iPad you can download the [zipped archive](https://github.com/gui-dos/DiaBLE/archive/refs/heads/main.zip) of this repository and tap _DiaBLE Playground.swiftpm_: DiaBLE was born in fact as a single script for the iPad Swift Playgrounds to test the internal workings of the several troublesome BLE devices I bought, mainly the **Bubble** and the **MiaoMiao**. I upgraded it to the version 4.1 of the Playgrounds which still runs under iOS 15 and macOS Monterey but I cannot afford to support actively such transmitters and the LibreOOPWeb glucose.space server anymore.
+If you own an iPad you can download the [zipped archive](https://github.com/gui-dos/DiaBLE/archive/refs/heads/main.zip) of this repository and tap _DiaBLE Playground.swiftpm_: DiaBLE was born in fact as a single script for the iPad Swift Playgrounds to test the internal workings of the several trouBLEsome BLE accessories I bought, mainly the **Bubble** and the **MiaoMiao**. I upgraded it to the version 4.1 of the Playgrounds which still runs under iOS 15 and macOS Monterey but I cannot afford to support actively such transmitters and the LibreOOPWeb glucose.space server anymore.
 
-Currently I am targeting only the latest betas of Xcode and iOS and focusing on the new Libre 3. The new _async / await_ and _actors_ introduced in Swift 5.5 and iOS 15 probably would require a total rewrite of DiaBLE's foundations, as well as the enhanced *Gen2* protocols already adopted by the Libre 2 Sense/US/CA/AU which haven't been reversed yet.
+Currently I am targeting only the latest betas of Xcode and iOS and focusing on the new Libre 3 and Dexcom ONE/G7. The new _async / await_ and _actors_ introduced in Swift 5.5 and iOS 15 probably would require a total rewrite of DiaBLE's foundations, as well as the enhanced *Gen2* protocols already adopted by the Libre 2 Sense/US/CA/AU which haven't been reversed yet.
 
 Still too early to decide the final design (but I really like already the evil logo 😈), here there are some recent screenshots I tweeted or posted in the comments:
 
@@ -41,8 +41,8 @@ Please refer to the [**TODOs**](https://github.com/gui-dos/DiaBLE/blob/main/TODO
 
 **Warnings:**
   * the temperature-based calibration algorithm has been derived from the old LibreLink 2.3: it is known that the Vendor improves its algorithms at every new release, smoothing the historical values and projecting the trend ones into the future to compensate the interstitial delay but these further stages aren't understood yet; I never was convinced by the simple linear regression models that others apply on finger pricks;
-  * activating the BLE streaming of data on a Libre 2 will break other apps' pairings and you will have to reinstall them to get their alarms back again; in Test mode it is possible however to sniff the incoming data of multiple apps running side-by-side by just activating the notifications on the same BLE characteristics: the same technique is used to analyze the Libre 3 incoming traffic since the Core Bluetooth connections are reference-counted;
-  * connecting directly to a Libre 2/3 from an Apple Watch is currently just a proof of concept that it is technically possiBLE: keeping the connection in the background will require additional work and AFAIK nobody else is capable of doing the job... :-P
+  * activating the BLE streaming of data on a Libre 2 will break other apps' pairings and you will have to reinstall them to get their alarms back again; in Test mode it is possiBLE however to sniff the incoming data of multiple apps running side-by-side by just activating the notifications on the same BLE characteristics: the same technique is used to analyze the Libre 3 incoming traffic since the Core Bluetooth connections are reference-counted;
+  * connecting directly to a Libre 2/3 from an Apple Watch is currently just a proof of concept that it is technically possiBLE: keeping the connection in the background will require additional work and AFAIK nobody else is capaBLE of doing the job... :-P
 
 ### DON'T TRUST THE GROWING NUMBER OF "METABOLIC HEALTH" STARTUPS WHICH RESELL LIBRE SENSORS AND REUSE MY NAIVE NFC CODE: IT IS A SCANDAL WHICH WOULD DESERVE A CLASS ACTION THAT THE VENDOR PROMOTES SUCH PSEUDOSCIENTIFIC FRAUDS AND RESELLS TO HYPOCHONDRIACS "BIOSENSORS" THAT ARE JUST A REBRAND OF THE SECURED GEN2 MODEL BECAUSE THEY COULDN'T PROMOTE IT AS A CGM DEVICE IN 2021 GIVEN THE LEGAL BATTLE WITH DEXCOM.
 
