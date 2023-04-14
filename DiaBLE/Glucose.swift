@@ -28,6 +28,23 @@ struct CalibrationInfo: Codable, Equatable {
 
 struct Glucose: Identifiable, Codable {
 
+    // enum iSAS.DataQuality {
+    //     case ok
+    //     case sd14FifoOverflow
+    //     case filterDelta
+    //     case workVoltage
+    //     case peakDeltaExceeded
+    //     case averageDeltaExceeded
+    //     case rf
+    //     case refR
+    //     case signalSaturated
+    //     case signalLow
+    //     case thermistorOutOfRange
+    //     case tempHigh
+    //     case tempLow
+    //     case invalidData
+    // }
+
     struct DataQuality: OptionSet, Codable, CustomStringConvertible {
 
         let rawValue: Int

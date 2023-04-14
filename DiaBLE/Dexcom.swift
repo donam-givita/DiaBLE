@@ -517,14 +517,14 @@ class Dexcom: Transmitter {
 
 
             case  .transmitterVersionExtendedRx:  // Dexcom ONE
-                // TODO: i.e. 53 00 0a 0f0000000000303235302d50726f 771a (19 bytes
+                // TODO: i.e. 53 00 0a 0f0000000000303235302d50726f 771a (19 bytes)
                 let status = data[1]
                 let sessionLength = data[2]
                 // TODO:
                 // featureFlag: UInt16
                 // warmUpLength: UInt16
                 let crc = UInt16(data[17...18])
-                log("\(name): extended version response: status: \(status), session length: \(sessionLength), days, CRC: \(crc.hex), valid CRC: \(crc == data.dropLast(2).crc)")
+                log("\(name): extended version response: status: \(status), session length: \(sessionLength) days, CRC: \(crc.hex), valid CRC: \(crc == data.dropLast(2).crc)")
 
 
             default:
