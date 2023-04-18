@@ -347,7 +347,7 @@ class Dexcom: Transmitter {
                 let lastCalibrationTimeSeconds = UInt32(data[13...16])
                 let autoCalibration: Bool = data[17] == 1
                 let crc = UInt16(data[18...19])
-                log("\(name): bounds response (TODO): weight: \(weight), calBoundError1: \(calBoundError1), calBoundError0: \(calBoundError0), calBoundMin: \(calBoundMin), calBoundMax: \(calBoundMax), lastBGValue: \(lastBGValue), lastCalibrationTimeSeconds: \(lastCalibrationTimeSeconds.formattedInterval), autoCalibration: \(autoCalibration), CRC: \(crc), valid CRC: \(data.dropLast(2).crc == crc)")
+                log("\(name): bounds response (TODO): weight: \(weight), calBoundError1: \(calBoundError1), calBoundError0: \(calBoundError0), calBoundMin: \(calBoundMin), calBoundMax: \(calBoundMax), lastBGValue: \(lastBGValue), lastCalibrationTimeSeconds: \(lastCalibrationTimeSeconds.formattedInterval), autoCalibration: \(autoCalibration), CRC: \(crc.hex), valid CRC: \(data.dropLast(2).crc == crc)")
 
 
             case .calibrateGlucoseTx:  // G7
@@ -386,7 +386,7 @@ class Dexcom: Transmitter {
                     let bufferLength = UInt32(data[12...15])
                     let bufferCRC = UInt16(data[16...17])
                     let crc = UInt16(data[18...19])
-                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: \(buffer.crc.hex), CRC: \(crc), valid CRC: \(data.dropLast(2).crc == crc)")
+                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), valid buffer CRC: \(bufferCRC == buffer.crc), CRC: \(crc.hex), valid CRC: \(data.dropLast(2).crc == crc)")
                     var packets = [Data]()
                     for i in 0 ..< (buffer.count + 19) / 20 {
                         packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
