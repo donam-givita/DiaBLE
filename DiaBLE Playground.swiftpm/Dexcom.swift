@@ -450,20 +450,16 @@ class Dexcom: Transmitter {
                 let voltageB = Int(UInt16(data[4...5]))
                 let runtimeDays = Int(data[6])
                 let temperature = Int(data[7])
-                log("\(name): battery status response: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), run time: \(runtimeDays) days, temperature: \(temperature)")
-                // TODO
+                log("\(name): battery info response: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), run time: \(runtimeDays) days, temperature: \(temperature)")
 
 
             case .batteryStatusRx:
                 let status = data[1]
-                let voltageA = Int(UInt16(data[2..<4]))
-                let voltageB = Int(UInt16(data[4..<6]))
-                let resistance = Int(UInt16(data[6..<8]))
-                let runtime = data.count == 10 ? -1 : Int(data[8])
-                // FIXME: [8...9] is a final CRC...
-                let temperature = Int(data[9])
-                log("\(name): battery status response: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), resistance: \(resistance), run time: \(runtime) days, temperature: \(temperature), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
-                // TODO
+                let voltageA = Int(UInt16(data[2...3]))
+                let voltageB = Int(UInt16(data[4...5]))
+                let runtimeDays = Int(data[6])
+                let temperature = Int(data[7])
+                log("\(name): battery info response: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), run time: \(runtimeDays) days, temperature: \(temperature), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
 
 
             case .transmitterVersionTx:  // G7
