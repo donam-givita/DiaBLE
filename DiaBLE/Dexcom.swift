@@ -252,22 +252,7 @@ class Dexcom: Transmitter {
                 log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), session start time: \(sessionStartTime.formattedInterval), sensor activation date: \(sensorActivationDate.local), sensor age: \(sensorAge.formattedInterval); valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), activation date: \(activationDate.local)")
 
 
-            case .glucoseG6Rx:
-                if sensor?.type != .dexcomG7 {
-                    let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
-                    let sequence = UInt32(data[2..<6])
-                    let timestamp = UInt32(data[6..<10])
-                    let date = activationDate + TimeInterval(timestamp)
-                    let glucoseBytes = UInt16(data[10..<12])
-                    let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
-                    let glucose = Int(glucoseBytes & 0xfff)
-                    let state = data[12]  // AlgorithmState
-                    let trend = Int8(bitPattern: data[13])
-                    log("\(name): glucose: status: 0x\(status.hex), sequence: \(sequence), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
-                }
-
-
-                // TODO: rename to G7 .glucoseRx / .egv
+                // TODO: rename to G7 .egv
             case .glucoseG6Tx:
 
                 // https://github.com/LoopKit/G7SensorKit/blob/main/G7SensorKit/Messages/G7GlucoseMessage.swift
@@ -308,6 +293,19 @@ class Dexcom: Transmitter {
                 log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sensor activation date: \(activationDate.local), sensor age: \(sensorAge.formattedInterval), sequence: \(sequence), reading age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
 
 
+            case .glucoseG6Rx:
+                let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
+                let sequence = UInt32(data[2..<6])
+                let timestamp = UInt32(data[6..<10])
+                let date = activationDate + TimeInterval(timestamp)
+                let glucoseBytes = UInt16(data[10..<12])
+                let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
+                let glucose = Int(glucoseBytes & 0xfff)
+                let state = data[12]  // AlgorithmState
+                let trend = Int8(bitPattern: data[13])
+                log("\(name): glucose: status: 0x\(status.hex), sequence: \(sequence), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
+
+
             case .calibrationDataTx:  // G7
                 // TODO: i.e. 3200014e000000000000000000010100e4000000
                 break
@@ -324,16 +322,6 @@ class Dexcom: Transmitter {
                 // }
 
 
-            case .calibrateGlucoseTx:  // G7
-                // TODO: i.e. 346E00871F0D00 (110) -> 34000100
-                break
-
-
-            case .unknown1_G7:
-                // TODO: i.e. ea00030100000000000200000045ffffff
-                break
-
-
             case .calibrationDataRx:  // G6Bounds
                 // TODO: i.e. 3300325000440114005802000000000000018ba4
                 let weight = data[2]
@@ -345,11 +333,34 @@ class Dexcom: Transmitter {
                 let lastCalibrationTimeSeconds = UInt32(data[13...16])
                 let autoCalibration: Bool = data[17] == 1
                 let crc = UInt16(data[18...19])
-                log("\(name): bounds (TODO): weight: \(weight), calBoundError1: \(calBoundError1), calBoundError0: \(calBoundError0), calBoundMin: \(calBoundMin), calBoundMax: \(calBoundMax), lastBGValue: \(lastBGValue), lastCalibrationTimeSeconds: \(lastCalibrationTimeSeconds.formattedInterval), autoCalibration: \(autoCalibration), valid CRC: \(data.dropLast(2).crc == crc)")
+                log("\(name): bounds response (TODO): weight: \(weight), calBoundError1: \(calBoundError1), calBoundError0: \(calBoundError0), calBoundMin: \(calBoundMin), calBoundMax: \(calBoundMax), lastBGValue: \(lastBGValue), lastCalibrationTimeSeconds: \(lastCalibrationTimeSeconds.formattedInterval), autoCalibration: \(autoCalibration), valid CRC: \(data.dropLast(2).crc == crc)")
+
+
+            case .calibrateGlucoseTx:  // G7
+                // TODO: i.e. 346E00871F0D00 (110) -> 34000100
+                break
 
 
             case .glucoseBackfillRx:
-                if sensor?.type != .dexcomG7 {
+
+                if sensor?.type == .dexcomG7 {
+                    // TODO: i. e. 510000a01600009a44ea430200ec5f0200 (17 bytes)
+                    let status = data[1]
+                    let backfillStatus = data[2]
+                    let bufferLength = UInt32(data[3...6])
+                    let bufferCRC = UInt16(data[7...8])
+                    let startTime = TimeInterval(UInt32(data[9...12]))
+                    let endTime = TimeInterval(UInt32(data[13...16]))
+                    // TODO
+                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval)")
+                    var packets = [Data]()
+                    for i in 0 ..< (buffer.count + 19) / 20 {
+                        packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
+                    }
+                    log("\(name): backfilled stream (TODO): buffer length: \(buffer.count), valid CRC: \(bufferCRC == buffer.crc), 20-byte packets: \(packets.count)")
+
+
+                } else {  // Dexcom ONE
                     let status = data[1]
                     let backfillStatus = data[2]
                     let identifier = data[3]
@@ -382,20 +393,6 @@ class Dexcom: Transmitter {
                     }
                     log("\(name): backfilled history (\(history.count) values): \(history)")
 
-                } else { // TODO: G7  i. e. 510000a01600009a44ea430200ec5f0200 (17 bytes)
-                    let status = data[1]
-                    let backfillStatus = data[2]
-                    let bufferLength = UInt32(data[3...6])
-                    let bufferCRC = UInt16(data[7...8])
-                    let startTime = TimeInterval(UInt32(data[9...12]))
-                    let endTime = TimeInterval(UInt32(data[13...16]))
-                    // TODO
-                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval)")
-                    var packets = [Data]()
-                    for i in 0 ..< (buffer.count + 19) / 20 {
-                        packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
-                    }
-                    log("\(name): backfilled stream (TODO): buffer length: \(buffer.count), valid CRC: \(bufferCRC == buffer.crc), 20-byte packets: \(packets.count)")
                 }
 
                 buffer = Data()
@@ -447,6 +444,16 @@ class Dexcom: Transmitter {
                 // TODO
 
 
+            case .batteryStatusTx:  // G7 Tx/Rx
+                let status = data[1]
+                let voltageA = Int(UInt16(data[2...3]))
+                let voltageB = Int(UInt16(data[4...5]))
+                let runtimeDays = Int(data[6])
+                let temperature = Int(data[7])
+                log("\(name): battery status response: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), run time: \(runtimeDays) days, temperature: \(temperature)")
+                // TODO
+
+
             case .batteryStatusRx:
                 let status = data[1]
                 let voltageA = Int(UInt16(data[2..<4]))
@@ -455,17 +462,7 @@ class Dexcom: Transmitter {
                 let runtime = data.count == 10 ? -1 : Int(data[8])
                 // FIXME: [8...9] is a final CRC...
                 let temperature = Int(data[9])
-                log("\(name): battery status: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), resistance: \(resistance), run time: \(runtime) days, temperature: \(temperature), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
-                // TODO
-
-
-            case .batteryStatusTx:  // G7 Tx/Rx
-                let status = data[1]
-                let voltageA = Int(UInt16(data[2...3]))
-                let voltageB = Int(UInt16(data[4...5]))
-                let runtimeDays = Int(data[6])
-                let temperature = Int(data[7])
-                log("\(name): battery status: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), run time: \(runtimeDays) days, temperature: \(temperature)")
+                log("\(name): battery status response: status: 0x\(status.hex), static voltage A: \(voltageA), dynamic voltage B: \(voltageB), resistance: \(resistance), run time: \(runtime) days, temperature: \(temperature), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
                 // TODO
 
 
@@ -504,7 +501,7 @@ class Dexcom: Transmitter {
                 log("\(name): version response: status: \(status), firmware: \(firmwareVersion), sw number: \(swNumber), CRC: \(crc.hex), valid CRC: \(crc == data.dropLast(2).crc)")
 
 
-            case  .transmitterVersionExtended:
+            case  .transmitterVersionExtended:  // G7
                 // TODO: i.e. 52 00 c0d70d00 5406 02010404 ff 0c00 (15 bytes)
                 let status = data[1]
                 let sessionLength = TimeInterval(UInt32(data[2...5]))
@@ -525,6 +522,11 @@ class Dexcom: Transmitter {
                 // warmUpLength: UInt16
                 let crc = UInt16(data[17...18])
                 log("\(name): extended version response: status: \(status), session length: \(sessionLength) days, CRC: \(crc.hex), valid CRC: \(crc == data.dropLast(2).crc)")
+
+
+            case .unknown1_G7:
+                // TODO: i.e. ea00030100000000000200000045ffffff
+                break
 
 
             default:
@@ -558,6 +560,7 @@ class Dexcom: Transmitter {
         default:
             break
         }
+
 
         if let sensor = sensor as? DexcomOne {
             sensor.read(data, for: uuid)

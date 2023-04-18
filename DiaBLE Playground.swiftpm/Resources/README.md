@@ -17,7 +17,7 @@ The NFC capabilities require a paid ADC annual membership. The simplest way to g
 
 If you own an iPad you can download the [zipped archive](https://github.com/gui-dos/DiaBLE/archive/refs/heads/main.zip) of this repository and tap _DiaBLE Playground.swiftpm_: DiaBLE was born in fact as a single script for the iPad Swift Playgrounds to test the internal workings of the several trouBLEsome BLE accessories I bought, mainly the **Bubble** and the **MiaoMiao**. I upgraded it to the version 4.1 of the Playgrounds which still runs under iOS 15 and macOS Monterey but I cannot afford to support actively such transmitters and the LibreOOPWeb glucose.space server anymore.
 
-Currently I am targeting only the latest betas of Xcode and iOS and focusing on the new Libre 3 and Dexcom ONE/G7. The new _async / await_ and _actors_ introduced in Swift 5.5 and iOS 15 probably would require a total rewrite of DiaBLE's foundations, as well as the enhanced *Gen2* protocols already adopted by the Libre 2 Sense/US/CA/AU which haven't been reversed yet.
+Currently I am targeting only the latest betas of Xcode and iOS and focusing on the new Libre 3 and Dexcom G7. The new _async / await_ and _actors_ introduced in Swift 5.5 and iOS 15 probably would require a total rewrite of DiaBLE's foundations, as well as the enhanced *Gen2* protocols already adopted by the Libre 2 Sense/US/CA/AU which haven't been reversed yet.
 
 Still too early to decide the final design (but I really like already the evil logo 😈), here there are some recent screenshots I tweeted or posted in the comments:
 
