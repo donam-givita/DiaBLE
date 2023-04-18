@@ -121,7 +121,7 @@ class Dexcom: Transmitter {
         case transmitterVersionExtended = 0x52  // G7 Tx/Rx
         case transmitterVersionExtendedRx = 0x53
 
-        case backfillFinished = 0x59  // G7 TX/Rx
+        case backfillFinished = 0x59  // G7 Tx/Rx
         case unknown1_G7 = 0xEA       // TODO: Tx/Rx EA00
 
         case keepAliveRx = 0xFF
@@ -269,6 +269,20 @@ class Dexcom: Transmitter {
                 //     PRPR = predicted
                 //        C = calibration
 
+                // TODO:
+                //  class TxControllerG7.EGVResponse {
+                //      let txTime: Swift.UInt32
+                //      let sequenceNumber: Swift.UInt32
+                //      let sessionNumber: Swift.UInt8
+                //      let egvAge: Swift.UInt16
+                //      let value: Swift.UInt16
+                //      let algorithmState: Swift.UInt8
+                //      let secondaryalgorithmState: Swift.UInt8
+                //      let rate: Swift.Int8
+                //      let predictiveValue: Swift.UInt16
+                //      var timeStamp: Swift.UInt32
+                //  }
+
                 let status = data[1]
                 let messageTimestamp = UInt32(data[2..<6])  // seconds since pairing of the *message*. Subtract age to get timestamp of glucose
                 activationDate = Date.now - TimeInterval(messageTimestamp)
@@ -277,7 +291,7 @@ class Dexcom: Transmitter {
                 sensor?.age = sensorAge
                 sensor?.state = .active
                 if sensor?.maxLife == 0 { sensor?.maxLife = 14400 }
-                let sequence = UInt16(data[6..<8])
+                let sequenceNumber = UInt16(data[6..<8])
                 let age = data[10] // amount of time elapsed (seconds) from sensor reading to BLE comms
                 let timestamp = messageTimestamp - UInt32(age)
                 let date = activationDate + TimeInterval(timestamp)
@@ -290,20 +304,20 @@ class Dexcom: Transmitter {
                 let predictionData = UInt16(data[16..<18])
                 let predicted: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
                 let calibration = data[18]
-                log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sensor activation date: \(activationDate.local), sensor age: \(sensorAge.formattedInterval), sequence: \(sequence), reading age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
+                log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sensor activation date: \(activationDate.local), sensor age: \(sensorAge.formattedInterval), sequence number: \(sequenceNumber), reading age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
 
 
             case .glucoseG6Rx:
                 let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
-                let sequence = UInt32(data[2..<6])
+                let sequenceNumber = UInt32(data[2..<6])
                 let timestamp = UInt32(data[6..<10])
                 let date = activationDate + TimeInterval(timestamp)
                 let glucoseBytes = UInt16(data[10..<12])
                 let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
                 let glucose = Int(glucoseBytes & 0xfff)
                 let state = data[12]  // AlgorithmState
-                let trend = Int8(bitPattern: data[13])
-                log("\(name): glucose: status: 0x\(status.hex), sequence: \(sequence), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
+                let trend = Int8(bitPattern: data[13])  // TODO: 127 -> not computable
+                log("\(name): glucose: status: 0x\(status.hex), sequence number: \(sequenceNumber), timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
 
 
             case .calibrationDataTx:  // G7
@@ -333,7 +347,7 @@ class Dexcom: Transmitter {
                 let lastCalibrationTimeSeconds = UInt32(data[13...16])
                 let autoCalibration: Bool = data[17] == 1
                 let crc = UInt16(data[18...19])
-                log("\(name): bounds response (TODO): weight: \(weight), calBoundError1: \(calBoundError1), calBoundError0: \(calBoundError0), calBoundMin: \(calBoundMin), calBoundMax: \(calBoundMax), lastBGValue: \(lastBGValue), lastCalibrationTimeSeconds: \(lastCalibrationTimeSeconds.formattedInterval), autoCalibration: \(autoCalibration), valid CRC: \(data.dropLast(2).crc == crc)")
+                log("\(name): bounds response (TODO): weight: \(weight), calBoundError1: \(calBoundError1), calBoundError0: \(calBoundError0), calBoundMin: \(calBoundMin), calBoundMax: \(calBoundMax), lastBGValue: \(lastBGValue), lastCalibrationTimeSeconds: \(lastCalibrationTimeSeconds.formattedInterval), autoCalibration: \(autoCalibration), CRC: \(crc), valid CRC: \(data.dropLast(2).crc == crc)")
 
 
             case .calibrateGlucoseTx:  // G7
@@ -342,6 +356,8 @@ class Dexcom: Transmitter {
 
 
             case .glucoseBackfillRx:
+
+                // TODO: DataStreamType and DataStreamFilterType first bytes
 
                 if sensor?.type == .dexcomG7 {
                     // TODO: i. e. 510000a01600009a44ea430200ec5f0200 (17 bytes)
@@ -361,14 +377,16 @@ class Dexcom: Transmitter {
 
 
                 } else {  // Dexcom ONE
+                    // TODO: i. e. 51 00 01 01 7e863600 5a8c3600 3a000000 4528 2247 (20 bytes)
                     let status = data[1]
                     let backfillStatus = data[2]
                     let identifier = data[3]
-                    let startTime = TimeInterval(UInt32(data[4..<8]))
-                    let endTime = TimeInterval(UInt32(data[8..<12]))
-                    let bufferLength = UInt32(data[12..<16])
-                    let bufferCRC = UInt16(data[16..<18])
-                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: \(buffer.crc.hex)")
+                    let startTime = TimeInterval(UInt32(data[4...7]))
+                    let endTime = TimeInterval(UInt32(data[8...11]))
+                    let bufferLength = UInt32(data[12...15])
+                    let bufferCRC = UInt16(data[16...17])
+                    let crc = UInt16(data[18...19])
+                    log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), computed CRC: \(buffer.crc.hex), CRC: \(crc), valid CRC: \(data.dropLast(2).crc == crc)")
                     var packets = [Data]()
                     for i in 0 ..< (buffer.count + 19) / 20 {
                         packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
@@ -492,7 +510,7 @@ class Dexcom: Transmitter {
                 // let storageModeDays: UInt16
                 // let apiVersion: UInt8
                 // let maxRuntimeDays: UInt16
-                // let maxStorageTimeDays. uint16
+                // let maxStorageTimeDays: UInt16
                 let crc = UInt16(data[17...18])
                 log("\(name): version response: status: \(status), firmware: \(firmwareVersion), sw number: \(swNumber), CRC: \(crc.hex), valid CRC: \(crc == data.dropLast(2).crc)")
 
@@ -668,6 +686,9 @@ class Dexcom: Transmitter {
         case encryptionInfo = 2
         case backFill       = 3
     }
+
+    // TODO:
+    enum DataStreamFilterType: UInt8 { case reserved, manifest, inRangeInclusive }
 
 
 }
