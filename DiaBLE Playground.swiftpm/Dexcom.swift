@@ -237,7 +237,7 @@ class Dexcom: Transmitter {
             switch opCode {
 
             case .transmitterTimeRx:
-                let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
+                let status = data[1]  // 0: ok, 0x81: lowBattery
                 let age = TimeInterval(UInt32(data[2..<6]))
                 activationDate = Date.now - age
                 let sessionStartTime = TimeInterval(UInt32(data[6..<10]))
@@ -249,7 +249,7 @@ class Dexcom: Transmitter {
                 sensor?.state = .active
                 sensor?.lastReadingDate = Date()
                 if sensor?.maxLife == 0 { sensor?.maxLife = 14400 }
-                log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), session start time: \(sessionStartTime.formattedInterval), sensor activation date: \(sensorActivationDate.local), sensor age: \(sensorAge.formattedInterval); valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2))), activation date: \(activationDate.local)")
+                log("\(name): transmitter status: 0x\(status.hex), age: \(age.formattedInterval), activation date: \(activationDate.local), session start time: \(sessionStartTime.formattedInterval), sensor activation date: \(sensorActivationDate.local), sensor age: \(sensorAge.formattedInterval), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
 
 
                 // TODO: rename to G7 .egv
@@ -297,27 +297,30 @@ class Dexcom: Transmitter {
                 let date = activationDate + TimeInterval(timestamp)
                 sensor?.lastReadingDate = date
                 let glucoseData = UInt16(data[12..<14])
-                let glucose: UInt16? = glucoseData != 0xffff ? glucoseData & 0xfff : nil
+                let value: UInt16? = glucoseData != 0xffff ? glucoseData & 0xfff : nil
                 let state = data[14]
                 let trend: Double? = data[15] != 0x7f ? Double(Int8(bitPattern: data[15])) / 10 : nil
                 let glucoseIsDisplayOnly: Bool? = glucoseData != 0xffff ? (data[18] & 0x10) > 0 : nil
                 let predictionData = UInt16(data[16..<18])
-                let predicted: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
+                let predictedValue: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
                 let calibration = data[18]
-                log("\(name): glucose: status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sensor activation date: \(activationDate.local), sensor age: \(sensorAge.formattedInterval), sequence number: \(sequenceNumber), reading age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted: \(predicted != nil ? String(predicted!) : "nil"), calibration: \(calibration.hex)")
+                log("\(name): glucose response (EGV): status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sensor activation date: \(activationDate.local), sensor age: \(sensorAge.formattedInterval), sequence number: \(sequenceNumber), reading age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose value: \(value != nil ? String(value!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted value: \(predictedValue != nil ? String(predictedValue!) : "nil"), calibration: \(calibration.hex)")
 
 
             case .glucoseG6Rx:
-                let status = data[1]  // 0: ok, 0x81: lowBattery  TODO: TransmitterStatus
+                let status = data[1]  // 0: ok, 0x81: lowBattery
                 let sequenceNumber = UInt32(data[2..<6])
                 let timestamp = UInt32(data[6..<10])
                 let date = activationDate + TimeInterval(timestamp)
                 let glucoseBytes = UInt16(data[10..<12])
                 let glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
-                let glucose = Int(glucoseBytes & 0xfff)
+                let value = Int(glucoseBytes & 0xfff)
                 let state = data[12]  // AlgorithmState
                 let trend = Int8(bitPattern: data[13])  // TODO: 127 -> not computable
-                log("\(name): glucose: status: 0x\(status.hex), sequence number: \(sequenceNumber), timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend), valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
+                // TODO: verify predicted value mask
+                let predictionData = UInt16(data[14...15])
+                let predictedValue: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
+                log("\(name): glucose response (EGV): status: 0x\(status.hex), sequence number: \(sequenceNumber), timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose value: \(value), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend), predicted value: \(predictedValue != nil ? String(predictedValue!) : "nil"),  valid CRC: \(data.dropLast(2).crc == UInt16(data.suffix(2)))")
 
 
             case .calibrationDataTx:  // G7
@@ -636,7 +639,7 @@ class Dexcom: Transmitter {
             case .excessNoise: return "excess noise"
             case .firstOfTwoBGsNeeded: return "first of two BGs needed"
             case .secondOfTwoBGsNeeded: return "second of two BGs needed"
-            case .okay: return "OK / calibrated"
+            case .okay: return "OK"
             case .needsCalibration: return "needs calibration"
             case .calibrationError1: return "calibration error 1"
             case .calibrationError2: return "calibration error 2"
