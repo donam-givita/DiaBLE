@@ -496,7 +496,7 @@ class Dexcom: Transmitter {
                 let siliconVersion = UInt32(data[10...13])
                 let serialNumber: UInt64 = UInt64(data[14]) + UInt64(data[15]) << 8 + UInt64(data[16]) << 16 + UInt64(data[17]) << 24 + UInt64(data[18]) << 32 + UInt64(data[19]) << 40
                 sensor?.serial = String(serialNumber)
-                log("\(name): version response: status: \(status), firmware: \(firmwareVersion), sw number: \(swNumber), silicon version: \(siliconVersion) (0x\(siliconVersion.hex)), serial number: \(serialNumber)")
+                log("\(name): version response: status: \(status), firmware: \(firmwareVersion), software number: \(swNumber), silicon version: \(siliconVersion) (0x\(siliconVersion.hex)), serial number: \(serialNumber)")
 
 
             case .transmitterVersionRx:  // Dexcom ONE
@@ -515,7 +515,7 @@ class Dexcom: Transmitter {
                 // let maxRuntimeDays: UInt16
                 // let maxStorageTimeDays: UInt16
                 let crc = UInt16(data[17...18])
-                log("\(name): version response: status: \(status), firmware: \(firmwareVersion), sw number: \(swNumber), CRC: \(crc.hex), valid CRC: \(crc == data.dropLast(2).crc)")
+                log("\(name): version response: status: \(status), firmware: \(firmwareVersion), software number: \(swNumber), CRC: \(crc.hex), valid CRC: \(crc == data.dropLast(2).crc)")
 
 
             case  .transmitterVersionExtended:  // G7
@@ -586,6 +586,103 @@ class Dexcom: Transmitter {
             sensor.read(data, for: uuid)
         }
     }
+
+
+    // TODO: secondary states, enum TxControllerG7.G7CalibrationStatus
+    //
+    // enum TxControllerG7.G7AlgorithmState {
+    //     case warmupTxControllerG7G7AlgorithmState.WarmupSecondary
+    //     case inSessionTxControllerG7G7AlgorithmState.InSessionSecondary
+    //     case inSessionInvalidTxControllerG7G7AlgorithmState.InSessionInvalidSecondary
+    //     case sessionExpiredTxControllerG7G7AlgorithmState.SessionExpiredSecondary
+    //     case sessionFailedTxControllerG7G7AlgorithmState.SessionFailedSecondary
+    //     case manuallyStoppedTxControllerG7G7AlgorithmState.ManuallyStoppedSecondary
+    //     case none
+    //     case deployed
+    //     case transmitterFailed
+    //     case sivFailed
+    //     case sessionFailedOutOfRange
+    // }
+    //
+    // enum TxControllerG7.G7AlgorithmState.WarmupSecondary {
+    //     case sivPassed
+    //     case parametersUpdated
+    //     case signalProcessing
+    //     case error
+    // }
+    //
+    // enum TxControllerG7.G7AlgorithmState.InSessionSecondary {
+    //     case low
+    //     case lowNoPrediction
+    //     case lowNoTrend
+    //     case lowNoTrendOrPrediction
+    //     case inRange
+    //     case inRangeNoPrediction
+    //     case inRangeNoTrend
+    //     case inRangeNoTrendOrPrediction
+    //     case high
+    //     case highNoPrediction
+    //     case highNoTrend
+    //     case highNoTrendOrPrediction
+    //     case bgTriggered
+    //     case bgTriggeredNoPrediction
+    //     case bgTriggeredNoTrend
+    //     case bgTriggeredNoTrendOrPrediction
+    //     case bgTriggeredLow
+    //     case bgTriggeredLowNoPrediction
+    //     case bgTriggeredLowNoTrend
+    //     case bgTriggeredLowNoTrendOrPrediction
+    //     case bgTriggeredHigh
+    //     case bgTriggeredHighNoPrediction
+    //     case bgTriggeredHighNoTrend
+    //     case bgTriggeredHighNoTrendOrPrediction
+    //     case error
+    // }
+    //
+    // enum TxControllerG7.G7AlgorithmState.InSessionInvalidSecondary {
+    //     case invalid
+    //     case validPrediction
+    //     case validTrend
+    //     case validTrendAndPrediction
+    //     case bgInvalid
+    //     case bgInvalidValidPrediction
+    //     case bgInvalidValidTrend
+    //     case bgInvalidValidTrendAndPrediction
+    //     case error
+    // }
+    //
+    // enum TxControllerG7.G7AlgorithmState.SessionExpiredSecondary {
+    //     case validEgv
+    //     case validEgvNoPrediction
+    //     case validEgvNoTrend
+    //     case validEgvNoTrendOrPrediction
+    //     case invalidEgv
+    //     case invalidEgvNoPrediction
+    //     case invalidEgvNoTrend
+    //     case invalidEgvNoTrendOrPrediction
+    //     case error
+    // }
+    //
+    // enum TxControllerG7.G7AlgorithmState.SessionFailedSecondary {
+    //     case unspecified
+    //     case sensorFailure
+    //     case algorithmFailure
+    //     case unexpectedAlgorithmFailure
+    //     case noData
+    //     case error
+    // }
+    //
+    // enum TxControllerG7.G7AlgorithmState.ManuallyStoppedSecondary {
+    //     case none
+    //     case skip
+    //     case other
+    //     case bestTimingForMe
+    //     case inaccurate
+    //     case noReadings
+    //     case sensorFellOff
+    //     case discomfort
+    //     case error
+    // }
 
 
     // TODO: https://github.com/JohanDegraeve/xdripswift/blob/master/xdrip/BluetoothTransmitter/CGM/Dexcom/Generic/DexcomAlgorithmState.swift
