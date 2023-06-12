@@ -83,7 +83,7 @@ class LibreLinkUp: Logging {
     let connectionsEndpoint = "llu/connections"
     let measurementsEndpoint = "lsl/api/measurements"
 
-    let regions = ["us", "eu", "de", "fr", "jp", "ap", "au", "ae"]
+    let regions = ["ae", "ap", "au", "ca", "de", "eu", "eu2", "fr", "jp", "us"]
 
     var regionalSiteURL: String { "https://api-\(settings.libreLinkUpRegion).libreview.io" }
 
