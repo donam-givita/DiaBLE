@@ -579,7 +579,7 @@ class Dexcom: Transmitter {
         }
 
 
-        if let sensor = sensor as? DexcomOne {
+        if let sensor = sensor as? DexcomONE {
             sensor.read(data, for: uuid)
         }
         if let sensor = sensor as? DexcomG7 {
@@ -794,7 +794,7 @@ class Dexcom: Transmitter {
 }
 
 
-class DexcomOne: Sensor {
+class DexcomONE: Sensor {
 
     /// called by Dexcom Transmitter class
     func read(_ data: Data, for uuid: String) {
