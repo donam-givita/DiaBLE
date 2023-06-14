@@ -257,12 +257,12 @@ class Dexcom: Transmitter {
 
                 // https://github.com/LoopKit/G7SensorKit/blob/main/G7SensorKit/Messages/G7GlucoseMessage.swift
 
-                //    0  1  2 3 4 5  6 7  8  9 10 11 1213 14 15 1617 18
-                //         TTTTTTTT SQSQ       AG    BGBG SS TR PRPR C
-                // 0x4e 00 d5070000 0900 00 01 05 00 6100 06 01 ffff 0e
+                //    0  1  2 3 4 5  6 7  8  9 1011 1213 14 15 1617 18
+                //         TTTTTTTT SQSQ       AGAG BGBG SS TR PRPR C
+                // 0x4e 00 d5070000 0900 00 01 0500 6100 06 01 ffff 0e
                 // TTTTTTTT = timestamp
                 //     SQSQ = sequence
-                //       AG = age
+                //     AGAG = age
                 //     BGBG = glucose
                 //       SS = algorithm state
                 //       TR = trend
@@ -292,7 +292,7 @@ class Dexcom: Transmitter {
                 sensor?.state = .active
                 if sensor?.maxLife == 0 { sensor?.maxLife = 14400 }
                 let sequenceNumber = UInt16(data[6..<8])
-                let age = data[10] // amount of time elapsed (seconds) from sensor reading to BLE comms
+                let age = UInt16(data[10..<12]) // amount of time elapsed (seconds) from sensor reading to BLE comms
                 let timestamp = messageTimestamp - UInt32(age)
                 let date = activationDate + TimeInterval(timestamp)
                 sensor?.lastReadingDate = date
