@@ -454,7 +454,7 @@ class Dexcom: Transmitter {
                     let state = data[6]
                     let trend: Double? = data[8] != 0x7f ? Double(Int8(bitPattern: data[8])) / 10 : nil
                     log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil")")
-                    if let glucose {
+                    if let glucose = glucose {
                         let item = Glucose(glucose, trendRate: trend ?? 0, id: Int(Double(timestamp) / 60 / 5), date: date)
                         // TODO: manage trend and state
                         history.append(item)
