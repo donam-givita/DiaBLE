@@ -12,9 +12,9 @@ enum LibreLinkUpError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .noConnection:     return "no connection"
-        case .notAuthenticated: return "not authenticated"
-        case .jsonDecoding:     return "JSON decoding"
+        case .noConnection:     "no connection"
+        case .notAuthenticated: "not authenticated"
+        case .jsonDecoding:     "JSON decoding"
         }
     }
 }

@@ -13,9 +13,9 @@ class Abbott: Transmitter {
 
         var description: String {
             switch self {
-            case .abbottCustom:     return "Abbott custom"
-            case .bleLogin:         return "BLE login"
-            case .compositeRawData: return "composite raw data"
+            case .abbottCustom:     "Abbott custom"
+            case .bleLogin:         "BLE login"
+            case .compositeRawData: "composite raw data"
             }
         }
     }
@@ -40,12 +40,12 @@ class Abbott: Transmitter {
 
         var description: String {
             switch self {
-            case .notAuthenticated:   return "AUTH_STATE_NOT_AUTHENTICATED"
-            case .enableNotification: return "AUTH_STATE_ENABLE_NOTIFICATION"
-            case .challengeResponse:  return "AUTH_STATE_CHALLENGE_RESPONSE"
-            case .getSessionInfo:     return "AUTH_STATE_GET_SESSION_INFO"
-            case .authenticated:      return "AUTH_STATE_AUTHENTICATED"
-            case .bleLogin:           return "AUTH_STATE_BLE_LOGIN"
+            case .notAuthenticated:   "AUTH_STATE_NOT_AUTHENTICATED"
+            case .enableNotification: "AUTH_STATE_ENABLE_NOTIFICATION"
+            case .challengeResponse:  "AUTH_STATE_CHALLENGE_RESPONSE"
+            case .getSessionInfo:     "AUTH_STATE_GET_SESSION_INFO"
+            case .authenticated:      "AUTH_STATE_AUTHENTICATED"
+            case .bleLogin:           "AUTH_STATE_BLE_LOGIN"
             }
         }
     }

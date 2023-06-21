@@ -46,30 +46,30 @@ struct BLE {
 
         var description: String {
             switch self {
-            case .device:         return "device information"
-            case .systemID:       return "system id"
-            case .model:          return "model number"
-            case .serial:         return "serial number"
-            case .firmware:       return "firmware version"
-            case .hardware:       return "hardware revision"
-            case .software:       return "software revision"
-            case .manufacturer:   return "manufacturer"
-            case .regulatory:     return "regulatory certification data list"
-            case .pnpID:          return "pnp id"
-            case .battery:        return "battery"
-            case .batteryLevel:   return "battery level"
-            case .time:           return "time"
-            case .currentTime:    return "current time"
-            case .localTime:      return "local time information"
-            case .dfu:            return "device firmware update"
-            case .configuration:  return "configuration descriptor"
-            case .immediateAlert: return "immediate alert"
-            case .alert:          return "alert notification"
-            case .heartRate:      return "heart rate"
-            case .nearby:         return "nearby"
-            case .nearby1:        return "nearby"
-            case .continuity:     return "continuity"
-            case .continuity1:    return "continuity"
+            case .device:         "device information"
+            case .systemID:       "system id"
+            case .model:          "model number"
+            case .serial:         "serial number"
+            case .firmware:       "firmware version"
+            case .hardware:       "hardware revision"
+            case .software:       "software revision"
+            case .manufacturer:   "manufacturer"
+            case .regulatory:     "regulatory certification data list"
+            case .pnpID:          "pnp id"
+            case .battery:        "battery"
+            case .batteryLevel:   "battery level"
+            case .time:           "time"
+            case .currentTime:    "current time"
+            case .localTime:      "local time information"
+            case .dfu:            "device firmware update"
+            case .configuration:  "configuration descriptor"
+            case .immediateAlert: "immediate alert"
+            case .alert:          "alert notification"
+            case .heartRate:      "heart rate"
+            case .nearby:         "nearby"
+            case .nearby1:        "nearby"
+            case .continuity:     "continuity"
+            case .continuity1:    "continuity"
             }
         }
     }
@@ -86,11 +86,11 @@ struct BLE {
 extension CBPeripheralState: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .connected:     return "connected"
-        case .connecting:    return "connecting"
-        case .disconnected:  return "disconnected"
-        case .disconnecting: return "disconnecting"
-        default:             return "unknown"
+        case .connected:     "connected"
+        case .connecting:    "connecting"
+        case .disconnected:  "disconnected"
+        case .disconnecting: "disconnecting"
+        default:             "unknown"
         }
     }
 }

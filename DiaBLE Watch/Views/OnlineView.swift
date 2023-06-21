@@ -6,10 +6,10 @@ import Charts
 extension MeasurementColor {
     var color: Color {
         switch self {
-        case .green:  return .green
-        case .yellow: return .yellow
-        case .orange: return .orange
-        case .red:    return .red
+        case .green:  .green
+        case .yellow: .yellow
+        case .orange: .orange
+        case .red:    .red
         }
     }
 }

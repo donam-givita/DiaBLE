@@ -16,9 +16,9 @@ class Bubble: Transmitter {
 
         var description: String {
             switch self {
-            case .data:      return "data"
-            case .dataWrite: return "data write"
-            case .dataRead:  return "data read"
+            case .data:      "data"
+            case .dataWrite: "data write"
+            case .dataRead:  "data read"
             }
         }
     }
@@ -40,13 +40,13 @@ class Bubble: Transmitter {
 
         var description: String {
             switch self {
-            case .dataInfo:            return "data info"
-            case .dataPacket:          return "data packet"
-            case .decryptedDataPacket: return "decrypted data packet"
-            case .securityChallenge:   return "security challenge"
-            case .noSensor:            return "no sensor"
-            case .serialNumber:        return "serial number"
-            case .patchInfo:           return "patch info"
+            case .dataInfo:            "data info"
+            case .dataPacket:          "data packet"
+            case .decryptedDataPacket: "decrypted data packet"
+            case .securityChallenge:   "security challenge"
+            case .noSensor:            "no sensor"
+            case .serialNumber:        "serial number"
+            case .patchInfo:           "patch info"
             }
         }
     }

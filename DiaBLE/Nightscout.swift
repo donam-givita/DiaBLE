@@ -11,8 +11,8 @@ enum NightscoutError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .noConnection: return "no connection"
-        case .jsonDecoding: return "JSON decoding"
+        case .noConnection: "no connection"
+        case .jsonDecoding: "JSON decoding"
         }
     }
 }

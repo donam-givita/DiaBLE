@@ -7,8 +7,8 @@ enum GlucoseUnit: String, CustomStringConvertible, CaseIterable, Identifiable {
 
     var description: String {
         switch self {
-        case .mgdl:  return "mg/dL"
-        case .mmoll: return "mmol/L"
+        case .mgdl:  "mg/dL"
+        case .mmoll: "mmol/L"
         }
     }
 }

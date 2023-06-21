@@ -26,9 +26,13 @@ enum SensorType: String, CustomStringConvertible {
         switch patchInfo[0] {
         case 0xDF, 0xA2: self = .libre1
         case 0xE5, 0xE6: self = .libreUS14day
-        case 0x70: self = .libreProH
+        case 0x70:       self = .libreProH
         case 0x9D, 0xC5: self = .libre2
-        case 0x76: self = patchInfo[3] == 0x02 ? .libre2US : patchInfo[3] == 0x04 ? .libre2CA : patchInfo[2] >> 4 == 7 ? .libreSense : .unknown
+        case 0x76: self =
+            patchInfo[3] == 2 ? .libre2US :
+            patchInfo[3] == 4 ? .libre2CA :
+            patchInfo[2] >> 4 == 7 ? .libreSense :
+                .unknown
         default:
             if patchInfo.count == 24 {
                 self = .libre3
@@ -50,10 +54,10 @@ enum SensorFamily: Int, CustomStringConvertible {
 
     var description: String {
         switch self {
-        case .libre:      return "Libre"
-        case .librePro:   return "Libre Pro"
-        case .libre2:     return "Libre 2"
-        case .libreSense: return "Libre Sense"
+        case .libre:      "Libre"
+        case .librePro:   "Libre Pro"
+        case .libre2:     "Libre 2"
+        case .libreSense: "Libre Sense"
         }
     }
 }
@@ -68,11 +72,11 @@ enum SensorRegion: Int, CustomStringConvertible {
 
     var description: String {
         switch self {
-        case .unknown:            return "unknown"
-        case .european:           return "European"
-        case .usa:                return "USA"
-        case .australianCanadian: return "Australian / Canadian"
-        case .easternROW:         return "Eastern / Rest of World"
+        case .unknown:            "unknown"
+        case .european:           "European"
+        case .usa:                "USA"
+        case .australianCanadian: "Australian / Canadian"
+        case .easternROW:         "Eastern / Rest of World"
         }
     }
 }
@@ -90,13 +94,13 @@ enum SensorState: UInt8, CustomStringConvertible {
 
     var description: String {
         switch self {
-        case .notActivated: return "Not activated"
-        case .warmingUp:    return "Warming up"
-        case .active:       return "Active"
-        case .expired:      return "Expired"
-        case .shutdown:     return "Shut down"
-        case .failure:      return "Failure"
-        default:            return "Unknown"
+        case .notActivated: "Not activated"
+        case .warmingUp:    "Warming up"
+        case .active:       "Active"
+        case .expired:      "Expired"
+        case .shutdown:     "Shut down"
+        case .failure:      "Failure"
+        default:            "Unknown"
         }
     }
 }
@@ -498,19 +502,19 @@ struct LibreMemoryRegion {
 // TODO
 func decodeFailure(error: UInt8) -> String {
     switch error {
-    case 0x01: return "ADC IRQ overflow"
-    case 0x05: return "MMI interrupt"
-    case 0x09: return "error in patch table"
-    case 0x0A: return "low voltage occurred"
-    case 0x0B: return "low voltage occurred"
-    case 0x0C: return "FRAM header section CRC error"
-    case 0x0D: return "FRAM body section CRC error"
-    case 0x0E: return "FRAM footer section CRC error"
-    case 0x0F: return "FRAM code section CRC error"
-    case 0x10: return "FRAM Lock Table error"
-    case 0x13: return "brownout"
-    case 0x28: return "battery low indication"
-    case 0x34: return "from custom E1 and E2 command"
-    default:   return "no specific info"
+    case 0x01: "ADC IRQ overflow"
+    case 0x05: "MMI interrupt"
+    case 0x09: "error in patch table"
+    case 0x0A: "low voltage occurred"
+    case 0x0B: "low voltage occurred"
+    case 0x0C: "FRAM header section CRC error"
+    case 0x0D: "FRAM body section CRC error"
+    case 0x0E: "FRAM footer section CRC error"
+    case 0x0F: "FRAM code section CRC error"
+    case 0x10: "FRAM Lock Table error"
+    case 0x13: "brownout"
+    case 0x28: "battery low indication"
+    case 0x34: "from custom E1 and E2 command"
+    default:   "no specific info"
     }
 }

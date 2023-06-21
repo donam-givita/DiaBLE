@@ -17,11 +17,11 @@ enum NFCError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .commandNotSupported: return "command not supported"
-        case .customCommandError:  return "custom command error"
-        case .read:                return "read error"
-        case .readBlocks:          return "reading blocks error"
-        case .write:               return "write error"
+        case .commandNotSupported: "command not supported"
+        case .customCommandError:  "custom command error"
+        case .read:                "read error"
+        case .readBlocks:          "reading blocks error"
+        case .write:               "write error"
         }
     }
 }
@@ -31,9 +31,9 @@ extension Sensor {
 
     var backdoor: Data {
         switch self.type {
-        case .libre1:    return Data([0xc2, 0xad, 0x75, 0x21])
-        case .libreProH: return Data([0xc2, 0xad, 0x00, 0x90])
-        default:         return Data([0xde, 0xad, 0xbe, 0xef])
+        case .libre1:    Data([0xc2, 0xad, 0x75, 0x21])
+        case .libreProH: Data([0xc2, 0xad, 0x00, 0x90])
+        default:         Data([0xde, 0xad, 0xbe, 0xef])
         }
     }
 
@@ -93,14 +93,14 @@ extension Sensor {
 
         var description: String {
             switch self {
-            case .unlock:          return "unlock"
-            case .activate:        return "activate"
-            case .enableStreaming: return "enable BLE streaming"
-            case .getSessionInfo:  return "get session info"
-            case .readChallenge:   return "read security challenge"
-            case .readBlocks:      return "read FRAM blocks"
-            case .readAttribute:   return "read patch attribute"
-            default:               return "[unknown: 0x\(rawValue.hex)]"
+            case .unlock:          "unlock"
+            case .activate:        "activate"
+            case .enableStreaming: "enable BLE streaming"
+            case .getSessionInfo:  "get session info"
+            case .readChallenge:   "read security challenge"
+            case .readBlocks:      "read FRAM blocks"
+            case .readAttribute:   "read patch attribute"
+            default:               "[unknown: 0x\(rawValue.hex)]"
             }
         }
     }
@@ -139,14 +139,14 @@ enum IS015693Error: Int, CustomStringConvertible {
 
     var description: String {
         switch self {
-        case .none:                   return "none"
-        case .commandNotSupported:    return "command not supported"
-        case .commandNotRecognized:   return "command not recognized (e.g. format error)"
-        case .optionNotSupported:     return "option not supported"
-        case .unknown:                return "unknown"
-        case .blockNotAvailable:      return "block not available (out of range, doesn’t exist)"
-        case .blockAlreadyLocked:     return "block already locked -- can’t be locked again"
-        case .contentCannotBeChanged: return "block locked -- content cannot be changed"
+        case .none:                   "none"
+        case .commandNotSupported:    "command not supported"
+        case .commandNotRecognized:   "command not recognized (e.g. format error)"
+        case .optionNotSupported:     "option not supported"
+        case .unknown:                "unknown"
+        case .blockNotAvailable:      "block not available (out of range, doesn’t exist)"
+        case .blockAlreadyLocked:     "block already locked -- can’t be locked again"
+        case .contentCannotBeChanged: "block locked -- content cannot be changed"
         }
     }
 }

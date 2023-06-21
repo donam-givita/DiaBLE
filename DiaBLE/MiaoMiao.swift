@@ -12,9 +12,9 @@ class MiaoMiao: Transmitter {
 
         var description: String {
             switch self {
-            case .data:      return "data"
-            case .dataWrite: return "data write"
-            case .dataRead:  return "data read"
+            case .data:      "data"
+            case .dataWrite: "data write"
+            case .dataRead:  "data read"
             }
         }
     }
@@ -33,10 +33,10 @@ class MiaoMiao: Transmitter {
 
         var description: String {
             switch self {
-            case .dataPacket:      return "data packet"
-            case .newSensor:       return "new sensor"
-            case .noSensor:        return "no sensor"
-            case .frequencyChange: return "frequency change"
+            case .dataPacket:      "data packet"
+            case .newSensor:       "new sensor"
+            case .noSensor:        "no sensor"
+            case .frequencyChange: "frequency change"
             }
         }
     }

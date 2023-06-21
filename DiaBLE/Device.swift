@@ -14,17 +14,17 @@ enum DeviceType: CaseIterable, Hashable, Identifiable {
 
     var id: String {
         switch self {
-        case .none:                  return "none"
-        case .transmitter(let type): return type.id
-        case .watch(let type):       return type.id
+        case .none:                  "none"
+        case .transmitter(let type): type.id
+        case .watch(let type):       type.id
         }
     }
 
     var type: AnyClass {
         switch self {
-        case .none:                  return Device.self
-        case .transmitter(let type): return type.type
-        case .watch(let type):       return type.type
+        case .none:                  Device.self
+        case .transmitter(let type): type.type
+        case .watch(let type):       type.type
         }
     }
 }
@@ -126,20 +126,20 @@ enum TransmitterType: String, CaseIterable, Hashable, Codable, Identifiable {
     var id: String { rawValue }
     var name: String {
         switch self {
-        case .none:     return "Any"
-        case .abbott:   return Abbott.name
-        case .bubble:   return Bubble.name
-        case .miaomiao: return MiaoMiao.name
-        case .dexcom:   return Dexcom.name
+        case .none:     "Any"
+        case .abbott:   Abbott.name
+        case .bubble:   Bubble.name
+        case .miaomiao: MiaoMiao.name
+        case .dexcom:   Dexcom.name
         }
     }
     var type: AnyClass {
         switch self {
-        case .none:     return Transmitter.self
-        case .abbott:   return Abbott.self
-        case .bubble:   return Bubble.self
-        case .miaomiao: return MiaoMiao.self
-        case .dexcom:   return Dexcom.self
+        case .none:     Transmitter.self
+        case .abbott:   Abbott.self
+        case .bubble:   Bubble.self
+        case .miaomiao: MiaoMiao.self
+        case .dexcom:   Dexcom.self
         }
     }
 }
@@ -156,14 +156,14 @@ enum WatchType: String, CaseIterable, Hashable, Codable, Identifiable {
     var id: String { rawValue }
     var name: String {
         switch self {
-        case .none:       return "Any"
-        case .appleWatch: return AppleWatch.name
+        case .none:       "Any"
+        case .appleWatch: AppleWatch.name
         }
     }
     var type: AnyClass {
         switch self {
-        case .none:       return Watch.self
-        case .appleWatch: return AppleWatch.self
+        case .none:       Watch.self
+        case .appleWatch: AppleWatch.self
         }
     }
 }
