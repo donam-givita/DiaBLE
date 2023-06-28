@@ -40,15 +40,15 @@ extension Sensor {
     var activationCommand: NFCCommand {
         switch self.type {
         case .libre1:
-            return NFCCommand(code: 0xA0, parameters: backdoor, description: "activate")
+            NFCCommand(code: 0xA0, parameters: backdoor, description: "activate")
         case .libreProH:
-            return NFCCommand(code: 0xA0, parameters: backdoor + readerSerial, description: "activate")
+            NFCCommand(code: 0xA0, parameters: backdoor + readerSerial, description: "activate")
         case .libre2:
-            return nfcCommand(.activate)
+            nfcCommand(.activate)
         case .libre3:
-            return (self as! Libre3).activationNFCCommand
+            (self as! Libre3).activationNFCCommand
         default:
-            return NFCCommand(code: 0x00)
+            NFCCommand(code: 0x00)
         }
     }
 

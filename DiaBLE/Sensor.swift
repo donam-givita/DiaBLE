@@ -50,6 +50,7 @@ enum SensorFamily: Int, CustomStringConvertible {
     case libre      = 0
     case librePro   = 1
     case libre2     = 3
+    case libre3     = 4
     case libreSense = 7
 
     var description: String {
@@ -57,6 +58,7 @@ enum SensorFamily: Int, CustomStringConvertible {
         case .libre:      "Libre"
         case .librePro:   "Libre Pro"
         case .libre2:     "Libre 2"
+        case .libre3:     "Libre 3"
         case .libreSense: "Libre Sense"
         }
     }
@@ -221,6 +223,10 @@ class Sensor: ObservableObject, Logging {
                         securityGeneration = generation < 4 ? 1 : 2
                     }
                 }
+            } else {
+                family = .libre3
+                region = SensorRegion(rawValue: Int(UInt16(patchInfo[2...3]))) ?? .unknown
+                securityGeneration = 3 // TODO
             }
         }
     }

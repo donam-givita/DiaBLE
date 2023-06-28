@@ -26,9 +26,13 @@ enum SensorType: String, CustomStringConvertible {
         switch patchInfo[0] {
         case 0xDF, 0xA2: self = .libre1
         case 0xE5, 0xE6: self = .libreUS14day
-        case 0x70: self = .libreProH
+        case 0x70:       self = .libreProH
         case 0x9D, 0xC5: self = .libre2
-        case 0x76: self = patchInfo[3] == 0x02 ? .libre2US : patchInfo[3] == 0x04 ? .libre2CA : patchInfo[2] >> 4 == 7 ? .libreSense : .unknown
+        case 0x76: self =
+            patchInfo[3] == 0x02 ? .libre2US :
+            patchInfo[3] == 0x04 ? .libre2CA :
+            patchInfo[2] >> 4 == 7 ? .libreSense :
+                .unknown
         default:
             if patchInfo.count == 24 {
                 self = .libre3
@@ -46,6 +50,7 @@ enum SensorFamily: Int, CustomStringConvertible {
     case libre      = 0
     case librePro   = 1
     case libre2     = 3
+    case libre3     = 4
     case libreSense = 7
 
     var description: String {
@@ -53,6 +58,7 @@ enum SensorFamily: Int, CustomStringConvertible {
         case .libre:      return "Libre"
         case .librePro:   return "Libre Pro"
         case .libre2:     return "Libre 2"
+        case .libre3:     return "Libre 3"
         case .libreSense: return "Libre Sense"
         }
     }
@@ -217,6 +223,10 @@ class Sensor: ObservableObject, Logging {
                         securityGeneration = generation < 4 ? 1 : 2
                     }
                 }
+            } else {
+                family = .libre3
+                region = SensorRegion(rawValue: Int(UInt16(patchInfo[2...3]))) ?? .unknown
+                securityGeneration = 3 // TODO
             }
         }
     }
