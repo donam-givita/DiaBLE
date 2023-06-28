@@ -17,6 +17,7 @@ class Dexcom: Transmitter {
     override class var name: String { "Dexcom" }
 
     enum UUID: String, CustomStringConvertible, CaseIterable {
+
         case advertisement  = "FEBC"
 
         case data           = "F8083532-849E-531C-C594-30F1F86A4EA5"

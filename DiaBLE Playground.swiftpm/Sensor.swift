@@ -29,8 +29,8 @@ enum SensorType: String, CustomStringConvertible {
         case 0x70:       self = .libreProH
         case 0x9D, 0xC5: self = .libre2
         case 0x76: self =
-            patchInfo[3] == 0x02 ? .libre2US :
-            patchInfo[3] == 0x04 ? .libre2CA :
+            patchInfo[3] == 2 ? .libre2US :
+            patchInfo[3] == 4 ? .libre2CA :
             patchInfo[2] >> 4 == 7 ? .libreSense :
                 .unknown
         default:
