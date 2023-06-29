@@ -17,14 +17,14 @@ class EventKit: Logging {
 
     func sync(handler: ((EKCalendar?) -> Void)? = nil) {
 
-        store.requestAccess(to: .event) { [self] granted, error  in
+        store.requestFullAccessToEvents { [self] granted, error  in
             guard granted else {
-                debugLog("EventKit: access not granted")
+                debugLog("EventKit: full access not granted")
                 return
             }
 
-            guard EKEventStore.authorizationStatus(for: .event) == .authorized else {
-                log("EventKit: access to calendar events not authorized")
+            guard EKEventStore.authorizationStatus(for: .event) == .fullAccess else {
+                log("EventKit: full access to calendar events not authorized")
                 return
             }
 
