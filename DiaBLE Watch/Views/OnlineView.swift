@@ -194,7 +194,7 @@ struct OnlineView: View {
                 Toggle(isOn: $settings.libreLinkUpFollowing) {
                     Text("Follower")
                 }
-                .onChange(of: settings.libreLinkUpFollowing) { _ in
+                .onChange(of: settings.libreLinkUpFollowing) {
                     settings.libreLinkUpPatientId = ""
                     libreLinkUpResponse = "[Logging in...]"
                     Task {

@@ -7,10 +7,10 @@ import os.log
 public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
 
     var app: AppState
+    var logger: Logger
     var log: Log
     var history: History
     var settings: Settings
-    var logger: Logger
 
     var centralManager: CBCentralManager
     var bluetoothDelegate: BluetoothDelegate

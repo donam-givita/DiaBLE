@@ -87,7 +87,7 @@ struct Console: View {
                         .padding(4)
                     }
                     .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
-                    .onChange(of: log.entries.count) { _ in
+                    .onChange(of: log.entries.count) {
                         if !settings.reversedLog {
                             withAnimation {
                                 proxy.scrollTo(log.entries.last!.id, anchor: .bottom)
@@ -98,7 +98,7 @@ struct Console: View {
                             }
                         }
                     }
-                    .onChange(of: log.entries[0].id) { _ in
+                    .onChange(of: log.entries[0].id) {
                         if !settings.reversedLog {
                             withAnimation {
                                 proxy.scrollTo(log.entries.last!.id, anchor: .bottom)
