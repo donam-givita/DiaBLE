@@ -144,10 +144,11 @@ struct SettingsView: View {
                     Button(action: {
                         withAnimation { settings.disabledNotifications.toggle() }
                         if settings.disabledNotifications {
-                            // UIApplication.shared.applicationIconBadgeNumber = 0
+                            // UNUserNotificationCenter.current().setBadgeCount(0)
                         } else {
-                            // UIApplication.shared.applicationIconBadgeNumber = settings.displayingMillimoles ?
-                            //     Int(Float(app.currentGlucose.units)! * 10) : Int(app.currentGlucose.units)!
+                            // UNUserNotificationCenter.current().setBadgeCount(
+                            //     settings.displayingMillimoles ? Int(Float(app.currentGlucose.units)! * 10) : Int(app.currentGlucose.units)!
+                            // )
                         }
                     }) {
                         Image(systemName: settings.disabledNotifications ? "zzz" : "app.badge.fill").resizable().frame(width: 20, height: 20).foregroundColor(.blue)

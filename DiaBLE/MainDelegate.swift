@@ -325,10 +325,11 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         }
 
         if !settings.disabledNotifications {
-            UIApplication.shared.applicationIconBadgeNumber = settings.displayingMillimoles ?
-            Int(Float(currentGlucose.units)! * 10) : Int(currentGlucose.units)!
+            UNUserNotificationCenter.current().setBadgeCount(
+                settings.displayingMillimoles ? Int(Float(currentGlucose.units)! * 10) : Int(currentGlucose.units)!
+            )
         } else {
-            UIApplication.shared.applicationIconBadgeNumber = 0
+            UNUserNotificationCenter.current().setBadgeCount(0)
         }
 
         eventKit?.sync()
