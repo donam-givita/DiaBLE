@@ -26,7 +26,7 @@
 		C59184472981E9B000A6DA89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
 		C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* App.swift */; };
 		C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
-		C5BE8E5B29916D3600604237 /* DiaBLE Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C59960DF2981E381005999C2 /* DiaBLE Watch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C5BE8E5B29916D3600604237 /* DiaBLE Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C59960DF2981E381005999C2 /* DiaBLE Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5D3B2692991302000CE92A0 /* MiaoMiao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D3B2682991302000CE92A0 /* MiaoMiao.swift */; };
 		C5D3B26A2991302000CE92A0 /* MiaoMiao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D3B2682991302000CE92A0 /* MiaoMiao.swift */; };
 		C5E015E02989B0EA00F6EDF9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C5E015DF2989B0EA00F6EDF9 /* README.md */; };
@@ -527,7 +527,6 @@
 /* Begin PBXTargetDependency section */
 		C5BE8E5D29916D3600604237 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = C59960DE2981E381005999C2 /* DiaBLE Watch */;
 			targetProxy = C5BE8E5C29916D3600604237 /* PBXContainerItemProxy */;
 		};
@@ -542,7 +541,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DiaBLE Watch/DiaBLE Watch.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -580,7 +579,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DiaBLE Watch/DiaBLE Watch.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -740,7 +739,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DiaBLE/DiaBLE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 38;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -773,11 +772,11 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -789,7 +788,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DiaBLE/DiaBLE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 38;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -822,11 +821,11 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
 		};
