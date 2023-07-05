@@ -225,7 +225,7 @@ class Sensor: ObservableObject, Logging {
                 }
             } else {
                 family = .libre3
-                region = SensorRegion(rawValue: Int(UInt16(patchInfo[2...3]))) ?? .unknown
+                region = SensorRegion(rawValue: Int(UInt16(info[2...3]))) ?? .unknown
                 securityGeneration = 3 // TODO
             }
         }
