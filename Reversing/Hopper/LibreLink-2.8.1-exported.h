@@ -1,3 +1,9 @@
+struct anonymous_type_32 {
+    unsigned int field_1;
+    unsigned int field_2;
+    unsigned int field_3;
+};
+
 struct anonymous_type_101 {
     void * * field_1;
     int * field_2;
@@ -5,9 +11,10 @@ struct anonymous_type_101 {
 };
 
 struct anonymous_type_28 {
-    unsigned int field_1;
-    unsigned int field_2;
-    unsigned int field_3;
+    char * incrementalPath;
+    char * compactedPath;
+    unsigned int maxIncrementalCount;
+    unsigned int maxCount;
 };
 
 struct anonymous_type_106 {
@@ -23,12 +30,6 @@ struct anonymous_type_110 {
 };
 
 struct anonymous_type_41 {
-    unsigned int major;
-    unsigned int minor;
-    unsigned int bugfix;
-};
-
-struct anonymous_type_37 {
     unsigned int field_1;
     unsigned int field_2;
     unsigned int field_3;
@@ -44,6 +45,12 @@ struct anonymous_type_50 {
     void * * field_1;
     int * field_2;
     char * field_3;
+};
+
+struct anonymous_type_46 {
+    unsigned int field_1;
+    unsigned int field_2;
+    unsigned int field_3;
 };
 
 struct anonymous_type_124 {
@@ -180,14 +187,7 @@ struct anonymous_type_10 {
     char * field_3;
 };
 
-struct anonymous_type_24 {
-    char * incrementalPath;
-    char * compactedPath;
-    unsigned int maxIncrementalCount;
-    unsigned int maxCount;
-};
-
-struct anonymous_type_29 {
+struct anonymous_type_33 {
 };
 
 struct anonymous_type_104 {
@@ -196,22 +196,31 @@ struct anonymous_type_104 {
     char * field_3;
 };
 
+struct anonymous_type_29 {
+    char * incrementalPath;
+    char * compactedPath;
+    unsigned int maxIncrementalCount;
+    unsigned int maxCount;
+};
+
 struct anonymous_type_109 {
     void * * field_1;
     int * field_2;
     char * field_3;
 };
 
-struct anonymous_type_42 {
-    unsigned int field_1;
-    unsigned int field_2;
-    unsigned int field_3;
-};
-
 struct anonymous_type_113 {
     void * * field_1;
     int * field_2;
     char * field_3;
+};
+
+struct GULReachabilityApi {
+    void * * field_1;
+    void * * field_2;
+    void * * field_3;
+    void * * field_4;
+    void * * field_5;
 };
 
 struct anonymous_type_118 {
@@ -226,21 +235,19 @@ struct anonymous_type_51 {
     char * field_3;
 };
 
-struct GULReachabilityApi {
-    void * * field_1;
-    void * * field_2;
-    void * * field_3;
-    void * * field_4;
-    void * * field_5;
-};
-
 struct anonymous_type_38 {
-    unsigned int field_1;
-    unsigned int field_2;
-    unsigned int field_3;
+    unsigned int major;
+    unsigned int minor;
+    unsigned int bugfix;
 };
 
 struct anonymous_type_122 {
+    void * * field_1;
+    int * field_2;
+    char * field_3;
+};
+
+struct anonymous_type_127 {
     void * * field_1;
     int * field_2;
     char * field_3;
@@ -263,7 +270,7 @@ struct anonymous_type_56 {
     char * field_3;
 };
 
-struct anonymous_type_127 {
+struct anonymous_type_131 {
     void * * field_1;
     int * field_2;
     char * field_3;
@@ -278,25 +285,19 @@ struct anonymous_type_65 {
     char * field_3;
 };
 
-struct anonymous_type_131 {
-    void * * field_1;
-    int * field_2;
-    char * field_3;
-};
-
 struct anonymous_type_136 {
     void * * field_1;
     int * field_2;
     char * field_3;
 };
 
-struct anonymous_type_74 {
+struct anonymous_type_140 {
     void * * field_1;
     int * field_2;
     char * field_3;
 };
 
-struct anonymous_type_140 {
+struct anonymous_type_74 {
     void * * field_1;
     int * field_2;
     char * field_3;
@@ -341,18 +342,11 @@ struct anonymous_type_11 {
     char * field_3;
 };
 
-struct anonymous_type_16 {
+struct anonymous_type_20 {
     unsigned int field_1;
     struct tm field_2;
     unsigned short field_3;
     unsigned int field_4;
-};
-
-struct anonymous_type_25 {
-    char * incrementalPath;
-    char * compactedPath;
-    unsigned int maxIncrementalCount;
-    unsigned int maxCount;
 };
 
 struct anonymous_type_102 {
@@ -370,13 +364,19 @@ struct FIRCLSMachOSlice {
     int field_3;
 };
 
-struct anonymous_type_107 {
+struct anonymous_type_39 {
+    unsigned int major;
+    unsigned int minor;
+    unsigned int bugfix;
+};
+
+struct anonymous_type_116 {
     void * * field_1;
     int * field_2;
     char * field_3;
 };
 
-struct anonymous_type_116 {
+struct anonymous_type_107 {
     void * * field_1;
     int * field_2;
     char * field_3;
@@ -388,16 +388,16 @@ struct anonymous_type_111 {
     char * field_3;
 };
 
-struct anonymous_type_43 {
-    unsigned int field_1;
-    unsigned int field_2;
-    unsigned int field_3;
-};
-
 struct anonymous_type_48 {
     void * * field_1;
     int * field_2;
     char * field_3;
+};
+
+struct anonymous_type_43 {
+    unsigned int major;
+    unsigned int minor;
+    unsigned int bugfix;
 };
 
 struct anonymous_type_52 {
@@ -413,12 +413,6 @@ struct anonymous_type_8 {
     unsigned long long field_4[5];
 };
 
-struct anonymous_type_120 {
-    void * * field_1;
-    int * field_2;
-    char * field_3;
-};
-
 struct anonymous_type_57 {
     void * * field_1;
     int * field_2;
@@ -431,7 +425,7 @@ struct anonymous_type_61 {
     char * field_3;
 };
 
-struct anonymous_type_125 {
+struct anonymous_type_120 {
     void * * field_1;
     int * field_2;
     char * field_3;
@@ -463,19 +457,25 @@ struct anonymous_type_70 {
     char * field_3;
 };
 
+struct anonymous_type_125 {
+    void * * field_1;
+    int * field_2;
+    char * field_3;
+};
+
 struct anonymous_type_134 {
     void * * field_1;
     int * field_2;
     char * field_3;
 };
 
-struct anonymous_type_139 {
+struct anonymous_type_75 {
     void * * field_1;
     int * field_2;
     char * field_3;
 };
 
-struct anonymous_type_75 {
+struct anonymous_type_139 {
     void * * field_1;
     int * field_2;
     char * field_3;
@@ -554,12 +554,12 @@ struct __SCNetworkReachability {
 struct sqlite3_stmt {
 };
 
-struct anonymous_type_26 {
+struct anonymous_type_30 {
     char field_1[33];
     bool field_2;
-    struct anonymous_type_27 field_3;
-    struct anonymous_type_28 field_4;
-    struct anonymous_type_29 field_5;
+    struct anonymous_type_31 field_3;
+    struct anonymous_type_32 field_4;
+    struct anonymous_type_33 field_5;
     void field_6;
     unsigned long long field_7;
     void * field_8;
@@ -573,12 +573,6 @@ struct anonymous_type_100 {
     char * field_3;
 };
 
-struct anonymous_type_35 {
-    unsigned int major;
-    unsigned int minor;
-    unsigned int bugfix;
-};
-
 struct anonymous_type_105 {
     void * * field_1;
     int * field_2;
@@ -589,6 +583,12 @@ struct anonymous_type_114 {
     void * * field_1;
     int * field_2;
     char * field_3;
+};
+
+struct anonymous_type_44 {
+    unsigned int major;
+    unsigned int minor;
+    unsigned int bugfix;
 };
 
 struct CGSize {
@@ -695,10 +695,26 @@ struct anonymous_type_99 {
     char * field_3;
 };
 
-struct anonymous_type_27 {
+struct anonymous_type_18 {
+    unsigned int field_1;
+    struct tm field_2;
+    unsigned short field_3;
+    unsigned int field_4;
+};
+
+struct anonymous_type_31 {
     unsigned int field_1;
     unsigned int field_2;
     unsigned int field_3;
+};
+
+struct anonymous_type_27 {
+    char * aPath;
+    char * bPath;
+    unsigned int maxSize;
+    unsigned int maxEntries;
+    bool restrictBySize;
+    unsigned int * entryCount;
 };
 
 struct anonymous_type_103 {
@@ -708,9 +724,9 @@ struct anonymous_type_103 {
 };
 
 struct anonymous_type_40 {
-    unsigned int major;
-    unsigned int minor;
-    unsigned int bugfix;
+    unsigned int field_1;
+    unsigned int field_2;
+    unsigned int field_3;
 };
 
 struct anonymous_type_112 {
@@ -721,19 +737,19 @@ struct anonymous_type_112 {
 
 struct pb_bytes_array_s; /* Incomplete type */
 
-struct anonymous_type_36 {
-    unsigned int major;
-    unsigned int minor;
-    unsigned int bugfix;
+struct _NSZone {
+};
+
+struct anonymous_type_45 {
+    unsigned int field_1;
+    unsigned int field_2;
+    unsigned int field_3;
 };
 
 struct anonymous_type_117 {
     void * * field_1;
     int * field_2;
     char * field_3;
-};
-
-struct _NSZone {
 };
 
 struct anonymous_type_108 {
@@ -845,22 +861,6 @@ struct FIRCLSMachOFile {
     int fd;
     unsigned long long mappedSize;
     void * mappedFile;
-};
-
-struct anonymous_type_14 {
-    unsigned int field_1;
-    struct tm field_2;
-    unsigned short field_3;
-    unsigned int field_4;
-};
-
-struct anonymous_type_23 {
-    char * aPath;
-    char * bPath;
-    unsigned int maxSize;
-    unsigned int maxEntries;
-    bool restrictBySize;
-    unsigned int * entryCount;
 };
 
 
@@ -1051,155 +1051,6 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@protocol UITableViewDataSource
-- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
-- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
-
-@optional
-- (long long)numberOfSectionsInTableView:(id)v1;
-- (long long)numberOfSectionsInTableView:(id)v1;
-- (id)tableView:(id)v1 titleForHeaderInSection:(long long)v2;
-- (id)tableView:(id)v1 titleForFooterInSection:(long long)v2;
-- (bool)tableView:(id)v1 canEditRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 canEditRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 canMoveRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 canMoveRowAtIndexPath:(id)v2;
-- (id)sectionIndexTitlesForTableView:(id)v1;
-- (id)sectionIndexTitlesForTableView:(id)v1;
-- (long long)tableView:(id)v1 sectionForSectionIndexTitle:(id)v2 atIndex:(long long)v3;
-- (long long)tableView:(id)v1 sectionForSectionIndexTitle:(id)v2 atIndex:(long long)v3;
-- (void)tableView:(id)v1 commitEditingStyle:(long long)v2 forRowAtIndexPath:(id)v3;
-- (void)tableView:(id)v1 commitEditingStyle:(long long)v2 forRowAtIndexPath:(id)v3;
-- (void)tableView:(id)v1 moveRowAtIndexPath:(id)v2 toIndexPath:(id)v3;
-- (void)tableView:(id)v1 moveRowAtIndexPath:(id)v2 toIndexPath:(id)v3;
-@end
-
-
-/*****************************************************************/
-
-@protocol UITableViewDelegate<UIScrollViewDelegate>
-
-@optional
-- (void)tableView:(id)v1 willDisplayCell:(id)v2 forRowAtIndexPath:(id)v3;
-- (void)tableView:(id)v1 willDisplayCell:(id)v2 forRowAtIndexPath:(id)v3;
-- (void)tableView:(id)v1 willDisplayHeaderView:(id)v2 forSection:(long long)v3;
-- (void)tableView:(id)v1 willDisplayFooterView:(id)v2 forSection:(long long)v3;
-- (void)tableView:(id)v1 didEndDisplayingCell:(id)v2 forRowAtIndexPath:(id)v3;
-- (void)tableView:(id)v1 didEndDisplayingCell:(id)v2 forRowAtIndexPath:(id)v3;
-- (void)tableView:(id)v1 didEndDisplayingHeaderView:(id)v2 forSection:(long long)v3;
-- (void)tableView:(id)v1 didEndDisplayingFooterView:(id)v2 forSection:(long long)v3;
-- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
-- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
-- (double)tableView:(id)v1 heightForHeaderInSection:(long long)v2;
-- (double)tableView:(id)v1 heightForFooterInSection:(long long)v2;
-- (double)tableView:(id)v1 estimatedHeightForRowAtIndexPath:(id)v2;
-- (double)tableView:(id)v1 estimatedHeightForRowAtIndexPath:(id)v2;
-- (double)tableView:(id)v1 estimatedHeightForHeaderInSection:(long long)v2;
-- (double)tableView:(id)v1 estimatedHeightForFooterInSection:(long long)v2;
-- (id)tableView:(id)v1 viewForHeaderInSection:(long long)v2;
-- (id)tableView:(id)v1 viewForFooterInSection:(long long)v2;
-- (long long)tableView:(id)v1 accessoryTypeForRowWithIndexPath:(id)v2;
-- (long long)tableView:(id)v1 accessoryTypeForRowWithIndexPath:(id)v2;
-- (void)tableView:(id)v1 accessoryButtonTappedForRowWithIndexPath:(id)v2;
-- (void)tableView:(id)v1 accessoryButtonTappedForRowWithIndexPath:(id)v2;
-- (bool)tableView:(id)v1 shouldHighlightRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 shouldHighlightRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didHighlightRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didHighlightRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didUnhighlightRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didUnhighlightRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 willSelectRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 willSelectRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 willDeselectRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 willDeselectRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didDeselectRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didDeselectRowAtIndexPath:(id)v2;
-- (long long)tableView:(id)v1 editingStyleForRowAtIndexPath:(id)v2;
-- (long long)tableView:(id)v1 editingStyleForRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 titleForDeleteConfirmationButtonForRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 titleForDeleteConfirmationButtonForRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 editActionsForRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 editActionsForRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 leadingSwipeActionsConfigurationForRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 leadingSwipeActionsConfigurationForRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 trailingSwipeActionsConfigurationForRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 trailingSwipeActionsConfigurationForRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 shouldIndentWhileEditingRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 shouldIndentWhileEditingRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 willBeginEditingRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 willBeginEditingRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didEndEditingRowAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didEndEditingRowAtIndexPath:(id)v2;
-- (id)tableView:(id)v1 targetIndexPathForMoveFromRowAtIndexPath:(id)v2 toProposedIndexPath:(id)v3;
-- (id)tableView:(id)v1 targetIndexPathForMoveFromRowAtIndexPath:(id)v2 toProposedIndexPath:(id)v3;
-- (long long)tableView:(id)v1 indentationLevelForRowAtIndexPath:(id)v2;
-- (long long)tableView:(id)v1 indentationLevelForRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 shouldShowMenuForRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 shouldShowMenuForRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 canPerformAction:(SEL)v2 forRowAtIndexPath:(id)v3 withSender:(id)v4;
-- (bool)tableView:(id)v1 canPerformAction:(SEL)v2 forRowAtIndexPath:(id)v3 withSender:(id)v4;
-- (void)tableView:(id)v1 performAction:(SEL)v2 forRowAtIndexPath:(id)v3 withSender:(id)v4;
-- (void)tableView:(id)v1 performAction:(SEL)v2 forRowAtIndexPath:(id)v3 withSender:(id)v4;
-- (bool)tableView:(id)v1 canFocusRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 canFocusRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 shouldUpdateFocusInContext:(id)v2;
-- (bool)tableView:(id)v1 shouldUpdateFocusInContext:(id)v2;
-- (void)tableView:(id)v1 didUpdateFocusInContext:(id)v2 withAnimationCoordinator:(id)v3;
-- (void)tableView:(id)v1 didUpdateFocusInContext:(id)v2 withAnimationCoordinator:(id)v3;
-- (id)indexPathForPreferredFocusedViewInTableView:(id)v1;
-- (id)indexPathForPreferredFocusedViewInTableView:(id)v1;
-- (bool)tableView:(id)v1 selectionFollowsFocusForRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 selectionFollowsFocusForRowAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 shouldSpringLoadRowAtIndexPath:(id)v2 withContext:(id)v3;
-- (bool)tableView:(id)v1 shouldSpringLoadRowAtIndexPath:(id)v2 withContext:(id)v3;
-- (bool)tableView:(id)v1 shouldBeginMultipleSelectionInteractionAtIndexPath:(id)v2;
-- (bool)tableView:(id)v1 shouldBeginMultipleSelectionInteractionAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didBeginMultipleSelectionInteractionAtIndexPath:(id)v2;
-- (void)tableView:(id)v1 didBeginMultipleSelectionInteractionAtIndexPath:(id)v2;
-- (void)tableViewDidEndMultipleSelectionInteraction:(id)v1;
-- (id)tableView:(id)v1 contextMenuConfigurationForRowAtIndexPath:(id)v2 point:(struct CGPoint)v3;
-- (id)tableView:(id)v1 contextMenuConfigurationForRowAtIndexPath:(id)v2 point:(struct CGPoint)v3;
-- (id)tableView:(id)v1 previewForHighlightingContextMenuWithConfiguration:(id)v2;
-- (id)tableView:(id)v1 previewForDismissingContextMenuWithConfiguration:(id)v2;
-- (void)tableView:(id)v1 willPerformPreviewActionForMenuWithConfiguration:(id)v2 animator:(id)v3;
-- (void)tableView:(id)v1 willPerformPreviewActionForMenuWithConfiguration:(id)v2 animator:(id)v3;
-- (void)tableView:(id)v1 willDisplayContextMenuWithConfiguration:(id)v2 animator:(id)v3;
-- (void)tableView:(id)v1 willDisplayContextMenuWithConfiguration:(id)v2 animator:(id)v3;
-- (void)tableView:(id)v1 willEndContextMenuInteractionWithConfiguration:(id)v2 animator:(id)v3;
-- (void)tableView:(id)v1 willEndContextMenuInteractionWithConfiguration:(id)v2 animator:(id)v3;
-@end
-
-
-/*****************************************************************/
-
-@protocol UIScrollViewDelegate
-
-@optional
-- (void)scrollViewDidScroll:(id)v1;
-- (void)scrollViewDidZoom:(id)v1;
-- (void)scrollViewWillBeginDragging:(id)v1;
-- (void)scrollViewWillEndDragging:(id)v1 withVelocity:(struct CGPoint)v2 targetContentOffset:(struct CGPoint *)v3;
-- (void)scrollViewDidEndDragging:(id)v1 willDecelerate:(bool)v2;
-- (void)scrollViewWillBeginDecelerating:(id)v1;
-- (void)scrollViewDidEndDecelerating:(id)v1;
-- (void)scrollViewDidEndScrollingAnimation:(id)v1;
-- (id)viewForZoomingInScrollView:(id)v1;
-- (id)viewForZoomingInScrollView:(id)v1;
-- (void)scrollViewWillBeginZooming:(id)v1 withView:(id)v2;
-- (void)scrollViewWillBeginZooming:(id)v1 withView:(id)v2;
-- (void)scrollViewDidEndZooming:(id)v1 withView:(id)v2 atScale:(double)v3;
-- (void)scrollViewDidEndZooming:(id)v1 withView:(id)v2 atScale:(double)v3;
-- (bool)scrollViewShouldScrollToTop:(id)v1;
-- (void)scrollViewDidScrollToTop:(id)v1;
-- (void)scrollViewDidChangeAdjustedContentInset:(id)v1;
-@end
-
-
-/*****************************************************************/
-
 @protocol CBPeripheralDelegate
 
 @optional
@@ -1252,6 +1103,58 @@ struct anonymous_type_23 {
 - (id)pickerView:(id)v1 viewForRow:(long long)v2 forComponent:(long long)v3 reusingView:(id)v4;
 - (id)pickerView:(id)v1 viewForRow:(long long)v2 forComponent:(long long)v3 reusingView:(id)v4;
 - (void)pickerView:(id)v1 didSelectRow:(long long)v2 inComponent:(long long)v3;
+@end
+
+
+/*****************************************************************/
+
+@protocol UIScrollViewDelegate
+
+@optional
+- (void)scrollViewDidScroll:(id)v1;
+- (void)scrollViewDidZoom:(id)v1;
+- (void)scrollViewWillBeginDragging:(id)v1;
+- (void)scrollViewWillEndDragging:(id)v1 withVelocity:(struct CGPoint)v2 targetContentOffset:(struct CGPoint *)v3;
+- (void)scrollViewDidEndDragging:(id)v1 willDecelerate:(bool)v2;
+- (void)scrollViewWillBeginDecelerating:(id)v1;
+- (void)scrollViewDidEndDecelerating:(id)v1;
+- (void)scrollViewDidEndScrollingAnimation:(id)v1;
+- (id)viewForZoomingInScrollView:(id)v1;
+- (id)viewForZoomingInScrollView:(id)v1;
+- (void)scrollViewWillBeginZooming:(id)v1 withView:(id)v2;
+- (void)scrollViewWillBeginZooming:(id)v1 withView:(id)v2;
+- (void)scrollViewDidEndZooming:(id)v1 withView:(id)v2 atScale:(double)v3;
+- (void)scrollViewDidEndZooming:(id)v1 withView:(id)v2 atScale:(double)v3;
+- (bool)scrollViewShouldScrollToTop:(id)v1;
+- (void)scrollViewDidScrollToTop:(id)v1;
+- (void)scrollViewDidChangeAdjustedContentInset:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol UITableViewDataSource
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
+
+@optional
+- (long long)numberOfSectionsInTableView:(id)v1;
+- (long long)numberOfSectionsInTableView:(id)v1;
+- (id)tableView:(id)v1 titleForHeaderInSection:(long long)v2;
+- (id)tableView:(id)v1 titleForFooterInSection:(long long)v2;
+- (bool)tableView:(id)v1 canEditRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 canEditRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 canMoveRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 canMoveRowAtIndexPath:(id)v2;
+- (id)sectionIndexTitlesForTableView:(id)v1;
+- (id)sectionIndexTitlesForTableView:(id)v1;
+- (long long)tableView:(id)v1 sectionForSectionIndexTitle:(id)v2 atIndex:(long long)v3;
+- (long long)tableView:(id)v1 sectionForSectionIndexTitle:(id)v2 atIndex:(long long)v3;
+- (void)tableView:(id)v1 commitEditingStyle:(long long)v2 forRowAtIndexPath:(id)v3;
+- (void)tableView:(id)v1 commitEditingStyle:(long long)v2 forRowAtIndexPath:(id)v3;
+- (void)tableView:(id)v1 moveRowAtIndexPath:(id)v2 toIndexPath:(id)v3;
+- (void)tableView:(id)v1 moveRowAtIndexPath:(id)v2 toIndexPath:(id)v3;
 @end
 
 
@@ -1405,6 +1308,103 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@protocol UITableViewDelegate
+
+@optional
+- (void)tableView:(id)v1 willDisplayCell:(id)v2 forRowAtIndexPath:(id)v3;
+- (void)tableView:(id)v1 willDisplayCell:(id)v2 forRowAtIndexPath:(id)v3;
+- (void)tableView:(id)v1 willDisplayHeaderView:(id)v2 forSection:(long long)v3;
+- (void)tableView:(id)v1 willDisplayFooterView:(id)v2 forSection:(long long)v3;
+- (void)tableView:(id)v1 didEndDisplayingCell:(id)v2 forRowAtIndexPath:(id)v3;
+- (void)tableView:(id)v1 didEndDisplayingCell:(id)v2 forRowAtIndexPath:(id)v3;
+- (void)tableView:(id)v1 didEndDisplayingHeaderView:(id)v2 forSection:(long long)v3;
+- (void)tableView:(id)v1 didEndDisplayingFooterView:(id)v2 forSection:(long long)v3;
+- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
+- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
+- (double)tableView:(id)v1 heightForHeaderInSection:(long long)v2;
+- (double)tableView:(id)v1 heightForFooterInSection:(long long)v2;
+- (double)tableView:(id)v1 estimatedHeightForRowAtIndexPath:(id)v2;
+- (double)tableView:(id)v1 estimatedHeightForRowAtIndexPath:(id)v2;
+- (double)tableView:(id)v1 estimatedHeightForHeaderInSection:(long long)v2;
+- (double)tableView:(id)v1 estimatedHeightForFooterInSection:(long long)v2;
+- (id)tableView:(id)v1 viewForHeaderInSection:(long long)v2;
+- (id)tableView:(id)v1 viewForFooterInSection:(long long)v2;
+- (long long)tableView:(id)v1 accessoryTypeForRowWithIndexPath:(id)v2;
+- (long long)tableView:(id)v1 accessoryTypeForRowWithIndexPath:(id)v2;
+- (void)tableView:(id)v1 accessoryButtonTappedForRowWithIndexPath:(id)v2;
+- (void)tableView:(id)v1 accessoryButtonTappedForRowWithIndexPath:(id)v2;
+- (bool)tableView:(id)v1 shouldHighlightRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 shouldHighlightRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didHighlightRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didHighlightRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didUnhighlightRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didUnhighlightRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 willSelectRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 willSelectRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 willDeselectRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 willDeselectRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didDeselectRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didDeselectRowAtIndexPath:(id)v2;
+- (long long)tableView:(id)v1 editingStyleForRowAtIndexPath:(id)v2;
+- (long long)tableView:(id)v1 editingStyleForRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 titleForDeleteConfirmationButtonForRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 titleForDeleteConfirmationButtonForRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 editActionsForRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 editActionsForRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 leadingSwipeActionsConfigurationForRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 leadingSwipeActionsConfigurationForRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 trailingSwipeActionsConfigurationForRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 trailingSwipeActionsConfigurationForRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 shouldIndentWhileEditingRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 shouldIndentWhileEditingRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 willBeginEditingRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 willBeginEditingRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didEndEditingRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didEndEditingRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 targetIndexPathForMoveFromRowAtIndexPath:(id)v2 toProposedIndexPath:(id)v3;
+- (id)tableView:(id)v1 targetIndexPathForMoveFromRowAtIndexPath:(id)v2 toProposedIndexPath:(id)v3;
+- (long long)tableView:(id)v1 indentationLevelForRowAtIndexPath:(id)v2;
+- (long long)tableView:(id)v1 indentationLevelForRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 shouldShowMenuForRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 shouldShowMenuForRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 canPerformAction:(SEL)v2 forRowAtIndexPath:(id)v3 withSender:(id)v4;
+- (bool)tableView:(id)v1 canPerformAction:(SEL)v2 forRowAtIndexPath:(id)v3 withSender:(id)v4;
+- (void)tableView:(id)v1 performAction:(SEL)v2 forRowAtIndexPath:(id)v3 withSender:(id)v4;
+- (void)tableView:(id)v1 performAction:(SEL)v2 forRowAtIndexPath:(id)v3 withSender:(id)v4;
+- (bool)tableView:(id)v1 canFocusRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 canFocusRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 shouldUpdateFocusInContext:(id)v2;
+- (bool)tableView:(id)v1 shouldUpdateFocusInContext:(id)v2;
+- (void)tableView:(id)v1 didUpdateFocusInContext:(id)v2 withAnimationCoordinator:(id)v3;
+- (void)tableView:(id)v1 didUpdateFocusInContext:(id)v2 withAnimationCoordinator:(id)v3;
+- (id)indexPathForPreferredFocusedViewInTableView:(id)v1;
+- (id)indexPathForPreferredFocusedViewInTableView:(id)v1;
+- (bool)tableView:(id)v1 selectionFollowsFocusForRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 selectionFollowsFocusForRowAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 shouldSpringLoadRowAtIndexPath:(id)v2 withContext:(id)v3;
+- (bool)tableView:(id)v1 shouldSpringLoadRowAtIndexPath:(id)v2 withContext:(id)v3;
+- (bool)tableView:(id)v1 shouldBeginMultipleSelectionInteractionAtIndexPath:(id)v2;
+- (bool)tableView:(id)v1 shouldBeginMultipleSelectionInteractionAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didBeginMultipleSelectionInteractionAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didBeginMultipleSelectionInteractionAtIndexPath:(id)v2;
+- (void)tableViewDidEndMultipleSelectionInteraction:(id)v1;
+- (id)tableView:(id)v1 contextMenuConfigurationForRowAtIndexPath:(id)v2 point:(struct CGPoint)v3;
+- (id)tableView:(id)v1 contextMenuConfigurationForRowAtIndexPath:(id)v2 point:(struct CGPoint)v3;
+- (id)tableView:(id)v1 previewForHighlightingContextMenuWithConfiguration:(id)v2;
+- (id)tableView:(id)v1 previewForDismissingContextMenuWithConfiguration:(id)v2;
+- (void)tableView:(id)v1 willPerformPreviewActionForMenuWithConfiguration:(id)v2 animator:(id)v3;
+- (void)tableView:(id)v1 willPerformPreviewActionForMenuWithConfiguration:(id)v2 animator:(id)v3;
+- (void)tableView:(id)v1 willDisplayContextMenuWithConfiguration:(id)v2 animator:(id)v3;
+- (void)tableView:(id)v1 willDisplayContextMenuWithConfiguration:(id)v2 animator:(id)v3;
+- (void)tableView:(id)v1 willEndContextMenuInteractionWithConfiguration:(id)v2 animator:(id)v3;
+- (void)tableView:(id)v1 willEndContextMenuInteractionWithConfiguration:(id)v2 animator:(id)v3;
+@end
+
+
+/*****************************************************************/
+
 @protocol UIPageViewControllerDataSource
 - (id)pageViewController:(id)v1 viewControllerBeforeViewController:(id)v2;
 - (id)pageViewController:(id)v1 viewControllerBeforeViewController:(id)v2;
@@ -1445,6 +1445,31 @@ struct anonymous_type_23 {
 - (void)URLSession:(id)v1 didReceiveChallenge:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
 - (void)URLSessionDidFinishEventsForBackgroundURLSession:(id)v1;
 - (void)URLSessionDidFinishEventsForBackgroundURLSession:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol WKUIDelegate
+
+@optional
+- (id)webView:(id)v1 createWebViewWithConfiguration:(id)v2 forNavigationAction:(id)v3 windowFeatures:(id)v4;
+- (id)webView:(id)v1 createWebViewWithConfiguration:(id)v2 forNavigationAction:(id)v3 windowFeatures:(id)v4;
+- (void)webViewDidClose:(id)v1;
+- (void)webView:(id)v1 runJavaScriptAlertPanelWithMessage:(id)v2 initiatedByFrame:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)webView:(id)v1 runJavaScriptConfirmPanelWithMessage:(id)v2 initiatedByFrame:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)webView:(id)v1 runJavaScriptTextInputPanelWithPrompt:(id)v2 defaultText:(id)v3 initiatedByFrame:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (void)webView:(id)v1 requestMediaCapturePermissionForOrigin:(id)v2 initiatedByFrame:(id)v3 type:(long long)v4 decisionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (void)webView:(id)v1 requestMediaCapturePermissionForOrigin:(id)v2 initiatedByFrame:(id)v3 type:(long long)v4 decisionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (void)webView:(id)v1 requestDeviceOrientationAndMotionPermissionForOrigin:(id)v2 initiatedByFrame:(id)v3 decisionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)webView:(id)v1 requestDeviceOrientationAndMotionPermissionForOrigin:(id)v2 initiatedByFrame:(id)v3 decisionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (bool)webView:(id)v1 shouldPreviewElement:(id)v2;
+- (id)webView:(id)v1 previewingViewControllerForElement:(id)v2 defaultActions:(id)v3;
+- (void)webView:(id)v1 commitPreviewingViewController:(id)v2;
+- (void)webView:(id)v1 contextMenuConfigurationForElement:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)webView:(id)v1 contextMenuWillPresentForElement:(id)v2;
+- (void)webView:(id)v1 contextMenuForElement:(id)v2 willCommitWithAnimator:(id)v3;
+- (void)webView:(id)v1 contextMenuDidEndForElement:(id)v2;
 @end
 
 
@@ -1627,6 +1652,14 @@ struct anonymous_type_23 {
 - (id)interruptibleAnimatorForTransition:(id)v1;
 - (id)interruptibleAnimatorForTransition:(id)v1;
 - (void)animationEnded:(bool)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSCopying
+- (id)copyWithZone:(struct _NSZone *)v1;
+- (id)copyWithZone:(struct _NSZone *)v1;
 @end
 
 
@@ -1873,6 +1906,680 @@ struct anonymous_type_23 {
 - (void)URLSession:(id)v1 downloadTask:(id)v2 didWriteData:(long long)v3 totalBytesWritten:(long long)v4 totalBytesExpectedToWrite:(long long)v5;
 - (void)URLSession:(id)v1 downloadTask:(id)v2 didWriteData:(long long)v3 totalBytesWritten:(long long)v4 totalBytesExpectedToWrite:(long long)v5;
 - (void)URLSession:(id)v1 downloadTask:(id)v2 didResumeAtOffset:(long long)v3 expectedTotalBytes:(long long)v4;
+- (void)URLSession:(id)v1 downloadTask:(id)v2 didResumeAtOffset:(long long)v3 expectedTotalBytes:(long long)v4;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSObject
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (bool)isEqual:(id)v1;
+- (Class)class;
+- (id)self;
+- (id)performSelector:(SEL)v1;
+- (id)performSelector:(SEL)v1 withObject:(id)v2;
+- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
+- (bool)isProxy;
+- (bool)isKindOfClass:(Class)v1;
+- (bool)isMemberOfClass:(Class)v1;
+- (bool)conformsToProtocol:(id)v1;
+- (bool)respondsToSelector:(SEL)v1;
+- (id)retain;
+- (oneway  void)release;
+- (id)autorelease;
+- (unsigned long long)retainCount;
+- (struct _NSZone *)zone;
+- (unsigned long long)hash;
+- (Class)superclass;
+- (id)description;
+
+@optional
+- (id)debugDescription;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSURLSessionDelegate<NSObject>
+
+@optional
+- (void)URLSession:(id)v1 didBecomeInvalidWithError:(id)v2;
+- (void)URLSession:(id)v1 didReceiveChallenge:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol GDTCCTUploadMetadataProvider<NSObject>
+- (id)nextUploadTimeForTarget:(long long)v1;
+- (void)setNextUploadTime:(id)v1 forTarget:(long long)v2;
+- (id)APIKeyForTarget:(long long)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol GDTCORLifecycleProtocol<NSObject>
+
+@optional
+- (void)appWillTerminate:(id)v1;
+- (void)appWillBackground:(id)v1;
+- (void)appWillForeground:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol GDTCORUploader<NSObject,GDTCORLifecycleProtocol>
+- (void)uploadTarget:(long long)v1 withConditions:(long long)v2;
+@end
+
+
+/*****************************************************************/
+
+@protocol GDTCOREventDataObject<NSObject>
+- (id)transportBytes;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSCoding
+- (void)encodeWithCoder:(id)v1;
+- (id)initWithCoder:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSSecureCoding<NSCoding>
++ (bool)supportsSecureCoding;
+@end
+
+
+/*****************************************************************/
+
+@protocol GDTCORStorageProtocol<NSObject,GDTCORLifecycleProtocol>
+@property (nonatomic) NSObject<GDTCORStorageDelegate> * delegate;
+- (void)storeEvent:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void)hasEventsForTarget:(long long)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void)batchWithEventSelector:(id)v1 batchExpiration:(id)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
+- (void)removeBatchWithID:(id)v1 deleteEvents:(bool)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
+- (void)batchIDsForTarget:(long long)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void)checkForExpirations;
+- (void)storeLibraryData:(id)v1 forKey:(id)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
+- (void)libraryDataForKey:(id)v1 onFetchComplete:(void (^ /* unknown block signature */)(void))v2 setNewValue:(void (^ /* unknown block signature */)(void))v3;
+- (void)removeLibraryDataForKey:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void)storageSizeWithCallback:(void (^ /* unknown block signature */)(void))v1;
+- (id)delegate;
+- (void)setDelegate:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol GDTCORStoragePromiseProtocol<GDTCORStorageProtocol>
+- (id)batchIDsForTarget:(long long)v1;
+- (id)removeBatchWithID:(id)v1 deleteEvents:(bool)v2;
+- (id)removeBatchesWithIDs:(id)v1 deleteEvents:(bool)v2;
+- (id)removeAllBatchesForTarget:(long long)v1 deleteEvents:(bool)v2;
+- (id)fetchAndUpdateMetricsWithHandler:(void (^ /* unknown block signature */)(void))v1;
+- (id)fetchStorageMetadata;
+- (id)hasEventsForTarget:(long long)v1;
+- (id)batchWithEventSelector:(id)v1 batchExpiration:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@protocol GDTCORStorageDelegate<NSObject>
+- (void)storage:(id)v1 didRemoveExpiredEvents:(id)v2;
+- (void)storage:(id)v1 didDropEvent:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@protocol GDTCORMetricsControllerProtocol<GDTCORStorageDelegate>
+- (id)logEventsDroppedForReason:(long long)v1 events:(id)v2;
+- (id)getAndResetMetrics;
+- (id)offerMetrics:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol GDTCORApplicationProtocol<NSObject>
+@property (readonly) bool isRunningInBackground;
+- (unsigned long long)beginBackgroundTaskWithName:(id)v1 expirationHandler:(void (^ /* unknown block signature */)(void))v2;
+- (void)endBackgroundTask:(unsigned long long)v1;
+- (bool)isRunningInBackground;
+@end
+
+
+/*****************************************************************/
+
+@protocol UIApplicationDelegate<NSObject>
+@property (retain,nonatomic) UIWindow * window;
+
+@optional
+- (void)applicationDidFinishLaunching:(id)v1;
+- (bool)application:(id)v1 willFinishLaunchingWithOptions:(id)v2;
+- (bool)application:(id)v1 didFinishLaunchingWithOptions:(id)v2;
+- (void)applicationDidBecomeActive:(id)v1;
+- (void)applicationWillResignActive:(id)v1;
+- (bool)application:(id)v1 handleOpenURL:(id)v2;
+- (bool)application:(id)v1 openURL:(id)v2 sourceApplication:(id)v3 annotation:(id)v4;
+- (bool)application:(id)v1 openURL:(id)v2 options:(id)v3;
+- (void)applicationDidReceiveMemoryWarning:(id)v1;
+- (void)applicationWillTerminate:(id)v1;
+- (void)applicationSignificantTimeChange:(id)v1;
+- (void)application:(id)v1 willChangeStatusBarOrientation:(long long)v2 duration:(double)v3;
+- (void)application:(id)v1 didChangeStatusBarOrientation:(long long)v2;
+- (void)application:(id)v1 willChangeStatusBarFrame:(struct CGRect)v2;
+- (void)application:(id)v1 didChangeStatusBarFrame:(struct CGRect)v2;
+- (void)application:(id)v1 didRegisterUserNotificationSettings:(id)v2;
+- (void)application:(id)v1 didRegisterForRemoteNotificationsWithDeviceToken:(id)v2;
+- (void)application:(id)v1 didFailToRegisterForRemoteNotificationsWithError:(id)v2;
+- (void)application:(id)v1 didReceiveRemoteNotification:(id)v2;
+- (void)application:(id)v1 didReceiveLocalNotification:(id)v2;
+- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forLocalNotification:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forRemoteNotification:(id)v3 withResponseInfo:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forRemoteNotification:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forLocalNotification:(id)v3 withResponseInfo:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (void)application:(id)v1 didReceiveRemoteNotification:(id)v2 fetchCompletionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)application:(id)v1 performFetchWithCompletionHandler:(void (^ /* unknown block signature */)(void))v2;
+- (void)application:(id)v1 performActionForShortcutItem:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)application:(id)v1 handleEventsForBackgroundURLSession:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)application:(id)v1 handleWatchKitExtensionRequest:(id)v2 reply:(void (^ /* unknown block signature */)(void))v3;
+- (void)applicationShouldRequestHealthAuthorization:(id)v1;
+- (id)application:(id)v1 handlerForIntent:(id)v2;
+- (void)application:(id)v1 handleIntent:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)applicationDidEnterBackground:(id)v1;
+- (void)applicationWillEnterForeground:(id)v1;
+- (void)applicationProtectedDataWillBecomeUnavailable:(id)v1;
+- (void)applicationProtectedDataDidBecomeAvailable:(id)v1;
+- (unsigned long long)application:(id)v1 supportedInterfaceOrientationsForWindow:(id)v2;
+- (bool)application:(id)v1 shouldAllowExtensionPointIdentifier:(id)v2;
+- (id)application:(id)v1 viewControllerWithRestorationIdentifierPath:(id)v2 coder:(id)v3;
+- (bool)application:(id)v1 shouldSaveSecureApplicationState:(id)v2;
+- (bool)application:(id)v1 shouldRestoreSecureApplicationState:(id)v2;
+- (void)application:(id)v1 willEncodeRestorableStateWithCoder:(id)v2;
+- (void)application:(id)v1 didDecodeRestorableStateWithCoder:(id)v2;
+- (bool)application:(id)v1 shouldSaveApplicationState:(id)v2;
+- (bool)application:(id)v1 shouldRestoreApplicationState:(id)v2;
+- (bool)application:(id)v1 willContinueUserActivityWithType:(id)v2;
+- (bool)application:(id)v1 continueUserActivity:(id)v2 restorationHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)application:(id)v1 didFailToContinueUserActivityWithType:(id)v2 error:(id)v3;
+- (void)application:(id)v1 didUpdateUserActivity:(id)v2;
+- (void)application:(id)v1 userDidAcceptCloudKitShareWithMetadata:(id)v2;
+- (id)application:(id)v1 configurationForConnectingSceneSession:(id)v2 options:(id)v3;
+- (void)application:(id)v1 didDiscardSceneSessions:(id)v2;
+- (bool)applicationShouldAutomaticallyLocalizeKeyCommands:(id)v1;
+- (id)window;
+- (void)setWindow:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol GDTCORApplicationDelegate<UIApplicationDelegate>
+@end
+
+
+/*****************************************************************/
+
+@protocol NSObject
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (bool)isEqual:(id)v1;
+- (Class)class;
+- (id)self;
+- (id)performSelector:(SEL)v1;
+- (id)performSelector:(SEL)v1 withObject:(id)v2;
+- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
+- (bool)isProxy;
+- (bool)isKindOfClass:(Class)v1;
+- (bool)isMemberOfClass:(Class)v1;
+- (bool)conformsToProtocol:(id)v1;
+- (bool)respondsToSelector:(SEL)v1;
+- (id)retain;
+- (oneway  void)release;
+- (id)autorelease;
+- (unsigned long long)retainCount;
+- (struct _NSZone *)zone;
+- (unsigned long long)hash;
+- (Class)superclass;
+- (id)description;
+
+@optional
+- (id)debugDescription;
+@end
+
+
+/*****************************************************************/
+
+@protocol GULHeartbeatDateStorable<NSObject>
+- (id)heartbeatDateForTag:(id)v1;
+- (bool)setHearbeatDate:(id)v1 forTag:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSObject
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (bool)isEqual:(id)v1;
+- (Class)class;
+- (id)self;
+- (id)performSelector:(SEL)v1;
+- (id)performSelector:(SEL)v1 withObject:(id)v2;
+- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
+- (bool)isProxy;
+- (bool)isKindOfClass:(Class)v1;
+- (bool)isMemberOfClass:(Class)v1;
+- (bool)conformsToProtocol:(id)v1;
+- (bool)respondsToSelector:(SEL)v1;
+- (id)retain;
+- (oneway  void)release;
+- (id)autorelease;
+- (unsigned long long)retainCount;
+- (struct _NSZone *)zone;
+- (unsigned long long)hash;
+- (Class)superclass;
+- (id)description;
+
+@optional
+- (id)debugDescription;
+@end
+
+
+/*****************************************************************/
+
+@protocol FIRCoreDiagnosticsInterop<NSObject>
++ (void)sendDiagnosticsData:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol FIRLibrary
++ (id)componentsToRegister;
+
+@optional
++ (void)configureWithApp:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol FIRComponentLifecycleMaintainer
+- (void)appWillBeDeleted:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSObject
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (bool)isEqual:(id)v1;
+- (Class)class;
+- (id)self;
+- (id)performSelector:(SEL)v1;
+- (id)performSelector:(SEL)v1 withObject:(id)v2;
+- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
+- (bool)isProxy;
+- (bool)isKindOfClass:(Class)v1;
+- (bool)isMemberOfClass:(Class)v1;
+- (bool)conformsToProtocol:(id)v1;
+- (bool)respondsToSelector:(SEL)v1;
+- (id)retain;
+- (oneway  void)release;
+- (id)autorelease;
+- (unsigned long long)retainCount;
+- (struct _NSZone *)zone;
+- (unsigned long long)hash;
+- (Class)superclass;
+- (id)description;
+
+@optional
+- (id)debugDescription;
+@end
+
+
+/*****************************************************************/
+
+@protocol FIRCoreDiagnosticsInterop<NSObject>
++ (void)sendDiagnosticsData:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol FIRCoreDiagnosticsData<NSObject>
+@property (retain,nonatomic) NSDictionary * diagnosticObjects;
+- (id)diagnosticObjects;
+- (void)setDiagnosticObjects:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSCopying
+- (id)copyWithZone:(struct _NSZone *)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol FIRLibrary
++ (id)componentsToRegister;
+
+@optional
++ (void)configureWithApp:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol FIRInstallationsInstanceProvider<FIRLibrary>
+@end
+
+
+/*****************************************************************/
+
+@protocol NSCopying
+- (id)copyWithZone:(struct _NSZone *)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSCoding
+- (void)encodeWithCoder:(id)v1;
+- (id)initWithCoder:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSSecureCoding<NSCoding>
++ (bool)supportsSecureCoding;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSObject
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (bool)isEqual:(id)v1;
+- (Class)class;
+- (id)self;
+- (id)performSelector:(SEL)v1;
+- (id)performSelector:(SEL)v1 withObject:(id)v2;
+- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
+- (bool)isProxy;
+- (bool)isKindOfClass:(Class)v1;
+- (bool)isMemberOfClass:(Class)v1;
+- (bool)conformsToProtocol:(id)v1;
+- (bool)respondsToSelector:(SEL)v1;
+- (id)retain;
+- (oneway  void)release;
+- (id)autorelease;
+- (unsigned long long)retainCount;
+- (struct _NSZone *)zone;
+- (unsigned long long)hash;
+- (Class)superclass;
+- (id)description;
+
+@optional
+- (id)debugDescription;
+@end
+
+
+/*****************************************************************/
+
+@protocol FIRInstallationsBackoffControllerProtocol<NSObject>
+- (void)registerEvent:(long long)v1;
+- (bool)isNextRequestAllowed;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSObject
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (bool)isEqual:(id)v1;
+- (Class)class;
+- (id)self;
+- (id)performSelector:(SEL)v1;
+- (id)performSelector:(SEL)v1 withObject:(id)v2;
+- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
+- (bool)isProxy;
+- (bool)isKindOfClass:(Class)v1;
+- (bool)isMemberOfClass:(Class)v1;
+- (bool)conformsToProtocol:(id)v1;
+- (bool)respondsToSelector:(SEL)v1;
+- (id)retain;
+- (oneway  void)release;
+- (id)autorelease;
+- (unsigned long long)retainCount;
+- (struct _NSZone *)zone;
+- (unsigned long long)hash;
+- (Class)superclass;
+- (id)description;
+
+@optional
+- (id)debugDescription;
+@end
+
+
+/*****************************************************************/
+
+@protocol UIApplicationDelegate<NSObject>
+@property (retain,nonatomic) UIWindow * window;
+
+@optional
+- (void)applicationDidFinishLaunching:(id)v1;
+- (bool)application:(id)v1 willFinishLaunchingWithOptions:(id)v2;
+- (bool)application:(id)v1 didFinishLaunchingWithOptions:(id)v2;
+- (void)applicationDidBecomeActive:(id)v1;
+- (void)applicationWillResignActive:(id)v1;
+- (bool)application:(id)v1 handleOpenURL:(id)v2;
+- (bool)application:(id)v1 openURL:(id)v2 sourceApplication:(id)v3 annotation:(id)v4;
+- (bool)application:(id)v1 openURL:(id)v2 options:(id)v3;
+- (void)applicationDidReceiveMemoryWarning:(id)v1;
+- (void)applicationWillTerminate:(id)v1;
+- (void)applicationSignificantTimeChange:(id)v1;
+- (void)application:(id)v1 willChangeStatusBarOrientation:(long long)v2 duration:(double)v3;
+- (void)application:(id)v1 didChangeStatusBarOrientation:(long long)v2;
+- (void)application:(id)v1 willChangeStatusBarFrame:(struct CGRect)v2;
+- (void)application:(id)v1 didChangeStatusBarFrame:(struct CGRect)v2;
+- (void)application:(id)v1 didRegisterUserNotificationSettings:(id)v2;
+- (void)application:(id)v1 didRegisterForRemoteNotificationsWithDeviceToken:(id)v2;
+- (void)application:(id)v1 didFailToRegisterForRemoteNotificationsWithError:(id)v2;
+- (void)application:(id)v1 didReceiveRemoteNotification:(id)v2;
+- (void)application:(id)v1 didReceiveLocalNotification:(id)v2;
+- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forLocalNotification:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forRemoteNotification:(id)v3 withResponseInfo:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forRemoteNotification:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forLocalNotification:(id)v3 withResponseInfo:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (void)application:(id)v1 didReceiveRemoteNotification:(id)v2 fetchCompletionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)application:(id)v1 performFetchWithCompletionHandler:(void (^ /* unknown block signature */)(void))v2;
+- (void)application:(id)v1 performActionForShortcutItem:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)application:(id)v1 handleEventsForBackgroundURLSession:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)application:(id)v1 handleWatchKitExtensionRequest:(id)v2 reply:(void (^ /* unknown block signature */)(void))v3;
+- (void)applicationShouldRequestHealthAuthorization:(id)v1;
+- (id)application:(id)v1 handlerForIntent:(id)v2;
+- (void)application:(id)v1 handleIntent:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)applicationDidEnterBackground:(id)v1;
+- (void)applicationWillEnterForeground:(id)v1;
+- (void)applicationProtectedDataWillBecomeUnavailable:(id)v1;
+- (void)applicationProtectedDataDidBecomeAvailable:(id)v1;
+- (unsigned long long)application:(id)v1 supportedInterfaceOrientationsForWindow:(id)v2;
+- (bool)application:(id)v1 shouldAllowExtensionPointIdentifier:(id)v2;
+- (id)application:(id)v1 viewControllerWithRestorationIdentifierPath:(id)v2 coder:(id)v3;
+- (bool)application:(id)v1 shouldSaveSecureApplicationState:(id)v2;
+- (bool)application:(id)v1 shouldRestoreSecureApplicationState:(id)v2;
+- (void)application:(id)v1 willEncodeRestorableStateWithCoder:(id)v2;
+- (void)application:(id)v1 didDecodeRestorableStateWithCoder:(id)v2;
+- (bool)application:(id)v1 shouldSaveApplicationState:(id)v2;
+- (bool)application:(id)v1 shouldRestoreApplicationState:(id)v2;
+- (bool)application:(id)v1 willContinueUserActivityWithType:(id)v2;
+- (bool)application:(id)v1 continueUserActivity:(id)v2 restorationHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)application:(id)v1 didFailToContinueUserActivityWithType:(id)v2 error:(id)v3;
+- (void)application:(id)v1 didUpdateUserActivity:(id)v2;
+- (void)application:(id)v1 userDidAcceptCloudKitShareWithMetadata:(id)v2;
+- (id)application:(id)v1 configurationForConnectingSceneSession:(id)v2 options:(id)v3;
+- (void)application:(id)v1 didDiscardSceneSessions:(id)v2;
+- (bool)applicationShouldAutomaticallyLocalizeKeyCommands:(id)v1;
+- (id)window;
+- (void)setWindow:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol UISceneDelegate<NSObject>
+
+@optional
+- (void)scene:(id)v1 willConnectToSession:(id)v2 options:(id)v3;
+- (void)sceneDidDisconnect:(id)v1;
+- (void)sceneDidBecomeActive:(id)v1;
+- (void)sceneWillResignActive:(id)v1;
+- (void)sceneWillEnterForeground:(id)v1;
+- (void)sceneDidEnterBackground:(id)v1;
+- (void)scene:(id)v1 openURLContexts:(id)v2;
+- (id)stateRestorationActivityForScene:(id)v1;
+- (void)scene:(id)v1 restoreInteractionStateWithUserActivity:(id)v2;
+- (void)scene:(id)v1 willContinueUserActivityWithType:(id)v2;
+- (void)scene:(id)v1 continueUserActivity:(id)v2;
+- (void)scene:(id)v1 didFailToContinueUserActivityWithType:(id)v2 error:(id)v3;
+- (void)scene:(id)v1 didUpdateUserActivity:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@protocol GULReachabilityDelegate
+- (void)reachability:(id)v1 statusChanged:(int)v2;
+@end
+
+
+/*****************************************************************/
+
+@protocol GULReachabilityDelegate
+- (void)reachability:(id)v1 statusChanged:(int)v2;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSObject
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (bool)isEqual:(id)v1;
+- (Class)class;
+- (id)self;
+- (id)performSelector:(SEL)v1;
+- (id)performSelector:(SEL)v1 withObject:(id)v2;
+- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
+- (bool)isProxy;
+- (bool)isKindOfClass:(Class)v1;
+- (bool)isMemberOfClass:(Class)v1;
+- (bool)conformsToProtocol:(id)v1;
+- (bool)respondsToSelector:(SEL)v1;
+- (id)retain;
+- (oneway  void)release;
+- (id)autorelease;
+- (unsigned long long)retainCount;
+- (struct _NSZone *)zone;
+- (unsigned long long)hash;
+- (Class)superclass;
+- (id)description;
+
+@optional
+- (id)debugDescription;
+@end
+
+
+/*****************************************************************/
+
+@protocol GULNetworkLoggerDelegate<NSObject>
+- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3 contexts:(id)v4;
+- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3 context:(id)v4;
+- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSURLSessionDelegate<NSObject>
+
+@optional
+- (void)URLSession:(id)v1 didBecomeInvalidWithError:(id)v2;
+- (void)URLSession:(id)v1 didReceiveChallenge:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSURLSessionTaskDelegate<NSURLSessionDelegate>
+
+@optional
+- (void)URLSession:(id)v1 task:(id)v2 willBeginDelayedRequest:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)URLSession:(id)v1 taskIsWaitingForConnectivity:(id)v2;
+- (void)URLSession:(id)v1 task:(id)v2 willPerformHTTPRedirection:(id)v3 newRequest:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (void)URLSession:(id)v1 task:(id)v2 didReceiveChallenge:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)URLSession:(id)v1 task:(id)v2 needNewBodyStream:(void (^ /* unknown block signature */)(void))v3;
+- (void)URLSession:(id)v1 task:(id)v2 didSendBodyData:(long long)v3 totalBytesSent:(long long)v4 totalBytesExpectedToSend:(long long)v5;
+- (void)URLSession:(id)v1 task:(id)v2 didFinishCollectingMetrics:(id)v3;
+- (void)URLSession:(id)v1 task:(id)v2 didCompleteWithError:(id)v3;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSURLSessionDataDelegate<NSURLSessionTaskDelegate>
+
+@optional
+- (void)URLSession:(id)v1 dataTask:(id)v2 didReceiveResponse:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)URLSession:(id)v1 dataTask:(id)v2 didBecomeDownloadTask:(id)v3;
+- (void)URLSession:(id)v1 dataTask:(id)v2 didBecomeStreamTask:(id)v3;
+- (void)URLSession:(id)v1 dataTask:(id)v2 didReceiveData:(id)v3;
+- (void)URLSession:(id)v1 dataTask:(id)v2 willCacheResponse:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+@end
+
+
+/*****************************************************************/
+
+@protocol NSURLSessionDownloadDelegate<NSURLSessionTaskDelegate>
+- (void)URLSession:(id)v1 downloadTask:(id)v2 didFinishDownloadingToURL:(id)v3;
+
+@optional
+- (void)URLSession:(id)v1 downloadTask:(id)v2 didWriteData:(long long)v3 totalBytesWritten:(long long)v4 totalBytesExpectedToWrite:(long long)v5;
 - (void)URLSession:(id)v1 downloadTask:(id)v2 didResumeAtOffset:(long long)v3 expectedTotalBytes:(long long)v4;
 @end
 
@@ -2665,674 +3372,39 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @protocol NSObject
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
+@property (nonatomic,readonly) long long hash;
+@property (nonatomic,readonly) Class superclass;
+@property (nonatomic,readonly) NSString * description;
+@property (nonatomic,readonly) NSString * debugDescription;
 - (bool)isEqual:(id)v1;
+- (long long)hash;
+- (Class)superclass;
 - (Class)class;
 - (id)self;
 - (id)performSelector:(SEL)v1;
+- (id)performSelector:(SEL)v1;
 - (id)performSelector:(SEL)v1 withObject:(id)v2;
+- (id)performSelector:(SEL)v1 withObject:(id)v2;
+- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
 - (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
 - (bool)isProxy;
 - (bool)isKindOfClass:(Class)v1;
+- (bool)isKindOfClass:(Class)v1;
+- (bool)isMemberOfClass:(Class)v1;
 - (bool)isMemberOfClass:(Class)v1;
 - (bool)conformsToProtocol:(id)v1;
+- (bool)conformsToProtocol:(id)v1;
+- (bool)respondsToSelector:(SEL)v1;
 - (bool)respondsToSelector:(SEL)v1;
 - (id)retain;
 - (oneway  void)release;
 - (id)autorelease;
 - (unsigned long long)retainCount;
 - (struct _NSZone *)zone;
-- (unsigned long long)hash;
-- (Class)superclass;
 - (id)description;
 
 @optional
 - (id)debugDescription;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSURLSessionDelegate<NSObject>
-
-@optional
-- (void)URLSession:(id)v1 didBecomeInvalidWithError:(id)v2;
-- (void)URLSession:(id)v1 didReceiveChallenge:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)URLSessionDidFinishEventsForBackgroundURLSession:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol GDTCCTUploadMetadataProvider<NSObject>
-- (id)nextUploadTimeForTarget:(long long)v1;
-- (void)setNextUploadTime:(id)v1 forTarget:(long long)v2;
-- (id)APIKeyForTarget:(long long)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol GDTCORLifecycleProtocol<NSObject>
-
-@optional
-- (void)appWillTerminate:(id)v1;
-- (void)appWillBackground:(id)v1;
-- (void)appWillForeground:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol GDTCORUploader<NSObject,GDTCORLifecycleProtocol>
-- (void)uploadTarget:(long long)v1 withConditions:(long long)v2;
-@end
-
-
-/*****************************************************************/
-
-@protocol GDTCOREventDataObject<NSObject>
-- (id)transportBytes;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSCoding
-- (void)encodeWithCoder:(id)v1;
-- (id)initWithCoder:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSSecureCoding<NSCoding>
-+ (bool)supportsSecureCoding;
-@end
-
-
-/*****************************************************************/
-
-@protocol GDTCORStorageProtocol<NSObject,GDTCORLifecycleProtocol>
-@property (nonatomic) NSObject<GDTCORStorageDelegate> * delegate;
-- (void)storeEvent:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void)hasEventsForTarget:(long long)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void)batchWithEventSelector:(id)v1 batchExpiration:(id)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
-- (void)removeBatchWithID:(id)v1 deleteEvents:(bool)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
-- (void)batchIDsForTarget:(long long)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void)checkForExpirations;
-- (void)storeLibraryData:(id)v1 forKey:(id)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
-- (void)libraryDataForKey:(id)v1 onFetchComplete:(void (^ /* unknown block signature */)(void))v2 setNewValue:(void (^ /* unknown block signature */)(void))v3;
-- (void)removeLibraryDataForKey:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void)storageSizeWithCallback:(void (^ /* unknown block signature */)(void))v1;
-- (id)delegate;
-- (void)setDelegate:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol GDTCORStoragePromiseProtocol<GDTCORStorageProtocol>
-- (id)batchIDsForTarget:(long long)v1;
-- (id)removeBatchWithID:(id)v1 deleteEvents:(bool)v2;
-- (id)removeBatchesWithIDs:(id)v1 deleteEvents:(bool)v2;
-- (id)removeAllBatchesForTarget:(long long)v1 deleteEvents:(bool)v2;
-- (id)fetchAndUpdateMetricsWithHandler:(void (^ /* unknown block signature */)(void))v1;
-- (id)fetchStorageMetadata;
-- (id)hasEventsForTarget:(long long)v1;
-- (id)batchWithEventSelector:(id)v1 batchExpiration:(id)v2;
-@end
-
-
-/*****************************************************************/
-
-@protocol GDTCORStorageDelegate<NSObject>
-- (void)storage:(id)v1 didRemoveExpiredEvents:(id)v2;
-- (void)storage:(id)v1 didDropEvent:(id)v2;
-@end
-
-
-/*****************************************************************/
-
-@protocol GDTCORMetricsControllerProtocol<GDTCORStorageDelegate>
-- (id)logEventsDroppedForReason:(long long)v1 events:(id)v2;
-- (id)getAndResetMetrics;
-- (id)offerMetrics:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol GDTCORApplicationProtocol<NSObject>
-@property (readonly) bool isRunningInBackground;
-- (unsigned long long)beginBackgroundTaskWithName:(id)v1 expirationHandler:(void (^ /* unknown block signature */)(void))v2;
-- (void)endBackgroundTask:(unsigned long long)v1;
-- (bool)isRunningInBackground;
-@end
-
-
-/*****************************************************************/
-
-@protocol UIApplicationDelegate<NSObject>
-@property (retain,nonatomic) UIWindow * window;
-
-@optional
-- (void)applicationDidFinishLaunching:(id)v1;
-- (bool)application:(id)v1 willFinishLaunchingWithOptions:(id)v2;
-- (bool)application:(id)v1 didFinishLaunchingWithOptions:(id)v2;
-- (void)applicationDidBecomeActive:(id)v1;
-- (void)applicationWillResignActive:(id)v1;
-- (bool)application:(id)v1 handleOpenURL:(id)v2;
-- (bool)application:(id)v1 openURL:(id)v2 sourceApplication:(id)v3 annotation:(id)v4;
-- (bool)application:(id)v1 openURL:(id)v2 options:(id)v3;
-- (void)applicationDidReceiveMemoryWarning:(id)v1;
-- (void)applicationWillTerminate:(id)v1;
-- (void)applicationSignificantTimeChange:(id)v1;
-- (void)application:(id)v1 willChangeStatusBarOrientation:(long long)v2 duration:(double)v3;
-- (void)application:(id)v1 didChangeStatusBarOrientation:(long long)v2;
-- (void)application:(id)v1 willChangeStatusBarFrame:(struct CGRect)v2;
-- (void)application:(id)v1 didChangeStatusBarFrame:(struct CGRect)v2;
-- (void)application:(id)v1 didRegisterUserNotificationSettings:(id)v2;
-- (void)application:(id)v1 didRegisterForRemoteNotificationsWithDeviceToken:(id)v2;
-- (void)application:(id)v1 didFailToRegisterForRemoteNotificationsWithError:(id)v2;
-- (void)application:(id)v1 didReceiveRemoteNotification:(id)v2;
-- (void)application:(id)v1 didReceiveLocalNotification:(id)v2;
-- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forLocalNotification:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
-- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forRemoteNotification:(id)v3 withResponseInfo:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
-- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forRemoteNotification:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
-- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forLocalNotification:(id)v3 withResponseInfo:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
-- (void)application:(id)v1 didReceiveRemoteNotification:(id)v2 fetchCompletionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)application:(id)v1 performFetchWithCompletionHandler:(void (^ /* unknown block signature */)(void))v2;
-- (void)application:(id)v1 performActionForShortcutItem:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)application:(id)v1 handleEventsForBackgroundURLSession:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)application:(id)v1 handleWatchKitExtensionRequest:(id)v2 reply:(void (^ /* unknown block signature */)(void))v3;
-- (void)applicationShouldRequestHealthAuthorization:(id)v1;
-- (id)application:(id)v1 handlerForIntent:(id)v2;
-- (void)application:(id)v1 handleIntent:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)applicationDidEnterBackground:(id)v1;
-- (void)applicationWillEnterForeground:(id)v1;
-- (void)applicationProtectedDataWillBecomeUnavailable:(id)v1;
-- (void)applicationProtectedDataDidBecomeAvailable:(id)v1;
-- (unsigned long long)application:(id)v1 supportedInterfaceOrientationsForWindow:(id)v2;
-- (bool)application:(id)v1 shouldAllowExtensionPointIdentifier:(id)v2;
-- (id)application:(id)v1 viewControllerWithRestorationIdentifierPath:(id)v2 coder:(id)v3;
-- (bool)application:(id)v1 shouldSaveSecureApplicationState:(id)v2;
-- (bool)application:(id)v1 shouldRestoreSecureApplicationState:(id)v2;
-- (void)application:(id)v1 willEncodeRestorableStateWithCoder:(id)v2;
-- (void)application:(id)v1 didDecodeRestorableStateWithCoder:(id)v2;
-- (bool)application:(id)v1 shouldSaveApplicationState:(id)v2;
-- (bool)application:(id)v1 shouldRestoreApplicationState:(id)v2;
-- (bool)application:(id)v1 willContinueUserActivityWithType:(id)v2;
-- (bool)application:(id)v1 continueUserActivity:(id)v2 restorationHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)application:(id)v1 didFailToContinueUserActivityWithType:(id)v2 error:(id)v3;
-- (void)application:(id)v1 didUpdateUserActivity:(id)v2;
-- (void)application:(id)v1 userDidAcceptCloudKitShareWithMetadata:(id)v2;
-- (id)application:(id)v1 configurationForConnectingSceneSession:(id)v2 options:(id)v3;
-- (void)application:(id)v1 didDiscardSceneSessions:(id)v2;
-- (bool)applicationShouldAutomaticallyLocalizeKeyCommands:(id)v1;
-- (id)window;
-- (void)setWindow:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol GDTCORApplicationDelegate<UIApplicationDelegate>
-@end
-
-
-/*****************************************************************/
-
-@protocol NSObject
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (bool)isEqual:(id)v1;
-- (Class)class;
-- (id)self;
-- (id)performSelector:(SEL)v1;
-- (id)performSelector:(SEL)v1 withObject:(id)v2;
-- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
-- (bool)isProxy;
-- (bool)isKindOfClass:(Class)v1;
-- (bool)isMemberOfClass:(Class)v1;
-- (bool)conformsToProtocol:(id)v1;
-- (bool)respondsToSelector:(SEL)v1;
-- (id)retain;
-- (oneway  void)release;
-- (id)autorelease;
-- (unsigned long long)retainCount;
-- (struct _NSZone *)zone;
-- (unsigned long long)hash;
-- (Class)superclass;
-- (id)description;
-
-@optional
-- (id)debugDescription;
-@end
-
-
-/*****************************************************************/
-
-@protocol GULHeartbeatDateStorable<NSObject>
-- (id)heartbeatDateForTag:(id)v1;
-- (bool)setHearbeatDate:(id)v1 forTag:(id)v2;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSObject
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (bool)isEqual:(id)v1;
-- (Class)class;
-- (id)self;
-- (id)performSelector:(SEL)v1;
-- (id)performSelector:(SEL)v1 withObject:(id)v2;
-- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
-- (bool)isProxy;
-- (bool)isKindOfClass:(Class)v1;
-- (bool)isMemberOfClass:(Class)v1;
-- (bool)conformsToProtocol:(id)v1;
-- (bool)respondsToSelector:(SEL)v1;
-- (id)retain;
-- (oneway  void)release;
-- (id)autorelease;
-- (unsigned long long)retainCount;
-- (struct _NSZone *)zone;
-- (unsigned long long)hash;
-- (Class)superclass;
-- (id)description;
-
-@optional
-- (id)debugDescription;
-@end
-
-
-/*****************************************************************/
-
-@protocol FIRCoreDiagnosticsInterop<NSObject>
-+ (void)sendDiagnosticsData:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol FIRLibrary
-+ (id)componentsToRegister;
-
-@optional
-+ (void)configureWithApp:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol FIRComponentLifecycleMaintainer
-- (void)appWillBeDeleted:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSObject
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (bool)isEqual:(id)v1;
-- (Class)class;
-- (id)self;
-- (id)performSelector:(SEL)v1;
-- (id)performSelector:(SEL)v1 withObject:(id)v2;
-- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
-- (bool)isProxy;
-- (bool)isKindOfClass:(Class)v1;
-- (bool)isMemberOfClass:(Class)v1;
-- (bool)conformsToProtocol:(id)v1;
-- (bool)respondsToSelector:(SEL)v1;
-- (id)retain;
-- (oneway  void)release;
-- (id)autorelease;
-- (unsigned long long)retainCount;
-- (struct _NSZone *)zone;
-- (unsigned long long)hash;
-- (Class)superclass;
-- (id)description;
-
-@optional
-- (id)debugDescription;
-@end
-
-
-/*****************************************************************/
-
-@protocol FIRCoreDiagnosticsInterop<NSObject>
-+ (void)sendDiagnosticsData:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol FIRCoreDiagnosticsData<NSObject>
-@property (retain,nonatomic) NSDictionary * diagnosticObjects;
-- (id)diagnosticObjects;
-- (void)setDiagnosticObjects:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSCopying
-- (id)copyWithZone:(struct _NSZone *)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol FIRLibrary
-+ (id)componentsToRegister;
-
-@optional
-+ (void)configureWithApp:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol FIRInstallationsInstanceProvider<FIRLibrary>
-@end
-
-
-/*****************************************************************/
-
-@protocol NSCopying
-- (id)copyWithZone:(struct _NSZone *)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSCoding
-- (void)encodeWithCoder:(id)v1;
-- (id)initWithCoder:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSSecureCoding<NSCoding>
-+ (bool)supportsSecureCoding;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSObject
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (bool)isEqual:(id)v1;
-- (Class)class;
-- (id)self;
-- (id)performSelector:(SEL)v1;
-- (id)performSelector:(SEL)v1 withObject:(id)v2;
-- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
-- (bool)isProxy;
-- (bool)isKindOfClass:(Class)v1;
-- (bool)isMemberOfClass:(Class)v1;
-- (bool)conformsToProtocol:(id)v1;
-- (bool)respondsToSelector:(SEL)v1;
-- (id)retain;
-- (oneway  void)release;
-- (id)autorelease;
-- (unsigned long long)retainCount;
-- (struct _NSZone *)zone;
-- (unsigned long long)hash;
-- (Class)superclass;
-- (id)description;
-
-@optional
-- (id)debugDescription;
-@end
-
-
-/*****************************************************************/
-
-@protocol FIRInstallationsBackoffControllerProtocol<NSObject>
-- (void)registerEvent:(long long)v1;
-- (bool)isNextRequestAllowed;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSObject
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (bool)isEqual:(id)v1;
-- (Class)class;
-- (id)self;
-- (id)performSelector:(SEL)v1;
-- (id)performSelector:(SEL)v1 withObject:(id)v2;
-- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
-- (bool)isProxy;
-- (bool)isKindOfClass:(Class)v1;
-- (bool)isMemberOfClass:(Class)v1;
-- (bool)conformsToProtocol:(id)v1;
-- (bool)respondsToSelector:(SEL)v1;
-- (id)retain;
-- (oneway  void)release;
-- (id)autorelease;
-- (unsigned long long)retainCount;
-- (struct _NSZone *)zone;
-- (unsigned long long)hash;
-- (Class)superclass;
-- (id)description;
-
-@optional
-- (id)debugDescription;
-@end
-
-
-/*****************************************************************/
-
-@protocol UIApplicationDelegate<NSObject>
-@property (retain,nonatomic) UIWindow * window;
-
-@optional
-- (void)applicationDidFinishLaunching:(id)v1;
-- (bool)application:(id)v1 willFinishLaunchingWithOptions:(id)v2;
-- (bool)application:(id)v1 didFinishLaunchingWithOptions:(id)v2;
-- (void)applicationDidBecomeActive:(id)v1;
-- (void)applicationWillResignActive:(id)v1;
-- (bool)application:(id)v1 handleOpenURL:(id)v2;
-- (bool)application:(id)v1 openURL:(id)v2 sourceApplication:(id)v3 annotation:(id)v4;
-- (bool)application:(id)v1 openURL:(id)v2 options:(id)v3;
-- (void)applicationDidReceiveMemoryWarning:(id)v1;
-- (void)applicationWillTerminate:(id)v1;
-- (void)applicationSignificantTimeChange:(id)v1;
-- (void)application:(id)v1 willChangeStatusBarOrientation:(long long)v2 duration:(double)v3;
-- (void)application:(id)v1 didChangeStatusBarOrientation:(long long)v2;
-- (void)application:(id)v1 willChangeStatusBarFrame:(struct CGRect)v2;
-- (void)application:(id)v1 didChangeStatusBarFrame:(struct CGRect)v2;
-- (void)application:(id)v1 didRegisterUserNotificationSettings:(id)v2;
-- (void)application:(id)v1 didRegisterForRemoteNotificationsWithDeviceToken:(id)v2;
-- (void)application:(id)v1 didFailToRegisterForRemoteNotificationsWithError:(id)v2;
-- (void)application:(id)v1 didReceiveRemoteNotification:(id)v2;
-- (void)application:(id)v1 didReceiveLocalNotification:(id)v2;
-- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forLocalNotification:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
-- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forRemoteNotification:(id)v3 withResponseInfo:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
-- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forRemoteNotification:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
-- (void)application:(id)v1 handleActionWithIdentifier:(id)v2 forLocalNotification:(id)v3 withResponseInfo:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
-- (void)application:(id)v1 didReceiveRemoteNotification:(id)v2 fetchCompletionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)application:(id)v1 performFetchWithCompletionHandler:(void (^ /* unknown block signature */)(void))v2;
-- (void)application:(id)v1 performActionForShortcutItem:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)application:(id)v1 handleEventsForBackgroundURLSession:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)application:(id)v1 handleWatchKitExtensionRequest:(id)v2 reply:(void (^ /* unknown block signature */)(void))v3;
-- (void)applicationShouldRequestHealthAuthorization:(id)v1;
-- (id)application:(id)v1 handlerForIntent:(id)v2;
-- (void)application:(id)v1 handleIntent:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)applicationDidEnterBackground:(id)v1;
-- (void)applicationWillEnterForeground:(id)v1;
-- (void)applicationProtectedDataWillBecomeUnavailable:(id)v1;
-- (void)applicationProtectedDataDidBecomeAvailable:(id)v1;
-- (unsigned long long)application:(id)v1 supportedInterfaceOrientationsForWindow:(id)v2;
-- (bool)application:(id)v1 shouldAllowExtensionPointIdentifier:(id)v2;
-- (id)application:(id)v1 viewControllerWithRestorationIdentifierPath:(id)v2 coder:(id)v3;
-- (bool)application:(id)v1 shouldSaveSecureApplicationState:(id)v2;
-- (bool)application:(id)v1 shouldRestoreSecureApplicationState:(id)v2;
-- (void)application:(id)v1 willEncodeRestorableStateWithCoder:(id)v2;
-- (void)application:(id)v1 didDecodeRestorableStateWithCoder:(id)v2;
-- (bool)application:(id)v1 shouldSaveApplicationState:(id)v2;
-- (bool)application:(id)v1 shouldRestoreApplicationState:(id)v2;
-- (bool)application:(id)v1 willContinueUserActivityWithType:(id)v2;
-- (bool)application:(id)v1 continueUserActivity:(id)v2 restorationHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)application:(id)v1 didFailToContinueUserActivityWithType:(id)v2 error:(id)v3;
-- (void)application:(id)v1 didUpdateUserActivity:(id)v2;
-- (void)application:(id)v1 userDidAcceptCloudKitShareWithMetadata:(id)v2;
-- (id)application:(id)v1 configurationForConnectingSceneSession:(id)v2 options:(id)v3;
-- (void)application:(id)v1 didDiscardSceneSessions:(id)v2;
-- (bool)applicationShouldAutomaticallyLocalizeKeyCommands:(id)v1;
-- (id)window;
-- (void)setWindow:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol UISceneDelegate<NSObject>
-
-@optional
-- (void)scene:(id)v1 willConnectToSession:(id)v2 options:(id)v3;
-- (void)sceneDidDisconnect:(id)v1;
-- (void)sceneDidBecomeActive:(id)v1;
-- (void)sceneWillResignActive:(id)v1;
-- (void)sceneWillEnterForeground:(id)v1;
-- (void)sceneDidEnterBackground:(id)v1;
-- (void)scene:(id)v1 openURLContexts:(id)v2;
-- (id)stateRestorationActivityForScene:(id)v1;
-- (void)scene:(id)v1 restoreInteractionStateWithUserActivity:(id)v2;
-- (void)scene:(id)v1 willContinueUserActivityWithType:(id)v2;
-- (void)scene:(id)v1 continueUserActivity:(id)v2;
-- (void)scene:(id)v1 didFailToContinueUserActivityWithType:(id)v2 error:(id)v3;
-- (void)scene:(id)v1 didUpdateUserActivity:(id)v2;
-@end
-
-
-/*****************************************************************/
-
-@protocol GULReachabilityDelegate
-- (void)reachability:(id)v1 statusChanged:(int)v2;
-@end
-
-
-/*****************************************************************/
-
-@protocol GULReachabilityDelegate
-- (void)reachability:(id)v1 statusChanged:(int)v2;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSObject
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (bool)isEqual:(id)v1;
-- (Class)class;
-- (id)self;
-- (id)performSelector:(SEL)v1;
-- (id)performSelector:(SEL)v1 withObject:(id)v2;
-- (id)performSelector:(SEL)v1 withObject:(id)v2 withObject:(id)v3;
-- (bool)isProxy;
-- (bool)isKindOfClass:(Class)v1;
-- (bool)isMemberOfClass:(Class)v1;
-- (bool)conformsToProtocol:(id)v1;
-- (bool)respondsToSelector:(SEL)v1;
-- (id)retain;
-- (oneway  void)release;
-- (id)autorelease;
-- (unsigned long long)retainCount;
-- (struct _NSZone *)zone;
-- (unsigned long long)hash;
-- (Class)superclass;
-- (id)description;
-
-@optional
-- (id)debugDescription;
-@end
-
-
-/*****************************************************************/
-
-@protocol GULNetworkLoggerDelegate<NSObject>
-- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3 contexts:(id)v4;
-- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3 context:(id)v4;
-- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSURLSessionDelegate<NSObject>
-
-@optional
-- (void)URLSession:(id)v1 didBecomeInvalidWithError:(id)v2;
-- (void)URLSession:(id)v1 didReceiveChallenge:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)URLSessionDidFinishEventsForBackgroundURLSession:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSURLSessionTaskDelegate<NSURLSessionDelegate>
-
-@optional
-- (void)URLSession:(id)v1 task:(id)v2 willBeginDelayedRequest:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
-- (void)URLSession:(id)v1 taskIsWaitingForConnectivity:(id)v2;
-- (void)URLSession:(id)v1 task:(id)v2 willPerformHTTPRedirection:(id)v3 newRequest:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
-- (void)URLSession:(id)v1 task:(id)v2 didReceiveChallenge:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
-- (void)URLSession:(id)v1 task:(id)v2 needNewBodyStream:(void (^ /* unknown block signature */)(void))v3;
-- (void)URLSession:(id)v1 task:(id)v2 didSendBodyData:(long long)v3 totalBytesSent:(long long)v4 totalBytesExpectedToSend:(long long)v5;
-- (void)URLSession:(id)v1 task:(id)v2 didFinishCollectingMetrics:(id)v3;
-- (void)URLSession:(id)v1 task:(id)v2 didCompleteWithError:(id)v3;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSURLSessionDataDelegate<NSURLSessionTaskDelegate>
-
-@optional
-- (void)URLSession:(id)v1 dataTask:(id)v2 didReceiveResponse:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
-- (void)URLSession:(id)v1 dataTask:(id)v2 didBecomeDownloadTask:(id)v3;
-- (void)URLSession:(id)v1 dataTask:(id)v2 didBecomeStreamTask:(id)v3;
-- (void)URLSession:(id)v1 dataTask:(id)v2 didReceiveData:(id)v3;
-- (void)URLSession:(id)v1 dataTask:(id)v2 willCacheResponse:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
-@end
-
-
-/*****************************************************************/
-
-@protocol NSURLSessionDownloadDelegate<NSURLSessionTaskDelegate>
-- (void)URLSession:(id)v1 downloadTask:(id)v2 didFinishDownloadingToURL:(id)v3;
-
-@optional
-- (void)URLSession:(id)v1 downloadTask:(id)v2 didWriteData:(long long)v3 totalBytesWritten:(long long)v4 totalBytesExpectedToWrite:(long long)v5;
-- (void)URLSession:(id)v1 downloadTask:(id)v2 didResumeAtOffset:(long long)v3 expectedTotalBytes:(long long)v4;
 @end
 
 
@@ -3625,17 +3697,7 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink28AccountOptionsViewController (LibreLink)<UITableViewDataSource,UITableViewDelegate>
-- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
-- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
-- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
-- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLink29LegalAgreementsViewController (LibreLink)
+@interface _TtC9LibreLink29LegalAgreementsViewController (LibreLink)<UIScrollViewDelegate>
 - (void)scrollViewDidScroll:(id)v1;
 - (void)scrollViewDidZoom:(id)v1;
 - (void)webView:(id)v1 didFinishNavigation:(id)v2;
@@ -3645,7 +3707,7 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink22EventLogViewController (LibreLink)
+@interface _TtC9LibreLink22EventLogViewController (LibreLink)<UITableViewDataSource>
 - (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
 - (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
 @end
@@ -3705,6 +3767,16 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink26IPGenericWebViewController (LibreLink)<WKUIDelegate>
+- (void)webView:(id)v1 didFinishNavigation:(id)v2;
+- (void)webView:(id)v1 didFailProvisionalNavigation:(id)v2 withError:(id)v3;
+- (id)webView:(id)v1 createWebViewWithConfiguration:(id)v2 forNavigationAction:(id)v3 windowFeatures:(id)v4;
+- (void)webView:(id)v1 decidePolicyForNavigationAction:(id)v2 decisionHandler:(void (^ /* unknown block signature */)(void))v3;
+@end
+
+
+/*****************************************************************/
+
 @interface UIButton (LibreLink)
 - (void)block_handleAction;
 @end
@@ -3745,6 +3817,16 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink28AccountOptionsViewController (LibreLink)
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
+- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink21AccountViewController (LibreLink)<UITextFieldDelegate>
 - (bool)textField:(id)v1 shouldChangeCharactersInRange:(struct _NSRange)v2 replacementString:(id)v3;
 - (void)textFieldDidEndEditing:(id)v1;
@@ -3755,8 +3837,20 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink23OSWarningViewController (LibreLink)
-- (void)webView:(id)v1 decidePolicyForNavigationAction:(id)v2 decisionHandler:(void (^ /* unknown block signature */)(void))v3;
+@interface _TtC9LibreLink24IPSettingsViewController (LibreLink)
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
+- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink27DeleteAccountViewController (LibreLink)
+- (long long)numberOfSectionsInTableView:(id)v1;
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
 @end
 
 
@@ -3772,9 +3866,16 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink32CompatibilityGuideViewController (LibreLink)
-- (void)webView:(id)v1 decidePolicyForNavigationAction:(id)v2 decisionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)webView:(id)v1 didFailProvisionalNavigation:(id)v2 withError:(id)v3;
+@interface _TtC9LibreLink27IPSetupChoiceViewController (LibreLink)
+- (bool)textField:(id)v1 shouldChangeCharactersInRange:(struct _NSRange)v2 replacementString:(id)v3;
+- (bool)textFieldShouldReturn:(id)v1;
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 viewForHeaderInSection:(long long)v2;
+- (double)tableView:(id)v1 heightForHeaderInSection:(long long)v2;
+- (long long)numberOfSectionsInTableView:(id)v1;
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 willDisplayCell:(id)v2 forRowAtIndexPath:(id)v3;
 @end
 
 
@@ -3793,8 +3894,7 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink27DeleteAccountViewController (LibreLink)
-- (long long)numberOfSectionsInTableView:(id)v1;
+@interface _TtC9LibreLink24IPBenefitsViewController (LibreLink)
 - (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
 - (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
 @end
@@ -3808,6 +3908,16 @@ struct anonymous_type_23 {
 - (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
 - (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
 - (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink21IPAboutViewController (LibreLink)
+- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
 @end
 
 
@@ -3834,6 +3944,25 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink29AccountBenefitsViewController (LibreLink)
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink25IPInventoryViewController (LibreLink)
+- (bool)gestureRecognizer:(id)v1 shouldReceiveTouch:(id)v2;
+- (void)tableView:(id)v1 didDeselectRowAtIndexPath:(id)v2;
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (void)tableView:(id)v1 willDisplayCell:(id)v2 forRowAtIndexPath:(id)v3;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
+@end
+
+
+/*****************************************************************/
+
 @interface UIFont (LibreLink)
 + (id)applicationBoldFontOfSize:(double)v1;
 @end
@@ -3841,8 +3970,21 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink24IPInsulinTypeBrandPicker (LibreLink)
+- (long long)numberOfSectionsInTableView:(id)v1;
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
+- (id)tableView:(id)v1 viewForHeaderInSection:(long long)v2;
+- (double)tableView:(id)v1 heightForHeaderInSection:(long long)v2;
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
+@end
+
+
+/*****************************************************************/
+
 @interface UIColor (LibreLink)
 + (id)backgroundColor;
++ (id)borderColor;
 + (id)darkLabelTextColor;
 + (id)graphLineColor;
 + (id)graphHorizontalLineColor;
@@ -3857,8 +3999,31 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink27IPBottomSheetViewController (LibreLink)
+- (double)transitionDuration:(id)v1;
+- (void)animateTransition:(id)v1;
+- (id)animationControllerForPresentedController:(id)v1 presentingController:(id)v2 sourceController:(id)v3;
+- (id)animationControllerForDismissedController:(id)v1;
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
+- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink26TourAnimatedViewController (LibreLink)
 - (void)scrollViewDidScroll:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink22IPSelectViewController (LibreLink)
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
 @end
 
 
@@ -3879,7 +4044,6 @@ struct anonymous_type_23 {
 - (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
 - (long long)numberOfSectionsInTableView:(id)v1;
 - (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
-- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
 - (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
 @end
 
@@ -3909,6 +4073,16 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink27IPNovoPrivacyViewController (LibreLink)
+- (void)webView:(id)v1 decidePolicyForNavigationAction:(id)v2 decisionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)webView:(id)v1 didFinishNavigation:(id)v2;
+- (void)webView:(id)v1 didFailProvisionalNavigation:(id)v2 withError:(id)v3;
+- (id)webView:(id)v1 createWebViewWithConfiguration:(id)v2 forNavigationAction:(id)v3 windowFeatures:(id)v4;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink13AppController (LibreLink)
 - (void)performQuickActionWithNotification:(id)v1;
 - (void)switchViewControllerWithNotification:(id)v1;
@@ -3920,6 +4094,16 @@ struct anonymous_type_23 {
 @interface _TtC9LibreLink28ChangePasswordViewController (LibreLink)
 - (bool)textField:(id)v1 shouldChangeCharactersInRange:(struct _NSRange)v2 replacementString:(id)v3;
 - (bool)textFieldShouldReturn:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink20IPHelpViewController (LibreLink)
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
+- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
+- (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
 @end
 
 
@@ -3945,19 +4129,14 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface NSString (TextDirectionality)
-- (unsigned long long)apm_UTF32Length;
-- (void)apm_getUTF32Bytes:(void *)v1 maxBytes:(unsigned long long)v2;
-- (id)apm_stringByUnescapingFromURLArgument;
-- (id)apm_MD5String;
-- (id)_sanitizedPath;
-- (unsigned long long)getBaseDirection;
+@interface NSURLSession (GULPromises)
+- (id)gul_dataTaskPromiseWithRequest:(id)v1;
 @end
 
 
 /*****************************************************************/
 
-@interface NSData (SSZipArchive)
+@interface NSData (GULGzip)
 + (id)gul_dataByInflatingGzippedData:(id)v1 error:(id *)v2;
 + (id)gul_dataByGzippingData:(id)v1 error:(id *)v2;
 - (id)apm_MD5Data;
@@ -3965,6 +4144,18 @@ struct anonymous_type_23 {
 - (long long)apm_64LeastSignificantBits;
 - (id)_base64RFC4648;
 - (id)_hexString;
+@end
+
+
+/*****************************************************************/
+
+@interface NSString (SSZipArchive)
+- (unsigned long long)apm_UTF32Length;
+- (void)apm_getUTF32Bytes:(void *)v1 maxBytes:(unsigned long long)v2;
+- (id)apm_stringByUnescapingFromURLArgument;
+- (id)apm_MD5String;
+- (unsigned long long)getBaseDirection;
+- (id)_sanitizedPath;
 @end
 
 
@@ -4069,13 +4260,6 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface NSURLSession (GULPromises)
-- (id)gul_dataTaskPromiseWithRequest:(id)v1;
-@end
-
-
-/*****************************************************************/
-
 @interface NSError (APMAdditions)
 + (id)apm_errorWithCode:(long long)v1 description:(id)v2;
 + (id)apm_errorWithCode:(long long)v1 description:(id)v2 monitorContext:(id)v3;
@@ -4128,6 +4312,63 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink9PenEntity : RealmSwiftObject {
+    id _rowId;
+    id _crc;
+    id _penId;
+    id _timeStampUTC;
+    id _deviceTimeRTC;
+    id _lastScanTimeStampUTC;
+    id _serialNumber;
+    id _firstDoseId;
+    id _lastDoseId;
+    id _systemId;
+    id _firmware;
+    id _manufacturer;
+    id _model;
+    id _name;
+    id _penColor;
+    id _machineName;
+    id _localModelName;
+    id _insulinType;
+    id _insulinBrand;
+    id _isActivated;
+    id associateDoses;
+}
+@property (nonatomic) long long _rowId;
+@property (nonatomic) int _crc;
+@property (nonatomic) long long _penId;
+@property (nonatomic) long long _timeStampUTC;
+@property (nonatomic) long long _deviceTimeRTC;
+@property (nonatomic) long long _lastScanTimeStampUTC;
+@property (nonatomic,copy) NSString * _serialNumber;
+@property (nonatomic,copy) NSString * _firstDoseId;
+@property (nonatomic,copy) NSString * _lastDoseId;
+@property (nonatomic,copy) NSString * _systemId;
+@property (nonatomic,copy) NSString * _firmware;
+@property (nonatomic,copy) NSString * _manufacturer;
+@property (nonatomic,copy) NSString * _model;
+@property (nonatomic,copy) NSString * _name;
+@property (nonatomic,copy) NSString * _penColor;
+@property (nonatomic,copy) NSString * _machineName;
+@property (nonatomic,copy) NSString * _localModelName;
+@property (nonatomic,copy) NSString * _insulinType;
+@property (nonatomic,copy) NSString * _insulinBrand;
+@property (nonatomic) bool _isActivated;
++ (id)primaryKey;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink18NNPenEntityManager : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink23LearnMoreViewController : _TtC9LibreLink20ApolloViewController<WKNavigationDelegate> {
     id webView;
     id refreshButton;
@@ -4159,9 +4400,71 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink38IPSettingsChoiceRadioTextTableViewCell : UITableViewCell {
+    id radioImageView;
+    id titleLabel;
+}
+@property (nonatomic,retain) UIImageView * radioImageView;
+@property (nonatomic,retain) UILabel * titleLabel;
+- (void)awakeFromNib;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink12InsulinEntry : _TtC9LibreLink9BaseEntry {
     id units;
     id insulinType;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink20PenInsulinAttributes : _TtCs12_SwiftObject {
+    id insulinBrand;
+    id insulinType;
+    id editedPenName;
+    id isNewDefaultSettings;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink24PenDoseInsulinAttributes : _TtCs12_SwiftObject {
+    id insulinBrand;
+    id insulinType;
+    id editedPenName;
+    id isNewDefaultSettings;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink19PrimeDoseAttributes : _TtCs12_SwiftObject {
+    id isPrimeDose;
+    id isPrimeAlgo;
+    id didEditDose;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink22NoteWithDoseAttributes : _TtCs12_SwiftObject {
+    id foodTag;
+    id foodType;
+    id foodGramsCarbs;
+    id foodServingSize;
+    id exerciseTag;
+    id exerciseIntensity;
+    id exerciseDurationInMinutes;
+    id comment;
 }
 @end
 
@@ -4209,20 +4512,6 @@ struct anonymous_type_23 {
 }
 @property (nonatomic,retain) _TtC6Charts9ChartData * data;
 - (id)initWithFrame:(struct CGRect)v1;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLink28AccountOptionsViewController : _TtC9LibreLink20ApolloViewController {
-    id tableView;
-    id accountOptionsItems;
-}
-@property (nonatomic) _TtC9LibreLink11LLTableView * tableView;
-- (void)viewDidLoad;
-- (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
@@ -4309,6 +4598,7 @@ struct anonymous_type_23 {
     id isFromWizard;
     id gramsPerServing;
 }
+- (void)viewWillAppear:(bool)v1;
 - (void)viewDidLoad;
 - (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
 - (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
@@ -4362,18 +4652,14 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink20SensorStateUIManager : NSObject {
-    id isCriticalOn;
-    id showSensorEndedModal;
-    id didClickOkOnUIMessage;
-    id lastMessageTypeShown;
-    id validUntilTimer;
-    id dialogModal;
-    id countOfDisplayedAlerts;
+@interface _TtC9LibreLink21IPSetupViewController : _TtC9LibreLink20ApolloViewController {
+    id coordinator;
 }
-- (void)sensorHasExpired;
-- (void)checkIfToShowModalOnAppToForeground;
-- (id)init;
+- (void)viewDidLoad;
+- (void)dealloc;
+- (void)displayHomeScreen;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
 
@@ -4442,6 +4728,21 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink23IPSetupTitleAndTextCell : _TtC9LibreLink17IPChoiceBasicCell {
+    id titleLabel;
+    id newNameField;
+}
+@property (nonatomic,retain) UILabel * titleLabel;
+@property (nonatomic,retain) UITextField * newNameField;
+- (void)awakeFromNib;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink17ReadingCollection : _TtCs12_SwiftObject {
     id historicReadings;
     id realTimeReadings;
@@ -4468,6 +4769,7 @@ struct anonymous_type_23 {
     id itemLabel;
     id checkImageView;
     id separator;
+    id noteItem;
 }
 @property (nonatomic,retain) UIImageView * iconImageView;
 @property (nonatomic,retain) _TtC9LibreLink12RegularLabel * itemLabel;
@@ -4482,6 +4784,22 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink11ToolTipView : UIView {
+    id roundRect;
+    id tipWidth;
+    id tipHeight;
+    id tipOffset;
+    id alignmentMultiplier;
+    id cornerRadius;
+}
+- (void)drawRect:(struct CGRect)v1;
+- (id)initWithFrame:(struct CGRect)v1;
+- (id)initWithCoder:(id)v1;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink29LegalAgreementsViewController : _TtC9LibreLink24AgreementsViewController {
     id webView;
     id checkboxImageView;
@@ -4490,6 +4808,7 @@ struct anonymous_type_23 {
     id acceptButton;
     id rejectButton;
     id buttonContainerHeightConstraint;
+    id userAttemptedSignIn;
 }
 @property (nonatomic,retain) WKWebView * webView;
 @property (nonatomic,retain) UIImageView * checkboxImageView;
@@ -4576,8 +4895,8 @@ struct anonymous_type_23 {
 }
 - (void)viewDidLoad;
 - (void)viewWillAppear:(bool)v1;
+- (void)signInPressed:(id)v1;
 - (void)currentReportChanged:(id)v1;
-- (void)currentViewControllerChanged:(id)v1;
 - (long long)numberOfSectionsInTableView:(id)v1;
 - (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
 - (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
@@ -4612,9 +4931,8 @@ struct anonymous_type_23 {
 @property (nonatomic,retain) _TtC9LibreLink14SensorLifeView * sensorLifeView;
 @property (nonatomic,retain) _TtC9LibreLink13LLCheckButton * checkGlucoseButton;
 - (void)viewWillAppear:(bool)v1;
+- (void)viewDidLoad;
 - (void)viewDidDisappear:(bool)v1;
-- (void)disableScanButton;
-- (void)enableScanButton;
 - (void)updateGraphOnExternalEvent:(id)v1;
 - (void)checkUpdateGraph;
 - (void)updateGraph;
@@ -4669,6 +4987,19 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink18PenDatabaseManager : NSObject {
+    id dbHelper;
+    id dbHandler;
+    id kEmptySerialError;
+    id kGetDevicesError;
+}
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink22LLReportViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout> {
     id updateFlag;
     id reportsManager;
@@ -4717,6 +5048,7 @@ struct anonymous_type_23 {
 - (void)dealloc;
 - (void)viewDidLoad;
 - (void)viewDidAppear:(bool)v1;
+- (void)viewDidDisappear:(bool)v1;
 - (void)notificationReceived:(id)v1;
 - (void)prepareForSegue:(id)v1 sender:(id)v2;
 - (long long)numberOfSectionsInCollectionView:(id)v1;
@@ -4759,6 +5091,41 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink33IPSettingsChoiceSectionHeaderView : UITableViewHeaderFooterView {
+    id titleLabel;
+    id arrowButton;
+    id contentHeaderView;
+    id item;
+    id section;
+    id delegate;
+}
+@property (nonatomic) UILabel * titleLabel;
+@property (nonatomic) UIButton * arrowButton;
+@property (nonatomic) UIView * contentHeaderView;
+- (void)awakeFromNib;
+- (void)didTapHeader;
+- (id)initWithReuseIdentifier:(id)v1;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink16CrmAgreementCell : UITableViewCell {
+    id cmrAgreementCheckbox;
+    id notificationEnableLabel;
+}
+@property (nonatomic,retain) UIImageView * cmrAgreementCheckbox;
+@property (nonatomic,retain) UILabel * notificationEnableLabel;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink23ReportTypeTableViewCell : UITableViewCell {
     id titleLabel;
     id selectedImageView;
@@ -4774,7 +5141,7 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink27LogbookDetailViewController : _TtC9LibreLink20ApolloViewController {
+@interface _TtC9LibreLink27LogbookDetailViewController : _TtC9LibreLink20ApolloViewController<UITableViewDelegate> {
     id bannerView;
     id trendImageView;
     id unitsLabel;
@@ -4795,10 +5162,10 @@ struct anonymous_type_23 {
     id delegate;
     id selectedGraphReading;
     id selectedReading;
-    id selectedNotes;
+    id selectedNote;
     id selectedDate;
+    id selectedNotes;
     id dailyGraphViewController;
-    id curSliderCoord;
     id hasUpdatedNotes;
 }
 @property (nonatomic,retain) UIView * bannerView;
@@ -4848,8 +5215,10 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC9LibreLink20ApolloViewController : UIViewController
+@property (nonatomic,copy) NSString * title;
 - (void)viewDidLoad;
 - (void)goBack;
+- (void)scanTapped:(id)v1;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 @end
@@ -4970,9 +5339,9 @@ struct anonymous_type_23 {
     id legalAgreementType;
     id isCreatingAccount;
     id isViewingFromSettings;
+    id isViewingRawAgreement;
     id isAcceptingUpdate;
     id accepted;
-    id hipaaAuthEnabled;
     id anchor;
 }
 @property (nonatomic,retain) UIView * legalGuardianWarningContainer;
@@ -5003,7 +5372,6 @@ struct anonymous_type_23 {
     id hidesPageControl;
     id launchedFromMenu;
     id tutorialDelegate;
-    id tutorialType;
     id autoScroll;
     id currentPageIndex;
     id currentViewController;
@@ -5126,8 +5494,8 @@ struct anonymous_type_23 {
     id kPendingSensorUploadKey;
     id kPendingUserSignOutKey;
 }
-- (void)dealloc;
 - (void)reachabilityChangedWithNotification:(id)v1;
+- (void)dealloc;
 - (void)sensorExpiredNotificationWithNotification:(id)v1;
 - (id)init;
 - (void).cxx_destruct;
@@ -5166,13 +5534,33 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink16CrmAgreementCell : UITableViewCell {
-    id cmrAgreementCheckbox;
-    id notificationEnableLabel;
+@interface _TtC9LibreLink21IPGenericWebViewModel : _TtCs12_SwiftObject {
+    id view;
+    id kIPGenericWebViewFullButtonHeight;
+    id kIPGenericWebViewCollapsedButtonHeight;
 }
-@property (nonatomic,retain) UIImageView * cmrAgreementCheckbox;
-@property (nonatomic,retain) UILabel * notificationEnableLabel;
-- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink26IPGenericWebViewController : _TtC9LibreLink20ApolloViewController {
+    id buttonContainer;
+    id acceptButton;
+    id rejectButton;
+    id buttonContainerHeightConstraint;
+    id webView;
+    id viewModel;
+    id isStandalone;
+    id destination;
+}
+@property (nonatomic,retain) UIView * buttonContainer;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton1 * acceptButton;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton3 * rejectButton;
+@property (nonatomic,retain) NSLayoutConstraint * buttonContainerHeightConstraint;
+@property (nonatomic,retain) WKWebView * webView;
+- (void)viewDidLoad;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
@@ -5183,6 +5571,25 @@ struct anonymous_type_23 {
 @interface _TtC9LibreLink29AccountSettingsViewController : _TtC9LibreLink21AccountViewController
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink18InsulinDeviceEntry : _TtCs12_SwiftObject {
+    id deviceTime;
+    id manufacturer;
+    id modelName;
+    id localName;
+    id localModelName;
+    id serialNumber;
+    id systemId;
+    id penColor;
+    id firmwareRevision;
+    id insulinLog;
+    id defaultInsulinType;
+    id defaultInsulinBrand;
+}
 @end
 
 
@@ -5225,6 +5632,67 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink13PenDoseEntity : RealmSwiftObject {
+    id _rowId;
+    id _recordNumber;
+    id _crc;
+    id _doseId;
+    id _amount;
+    id _timestampUTC;
+    id _timestampLocal;
+    id _timeZone;
+    id _secondsSinceDose;
+    id _relativeTimeStamp;
+    id _doseUnits;
+    id _status;
+    id _isNewDose;
+    id _isPrimeDose;
+    id _isPrimeAlgo;
+    id _didEditDose;
+    id _invalid;
+    id _insulinType;
+    id _insulinBrand;
+    id _penName;
+    id _errorPenCode;
+    id _associatedPen;
+}
+@property (nonatomic) long long _rowId;
+@property (nonatomic) long long _recordNumber;
+@property (nonatomic) int _crc;
+@property (nonatomic,copy) NSString * _doseId;
+@property (nonatomic) float _amount;
+@property (nonatomic) long long _timestampUTC;
+@property (nonatomic) long long _timestampLocal;
+@property (nonatomic,copy) NSString * _timeZone;
+@property (nonatomic) long long _secondsSinceDose;
+@property (nonatomic) long long _relativeTimeStamp;
+@property (nonatomic) long long _doseUnits;
+@property (nonatomic) long long _status;
+@property (nonatomic) bool _isNewDose;
+@property (nonatomic) bool _isPrimeDose;
+@property (nonatomic) bool _isPrimeAlgo;
+@property (nonatomic) bool _didEditDose;
+@property (nonatomic) bool _invalid;
+@property (nonatomic,copy) NSString * _insulinType;
+@property (nonatomic,copy) NSString * _insulinBrand;
+@property (nonatomic,copy) NSString * _penName;
+@property (nonatomic,copy) NSString * _errorPenCode;
+@property (nonatomic,retain) _TtC9LibreLink9PenEntity * _associatedPen;
+@property (nonatomic,readonly) NSDate * timestamp;
++ (id)primaryKey;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink22NNPenDoseEntityManager : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink16BGRTextFieldCell : UITableViewCell {
     id textField;
 }
@@ -5240,6 +5708,8 @@ struct anonymous_type_23 {
 @interface _TtC9LibreLink13SensorManager : NSObject {
     id userInterfaceDelegate;
     id _userActivatingNewSensor;
+    id utterance;
+    id synthesizer;
     id nextAsyncStateChangeTimer;
 }
 + (id)shared;
@@ -5257,6 +5727,7 @@ struct anonymous_type_23 {
     id dataPath;
     id skipAgreementUpdatesThisSession;
     id fileManager;
+    id isNovoPenON;
 }
 @property (nonatomic,retain) UIWindow * window;
 - (bool)application:(id)v1 didFinishLaunchingWithOptions:(id)v2;
@@ -5383,7 +5854,6 @@ struct anonymous_type_23 {
 
 @interface _TtC9LibreLink9LLButton3 : UIButton {
     id separator;
-    id bgColor;
 }
 @property (nonatomic,readonly) struct UIEdgeInsets alignmentRectInsets;
 - (void)awakeFromNib;
@@ -5398,6 +5868,7 @@ struct anonymous_type_23 {
 
 @interface _TtC9LibreLink14LLDialogButton : UIButton {
     id separator;
+    id style;
 }
 - (id)initWithFrame:(struct CGRect)v1;
 - (id)initWithCoder:(id)v1;
@@ -5463,6 +5934,33 @@ struct anonymous_type_23 {
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink29IPSetupCompleteViewController : _TtC9LibreLink21IPSetupViewController {
+    id availableAnimations;
+    id actionButton;
+    id animationView;
+    id headingLabel;
+    id messageLabel;
+}
+@property (nonatomic,retain) _TtC9LibreLink9LLButton1 * actionButton;
+@property (nonatomic) _TtC6Lottie13AnimationView * animationView;
+@property (nonatomic) UILabel * headingLabel;
+@property (nonatomic) UILabel * messageLabel;
+- (void)viewDidLoad;
+- (void)actionButtonTapped:(id)v1;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink17NoteEntityManager : _TtCs12_SwiftObject
 @end
 
 
@@ -5572,6 +6070,79 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink22TourTextViewController : _TtC9LibreLink27TutorialSlideViewController {
+    id explanationTextTitleLabel;
+    id explanationTextLabel;
+}
+@property (nonatomic,retain) UILabel * explanationTextTitleLabel;
+@property (nonatomic,retain) UILabel * explanationTextLabel;
+- (void)viewDidLoad;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink28AccountOptionsViewController : _TtC9LibreLink20ApolloViewController {
+    id tableView;
+    id accountOptionsItems;
+}
+@property (nonatomic) _TtC9LibreLink11LLTableView * tableView;
+- (void)viewDidLoad;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink24IPInventoryTableViewCell : UITableViewCell {
+    id titleLabel;
+    id insulinTypeLabel;
+    id insulinBrandLabel;
+    id lastScanTitleLabel;
+    id lastScanDateLabel;
+    id cellImage;
+    id radioImageView;
+    id roundedBackgroundView;
+    id infoButton;
+    id toolTipWidth;
+    id toolTipHeight;
+    id tipWidth;
+    id tipHeight;
+    id tipOriginRTL;
+    id transformationScale;
+    id animateDuration;
+    id animateDelay;
+    id infoButtonToolTipOffset;
+    id toolTipView;
+    id delegate;
+    id myIndex;
+}
+@property (nonatomic,retain) UILabel * titleLabel;
+@property (nonatomic,retain) UILabel * insulinTypeLabel;
+@property (nonatomic,retain) UILabel * insulinBrandLabel;
+@property (nonatomic,retain) UILabel * lastScanTitleLabel;
+@property (nonatomic,retain) UILabel * lastScanDateLabel;
+@property (nonatomic,retain) UIImageView * cellImage;
+@property (nonatomic,retain) UIImageView * radioImageView;
+@property (nonatomic,retain) UIView * roundedBackgroundView;
+@property (nonatomic,retain) UIButton * infoButton;
+- (void)awakeFromNib;
+- (void)settingsButtonTapped:(id)v1;
+- (void)infoButtonTapped:(id)v1;
+- (void)toolTipViewTouchedWithSender:(id)v1;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink16AlarmsFooterView : UITableViewHeaderFooterView {
     id delegate;
     id learnMoreButton;
@@ -5602,7 +6173,7 @@ struct anonymous_type_23 {
 @property (nonatomic,retain) _TtC9LibreLink9LLButton1 * submitButton;
 - (void)viewDidLoad;
 - (void)viewTapped:(id)v1;
-- (void)submitTapped:(id)v1;
+- (void)submitTapped:(id)v1 :(id)v2;
 - (void)dateOfBirthChanged:(id)v1;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
@@ -5649,6 +6220,74 @@ struct anonymous_type_23 {
 @property (nonatomic,retain) _TtC9LibreLink12RegularLabel * timeLabel;
 @property (nonatomic,retain) NSLayoutConstraint * timeLabelCenterYConstraint;
 - (id)initWithFrame:(struct CGRect)v1;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink24IPSettingsViewController : _TtC9LibreLink20ApolloViewController {
+    id tableView;
+    id insulinPen;
+    id rows;
+    id cellSubTitleVerticalConstraintConstant;
+}
+@property (nonatomic,retain) UITableView * tableView;
+- (void)viewDidLoad;
+- (void)viewWillAppear:(bool)v1;
+- (void)viewDidDisappear:(bool)v1;
+- (void)notificationReceived;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink27DeleteAccountViewController : _TtC9LibreLink21AccountViewController {
+    id deleteAccountBannerView;
+    id headerLabel;
+    id passwordPromptLabel;
+    id passwordNoteLabel;
+}
+@property (nonatomic) _TtC9LibreLink8LLBanner * deleteAccountBannerView;
+@property (nonatomic) UILabel * headerLabel;
+@property (nonatomic) UILabel * passwordPromptLabel;
+@property (nonatomic) UILabel * passwordNoteLabel;
+- (void)viewDidLoad;
+- (void)deleteAccountButtonPressed:(id)v1;
+- (void)textFieldDidChangeSelection:(id)v1;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink34DeleteAccountWarningViewController : _TtC9LibreLink20ApolloViewController {
+    id warningHeaderLabel;
+    id noButton;
+    id yesButton;
+    id warningLabel1;
+    id warningLabel2;
+    id warningLabel3;
+    id warningViews;
+    id warningViewsCornerRadius;
+}
+@property (nonatomic) UILabel * warningHeaderLabel;
+@property (nonatomic) _TtC9LibreLink9LLButton3 * noButton;
+@property (nonatomic) _TtC9LibreLink9LLButton1 * yesButton;
+@property (nonatomic) UILabel * warningLabel1;
+@property (nonatomic) UILabel * warningLabel2;
+@property (nonatomic) UILabel * warningLabel3;
+@property (nonatomic,copy) NSArray * warningViews;
+- (void)viewDidLoad;
+- (void)noButtonPressed:(id)v1;
+- (void)yesButtonPressed:(id)v1;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
@@ -5715,14 +6354,12 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC9LibreLink25ScanResultsViewController : _TtC9LibreLink20ApolloViewController {
-    id alarmsUnavailableBanner;
     id warningBannerContainer;
     id scanBannerContainer;
     id dailyGraphContainer;
     id loadingView;
     id loadingIndicator;
     id addNoteButton;
-    id scanButton;
     id scanBanner;
     id warningBanner;
     id dailyGraphViewController;
@@ -5731,7 +6368,6 @@ struct anonymous_type_23 {
     id loading;
     id selectedGraphReading;
 }
-@property (nonatomic,retain) _TtC9LibreLink8LLBanner * alarmsUnavailableBanner;
 @property (nonatomic,retain) UIView * warningBannerContainer;
 @property (nonatomic,retain) UIView * scanBannerContainer;
 @property (nonatomic,retain) UIView * dailyGraphContainer;
@@ -5742,14 +6378,11 @@ struct anonymous_type_23 {
 - (void)viewDidLoad;
 - (void)dealloc;
 - (void)viewWillDisappear:(bool)v1;
-- (void)disableScanButton;
-- (void)enableScanButton;
-- (void)scanTapped:(id)v1;
+- (void)notificationReceived;
 - (bool)gestureRecognizer:(id)v1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)v2;
 - (bool)gestureRecognizer:(id)v1 shouldReceiveTouch:(id)v2;
 - (void)viewTapped:(id)v1;
 - (void)warningViewTapped:(id)v1;
-- (void)updateBanner;
 - (void)dismissalTimerFired:(id)v1;
 - (void)prepareForSegue:(id)v1 sender:(id)v2;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
@@ -5803,6 +6436,11 @@ struct anonymous_type_23 {
     id manufactureRepAddress;
     id manufacturerRepAddressText;
     id ecLogo;
+    id chRepStackView;
+    id chLogo;
+    id manufacturerRepAddressTextAlt;
+    id udiStackView;
+    id udiLabel;
 }
 @property (nonatomic,retain) UIView * medicalDeviceRow;
 @property (nonatomic,retain) UILabel * medicalDeviceLabel;
@@ -5816,7 +6454,25 @@ struct anonymous_type_23 {
 @property (nonatomic,retain) UIView * manufactureRepAddress;
 @property (nonatomic,retain) _TtC9LibreLink12RegularLabel * manufacturerRepAddressText;
 @property (nonatomic,retain) UIView * ecLogo;
+@property (nonatomic) UIStackView * chRepStackView;
+@property (nonatomic) UIImageView * chLogo;
+@property (nonatomic) _TtC9LibreLink12RegularLabel * manufacturerRepAddressTextAlt;
+@property (nonatomic) UIStackView * udiStackView;
+@property (nonatomic) UILabel * udiLabel;
 - (void)awakeFromNib;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink23LogbookPenDoseErrorCell : UITableViewCell {
+    id penDose;
+    id errorLabel;
+}
+@property (nonatomic,retain) UILabel * errorLabel;
 - (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
@@ -5828,47 +6484,6 @@ struct anonymous_type_23 {
 @interface _TtC9LibreLink12GlucoseValue : _TtCs12_SwiftObject {
     id mgdl;
 }
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLink31AlarmsUnavailableViewController : _TtC9LibreLink20ApolloViewController {
-    id cause;
-    id banner;
-    id headingLabel;
-    id label1;
-    id label2;
-    id actionButton;
-}
-@property (nonatomic) _TtC9LibreLink8LLBanner * banner;
-@property (nonatomic) _TtC9LibreLink9BoldLabel * headingLabel;
-@property (nonatomic) _TtC9LibreLink12RegularLabel * label1;
-@property (nonatomic) _TtC9LibreLink12RegularLabel * label2;
-@property (nonatomic) _TtC9LibreLink9LLButton1 * actionButton;
-- (void)viewDidLoad;
-- (void)actionButtonPressed:(id)v1;
-- (id)initWithNibName:(id)v1 bundle:(id)v2;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLink23OSWarningViewController : _TtC9LibreLink24AgreementsViewController {
-    id webView;
-    id nextButton;
-    id buttonContainer;
-}
-@property (nonatomic,retain) WKWebView * webView;
-@property (nonatomic,retain) _TtC9LibreLink9LLButton1 * nextButton;
-@property (nonatomic,retain) UIView * buttonContainer;
-- (void)viewDidLoad;
-- (void)didPressNext:(id)v1;
-- (id)initWithNibName:(id)v1 bundle:(id)v2;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
 @end
 
 
@@ -5922,6 +6537,7 @@ struct anonymous_type_23 {
     id nextButton;
     id checkboxContainer;
     id buttonContainer;
+    id appLocale;
 }
 @property (nonatomic,retain) WKWebView * webView;
 @property (nonatomic,retain) UIImageView * agreeImageView;
@@ -5938,6 +6554,26 @@ struct anonymous_type_23 {
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink12PenDoseEntry : _TtCs12_SwiftObject {
+    id recordNumber;
+    id relativeTimestamp;
+    id elapsedSeconds;
+    id timestamp;
+    id timestampUTC;
+    id value;
+    id insulinType;
+    id insulinBrand;
+    id statusFlags;
+    id primeDose;
+    id primeAlgo;
+    id editDose;
+    id isInvalid;
+}
 @end
 
 
@@ -5998,6 +6634,26 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink28SignOutWarningViewController : _TtC9LibreLink20ApolloViewController {
+    id bannerView;
+    id signOutMessageLabel;
+    id signOutHintLabel;
+    id signOutButton;
+}
+@property (nonatomic) _TtC9LibreLink8LLBanner * bannerView;
+@property (nonatomic) UILabel * signOutMessageLabel;
+@property (nonatomic) UILabel * signOutHintLabel;
+@property (nonatomic) _TtC9LibreLink9LLButton1 * signOutButton;
+- (void)viewDidLoad;
+- (void)signOutPressed:(id)v1;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink11EventEntity : RealmSwiftObject {
     id _id;
     id _timestamp;
@@ -6006,6 +6662,8 @@ struct anonymous_type_23 {
     id _sasExceptionType;
     id _libreViewUploadFailureType;
     id _libreViewUploadFailureCode;
+    id penEventTypeAndStatus;
+    id penErrorDetails;
 }
 @property (nonatomic) int _id;
 @property (nonatomic,copy) NSDate * _timestamp;
@@ -6016,6 +6674,19 @@ struct anonymous_type_23 {
 @property (nonatomic) int _libreViewUploadFailureCode;
 + (id)primaryKey;
 - (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink19IPSetupTextOnlyCell : _TtC9LibreLink17IPChoiceBasicCell {
+    id titleLabel;
+}
+@property (nonatomic,retain) UILabel * titleLabel;
+- (void)awakeFromNib;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
 
@@ -6084,6 +6755,7 @@ struct anonymous_type_23 {
 
 @interface _TtC9LibreLink15LLLineChartView : _TtC6Charts13LineChartView {
     id highlightLineForNotes;
+    id highlightLineForInsulinPenDoses;
     id graphViewModel;
 }
 @property (nonatomic,retain) _TtC6Charts9ChartData * data;
@@ -6131,6 +6803,56 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink35AccountBenefitsContentTableViewCell : UITableViewCell {
+    id icon;
+    id titleLabel;
+    id subTextLabel;
+}
+@property (nonatomic,retain) UIImageView * icon;
+@property (nonatomic,retain) UILabel * titleLabel;
+@property (nonatomic,retain) UILabel * subTextLabel;
+- (void)awakeFromNib;
+- (void)setSelected:(bool)v1 animated:(bool)v2;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink27IPSetupChoiceViewController : _TtC9LibreLink20ApolloViewController {
+    id tableView;
+    id blueBanner;
+    id actionButton;
+    id saveButton;
+    id cancelButton;
+    id footerViewBottomConstraint;
+    id viewModel;
+}
+@property (nonatomic,retain) UITableView * tableView;
+@property (nonatomic,retain) _TtC9LibreLink8LLBanner * blueBanner;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton1 * actionButton;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton1 * saveButton;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton3 * cancelButton;
+@property (nonatomic,retain) NSLayoutConstraint * footerViewBottomConstraint;
+- (void)viewDidLoad;
+- (void)dealloc;
+- (void)viewWillAppear:(bool)v1;
+- (void)viewDidDisappear:(bool)v1;
+- (void)handleKeyboardWillShowWithNotification:(id)v1;
+- (void)handleKeyboardWillHideWithNotification:(id)v1;
+- (void)cancelButtonTapped:(id)v1;
+- (void)saveButtonTapped:(id)v1;
+- (void)didPressNext;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink23RemindersViewController : _TtC9LibreLink20ApolloViewController {
     id remindersTable;
     id nextReminderView;
@@ -6166,19 +6888,6 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink24AppBlockedViewController : _TtC9LibreLink30AppCompatibilityViewController {
-    id mainMessageLabel;
-}
-@property (nonatomic,retain) _TtC9LibreLink9BoldLabel * mainMessageLabel;
-- (void)viewDidLoad;
-- (id)initWithNibName:(id)v1 bundle:(id)v2;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
 @interface _TtC9LibreLink14SensorLifeView : UIView {
     id sensorLifeBarView;
     id sensorLifeLabel;
@@ -6201,6 +6910,14 @@ struct anonymous_type_23 {
 - (void)update;
 - (void)tapped:(id)v1;
 - (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink19PenDoseLogCompletor : _TtCs12_SwiftObject {
+    id numberOfMatchedDosesThreshold;
+}
 @end
 
 
@@ -6247,7 +6964,9 @@ struct anonymous_type_23 {
 - (void)prevDateTapped:(id)v1;
 - (void)nextDateTapped:(id)v1;
 - (long long)tableView:(id)v1 numberOfRowsInSection:(long long)v2;
+- (double)tableView:(id)v1 heightForRowAtIndexPath:(id)v2;
 - (id)tableView:(id)v1 cellForRowAtIndexPath:(id)v2;
+- (void)tableView:(id)v1 didSelectRowAtIndexPath:(id)v2;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
@@ -6292,17 +7011,55 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink28IPScanCompleteViewController : _TtC9LibreLink21IPSetupViewController {
+    id animationView;
+    id headingLabel;
+    id nextButton;
+}
+@property (nonatomic) _TtC6Lottie13AnimationView * animationView;
+@property (nonatomic) UILabel * headingLabel;
+@property (nonatomic) _TtC9LibreLink9LLButton1 * nextButton;
+- (void)viewDidLoad;
+- (void)didPressNext;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink31IPTutorialScanPenViewController : _TtC9LibreLink20ApolloViewController {
+    id coordinator;
+    id animationView;
+    id messageLabel;
+    id messageTitleLabel;
+}
+@property (nonatomic) _TtC6Lottie13AnimationView * animationView;
+@property (nonatomic) UILabel * messageLabel;
+@property (nonatomic) UILabel * messageTitleLabel;
+- (void)viewDidLoad;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink24AddNoteQuantityTableCell : UITableViewCell {
     id quantityTextField;
     id unitsLabel;
     id topCellConstraint;
+    id separator;
     id delegate;
-    id itemType;
+    id noteItem;
     id useGrams;
 }
 @property (nonatomic,retain) _TtC9LibreLink16RegularTextField * quantityTextField;
 @property (nonatomic,retain) UILabel * unitsLabel;
 @property (nonatomic,retain) NSLayoutConstraint * topCellConstraint;
+@property (nonatomic,retain) UIView * separator;
 - (void)prepareForReuse;
 - (void)editDoneTapped:(id)v1;
 - (void)textFieldDidEndEditing:(id)v1;
@@ -6315,13 +7072,17 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink32CompatibilityGuideViewController : _TtC9LibreLink20ApolloViewController {
-    id webView;
-    id request;
+@interface _TtC9LibreLink18IPSettingsViewCell : UITableViewCell {
+    id titleLabel;
+    id subTitleLabel;
+    id titleLabelVerticalCenterConstraint;
 }
-@property (nonatomic,retain) WKWebView * webView;
-- (void)viewDidLoad;
-- (id)initWithNibName:(id)v1 bundle:(id)v2;
+@property (nonatomic,retain) UILabel * titleLabel;
+@property (nonatomic,retain) UILabel * subTitleLabel;
+@property (nonatomic,retain) NSLayoutConstraint * titleLabelVerticalCenterConstraint;
+- (void)awakeFromNib;
+- (void)setSelected:(bool)v1 animated:(bool)v2;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
@@ -6769,33 +7530,12 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink22TourTextViewController : _TtC9LibreLink27TutorialSlideViewController {
-    id explanationTextTitleLabel;
-    id explanationTextLabel;
-}
-@property (nonatomic,retain) UILabel * explanationTextTitleLabel;
-@property (nonatomic,retain) UILabel * explanationTextLabel;
-- (void)viewDidLoad;
-- (id)initWithNibName:(id)v1 bundle:(id)v2;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
 @interface _TtC9LibreLink8LLBanner : UIView {
     id textField;
-    id heightConstraint;
-    id topConstraint;
-    id rightConstraint;
-    id bottomConstraint;
-    id leftConstraint;
     id text;
     id textLabel;
 }
 @property (nonatomic,retain) UITextField * textField;
-@property (nonatomic,retain) NSLayoutConstraint * heightConstraint;
 @property (nonatomic,copy) NSString * text;
 - (id)initWithCoder:(id)v1;
 - (id)initWithFrame:(struct CGRect)v1;
@@ -6815,6 +7555,8 @@ struct anonymous_type_23 {
     id _event;
     id _glucoseAlarmsState;
     id _glucoseAlarmsSettings;
+    id _penUDOUploadPending;
+    id _sensorStarts;
 }
 @property (nonatomic) int _id;
 @property (nonatomic) int _realTimeGlucose;
@@ -6825,6 +7567,8 @@ struct anonymous_type_23 {
 @property (nonatomic) int _event;
 @property (nonatomic) int _glucoseAlarmsState;
 @property (nonatomic) int _glucoseAlarmsSettings;
+@property (nonatomic) bool _penUDOUploadPending;
+@property (nonatomic) int _sensorStarts;
 - (id)init;
 @end
 
@@ -6845,20 +7589,15 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink27DeleteAccountViewController : _TtC9LibreLink21AccountViewController {
-    id deleteAccountBannerView;
-    id headerLabel;
-    id passwordPromptLabel;
-    id passwordNoteLabel;
+@interface _TtC9LibreLink20AddNoteNameTableCell : UITableViewCell {
+    id dropdownLabel;
+    id bottomConstraint;
+    id noteItem;
 }
-@property (nonatomic) _TtC9LibreLink8LLBanner * deleteAccountBannerView;
-@property (nonatomic) UILabel * headerLabel;
-@property (nonatomic) UILabel * passwordPromptLabel;
-@property (nonatomic) UILabel * passwordNoteLabel;
-- (void)viewDidLoad;
-- (void)deleteAccountButtonPressed:(id)v1;
-- (void)textFieldDidChangeSelection:(id)v1;
-- (id)initWithNibName:(id)v1 bundle:(id)v2;
+@property (nonatomic,retain) UILabel * dropdownLabel;
+@property (nonatomic,retain) NSLayoutConstraint * bottomConstraint;
+- (void)prepareForReuse;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
@@ -6875,21 +7614,6 @@ struct anonymous_type_23 {
 - (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLink15AlarmsUIManager : _TtCs12_SwiftObject {
-    id appBlocked;
-    id userDefaults;
-    id kAppBlockedStartTimeKey;
-    id blockedWindow;
-    id highVisibilityAlarmsCauses;
-}
-- (void)didBecomeActive;
-- (void)didUpdateAlarmsAvailable;
-- (void)openAlarmsUnavailableModalForCurrentCause;
 @end
 
 
@@ -6920,8 +7644,6 @@ struct anonymous_type_23 {
 @property (nonatomic,retain) _TtC9LibreLink13LLCheckButton * scanGlucoseButton;
 - (void)viewDidLoad;
 - (void)scanGlucoseButtonPressed:(id)v1;
-- (void)disableScanButton;
-- (void)enableScanButton;
 - (void)showTour:(id)v1;
 - (void)navigate:(id)v1;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
@@ -6946,19 +7668,6 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink25AppUntestedViewController : _TtC9LibreLink30AppCompatibilityViewController {
-    id mainMessageLabel;
-}
-@property (nonatomic,retain) _TtC9LibreLink12RegularLabel * mainMessageLabel;
-- (void)viewDidLoad;
-- (id)initWithNibName:(id)v1 bundle:(id)v2;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
 @interface _TtC9LibreLink25SensorReadyViewController : _TtC9LibreLink20ApolloViewController {
     id sensorLifeView;
     id instructionImageView;
@@ -6971,8 +7680,6 @@ struct anonymous_type_23 {
 @property (nonatomic,retain) _TtC9LibreLink13LLCheckButton * checkGlucoseButton;
 - (void)viewDidLoad;
 - (void)updateSensorInformation;
-- (void)disableScanButton;
-- (void)enableScanButton;
 - (void)scanGlucoseButtonPressed:(id)v1;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
@@ -6982,23 +7689,56 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink23AddNoteChoicesTableCell : UITableViewCell {
-    id choiceOneLabel;
-    id choiceTwoLabel;
-    id choiceThreeLabel;
-    id choiceFourLabel;
-    id choiceFourHeightConstraint;
-    id choiceFourBottomConstraint;
-    id delegate;
-    id itemType;
+@interface _TtC9LibreLink24IPBenefitsViewController : _TtC9LibreLink21IPSetupViewController {
+    id emptyPenImageCellIdentifier;
+    id cellIdentifier;
+    id cellTitleLabelTag;
+    id cellSubtitleLabelTag;
+    id cellImageViewTag;
+    id getStartedButton;
+    id benefitItems;
 }
-@property (nonatomic,retain) UILabel * choiceOneLabel;
-@property (nonatomic,retain) UILabel * choiceTwoLabel;
-@property (nonatomic,retain) UILabel * choiceThreeLabel;
-@property (nonatomic,retain) UILabel * choiceFourLabel;
-@property (nonatomic,retain) NSLayoutConstraint * choiceFourHeightConstraint;
-@property (nonatomic,retain) NSLayoutConstraint * choiceFourBottomConstraint;
+@property (nonatomic) UIButton * getStartedButton;
+- (void)viewDidLoad;
+- (void)getStartedButtonTapped;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink23AddNoteChoicesTableCell : UITableViewCell {
+    id choicesStackView;
+    id choiceOneButton;
+    id choiceTwoButton;
+    id choiceThreeButton;
+    id choiceFourButton;
+    id delegate;
+    id noteItem;
+}
+@property (nonatomic,retain) UIStackView * choicesStackView;
+@property (nonatomic,retain) UIButton * choiceOneButton;
+@property (nonatomic,retain) UIButton * choiceTwoButton;
+@property (nonatomic,retain) UIButton * choiceThreeButton;
+@property (nonatomic,retain) UIButton * choiceFourButton;
 - (void)choiceTapped:(id)v1;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink21IPSetupDoubleTextCell : _TtC9LibreLink17IPChoiceBasicCell {
+    id titleLabel;
+    id valueLabel;
+}
+@property (nonatomic,retain) UILabel * titleLabel;
+@property (nonatomic,retain) UILabel * valueLabel;
+- (void)awakeFromNib;
 - (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
@@ -7074,6 +7814,14 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink16ConnectecDevices : _TtCs12_SwiftObject {
+    id insulinDevices;
+}
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink20DualLineChartDataSet : _TtC6Charts16LineChartDataSet {
     id lowValues;
     id highValues;
@@ -7087,6 +7835,50 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC9LibreLink28LowGlucoseEventsModelBuilder : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink10DeviceData : _TtCs12_SwiftObject {
+    id deviceSettings;
+    id header;
+    id measurementLog;
+    id connectedDevices;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink14DeviceSettings : _TtCs12_SwiftObject {
+    id factoryConfig;
+    id firmwareVersion;
+    id miscellaneous;
+    id timestamp;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink6Header : _TtCs12_SwiftObject {
+    id device;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink14MeasurementLog : _TtCs12_SwiftObject {
+    id capabilities;
+    id scheduledContinuousGlucoseEntries;
+    id unscheduledContinuousGlucoseEntries;
+    id bloodGlucoseEntries;
+    id insulinEntries;
+    id foodEntries;
+    id genericEntries;
+}
 @end
 
 
@@ -7123,11 +7915,13 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink27AppCompatibleViewController : _TtC9LibreLink30AppCompatibilityViewController {
-    id mainMessageLabel;
+@interface _TtC9LibreLink34InitialCreateAccountViewController : _TtC9LibreLink21AccountViewController {
+    id getStartedLabel;
 }
-@property (nonatomic,retain) _TtC9LibreLink12RegularLabel * mainMessageLabel;
+@property (nonatomic,retain) UILabel * getStartedLabel;
 - (void)viewDidLoad;
+- (void)initialDateOfBirthChanged:(id)v1;
+- (void)goBack;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
@@ -7136,12 +7930,21 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink34InitialCreateAccountViewController : _TtC9LibreLink21AccountViewController {
-    id getStartedLabel;
+@interface _TtC9LibreLink21IPAboutViewController : _TtC9LibreLink20ApolloViewController {
+    id tableView;
+    id forgetActionButton;
+    id forgetButtonYConstraint;
+    id coordinator;
+    id insulinPen;
+    id showPrivacy;
+    id aboutRows;
 }
-@property (nonatomic,retain) UILabel * getStartedLabel;
+@property (nonatomic,retain) UITableView * tableView;
+@property (nonatomic,retain) UIButton * forgetActionButton;
+@property (nonatomic,retain) NSLayoutConstraint * forgetButtonYConstraint;
 - (void)viewDidLoad;
-- (void)initialDateOfBirthChanged:(id)v1;
+- (void)viewDidLayoutSubviews;
+- (void)forgetPenButtonTapped:(id)v1;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
@@ -7170,6 +7973,19 @@ struct anonymous_type_23 {
 }
 - (id)initWithCoder:(id)v1;
 - (id)initWithFrame:(struct CGRect)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink20IPSetupImageOnlyCell : _TtC9LibreLink17IPChoiceBasicCell {
+    id cellImage;
+}
+@property (nonatomic,retain) UIImageView * cellImage;
+- (void)awakeFromNib;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
 
@@ -7265,6 +8081,20 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink34AccountBenefitsHeaderTableViewCell : UITableViewCell {
+    id titleLabel;
+}
+@property (nonatomic,retain) UILabel * titleLabel;
+- (void)awakeFromNib;
+- (void)setSelected:(bool)v1 animated:(bool)v2;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink36BackgroundGlucoseColorViewController : _TtC9LibreLink27TutorialSlideViewController {
     id highGlucoseLabel;
     id betweenTargetand240Label;
@@ -7285,6 +8115,25 @@ struct anonymous_type_23 {
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink18IPSetupCoordinator : _TtCs12_SwiftObject {
+    id insulinPenBeingSetup;
+    id preSelectedInsulinPenSetup;
+    id insulinPenScanResult;
+    id penSetupCurrentStage;
+    id penSetupMode;
+    id setupNavController;
+    id penSetupViewOrder;
+    id insulinPickerDelegate;
+    id isFromHalfSheet;
+    id insulinBrandPickerDelegate;
+}
+- (void)goBackin;
+- (void)notificationReceived;
 @end
 
 
@@ -7339,61 +8188,16 @@ struct anonymous_type_23 {
 @interface _TtC9LibreLink20AlarmFormOptionField : UITableViewCell {
     id titleLabel;
     id valueLabel;
-    id rightCaret;
     id alarm;
     id delegate;
 }
 @property (nonatomic,retain) UILabel * titleLabel;
 @property (nonatomic,retain) UILabel * valueLabel;
-@property (nonatomic) UIImageView * rightCaret;
 - (void)awakeFromNib;
 - (void)setSelected:(bool)v1 animated:(bool)v2;
 - (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLinkP33_BD34A3181E7877CE1E2D8CE1DD93FBFC10DeviceData : _TtCs12_SwiftObject {
-    id deviceSettings;
-    id header;
-    id measurementLog;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLinkP33_BD34A3181E7877CE1E2D8CE1DD93FBFC14DeviceSettings : _TtCs12_SwiftObject {
-    id factoryConfig;
-    id firmwareVersion;
-    id miscellaneous;
-    id timestamp;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLinkP33_BD34A3181E7877CE1E2D8CE1DD93FBFC6Header : _TtCs12_SwiftObject {
-    id device;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLinkP33_BD34A3181E7877CE1E2D8CE1DD93FBFC14MeasurementLog : _TtCs12_SwiftObject {
-    id capabilities;
-    id scheduledContinuousGlucoseEntries;
-    id unscheduledContinuousGlucoseEntries;
-    id bloodGlucoseEntries;
-    id insulinEntries;
-    id foodEntries;
-    id genericEntries;
-}
 @end
 
 
@@ -7433,6 +8237,46 @@ struct anonymous_type_23 {
 - (id)initWithCoder:(id)v1;
 - (void)awakeFromNib;
 - (void)prepareForReuse;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink10NoteEntity : RealmSwiftObject {
+    id _id;
+    id _timestampLocal;
+    id _timestampUTC;
+    id _timeZone;
+    id _foodTag;
+    id _foodType;
+    id _foodGramsCarbs;
+    id _foodServingSize;
+    id _fastInsulinTag;
+    id _fastInsulinDose;
+    id _slowInsulinTag;
+    id _slowInsulinDose;
+    id _exerciseTag;
+    id _exerciseIntensity;
+    id _exerciseDurationInMinutes;
+    id _comment;
+    id _isDeleted;
+    id _penDose;
+}
+@property (nonatomic) int _id;
+@property (nonatomic) long long _timestampLocal;
+@property (nonatomic) long long _timestampUTC;
+@property (nonatomic,copy) NSString * _timeZone;
+@property (nonatomic) bool _foodTag;
+@property (nonatomic) bool _fastInsulinTag;
+@property (nonatomic) bool _slowInsulinTag;
+@property (nonatomic) bool _exerciseTag;
+@property (nonatomic,copy) NSString * _comment;
+@property (nonatomic) bool _isDeleted;
+@property (nonatomic,retain) _TtC9LibreLink13PenDoseEntity * _penDose;
+@property (nonatomic,readonly) NSDate * timestamp;
++ (id)primaryKey;
+- (id)init;
 - (void).cxx_destruct;
 @end
 
@@ -7530,13 +8374,24 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink17PenDataBaseHelper : NSObject {
+    id realmDBHandler;
+}
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink18MainViewController : _TtC9LibreLink20ApolloViewController {
     id mainContainerView;
     id menuContainerView;
     id menuShadeView;
     id menuContainerWidthConstraint;
     id menuContainerLeadingConstraint;
-    id scanButton;
+    id isPickingNewInsulinType;
+    id insulinPenSerialHeldForBottomSheet;
     id isMenuOpen;
     id isAnimatingMenu;
     id currentViewController;
@@ -7544,6 +8399,8 @@ struct anonymous_type_23 {
     id pushingScanResultsViewController;
     id homeContainerViewController;
     id titleLogoImageView;
+    id utterance;
+    id synthesizer;
 }
 @property (nonatomic,retain) UIView * mainContainerView;
 @property (nonatomic,retain) UIView * menuContainerView;
@@ -7552,16 +8409,18 @@ struct anonymous_type_23 {
 @property (nonatomic,retain) NSLayoutConstraint * menuContainerLeadingConstraint;
 - (void)viewDidLoad;
 - (void)dealloc;
-- (void)disableScanButton;
-- (void)enableScanButton;
 - (void)menuShadeViewTapped:(id)v1;
 - (void)prepareForSegue:(id)v1 sender:(id)v2;
 - (void)updateShownAlarmsAvailableStatus:(id)v1;
-- (void)appDidBecomeActiveWithNotification:(id)v1;
+- (void)navigateFromInsulinPenBenefitsToInventory:(id)v1;
+- (void)replaceEmptyInsulinPenInventoryWithIPBenefits:(id)v1;
+- (void)setupPenThroughIPView:(id)v1;
+- (void)displayIPBottomSheet:(id)v1;
+- (void)displayInsulinPicker:(id)v1;
 - (void)displayHomeViewController:(id)v1;
-- (void)scanTapped:(id)v1;
 - (void)menuButtonTapped:(id)v1 forEvent:(id)v2;
 - (void)menuSwipeWithRecognizer:(id)v1;
+- (void)showLogBook;
 - (void)showAlarmsSettingsWithTutorialAndModal:(id)v1;
 - (void)sensorManagerDidDetectScan:(id)v1;
 - (void)sensorManagerDidDetectActivation:(id)v1;
@@ -7570,6 +8429,35 @@ struct anonymous_type_23 {
 - (bool)gestureRecognizerShouldBegin:(id)v1;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink17IPChoiceBasicCell : UITableViewCell {
+    id radioImageView;
+    id roundedBackgroundView;
+}
+@property (nonatomic,retain) UIImageView * radioImageView;
+@property (nonatomic,retain) UIView * roundedBackgroundView;
+- (void)awakeFromNib;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink17DeletedNoteEntity : RealmSwiftObject {
+    id _id;
+    id _note;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC9LibreLink10NoteEntity * _note;
++ (id)primaryKey;
+- (id)init;
 - (void).cxx_destruct;
 @end
 
@@ -7603,6 +8491,50 @@ struct anonymous_type_23 {
 - (double)transitionDuration:(id)v1;
 - (void)animateTransition:(id)v1;
 - (id)init;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink22IPBottomSheetViewModel : _TtCs12_SwiftObject {
+    id innerViewHeight;
+    id backgroundColorAlphaComponent;
+    id viewCornerRadius;
+    id standardCellRowHeight;
+    id errorCellRowHeight;
+    id errorBannerInnerViewCornerRadius;
+    id errorBannerInnerViewXOffset;
+    id errorBannerInnerViewWidthDecrement;
+    id errorBannerInnerViewHeightDecrement;
+    id errorBannerImageTopEdgeInset;
+    id errorBannerImageSideEdgeInset;
+    id errorBannerStringCharacterLimit;
+    id viewController;
+    id replacementInsulinTypeBrand;
+    id isPresenting;
+    id penOperationManager;
+    id penErrorUIManager;
+    id scannedPenSerial;
+    id penData;
+    id newDosesCount;
+    id errorsFound;
+    id errorBannerType;
+    id penStatusForModal;
+    id penType;
+    id cat5ErrorDose;
+    id adjustErrorBannerHeight;
+}
+- (void)exitIPBottomSheet:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink25ErrorInjectionNfcRfModule : _TtCs12_SwiftObject {
+    id innerRfModule;
+    id injectPartialActivationFailure;
+    id failEnableStreamingCommand;
+}
 @end
 
 
@@ -7678,13 +8610,14 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC9LibreLink14LLCustomDialog : UIView {
+    id utterance;
+    id synthesizer;
     id backgroundView;
     id buttonLayout;
     id backgroundDismiss;
     id title;
     id message;
     id attributedMessage;
-    id closeCallback;
     id tapGesture;
     id actions;
     id container;
@@ -7743,7 +8676,6 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC9LibreLink27HomeContainerViewController : _TtC9LibreLink20ApolloViewController {
-    id banner;
     id embedContainer;
     id currentViewController;
     id animationDuration;
@@ -7754,10 +8686,8 @@ struct anonymous_type_23 {
     id _sensorReadyViewController;
     id oneDayWithoutDataTimer;
 }
-@property (nonatomic,retain) _TtC9LibreLink8LLBanner * banner;
 @property (nonatomic,retain) UIView * embedContainer;
 - (void)viewDidLoad;
-- (void)viewDidAppear:(bool)v1;
 - (void)dealloc;
 - (void)viewWillAppear:(bool)v1;
 - (void)prepareForSegue:(id)v1 sender:(id)v2;
@@ -7807,6 +8737,21 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink22IPSetupTextWithPicCell : _TtC9LibreLink17IPChoiceBasicCell {
+    id titleLabel;
+    id cellImage;
+}
+@property (nonatomic,retain) UILabel * titleLabel;
+@property (nonatomic,retain) UIImageView * cellImage;
+- (void)awakeFromNib;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink11LLTableView : UITableView
 - (id)initWithCoder:(id)v1;
 - (id)initWithFrame:(struct CGRect)v1 style:(long long)v2;
@@ -7824,7 +8769,37 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink20IPInventoryViewModel : NSObject {
+    id delegate;
+    id dosesDownloadedForAtleast1Pen;
+}
+- (void)loadDataFromBackGroundScan;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink26AverageGlucoseModelBuilder : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink15IPTableViewCell : UITableViewCell {
+    id roundedBackgroundView;
+    id penLogoImageView;
+    id radioImageView;
+}
+@property (nonatomic,retain) UIView * roundedBackgroundView;
+@property (nonatomic,retain) UIImageView * penLogoImageView;
+@property (nonatomic,retain) UIImageView * radioImageView;
+- (void)awakeFromNib;
+- (void)setSelected:(bool)v1 animated:(bool)v2;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
 @end
 
 
@@ -7850,6 +8825,7 @@ struct anonymous_type_23 {
     id displayVersionType;
     id aboutCellValues;
     id aboutCellData;
+    id fileManager;
 }
 - (void)dealloc;
 - (void)viewDidLoad;
@@ -7891,11 +8867,19 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink10NfcManager : NSObject {
-    id blocked;
-    id concurrentQueue;
-    id currentSession;
-    id scanEndTask;
+@interface _TtC9LibreLink10InsulinPen : NSObject {
+    id penType;
+    id name;
+    id imageString;
+    id color;
+    id desc;
+    id insulinType;
+    id insulinBrand;
+    id manufacturer;
+    id serialNumber;
+    id modelName;
+    id firmware;
+    id enabled;
 }
 - (id)init;
 - (void).cxx_destruct;
@@ -7904,7 +8888,24 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink17AddNoteDetailItem : _TtCs12_SwiftObject {
+@interface _TtC9LibreLink10NfcManager : NSObject {
+    id penOperationManager;
+    id nnPasManager;
+    id isNovoPenON;
+    id penSetupCoordinator;
+    id modalDelayTime;
+    id currentSession;
+    id cancelTimer;
+    id cancelSession;
+}
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink17AddNoteDetailItem : _TtCs12_SwiftObject<NSCopying> {
     id type;
     id isSelected;
     id quantity;
@@ -7913,15 +8914,24 @@ struct anonymous_type_23 {
     id units;
     id mealType;
     id exerciseType;
+    id penName;
+    id penDoseType;
+    id penInsulinType;
+    id penInsulinBrand;
+    id penInsulinError;
+    id penInsulinStatus;
     id comment;
     id useGrams;
 }
+- (id)copyWithZone:(void *)v1;
 @end
 
 
 /*****************************************************************/
 
 @interface _TtC9LibreLink14AddNoteManager : _TtCs12_SwiftObject {
+    id noteItems;
+    id orderedKeys;
     id items;
 }
 @end
@@ -7936,6 +8946,9 @@ struct anonymous_type_23 {
     id trendImageView;
     id nonActionableIconView;
     id dateTimeLabel;
+    id errorView;
+    id errorLabel;
+    id errorButton;
     id noteTable;
     id doneButton;
     id buttonContainer;
@@ -7950,6 +8963,7 @@ struct anonymous_type_23 {
     id delegate;
     id fromLogbook;
     id isModal;
+    id isPenDoseDropDownOpen;
     id noteManager;
     id progressHUD;
 }
@@ -7959,6 +8973,9 @@ struct anonymous_type_23 {
 @property (nonatomic,retain) UIImageView * trendImageView;
 @property (nonatomic,retain) UIImageView * nonActionableIconView;
 @property (nonatomic,retain) _TtC9LibreLink12RegularLabel * dateTimeLabel;
+@property (nonatomic,retain) UIView * errorView;
+@property (nonatomic,retain) UILabel * errorLabel;
+@property (nonatomic,retain) UIButton * errorButton;
 @property (nonatomic,retain) UITableView * noteTable;
 @property (nonatomic,retain) _TtC9LibreLink12ActionButton * doneButton;
 @property (nonatomic,retain) UIView * buttonContainer;
@@ -7967,6 +8984,8 @@ struct anonymous_type_23 {
 @property (nonatomic,retain) UIView * textContainer;
 @property (nonatomic,retain) NSLayoutConstraint * textLeadingConstraint;
 - (void)viewDidLoad;
+- (void)viewWillAppear:(bool)v1;
+- (void)showError;
 - (void)dealloc;
 - (void)cancelTapped:(id)v1;
 - (void)doneTapped:(id)v1;
@@ -7991,6 +9010,67 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink29AccountBenefitsViewController : _TtC9LibreLink20ApolloViewController {
+    id kSignInButtonHeightConstraint;
+    id tableView;
+    id createAccountButton;
+    id backButton;
+    id signinButtonHeightConstraint;
+    id signInButton;
+    id hideSkipButton;
+    id accountBenefitItems;
+}
+@property (nonatomic,retain) UITableView * tableView;
+@property (nonatomic,retain) UIButton * createAccountButton;
+@property (nonatomic,retain) UIButton * backButton;
+@property (nonatomic,retain) NSLayoutConstraint * signinButtonHeightConstraint;
+@property (nonatomic) UIButton * signInButton;
+- (void)viewDidLoad;
+- (void)viewDidLayoutSubviews;
+- (void)createAccountButtonTapped:(id)v1;
+- (void)skipButtonTapped;
+- (void)closeButtonTapped;
+- (void)signInButtonTapped;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink25IPInventoryViewController : _TtC9LibreLink20ApolloViewController {
+    id tableView;
+    id bannerLabel;
+    id addPenImageView;
+    id actionButtonLabel;
+    id addPenActionButton;
+    id tapRecognizer;
+    id userInsulinPens;
+    id isToolTipActive;
+    id toolTipCellIdx;
+    id isNovoPenON;
+    id viewModel;
+}
+@property (nonatomic,retain) UITableView * tableView;
+@property (nonatomic,retain) _TtC9LibreLink8LLBanner * bannerLabel;
+@property (nonatomic) UIImageView * addPenImageView;
+@property (nonatomic,retain) UILabel * actionButtonLabel;
+@property (nonatomic) UIButton * addPenActionButton;
+- (void)viewDidLoad;
+- (void)viewWillAppear:(bool)v1;
+- (void)viewDidDisappear:(bool)v1;
+- (void)unwindToIPInventory:(id)v1;
+- (void)addPen;
+- (void)notificationReceived;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink22AlarmBoolTableViewCell : UITableViewCell {
     id titleLabel;
     id subtitleLabel;
@@ -8003,6 +9083,60 @@ struct anonymous_type_23 {
 @property (nonatomic,retain) UISwitch * boolSwitch;
 - (void)boolSwitchValueChanged;
 - (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink21PenRecordNumberEntity : RealmSwiftObject {
+    id _id;
+    id _nextPenDoseEntityId;
+    id _nextPenEntityId;
+}
+@property (nonatomic) long long _id;
+@property (nonatomic) long long _nextPenDoseEntityId;
+@property (nonatomic) long long _nextPenEntityId;
+- (id)init;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink28PenRecordNumberEntityManager : NSObject
+- (id)init;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink24IPInsulinTypeBrandPicker : _TtC9LibreLink20ApolloViewController {
+    id tableView;
+    id blueBanner;
+    id actionButton;
+    id saveButton;
+    id cancelButton;
+    id type;
+    id delegate;
+    id editingNotPicking;
+    id data;
+    id stubbedBrandData;
+    id initialPenData;
+    id updatedPenData;
+    id reloadSections;
+    id sectionHeaderHeight;
+    id isNovoPen;
+}
+@property (nonatomic,retain) UITableView * tableView;
+@property (nonatomic,retain) _TtC9LibreLink8LLBanner * blueBanner;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton1 * actionButton;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton1 * saveButton;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton3 * cancelButton;
+- (void)viewDidLoad;
+- (void)cancelButtonTapped:(id)v1;
+- (void)didTapSave;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
@@ -8049,6 +9183,22 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC9LibreLink12AlarmsModule : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink10PASManager : _TtCs12_SwiftObject {
+    id novoPenManager;
+    id coordinator;
+    id newPenSetupFlow;
+    id delegate;
+    id novoPens;
+    id pdbManager;
+    id currentNewPenBeingscanned;
+    id isInsulinPenFeature;
+    id modalDelayTime;
+}
 @end
 
 
@@ -8105,7 +9255,11 @@ struct anonymous_type_23 {
     id userToken;
     id accountId;
     id minorRule;
-    id didAcceptCRMAgreement;
+    id remoteDidAcceptHipaa;
+    id localDidAcceptHipaa;
+    id localDidAcceptNovo;
+    id remoteDidAcceptNovo;
+    id isTransitioningToAccounted;
     id transitionableSensorSerialNumber;
     id kLibreviewFirstNameKey;
     id kLibreviewLastNameKey;
@@ -8117,9 +9271,15 @@ struct anonymous_type_23 {
     id kLibreviewUserTokenKey;
     id kLibreviewAccountIdKey;
     id kLibreviewMinorRuleKey;
-    id kLibreviewDidAcceptCRMAgreement;
+    id kLibreviewRemoteDidAcceptHipaaKey;
+    id kLibreviewRemoteDidAcceptRweKey;
+    id kLibreviewLocalDidAcceptHipaaKey;
+    id kLibreviewLocalDidAcceptRweKey;
+    id kLibreviewRemoteDidAcceptNovoKey;
+    id kLibreviewLocalDidAcceptNovoKey;
     id kLibreviewTransitionableSensorSerialNumberKey;
     id kLibreViewIsConnectedKey;
+    id kLibreviewPreviousUserEmailKey;
     id user;
 }
 @end
@@ -8166,6 +9326,21 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink11ApduUtility : NSObject
+- (id)init;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtCC9LibreLink11ApduUtility9Timestamp : _TtCs12_SwiftObject {
+    id $__lazy_storage_$_dateFormatter;
+}
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink13HelpTableCell : _TtC9LibreLink15LLTableViewCell {
     id helpLabel;
 }
@@ -8202,7 +9377,47 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink24IPTypeSelectionViewModel : _TtCs12_SwiftObject {
+    id maxCharLengthPenName;
+    id insulinPenSetupType;
+    id view;
+    id data;
+    id selectedOption;
+    id stubbedBrandData;
+    id coordinator;
+    id initialPenData;
+    id isNovoPen;
+}
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink24TimeInTargetModelBuilder : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink27IPBottomSheetViewController : _TtC9LibreLink20ApolloViewController {
+    id bottomSheetInnerView;
+    id bottomSheetPenImageView;
+    id bottomSheetPenNameLabel;
+    id exitBottomSheetButton;
+    id bottomSheetTableView;
+    id viewModel;
+}
+@property (nonatomic) UIView * bottomSheetInnerView;
+@property (nonatomic) UIImageView * bottomSheetPenImageView;
+@property (nonatomic) UILabel * bottomSheetPenNameLabel;
+@property (nonatomic) UIButton * exitBottomSheetButton;
+@property (nonatomic) UITableView * bottomSheetTableView;
+- (id)initWithCoder:(id)v1;
+- (void)viewDidLoad;
+- (void)viewDidDisappear:(bool)v1;
+- (void)exitBottomSheetButtonPress:(id)v1;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (void).cxx_destruct;
 @end
 
 
@@ -8235,12 +9450,29 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC9LibreLink12ReminderList : _TtCs12_SwiftObject {
-    id blocked;
     id notificationSerialQueue;
     id databaseSerialQueue;
     id timerIds;
     id alarmIds;
 }
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink22IPSelectViewController : _TtC9LibreLink21IPSetupViewController {
+    id tableView;
+    id blueBanner;
+    id actionButton;
+}
+@property (nonatomic,retain) UITableView * tableView;
+@property (nonatomic,retain) _TtC9LibreLink8LLBanner * blueBanner;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton1 * actionButton;
+- (void)viewDidLoad;
+- (void)didPressNext;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
 @end
 
 
@@ -8266,114 +9498,6 @@ struct anonymous_type_23 {
 - (void)viewDidLoad;
 - (void)dealloc;
 - (void)updateCountdown;
-- (id)initWithNibName:(id)v1 bundle:(id)v2;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLink30AppCompatibilityViewController : _TtC9LibreLink20ApolloViewController {
-    id currentUIflow;
-    id messageLabel;
-    id nextButton;
-    id imageContainer;
-    id informationButton;
-}
-@property (nonatomic,retain) _TtC9LibreLink12RegularLabel * messageLabel;
-@property (nonatomic,retain) _TtC9LibreLink9LLButton1 * nextButton;
-@property (nonatomic,retain) UIImageView * imageContainer;
-@property (nonatomic,retain) UIButton * informationButton;
-- (void)viewDidLoad;
-- (void)didPressNext:(id)v1;
-- (void)goBack;
-- (id)initWithNibName:(id)v1 bundle:(id)v2;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLink17DeletedNoteEntity : RealmSwiftObject {
-    id _id;
-    id _note;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC9LibreLink10NoteEntity * _note;
-+ (id)primaryKey;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLink10NoteEntity : RealmSwiftObject {
-    id _id;
-    id _timestampLocal;
-    id _timestampUTC;
-    id _timeZone;
-    id _foodTag;
-    id _foodType;
-    id _foodGramsCarbs;
-    id _foodServingSize;
-    id _fastInsulinTag;
-    id _fastInsulinDose;
-    id _slowInsulinTag;
-    id _slowInsulinDose;
-    id _exerciseTag;
-    id _exerciseIntensity;
-    id _exerciseDurationInMinutes;
-    id _comment;
-    id _isDeleted;
-    id kNoteDetailExerciseString;
-    id kNoteDetailMinutesSingularString;
-    id kNoteDetailMinutesPluralString;
-    id kNoteDetailHoursSingularString;
-    id kNoteDetailHoursPluralString;
-}
-@property (nonatomic) int _id;
-@property (nonatomic) long long _timestampLocal;
-@property (nonatomic) long long _timestampUTC;
-@property (nonatomic,copy) NSString * _timeZone;
-@property (nonatomic) bool _foodTag;
-@property (nonatomic) bool _fastInsulinTag;
-@property (nonatomic) bool _slowInsulinTag;
-@property (nonatomic) bool _exerciseTag;
-@property (nonatomic,copy) NSString * _comment;
-@property (nonatomic) bool _isDeleted;
-@property (nonatomic,readonly) NSDate * timestamp;
-+ (id)primaryKey;
-+ (id)iconForNotes:(id)v1;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9LibreLink34DeleteAccountWarningViewController : _TtC9LibreLink20ApolloViewController {
-    id warningHeaderLabel;
-    id noButton;
-    id yesButton;
-    id warningLabel1;
-    id warningLabel2;
-    id warningLabel3;
-    id warningViews;
-    id warningViewsCornerRadius;
-}
-@property (nonatomic) UILabel * warningHeaderLabel;
-@property (nonatomic) _TtC9LibreLink9LLButton3 * noButton;
-@property (nonatomic) _TtC9LibreLink9LLButton1 * yesButton;
-@property (nonatomic) UILabel * warningLabel1;
-@property (nonatomic) UILabel * warningLabel2;
-@property (nonatomic) UILabel * warningLabel3;
-@property (nonatomic,copy) NSArray * warningViews;
-- (void)viewDidLoad;
-- (void)noButtonPressed:(id)v1;
-- (void)yesButtonPressed:(id)v1;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
@@ -8480,6 +9604,20 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink19IPHelpTableViewCell : UITableViewCell {
+    id titleLabel;
+}
+@property (nonatomic,retain) UILabel * titleLabel;
+- (void)awakeFromNib;
+- (void)setSelected:(bool)v1 animated:(bool)v2;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink19LoginViewController : _TtC9LibreLink21AccountViewController {
     id accountLoginTopText;
 }
@@ -8517,6 +9655,22 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink26IPBottomSheetTableViewCell : UITableViewCell {
+    id titleLabel;
+    id detailLabel;
+    id bottomSheetTableImage;
+}
+@property (nonatomic) UILabel * titleLabel;
+@property (nonatomic) UILabel * detailLabel;
+@property (nonatomic) UIImageView * bottomSheetTableImage;
+- (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink23NoteTableViewController : _TtC9LibreLink25ApolloTableViewController {
     id delegate;
     id selectionArray;
@@ -8537,15 +9691,15 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC9LibreLink20AlarmsViewController : _TtC9LibreLink20ApolloViewController {
+    id bannerLabel;
     id tableView;
-    id banner;
     id showAlarmsUnavailableModalOnDidAppear;
     id alarmsUnavailableModalDialog;
     id alarmsUnavailableModalDialogCause;
     id $__lazy_storage_$_currentAppUOM;
 }
+@property (nonatomic,retain) _TtC9LibreLink12RegularLabel * bannerLabel;
 @property (nonatomic,retain) UITableView * tableView;
-@property (nonatomic) _TtC9LibreLink8LLBanner * banner;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(bool)v1;
 - (void)viewDidAppear:(bool)v1;
@@ -8588,6 +9742,26 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink7PenDose : NSObject {
+    id ID;
+    id doseId;
+    id relatimeTimeSeconds;
+    id doseTime;
+    id secondsSinceDose;
+    id doseTimeZone;
+    id amount;
+    id status;
+    id doseUnits;
+    id statusReporter;
+    id penStatus;
+}
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink10BleManager : NSObject {
     id centralManager;
     id hasState;
@@ -8602,6 +9776,28 @@ struct anonymous_type_23 {
 }
 - (id)init;
 - (void)sensorExpiredWithNotification:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink27IPNovoPrivacyViewController : _TtC9LibreLink21IPSetupViewController {
+    id webView;
+    id acceptButton;
+    id rejectButton;
+    id defaultUrl;
+    id isStandalone;
+}
+@property (nonatomic,retain) WKWebView * webView;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton1 * acceptButton;
+@property (nonatomic,retain) _TtC9LibreLink9LLButton3 * rejectButton;
+- (void)viewDidLoad;
+- (void)viewWillAppear:(bool)v1;
+- (void)rejectButtonTapped:(id)v1;
+- (void)acceptButtonTapped:(id)v1;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
 
@@ -8951,7 +10147,10 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink14NewYuAPIClient : _TtCs12_SwiftObject
+@interface _TtC9LibreLink14NewYuAPIClient : _TtCs12_SwiftObject {
+    id kAPIResultChangeText;
+    id kAPIResultLog;
+}
 @end
 
 
@@ -9144,17 +10343,23 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink23TourAlertViewController : _TtC9LibreLink27TutorialSlideViewController {
-    id tutorialImageView;
-    id explanationTextTitleLabel;
-    id explanationTextDescLabel;
-    id explanationText2Label;
+@interface _TtC9LibreLink23IPScanPenViewController : _TtC9LibreLink21IPSetupViewController {
+    id pasManager;
+    id isNovoPenON;
+    id receivedPenScanResult;
+    id animationView;
+    id messageTitleLabel;
+    id messageLabel;
+    id scanButton;
 }
-@property (nonatomic) UIImageView * tutorialImageView;
-@property (nonatomic) UILabel * explanationTextTitleLabel;
-@property (nonatomic) UILabel * explanationTextDescLabel;
-@property (nonatomic) UILabel * explanationText2Label;
+@property (nonatomic) _TtC6Lottie13AnimationView * animationView;
+@property (nonatomic) UILabel * messageTitleLabel;
+@property (nonatomic) UILabel * messageLabel;
+@property (nonatomic) UIButton * scanButton;
 - (void)viewDidLoad;
+- (void)scanTapped:(id)v1;
+- (void)didPressScanPen;
+- (void)penDuplicateFound;
 - (id)initWithNibName:(id)v1 bundle:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
@@ -9173,11 +10378,15 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC9LibreLink19MenuHeaderTableCell : UITableViewCell {
+    id headerIcon;
     id headerLabel;
     id headerDiv;
+    id signInButton;
 }
+@property (nonatomic) UIImageView * headerIcon;
 @property (nonatomic,retain) _TtC9LibreLink9BoldLabel * headerLabel;
 @property (nonatomic,retain) UIView * headerDiv;
+@property (nonatomic,retain) UIButton * signInButton;
 - (id)initWithStyle:(long long)v1 reuseIdentifier:(id)v2;
 - (id)initWithCoder:(id)v1;
 - (void)awakeFromNib;
@@ -9236,16 +10445,6 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface _TtC9LibreLink25ErrorInjectionNfcRfModule : _TtCs12_SwiftObject {
-    id innerRfModule;
-    id injectPartialActivationFailure;
-    id failEnableStreamingCommand;
-}
-@end
-
-
-/*****************************************************************/
-
 @interface _TtC9LibreLink28ChangePasswordViewController : _TtC9LibreLink20ApolloViewController {
     id currentPasswordTextField;
     id newPasswordTextField;
@@ -9293,6 +10492,7 @@ struct anonymous_type_23 {
 @interface _TtC9LibreLink24AddNoteDropdownTableCell : UITableViewCell {
     id dropdownLabel;
     id bottomConstraint;
+    id noteItem;
 }
 @property (nonatomic,retain) UILabel * dropdownLabel;
 @property (nonatomic,retain) NSLayoutConstraint * bottomConstraint;
@@ -9313,8 +10513,6 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC9LibreLink23UserNotificationManager : NSObject<UNUserNotificationCenterDelegate> {
-    id blockedStatus;
-    id notificationIdsAllowedWhileBlocked;
     id isShowingAlertView;
     id alertQueue;
     id center;
@@ -9322,6 +10520,21 @@ struct anonymous_type_23 {
 - (void)userNotificationCenter:(id)v1 willPresentNotification:(id)v2 withCompletionHandler:(void (^ /* unknown block signature */)(void))v3;
 - (void)userNotificationCenter:(id)v1 didReceiveNotificationResponse:(id)v2 withCompletionHandler:(void (^ /* unknown block signature */)(void))v3;
 - (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink20IPHelpViewController : _TtC9LibreLink20ApolloViewController {
+    id tableView;
+    id insulinPenModel;
+    id rows;
+}
+@property (nonatomic,retain) _TtC9LibreLink11LLTableView * tableView;
+- (void)viewDidLoad;
+- (id)initWithNibName:(id)v1 bundle:(id)v2;
+- (id)initWithCoder:(id)v1;
 - (void).cxx_destruct;
 @end
 
@@ -9366,6 +10579,7 @@ struct anonymous_type_23 {
     id h6;
     id h7;
     id h8;
+    id h9;
     id sb32;
     id sb9;
     id sb18;
@@ -9441,18 +10655,27 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
+@interface _TtC9LibreLink13PenCRCChecker : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink22NNPenBaseEntityManager : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
 @interface _TtC9LibreLink15AppUserSettings : _TtCs12_SwiftObject {
     id defaults;
     id lastUpdateCheckTimestamp;
     id didAcceptTermsOfUse;
     id didAcceptPrivacyNotice;
-    id didAcceptOSWarning;
     id acceptedTermsOfUseVersion;
     id acceptedPrivacyNoticeVersion;
-    id acceptedOSWarningVersion;
     id latestTermsOfUseVersion;
     id latestPrivacyNoticeVersion;
-    id latestOSWarningVersion;
     id didSeeUnitsOfMeasure;
     id glucoseUnit;
     id didSeeTargetGlucoseRange;
@@ -9470,6 +10693,7 @@ struct anonymous_type_23 {
     id didSeeTreatmentDecisions2Explanation;
     id scanReminderDuration;
     id isTextToSpeechOn;
+    id showNovoConsentNext;
 }
 @end
 
@@ -9480,6 +10704,16 @@ struct anonymous_type_23 {
     id fileManager;
     id session;
     id delegate;
+}
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC9LibreLink12PenOperation : NSObject {
+    id dbManager;
 }
 - (id)init;
 - (void).cxx_destruct;
@@ -9698,230 +10932,1824 @@ struct anonymous_type_23 {
 
 /*****************************************************************/
 
-@interface JVFloatLabeledTextField : UITextField {
-    bool _isFloatingLabelFontDefault;
-    bool _animateEvenIfNotFirstResponder;
-    bool _adjustsClearButtonRect;
-    bool _keepBaseline;
-    bool _alwaysShowFloatingLabel;
-    UILabel * _floatingLabel;
-    double _floatingLabelYPadding;
-    double _floatingLabelXPadding;
-    double _floatingLabelReductionRatio;
-    double _placeholderYPadding;
-    UIFont * _floatingLabelFont;
-    UIColor * _floatingLabelTextColor;
-    UIColor * _floatingLabelActiveTextColor;
-    double _floatingLabelShowAnimationDuration;
-    double _floatingLabelHideAnimationDuration;
-    UIColor * _placeholderColor;
+@interface GDTCCTCompressionHelper : NSObject
++ (id)gzippedData:(id)v1;
++ (bool)isGzipped:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCCTUploadOperation : NSOperation<NSURLSessionDelegate> {
+    bool _executing;
+    bool _finished;
+    bool _uploadAttempted;
+    NSObject<OS_dispatch_queue> * _uploaderQueue;
+    NSURLSessionUploadTask * _currentTask;
+    long long _target;
+    long long _conditions;
+    NSURL * _uploadURL;
+    NSObject<GDTCORStoragePromiseProtocol> * _storage;
+    NSObject<GDTCCTUploadMetadataProvider> * _metadataProvider;
+    NSObject<GDTCORMetricsControllerProtocol> * _metricsController;
+    NSURLSession * _uploaderSession;
+    GDTCORMetrics * _currentMetrics;
 }
-@property (readonly,nonatomic) UILabel * floatingLabel;
-@property (nonatomic) double floatingLabelYPadding;
-@property (nonatomic) double floatingLabelXPadding;
-@property (nonatomic) double floatingLabelReductionRatio;
-@property (nonatomic) double placeholderYPadding;
-@property (retain,nonatomic) UIFont * floatingLabelFont;
-@property (retain,nonatomic) UIColor * floatingLabelTextColor;
-@property (retain,nonatomic) UIColor * floatingLabelActiveTextColor;
-@property (nonatomic) bool animateEvenIfNotFirstResponder;
-@property (nonatomic) double floatingLabelShowAnimationDuration;
-@property (nonatomic) double floatingLabelHideAnimationDuration;
-@property (nonatomic) bool adjustsClearButtonRect;
-@property (nonatomic) bool keepBaseline;
-@property (nonatomic) bool alwaysShowFloatingLabel;
-@property (retain,nonatomic) UIColor * placeholderColor;
-- (id)initWithFrame:(struct CGRect)v1;
-- (id)initWithCoder:(id)v1;
-- (void)commonInit;
-- (id)defaultFloatingLabelFont;
-- (void)updateDefaultFloatingLabelFont;
-- (id)labelActiveColor;
-- (void)showFloatingLabel:(bool)v1;
-- (void)hideFloatingLabel:(bool)v1;
-- (void)setLabelOriginForTextAlignment;
-- (void)setFloatingLabelText:(id)v1;
-- (void)setFont:(id)v1;
-- (void)setAttributedText:(id)v1;
-- (struct CGSize)intrinsicContentSize;
-- (void)setCorrectPlaceholder:(id)v1;
-- (void)setPlaceholder:(id)v1;
-- (void)setAttributedPlaceholder:(id)v1;
-- (void)setPlaceholder:(id)v1 floatingTitle:(id)v2;
-- (void)setAttributedPlaceholder:(id)v1 floatingTitle:(id)v2;
-- (struct CGRect)textRectForBounds:(struct CGRect)v1;
-- (struct CGRect)editingRectForBounds:(struct CGRect)v1;
-- (struct CGRect)insetRectForBounds:(struct CGRect)v1;
-- (struct CGRect)clearButtonRectForBounds:(struct CGRect)v1;
-- (struct CGRect)leftViewRectForBounds:(struct CGRect)v1;
-- (struct CGRect)rightViewRectForBounds:(struct CGRect)v1;
-- (double)maxTopInset;
-- (void)setTextAlignment:(long long)v1;
-- (void)layoutSubviews;
+@property (readonly,nonatomic) long long target;
+@property (readonly,nonatomic) long long conditions;
+@property (readonly,nonatomic) NSURL * uploadURL;
+@property (readonly,nonatomic) NSObject<GDTCORStoragePromiseProtocol> * storage;
+@property (readonly,nonatomic) NSObject<GDTCCTUploadMetadataProvider> * metadataProvider;
+@property (readonly,nonatomic) NSObject<GDTCORMetricsControllerProtocol> * metricsController;
+@property (retain,nonatomic) NSURLSession * uploaderSession;
+@property (retain,nonatomic) GDTCORMetrics * currentMetrics;
+@property (nonatomic,getter=isExecuting) bool executing;
+@property (nonatomic,getter=isFinished) bool finished;
+@property (nonatomic) bool uploadAttempted;
+@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * uploaderQueue;
+@property (readonly,nonatomic) NSURLSessionUploadTask * currentTask;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (id)initWithTarget:(long long)v1 conditions:(long long)v2 uploadURL:(id)v3 queue:(id)v4 storage:(id)v5 metadataProvider:(id)v6 metricsController:(id)v7;
+- (id)uploaderSessionCreateIfNeeded;
+- (void)uploadTarget:(long long)v1 withConditions:(long long)v2;
+- (id)uploadBatch:(id)v1 toTarget:(long long)v2 storage:(id)v3;
+- (id)processResponse:(id)v1 forBatch:(id)v2 storage:(id)v3;
+- (id)sendURLRequestWithBatch:(id)v1 target:(long long)v2;
+- (void)updateNextUploadTimeWithResponse:(id)v1 forTarget:(long long)v2;
+- (id)isReadyToUploadTarget:(long long)v1 conditions:(long long)v2;
+- (id)genericRejectedPromiseErrorWithReason:(id)v1;
+- (bool)readyToUploadTarget:(long long)v1 conditions:(long long)v2;
+- (id)constructRequestProtoWithEvents:(id)v1;
+- (id)constructRequestWithURL:(id)v1 forTarget:(long long)v2 data:(id)v3;
+- (id)eventSelectorTarget:(long long)v1 withConditions:(long long)v2;
+- (id)batchByAddingMetricsEventToBatch:(id)v1 forTarget:(long long)v2;
+- (void)URLSession:(id)v1 task:(id)v2 willPerformHTTPRedirection:(id)v3 newRequest:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (bool)isAsynchronous;
+- (void)startOperation;
+- (void)finishOperation;
+- (void)start;
+- (void)cancel;
 - (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface JVFloatLabeledTextView : UITextView {
-    bool _floatingLabelShouldLockToTop;
-    bool _animateEvenIfNotFirstResponder;
-    bool _alwaysShowFloatingLabel;
-    NSString * _placeholder;
-    UILabel * _placeholderLabel;
-    UILabel * _floatingLabel;
-    double _floatingLabelYPadding;
-    double _floatingLabelXPadding;
-    double _placeholderYPadding;
-    UIFont * _floatingLabelFont;
-    UIColor * _floatingLabelTextColor;
-    UIColor * _floatingLabelActiveTextColor;
-    UIColor * _placeholderTextColor;
-    double _floatingLabelShowAnimationDuration;
-    double _floatingLabelHideAnimationDuration;
-    double _startingTextContainerInsetTop;
+@interface GDTCCTUploader : NSObject<NSURLSessionDelegate,GDTCCTUploadMetadataProvider,GDTCORUploader> {
+    NSOperationQueue * _uploadOperationQueue;
+    NSObject<OS_dispatch_queue> * _uploadQueue;
+    NSMutableDictionary * _nextUploadTimeByTarget;
 }
-@property (copy,nonatomic) NSString * placeholder;
-@property (readonly,nonatomic) UILabel * placeholderLabel;
-@property (readonly,nonatomic) UILabel * floatingLabel;
-@property (nonatomic) double floatingLabelYPadding;
-@property (nonatomic) double floatingLabelXPadding;
-@property (nonatomic) double placeholderYPadding;
-@property (retain,nonatomic) UIFont * floatingLabelFont;
-@property (retain,nonatomic) UIColor * floatingLabelTextColor;
-@property (retain,nonatomic) UIColor * floatingLabelActiveTextColor;
-@property (nonatomic) bool floatingLabelShouldLockToTop;
-@property (retain,nonatomic) UIColor * placeholderTextColor;
-@property (nonatomic) bool animateEvenIfNotFirstResponder;
-@property (nonatomic) double floatingLabelShowAnimationDuration;
-@property (nonatomic) double floatingLabelHideAnimationDuration;
-@property (nonatomic) bool alwaysShowFloatingLabel;
-@property (nonatomic) double startingTextContainerInsetTop;
-+ (id)defaultiOSPlaceholderColor;
-- (id)initWithFrame:(struct CGRect)v1;
-- (id)initWithFrame:(struct CGRect)v1 textContainer:(id)v2;
+@property (readonly,nonatomic) NSOperationQueue * uploadOperationQueue;
+@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * uploadQueue;
+@property (readonly,nonatomic) NSMutableDictionary * nextUploadTimeByTarget;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
++ (void)load;
++ (id)sharedInstance;
++ (void)setTestServerURL:(id)v1;
++ (id)testServerURL;
++ (id)serverURLForTarget:(long long)v1;
+- (id)init;
+- (void)uploadTarget:(long long)v1 withConditions:(long long)v2;
+- (id)FLLAndCSHAndINTAPIKey;
+- (id)nextUploadTimeForTarget:(long long)v1;
+- (void)setNextUploadTime:(id)v1 forTarget:(long long)v2;
+- (id)APIKeyForTarget:(long long)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORClock : NSObject<NSSecureCoding> {
+    long long _timeMillis;
+    long long _timezoneOffsetSeconds;
+    long long _kernelBootTimeNanoseconds;
+    long long _uptimeNanoseconds;
+}
+@property (readonly,nonatomic) long long timeMillis;
+@property (readonly,nonatomic) long long timezoneOffsetSeconds;
+@property (readonly,nonatomic) long long kernelBootTimeNanoseconds;
+@property (readonly,nonatomic) long long uptimeNanoseconds;
+@property (readonly,nonatomic) long long kernelBootTime;
+@property (readonly,nonatomic) long long uptime;
++ (id)snapshot;
++ (id)clockSnapshotInTheFuture:(unsigned long long)v1;
++ (bool)supportsSecureCoding;
+- (id)init;
+- (bool)isAfter:(id)v1;
+- (long long)uptimeMilliseconds;
+- (unsigned long long)hash;
+- (bool)isEqual:(id)v1;
 - (id)initWithCoder:(id)v1;
-- (void)commonInit;
+- (void)encodeWithCoder:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORDirectorySizeTracker : NSObject {
+    NSString * _directoryPath;
+    NSNumber * _cachedSizeBytes;
+}
+@property (readonly,nonatomic) NSString * directoryPath;
+@property (retain,nonatomic) NSNumber * cachedSizeBytes;
+- (id)initWithDirectoryPath:(id)v1;
+- (unsigned long long)directoryContentSize;
+- (void)fileWasAddedAtPath:(id)v1 withSize:(unsigned long long)v2;
+- (void)fileWasRemovedAtPath:(id)v1 withSize:(unsigned long long)v2;
+- (void)resetCachedSize;
+- (unsigned long long)calculateDirectoryContentSize;
+- (unsigned long long)fileSizeAtURL:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCOREndpoints : NSObject
++ (id)uploadURLs;
++ (id)uploadURLForTarget:(long long)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCOREvent : NSObject<NSSecureCoding> {
+    NSString * _eventID;
+    NSString * _mappingID;
+    long long _target;
+    NSObject<GDTCOREventDataObject> * _dataObject;
+    NSData * _serializedDataObjectBytes;
+    long long _qosTier;
+    GDTCORClock * _clockSnapshot;
+    NSDate * _expirationDate;
+    NSData * _customBytes;
+}
+@property (nonatomic) bool needsNetworkConnectionInfoPopulated;
+@property (retain,nonatomic) NSData * networkConnectionInfoData;
+@property (retain,nonatomic) NSNumber * eventCode;
+@property (retain,nonatomic) NSString * eventID;
+@property (readonly,nonatomic) NSString * mappingID;
+@property (readonly,nonatomic) long long target;
+@property (retain,nonatomic) NSObject<GDTCOREventDataObject> * dataObject;
+@property (readonly,nonatomic) NSData * serializedDataObjectBytes;
+@property (nonatomic) long long qosTier;
+@property (retain,nonatomic) GDTCORClock * clockSnapshot;
+@property (retain,nonatomic) NSDate * expirationDate;
+@property (retain,nonatomic) NSData * customBytes;
++ (id)eventWithMetrics:(id)v1 forTarget:(long long)v2;
++ (id)nextEventID;
++ (bool)supportsSecureCoding;
+- (id)initWithMappingID:(id)v1 target:(long long)v2;
+- (id)copy;
+- (unsigned long long)hash;
+- (bool)isEqual:(id)v1;
+- (id)initWithCoder:(id)v1;
+- (void)encodeWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORFlatFileStorage : NSObject<GDTCORStoragePromiseProtocol,GDTCORStorageProtocol,GDTCORLifecycleProtocol> {
+    GDTCORDirectorySizeTracker * _sizeTracker;
+    NSObject<GDTCORStorageDelegate> * _delegate;
+    NSObject<OS_dispatch_queue> * _storageQueue;
+    GDTCORUploadCoordinator * _uploadCoordinator;
+}
+@property (nonatomic) NSObject<GDTCORStorageDelegate> * delegate;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+@property (readonly,nonatomic) GDTCORDirectorySizeTracker * sizeTracker;
+@property (retain,nonatomic) NSObject<OS_dispatch_queue> * storageQueue;
+@property (retain,nonatomic) GDTCORUploadCoordinator * uploadCoordinator;
+@property (nonatomic) NSObject<GDTCORStorageDelegate> * delegate;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
++ (void)load;
++ (id)sharedInstance;
++ (id)eventDataStoragePath;
++ (id)batchDataStoragePath;
++ (id)libraryDataStoragePath;
++ (id)batchPathForTarget:(long long)v1 batchID:(id)v2 expirationDate:(id)v3;
++ (id)pathForTarget:(long long)v1 eventID:(id)v2 qosTier:(id)v3 expirationDate:(id)v4 mappingID:(id)v5;
+- (id)batchIDsForTarget:(long long)v1;
+- (id)removeBatchWithID:(id)v1 deleteEvents:(bool)v2;
+- (id)removeBatchesWithIDs:(id)v1 deleteEvents:(bool)v2;
+- (id)removeAllBatchesForTarget:(long long)v1 deleteEvents:(bool)v2;
+- (id)hasEventsForTarget:(long long)v1;
+- (id)batchWithEventSelector:(id)v1 batchExpiration:(id)v2;
+- (id)fetchAndUpdateMetricsWithHandler:(void (^ /* unknown block signature */)(void))v1;
+- (id)fetchStorageMetadata;
+- (id)genericRejectedPromiseErrorWithReason:(id)v1;
+- (id)init;
+- (void)storeEvent:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void)batchWithEventSelector:(id)v1 batchExpiration:(id)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
+- (void)removeBatchWithID:(id)v1 deleteEvents:(bool)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
+- (void)batchIDsForTarget:(long long)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void)libraryDataForKey:(id)v1 onFetchComplete:(void (^ /* unknown block signature */)(void))v2 setNewValue:(void (^ /* unknown block signature */)(void))v3;
+- (void)storeLibraryData:(id)v1 forKey:(id)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
+- (void)removeLibraryDataForKey:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void)hasEventsForTarget:(long long)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void)checkForExpirations;
+- (void)storageSizeWithCallback:(void (^ /* unknown block signature */)(void))v1;
+- (id)batchDirPathsForBatchID:(id)v1 error:(id *)v2;
+- (bool)moveContentsOfDirectoryAtPath:(id)v1 to:(id)v2 error:(id *)v3;
+- (void)syncThreadUnsafeRemoveBatchWithID:(id)v1 deleteEvents:(bool)v2;
+- (void)pathsForTarget:(long long)v1 eventIDs:(id)v2 qosTiers:(id)v3 mappingIDs:(id)v4 onComplete:(void (^ /* unknown block signature */)(void))v5;
+- (void)nextBatchID:(void (^ /* unknown block signature */)(void))v1;
+- (id)eventComponentsFromFilename:(id)v1;
+- (id)batchComponentsFromFilename:(id)v1;
+- (void)appWillBackground:(id)v1;
+- (void)appWillTerminate:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORLifecycle : NSObject
++ (void)load;
++ (id)sharedInstance;
+- (id)init;
 - (void)dealloc;
-- (id)defaultFloatingLabelFont;
-- (void)setPlaceholder:(id)v1 floatingTitle:(id)v2;
-- (void)layoutSubviews;
-- (struct CGSize)intrinsicContentSize;
-- (id)labelActiveColor;
-- (void)showFloatingLabel:(bool)v1;
-- (void)hideFloatingLabel:(bool)v1;
-- (void)adjustTextContainerInsetTop;
-- (void)setLabelOriginForTextAlignment;
-- (struct CGRect)textRect;
-- (void)setTextAlignment:(long long)v1;
-- (void)setFont:(id)v1;
-- (void)setText:(id)v1;
-- (void)setBackgroundColor:(id)v1;
+- (void)applicationDidEnterBackgroundNotification:(id)v1;
+- (void)applicationWillEnterForegroundNotification:(id)v1;
+- (void)applicationWillTerminateNotification:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORLogSourceMetrics : NSObject<NSSecureCoding> {
+    NSDictionary * _droppedEventCounterByLogSource;
+}
+@property (readonly,nonatomic) NSDictionary * droppedEventCounterByLogSource;
++ (id)metrics;
++ (id)metricsWithEvents:(id)v1 droppedForReason:(long long)v2;
++ (id)dictionaryByMergingDictionary:(id)v1 withOtherDictionary:(id)v2 uniquingKeysWithBlock:(void (^ /* unknown block signature */)(void))v3;
++ (bool)supportsSecureCoding;
+- (id)initWithDroppedEventCounterByLogSource:(id)v1;
+- (id)logSourceMetricsByMergingWithLogSourceMetrics:(id)v1;
+- (bool)isEqualToLogSourceMetrics:(id)v1;
+- (bool)isEqual:(id)v1;
+- (unsigned long long)hash;
+- (id)initWithCoder:(id)v1;
+- (void)encodeWithCoder:(id)v1;
+- (id)description;
 - (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface _TtC9SwiftDateP33_2EA19DAB704C2133069CB542A68BDBCD12BundleFinder : _TtCs12_SwiftObject
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9SwiftDate12DOTNETParser : _TtCs12_SwiftObject
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9SwiftDate15DOTNETFormatter : _TtCs12_SwiftObject
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9SwiftDate12ISOFormatter : _TtCs12_SwiftObject
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9SwiftDate9ISOParser : _TtCs12_SwiftObject {
-    id srcCalendar;
-    id date;
-    id string;
-    id cIdx;
-    id eIdx;
-    id length;
-    id hyphens;
-    id now_cmps;
-    id options;
-    id date_components;
-    id parsedDate;
-    id parsedTimeZone;
+@interface GDTCORMetrics : NSObject<GDTCOREventDataObject> {
+    NSDate * _collectionStartDate;
+    GDTCORLogSourceMetrics * _logSourceMetrics;
+    NSDate * _collectionEndDate;
+    unsigned long long _currentCacheSize;
+    unsigned long long _maxCacheSize;
+    NSString * _bundleID;
 }
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+@property (readonly,nonatomic) NSDate * collectionStartDate;
+@property (readonly,nonatomic) GDTCORLogSourceMetrics * logSourceMetrics;
+@property (readonly,nonatomic) NSDate * collectionEndDate;
+@property (readonly,nonatomic) unsigned long long currentCacheSize;
+@property (readonly,nonatomic) unsigned long long maxCacheSize;
+@property (readonly,nonatomic) NSString * bundleID;
++ (id)metricsWithMetricsMetadata:(id)v1 storageMetadata:(id)v2;
+- (id)transportBytes;
+- (id)initWithCollectionStartDate:(id)v1 collectionEndDate:(id)v2 logSourceMetrics:(id)v3 currentCacheSize:(unsigned long long)v4 maxCacheSize:(unsigned long long)v5 bundleID:(id)v6;
+- (bool)isEqualToMetrics:(id)v1;
+- (bool)isEqual:(id)v1;
+- (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface _TtC9SwiftDate17RelativeFormatter : _TtCs12_SwiftObject
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9SwiftDate31RelativeFormatterLanguagesCache : _TtCs12_SwiftObject {
-    id _cachedValues;
+@interface GDTCORMetricsController : NSObject<GDTCORMetricsControllerProtocol> {
+    NSObject<GDTCORStoragePromiseProtocol> * _storage;
 }
+@property (retain,nonatomic) NSObject<GDTCORStoragePromiseProtocol> * storage;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
++ (void)load;
++ (id)sharedInstance;
+- (id)initWithStorage:(id)v1;
+- (id)logEventsDroppedForReason:(long long)v1 events:(id)v2;
+- (id)getAndResetMetrics;
+- (id)offerMetrics:(id)v1;
+- (void)storage:(id)v1 didRemoveExpiredEvents:(id)v2;
+- (void)storage:(id)v1 didDropEvent:(id)v2;
+- (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface _TtC9SwiftDateP33_58EB5E8B8476F1A454FE015556B05D7B15AssociatedValue : _TtCs12_SwiftObject {
-    id _weakValue;
+@interface GDTCORMetricsMetadata : NSObject<NSSecureCoding> {
+    NSDate * _collectionStartDate;
+    GDTCORLogSourceMetrics * _logSourceMetrics;
+}
+@property (readonly,copy,nonatomic) NSDate * collectionStartDate;
+@property (readonly,copy,nonatomic) GDTCORLogSourceMetrics * logSourceMetrics;
++ (id)metadataWithCollectionStartDate:(id)v1 logSourceMetrics:(id)v2;
++ (bool)supportsSecureCoding;
+- (id)initWithCollectionStartDate:(id)v1 logSourceMetrics:(id)v2;
+- (bool)isEqualToMetricsMetadata:(id)v1;
+- (bool)isEqual:(id)v1;
+- (unsigned long long)hash;
+- (id)initWithCoder:(id)v1;
+- (void)encodeWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORApplication : NSObject<GDTCORApplicationProtocol,GDTCORApplicationDelegate> {
+    bool _isRunningInBackground;
+}
+@property bool isRunningInBackground;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+@property (retain,nonatomic) UIWindow * window;
++ (void)load;
++ (void)initialize;
++ (id)sharedApplication;
+- (id)init;
+- (unsigned long long)beginBackgroundTaskWithName:(id)v1 expirationHandler:(void (^ /* unknown block signature */)(void))v2;
+- (void)endBackgroundTask:(unsigned long long)v1;
+- (bool)isAppExtension;
+- (id)sharedApplicationForBackgroundTask;
+- (void)iOSApplicationDidEnterBackground:(id)v1;
+- (void)iOSApplicationWillEnterForeground:(id)v1;
+- (void)iOSApplicationWillTerminate:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORReachability : NSObject {
+    struct __SCNetworkReachability * _reachabilityRef;
+    NSObject<OS_dispatch_queue> * _reachabilityQueue;
+    unsigned int _callbackFlags;
+    unsigned int _flags;
+}
+@property (nonatomic) unsigned int flags;
++ (void)initialize;
++ (id)sharedInstance;
++ (unsigned int)currentFlags;
+- (id)init;
+- (void)setCallbackFlags:(unsigned int)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORRegistrar : NSObject<GDTCORLifecycleProtocol> {
+    NSMutableDictionary * _targetToUploader;
+    NSMutableDictionary * _targetToStorage;
+    NSMutableDictionary * _targetToMetricsController;
+    NSObject<OS_dispatch_queue> * _registrarQueue;
+}
+@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * registrarQueue;
+@property (readonly) NSMutableDictionary * targetToUploader;
+@property (readonly) NSMutableDictionary * targetToStorage;
+@property (readonly) NSMutableDictionary * targetToMetricsController;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
++ (id)sharedInstance;
+- (id)init;
+- (void)registerUploader:(id)v1 target:(long long)v2;
+- (void)registerStorage:(id)v1 target:(long long)v2;
+- (void)registerMetricsController:(id)v1 target:(long long)v2;
+- (void)setMetricsControllerAsStorageDelegateForTarget:(long long)v1;
+- (void)appWillBackground:(id)v1;
+- (void)appWillForeground:(id)v1;
+- (void)appWillTerminate:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORStorageEventSelector : NSObject {
+    long long _selectedTarget;
+    NSSet * _selectedEventIDs;
+    NSSet * _selectedMappingIDs;
+    NSSet * _selectedQosTiers;
+}
+@property (readonly,nonatomic) long long selectedTarget;
+@property (readonly,nonatomic) NSSet * selectedEventIDs;
+@property (readonly,nonatomic) NSSet * selectedMappingIDs;
+@property (readonly,nonatomic) NSSet * selectedQosTiers;
++ (id)eventSelectorForTarget:(long long)v1;
+- (id)initWithTarget:(long long)v1 eventIDs:(id)v2 mappingIDs:(id)v3 qosTiers:(id)v4;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORStorageMetadata : NSObject {
+    unsigned long long _currentCacheSize;
+    unsigned long long _maxCacheSize;
+}
+@property (readonly,nonatomic) unsigned long long currentCacheSize;
+@property (readonly,nonatomic) unsigned long long maxCacheSize;
++ (id)metadataWithCurrentCacheSize:(unsigned long long)v1 maxCacheSize:(unsigned long long)v2;
+- (id)initWithCurrentCacheSize:(unsigned long long)v1 maxCacheSize:(unsigned long long)v2;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORTransformer : NSObject<GDTCORLifecycleProtocol> {
+    NSObject<OS_dispatch_queue> * _eventWritingQueue;
+    NSObject<GDTCORApplicationProtocol> * _application;
+}
+@property (retain,nonatomic) NSObject<OS_dispatch_queue> * eventWritingQueue;
+@property (readonly,nonatomic) NSObject<GDTCORApplicationProtocol> * application;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
++ (id)sharedInstance;
+- (id)init;
+- (id)initWithApplication:(id)v1;
+- (void)transformEvent:(id)v1 withTransformers:(id)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
+- (void)appWillTerminate:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORTransport : NSObject {
+    NSString * _mappingID;
+    NSArray * _transformers;
+    long long _target;
+    GDTCORTransformer * _transformerInstance;
+}
+@property (retain,nonatomic) NSString * mappingID;
+@property (retain,nonatomic) NSArray * transformers;
+@property (nonatomic) long long target;
+@property (retain,nonatomic) GDTCORTransformer * transformerInstance;
+- (id)initWithMappingID:(id)v1 transformers:(id)v2 target:(long long)v3;
+- (void)sendTelemetryEvent:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void)sendDataEvent:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void)sendTelemetryEvent:(id)v1;
+- (void)sendDataEvent:(id)v1;
+- (id)eventForTransport;
+- (void)sendEvent:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORUploadBatch : NSObject {
+    NSNumber * _batchID;
+    NSSet * _events;
+}
+@property (readonly,nonatomic) NSNumber * batchID;
+@property (readonly,nonatomic) NSSet * events;
+- (id)initWithBatchID:(id)v1 events:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GDTCORUploadCoordinator : NSObject<GDTCORLifecycleProtocol> {
+    NSObject<OS_dispatch_queue> * _coordinationQueue;
+    NSObject<OS_dispatch_source> * _timer;
+    unsigned long long _timerInterval;
+    unsigned long long _timerLeeway;
+    GDTCORRegistrar * _registrar;
+}
+@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * coordinationQueue;
+@property (readonly,nonatomic) NSObject<OS_dispatch_source> * timer;
+@property (readonly,nonatomic) unsigned long long timerInterval;
+@property (readonly,nonatomic) unsigned long long timerLeeway;
+@property (retain,nonatomic) GDTCORRegistrar * registrar;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
++ (id)sharedInstance;
+- (id)init;
+- (void)forceUploadForTarget:(long long)v1;
+- (void)startTimer;
+- (void)stopTimer;
+- (void)uploadTargets:(id)v1 conditions:(long long)v2;
+- (void)signalToStoragesToCheckExpirations;
+- (id)storageForTarget:(id)v1;
+- (long long)uploadConditions;
+- (void)appWillForeground:(id)v1;
+- (void)appWillBackground:(id)v1;
+- (void)appWillTerminate:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FBLPromise : NSObject {
+    long long _state;
+    NSMutableSet * _pendingObjects;
     id _value;
+    NSError * _error;
+    NSMutableArray * _observers;
 }
+@property (readonly,nonatomic) bool isPending;
+@property (readonly,nonatomic) bool isFulfilled;
+@property (readonly,nonatomic) bool isRejected;
+@property (readonly,nonatomic) id value;
+@property (readonly,nonatomic) NSError * error;
++ (void (^ /* unknown block signature */)(void))pending;
++ (void (^ /* unknown block signature */)(void))resolved;
++ (void (^ /* unknown block signature */)(void))wrapCompletion;
++ (void (^ /* unknown block signature */)(void))wrapCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrapObjectCompletion;
++ (void (^ /* unknown block signature */)(void))wrapObjectCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrapErrorCompletion;
++ (void (^ /* unknown block signature */)(void))wrapErrorCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrapObjectOrErrorCompletion;
++ (void (^ /* unknown block signature */)(void))wrapObjectOrErrorCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrapErrorOrObjectCompletion;
++ (void (^ /* unknown block signature */)(void))wrapErrorOrObjectCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrap2ObjectsOrErrorCompletion;
++ (void (^ /* unknown block signature */)(void))wrap2ObjectsOrErrorCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrapBoolCompletion;
++ (void (^ /* unknown block signature */)(void))wrapBoolCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrapBoolOrErrorCompletion;
++ (void (^ /* unknown block signature */)(void))wrapBoolOrErrorCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrapIntegerCompletion;
++ (void (^ /* unknown block signature */)(void))wrapIntegerCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrapIntegerOrErrorCompletion;
++ (void (^ /* unknown block signature */)(void))wrapIntegerOrErrorCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrapDoubleCompletion;
++ (void (^ /* unknown block signature */)(void))wrapDoubleCompletionOn;
++ (void (^ /* unknown block signature */)(void))wrapDoubleOrErrorCompletion;
++ (void (^ /* unknown block signature */)(void))wrapDoubleOrErrorCompletionOn;
++ (id)wrapCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrapObjectCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapObjectCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrapErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrapObjectOrErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapObjectOrErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrapErrorOrObjectCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapErrorOrObjectCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrap2ObjectsOrErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrap2ObjectsOrErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrapBoolCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapBoolCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrapBoolOrErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapBoolOrErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrapIntegerCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapIntegerCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrapIntegerOrErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapIntegerOrErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrapDoubleCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapDoubleCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)wrapDoubleOrErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 wrapDoubleOrErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
++ (id)dispatchGroup;
++ (void (^ /* unknown block signature */)(void))retry;
++ (void (^ /* unknown block signature */)(void))retryOn;
++ (void (^ /* unknown block signature */)(void))retryAgain;
++ (void (^ /* unknown block signature */)(void))retryAgainOn;
++ (id)retry:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 retry:(void (^ /* unknown block signature */)(void))v2;
++ (id)attempts:(long long)v1 retry:(void (^ /* unknown block signature */)(void))v2;
++ (id)onQueue:(id)v1 attempts:(long long)v2 retry:(void (^ /* unknown block signature */)(void))v3;
++ (id)attempts:(long long)v1 delay:(double)v2 condition:(void (^ /* unknown block signature */)(void))v3 retry:(void (^ /* unknown block signature */)(void))v4;
++ (id)onQueue:(id)v1 attempts:(long long)v2 delay:(double)v3 condition:(void (^ /* unknown block signature */)(void))v4 retry:(void (^ /* unknown block signature */)(void))v5;
++ (void (^ /* unknown block signature */)(void))race;
++ (void (^ /* unknown block signature */)(void))raceOn;
++ (id)race:(id)v1;
++ (id)onQueue:(id)v1 race:(id)v2;
++ (void (^ /* unknown block signature */)(void))doOn;
++ (id)do:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 do:(void (^ /* unknown block signature */)(void))v2;
++ (void (^ /* unknown block signature */)(void))async;
++ (void (^ /* unknown block signature */)(void))asyncOn;
++ (id)async:(void (^ /* unknown block signature */)(void))v1;
++ (id)onQueue:(id)v1 async:(void (^ /* unknown block signature */)(void))v2;
++ (void (^ /* unknown block signature */)(void))any;
++ (void (^ /* unknown block signature */)(void))anyOn;
++ (id)any:(id)v1;
++ (id)onQueue:(id)v1 any:(id)v2;
++ (void (^ /* unknown block signature */)(void))all;
++ (void (^ /* unknown block signature */)(void))allOn;
++ (id)all:(id)v1;
++ (id)onQueue:(id)v1 all:(id)v2;
++ (void)initialize;
++ (id)defaultDispatchQueue;
++ (void)setDefaultDispatchQueue:(id)v1;
++ (id)pendingPromise;
++ (id)resolvedWith:(id)v1;
+- (void (^ /* unknown block signature */)(void))validate;
+- (void (^ /* unknown block signature */)(void))validateOn;
+- (id)validate:(void (^ /* unknown block signature */)(void))v1;
+- (id)onQueue:(id)v1 validate:(void (^ /* unknown block signature */)(void))v2;
+- (void (^ /* unknown block signature */)(void))timeout;
+- (void (^ /* unknown block signature */)(void))timeoutOn;
+- (id)timeout:(double)v1;
+- (id)onQueue:(id)v1 timeout:(double)v2;
+- (void (^ /* unknown block signature */)(void))then;
+- (void (^ /* unknown block signature */)(void))thenOn;
+- (id)then:(void (^ /* unknown block signature */)(void))v1;
+- (id)onQueue:(id)v1 then:(void (^ /* unknown block signature */)(void))v2;
+- (void (^ /* unknown block signature */)(void))reduce;
+- (void (^ /* unknown block signature */)(void))reduceOn;
+- (id)reduce:(id)v1 combine:(void (^ /* unknown block signature */)(void))v2;
+- (id)onQueue:(id)v1 reduce:(id)v2 combine:(void (^ /* unknown block signature */)(void))v3;
+- (void (^ /* unknown block signature */)(void))recover;
+- (void (^ /* unknown block signature */)(void))recoverOn;
+- (id)recover:(void (^ /* unknown block signature */)(void))v1;
+- (id)onQueue:(id)v1 recover:(void (^ /* unknown block signature */)(void))v2;
+- (void (^ /* unknown block signature */)(void))delay;
+- (void (^ /* unknown block signature */)(void))delayOn;
+- (id)delay:(double)v1;
+- (id)onQueue:(id)v1 delay:(double)v2;
+- (void (^ /* unknown block signature */)(void))catch;
+- (void (^ /* unknown block signature */)(void))catchOn;
+- (id)catch:(void (^ /* unknown block signature */)(void))v1;
+- (id)onQueue:(id)v1 catch:(void (^ /* unknown block signature */)(void))v2;
+- (void (^ /* unknown block signature */)(void))always;
+- (void (^ /* unknown block signature */)(void))alwaysOn;
+- (id)always:(void (^ /* unknown block signature */)(void))v1;
+- (id)onQueue:(id)v1 always:(void (^ /* unknown block signature */)(void))v2;
+- (void)fulfill:(id)v1;
+- (void)reject:(id)v1;
+- (id)description;
+- (id)initPending;
+- (id)initWithResolution:(id)v1;
+- (void)dealloc;
+- (void)addPendingObject:(id)v1;
+- (void)observeOnQueue:(id)v1 fulfill:(void (^ /* unknown block signature */)(void))v2 reject:(void (^ /* unknown block signature */)(void))v3;
+- (id)chainOnQueue:(id)v1 chainedFulfill:(void (^ /* unknown block signature */)(void))v2 chainedReject:(void (^ /* unknown block signature */)(void))v3;
+- (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface _TtC9SwiftDateP33_E0FB06230B09DCC4BA9E6ECF005CD09212BundleFinder : _TtCs12_SwiftObject
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9SwiftDate15TimePeriodChain : _TtC9SwiftDate15TimePeriodGroup
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9SwiftDate20TimePeriodCollection : _TtC9SwiftDate15TimePeriodGroup
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC9SwiftDate15TimePeriodGroup : _TtCs12_SwiftObject {
-    id periods;
-    id start;
-    id end;
+@interface GULHeartbeatDateStorage : NSObject<GULHeartbeatDateStorable> {
+    NSURL * _fileURL;
+    NSString * _fileName;
 }
+@property (readonly,nonatomic) NSString * fileName;
+@property (readonly,nonatomic) NSURL * fileURL;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (id)initWithFileName:(id)v1;
+- (id)directoryPathURL;
+- (void)checkAndCreateDirectory:(id)v1;
+- (id)heartbeatDateForTag:(id)v1;
+- (bool)setHearbeatDate:(id)v1 forTag:(id)v2;
+- (id)heartbeatDictionaryWithFileURL:(id)v1;
+- (bool)writeDictionary:(id)v1 forWritingURL:(id)v2 error:(id *)v3;
+- (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface _TtC9SwiftDate10TimePeriod : _TtCs12_SwiftObject {
-    id start;
-    id end;
+@interface GULHeartbeatDateStorageUserDefaults : NSObject<GULHeartbeatDateStorable> {
+    NSUserDefaults * _userDefaults;
+    NSString * _key;
 }
+@property (readonly,nonatomic) NSUserDefaults * userDefaults;
+@property (readonly,nonatomic) NSString * key;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (id)initWithDefaults:(id)v1 key:(id)v2;
+- (id)heartbeatDictionaryFromDefaults;
+- (id)heartbeatDateForTag:(id)v1;
+- (bool)setHearbeatDate:(id)v1 forTag:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULSecureCoding : NSObject
++ (id)unarchivedObjectOfClasses:(id)v1 fromData:(id)v2 error:(id *)v3;
++ (id)unarchivedObjectOfClass:(Class)v1 fromData:(id)v2 error:(id *)v3;
++ (id)archivedDataWithRootObject:(id)v1 error:(id *)v2;
++ (id)archivingErrorWithException:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface GULKeychainStorage : NSObject {
+    NSObject<OS_dispatch_queue> * _keychainQueue;
+    NSObject<OS_dispatch_queue> * _inMemoryCacheQueue;
+    NSString * _service;
+    NSCache * _inMemoryCache;
+}
+@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * keychainQueue;
+@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * inMemoryCacheQueue;
+@property (readonly,nonatomic) NSString * service;
+@property (readonly,nonatomic) NSCache * inMemoryCache;
+- (id)initWithService:(id)v1;
+- (id)initWithService:(id)v1 cache:(id)v2;
+- (id)getObjectForKey:(id)v1 objectClass:(Class)v2 accessGroup:(id)v3;
+- (id)setObject:(id)v1 forKey:(id)v2 accessGroup:(id)v3;
+- (id)removeObjectForKey:(id)v1 accessGroup:(id)v2;
+- (id)getObjectFromKeychainForKey:(id)v1 objectClass:(Class)v2 accessGroup:(id)v3;
+- (void)resetInMemoryCache;
+- (id)keychainQueryWithKey:(id)v1 accessGroup:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULKeychainUtils : NSObject
++ (id)getItemWithQuery:(id)v1 error:(id *)v2;
++ (bool)setItem:(id)v1 withQuery:(id)v2 error:(id *)v3;
++ (bool)removeItemWithQuery:(id)v1 error:(id *)v2;
++ (id)multiplatformQueryWithQuery:(id)v1;
++ (id)keychainErrorWithFunction:(id)v1 status:(int)v2;
+@end
+
+
+/*****************************************************************/
+
+@interface GULURLSessionDataResponse : NSObject {
+    NSHTTPURLResponse * _HTTPResponse;
+    NSData * _HTTPBody;
+}
+@property (readonly,nonatomic) NSHTTPURLResponse * HTTPResponse;
+@property (readonly,nonatomic) NSData * HTTPBody;
+- (id)initWithResponse:(id)v1 HTTPBody:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULAppEnvironmentUtil : NSObject
++ (bool)isFromAppStore;
++ (bool)isAppStoreReceiptSandbox;
++ (bool)isSimulator;
++ (id)deviceModel;
++ (id)systemVersion;
++ (bool)isAppExtension;
++ (bool)isIOS7OrHigher;
++ (bool)hasSwiftRuntime;
++ (id)applePlatform;
++ (id)deploymentType;
+@end
+
+
+/*****************************************************************/
+
+@interface GULLoggerWrapper : NSObject
++ (void)logWithLevel:(long long)v1 withService:(id)v2 withCode:(id)v3 withMessage:(id)v4 withArgs:(char *)v5;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRCoreDiagnosticsLog : NSObject {
+    struct _logs_proto_mobilesdk_ios_ICoreConfiguration _config;
+}
+@property (nonatomic) struct _logs_proto_mobilesdk_ios_ICoreConfiguration config;
+- (id)initWithConfig:(struct _logs_proto_mobilesdk_ios_ICoreConfiguration)v1;
+- (id)transportBytes;
+- (void)dealloc;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRCoreDiagnostics : NSObject<FIRCoreDiagnosticsInterop> {
+    NSObject<OS_dispatch_queue> * _diagnosticsQueue;
+    GDTCORTransport * _transport;
+    GULHeartbeatDateStorage * _heartbeatDateStorage;
+}
+@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * diagnosticsQueue;
+@property (readonly,nonatomic) GDTCORTransport * transport;
+@property (readonly,nonatomic) GULHeartbeatDateStorage * heartbeatDateStorage;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
++ (id)sharedInstance;
++ (void)sendDiagnosticsData:(id)v1;
+- (id)init;
+- (id)initWithTransport:(id)v1 heartbeatDateStorage:(id)v2;
+- (void)sendDiagnosticsData:(id)v1;
+- (void)setHeartbeatFlagIfNeededToConfig:(struct _logs_proto_mobilesdk_ios_ICoreConfiguration *)v1;
+- (bool)isDate:(id)v1 inSameDayOrBeforeThan:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRAnalyticsConfiguration : NSObject
++ (id)sharedInstance;
+- (void)postNotificationName:(id)v1 value:(id)v2;
+- (void)setAnalyticsCollectionEnabled:(bool)v1;
+- (void)setAnalyticsCollectionEnabled:(bool)v1 persistSetting:(bool)v2;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRApp : NSObject {
+    bool _isDefaultApp;
+    FIROptions * _options;
+    NSString * _name;
+    FIRComponentContainer * _container;
+}
+@property (readonly,nonatomic) bool isDefaultApp;
+@property (retain,nonatomic) FIRComponentContainer * container;
+@property (readonly,copy,nonatomic) NSString * name;
+@property (readonly,copy,nonatomic) FIROptions * options;
+@property (nonatomic,getter=isDataCollectionDefaultEnabled) bool dataCollectionDefaultEnabled;
++ (void)configure;
++ (void)configureWithOptions:(id)v1;
++ (id)applicationNameAllowedCharacters;
++ (void)configureWithName:(id)v1 options:(id)v2;
++ (void)appWasConfiguredTwice:(id)v1 usingOptions:(id)v2;
++ (id)defaultApp;
++ (id)appNamed:(id)v1;
++ (id)allApps;
++ (void)resetApps;
++ (void)addAppToAppDictionary:(id)v1;
++ (void)sendNotificationsToSDKs:(id)v1;
++ (id)errorForMissingOptions;
++ (id)errorForInvalidAppID;
++ (bool)isDefaultAppConfigured;
++ (void)registerLibrary:(id)v1 withVersion:(id)v2;
++ (void)registerInternalLibrary:(Class)v1 withName:(id)v2;
++ (void)registerInternalLibrary:(Class)v1 withName:(id)v2 withVersion:(id)v3;
++ (id)userAgent;
++ (id)firebaseUserAgent;
++ (bool)validateAppID:(id)v1;
++ (id)actualBundleID;
++ (bool)validateAppIDFormat:(id)v1 withVersion:(id)v2;
++ (bool)validateAppIDFingerprint:(id)v1 withVersion:(id)v2;
++ (id)readDataCollectionSwitchFromUserDefaultsForApp:(id)v1;
++ (id)readDataCollectionSwitchFromPlist;
+- (void)deleteApp:(void (^ /* unknown block signature */)(void))v1;
+- (id)initInstanceWithName:(id)v1 options:(id)v2;
+- (void)dealloc;
+- (bool)configureCore;
+- (void)checkExpectedBundleID;
+- (bool)isAppIDValid;
+- (id)expectedBundleID;
+- (void)clearDataCollectionSwitchFromUserDefaults;
+- (void)subscribeForAppDidBecomeActiveNotifications;
+- (void)appDidBecomeActive:(id)v1;
+- (void)logCoreTelemetryIfEnabled;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRAppAssociationRegistration : NSObject
++ (id)registeredObjectWithHost:(id)v1 key:(id)v2 creationBlock:(void (^ /* unknown block signature */)(void))v3;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRBundleUtil : NSObject
++ (id)relevantBundles;
++ (id)optionsDictionaryPathWithResourceName:(id)v1 andFileType:(id)v2 inBundles:(id)v3;
++ (id)relevantURLSchemes;
++ (bool)hasBundleIdentifierPrefix:(id)v1 inBundles:(id)v2;
++ (id)bundleIdentifierByRemovingLastPartFrom:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRComponent : NSObject {
+    Protocol * _protocol;
+    long long _instantiationTiming;
+    NSArray * _dependencies;
+    void (^ /* unknown block signature */)(void) _creationBlock;
+}
+@property (readonly,nonatomic) Protocol * protocol;
+@property (readonly,nonatomic) long long instantiationTiming;
+@property (readonly,copy,nonatomic) NSArray * dependencies;
+@property (readonly,copy,nonatomic) void (^ /* unknown block signature */)(void) creationBlock;
++ (id)componentWithProtocol:(id)v1 creationBlock:(void (^ /* unknown block signature */)(void))v2;
++ (id)componentWithProtocol:(id)v1 instantiationTiming:(long long)v2 dependencies:(id)v3 creationBlock:(void (^ /* unknown block signature */)(void))v4;
+- (id)initWithProtocol:(id)v1 instantiationTiming:(long long)v2 dependencies:(id)v3 creationBlock:(void (^ /* unknown block signature */)(void))v4;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRComponentContainer : NSObject {
+    FIRApp * _app;
+    NSMutableDictionary * _components;
+    NSMutableDictionary * _cachedInstances;
+    NSMutableArray * _eagerProtocolsToInstantiate;
+}
+@property (retain,nonatomic) NSMutableDictionary * components;
+@property (retain,nonatomic) NSMutableDictionary * cachedInstances;
+@property (retain,nonatomic) NSMutableArray * eagerProtocolsToInstantiate;
+@property (readonly,nonatomic) FIRApp * app;
++ (void)registerAsComponentRegistrant:(Class)v1;
++ (void)registerAsComponentRegistrant:(Class)v1 inSet:(id)v2;
+- (id)initWithApp:(id)v1;
+- (id)initWithApp:(id)v1 registrants:(id)v2;
+- (void)populateComponentsFromRegisteredClasses:(id)v1 forApp:(id)v2;
+- (void)instantiateEagerComponents;
+- (id)instantiateInstanceForProtocol:(id)v1 withBlock:(void (^ /* unknown block signature */)(void))v2;
+- (id)instanceForProtocol:(id)v1;
+- (void)removeAllCachedInstances;
+- (void)removeAllComponents;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRComponentType : NSObject
++ (id)instanceForProtocol:(id)v1 inContainer:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRConfiguration : NSObject {
+    FIRAnalyticsConfiguration * _analyticsConfiguration;
+}
+@property (retain,nonatomic) FIRAnalyticsConfiguration * analyticsConfiguration;
++ (id)sharedInstance;
+- (id)init;
+- (void)setLoggerLevel:(long long)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRCoreDiagnosticsConnector : NSObject
++ (void)initialize;
++ (void)logCoreTelemetryWithOptions:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRDependency : NSObject {
+    bool _isRequired;
+    Protocol * _protocol;
+}
+@property (readonly,nonatomic) Protocol * protocol;
+@property (readonly,nonatomic) bool isRequired;
++ (id)dependencyWithProtocol:(id)v1;
++ (id)dependencyWithProtocol:(id)v1 isRequired:(bool)v2;
+- (id)initWithProtocol:(id)v1 isRequired:(bool)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRDiagnosticsData : NSObject<FIRCoreDiagnosticsData> {
+    NSMutableDictionary * _diagnosticObjects;
+}
+@property (retain,nonatomic) NSDictionary * diagnosticObjects;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (id)init;
+- (void)insertValue:(id)v1 forKey:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRFirebaseUserAgent : NSObject {
+    NSString * _firebaseUserAgent;
+    NSDictionary * _environmentComponents;
+    NSMutableDictionary * _valuesByComponent;
+}
+@property (readonly,nonatomic) NSMutableDictionary * valuesByComponent;
+@property (readonly,nonatomic) NSDictionary * environmentComponents;
+@property (readonly,nonatomic) NSString * firebaseUserAgent;
++ (id)environmentComponents;
+- (id)init;
+- (void)setValue:(id)v1 forComponent:(id)v2;
+- (void)reset;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRHeartbeatInfo : NSObject
++ (bool)updateIfNeededHeartbeatDateForTag:(id)v1;
++ (long long)heartbeatCodeForTag:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRLoggerWrapper : NSObject
++ (void)logWithLevel:(long long)v1 withService:(id)v2 withCode:(id)v3 withMessage:(id)v4 withArgs:(char *)v5;
+@end
+
+
+/*****************************************************************/
+
+@interface FIROptions : NSObject<NSCopying> {
+    NSDictionary * _analyticsOptionsDictionary;
+    bool _usingOptionsFromDefaultPlist;
+    bool _editingLocked;
+    NSString * _deepLinkURLScheme;
+    NSString * _appGroupID;
+    NSMutableDictionary * _optionsDictionary;
+}
+@property (retain,nonatomic) NSMutableDictionary * optionsDictionary;
+@property (readonly,nonatomic) NSDictionary * analyticsOptionsDictionary;
+@property (readonly,nonatomic) bool isAnalyticsCollectionExplicitlySet;
+@property (readonly,nonatomic) bool isAnalyticsCollectionEnabled;
+@property (readonly,nonatomic) bool isAnalyticsCollectionDeactivated;
+@property (readonly,copy,nonatomic) NSString * libraryVersionID;
+@property (nonatomic) bool usingOptionsFromDefaultPlist;
+@property (readonly,nonatomic) bool isMeasurementEnabled;
+@property (readonly,nonatomic) bool isAnalyticsEnabled;
+@property (readonly,nonatomic) bool isSignInEnabled;
+@property (nonatomic,getter=isEditingLocked) bool editingLocked;
+@property (copy,nonatomic) NSString * APIKey;
+@property (copy,nonatomic) NSString * bundleID;
+@property (copy,nonatomic) NSString * clientID;
+@property (copy,nonatomic) NSString * trackingID;
+@property (copy,nonatomic) NSString * GCMSenderID;
+@property (copy,nonatomic) NSString * projectID;
+@property (copy,nonatomic) NSString * androidClientID;
+@property (copy,nonatomic) NSString * googleAppID;
+@property (copy,nonatomic) NSString * databaseURL;
+@property (copy,nonatomic) NSString * deepLinkURLScheme;
+@property (copy,nonatomic) NSString * storageBucket;
+@property (copy,nonatomic) NSString * appGroupID;
++ (id)defaultOptions;
++ (id)defaultOptionsDictionary;
++ (id)plistFilePathWithName:(id)v1;
++ (void)resetDefaultOptions;
+- (id)initInternalWithOptionsDictionary:(id)v1;
+- (id)copyWithZone:(struct _NSZone *)v1;
+- (id)init;
+- (id)initWithContentsOfFile:(id)v1;
+- (id)initWithGoogleAppID:(id)v1 GCMSenderID:(id)v2;
+- (void)checkEditingLocked;
+- (void)setLibraryVersionID:(id)v1;
+- (bool)isEqual:(id)v1;
+- (bool)isEqualToOptions:(id)v1;
+- (unsigned long long)hash;
+- (id)analyticsOptionsDictionaryWithInfoDictionary:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULUserDefaults : NSObject {
+    struct __CFString * _appNameRef;
+    bool _isPreferenceFileExcluded;
+}
+@property (readonly) struct __CFString * appNameRef;
+@property bool isPreferenceFileExcluded;
++ (id)standardUserDefaults;
+- (id)init;
+- (id)initWithSuiteName:(id)v1;
+- (void)dealloc;
+- (id)objectForKey:(id)v1;
+- (void)setObject:(id)v1 forKey:(id)v2;
+- (void)removeObjectForKey:(id)v1;
+- (long long)integerForKey:(id)v1;
+- (float)floatForKey:(id)v1;
+- (double)doubleForKey:(id)v1;
+- (bool)boolForKey:(id)v1;
+- (id)stringForKey:(id)v1;
+- (id)arrayForKey:(id)v1;
+- (id)dictionaryForKey:(id)v1;
+- (void)setInteger:(long long)v1 forKey:(id)v2;
+- (void)setFloat:(float)v1 forKey:(id)v2;
+- (void)setDouble:(double)v1 forKey:(id)v2;
+- (void)setBool:(bool)v1 forKey:(id)v2;
+- (void)synchronize;
+- (void)scheduleSynchronize;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsErrorUtil : NSObject
++ (id)keyedArchiverErrorWithException:(id)v1;
++ (id)keyedArchiverErrorWithError:(id)v1;
++ (id)keychainErrorWithFunction:(id)v1 status:(int)v2;
++ (id)installationItemNotFoundForAppID:(id)v1 appName:(id)v2;
++ (id)corruptedIIDTokenData;
++ (id)APIErrorWithHTTPResponse:(id)v1 data:(id)v2;
++ (bool)isAPIError:(id)v1 withHTTPCode:(long long)v2;
++ (id)JSONSerializationError:(id)v1;
++ (id)FIDRegistrationErrorWithResponseMissingField:(id)v1;
++ (id)networkErrorWithError:(id)v1;
++ (id)backoffIntervalWaitError;
++ (id)publicDomainErrorWithError:(id)v1;
++ (id)installationsErrorWithCode:(unsigned long long)v1 failureReason:(id)v2 underlyingError:(id)v3;
++ (id)rejectedPromiseWithError:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsHTTPError : NSError {
+    NSHTTPURLResponse * _HTTPResponse;
+    NSData * _data;
+}
+@property (readonly,nonatomic) NSHTTPURLResponse * HTTPResponse;
+@property (readonly,nonatomic) NSData * data;
++ (unsigned long long)errorCodeWithHTTPCode:(long long)v1;
++ (id)userInfoWithHTTPResponse:(id)v1 data:(id)v2;
++ (bool)supportsSecureCoding;
+- (id)initWithHTTPResponse:(id)v1 data:(id)v2;
+- (id)copyWithZone:(struct _NSZone *)v1;
+- (id)initWithCoder:(id)v1;
+- (void)encodeWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallations : NSObject<FIRInstallationsInstanceProvider> {
+    FIROptions * _appOptions;
+    NSString * _appName;
+    FIRInstallationsIDController * _installationsIDController;
+}
+@property (readonly,nonatomic) FIROptions * appOptions;
+@property (readonly,nonatomic) NSString * appName;
+@property (readonly,nonatomic) FIRInstallationsIDController * installationsIDController;
++ (void)load;
++ (id)componentsToRegister;
++ (void)validateAppOptions:(id)v1 appName:(id)v2;
++ (void)validateAPIKey:(id)v1;
++ (id)installations;
++ (id)installationsWithApp:(id)v1;
++ (void)assertCompatibleIIDVersion;
++ (bool)isIIDVersionCompatible;
+- (id)initWithApp:(id)v1;
+- (id)initWitAppOptions:(id)v1 appName:(id)v2;
+- (id)initWithAppOptions:(id)v1 appName:(id)v2 installationsIDController:(id)v3 prefetchAuthToken:(bool)v4;
+- (void)installationIDWithCompletion:(void (^ /* unknown block signature */)(void))v1;
+- (void)authTokenWithCompletion:(void (^ /* unknown block signature */)(void))v1;
+- (void)authTokenForcingRefresh:(bool)v1 completion:(void (^ /* unknown block signature */)(void))v2;
+- (void)deleteWithCompletion:(void (^ /* unknown block signature */)(void))v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsAuthTokenResult : NSObject {
+    NSString * _authToken;
+    NSDate * _expirationDate;
+}
+@property (readonly,nonatomic) NSString * authToken;
+@property (readonly,nonatomic) NSDate * expirationDate;
+- (id)initWithToken:(id)v1 expirationDate:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsItem : NSObject<NSCopying> {
+    NSString * _appID;
+    NSString * _firebaseAppName;
+    NSString * _firebaseInstallationID;
+    NSString * _refreshToken;
+    FIRInstallationsStoredAuthToken * _authToken;
+    long long _registrationStatus;
+    NSString * _IIDDefaultToken;
+}
+@property (readonly,nonatomic) NSString * appID;
+@property (readonly,nonatomic) NSString * firebaseAppName;
+@property (copy,nonatomic) NSString * firebaseInstallationID;
+@property (copy,nonatomic) NSString * refreshToken;
+@property (retain,nonatomic) FIRInstallationsStoredAuthToken * authToken;
+@property (nonatomic) long long registrationStatus;
+@property (retain,nonatomic) NSString * IIDDefaultToken;
++ (id)authTokenWithGenerateTokenAPIJSONData:(id)v1 date:(id)v2 error:(id *)v3;
++ (id)authTokenWithJSONDict:(id)v1 date:(id)v2 error:(id *)v3;
++ (id)dictionaryFromJSONData:(id)v1 error:(id *)v2;
++ (id)validStringOrNilForKey:(id)v1 fromDict:(id)v2;
++ (id)identifierWithAppID:(id)v1 appName:(id)v2;
++ (id)generateFID;
++ (id)base64URLEncodedStringWithData:(id)v1;
+- (id)registeredInstallationWithJSONData:(id)v1 date:(id)v2 error:(id *)v3;
+- (id)initWithAppID:(id)v1 firebaseAppName:(id)v2;
+- (id)copyWithZone:(struct _NSZone *)v1;
+- (void)updateWithStoredItem:(id)v1;
+- (id)storedItem;
+- (id)identifier;
+- (bool)isValid:(id *)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsIIDStore : NSObject
+- (id)existingIID;
+- (id)deleteExistingIID;
+- (id)IIDWithPublicKeyData:(id)v1;
+- (id)sha1WithData:(id)v1;
+- (id)base64URLEncodedStringWithData:(id)v1;
+- (id)IIDPublicKeyData;
+- (bool)deleteIID:(id *)v1;
+- (bool)deleteKeychainKeyWithTagPrefix:(id)v1 error:(id *)v2;
+- (id)keyPairQueryWithTag:(id)v1 returnData:(bool)v2;
+- (id)keychainKeyTagWithPrefix:(id)v1;
+- (id)mainbundleIdentifier;
+- (bool)deleteIIDFlagFromPlist:(id *)v1;
+- (bool)hasPlistIIDFlag;
+- (id)plistPath;
+- (unsigned long long)supportedDirectory;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsIIDTokenInfo : NSObject<NSSecureCoding> {
+    NSString * _token;
+}
+@property (copy,nonatomic) NSString * token;
++ (bool)supportsSecureCoding;
+- (void)encodeWithCoder:(id)v1;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsIIDTokenStore : NSObject {
+    NSString * _GCMSenderID;
+}
+@property (readonly,nonatomic) NSString * GCMSenderID;
+- (id)initWithGCMSenderID:(id)v1;
+- (id)existingIIDDefaultToken;
+- (id)IIDCheckinWithData:(id)v1;
+- (id)IIDDefaultTokenData;
+- (id)IIDDefaultTokenDataKeychainQuery;
+- (id)IIDAppIdentifier;
+- (id)serviceKeyForAuthorizedEntity:(id)v1 scope:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsURLSessionResponse : NSObject {
+    NSHTTPURLResponse * _HTTPResponse;
+    NSData * _data;
+}
+@property (retain,nonatomic) NSHTTPURLResponse * HTTPResponse;
+@property (retain,nonatomic) NSData * data;
+- (id)initWithResponse:(id)v1 data:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsAPIService : NSObject {
+    NSURLSession * _URLSession;
+    NSString * _APIKey;
+    NSString * _projectID;
+}
+@property (readonly,nonatomic) NSURLSession * URLSession;
+@property (readonly,nonatomic) NSString * APIKey;
+@property (readonly,nonatomic) NSString * projectID;
+- (id)initWithAPIKey:(id)v1 projectID:(id)v2;
+- (id)initWithURLSession:(id)v1 APIKey:(id)v2 projectID:(id)v3;
+- (id)registerInstallation:(id)v1;
+- (id)refreshAuthTokenForInstallation:(id)v1;
+- (id)deleteInstallation:(id)v1;
+- (id)registerRequestWithInstallation:(id)v1;
+- (id)registeredInstallationWithInstallation:(id)v1 serverResponse:(id)v2;
+- (id)authTokenRequestWithInstallation:(id)v1;
+- (id)authTokenWithServerResponse:(id)v1;
+- (id)deleteInstallationRequestWithInstallation:(id)v1;
+- (id)requestWithURL:(id)v1 HTTPMethod:(id)v2 bodyDict:(id)v3 refreshToken:(id)v4;
+- (id)requestWithURL:(id)v1 HTTPMethod:(id)v2 bodyDict:(id)v3 refreshToken:(id)v4 additionalHeaders:(id)v5;
+- (id)URLRequestPromise:(id)v1;
+- (id)validateHTTPResponseStatusCode:(id)v1;
+- (id)sendURLRequest:(id)v1;
+- (id)SDKVersion;
+- (id)validateInstallation:(id)v1;
+- (void)setJSONHTTPBody:(id)v1 forRequest:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsBackoffEventData : NSObject {
+    long long _eventType;
+    NSDate * _lastEventDate;
+    long long _eventCount;
+    double _backoffTimeInterval;
+}
+@property (readonly,nonatomic) long long eventType;
+@property (readonly,nonatomic) NSDate * lastEventDate;
+@property (readonly,nonatomic) long long eventCount;
+@property (readonly,nonatomic) double backoffTimeInterval;
++ (double)backoffTimeIntervalWithEvent:(long long)v1 eventCount:(long long)v2;
++ (double)recoverableErrorBackoffTimeForAttemptNumber:(long long)v1;
++ (double)randomMilliseconds;
+- (id)initWithEvent:(long long)v1 lastEventDate:(id)v2 eventCount:(long long)v3;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsBackoffController : NSObject<FIRInstallationsBackoffControllerProtocol> {
+    void (^ /* unknown block signature */)(void) _currentDateProvider;
+    FIRInstallationsBackoffEventData * _lastEventData;
+}
+@property (readonly,nonatomic) void (^ /* unknown block signature */)(void) currentDateProvider;
+@property (retain,nonatomic) FIRInstallationsBackoffEventData * lastEventData;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
+- (id)init;
+- (id)initWithCurrentDateProvider:(void (^ /* unknown block signature */)(void))v1;
+- (bool)isNextRequestAllowed;
+- (void)registerEvent:(long long)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsIDController : NSObject {
+    NSString * _appID;
+    NSString * _appName;
+    FIRInstallationsStore * _installationsStore;
+    FIRInstallationsIIDStore * _IIDStore;
+    FIRInstallationsIIDTokenStore * _IIDTokenStore;
+    FIRInstallationsAPIService * _APIService;
+    NSObject<FIRInstallationsBackoffControllerProtocol> * _backoffController;
+    FIRInstallationsSingleOperationPromiseCache * _getInstallationPromiseCache;
+    FIRInstallationsSingleOperationPromiseCache * _authTokenPromiseCache;
+    FIRInstallationsSingleOperationPromiseCache * _authTokenForcingRefreshPromiseCache;
+    FIRInstallationsSingleOperationPromiseCache * _deleteInstallationPromiseCache;
+}
+@property (readonly,nonatomic) NSString * appID;
+@property (readonly,nonatomic) NSString * appName;
+@property (readonly,nonatomic) FIRInstallationsStore * installationsStore;
+@property (readonly,nonatomic) FIRInstallationsIIDStore * IIDStore;
+@property (readonly,nonatomic) FIRInstallationsIIDTokenStore * IIDTokenStore;
+@property (readonly,nonatomic) FIRInstallationsAPIService * APIService;
+@property (readonly,nonatomic) NSObject<FIRInstallationsBackoffControllerProtocol> * backoffController;
+@property (readonly,nonatomic) FIRInstallationsSingleOperationPromiseCache * getInstallationPromiseCache;
+@property (readonly,nonatomic) FIRInstallationsSingleOperationPromiseCache * authTokenPromiseCache;
+@property (readonly,nonatomic) FIRInstallationsSingleOperationPromiseCache * authTokenForcingRefreshPromiseCache;
+@property (readonly,nonatomic) FIRInstallationsSingleOperationPromiseCache * deleteInstallationPromiseCache;
++ (id)keychainServiceWithAppID:(id)v1;
+- (id)initWithGoogleAppID:(id)v1 appName:(id)v2 APIKey:(id)v3 projectID:(id)v4 GCMSenderID:(id)v5 accessGroup:(id)v6;
+- (id)initWithGoogleAppID:(id)v1 appName:(id)v2 installationsStore:(id)v3 APIService:(id)v4 IIDStore:(id)v5 IIDTokenStore:(id)v6 backoffController:(id)v7;
+- (id)getInstallationItem;
+- (id)createGetInstallationItemPromise;
+- (id)getStoredInstallation;
+- (id)createAndSaveFID;
+- (id)saveInstallation:(id)v1;
+- (id)migrateOrGenerateInstallation;
+- (id)createInstallationWithFID:(id)v1 IIDDefaultToken:(id)v2;
+- (id)registerInstallationIfNeeded:(id)v1;
+- (bool)doesRegistrationErrorRequireConfigChange:(id)v1;
+- (id)getAuthTokenForcingRefresh:(bool)v1;
+- (id)installationWithValidAuthTokenForcingRefresh:(bool)v1;
+- (id)refreshAuthTokenForInstallation:(id)v1;
+- (id)regenerateFIDOnRefreshTokenErrorIfNeeded:(id)v1;
+- (id)deleteInstallation;
+- (id)createDeleteInstallationPromise;
+- (id)deleteInstallationLocally:(id)v1;
+- (id)sendDeleteInstallationRequestIfNeeded:(id)v1;
+- (id)deleteExistingIIDIfNeeded;
+- (id)mostRecentInstallationOperation;
+- (void)updateBackoffWithSuccess:(bool)v1 APIError:(id)v2;
+- (void)postFIDDidChangeNotification;
+- (bool)isDefaultApp;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsSingleOperationPromiseCache : NSObject {
+    void (^ /* unknown block signature */)(void) _newOperationHandler;
+    FBLPromise * _pendingPromise;
+}
+@property (readonly,nonatomic) void (^ /* unknown block signature */)(void) newOperationHandler;
+@property (retain,nonatomic) FBLPromise * pendingPromise;
+- (id)initWithNewOperationHandler:(void (^ /* unknown block signature */)(void))v1;
+- (id)getExistingPendingOrCreateNewPromise;
+- (id)getExistingPendingPromise;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsStore : NSObject {
+    GULKeychainStorage * _secureStorage;
+    NSString * _accessGroup;
+    NSObject<OS_dispatch_queue> * _queue;
+    GULUserDefaults * _userDefaults;
+}
+@property (readonly,nonatomic) GULKeychainStorage * secureStorage;
+@property (readonly,nonatomic) NSString * accessGroup;
+@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * queue;
+@property (readonly,nonatomic) GULUserDefaults * userDefaults;
+- (id)initWithSecureStorage:(id)v1 accessGroup:(id)v2;
+- (id)installationForAppID:(id)v1 appName:(id)v2;
+- (id)saveInstallation:(id)v1;
+- (id)removeInstallationForAppID:(id)v1 appName:(id)v2;
+- (id)installationExistsForAppID:(id)v1 appName:(id)v2;
+- (id)setInstallationExists:(bool)v1 forItemWithIdentifier:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsStoredAuthToken : NSObject<NSSecureCoding,NSCopying> {
+    long long _status;
+    NSString * _token;
+    NSDate * _expirationDate;
+}
+@property long long status;
+@property (copy) NSString * token;
+@property (copy) NSDate * expirationDate;
+@property (readonly,nonatomic) long long storageVersion;
++ (bool)supportsSecureCoding;
+- (id)copyWithZone:(struct _NSZone *)v1;
+- (void)encodeWithCoder:(id)v1;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRInstallationsStoredItem : NSObject<NSSecureCoding> {
+    NSString * _firebaseInstallationID;
+    NSString * _refreshToken;
+    FIRInstallationsStoredAuthToken * _authToken;
+    long long _registrationStatus;
+    NSString * _IIDDefaultToken;
+}
+@property (copy,nonatomic) NSString * firebaseInstallationID;
+@property (copy,nonatomic) NSString * refreshToken;
+@property (retain,nonatomic) FIRInstallationsStoredAuthToken * authToken;
+@property (nonatomic) long long registrationStatus;
+@property (retain,nonatomic) NSString * IIDDefaultToken;
+@property (readonly,nonatomic) long long storageVersion;
++ (bool)supportsSecureCoding;
+- (void)encodeWithCoder:(id)v1;
+- (id)initWithCoder:(id)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULZeroingWeakContainer : NSObject {
+    id _object;
+}
+@property (nonatomic) id object;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULAppDelegateObserver : NSObject {
+    bool _isObserving;
+}
++ (id)sharedInstance;
+- (void)observeUIApplication;
+- (void)observeValueForKeyPath:(id)v1 ofObject:(id)v2 change:(id)v3 context:(void *)v4;
+@end
+
+
+/*****************************************************************/
+
+@interface GULAppDelegateSwizzler : NSProxy
++ (bool)isAppDelegateProxyEnabled;
++ (id)registerAppDelegateInterceptor:(id)v1;
++ (void)unregisterAppDelegateInterceptorWithID:(id)v1;
++ (void)proxyOriginalDelegate;
++ (void)proxyOriginalDelegateIncludingAPNSMethods;
++ (id)sharedApplication;
++ (Class)createSubclassWithObject:(id)v1;
++ (void)proxyRemoteNotificationsMethodsWithAppDelegateSubClass:(Class)v1 realClass:(Class)v2 appDelegate:(id)v3 realImplementationsBySelector:(id)v4;
++ (void)reassignAppDelegate;
++ (id)interceptors;
++ (id)originalImplementationForSelector:(SEL)v1 object:(id)v2;
++ (void)proxyDestinationSelector:(SEL)v1 implementationsFromSourceSelector:(SEL)v2 fromClass:(Class)v3 toClass:(Class)v4 realClass:(Class)v5 storeDestinationImplementationTo:(id)v6;
++ (void)addInstanceMethodWithSelector:(SEL)v1 fromClass:(Class)v2 toClass:(Class)v3;
++ (void)addInstanceMethodWithDestinationSelector:(SEL)v1 withImplementationFromSourceSelector:(SEL)v2 fromClass:(Class)v3 toClass:(Class)v4;
++ (void * *)implementationOfMethodSelector:(SEL)v1 fromClass:(Class)v2;
++ (void)notifyInterceptorsWithMethodSelector:(SEL)v1 callback:(void (^ /* unknown block signature */)(void))v2;
++ (id)appDelegateInvocationForSelector:(SEL)v1;
++ (void)proxyAppDelegate:(id)v1;
++ (id)correctAppDelegateProxyKey;
++ (id)correctAlternativeWhenAppDelegateProxyNotCreated;
++ (void)clearInterceptors;
++ (void)resetProxyOriginalDelegateOnceToken;
++ (id)originalDelegate;
+- (id)fakeDescription;
+- (bool)application:(id)v1 openURL:(id)v2 options:(id)v3;
+- (bool)application:(id)v1 openURL:(id)v2 sourceApplication:(id)v3 annotation:(id)v4;
+- (void)application:(id)v1 handleEventsForBackgroundURLSession:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (bool)application:(id)v1 continueUserActivity:(id)v2 restorationHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)application:(id)v1 donor_didRegisterForRemoteNotificationsWithDeviceToken:(id)v2;
+- (void)application:(id)v1 donor_didFailToRegisterForRemoteNotificationsWithError:(id)v2;
+- (void)application:(id)v1 donor_didReceiveRemoteNotification:(id)v2 fetchCompletionHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)application:(id)v1 donor_didReceiveRemoteNotification:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@interface GULSceneZeroingWeakContainer : NSObject {
+    id _object;
+}
+@property (nonatomic) id object;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULSceneDelegateSwizzler : NSProxy
++ (bool)isSceneDelegateProxyEnabled;
++ (void)proxyOriginalSceneDelegate;
++ (id)registerSceneDelegateInterceptor:(id)v1;
++ (void)unregisterSceneDelegateInterceptorWithID:(id)v1;
++ (id)interceptors;
++ (void)clearInterceptors;
++ (id)originalImplementationForSelector:(SEL)v1 object:(id)v2;
++ (void)proxyDestinationSelector:(SEL)v1 implementationsFromSourceSelector:(SEL)v2 fromClass:(Class)v3 toClass:(Class)v4 realClass:(Class)v5 storeDestinationImplementationTo:(id)v6;
++ (void)addInstanceMethodWithSelector:(SEL)v1 fromClass:(Class)v2 toClass:(Class)v3;
++ (void)addInstanceMethodWithDestinationSelector:(SEL)v1 withImplementationFromSourceSelector:(SEL)v2 fromClass:(Class)v3 toClass:(Class)v4;
++ (void * *)implementationOfMethodSelector:(SEL)v1 fromClass:(Class)v2;
++ (void)notifyInterceptorsWithMethodSelector:(SEL)v1 callback:(void (^ /* unknown block signature */)(void))v2;
++ (void)handleSceneWillConnectToNotification:(id)v1;
++ (void)proxySceneDelegateIfNeeded:(id)v1;
++ (id)correctSceneDelegateProxyKey;
+- (void)scene:(id)v1 openURLContexts:(id)v2;
+@end
+
+
+/*****************************************************************/
+
+@interface GULReachabilityChecker : NSObject {
+    int reachabilityStatus_;
+    struct GULReachabilityApi * reachabilityApi_;
+    struct __SCNetworkReachability * reachability_;
+    NSString * host_;
+    NSObject<GULReachabilityDelegate> * reachabilityDelegate_;
+}
+@property (nonatomic) struct GULReachabilityApi * reachabilityApi /* backed by reachabilityApi_ */;
+@property (nonatomic) int reachabilityStatus /* backed by reachabilityStatus_ */;
+@property (copy,nonatomic) NSString * host /* backed by host_ */;
+@property (nonatomic) struct __SCNetworkReachability * reachability /* backed by reachability_ */;
+@property (nonatomic) NSObject<GULReachabilityDelegate> * reachabilityDelegate /* backed by reachabilityDelegate_ */;
+@property (readonly,nonatomic) bool isActive;
+- (id)initWithReachabilityDelegate:(id)v1 withHost:(id)v2;
+- (void)dealloc;
+- (bool)start;
+- (void)stop;
+- (int)statusForFlags:(unsigned int)v1;
+- (void)reachabilityFlagsChanged:(unsigned int)v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULMutableDictionary : NSObject {
+    NSMutableDictionary * _objects;
+    NSObject<OS_dispatch_queue> * _queue;
+}
+- (id)init;
+- (id)description;
+- (id)objectForKey:(id)v1;
+- (void)setObject:(id)v1 forKey:(id)v2;
+- (void)removeObjectForKey:(id)v1;
+- (void)removeAllObjects;
+- (unsigned long long)count;
+- (id)objectForKeyedSubscript:(id)v1;
+- (void)setObject:(id)v1 forKeyedSubscript:(id)v2;
+- (id)dictionary;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULNetwork : NSObject<GULReachabilityDelegate,GULNetworkLoggerDelegate> {
+    GULReachabilityChecker * _reachability;
+    GULMutableDictionary * _requests;
+    bool _networkConnected;
+    bool _isDebugModeEnabled;
+    NSObject<GULNetworkReachabilityDelegate> * _reachabilityDelegate;
+    NSObject<GULNetworkLoggerDelegate> * _loggerDelegate;
+    double _timeoutInterval;
+}
+@property (readonly,nonatomic,getter=isNetworkConnected) bool networkConnected;
+@property (readonly,nonatomic,getter=hasUploadInProgress) bool uploadInProgress;
+@property (nonatomic) NSObject<GULNetworkReachabilityDelegate> * reachabilityDelegate;
+@property (nonatomic) NSObject<GULNetworkLoggerDelegate> * loggerDelegate;
+@property (nonatomic) bool isDebugModeEnabled;
+@property (nonatomic) double timeoutInterval;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
++ (void)handleEventsForBackgroundURLSessionID:(id)v1 completionHandler:(void (^ /* unknown block signature */)(void))v2;
+- (id)init;
+- (id)initWithReachabilityHost:(id)v1;
+- (void)dealloc;
+- (id)postURL:(id)v1 payload:(id)v2 queue:(id)v3 usingBackgroundSession:(bool)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (id)getURL:(id)v1 headers:(id)v2 queue:(id)v3 usingBackgroundSession:(bool)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (void)reachability:(id)v1 statusChanged:(int)v2;
+- (void)handleErrorWithCode:(long long)v1 queue:(id)v2 withHandler:(void (^ /* unknown block signature */)(void))v3;
+- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3 contexts:(id)v4;
+- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3 context:(id)v4;
+- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULNetworkURLSession : NSObject<NSURLSessionDelegate,NSURLSessionDataDelegate,NSURLSessionDownloadDelegate,NSURLSessionTaskDelegate> {
+    void (^ /* unknown block signature */)(void) _completionHandler;
+    NSString * _sessionID;
+    NSURLSessionConfiguration * _sessionConfig;
+    NSURLSession * _URLSession;
+    NSURL * _networkDirectoryURL;
+    NSData * _downloadedData;
+    NSURL * _uploadingFileURL;
+    NSURLRequest * _request;
+    bool _backgroundNetworkEnabled;
+    NSObject<GULNetworkLoggerDelegate> * _loggerDelegate;
+}
+@property (nonatomic,getter=isBackgroundNetworkEnabled) bool backgroundNetworkEnabled;
+@property (nonatomic) NSObject<GULNetworkLoggerDelegate> * loggerDelegate;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
++ (void)handleEventsForBackgroundURLSessionID:(id)v1 completionHandler:(void (^ /* unknown block signature */)(void))v2;
++ (id)fetcherWithSessionIdentifier:(id)v1;
++ (id)sessionIDToFetcherMap;
++ (id)sessionIDToFetcherMapReadWriteLock;
++ (id)sessionIDToSystemCompletionHandlerDictionary;
++ (void)setSessionInFetcherMap:(id)v1 forSessionID:(id)v2;
++ (id)sessionFromFetcherMapForSessionID:(id)v1;
+- (id)initWithNetworkLoggerDelegate:(id)v1;
+- (id)sessionIDFromAsyncPOSTRequest:(id)v1 completionHandler:(void (^ /* unknown block signature */)(void))v2;
+- (id)sessionIDFromAsyncGETRequest:(id)v1 completionHandler:(void (^ /* unknown block signature */)(void))v2;
+- (void)URLSession:(id)v1 dataTask:(id)v2 didReceiveData:(id)v3;
+- (void)URLSession:(id)v1 downloadTask:(id)v2 didFinishDownloadingToURL:(id)v3;
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(id)v1;
+- (void)URLSession:(id)v1 task:(id)v2 didCompleteWithError:(id)v3;
+- (void)URLSession:(id)v1 task:(id)v2 didReceiveChallenge:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
+- (void)addSystemCompletionHandler:(void (^ /* unknown block signature */)(void))v1 forSession:(id)v2;
+- (void)callSystemCompletionHandler:(id)v1;
+- (void)setSessionID:(id)v1;
+- (id)backgroundSessionConfigWithSessionID:(id)v1;
+- (void)maybeRemoveTempFilesAtURL:(id)v1 expiringTime:(double)v2;
+- (void)removeTempItemAtURL:(id)v1;
+- (id)temporaryFilePathWithSessionID:(id)v1;
+- (bool)ensureTemporaryDirectoryExists;
+- (void)excludeFromBackupForURL:(id)v1;
+- (void)URLSession:(id)v1 task:(id)v2 willPerformHTTPRedirection:(id)v3 newRequest:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
+- (void)callCompletionHandler:(void (^ /* unknown block signature */)(void))v1 withResponse:(id)v2 data:(id)v3 error:(id)v4;
+- (void)populateSessionConfig:(id)v1 withRequest:(id)v2;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface GULSwizzler : NSObject
++ (void)swizzleClass:(Class)v1 selector:(SEL)v2 isClassSelector:(bool)v3 withBlock:(id)v4;
++ (void * *)currentImplementationForClass:(Class)v1 selector:(SEL)v2 isClassSelector:(bool)v3;
++ (bool)selector:(SEL)v1 existsInClass:(Class)v2 isClassSelector:(bool)v3;
++ (id)ivarObjectsForObject:(id)v1;
+@end
+
+
+/*****************************************************************/
+
+@interface SSZipArchive : NSObject {
+    NSString * _path;
+    void * _zip;
+}
++ (bool)isFilePasswordProtectedAtPath:(id)v1;
++ (bool)isPasswordValidForArchiveAtPath:(id)v1 password:(id)v2 error:(id *)v3;
++ (id)payloadSizeForArchiveAtPath:(id)v1 error:(id *)v2;
++ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2;
++ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 overwrite:(bool)v3 password:(id)v4 error:(id *)v5;
++ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 delegate:(id)v3;
++ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 overwrite:(bool)v3 password:(id)v4 error:(id *)v5 delegate:(id)v6;
++ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 overwrite:(bool)v3 password:(id)v4 progressHandler:(void (^ /* unknown block signature */)(void))v5 completionHandler:(void (^ /* unknown block signature */)(void))v6;
++ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 progressHandler:(void (^ /* unknown block signature */)(void))v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
++ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 preserveAttributes:(bool)v3 overwrite:(bool)v4 password:(id)v5 error:(id *)v6 delegate:(id)v7;
++ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 preserveAttributes:(bool)v3 overwrite:(bool)v4 password:(id)v5 error:(id *)v6 delegate:(id)v7 progressHandler:(void (^ /* unknown block signature */)(void))v8 completionHandler:(void (^ /* unknown block signature */)(void))v9;
++ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 preserveAttributes:(bool)v3 overwrite:(bool)v4 nestedZipLevel:(long long)v5 password:(id)v6 error:(id *)v7 delegate:(id)v8 progressHandler:(void (^ /* unknown block signature */)(void))v9 completionHandler:(void (^ /* unknown block signature */)(void))v10;
++ (bool)createZipFileAtPath:(id)v1 withFilesAtPaths:(id)v2;
++ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2;
++ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 keepParentDirectory:(bool)v3;
++ (bool)createZipFileAtPath:(id)v1 withFilesAtPaths:(id)v2 withPassword:(id)v3;
++ (bool)createZipFileAtPath:(id)v1 withFilesAtPaths:(id)v2 withPassword:(id)v3 progressHandler:(void (^ /* unknown block signature */)(void))v4;
++ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 withPassword:(id)v3;
++ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 keepParentDirectory:(bool)v3 withPassword:(id)v4;
++ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 keepParentDirectory:(bool)v3 withPassword:(id)v4 andProgressHandler:(void (^ /* unknown block signature */)(void))v5;
++ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 keepParentDirectory:(bool)v3 compressionLevel:(int)v4 password:(id)v5 AES:(bool)v6 progressHandler:(void (^ /* unknown block signature */)(void))v7;
++ (bool)createZipFileAtPath:(id)v1 withFilesAtPaths:(id)v2 withPassword:(id)v3 keepSymlinks:(bool)v4;
++ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 keepParentDirectory:(bool)v3 compressionLevel:(int)v4 password:(id)v5 AES:(bool)v6 progressHandler:(void (^ /* unknown block signature */)(void))v7 keepSymlinks:(bool)v8;
++ (id)_filenameStringWithCString:(const  char *)v1 version_made_by:(unsigned short)v2 general_purpose_flag:(unsigned short)v3 size:(unsigned short)v4;
++ (void)zipInfo:(struct anonymous_type_18 *)v1 setAttributesOfItemAtPath:(id)v2;
++ (void)zipInfo:(struct anonymous_type_20 *)v1 setDate:(id)v2;
++ (id)_gregorian;
++ (id)_dateWithMSDOSFormat:(unsigned int)v1;
+- (bool)writeSymlinkFileAtPath:(id)v1 withFileName:(id)v2 compressionLevel:(int)v3 password:(id)v4 AES:(bool)v5;
+- (id)init;
+- (id)initWithPath:(id)v1;
+- (bool)open;
+- (bool)openForAppending;
+- (bool)writeFolderAtPath:(id)v1 withFolderName:(id)v2 withPassword:(id)v3;
+- (bool)writeFile:(id)v1 withPassword:(id)v2;
+- (bool)writeFileAtPath:(id)v1 withFileName:(id)v2 withPassword:(id)v3;
+- (bool)writeFileAtPath:(id)v1 withFileName:(id)v2 compressionLevel:(int)v3 password:(id)v4 AES:(bool)v5;
+- (bool)writeData:(id)v1 filename:(id)v2 withPassword:(id)v3;
+- (bool)writeData:(id)v1 filename:(id)v2 compressionLevel:(int)v3 password:(id)v4 AES:(bool)v5;
+- (bool)close;
+- (void).cxx_destruct;
 @end
 
 
@@ -11458,56 +14286,6 @@ struct anonymous_type_23 {
 /*****************************************************************/
 
 @interface _TtC6Kronos9NTPClient : _TtCs12_SwiftObject
-@end
-
-
-/*****************************************************************/
-
-@interface SSZipArchive : NSObject {
-    NSString * _path;
-    void * _zip;
-}
-+ (bool)isFilePasswordProtectedAtPath:(id)v1;
-+ (bool)isPasswordValidForArchiveAtPath:(id)v1 password:(id)v2 error:(id *)v3;
-+ (id)payloadSizeForArchiveAtPath:(id)v1 error:(id *)v2;
-+ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2;
-+ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 overwrite:(bool)v3 password:(id)v4 error:(id *)v5;
-+ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 delegate:(id)v3;
-+ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 overwrite:(bool)v3 password:(id)v4 error:(id *)v5 delegate:(id)v6;
-+ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 overwrite:(bool)v3 password:(id)v4 progressHandler:(void (^ /* unknown block signature */)(void))v5 completionHandler:(void (^ /* unknown block signature */)(void))v6;
-+ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 progressHandler:(void (^ /* unknown block signature */)(void))v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
-+ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 preserveAttributes:(bool)v3 overwrite:(bool)v4 password:(id)v5 error:(id *)v6 delegate:(id)v7;
-+ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 preserveAttributes:(bool)v3 overwrite:(bool)v4 password:(id)v5 error:(id *)v6 delegate:(id)v7 progressHandler:(void (^ /* unknown block signature */)(void))v8 completionHandler:(void (^ /* unknown block signature */)(void))v9;
-+ (bool)unzipFileAtPath:(id)v1 toDestination:(id)v2 preserveAttributes:(bool)v3 overwrite:(bool)v4 nestedZipLevel:(long long)v5 password:(id)v6 error:(id *)v7 delegate:(id)v8 progressHandler:(void (^ /* unknown block signature */)(void))v9 completionHandler:(void (^ /* unknown block signature */)(void))v10;
-+ (bool)createZipFileAtPath:(id)v1 withFilesAtPaths:(id)v2;
-+ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2;
-+ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 keepParentDirectory:(bool)v3;
-+ (bool)createZipFileAtPath:(id)v1 withFilesAtPaths:(id)v2 withPassword:(id)v3;
-+ (bool)createZipFileAtPath:(id)v1 withFilesAtPaths:(id)v2 withPassword:(id)v3 progressHandler:(void (^ /* unknown block signature */)(void))v4;
-+ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 withPassword:(id)v3;
-+ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 keepParentDirectory:(bool)v3 withPassword:(id)v4;
-+ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 keepParentDirectory:(bool)v3 withPassword:(id)v4 andProgressHandler:(void (^ /* unknown block signature */)(void))v5;
-+ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 keepParentDirectory:(bool)v3 compressionLevel:(int)v4 password:(id)v5 AES:(bool)v6 progressHandler:(void (^ /* unknown block signature */)(void))v7;
-+ (bool)createZipFileAtPath:(id)v1 withFilesAtPaths:(id)v2 withPassword:(id)v3 keepSymlinks:(bool)v4;
-+ (bool)createZipFileAtPath:(id)v1 withContentsOfDirectory:(id)v2 keepParentDirectory:(bool)v3 compressionLevel:(int)v4 password:(id)v5 AES:(bool)v6 progressHandler:(void (^ /* unknown block signature */)(void))v7 keepSymlinks:(bool)v8;
-+ (id)_filenameStringWithCString:(const  char *)v1 version_made_by:(unsigned short)v2 general_purpose_flag:(unsigned short)v3 size:(unsigned short)v4;
-+ (void)zipInfo:(struct anonymous_type_14 *)v1 setAttributesOfItemAtPath:(id)v2;
-+ (void)zipInfo:(struct anonymous_type_16 *)v1 setDate:(id)v2;
-+ (id)_gregorian;
-+ (id)_dateWithMSDOSFormat:(unsigned int)v1;
-- (bool)writeSymlinkFileAtPath:(id)v1 withFileName:(id)v2 compressionLevel:(int)v3 password:(id)v4 AES:(bool)v5;
-- (id)init;
-- (id)initWithPath:(id)v1;
-- (bool)open;
-- (bool)openForAppending;
-- (bool)writeFolderAtPath:(id)v1 withFolderName:(id)v2 withPassword:(id)v3;
-- (bool)writeFile:(id)v1 withPassword:(id)v2;
-- (bool)writeFileAtPath:(id)v1 withFileName:(id)v2 withPassword:(id)v3;
-- (bool)writeFileAtPath:(id)v1 withFileName:(id)v2 compressionLevel:(int)v3 password:(id)v4 AES:(bool)v5;
-- (bool)writeData:(id)v1 filename:(id)v2 withPassword:(id)v3;
-- (bool)writeData:(id)v1 filename:(id)v2 compressionLevel:(int)v3 password:(id)v4 AES:(bool)v5;
-- (bool)close;
-- (void).cxx_destruct;
 @end
 
 
@@ -14517,12 +17295,12 @@ struct anonymous_type_23 {
     NSString * _reportID;
     NSDate * _dateCreated;
     bool _hasCrash;
-    struct anonymous_type_23 _logStorage;
+    struct anonymous_type_27 _logStorage;
     const  char * _activeLogPath;
     unsigned int _internalKVCounter;
-    struct anonymous_type_24 _internalKVStorage;
+    struct anonymous_type_28 _internalKVStorage;
     unsigned int _userKVCounter;
-    struct anonymous_type_25 _userKVStorage;
+    struct anonymous_type_29 _userKVStorage;
     FIRCLSInternalReport * _internalReport;
 }
 @property (retain,nonatomic) FIRCLSInternalReport * internalReport;
@@ -14809,7 +17587,7 @@ struct anonymous_type_23 {
 - (id)init;
 - (bool)loadBinaryImagesFromFile:(id)v1;
 - (id)loadedBinaryImageForPC:(unsigned long long)v1;
-fillInImageDetails:forUUID: (IMP @0x100af728c);
+fillInImageDetails:forUUID: (IMP @0x100d4b44c);
 - (id)frameForAddress:(unsigned long long)v1;
 - (bool)updateStackFrame:(id)v1;
 - (void).cxx_destruct;
@@ -15026,13 +17804,13 @@ fillInImageDetails:forUUID: (IMP @0x100af728c);
 @interface FIRCLSApplicationIdentifierModel : NSObject {
     NSDictionary * _architectureUUIDMap;
     NSString * _buildInstanceID;
-    struct anonymous_type_35 _builtSDK;
-    struct anonymous_type_36 _minimumSDK;
+    struct anonymous_type_38 _builtSDK;
+    struct anonymous_type_39 _minimumSDK;
 }
 @property (copy,nonatomic) NSDictionary * architectureUUIDMap;
 @property (copy,nonatomic) NSString * buildInstanceID;
-@property (readonly,nonatomic) struct anonymous_type_37 builtSDK;
-@property (readonly,nonatomic) struct anonymous_type_38 minimumSDK;
+@property (readonly,nonatomic) struct anonymous_type_40 builtSDK;
+@property (readonly,nonatomic) struct anonymous_type_41 minimumSDK;
 @property (readonly,nonatomic) NSString * bundleID;
 @property (readonly,nonatomic) NSString * displayName;
 @property (readonly,nonatomic) NSString * platform;
@@ -15138,14 +17916,14 @@ fillInImageDetails:forUUID: (IMP @0x100af728c);
     struct FIRCLSMachOSlice _slice;
     NSString * _uuidString;
     NSArray * _linkedDylibs;
-    struct anonymous_type_40 _minimumOSVersion;
-    struct anonymous_type_41 _linkedSDKVersion;
+    struct anonymous_type_43 _minimumOSVersion;
+    struct anonymous_type_44 _linkedSDKVersion;
 }
 @property (readonly,copy,nonatomic) NSString * uuid;
 @property (readonly,copy,nonatomic) NSString * architectureName;
 @property (readonly,nonatomic) NSArray * linkedDylibs;
-@property (readonly,nonatomic) struct anonymous_type_42 minimumOSVersion;
-@property (readonly,nonatomic) struct anonymous_type_43 linkedSDKVersion;
+@property (readonly,nonatomic) struct anonymous_type_45 minimumOSVersion;
+@property (readonly,nonatomic) struct anonymous_type_46 linkedSDKVersion;
 + (id)runningSlice;
 - (id)initWithSlice:(struct FIRCLSMachOSlice *)v1;
 - (void).cxx_destruct;
@@ -15329,2442 +18107,466 @@ fillInImageDetails:forUUID: (IMP @0x100af728c);
 
 /*****************************************************************/
 
-@interface GDTCCTCompressionHelper : NSObject
-+ (id)gzippedData:(id)v1;
-+ (bool)isGzipped:(id)v1;
+@interface _TtC22NovoPenConnectivitySdk11Environment : _TtCs12_SwiftObject
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCCTUploadOperation : NSOperation<NSURLSessionDelegate> {
-    bool _executing;
-    bool _finished;
-    bool _uploadAttempted;
-    NSObject<OS_dispatch_queue> * _uploaderQueue;
-    NSURLSessionUploadTask * _currentTask;
-    long long _target;
-    long long _conditions;
-    NSURL * _uploadURL;
-    NSObject<GDTCORStoragePromiseProtocol> * _storage;
-    NSObject<GDTCCTUploadMetadataProvider> * _metadataProvider;
-    NSObject<GDTCORMetricsControllerProtocol> * _metricsController;
-    NSURLSession * _uploaderSession;
-    GDTCORMetrics * _currentMetrics;
+@interface _TtC22NovoPenConnectivitySdk18NovoPenManagerImpl : NSObject<NSObject> {
+    id novoPens;
+    id unregisteredNovoPen;
+    id nfcTagReaderSession;
+    id novoPenSession;
+    id storeManager;
+    id supportedFirmwareVersions;
+    id delegate;
+    id scanMessages;
 }
-@property (readonly,nonatomic) long long target;
-@property (readonly,nonatomic) long long conditions;
-@property (readonly,nonatomic) NSURL * uploadURL;
-@property (readonly,nonatomic) NSObject<GDTCORStoragePromiseProtocol> * storage;
-@property (readonly,nonatomic) NSObject<GDTCCTUploadMetadataProvider> * metadataProvider;
-@property (readonly,nonatomic) NSObject<GDTCORMetricsControllerProtocol> * metricsController;
-@property (retain,nonatomic) NSURLSession * uploaderSession;
-@property (retain,nonatomic) GDTCORMetrics * currentMetrics;
-@property (nonatomic,getter=isExecuting) bool executing;
-@property (nonatomic,getter=isFinished) bool finished;
-@property (nonatomic) bool uploadAttempted;
-@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * uploaderQueue;
-@property (readonly,nonatomic) NSURLSessionUploadTask * currentTask;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (id)initWithTarget:(long long)v1 conditions:(long long)v2 uploadURL:(id)v3 queue:(id)v4 storage:(id)v5 metadataProvider:(id)v6 metricsController:(id)v7;
-- (id)uploaderSessionCreateIfNeeded;
-- (void)uploadTarget:(long long)v1 withConditions:(long long)v2;
-- (id)uploadBatch:(id)v1 toTarget:(long long)v2 storage:(id)v3;
-- (id)processResponse:(id)v1 forBatch:(id)v2 storage:(id)v3;
-- (id)sendURLRequestWithBatch:(id)v1 target:(long long)v2;
-- (void)updateNextUploadTimeWithResponse:(id)v1 forTarget:(long long)v2;
-- (id)isReadyToUploadTarget:(long long)v1 conditions:(long long)v2;
-- (id)genericRejectedPromiseErrorWithReason:(id)v1;
-- (bool)readyToUploadTarget:(long long)v1 conditions:(long long)v2;
-- (id)constructRequestProtoWithEvents:(id)v1;
-- (id)constructRequestWithURL:(id)v1 forTarget:(long long)v2 data:(id)v3;
-- (id)eventSelectorTarget:(long long)v1 withConditions:(long long)v2;
-- (id)batchByAddingMetricsEventToBatch:(id)v1 forTarget:(long long)v2;
-- (void)URLSession:(id)v1 task:(id)v2 willPerformHTTPRedirection:(id)v3 newRequest:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
-- (bool)isAsynchronous;
-- (void)startOperation;
-- (void)finishOperation;
-- (void)start;
-- (void)cancel;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GDTCCTUploader : NSObject<NSURLSessionDelegate,GDTCCTUploadMetadataProvider,GDTCORUploader> {
-    NSOperationQueue * _uploadOperationQueue;
-    NSObject<OS_dispatch_queue> * _uploadQueue;
-    NSMutableDictionary * _nextUploadTimeByTarget;
-}
-@property (readonly,nonatomic) NSOperationQueue * uploadOperationQueue;
-@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * uploadQueue;
-@property (readonly,nonatomic) NSMutableDictionary * nextUploadTimeByTarget;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-+ (void)load;
-+ (id)sharedInstance;
-+ (void)setTestServerURL:(id)v1;
-+ (id)testServerURL;
-+ (id)serverURLForTarget:(long long)v1;
-- (id)init;
-- (void)uploadTarget:(long long)v1 withConditions:(long long)v2;
-- (id)FLLAndCSHAndINTAPIKey;
-- (id)nextUploadTimeForTarget:(long long)v1;
-- (void)setNextUploadTime:(id)v1 forTarget:(long long)v2;
-- (id)APIKeyForTarget:(long long)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GDTCORClock : NSObject<NSSecureCoding> {
-    long long _timeMillis;
-    long long _timezoneOffsetSeconds;
-    long long _kernelBootTimeNanoseconds;
-    long long _uptimeNanoseconds;
-}
-@property (readonly,nonatomic) long long timeMillis;
-@property (readonly,nonatomic) long long timezoneOffsetSeconds;
-@property (readonly,nonatomic) long long kernelBootTimeNanoseconds;
-@property (readonly,nonatomic) long long uptimeNanoseconds;
-@property (readonly,nonatomic) long long kernelBootTime;
-@property (readonly,nonatomic) long long uptime;
-+ (id)snapshot;
-+ (id)clockSnapshotInTheFuture:(unsigned long long)v1;
-+ (bool)supportsSecureCoding;
-- (id)init;
-- (bool)isAfter:(id)v1;
-- (long long)uptimeMilliseconds;
-- (unsigned long long)hash;
-- (bool)isEqual:(id)v1;
-- (id)initWithCoder:(id)v1;
-- (void)encodeWithCoder:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@interface GDTCORDirectorySizeTracker : NSObject {
-    NSString * _directoryPath;
-    NSNumber * _cachedSizeBytes;
-}
-@property (readonly,nonatomic) NSString * directoryPath;
-@property (retain,nonatomic) NSNumber * cachedSizeBytes;
-- (id)initWithDirectoryPath:(id)v1;
-- (unsigned long long)directoryContentSize;
-- (void)fileWasAddedAtPath:(id)v1 withSize:(unsigned long long)v2;
-- (void)fileWasRemovedAtPath:(id)v1 withSize:(unsigned long long)v2;
-- (void)resetCachedSize;
-- (unsigned long long)calculateDirectoryContentSize;
-- (unsigned long long)fileSizeAtURL:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GDTCOREndpoints : NSObject
-+ (id)uploadURLs;
-+ (id)uploadURLForTarget:(long long)v1;
-@end
-
-
-/*****************************************************************/
-
-@interface GDTCOREvent : NSObject<NSSecureCoding> {
-    NSString * _eventID;
-    NSString * _mappingID;
-    long long _target;
-    NSObject<GDTCOREventDataObject> * _dataObject;
-    NSData * _serializedDataObjectBytes;
-    long long _qosTier;
-    GDTCORClock * _clockSnapshot;
-    NSDate * _expirationDate;
-    NSData * _customBytes;
-}
-@property (nonatomic) bool needsNetworkConnectionInfoPopulated;
-@property (retain,nonatomic) NSData * networkConnectionInfoData;
-@property (retain,nonatomic) NSNumber * eventCode;
-@property (retain,nonatomic) NSString * eventID;
-@property (readonly,nonatomic) NSString * mappingID;
-@property (readonly,nonatomic) long long target;
-@property (retain,nonatomic) NSObject<GDTCOREventDataObject> * dataObject;
-@property (readonly,nonatomic) NSData * serializedDataObjectBytes;
-@property (nonatomic) long long qosTier;
-@property (retain,nonatomic) GDTCORClock * clockSnapshot;
-@property (retain,nonatomic) NSDate * expirationDate;
-@property (retain,nonatomic) NSData * customBytes;
-+ (id)eventWithMetrics:(id)v1 forTarget:(long long)v2;
-+ (id)nextEventID;
-+ (bool)supportsSecureCoding;
-- (id)initWithMappingID:(id)v1 target:(long long)v2;
-- (id)copy;
-- (unsigned long long)hash;
-- (bool)isEqual:(id)v1;
-- (id)initWithCoder:(id)v1;
-- (void)encodeWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GDTCORFlatFileStorage : NSObject<GDTCORStoragePromiseProtocol,GDTCORStorageProtocol,GDTCORLifecycleProtocol> {
-    GDTCORDirectorySizeTracker * _sizeTracker;
-    NSObject<GDTCORStorageDelegate> * _delegate;
-    NSObject<OS_dispatch_queue> * _storageQueue;
-    GDTCORUploadCoordinator * _uploadCoordinator;
-}
-@property (nonatomic) NSObject<GDTCORStorageDelegate> * delegate;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-@property (readonly,nonatomic) GDTCORDirectorySizeTracker * sizeTracker;
-@property (retain,nonatomic) NSObject<OS_dispatch_queue> * storageQueue;
-@property (retain,nonatomic) GDTCORUploadCoordinator * uploadCoordinator;
-@property (nonatomic) NSObject<GDTCORStorageDelegate> * delegate;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-+ (void)load;
-+ (id)sharedInstance;
-+ (id)eventDataStoragePath;
-+ (id)batchDataStoragePath;
-+ (id)libraryDataStoragePath;
-+ (id)batchPathForTarget:(long long)v1 batchID:(id)v2 expirationDate:(id)v3;
-+ (id)pathForTarget:(long long)v1 eventID:(id)v2 qosTier:(id)v3 expirationDate:(id)v4 mappingID:(id)v5;
-- (id)batchIDsForTarget:(long long)v1;
-- (id)removeBatchWithID:(id)v1 deleteEvents:(bool)v2;
-- (id)removeBatchesWithIDs:(id)v1 deleteEvents:(bool)v2;
-- (id)removeAllBatchesForTarget:(long long)v1 deleteEvents:(bool)v2;
-- (id)hasEventsForTarget:(long long)v1;
-- (id)batchWithEventSelector:(id)v1 batchExpiration:(id)v2;
-- (id)fetchAndUpdateMetricsWithHandler:(void (^ /* unknown block signature */)(void))v1;
-- (id)fetchStorageMetadata;
-- (id)genericRejectedPromiseErrorWithReason:(id)v1;
-- (id)init;
-- (void)storeEvent:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void)batchWithEventSelector:(id)v1 batchExpiration:(id)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
-- (void)removeBatchWithID:(id)v1 deleteEvents:(bool)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
-- (void)batchIDsForTarget:(long long)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void)libraryDataForKey:(id)v1 onFetchComplete:(void (^ /* unknown block signature */)(void))v2 setNewValue:(void (^ /* unknown block signature */)(void))v3;
-- (void)storeLibraryData:(id)v1 forKey:(id)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
-- (void)removeLibraryDataForKey:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void)hasEventsForTarget:(long long)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void)checkForExpirations;
-- (void)storageSizeWithCallback:(void (^ /* unknown block signature */)(void))v1;
-- (id)batchDirPathsForBatchID:(id)v1 error:(id *)v2;
-- (bool)moveContentsOfDirectoryAtPath:(id)v1 to:(id)v2 error:(id *)v3;
-- (void)syncThreadUnsafeRemoveBatchWithID:(id)v1 deleteEvents:(bool)v2;
-- (void)pathsForTarget:(long long)v1 eventIDs:(id)v2 qosTiers:(id)v3 mappingIDs:(id)v4 onComplete:(void (^ /* unknown block signature */)(void))v5;
-- (void)nextBatchID:(void (^ /* unknown block signature */)(void))v1;
-- (id)eventComponentsFromFilename:(id)v1;
-- (id)batchComponentsFromFilename:(id)v1;
-- (void)appWillBackground:(id)v1;
-- (void)appWillTerminate:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GDTCORLifecycle : NSObject
-+ (void)load;
-+ (id)sharedInstance;
-- (id)init;
 - (void)dealloc;
-- (void)applicationDidEnterBackgroundNotification:(id)v1;
-- (void)applicationWillEnterForegroundNotification:(id)v1;
-- (void)applicationWillTerminateNotification:(id)v1;
+- (id)init;
+- (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCORLogSourceMetrics : NSObject<NSSecureCoding> {
-    NSDictionary * _droppedEventCounterByLogSource;
+@interface _TtC22NovoPenConnectivitySdk16ByteArrayScanner : _TtCs12_SwiftObject {
+    id bytes;
+    id $__lazy_storage_$_offsetIsAtMax;
+    id offset;
 }
-@property (readonly,nonatomic) NSDictionary * droppedEventCounterByLogSource;
-+ (id)metrics;
-+ (id)metricsWithEvents:(id)v1 droppedForReason:(long long)v2;
-+ (id)dictionaryByMergingDictionary:(id)v1 withOtherDictionary:(id)v2 uniquingKeysWithBlock:(void (^ /* unknown block signature */)(void))v3;
-+ (bool)supportsSecureCoding;
-- (id)initWithDroppedEventCounterByLogSource:(id)v1;
-- (id)logSourceMetricsByMergingWithLogSourceMetrics:(id)v1;
-- (bool)isEqualToLogSourceMetrics:(id)v1;
-- (bool)isEqual:(id)v1;
-- (unsigned long long)hash;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk16DoseLogCompletor : _TtCs12_SwiftObject {
+    id numberOfMatchedDosesThreshold;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk22AssociationReleaseFile : _TtC22NovoPenConnectivitySdk14PhdAgentRecord {
+    id apduChoice;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk22AssociationRequestFile : _TtC22NovoPenConnectivitySdk14PhdAgentRecord {
+    id apduChoice;
+    id apduChoiceLength;
+    id associationVersion;
+    id dataProtoListCount;
+    id dataProtoLength;
+    id dataProtoId;
+    id dataProtoInfo;
+    id protocolVersion;
+    id systemId;
+    id devConfigId;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk24ConfirmedEventReportFile : _TtC22NovoPenConnectivitySdk14PhdAgentRecord {
+    id apduChoice;
+    id apduChoiceLength;
+    id configReportId;
+    id configObjListCount;
+    id configObjListLength;
+    id configObjList;
+    id attributes;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk22GetSegmentInfoResponse : _TtC22NovoPenConnectivitySdk14PhdAgentRecord {
+    id apduChoice;
+    id apduChoiceLength;
+    id objHandle;
+    id actionType;
+    id actionInfoArgLength;
+    id segmentInfoListCount;
+    id segmentInfoListLength;
+    id attributes;
+    id segmentInstanceId;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk15MdsResponseFile : _TtC22NovoPenConnectivitySdk14PhdAgentRecord {
+    id apduChoice;
+    id apduChoiceLength;
+    id octetStringLength;
+    id invokeId;
+    id choice;
+    id objHandle;
+    id attributes;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk11SegmentFile : _TtC22NovoPenConnectivitySdk14PhdAgentRecord {
+    id doseRecords;
+    id invokeId;
+    id segmentIndex;
+    id apduChoice;
+    id apduChoiceLength;
+    id octetLength;
+    id choice;
+    id choiceLength;
+    id objectHandle;
+    id relativeTime;
+    id eventType;
+    id eventInfoLength;
+    id segmDataEventDescr;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk23TrigSegmentDataXferFile : _TtC22NovoPenConnectivitySdk14PhdAgentRecord {
+    id apduChoice;
+    id apduChoiceLength;
+    id octetStringLength;
+    id invokeId;
+    id choice;
+    id choiceLength;
+    id objHandle;
+    id actionType;
+    id actionInfoArgsLength;
+    id segment;
+    id responseCode;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk14NovoPenSession : _TtCs12_SwiftObject {
+    id sessionState;
+    id associationRequestFile;
+    id confirmedEventReportFile;
+    id mdsResponseFile;
+    id incrementDoses;
+    id novoPenConfiguration;
+    id mostRecentAgentPhdHeader;
+    id registrationFilter;
+    id doselogTransferType;
+    id initialRequest;
+    id novoPens;
+    id novoPenMatchingFoundSerialId;
+    id supportedFirmwareVersions;
+    id sessionInitializationTime;
+    id calculatedNow;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk14PhdAgentRecord : _TtCs12_SwiftObject {
+    id phdNdefHeader;
+    id phdHeader;
+    id phdMessage;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk14AppSelectState : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk27AssociationResponsePhdState : _TtCs12_SwiftObject {
+    id systemId;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk11GetMdsState : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk19GetSegmentInfoState : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk22MdsConfigResponseState : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk20SegmentResponseState : _TtCs12_SwiftObject {
+    id mostRecentAgentPhdHeader;
+    id novoPenConfiguration;
+    id hasReceivedAssociationRelease;
+    id storedDoses;
+    id now;
+    id delegate;
+    id receivedFileLengthResponseLargerThan255;
+    id partialSegmentResponseData;
+    id segmentFiles;
+    id doseLogIncrement;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC22NovoPenConnectivitySdk24TrigSegmentDataXferState : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface JVFloatLabeledTextField : UITextField {
+    bool _isFloatingLabelFontDefault;
+    bool _animateEvenIfNotFirstResponder;
+    bool _adjustsClearButtonRect;
+    bool _keepBaseline;
+    bool _alwaysShowFloatingLabel;
+    UILabel * _floatingLabel;
+    double _floatingLabelYPadding;
+    double _floatingLabelXPadding;
+    double _floatingLabelReductionRatio;
+    double _placeholderYPadding;
+    UIFont * _floatingLabelFont;
+    UIColor * _floatingLabelTextColor;
+    UIColor * _floatingLabelActiveTextColor;
+    double _floatingLabelShowAnimationDuration;
+    double _floatingLabelHideAnimationDuration;
+    UIColor * _placeholderColor;
+}
+@property (readonly,nonatomic) UILabel * floatingLabel;
+@property (nonatomic) double floatingLabelYPadding;
+@property (nonatomic) double floatingLabelXPadding;
+@property (nonatomic) double floatingLabelReductionRatio;
+@property (nonatomic) double placeholderYPadding;
+@property (retain,nonatomic) UIFont * floatingLabelFont;
+@property (retain,nonatomic) UIColor * floatingLabelTextColor;
+@property (retain,nonatomic) UIColor * floatingLabelActiveTextColor;
+@property (nonatomic) bool animateEvenIfNotFirstResponder;
+@property (nonatomic) double floatingLabelShowAnimationDuration;
+@property (nonatomic) double floatingLabelHideAnimationDuration;
+@property (nonatomic) bool adjustsClearButtonRect;
+@property (nonatomic) bool keepBaseline;
+@property (nonatomic) bool alwaysShowFloatingLabel;
+@property (retain,nonatomic) UIColor * placeholderColor;
+- (id)initWithFrame:(struct CGRect)v1;
 - (id)initWithCoder:(id)v1;
-- (void)encodeWithCoder:(id)v1;
-- (id)description;
+- (void)commonInit;
+- (id)defaultFloatingLabelFont;
+- (void)updateDefaultFloatingLabelFont;
+- (id)labelActiveColor;
+- (void)showFloatingLabel:(bool)v1;
+- (void)hideFloatingLabel:(bool)v1;
+- (void)setLabelOriginForTextAlignment;
+- (void)setFloatingLabelText:(id)v1;
+- (void)setFont:(id)v1;
+- (void)setAttributedText:(id)v1;
+- (struct CGSize)intrinsicContentSize;
+- (void)setCorrectPlaceholder:(id)v1;
+- (void)setPlaceholder:(id)v1;
+- (void)setAttributedPlaceholder:(id)v1;
+- (void)setPlaceholder:(id)v1 floatingTitle:(id)v2;
+- (void)setAttributedPlaceholder:(id)v1 floatingTitle:(id)v2;
+- (struct CGRect)textRectForBounds:(struct CGRect)v1;
+- (struct CGRect)editingRectForBounds:(struct CGRect)v1;
+- (struct CGRect)insetRectForBounds:(struct CGRect)v1;
+- (struct CGRect)clearButtonRectForBounds:(struct CGRect)v1;
+- (struct CGRect)leftViewRectForBounds:(struct CGRect)v1;
+- (struct CGRect)rightViewRectForBounds:(struct CGRect)v1;
+- (double)maxTopInset;
+- (void)setTextAlignment:(long long)v1;
+- (void)layoutSubviews;
 - (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCORMetrics : NSObject<GDTCOREventDataObject> {
-    NSDate * _collectionStartDate;
-    GDTCORLogSourceMetrics * _logSourceMetrics;
-    NSDate * _collectionEndDate;
-    unsigned long long _currentCacheSize;
-    unsigned long long _maxCacheSize;
-    NSString * _bundleID;
+@interface JVFloatLabeledTextView : UITextView {
+    bool _floatingLabelShouldLockToTop;
+    bool _animateEvenIfNotFirstResponder;
+    bool _alwaysShowFloatingLabel;
+    NSString * _placeholder;
+    UILabel * _placeholderLabel;
+    UILabel * _floatingLabel;
+    double _floatingLabelYPadding;
+    double _floatingLabelXPadding;
+    double _placeholderYPadding;
+    UIFont * _floatingLabelFont;
+    UIColor * _floatingLabelTextColor;
+    UIColor * _floatingLabelActiveTextColor;
+    UIColor * _placeholderTextColor;
+    double _floatingLabelShowAnimationDuration;
+    double _floatingLabelHideAnimationDuration;
+    double _startingTextContainerInsetTop;
 }
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-@property (readonly,nonatomic) NSDate * collectionStartDate;
-@property (readonly,nonatomic) GDTCORLogSourceMetrics * logSourceMetrics;
-@property (readonly,nonatomic) NSDate * collectionEndDate;
-@property (readonly,nonatomic) unsigned long long currentCacheSize;
-@property (readonly,nonatomic) unsigned long long maxCacheSize;
-@property (readonly,nonatomic) NSString * bundleID;
-+ (id)metricsWithMetricsMetadata:(id)v1 storageMetadata:(id)v2;
-- (id)transportBytes;
-- (id)initWithCollectionStartDate:(id)v1 collectionEndDate:(id)v2 logSourceMetrics:(id)v3 currentCacheSize:(unsigned long long)v4 maxCacheSize:(unsigned long long)v5 bundleID:(id)v6;
-- (bool)isEqualToMetrics:(id)v1;
-- (bool)isEqual:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GDTCORMetricsController : NSObject<GDTCORMetricsControllerProtocol> {
-    NSObject<GDTCORStoragePromiseProtocol> * _storage;
-}
-@property (retain,nonatomic) NSObject<GDTCORStoragePromiseProtocol> * storage;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-+ (void)load;
-+ (id)sharedInstance;
-- (id)initWithStorage:(id)v1;
-- (id)logEventsDroppedForReason:(long long)v1 events:(id)v2;
-- (id)getAndResetMetrics;
-- (id)offerMetrics:(id)v1;
-- (void)storage:(id)v1 didRemoveExpiredEvents:(id)v2;
-- (void)storage:(id)v1 didDropEvent:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GDTCORMetricsMetadata : NSObject<NSSecureCoding> {
-    NSDate * _collectionStartDate;
-    GDTCORLogSourceMetrics * _logSourceMetrics;
-}
-@property (readonly,copy,nonatomic) NSDate * collectionStartDate;
-@property (readonly,copy,nonatomic) GDTCORLogSourceMetrics * logSourceMetrics;
-+ (id)metadataWithCollectionStartDate:(id)v1 logSourceMetrics:(id)v2;
-+ (bool)supportsSecureCoding;
-- (id)initWithCollectionStartDate:(id)v1 logSourceMetrics:(id)v2;
-- (bool)isEqualToMetricsMetadata:(id)v1;
-- (bool)isEqual:(id)v1;
-- (unsigned long long)hash;
+@property (copy,nonatomic) NSString * placeholder;
+@property (readonly,nonatomic) UILabel * placeholderLabel;
+@property (readonly,nonatomic) UILabel * floatingLabel;
+@property (nonatomic) double floatingLabelYPadding;
+@property (nonatomic) double floatingLabelXPadding;
+@property (nonatomic) double placeholderYPadding;
+@property (retain,nonatomic) UIFont * floatingLabelFont;
+@property (retain,nonatomic) UIColor * floatingLabelTextColor;
+@property (retain,nonatomic) UIColor * floatingLabelActiveTextColor;
+@property (nonatomic) bool floatingLabelShouldLockToTop;
+@property (retain,nonatomic) UIColor * placeholderTextColor;
+@property (nonatomic) bool animateEvenIfNotFirstResponder;
+@property (nonatomic) double floatingLabelShowAnimationDuration;
+@property (nonatomic) double floatingLabelHideAnimationDuration;
+@property (nonatomic) bool alwaysShowFloatingLabel;
+@property (nonatomic) double startingTextContainerInsetTop;
++ (id)defaultiOSPlaceholderColor;
+- (id)initWithFrame:(struct CGRect)v1;
+- (id)initWithFrame:(struct CGRect)v1 textContainer:(id)v2;
 - (id)initWithCoder:(id)v1;
-- (void)encodeWithCoder:(id)v1;
+- (void)commonInit;
+- (void)dealloc;
+- (id)defaultFloatingLabelFont;
+- (void)setPlaceholder:(id)v1 floatingTitle:(id)v2;
+- (void)layoutSubviews;
+- (struct CGSize)intrinsicContentSize;
+- (id)labelActiveColor;
+- (void)showFloatingLabel:(bool)v1;
+- (void)hideFloatingLabel:(bool)v1;
+- (void)adjustTextContainerInsetTop;
+- (void)setLabelOriginForTextAlignment;
+- (struct CGRect)textRect;
+- (void)setTextAlignment:(long long)v1;
+- (void)setFont:(id)v1;
+- (void)setText:(id)v1;
+- (void)setBackgroundColor:(id)v1;
 - (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCORApplication : NSObject<GDTCORApplicationProtocol,GDTCORApplicationDelegate> {
-    bool _isRunningInBackground;
-}
-@property bool isRunningInBackground;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-@property (retain,nonatomic) UIWindow * window;
-+ (void)load;
-+ (void)initialize;
-+ (id)sharedApplication;
-- (id)init;
-- (unsigned long long)beginBackgroundTaskWithName:(id)v1 expirationHandler:(void (^ /* unknown block signature */)(void))v2;
-- (void)endBackgroundTask:(unsigned long long)v1;
-- (bool)isAppExtension;
-- (id)sharedApplicationForBackgroundTask;
-- (void)iOSApplicationDidEnterBackground:(id)v1;
-- (void)iOSApplicationWillEnterForeground:(id)v1;
-- (void)iOSApplicationWillTerminate:(id)v1;
+@interface _TtC9SwiftDateP33_2EA19DAB704C2133069CB542A68BDBCD12BundleFinder : _TtCs12_SwiftObject
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCORReachability : NSObject {
-    struct __SCNetworkReachability * _reachabilityRef;
-    NSObject<OS_dispatch_queue> * _reachabilityQueue;
-    unsigned int _callbackFlags;
-    unsigned int _flags;
-}
-@property (nonatomic) unsigned int flags;
-+ (void)initialize;
-+ (id)sharedInstance;
-+ (unsigned int)currentFlags;
-- (id)init;
-- (void)setCallbackFlags:(unsigned int)v1;
-- (void).cxx_destruct;
+@interface _TtC9SwiftDate12DOTNETParser : _TtCs12_SwiftObject
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCORRegistrar : NSObject<GDTCORLifecycleProtocol> {
-    NSMutableDictionary * _targetToUploader;
-    NSMutableDictionary * _targetToStorage;
-    NSMutableDictionary * _targetToMetricsController;
-    NSObject<OS_dispatch_queue> * _registrarQueue;
-}
-@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * registrarQueue;
-@property (readonly) NSMutableDictionary * targetToUploader;
-@property (readonly) NSMutableDictionary * targetToStorage;
-@property (readonly) NSMutableDictionary * targetToMetricsController;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-+ (id)sharedInstance;
-- (id)init;
-- (void)registerUploader:(id)v1 target:(long long)v2;
-- (void)registerStorage:(id)v1 target:(long long)v2;
-- (void)registerMetricsController:(id)v1 target:(long long)v2;
-- (void)setMetricsControllerAsStorageDelegateForTarget:(long long)v1;
-- (void)appWillBackground:(id)v1;
-- (void)appWillForeground:(id)v1;
-- (void)appWillTerminate:(id)v1;
-- (void).cxx_destruct;
+@interface _TtC9SwiftDate15DOTNETFormatter : _TtCs12_SwiftObject
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCORStorageEventSelector : NSObject {
-    long long _selectedTarget;
-    NSSet * _selectedEventIDs;
-    NSSet * _selectedMappingIDs;
-    NSSet * _selectedQosTiers;
-}
-@property (readonly,nonatomic) long long selectedTarget;
-@property (readonly,nonatomic) NSSet * selectedEventIDs;
-@property (readonly,nonatomic) NSSet * selectedMappingIDs;
-@property (readonly,nonatomic) NSSet * selectedQosTiers;
-+ (id)eventSelectorForTarget:(long long)v1;
-- (id)initWithTarget:(long long)v1 eventIDs:(id)v2 mappingIDs:(id)v3 qosTiers:(id)v4;
-- (void).cxx_destruct;
+@interface _TtC9SwiftDate12ISOFormatter : _TtCs12_SwiftObject
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCORStorageMetadata : NSObject {
-    unsigned long long _currentCacheSize;
-    unsigned long long _maxCacheSize;
+@interface _TtC9SwiftDate9ISOParser : _TtCs12_SwiftObject {
+    id srcCalendar;
+    id date;
+    id string;
+    id cIdx;
+    id eIdx;
+    id length;
+    id hyphens;
+    id now_cmps;
+    id options;
+    id date_components;
+    id parsedDate;
+    id parsedTimeZone;
 }
-@property (readonly,nonatomic) unsigned long long currentCacheSize;
-@property (readonly,nonatomic) unsigned long long maxCacheSize;
-+ (id)metadataWithCurrentCacheSize:(unsigned long long)v1 maxCacheSize:(unsigned long long)v2;
-- (id)initWithCurrentCacheSize:(unsigned long long)v1 maxCacheSize:(unsigned long long)v2;
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCORTransformer : NSObject<GDTCORLifecycleProtocol> {
-    NSObject<OS_dispatch_queue> * _eventWritingQueue;
-    NSObject<GDTCORApplicationProtocol> * _application;
-}
-@property (retain,nonatomic) NSObject<OS_dispatch_queue> * eventWritingQueue;
-@property (readonly,nonatomic) NSObject<GDTCORApplicationProtocol> * application;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-+ (id)sharedInstance;
-- (id)init;
-- (id)initWithApplication:(id)v1;
-- (void)transformEvent:(id)v1 withTransformers:(id)v2 onComplete:(void (^ /* unknown block signature */)(void))v3;
-- (void)appWillTerminate:(id)v1;
-- (void).cxx_destruct;
+@interface _TtC9SwiftDate17RelativeFormatter : _TtCs12_SwiftObject
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCORTransport : NSObject {
-    NSString * _mappingID;
-    NSArray * _transformers;
-    long long _target;
-    GDTCORTransformer * _transformerInstance;
+@interface _TtC9SwiftDate31RelativeFormatterLanguagesCache : _TtCs12_SwiftObject {
+    id _cachedValues;
 }
-@property (retain,nonatomic) NSString * mappingID;
-@property (retain,nonatomic) NSArray * transformers;
-@property (nonatomic) long long target;
-@property (retain,nonatomic) GDTCORTransformer * transformerInstance;
-- (id)initWithMappingID:(id)v1 transformers:(id)v2 target:(long long)v3;
-- (void)sendTelemetryEvent:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void)sendDataEvent:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void)sendTelemetryEvent:(id)v1;
-- (void)sendDataEvent:(id)v1;
-- (id)eventForTransport;
-- (void)sendEvent:(id)v1 onComplete:(void (^ /* unknown block signature */)(void))v2;
-- (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface GDTCORUploadBatch : NSObject {
-    NSNumber * _batchID;
-    NSSet * _events;
-}
-@property (readonly,nonatomic) NSNumber * batchID;
-@property (readonly,nonatomic) NSSet * events;
-- (id)initWithBatchID:(id)v1 events:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GDTCORUploadCoordinator : NSObject<GDTCORLifecycleProtocol> {
-    NSObject<OS_dispatch_queue> * _coordinationQueue;
-    NSObject<OS_dispatch_source> * _timer;
-    unsigned long long _timerInterval;
-    unsigned long long _timerLeeway;
-    GDTCORRegistrar * _registrar;
-}
-@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * coordinationQueue;
-@property (readonly,nonatomic) NSObject<OS_dispatch_source> * timer;
-@property (readonly,nonatomic) unsigned long long timerInterval;
-@property (readonly,nonatomic) unsigned long long timerLeeway;
-@property (retain,nonatomic) GDTCORRegistrar * registrar;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-+ (id)sharedInstance;
-- (id)init;
-- (void)forceUploadForTarget:(long long)v1;
-- (void)startTimer;
-- (void)stopTimer;
-- (void)uploadTargets:(id)v1 conditions:(long long)v2;
-- (void)signalToStoragesToCheckExpirations;
-- (id)storageForTarget:(id)v1;
-- (long long)uploadConditions;
-- (void)appWillForeground:(id)v1;
-- (void)appWillBackground:(id)v1;
-- (void)appWillTerminate:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FBLPromise : NSObject {
-    long long _state;
-    NSMutableSet * _pendingObjects;
+@interface _TtC9SwiftDateP33_58EB5E8B8476F1A454FE015556B05D7B15AssociatedValue : _TtCs12_SwiftObject {
+    id _weakValue;
     id _value;
-    NSError * _error;
-    NSMutableArray * _observers;
 }
-@property (readonly,nonatomic) bool isPending;
-@property (readonly,nonatomic) bool isFulfilled;
-@property (readonly,nonatomic) bool isRejected;
-@property (readonly,nonatomic) id value;
-@property (readonly,nonatomic) NSError * error;
-+ (void (^ /* unknown block signature */)(void))pending;
-+ (void (^ /* unknown block signature */)(void))resolved;
-+ (void (^ /* unknown block signature */)(void))wrapCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrapObjectCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapObjectCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrapErrorCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapErrorCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrapObjectOrErrorCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapObjectOrErrorCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrapErrorOrObjectCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapErrorOrObjectCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrap2ObjectsOrErrorCompletion;
-+ (void (^ /* unknown block signature */)(void))wrap2ObjectsOrErrorCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrapBoolCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapBoolCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrapBoolOrErrorCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapBoolOrErrorCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrapIntegerCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapIntegerCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrapIntegerOrErrorCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapIntegerOrErrorCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrapDoubleCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapDoubleCompletionOn;
-+ (void (^ /* unknown block signature */)(void))wrapDoubleOrErrorCompletion;
-+ (void (^ /* unknown block signature */)(void))wrapDoubleOrErrorCompletionOn;
-+ (id)wrapCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrapObjectCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapObjectCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrapErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrapObjectOrErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapObjectOrErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrapErrorOrObjectCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapErrorOrObjectCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrap2ObjectsOrErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrap2ObjectsOrErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrapBoolCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapBoolCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrapBoolOrErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapBoolOrErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrapIntegerCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapIntegerCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrapIntegerOrErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapIntegerOrErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrapDoubleCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapDoubleCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)wrapDoubleOrErrorCompletion:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 wrapDoubleOrErrorCompletion:(void (^ /* unknown block signature */)(void))v2;
-+ (id)dispatchGroup;
-+ (void (^ /* unknown block signature */)(void))retry;
-+ (void (^ /* unknown block signature */)(void))retryOn;
-+ (void (^ /* unknown block signature */)(void))retryAgain;
-+ (void (^ /* unknown block signature */)(void))retryAgainOn;
-+ (id)retry:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 retry:(void (^ /* unknown block signature */)(void))v2;
-+ (id)attempts:(long long)v1 retry:(void (^ /* unknown block signature */)(void))v2;
-+ (id)onQueue:(id)v1 attempts:(long long)v2 retry:(void (^ /* unknown block signature */)(void))v3;
-+ (id)attempts:(long long)v1 delay:(double)v2 condition:(void (^ /* unknown block signature */)(void))v3 retry:(void (^ /* unknown block signature */)(void))v4;
-+ (id)onQueue:(id)v1 attempts:(long long)v2 delay:(double)v3 condition:(void (^ /* unknown block signature */)(void))v4 retry:(void (^ /* unknown block signature */)(void))v5;
-+ (void (^ /* unknown block signature */)(void))race;
-+ (void (^ /* unknown block signature */)(void))raceOn;
-+ (id)race:(id)v1;
-+ (id)onQueue:(id)v1 race:(id)v2;
-+ (void (^ /* unknown block signature */)(void))doOn;
-+ (id)do:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 do:(void (^ /* unknown block signature */)(void))v2;
-+ (void (^ /* unknown block signature */)(void))async;
-+ (void (^ /* unknown block signature */)(void))asyncOn;
-+ (id)async:(void (^ /* unknown block signature */)(void))v1;
-+ (id)onQueue:(id)v1 async:(void (^ /* unknown block signature */)(void))v2;
-+ (void (^ /* unknown block signature */)(void))any;
-+ (void (^ /* unknown block signature */)(void))anyOn;
-+ (id)any:(id)v1;
-+ (id)onQueue:(id)v1 any:(id)v2;
-+ (void (^ /* unknown block signature */)(void))all;
-+ (void (^ /* unknown block signature */)(void))allOn;
-+ (id)all:(id)v1;
-+ (id)onQueue:(id)v1 all:(id)v2;
-+ (void)initialize;
-+ (id)defaultDispatchQueue;
-+ (void)setDefaultDispatchQueue:(id)v1;
-+ (id)pendingPromise;
-+ (id)resolvedWith:(id)v1;
-- (void (^ /* unknown block signature */)(void))validate;
-- (void (^ /* unknown block signature */)(void))validateOn;
-- (id)validate:(void (^ /* unknown block signature */)(void))v1;
-- (id)onQueue:(id)v1 validate:(void (^ /* unknown block signature */)(void))v2;
-- (void (^ /* unknown block signature */)(void))timeout;
-- (void (^ /* unknown block signature */)(void))timeoutOn;
-- (id)timeout:(double)v1;
-- (id)onQueue:(id)v1 timeout:(double)v2;
-- (void (^ /* unknown block signature */)(void))then;
-- (void (^ /* unknown block signature */)(void))thenOn;
-- (id)then:(void (^ /* unknown block signature */)(void))v1;
-- (id)onQueue:(id)v1 then:(void (^ /* unknown block signature */)(void))v2;
-- (void (^ /* unknown block signature */)(void))reduce;
-- (void (^ /* unknown block signature */)(void))reduceOn;
-- (id)reduce:(id)v1 combine:(void (^ /* unknown block signature */)(void))v2;
-- (id)onQueue:(id)v1 reduce:(id)v2 combine:(void (^ /* unknown block signature */)(void))v3;
-- (void (^ /* unknown block signature */)(void))recover;
-- (void (^ /* unknown block signature */)(void))recoverOn;
-- (id)recover:(void (^ /* unknown block signature */)(void))v1;
-- (id)onQueue:(id)v1 recover:(void (^ /* unknown block signature */)(void))v2;
-- (void (^ /* unknown block signature */)(void))delay;
-- (void (^ /* unknown block signature */)(void))delayOn;
-- (id)delay:(double)v1;
-- (id)onQueue:(id)v1 delay:(double)v2;
-- (void (^ /* unknown block signature */)(void))catch;
-- (void (^ /* unknown block signature */)(void))catchOn;
-- (id)catch:(void (^ /* unknown block signature */)(void))v1;
-- (id)onQueue:(id)v1 catch:(void (^ /* unknown block signature */)(void))v2;
-- (void (^ /* unknown block signature */)(void))always;
-- (void (^ /* unknown block signature */)(void))alwaysOn;
-- (id)always:(void (^ /* unknown block signature */)(void))v1;
-- (id)onQueue:(id)v1 always:(void (^ /* unknown block signature */)(void))v2;
-- (void)fulfill:(id)v1;
-- (void)reject:(id)v1;
-- (id)description;
-- (id)initPending;
-- (id)initWithResolution:(id)v1;
-- (void)dealloc;
-- (void)addPendingObject:(id)v1;
-- (void)observeOnQueue:(id)v1 fulfill:(void (^ /* unknown block signature */)(void))v2 reject:(void (^ /* unknown block signature */)(void))v3;
-- (id)chainOnQueue:(id)v1 chainedFulfill:(void (^ /* unknown block signature */)(void))v2 chainedReject:(void (^ /* unknown block signature */)(void))v3;
-- (void).cxx_destruct;
 @end
 
 
 /*****************************************************************/
 
-@interface GULHeartbeatDateStorage : NSObject<GULHeartbeatDateStorable> {
-    NSURL * _fileURL;
-    NSString * _fileName;
-}
-@property (readonly,nonatomic) NSString * fileName;
-@property (readonly,nonatomic) NSURL * fileURL;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (id)initWithFileName:(id)v1;
-- (id)directoryPathURL;
-- (void)checkAndCreateDirectory:(id)v1;
-- (id)heartbeatDateForTag:(id)v1;
-- (bool)setHearbeatDate:(id)v1 forTag:(id)v2;
-- (id)heartbeatDictionaryWithFileURL:(id)v1;
-- (bool)writeDictionary:(id)v1 forWritingURL:(id)v2 error:(id *)v3;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULHeartbeatDateStorageUserDefaults : NSObject<GULHeartbeatDateStorable> {
-    NSUserDefaults * _userDefaults;
-    NSString * _key;
-}
-@property (readonly,nonatomic) NSUserDefaults * userDefaults;
-@property (readonly,nonatomic) NSString * key;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (id)initWithDefaults:(id)v1 key:(id)v2;
-- (id)heartbeatDictionaryFromDefaults;
-- (id)heartbeatDateForTag:(id)v1;
-- (bool)setHearbeatDate:(id)v1 forTag:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULSecureCoding : NSObject
-+ (id)unarchivedObjectOfClasses:(id)v1 fromData:(id)v2 error:(id *)v3;
-+ (id)unarchivedObjectOfClass:(Class)v1 fromData:(id)v2 error:(id *)v3;
-+ (id)archivedDataWithRootObject:(id)v1 error:(id *)v2;
-+ (id)archivingErrorWithException:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@interface GULKeychainStorage : NSObject {
-    NSObject<OS_dispatch_queue> * _keychainQueue;
-    NSObject<OS_dispatch_queue> * _inMemoryCacheQueue;
-    NSString * _service;
-    NSCache * _inMemoryCache;
-}
-@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * keychainQueue;
-@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * inMemoryCacheQueue;
-@property (readonly,nonatomic) NSString * service;
-@property (readonly,nonatomic) NSCache * inMemoryCache;
-- (id)initWithService:(id)v1;
-- (id)initWithService:(id)v1 cache:(id)v2;
-- (id)getObjectForKey:(id)v1 objectClass:(Class)v2 accessGroup:(id)v3;
-- (id)setObject:(id)v1 forKey:(id)v2 accessGroup:(id)v3;
-- (id)removeObjectForKey:(id)v1 accessGroup:(id)v2;
-- (id)getObjectFromKeychainForKey:(id)v1 objectClass:(Class)v2 accessGroup:(id)v3;
-- (void)resetInMemoryCache;
-- (id)keychainQueryWithKey:(id)v1 accessGroup:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULKeychainUtils : NSObject
-+ (id)getItemWithQuery:(id)v1 error:(id *)v2;
-+ (bool)setItem:(id)v1 withQuery:(id)v2 error:(id *)v3;
-+ (bool)removeItemWithQuery:(id)v1 error:(id *)v2;
-+ (id)keychainErrorWithFunction:(id)v1 status:(int)v2;
-@end
-
-
-/*****************************************************************/
-
-@interface GULURLSessionDataResponse : NSObject {
-    NSHTTPURLResponse * _HTTPResponse;
-    NSData * _HTTPBody;
-}
-@property (readonly,nonatomic) NSHTTPURLResponse * HTTPResponse;
-@property (readonly,nonatomic) NSData * HTTPBody;
-- (id)initWithResponse:(id)v1 HTTPBody:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULAppEnvironmentUtil : NSObject
-+ (bool)isFromAppStore;
-+ (bool)isAppStoreReceiptSandbox;
-+ (bool)isSimulator;
-+ (id)deviceModel;
-+ (id)systemVersion;
-+ (bool)isAppExtension;
-+ (bool)isIOS7OrHigher;
-+ (bool)hasSwiftRuntime;
-+ (id)applePlatform;
-+ (id)deploymentType;
-@end
-
-
-/*****************************************************************/
-
-@interface GULLoggerWrapper : NSObject
-+ (void)logWithLevel:(long long)v1 withService:(id)v2 withCode:(id)v3 withMessage:(id)v4 withArgs:(char *)v5;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRCoreDiagnosticsLog : NSObject {
-    struct _logs_proto_mobilesdk_ios_ICoreConfiguration _config;
-}
-@property (nonatomic) struct _logs_proto_mobilesdk_ios_ICoreConfiguration config;
-- (id)initWithConfig:(struct _logs_proto_mobilesdk_ios_ICoreConfiguration)v1;
-- (id)transportBytes;
-- (void)dealloc;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRCoreDiagnostics : NSObject<FIRCoreDiagnosticsInterop> {
-    NSObject<OS_dispatch_queue> * _diagnosticsQueue;
-    GDTCORTransport * _transport;
-    GULHeartbeatDateStorage * _heartbeatDateStorage;
-}
-@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * diagnosticsQueue;
-@property (readonly,nonatomic) GDTCORTransport * transport;
-@property (readonly,nonatomic) GULHeartbeatDateStorage * heartbeatDateStorage;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-+ (id)sharedInstance;
-+ (void)sendDiagnosticsData:(id)v1;
-- (id)init;
-- (id)initWithTransport:(id)v1 heartbeatDateStorage:(id)v2;
-- (void)sendDiagnosticsData:(id)v1;
-- (void)setHeartbeatFlagIfNeededToConfig:(struct _logs_proto_mobilesdk_ios_ICoreConfiguration *)v1;
-- (bool)isDate:(id)v1 inSameDayOrBeforeThan:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRAnalyticsConfiguration : NSObject
-+ (id)sharedInstance;
-- (void)postNotificationName:(id)v1 value:(id)v2;
-- (void)setAnalyticsCollectionEnabled:(bool)v1;
-- (void)setAnalyticsCollectionEnabled:(bool)v1 persistSetting:(bool)v2;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRApp : NSObject {
-    bool _isDefaultApp;
-    FIROptions * _options;
-    NSString * _name;
-    FIRComponentContainer * _container;
-}
-@property (readonly,nonatomic) bool isDefaultApp;
-@property (retain,nonatomic) FIRComponentContainer * container;
-@property (readonly,copy,nonatomic) NSString * name;
-@property (readonly,copy,nonatomic) FIROptions * options;
-@property (nonatomic,getter=isDataCollectionDefaultEnabled) bool dataCollectionDefaultEnabled;
-+ (void)configure;
-+ (void)configureWithOptions:(id)v1;
-+ (id)applicationNameAllowedCharacters;
-+ (void)configureWithName:(id)v1 options:(id)v2;
-+ (void)appWasConfiguredTwice:(id)v1 usingOptions:(id)v2;
-+ (id)defaultApp;
-+ (id)appNamed:(id)v1;
-+ (id)allApps;
-+ (void)resetApps;
-+ (void)addAppToAppDictionary:(id)v1;
-+ (void)sendNotificationsToSDKs:(id)v1;
-+ (id)errorForMissingOptions;
-+ (id)errorForInvalidAppID;
-+ (bool)isDefaultAppConfigured;
-+ (void)registerLibrary:(id)v1 withVersion:(id)v2;
-+ (void)registerInternalLibrary:(Class)v1 withName:(id)v2;
-+ (void)registerInternalLibrary:(Class)v1 withName:(id)v2 withVersion:(id)v3;
-+ (id)userAgent;
-+ (id)firebaseUserAgent;
-+ (bool)validateAppID:(id)v1;
-+ (id)actualBundleID;
-+ (bool)validateAppIDFormat:(id)v1 withVersion:(id)v2;
-+ (bool)validateAppIDFingerprint:(id)v1 withVersion:(id)v2;
-+ (id)readDataCollectionSwitchFromUserDefaultsForApp:(id)v1;
-+ (id)readDataCollectionSwitchFromPlist;
-- (void)deleteApp:(void (^ /* unknown block signature */)(void))v1;
-- (id)initInstanceWithName:(id)v1 options:(id)v2;
-- (void)dealloc;
-- (bool)configureCore;
-- (void)checkExpectedBundleID;
-- (bool)isAppIDValid;
-- (id)expectedBundleID;
-- (void)clearDataCollectionSwitchFromUserDefaults;
-- (void)subscribeForAppDidBecomeActiveNotifications;
-- (void)appDidBecomeActive:(id)v1;
-- (void)logCoreTelemetryIfEnabled;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRAppAssociationRegistration : NSObject
-+ (id)registeredObjectWithHost:(id)v1 key:(id)v2 creationBlock:(void (^ /* unknown block signature */)(void))v3;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRBundleUtil : NSObject
-+ (id)relevantBundles;
-+ (id)optionsDictionaryPathWithResourceName:(id)v1 andFileType:(id)v2 inBundles:(id)v3;
-+ (id)relevantURLSchemes;
-+ (bool)hasBundleIdentifierPrefix:(id)v1 inBundles:(id)v2;
-+ (id)bundleIdentifierByRemovingLastPartFrom:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRComponent : NSObject {
-    Protocol * _protocol;
-    long long _instantiationTiming;
-    NSArray * _dependencies;
-    void (^ /* unknown block signature */)(void) _creationBlock;
-}
-@property (readonly,nonatomic) Protocol * protocol;
-@property (readonly,nonatomic) long long instantiationTiming;
-@property (readonly,copy,nonatomic) NSArray * dependencies;
-@property (readonly,copy,nonatomic) void (^ /* unknown block signature */)(void) creationBlock;
-+ (id)componentWithProtocol:(id)v1 creationBlock:(void (^ /* unknown block signature */)(void))v2;
-+ (id)componentWithProtocol:(id)v1 instantiationTiming:(long long)v2 dependencies:(id)v3 creationBlock:(void (^ /* unknown block signature */)(void))v4;
-- (id)initWithProtocol:(id)v1 instantiationTiming:(long long)v2 dependencies:(id)v3 creationBlock:(void (^ /* unknown block signature */)(void))v4;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRComponentContainer : NSObject {
-    FIRApp * _app;
-    NSMutableDictionary * _components;
-    NSMutableDictionary * _cachedInstances;
-    NSMutableArray * _eagerProtocolsToInstantiate;
-}
-@property (retain,nonatomic) NSMutableDictionary * components;
-@property (retain,nonatomic) NSMutableDictionary * cachedInstances;
-@property (retain,nonatomic) NSMutableArray * eagerProtocolsToInstantiate;
-@property (readonly,nonatomic) FIRApp * app;
-+ (void)registerAsComponentRegistrant:(Class)v1;
-+ (void)registerAsComponentRegistrant:(Class)v1 inSet:(id)v2;
-- (id)initWithApp:(id)v1;
-- (id)initWithApp:(id)v1 registrants:(id)v2;
-- (void)populateComponentsFromRegisteredClasses:(id)v1 forApp:(id)v2;
-- (void)instantiateEagerComponents;
-- (id)instantiateInstanceForProtocol:(id)v1 withBlock:(void (^ /* unknown block signature */)(void))v2;
-- (id)instanceForProtocol:(id)v1;
-- (void)removeAllCachedInstances;
-- (void)removeAllComponents;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRComponentType : NSObject
-+ (id)instanceForProtocol:(id)v1 inContainer:(id)v2;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRConfiguration : NSObject {
-    FIRAnalyticsConfiguration * _analyticsConfiguration;
-}
-@property (retain,nonatomic) FIRAnalyticsConfiguration * analyticsConfiguration;
-+ (id)sharedInstance;
-- (id)init;
-- (void)setLoggerLevel:(long long)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRCoreDiagnosticsConnector : NSObject
-+ (void)initialize;
-+ (void)logCoreTelemetryWithOptions:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRDependency : NSObject {
-    bool _isRequired;
-    Protocol * _protocol;
-}
-@property (readonly,nonatomic) Protocol * protocol;
-@property (readonly,nonatomic) bool isRequired;
-+ (id)dependencyWithProtocol:(id)v1;
-+ (id)dependencyWithProtocol:(id)v1 isRequired:(bool)v2;
-- (id)initWithProtocol:(id)v1 isRequired:(bool)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRDiagnosticsData : NSObject<FIRCoreDiagnosticsData> {
-    NSMutableDictionary * _diagnosticObjects;
-}
-@property (retain,nonatomic) NSDictionary * diagnosticObjects;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (id)init;
-- (void)insertValue:(id)v1 forKey:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRFirebaseUserAgent : NSObject {
-    NSString * _firebaseUserAgent;
-    NSDictionary * _environmentComponents;
-    NSMutableDictionary * _valuesByComponent;
-}
-@property (readonly,nonatomic) NSMutableDictionary * valuesByComponent;
-@property (readonly,nonatomic) NSDictionary * environmentComponents;
-@property (readonly,nonatomic) NSString * firebaseUserAgent;
-+ (id)environmentComponents;
-- (id)init;
-- (void)setValue:(id)v1 forComponent:(id)v2;
-- (void)reset;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRHeartbeatInfo : NSObject
-+ (bool)updateIfNeededHeartbeatDateForTag:(id)v1;
-+ (long long)heartbeatCodeForTag:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRLoggerWrapper : NSObject
-+ (void)logWithLevel:(long long)v1 withService:(id)v2 withCode:(id)v3 withMessage:(id)v4 withArgs:(char *)v5;
-@end
-
-
-/*****************************************************************/
-
-@interface FIROptions : NSObject<NSCopying> {
-    NSDictionary * _analyticsOptionsDictionary;
-    bool _usingOptionsFromDefaultPlist;
-    bool _editingLocked;
-    NSString * _deepLinkURLScheme;
-    NSString * _appGroupID;
-    NSMutableDictionary * _optionsDictionary;
-}
-@property (retain,nonatomic) NSMutableDictionary * optionsDictionary;
-@property (readonly,nonatomic) NSDictionary * analyticsOptionsDictionary;
-@property (readonly,nonatomic) bool isAnalyticsCollectionExplicitlySet;
-@property (readonly,nonatomic) bool isAnalyticsCollectionEnabled;
-@property (readonly,nonatomic) bool isAnalyticsCollectionDeactivated;
-@property (readonly,copy,nonatomic) NSString * libraryVersionID;
-@property (nonatomic) bool usingOptionsFromDefaultPlist;
-@property (readonly,nonatomic) bool isMeasurementEnabled;
-@property (readonly,nonatomic) bool isAnalyticsEnabled;
-@property (readonly,nonatomic) bool isSignInEnabled;
-@property (nonatomic,getter=isEditingLocked) bool editingLocked;
-@property (copy,nonatomic) NSString * APIKey;
-@property (copy,nonatomic) NSString * bundleID;
-@property (copy,nonatomic) NSString * clientID;
-@property (copy,nonatomic) NSString * trackingID;
-@property (copy,nonatomic) NSString * GCMSenderID;
-@property (copy,nonatomic) NSString * projectID;
-@property (copy,nonatomic) NSString * androidClientID;
-@property (copy,nonatomic) NSString * googleAppID;
-@property (copy,nonatomic) NSString * databaseURL;
-@property (copy,nonatomic) NSString * deepLinkURLScheme;
-@property (copy,nonatomic) NSString * storageBucket;
-@property (copy,nonatomic) NSString * appGroupID;
-+ (id)defaultOptions;
-+ (id)defaultOptionsDictionary;
-+ (id)plistFilePathWithName:(id)v1;
-+ (void)resetDefaultOptions;
-- (id)initInternalWithOptionsDictionary:(id)v1;
-- (id)copyWithZone:(struct _NSZone *)v1;
-- (id)init;
-- (id)initWithContentsOfFile:(id)v1;
-- (id)initWithGoogleAppID:(id)v1 GCMSenderID:(id)v2;
-- (void)checkEditingLocked;
-- (void)setLibraryVersionID:(id)v1;
-- (bool)isEqual:(id)v1;
-- (bool)isEqualToOptions:(id)v1;
-- (unsigned long long)hash;
-- (id)analyticsOptionsDictionaryWithInfoDictionary:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULUserDefaults : NSObject {
-    struct __CFString * _appNameRef;
-    bool _isPreferenceFileExcluded;
-}
-@property (readonly) struct __CFString * appNameRef;
-@property bool isPreferenceFileExcluded;
-+ (id)standardUserDefaults;
-- (id)init;
-- (id)initWithSuiteName:(id)v1;
-- (void)dealloc;
-- (id)objectForKey:(id)v1;
-- (void)setObject:(id)v1 forKey:(id)v2;
-- (void)removeObjectForKey:(id)v1;
-- (long long)integerForKey:(id)v1;
-- (float)floatForKey:(id)v1;
-- (double)doubleForKey:(id)v1;
-- (bool)boolForKey:(id)v1;
-- (id)stringForKey:(id)v1;
-- (id)arrayForKey:(id)v1;
-- (id)dictionaryForKey:(id)v1;
-- (void)setInteger:(long long)v1 forKey:(id)v2;
-- (void)setFloat:(float)v1 forKey:(id)v2;
-- (void)setDouble:(double)v1 forKey:(id)v2;
-- (void)setBool:(bool)v1 forKey:(id)v2;
-- (void)synchronize;
-- (void)scheduleSynchronize;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsErrorUtil : NSObject
-+ (id)keyedArchiverErrorWithException:(id)v1;
-+ (id)keyedArchiverErrorWithError:(id)v1;
-+ (id)keychainErrorWithFunction:(id)v1 status:(int)v2;
-+ (id)installationItemNotFoundForAppID:(id)v1 appName:(id)v2;
-+ (id)corruptedIIDTokenData;
-+ (id)APIErrorWithHTTPResponse:(id)v1 data:(id)v2;
-+ (bool)isAPIError:(id)v1 withHTTPCode:(long long)v2;
-+ (id)JSONSerializationError:(id)v1;
-+ (id)FIDRegistrationErrorWithResponseMissingField:(id)v1;
-+ (id)networkErrorWithError:(id)v1;
-+ (id)backoffIntervalWaitError;
-+ (id)publicDomainErrorWithError:(id)v1;
-+ (id)installationsErrorWithCode:(unsigned long long)v1 failureReason:(id)v2 underlyingError:(id)v3;
-+ (id)rejectedPromiseWithError:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsHTTPError : NSError {
-    NSHTTPURLResponse * _HTTPResponse;
-    NSData * _data;
-}
-@property (readonly,nonatomic) NSHTTPURLResponse * HTTPResponse;
-@property (readonly,nonatomic) NSData * data;
-+ (unsigned long long)errorCodeWithHTTPCode:(long long)v1;
-+ (id)userInfoWithHTTPResponse:(id)v1 data:(id)v2;
-+ (bool)supportsSecureCoding;
-- (id)initWithHTTPResponse:(id)v1 data:(id)v2;
-- (id)copyWithZone:(struct _NSZone *)v1;
-- (id)initWithCoder:(id)v1;
-- (void)encodeWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallations : NSObject<FIRInstallationsInstanceProvider> {
-    FIROptions * _appOptions;
-    NSString * _appName;
-    FIRInstallationsIDController * _installationsIDController;
-}
-@property (readonly,nonatomic) FIROptions * appOptions;
-@property (readonly,nonatomic) NSString * appName;
-@property (readonly,nonatomic) FIRInstallationsIDController * installationsIDController;
-+ (void)load;
-+ (id)componentsToRegister;
-+ (void)validateAppOptions:(id)v1 appName:(id)v2;
-+ (void)validateAPIKey:(id)v1;
-+ (id)installations;
-+ (id)installationsWithApp:(id)v1;
-+ (void)assertCompatibleIIDVersion;
-+ (bool)isIIDVersionCompatible;
-- (id)initWithApp:(id)v1;
-- (id)initWitAppOptions:(id)v1 appName:(id)v2;
-- (id)initWithAppOptions:(id)v1 appName:(id)v2 installationsIDController:(id)v3 prefetchAuthToken:(bool)v4;
-- (void)installationIDWithCompletion:(void (^ /* unknown block signature */)(void))v1;
-- (void)authTokenWithCompletion:(void (^ /* unknown block signature */)(void))v1;
-- (void)authTokenForcingRefresh:(bool)v1 completion:(void (^ /* unknown block signature */)(void))v2;
-- (void)deleteWithCompletion:(void (^ /* unknown block signature */)(void))v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsAuthTokenResult : NSObject {
-    NSString * _authToken;
-    NSDate * _expirationDate;
-}
-@property (readonly,nonatomic) NSString * authToken;
-@property (readonly,nonatomic) NSDate * expirationDate;
-- (id)initWithToken:(id)v1 expirationDate:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsItem : NSObject<NSCopying> {
-    NSString * _appID;
-    NSString * _firebaseAppName;
-    NSString * _firebaseInstallationID;
-    NSString * _refreshToken;
-    FIRInstallationsStoredAuthToken * _authToken;
-    long long _registrationStatus;
-    NSString * _IIDDefaultToken;
-}
-@property (readonly,nonatomic) NSString * appID;
-@property (readonly,nonatomic) NSString * firebaseAppName;
-@property (copy,nonatomic) NSString * firebaseInstallationID;
-@property (copy,nonatomic) NSString * refreshToken;
-@property (retain,nonatomic) FIRInstallationsStoredAuthToken * authToken;
-@property (nonatomic) long long registrationStatus;
-@property (retain,nonatomic) NSString * IIDDefaultToken;
-+ (id)authTokenWithGenerateTokenAPIJSONData:(id)v1 date:(id)v2 error:(id *)v3;
-+ (id)authTokenWithJSONDict:(id)v1 date:(id)v2 error:(id *)v3;
-+ (id)dictionaryFromJSONData:(id)v1 error:(id *)v2;
-+ (id)validStringOrNilForKey:(id)v1 fromDict:(id)v2;
-+ (id)identifierWithAppID:(id)v1 appName:(id)v2;
-+ (id)generateFID;
-+ (id)base64URLEncodedStringWithData:(id)v1;
-- (id)registeredInstallationWithJSONData:(id)v1 date:(id)v2 error:(id *)v3;
-- (id)initWithAppID:(id)v1 firebaseAppName:(id)v2;
-- (id)copyWithZone:(struct _NSZone *)v1;
-- (void)updateWithStoredItem:(id)v1;
-- (id)storedItem;
-- (id)identifier;
-- (bool)isValid:(id *)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsIIDStore : NSObject
-- (id)existingIID;
-- (id)deleteExistingIID;
-- (id)IIDWithPublicKeyData:(id)v1;
-- (id)sha1WithData:(id)v1;
-- (id)base64URLEncodedStringWithData:(id)v1;
-- (id)IIDPublicKeyData;
-- (bool)deleteIID:(id *)v1;
-- (bool)deleteKeychainKeyWithTagPrefix:(id)v1 error:(id *)v2;
-- (id)keyPairQueryWithTag:(id)v1 returnData:(bool)v2;
-- (id)keychainKeyTagWithPrefix:(id)v1;
-- (id)mainbundleIdentifier;
-- (bool)deleteIIDFlagFromPlist:(id *)v1;
-- (bool)hasPlistIIDFlag;
-- (id)plistPath;
-- (unsigned long long)supportedDirectory;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsIIDTokenInfo : NSObject<NSSecureCoding> {
-    NSString * _token;
-}
-@property (copy,nonatomic) NSString * token;
-+ (bool)supportsSecureCoding;
-- (void)encodeWithCoder:(id)v1;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsIIDTokenStore : NSObject {
-    NSString * _GCMSenderID;
-}
-@property (readonly,nonatomic) NSString * GCMSenderID;
-- (id)initWithGCMSenderID:(id)v1;
-- (id)existingIIDDefaultToken;
-- (id)IIDCheckinWithData:(id)v1;
-- (id)IIDDefaultTokenData;
-- (id)IIDDefaultTokenDataKeychainQuery;
-- (id)IIDAppIdentifier;
-- (id)serviceKeyForAuthorizedEntity:(id)v1 scope:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsURLSessionResponse : NSObject {
-    NSHTTPURLResponse * _HTTPResponse;
-    NSData * _data;
-}
-@property (retain,nonatomic) NSHTTPURLResponse * HTTPResponse;
-@property (retain,nonatomic) NSData * data;
-- (id)initWithResponse:(id)v1 data:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsAPIService : NSObject {
-    NSURLSession * _URLSession;
-    NSString * _APIKey;
-    NSString * _projectID;
-}
-@property (readonly,nonatomic) NSURLSession * URLSession;
-@property (readonly,nonatomic) NSString * APIKey;
-@property (readonly,nonatomic) NSString * projectID;
-- (id)initWithAPIKey:(id)v1 projectID:(id)v2;
-- (id)initWithURLSession:(id)v1 APIKey:(id)v2 projectID:(id)v3;
-- (id)registerInstallation:(id)v1;
-- (id)refreshAuthTokenForInstallation:(id)v1;
-- (id)deleteInstallation:(id)v1;
-- (id)registerRequestWithInstallation:(id)v1;
-- (id)registeredInstallationWithInstallation:(id)v1 serverResponse:(id)v2;
-- (id)authTokenRequestWithInstallation:(id)v1;
-- (id)authTokenWithServerResponse:(id)v1;
-- (id)deleteInstallationRequestWithInstallation:(id)v1;
-- (id)requestWithURL:(id)v1 HTTPMethod:(id)v2 bodyDict:(id)v3 refreshToken:(id)v4;
-- (id)requestWithURL:(id)v1 HTTPMethod:(id)v2 bodyDict:(id)v3 refreshToken:(id)v4 additionalHeaders:(id)v5;
-- (id)URLRequestPromise:(id)v1;
-- (id)validateHTTPResponseStatusCode:(id)v1;
-- (id)sendURLRequest:(id)v1;
-- (id)SDKVersion;
-- (id)validateInstallation:(id)v1;
-- (void)setJSONHTTPBody:(id)v1 forRequest:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsBackoffEventData : NSObject {
-    long long _eventType;
-    NSDate * _lastEventDate;
-    long long _eventCount;
-    double _backoffTimeInterval;
-}
-@property (readonly,nonatomic) long long eventType;
-@property (readonly,nonatomic) NSDate * lastEventDate;
-@property (readonly,nonatomic) long long eventCount;
-@property (readonly,nonatomic) double backoffTimeInterval;
-+ (double)backoffTimeIntervalWithEvent:(long long)v1 eventCount:(long long)v2;
-+ (double)recoverableErrorBackoffTimeForAttemptNumber:(long long)v1;
-+ (double)randomMilliseconds;
-- (id)initWithEvent:(long long)v1 lastEventDate:(id)v2 eventCount:(long long)v3;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsBackoffController : NSObject<FIRInstallationsBackoffControllerProtocol> {
-    void (^ /* unknown block signature */)(void) _currentDateProvider;
-    FIRInstallationsBackoffEventData * _lastEventData;
-}
-@property (readonly,nonatomic) void (^ /* unknown block signature */)(void) currentDateProvider;
-@property (retain,nonatomic) FIRInstallationsBackoffEventData * lastEventData;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-- (id)init;
-- (id)initWithCurrentDateProvider:(void (^ /* unknown block signature */)(void))v1;
-- (bool)isNextRequestAllowed;
-- (void)registerEvent:(long long)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsIDController : NSObject {
-    NSString * _appID;
-    NSString * _appName;
-    FIRInstallationsStore * _installationsStore;
-    FIRInstallationsIIDStore * _IIDStore;
-    FIRInstallationsIIDTokenStore * _IIDTokenStore;
-    FIRInstallationsAPIService * _APIService;
-    NSObject<FIRInstallationsBackoffControllerProtocol> * _backoffController;
-    FIRInstallationsSingleOperationPromiseCache * _getInstallationPromiseCache;
-    FIRInstallationsSingleOperationPromiseCache * _authTokenPromiseCache;
-    FIRInstallationsSingleOperationPromiseCache * _authTokenForcingRefreshPromiseCache;
-    FIRInstallationsSingleOperationPromiseCache * _deleteInstallationPromiseCache;
-}
-@property (readonly,nonatomic) NSString * appID;
-@property (readonly,nonatomic) NSString * appName;
-@property (readonly,nonatomic) FIRInstallationsStore * installationsStore;
-@property (readonly,nonatomic) FIRInstallationsIIDStore * IIDStore;
-@property (readonly,nonatomic) FIRInstallationsIIDTokenStore * IIDTokenStore;
-@property (readonly,nonatomic) FIRInstallationsAPIService * APIService;
-@property (readonly,nonatomic) NSObject<FIRInstallationsBackoffControllerProtocol> * backoffController;
-@property (readonly,nonatomic) FIRInstallationsSingleOperationPromiseCache * getInstallationPromiseCache;
-@property (readonly,nonatomic) FIRInstallationsSingleOperationPromiseCache * authTokenPromiseCache;
-@property (readonly,nonatomic) FIRInstallationsSingleOperationPromiseCache * authTokenForcingRefreshPromiseCache;
-@property (readonly,nonatomic) FIRInstallationsSingleOperationPromiseCache * deleteInstallationPromiseCache;
-+ (id)keychainServiceWithAppID:(id)v1;
-- (id)initWithGoogleAppID:(id)v1 appName:(id)v2 APIKey:(id)v3 projectID:(id)v4 GCMSenderID:(id)v5 accessGroup:(id)v6;
-- (id)initWithGoogleAppID:(id)v1 appName:(id)v2 installationsStore:(id)v3 APIService:(id)v4 IIDStore:(id)v5 IIDTokenStore:(id)v6 backoffController:(id)v7;
-- (id)getInstallationItem;
-- (id)createGetInstallationItemPromise;
-- (id)getStoredInstallation;
-- (id)createAndSaveFID;
-- (id)saveInstallation:(id)v1;
-- (id)migrateOrGenerateInstallation;
-- (id)createInstallationWithFID:(id)v1 IIDDefaultToken:(id)v2;
-- (id)registerInstallationIfNeeded:(id)v1;
-- (bool)doesRegistrationErrorRequireConfigChange:(id)v1;
-- (id)getAuthTokenForcingRefresh:(bool)v1;
-- (id)installationWithValidAuthTokenForcingRefresh:(bool)v1;
-- (id)refreshAuthTokenForInstallation:(id)v1;
-- (id)regenerateFIDOnRefreshTokenErrorIfNeeded:(id)v1;
-- (id)deleteInstallation;
-- (id)createDeleteInstallationPromise;
-- (id)deleteInstallationLocally:(id)v1;
-- (id)sendDeleteInstallationRequestIfNeeded:(id)v1;
-- (id)deleteExistingIIDIfNeeded;
-- (id)mostRecentInstallationOperation;
-- (void)updateBackoffWithSuccess:(bool)v1 APIError:(id)v2;
-- (void)postFIDDidChangeNotification;
-- (bool)isDefaultApp;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsSingleOperationPromiseCache : NSObject {
-    void (^ /* unknown block signature */)(void) _newOperationHandler;
-    FBLPromise * _pendingPromise;
-}
-@property (readonly,nonatomic) void (^ /* unknown block signature */)(void) newOperationHandler;
-@property (retain,nonatomic) FBLPromise * pendingPromise;
-- (id)initWithNewOperationHandler:(void (^ /* unknown block signature */)(void))v1;
-- (id)getExistingPendingOrCreateNewPromise;
-- (id)getExistingPendingPromise;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsStore : NSObject {
-    GULKeychainStorage * _secureStorage;
-    NSString * _accessGroup;
-    NSObject<OS_dispatch_queue> * _queue;
-    GULUserDefaults * _userDefaults;
-}
-@property (readonly,nonatomic) GULKeychainStorage * secureStorage;
-@property (readonly,nonatomic) NSString * accessGroup;
-@property (readonly,nonatomic) NSObject<OS_dispatch_queue> * queue;
-@property (readonly,nonatomic) GULUserDefaults * userDefaults;
-- (id)initWithSecureStorage:(id)v1 accessGroup:(id)v2;
-- (id)installationForAppID:(id)v1 appName:(id)v2;
-- (id)saveInstallation:(id)v1;
-- (id)removeInstallationForAppID:(id)v1 appName:(id)v2;
-- (id)installationExistsForAppID:(id)v1 appName:(id)v2;
-- (id)setInstallationExists:(bool)v1 forItemWithIdentifier:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsStoredAuthToken : NSObject<NSSecureCoding,NSCopying> {
-    long long _status;
-    NSString * _token;
-    NSDate * _expirationDate;
-}
-@property long long status;
-@property (copy) NSString * token;
-@property (copy) NSDate * expirationDate;
-@property (readonly,nonatomic) long long storageVersion;
-+ (bool)supportsSecureCoding;
-- (id)copyWithZone:(struct _NSZone *)v1;
-- (void)encodeWithCoder:(id)v1;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface FIRInstallationsStoredItem : NSObject<NSSecureCoding> {
-    NSString * _firebaseInstallationID;
-    NSString * _refreshToken;
-    FIRInstallationsStoredAuthToken * _authToken;
-    long long _registrationStatus;
-    NSString * _IIDDefaultToken;
-}
-@property (copy,nonatomic) NSString * firebaseInstallationID;
-@property (copy,nonatomic) NSString * refreshToken;
-@property (retain,nonatomic) FIRInstallationsStoredAuthToken * authToken;
-@property (nonatomic) long long registrationStatus;
-@property (retain,nonatomic) NSString * IIDDefaultToken;
-@property (readonly,nonatomic) long long storageVersion;
-+ (bool)supportsSecureCoding;
-- (void)encodeWithCoder:(id)v1;
-- (id)initWithCoder:(id)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULZeroingWeakContainer : NSObject {
-    id _object;
-}
-@property (nonatomic) id object;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULAppDelegateObserver : NSObject {
-    bool _isObserving;
-}
-+ (id)sharedInstance;
-- (void)observeUIApplication;
-- (void)observeValueForKeyPath:(id)v1 ofObject:(id)v2 change:(id)v3 context:(void *)v4;
-@end
-
-
-/*****************************************************************/
-
-@interface GULAppDelegateSwizzler : NSProxy
-+ (bool)isAppDelegateProxyEnabled;
-+ (id)registerAppDelegateInterceptor:(id)v1;
-+ (void)unregisterAppDelegateInterceptorWithID:(id)v1;
-+ (void)proxyOriginalDelegate;
-+ (void)proxyOriginalDelegateIncludingAPNSMethods;
-+ (id)sharedApplication;
-+ (Class)createSubclassWithObject:(id)v1;
-+ (void)proxyRemoteNotificationsMethodsWithAppDelegateSubClass:(Class)v1 realClass:(Class)v2 appDelegate:(id)v3 realImplementationsBySelector:(id)v4;
-+ (void)reassignAppDelegate;
-+ (id)interceptors;
-+ (id)originalImplementationForSelector:(SEL)v1 object:(id)v2;
-+ (void)proxyDestinationSelector:(SEL)v1 implementationsFromSourceSelector:(SEL)v2 fromClass:(Class)v3 toClass:(Class)v4 realClass:(Class)v5 storeDestinationImplementationTo:(id)v6;
-+ (void)addInstanceMethodWithSelector:(SEL)v1 fromClass:(Class)v2 toClass:(Class)v3;
-+ (void)addInstanceMethodWithDestinationSelector:(SEL)v1 withImplementationFromSourceSelector:(SEL)v2 fromClass:(Class)v3 toClass:(Class)v4;
-+ (void * *)implementationOfMethodSelector:(SEL)v1 fromClass:(Class)v2;
-+ (void)notifyInterceptorsWithMethodSelector:(SEL)v1 callback:(void (^ /* unknown block signature */)(void))v2;
-+ (id)appDelegateInvocationForSelector:(SEL)v1;
-+ (void)proxyAppDelegate:(id)v1;
-+ (id)correctAppDelegateProxyKey;
-+ (id)correctAlternativeWhenAppDelegateProxyNotCreated;
-+ (void)clearInterceptors;
-+ (void)resetProxyOriginalDelegateOnceToken;
-+ (id)originalDelegate;
-- (id)fakeDescription;
-- (bool)application:(id)v1 openURL:(id)v2 options:(id)v3;
-- (bool)application:(id)v1 openURL:(id)v2 sourceApplication:(id)v3 annotation:(id)v4;
-- (void)application:(id)v1 handleEventsForBackgroundURLSession:(id)v2 completionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (bool)application:(id)v1 continueUserActivity:(id)v2 restorationHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)application:(id)v1 donor_didRegisterForRemoteNotificationsWithDeviceToken:(id)v2;
-- (void)application:(id)v1 donor_didFailToRegisterForRemoteNotificationsWithError:(id)v2;
-- (void)application:(id)v1 donor_didReceiveRemoteNotification:(id)v2 fetchCompletionHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)application:(id)v1 donor_didReceiveRemoteNotification:(id)v2;
-@end
-
-
-/*****************************************************************/
-
-@interface GULSceneZeroingWeakContainer : NSObject {
-    id _object;
-}
-@property (nonatomic) id object;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULSceneDelegateSwizzler : NSProxy
-+ (bool)isSceneDelegateProxyEnabled;
-+ (void)proxyOriginalSceneDelegate;
-+ (id)registerSceneDelegateInterceptor:(id)v1;
-+ (void)unregisterSceneDelegateInterceptorWithID:(id)v1;
-+ (id)interceptors;
-+ (void)clearInterceptors;
-+ (id)originalImplementationForSelector:(SEL)v1 object:(id)v2;
-+ (void)proxyDestinationSelector:(SEL)v1 implementationsFromSourceSelector:(SEL)v2 fromClass:(Class)v3 toClass:(Class)v4 realClass:(Class)v5 storeDestinationImplementationTo:(id)v6;
-+ (void)addInstanceMethodWithSelector:(SEL)v1 fromClass:(Class)v2 toClass:(Class)v3;
-+ (void)addInstanceMethodWithDestinationSelector:(SEL)v1 withImplementationFromSourceSelector:(SEL)v2 fromClass:(Class)v3 toClass:(Class)v4;
-+ (void * *)implementationOfMethodSelector:(SEL)v1 fromClass:(Class)v2;
-+ (void)notifyInterceptorsWithMethodSelector:(SEL)v1 callback:(void (^ /* unknown block signature */)(void))v2;
-+ (void)handleSceneWillConnectToNotification:(id)v1;
-+ (void)proxySceneDelegateIfNeeded:(id)v1;
-+ (id)correctSceneDelegateProxyKey;
-- (void)scene:(id)v1 openURLContexts:(id)v2;
-@end
-
-
-/*****************************************************************/
-
-@interface GULReachabilityChecker : NSObject {
-    int reachabilityStatus_;
-    struct GULReachabilityApi * reachabilityApi_;
-    struct __SCNetworkReachability * reachability_;
-    NSString * host_;
-    NSObject<GULReachabilityDelegate> * reachabilityDelegate_;
-}
-@property (nonatomic) struct GULReachabilityApi * reachabilityApi /* backed by reachabilityApi_ */;
-@property (nonatomic) int reachabilityStatus /* backed by reachabilityStatus_ */;
-@property (copy,nonatomic) NSString * host /* backed by host_ */;
-@property (nonatomic) struct __SCNetworkReachability * reachability /* backed by reachability_ */;
-@property (nonatomic) NSObject<GULReachabilityDelegate> * reachabilityDelegate /* backed by reachabilityDelegate_ */;
-@property (readonly,nonatomic) bool isActive;
-- (id)initWithReachabilityDelegate:(id)v1 withHost:(id)v2;
-- (void)dealloc;
-- (bool)start;
-- (void)stop;
-- (int)statusForFlags:(unsigned int)v1;
-- (void)reachabilityFlagsChanged:(unsigned int)v1;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULMutableDictionary : NSObject {
-    NSMutableDictionary * _objects;
-    NSObject<OS_dispatch_queue> * _queue;
-}
-- (id)init;
-- (id)description;
-- (id)objectForKey:(id)v1;
-- (void)setObject:(id)v1 forKey:(id)v2;
-- (void)removeObjectForKey:(id)v1;
-- (void)removeAllObjects;
-- (unsigned long long)count;
-- (id)objectForKeyedSubscript:(id)v1;
-- (void)setObject:(id)v1 forKeyedSubscript:(id)v2;
-- (id)dictionary;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULNetwork : NSObject<GULReachabilityDelegate,GULNetworkLoggerDelegate> {
-    GULReachabilityChecker * _reachability;
-    GULMutableDictionary * _requests;
-    bool _networkConnected;
-    bool _isDebugModeEnabled;
-    NSObject<GULNetworkReachabilityDelegate> * _reachabilityDelegate;
-    NSObject<GULNetworkLoggerDelegate> * _loggerDelegate;
-    double _timeoutInterval;
-}
-@property (readonly,nonatomic,getter=isNetworkConnected) bool networkConnected;
-@property (readonly,nonatomic,getter=hasUploadInProgress) bool uploadInProgress;
-@property (nonatomic) NSObject<GULNetworkReachabilityDelegate> * reachabilityDelegate;
-@property (nonatomic) NSObject<GULNetworkLoggerDelegate> * loggerDelegate;
-@property (nonatomic) bool isDebugModeEnabled;
-@property (nonatomic) double timeoutInterval;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-+ (void)handleEventsForBackgroundURLSessionID:(id)v1 completionHandler:(void (^ /* unknown block signature */)(void))v2;
-- (id)init;
-- (id)initWithReachabilityHost:(id)v1;
-- (void)dealloc;
-- (id)postURL:(id)v1 payload:(id)v2 queue:(id)v3 usingBackgroundSession:(bool)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
-- (id)getURL:(id)v1 headers:(id)v2 queue:(id)v3 usingBackgroundSession:(bool)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
-- (void)reachability:(id)v1 statusChanged:(int)v2;
-- (void)handleErrorWithCode:(long long)v1 queue:(id)v2 withHandler:(void (^ /* unknown block signature */)(void))v3;
-- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3 contexts:(id)v4;
-- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3 context:(id)v4;
-- (void)GULNetwork_logWithLevel:(long long)v1 messageCode:(long long)v2 message:(id)v3;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULNetworkURLSession : NSObject<NSURLSessionDelegate,NSURLSessionDataDelegate,NSURLSessionDownloadDelegate,NSURLSessionTaskDelegate> {
-    void (^ /* unknown block signature */)(void) _completionHandler;
-    NSString * _sessionID;
-    NSURLSessionConfiguration * _sessionConfig;
-    NSURLSession * _URLSession;
-    NSURL * _networkDirectoryURL;
-    NSData * _downloadedData;
-    NSURL * _uploadingFileURL;
-    NSURLRequest * _request;
-    bool _backgroundNetworkEnabled;
-    NSObject<GULNetworkLoggerDelegate> * _loggerDelegate;
-}
-@property (nonatomic,getter=isBackgroundNetworkEnabled) bool backgroundNetworkEnabled;
-@property (nonatomic) NSObject<GULNetworkLoggerDelegate> * loggerDelegate;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-+ (void)handleEventsForBackgroundURLSessionID:(id)v1 completionHandler:(void (^ /* unknown block signature */)(void))v2;
-+ (id)fetcherWithSessionIdentifier:(id)v1;
-+ (id)sessionIDToFetcherMap;
-+ (id)sessionIDToFetcherMapReadWriteLock;
-+ (id)sessionIDToSystemCompletionHandlerDictionary;
-+ (void)setSessionInFetcherMap:(id)v1 forSessionID:(id)v2;
-+ (id)sessionFromFetcherMapForSessionID:(id)v1;
-- (id)initWithNetworkLoggerDelegate:(id)v1;
-- (id)sessionIDFromAsyncPOSTRequest:(id)v1 completionHandler:(void (^ /* unknown block signature */)(void))v2;
-- (id)sessionIDFromAsyncGETRequest:(id)v1 completionHandler:(void (^ /* unknown block signature */)(void))v2;
-- (void)URLSession:(id)v1 dataTask:(id)v2 didReceiveData:(id)v3;
-- (void)URLSession:(id)v1 downloadTask:(id)v2 didFinishDownloadingToURL:(id)v3;
-- (void)URLSessionDidFinishEventsForBackgroundURLSession:(id)v1;
-- (void)URLSession:(id)v1 task:(id)v2 didCompleteWithError:(id)v3;
-- (void)URLSession:(id)v1 task:(id)v2 didReceiveChallenge:(id)v3 completionHandler:(void (^ /* unknown block signature */)(void))v4;
-- (void)addSystemCompletionHandler:(void (^ /* unknown block signature */)(void))v1 forSession:(id)v2;
-- (void)callSystemCompletionHandler:(id)v1;
-- (void)setSessionID:(id)v1;
-- (id)backgroundSessionConfigWithSessionID:(id)v1;
-- (void)maybeRemoveTempFilesAtURL:(id)v1 expiringTime:(double)v2;
-- (void)removeTempItemAtURL:(id)v1;
-- (id)temporaryFilePathWithSessionID:(id)v1;
-- (bool)ensureTemporaryDirectoryExists;
-- (void)excludeFromBackupForURL:(id)v1;
-- (void)URLSession:(id)v1 task:(id)v2 willPerformHTTPRedirection:(id)v3 newRequest:(id)v4 completionHandler:(void (^ /* unknown block signature */)(void))v5;
-- (void)callCompletionHandler:(void (^ /* unknown block signature */)(void))v1 withResponse:(id)v2 data:(id)v3 error:(id)v4;
-- (void)populateSessionConfig:(id)v1 withRequest:(id)v2;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface GULSwizzler : NSObject
-+ (void)swizzleClass:(Class)v1 selector:(SEL)v2 isClassSelector:(bool)v3 withBlock:(id)v4;
-+ (void * *)currentImplementationForClass:(Class)v1 selector:(SEL)v2 isClassSelector:(bool)v3;
-+ (bool)selector:(SEL)v1 existsInClass:(Class)v2 isClassSelector:(bool)v3;
-+ (id)ivarObjectsForObject:(id)v1;
-@end
-
-
-/*****************************************************************/
-
-@interface DP_NI : NSObject
-+ (bool)method1:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(unsigned short)v4 e:(unsigned short)v5 f:(unsigned short)v6 g:(unsigned char)v7;
-+ (bool)method2:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(unsigned int *)v4 e:(unsigned int *)v5;
-+ (unsigned char)method3:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3;
-+ (unsigned char)method4:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3;
-+ (unsigned short)method5:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3;
-+ (bool)method6:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(const  char *)v4 e:(unsigned short)v5 f:(unsigned char)v6 g:(char *)v7 h:(unsigned short)v8;
-+ (unsigned short)method7:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3;
-+ (bool)method8:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(const  char *)v4 e:(unsigned short)v5 f:(unsigned char)v6 g:(unsigned int)v7 h:(char *)v8 i:(unsigned short)v9;
-+ (unsigned short)method9:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3;
-+ (bool)method10:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(const  char *)v4 e:(unsigned short)v5 f:(unsigned char)v6 g:(unsigned int)v7 h:(unsigned short)v8 i:(char *)v9 j:(unsigned short)v10;
-+ (bool)method11:(unsigned int)v1;
-+ (unsigned short)method12:(unsigned int)v1;
-+ (bool)method13:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(const  char *)v4 e:(unsigned short)v5 f:(const  char *)v6 g:(unsigned short)v7 h:(unsigned char)v8 i:(unsigned short *)v9 j:(unsigned short *)v10;
-+ (void)method14:(char *)v1;
-+ (unsigned char)method15:(unsigned int)v1 b:(const  char *)v2 c:(const  char *)v3 d:(const  char *)v4 e:(const  char *)v5 f:(const  char *)v6 g:(unsigned short)v7 h:(const  char *)v8 i:(unsigned short)v9 j:(const  char *)v10 k:(unsigned short)v11 l:(unsigned int)v12 m:(unsigned int)v13 n:(unsigned int)v14 o:(unsigned int)v15 p:(int)v16 q:(const  char *)v17 r:(const  char *)v18 s:(const  char *)v19 t:(unsigned int *)v20 u:(unsigned int *)v21 v:(bool *)v22 w:(bool *)v23 x:(char *)v24 y:(char *)v25 z:(char *)v26 aa:(char *)v27 bb:(char *)v28 cc:(char *)v29;
-+ (unsigned char)method16:(unsigned int)v1 b:(const  char *)v2 c:(const  char *)v3 d:(const  char *)v4 e:(const  char *)v5 f:(const  char *)v6 g:(unsigned short)v7 h:(const  char *)v8 i:(unsigned short)v9 j:(unsigned char)v10 k:(const  char *)v11 l:(unsigned short)v12 m:(unsigned int)v13 n:(unsigned int)v14 o:(unsigned int)v15 p:(unsigned int)v16 q:(const  char *)v17 r:(const  char *)v18 s:(const  char *)v19 t:(unsigned int *)v20 u:(unsigned int *)v21 v:(bool *)v22 w:(bool *)v23 x:(char *)v24 y:(char *)v25 z:(char *)v26 aa:(char *)v27;
-+ (bool)method17:(const  char *)v1 b:(unsigned int)v2 c:(unsigned int)v3 d:(unsigned int)v4 e:(unsigned int)v5 f:(bool)v6 g:(unsigned long long *)v7;
-+ (bool)method18:(const  char *)v1 b:(unsigned short)v2 c:(int)v3 d:(unsigned int)v4 e:(char *)v5;
-+ (void)method19:(unsigned char)v1;
-+ (void)method20:(unsigned int)v1;
-+ (void)method21;
-+ (unsigned int)method22;
-+ (unsigned int)method23;
-+ (unsigned int)method24;
-+ (unsigned int)method25;
-+ (unsigned int)method26;
-+ (void)method27:(char *)v1 b:(unsigned short)v2 c:(unsigned short)v3;
-+ (unsigned int)method28;
-+ (void)method29:(char *)v1 b:(bool)v2 c:(bool)v3 d:(bool)v4 e:(unsigned short)v5 f:(unsigned short)v6 g:(unsigned short)v7 h:(double)v8 i:(double)v9;
-+ (void)method30:(char *)v1 b:(unsigned short)v2 c:(unsigned short)v3;
-+ (unsigned int)method31;
-+ (void)method32:(char *)v1 b:(bool)v2 c:(bool)v3 d:(bool)v4 e:(bool)v5;
-+ (unsigned int)method33:(char *)v1;
-+ (bool)method34:(char *)v1 b:(unsigned char)v2 c:(unsigned short *)v3 d:(unsigned short *)v4;
-+ (unsigned int)method35:(char *)v1;
-+ (bool)method36:(char *)v1 b:(unsigned char)v2 c:(unsigned short *)v3 d:(unsigned short *)v4 e:(unsigned short *)v5;
-+ (void)method37:(char *)v1 b:(unsigned short *)v2 c:(unsigned short *)v3 d:(unsigned short *)v4 e:(float *)v5 f:(unsigned int *)v6 g:(unsigned int *)v7 h:(bool *)v8 i:(unsigned short *)v9 j:(bool *)v10;
-+ (int)method38:(unsigned short)v1 b:(int)v2 c:(char *)v3 d:(unsigned short)v4 e:(char *)v5 f:(unsigned short)v6;
-+ (id)method39:(unsigned short)v1 b:(int)v2 c:(char *)v3 d:(unsigned short)v4 e:(char *)v5 f:(unsigned short)v6 g:(int *)v7;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS19HistoricErrorEntity : RealmSwiftObject {
-    id _id;
-    id _sensor;
-    id _sampleNumber;
-    id _timestampUTC;
-    id _timestampLocal;
-    id _timeZone;
-    id _dataQuality;
-    id _crc;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
-@property (nonatomic) int _sampleNumber;
-@property (nonatomic) long long _timestampUTC;
-@property (nonatomic) long long _timestampLocal;
-@property (nonatomic,copy) NSString * _timeZone;
-@property (nonatomic) int _dataQuality;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS22DefaultTimeOsFunctions : _TtCs12_SwiftObject
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS24Gen2SecurityInterfaceSkb : _TtCs12_SwiftObject {
-    id GEN2_CMD_INIT_LIB;
-    id GEN2_CMD_GET_AUTH_CONTEXT;
-    id GEN2_CMD_GET_NFC_AUTHENTICATED_CMD;
-    id GEN2_CMD_GET_BLE_AUTHENTICATED_CMD;
-    id GEN2_CMD_VERIFY_RESPONSE;
-    id GEN2_CMD_GET_CREATE_SESSION;
-    id GEN2_CMD_DECRYPT_NFC_DATA;
-    id GEN2_CMD_DECRYPT_BLE_DATA;
-    id GEN2_CMD_END_SESSION;
-    id GEN2_CMD_GET_PVALUES;
-    id GEN2_CMD_DECRYPT_NFC_STREAM;
-    id GEN2_ERROR_PROCESS_ERROR;
-    id gen2Processing;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS24AttenuationConfiguration : _TtCs12_SwiftObject {
-    id isEsaDetectionEnabled;
-    id isLsaDetectionEnabled;
-    id isEsaCorrectionEnabled;
-    id isLsaCorrectionEnabled;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS18DefaultNfcRfModule : _TtCs12_SwiftObject {
-    id osFunctions;
-    id numberRetries;
-    id commandSemaphore;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS21DefaultNfcOsFunctions : _TtCs12_SwiftObject
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS21RealTimeReadingEntity : RealmSwiftObject {
-    id _id;
-    id _sensor;
-    id _timestampUTC;
-    id _timestampLocal;
-    id _timeZone;
-    id _glucoseValue;
-    id _rateOfChange;
-    id _trendArrow;
-    id _alarm;
-    id _isActionable;
-    id _timeChangeBefore;
-    id _crc;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
-@property (nonatomic) long long _timestampUTC;
-@property (nonatomic) long long _timestampLocal;
-@property (nonatomic,copy) NSString * _timeZone;
-@property (nonatomic) double _glucoseValue;
-@property (nonatomic) double _rateOfChange;
-@property (nonatomic) int _trendArrow;
-@property (nonatomic) int _alarm;
-@property (nonatomic) bool _isActionable;
-@property (nonatomic) long long _timeChangeBefore;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS19RealTimeErrorEntity : RealmSwiftObject {
-    id _id;
-    id _sensor;
-    id _timestampUTC;
-    id _timestampLocal;
-    id _timeZone;
-    id _dataQuality;
-    id _crc;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
-@property (nonatomic) long long _timestampUTC;
-@property (nonatomic) long long _timestampLocal;
-@property (nonatomic,copy) NSString * _timeZone;
-@property (nonatomic) int _dataQuality;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS13RawScanEntity : RealmSwiftObject {
-    id _id;
-    id _sensor;
-    id _timestampUTC;
-    id _timestampLocal;
-    id _timeZone;
-    id _patchInfo;
-    id _payload;
-    id _crc;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
-@property (nonatomic) long long _timestampUTC;
-@property (nonatomic) long long _timestampLocal;
-@property (nonatomic,copy) NSString * _timeZone;
-@property (nonatomic,retain) NSData * _patchInfo;
-@property (nonatomic,retain) NSData * _payload;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS12SensorEntity : RealmSwiftObject {
-    id _id;
-    id _user;
-    id _serialNumber;
-    id _uniqueIdentifier;
-    id _personalizationIndex;
-    id _initialPatchInformation;
-    id _enableStreamingTimestamp;
-    id _streamingUnlockCount;
-    id _sensorStartTimestampUTC;
-    id _sensorStartTimestampLocal;
-    id _sensorStartTimeZone;
-    id _lastScanTimestampUTC;
-    id _lastScanTimestampLocal;
-    id _lastScanTimeZone;
-    id _lastScanSampleNumber;
-    id _endedEarly;
-    id _compositeState;
-    id _attenuationState;
-    id _measurementState;
-    id _lsaDetected;
-    id _unrecordedHistoricTimeChange;
-    id _unrecordedRealTimeTimeChange;
-    id _warmupPeriodInMinutes;
-    id _wearDurationInMinutes;
-    id _streamingAuthenticationData;
-    id _bleAddress;
-    id _crc;
-    id currentReadings;
-    id currentErrors;
-    id historicReadings;
-    id historicErrors;
-    id realTimeReadings;
-    id realTimeErrors;
-    id rawScans;
-    id rawStreamings;
-    id selectionRanges;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC4iSAS10UserEntity * _user;
-@property (nonatomic,copy) NSString * _serialNumber;
-@property (nonatomic,retain) NSData * _uniqueIdentifier;
-@property (nonatomic) int _personalizationIndex;
-@property (nonatomic,retain) NSData * _initialPatchInformation;
-@property (nonatomic) int _enableStreamingTimestamp;
-@property (nonatomic) int _streamingUnlockCount;
-@property (nonatomic) long long _sensorStartTimestampUTC;
-@property (nonatomic) long long _sensorStartTimestampLocal;
-@property (nonatomic,copy) NSString * _sensorStartTimeZone;
-@property (nonatomic) long long _lastScanTimestampUTC;
-@property (nonatomic) long long _lastScanTimestampLocal;
-@property (nonatomic,copy) NSString * _lastScanTimeZone;
-@property (nonatomic) int _lastScanSampleNumber;
-@property (nonatomic) bool _endedEarly;
-@property (nonatomic,retain) NSData * _compositeState;
-@property (nonatomic,retain) NSData * _attenuationState;
-@property (nonatomic,retain) NSData * _measurementState;
-@property (nonatomic) bool _lsaDetected;
-@property (nonatomic) long long _unrecordedHistoricTimeChange;
-@property (nonatomic) long long _unrecordedRealTimeTimeChange;
-@property (nonatomic) int _warmupPeriodInMinutes;
-@property (nonatomic) int _wearDurationInMinutes;
-@property (nonatomic,retain) NSData * _streamingAuthenticationData;
-@property (nonatomic,retain) NSData * _bleAddress;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS20CurrentReadingEntity : RealmSwiftObject {
-    id _id;
-    id _sensor;
-    id _timestampUTC;
-    id _timestampLocal;
-    id _timeZone;
-    id _glucoseValue;
-    id _rateOfChange;
-    id _crc;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
-@property (nonatomic) long long _timestampUTC;
-@property (nonatomic) long long _timestampLocal;
-@property (nonatomic,copy) NSString * _timeZone;
-@property (nonatomic) double _glucoseValue;
-@property (nonatomic) double _rateOfChange;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS13RealmDatabase : _TtCs12_SwiftObject {
-    id manager;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSASP33_FB9ECB77F1B4D0AAE6FEEF518C1115AA12RealmManager : _TtCs12_SwiftObject {
-    id creator;
-    id permanentReferenceThread;
-    id permanentReference;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS21PartnerNfcOsFunctions : _TtCs12_SwiftObject {
-    id collected_data;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS11ScanResults : _TtCs12_SwiftObject {
-    id sensor;
-    id newCompositeState;
-    id newAttenuationState;
-    id newMeasurementState;
-    id sensorEndedEarly;
-    id lsaDetected;
-    id scanTimeInformation;
-    id timeChangeSinceLastScanInMilliseconds;
-    id historicReadings;
-    id historicErrors;
-    id realTimeReading;
-    id realTimeError;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS20DataProcessingNative : _TtCs12_SwiftObject {
-    id processingType;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS26NonActionableConfiguration : _TtCs12_SwiftObject {
-    id isEnabled;
-    id isVelocityCheckEnabled;
-    id isProjectedLowGlucoseCheckEnabled;
-    id minimumActionableId;
-    id minimumActionableValue;
-    id maximumActionableValue;
-    id minimumNegativeActionableVelocity;
-    id maximumPositiveActionableVelocity;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS22DefaultNfcRfModuleGen2 : _TtCs12_SwiftObject {
-    id gen2Processing;
-    id osFunctions;
-    id numberRetries;
-    id authFailureEventHandler;
-    id commandSemaphore;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS12MemoryRegion : _TtCs12_SwiftObject {
-    id startAddress;
-    id numberOfBytes;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS10UserEntity : RealmSwiftObject {
-    id _id;
-    id _name;
-    id _crc;
-    id sensors;
-    id currentErrors;
-    id currentReadings;
-    id historicReadings;
-    id realTimeReadings;
-    id historicErrors;
-    id realTimeErrors;
-    id rawScans;
-    id rawStreamings;
-    id selectionRanges;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,copy) NSString * _name;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS25DataProcessingScanOutputs : _TtC4iSAS21DataProcessingOutputs {
-    id personalizationIndex;
-    id patchEvents;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS10PatchEvent : _TtCs12_SwiftObject {
-    id id;
-    id errorCode;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS21DataProcessingFactory : _TtCs12_SwiftObject
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS18AlarmConfiguration : _TtCs12_SwiftObject {
-    id lowGlucoseAlarmThreshold;
-    id highGlucoseAlarmThreshold;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS21HistoricReadingEntity : RealmSwiftObject {
-    id _id;
-    id _sensor;
-    id _sampleNumber;
-    id _timestampUTC;
-    id _timestampLocal;
-    id _timeZone;
-    id _glucoseValue;
-    id _timeChangeBefore;
-    id _crc;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
-@property (nonatomic) int _sampleNumber;
-@property (nonatomic) long long _timestampUTC;
-@property (nonatomic) long long _timestampLocal;
-@property (nonatomic,copy) NSString * _timeZone;
-@property (nonatomic) double _glucoseValue;
-@property (nonatomic) long long _timeChangeBefore;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS20SelectedSensorLookup : _TtCs12_SwiftObject {
-    id database;
-    id lookupTable;
-}
+@interface _TtC9SwiftDateP33_E0FB06230B09DCC4BA9E6ECF005CD09212BundleFinder : _TtCs12_SwiftObject
 @end
 
 
 /*****************************************************************/
 
-@interface _TtC4iSAS12GlucoseValue : _TtCs12_SwiftObject {
-    id id;
-    id dataQuality;
-    id value;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS18RawStreamingEntity : RealmSwiftObject {
-    id _id;
-    id _sensor;
-    id _timestampUTC;
-    id _timestampLocal;
-    id _timeZone;
-    id _payload;
-    id _crc;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
-@property (nonatomic) long long _timestampUTC;
-@property (nonatomic) long long _timestampLocal;
-@property (nonatomic,copy) NSString * _timeZone;
-@property (nonatomic,retain) NSData * _payload;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS14SequenceEntity : RealmSwiftObject {
-    id _id;
-    id _nextUserId;
-    id _nextSensorId;
-    id _nextHistoricReadingId;
-    id _nextHistoricErrorId;
-    id _nextRealTimeReadingId;
-    id _nextRealTimeErrorId;
-    id _nextCurrentReadingId;
-    id _nextCurrentErrorId;
-    id _nextRawScanId;
-    id _nextRawStreamingId;
-    id _nextSensorSelectionRangeId;
-}
-@property (nonatomic) int _id;
-@property (nonatomic) int _nextUserId;
-@property (nonatomic) int _nextSensorId;
-@property (nonatomic) int _nextHistoricReadingId;
-@property (nonatomic) int _nextHistoricErrorId;
-@property (nonatomic) int _nextRealTimeReadingId;
-@property (nonatomic) int _nextRealTimeErrorId;
-@property (nonatomic) int _nextCurrentReadingId;
-@property (nonatomic) int _nextCurrentErrorId;
-@property (nonatomic) int _nextRawScanId;
-@property (nonatomic) int _nextRawStreamingId;
-@property (nonatomic) int _nextSensorSelectionRangeId;
-- (id)init;
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS21DataProcessingOutputs : _TtCs12_SwiftObject {
-    id estimatedSensorStartTimestamp;
-    id estimatedSensorEndTimestamp;
-    id insertionIsConfirmed;
-    id sensorHasBeenRemoved;
-    id newCompositeState;
-    id newAttenuationState;
-    id newMeasurementState;
-    id algorithmResults;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS16AlgorithmResults : _TtCs12_SwiftObject {
-    id historicGlucose;
-    id realTimeGlucose;
-    id rateOfChange;
-    id trendArrow;
-    id alarm;
-    id isActionable;
-    id esaMinutesToWait;
-    id lsaDetected;
-}
-@end
-
-
-/*****************************************************************/
-
-@interface _TtC4iSAS24DefaultMathRuntimeChecks : _TtCs12_SwiftObject
+@interface _TtC9SwiftDate15TimePeriodChain : _TtC9SwiftDate15TimePeriodGroup
 @end
 
 
 /*****************************************************************/
 
-@interface _TtC4iSAS26SensorSelectionRangeEntity : RealmSwiftObject {
-    id _id;
-    id _sensor;
-    id _startTimestampUTC;
-    id _endTimestampUTC;
-    id _crc;
-}
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
-@property (nonatomic) long long _startTimestampUTC;
-@property (nonatomic) long long _endTimestampUTC;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
+@interface _TtC9SwiftDate20TimePeriodCollection : _TtC9SwiftDate15TimePeriodGroup
 @end
 
 
 /*****************************************************************/
 
-@interface _TtC4iSAS17GlucoseValueRange : _TtCs12_SwiftObject {
-    id g_min;
-    id g_max;
+@interface _TtC9SwiftDate15TimePeriodGroup : _TtCs12_SwiftObject {
+    id periods;
+    id start;
+    id end;
 }
 @end
 
 
 /*****************************************************************/
 
-@interface _TtC4iSAS18CurrentErrorEntity : RealmSwiftObject {
-    id _id;
-    id _sensor;
-    id _timestampUTC;
-    id _timestampLocal;
-    id _timeZone;
-    id _dataQuality;
-    id _crc;
+@interface _TtC9SwiftDate10TimePeriod : _TtCs12_SwiftObject {
+    id start;
+    id end;
 }
-@property (nonatomic) int _id;
-@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
-@property (nonatomic) long long _timestampUTC;
-@property (nonatomic) long long _timestampLocal;
-@property (nonatomic,copy) NSString * _timeZone;
-@property (nonatomic) int _dataQuality;
-@property (nonatomic) int _crc;
-@property (nonatomic,readonly) long long hash;
-+ (id)primaryKey;
-+ (id)indexedProperties;
-- (id)init;
-- (void).cxx_destruct;
 @end
 
 
@@ -21038,56 +21840,663 @@ fillInImageDetails:forUUID: (IMP @0x100af728c);
 
 /*****************************************************************/
 
-@interface FIRCrashlytics : NSObject<FIRLibrary,FIRCrashlyticsInstanceProvider> {
-    bool _didPreviouslyCrash;
-    NSString * _googleAppID;
-    FIRCLSDataCollectionArbiter * _dataArbiter;
-    FIRCLSFileManager * _fileManager;
-    FIRCLSReportManager * _reportManager;
-    FIRCLSReportUploader * _reportUploader;
-    FIRCLSExistingReportManager * _existingReportManager;
-    FIRCLSAnalyticsManager * _analyticsManager;
-    FIRCLSManagerData * _managerData;
+@interface DP_NI : NSObject
++ (bool)method1:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(unsigned short)v4 e:(unsigned short)v5 f:(unsigned short)v6 g:(unsigned char)v7;
++ (bool)method2:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(unsigned int *)v4 e:(unsigned int *)v5;
++ (unsigned char)method3:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3;
++ (unsigned char)method4:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3;
++ (unsigned short)method5:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3;
++ (bool)method6:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(const  char *)v4 e:(unsigned short)v5 f:(unsigned char)v6 g:(char *)v7 h:(unsigned short)v8;
++ (unsigned short)method7:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3;
++ (bool)method8:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(const  char *)v4 e:(unsigned short)v5 f:(unsigned char)v6 g:(unsigned int)v7 h:(char *)v8 i:(unsigned short)v9;
++ (unsigned short)method9:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3;
++ (bool)method10:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(const  char *)v4 e:(unsigned short)v5 f:(unsigned char)v6 g:(unsigned int)v7 h:(unsigned short)v8 i:(char *)v9 j:(unsigned short)v10;
++ (bool)method11:(unsigned int)v1;
++ (unsigned short)method12:(unsigned int)v1;
++ (bool)method13:(unsigned int)v1 b:(const  char *)v2 c:(unsigned short)v3 d:(const  char *)v4 e:(unsigned short)v5 f:(const  char *)v6 g:(unsigned short)v7 h:(unsigned char)v8 i:(unsigned short *)v9 j:(unsigned short *)v10;
++ (void)method14:(char *)v1;
++ (unsigned char)method15:(unsigned int)v1 b:(const  char *)v2 c:(const  char *)v3 d:(const  char *)v4 e:(const  char *)v5 f:(const  char *)v6 g:(unsigned short)v7 h:(const  char *)v8 i:(unsigned short)v9 j:(const  char *)v10 k:(unsigned short)v11 l:(unsigned int)v12 m:(unsigned int)v13 n:(unsigned int)v14 o:(unsigned int)v15 p:(int)v16 q:(const  char *)v17 r:(const  char *)v18 s:(const  char *)v19 t:(unsigned int *)v20 u:(unsigned int *)v21 v:(bool *)v22 w:(bool *)v23 x:(char *)v24 y:(char *)v25 z:(char *)v26 aa:(char *)v27 bb:(char *)v28 cc:(char *)v29;
++ (unsigned char)method16:(unsigned int)v1 b:(const  char *)v2 c:(const  char *)v3 d:(const  char *)v4 e:(const  char *)v5 f:(const  char *)v6 g:(unsigned short)v7 h:(const  char *)v8 i:(unsigned short)v9 j:(unsigned char)v10 k:(const  char *)v11 l:(unsigned short)v12 m:(unsigned int)v13 n:(unsigned int)v14 o:(unsigned int)v15 p:(unsigned int)v16 q:(const  char *)v17 r:(const  char *)v18 s:(const  char *)v19 t:(unsigned int *)v20 u:(unsigned int *)v21 v:(bool *)v22 w:(bool *)v23 x:(char *)v24 y:(char *)v25 z:(char *)v26 aa:(char *)v27;
++ (bool)method17:(const  char *)v1 b:(unsigned int)v2 c:(unsigned int)v3 d:(unsigned int)v4 e:(unsigned int)v5 f:(bool)v6 g:(unsigned long long *)v7;
++ (bool)method18:(const  char *)v1 b:(unsigned short)v2 c:(int)v3 d:(unsigned int)v4 e:(char *)v5;
++ (void)method19:(unsigned char)v1;
++ (void)method20:(unsigned int)v1;
++ (void)method21;
++ (unsigned int)method22;
++ (unsigned int)method23;
++ (unsigned int)method24;
++ (unsigned int)method25;
++ (unsigned int)method26;
++ (void)method27:(char *)v1 b:(unsigned short)v2 c:(unsigned short)v3;
++ (unsigned int)method28;
++ (void)method29:(char *)v1 b:(bool)v2 c:(bool)v3 d:(bool)v4 e:(unsigned short)v5 f:(unsigned short)v6 g:(unsigned short)v7 h:(double)v8 i:(double)v9;
++ (void)method30:(char *)v1 b:(unsigned short)v2 c:(unsigned short)v3;
++ (unsigned int)method31;
++ (void)method32:(char *)v1 b:(bool)v2 c:(bool)v3 d:(bool)v4 e:(bool)v5;
++ (unsigned int)method33:(char *)v1;
++ (bool)method34:(char *)v1 b:(unsigned char)v2 c:(unsigned short *)v3 d:(unsigned short *)v4;
++ (unsigned int)method35:(char *)v1;
++ (bool)method36:(char *)v1 b:(unsigned char)v2 c:(unsigned short *)v3 d:(unsigned short *)v4 e:(unsigned short *)v5;
++ (void)method37:(char *)v1 b:(unsigned short *)v2 c:(unsigned short *)v3 d:(unsigned short *)v4 e:(float *)v5 f:(unsigned int *)v6 g:(unsigned int *)v7 h:(bool *)v8 i:(unsigned short *)v9 j:(bool *)v10;
++ (int)method38:(unsigned short)v1 b:(int)v2 c:(char *)v3 d:(unsigned short)v4 e:(char *)v5 f:(unsigned short)v6;
++ (id)method39:(unsigned short)v1 b:(int)v2 c:(char *)v3 d:(unsigned short)v4 e:(char *)v5 f:(unsigned short)v6 g:(int *)v7;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS19HistoricErrorEntity : RealmSwiftObject {
+    id _id;
+    id _sensor;
+    id _sampleNumber;
+    id _timestampUTC;
+    id _timestampLocal;
+    id _timeZone;
+    id _dataQuality;
+    id _crc;
 }
-@property (nonatomic) bool didPreviouslyCrash;
-@property (copy,nonatomic) NSString * googleAppID;
-@property (retain,nonatomic) FIRCLSDataCollectionArbiter * dataArbiter;
-@property (retain,nonatomic) FIRCLSFileManager * fileManager;
-@property (retain,nonatomic) FIRCLSReportManager * reportManager;
-@property (retain,nonatomic) FIRCLSReportUploader * reportUploader;
-@property (retain,nonatomic) FIRCLSExistingReportManager * existingReportManager;
-@property (retain,nonatomic) FIRCLSAnalyticsManager * analyticsManager;
-@property (retain,nonatomic) FIRCLSManagerData * managerData;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (readonly,copy) NSString * description;
-@property (readonly,copy) NSString * debugDescription;
-+ (void)load;
-+ (id)componentsToRegister;
-+ (id)crashlytics;
-+ (void)setDevelopmentPlatformName:(id)v1;
-+ (void)setDevelopmentPlatformVersion:(id)v1;
-- (id)initWithApp:(id)v1 appInfo:(id)v2 installations:(id)v3 analytics:(id)v4;
-- (void)setCrashlyticsCollectionEnabled:(bool)v1;
-- (bool)isCrashlyticsCollectionEnabled;
-- (bool)didCrashDuringPreviousExecution;
-- (void)processDidCrashDuringPreviousExecution;
-- (void)log:(id)v1;
-- (void)logWithFormat:(id)v1;
-- (void)logWithFormat:(id)v1 arguments:(char *)v2;
-- (void)checkForUnsentReportsWithCompletion:(void (^ /* unknown block signature */)(void))v1;
-- (void)checkAndUpdateUnsentReportsWithCompletion:(void (^ /* unknown block signature */)(void))v1;
-- (void)sendUnsentReports;
-- (void)deleteUnsentReports;
-- (void)setUserID:(id)v1;
-- (void)setCustomValue:(id)v1 forKey:(id)v2;
-- (void)setCustomKeysAndValues:(id)v1;
-- (id)developmentPlatformName;
-- (void)setDevelopmentPlatformName:(id)v1;
-- (id)developmentPlatformVersion;
-- (void)setDevelopmentPlatformVersion:(id)v1;
-- (void)recordError:(id)v1;
-- (void)recordExceptionModel:(id)v1;
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
+@property (nonatomic) int _sampleNumber;
+@property (nonatomic) long long _timestampUTC;
+@property (nonatomic) long long _timestampLocal;
+@property (nonatomic,copy) NSString * _timeZone;
+@property (nonatomic) int _dataQuality;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS22DefaultTimeOsFunctions : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS24Gen2SecurityInterfaceSkb : _TtCs12_SwiftObject {
+    id GEN2_CMD_INIT_LIB;
+    id GEN2_CMD_GET_AUTH_CONTEXT;
+    id GEN2_CMD_GET_NFC_AUTHENTICATED_CMD;
+    id GEN2_CMD_GET_BLE_AUTHENTICATED_CMD;
+    id GEN2_CMD_VERIFY_RESPONSE;
+    id GEN2_CMD_GET_CREATE_SESSION;
+    id GEN2_CMD_DECRYPT_NFC_DATA;
+    id GEN2_CMD_DECRYPT_BLE_DATA;
+    id GEN2_CMD_END_SESSION;
+    id GEN2_CMD_GET_PVALUES;
+    id GEN2_CMD_DECRYPT_NFC_STREAM;
+    id GEN2_ERROR_PROCESS_ERROR;
+    id gen2Processing;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS24AttenuationConfiguration : _TtCs12_SwiftObject {
+    id isEsaDetectionEnabled;
+    id isLsaDetectionEnabled;
+    id isEsaCorrectionEnabled;
+    id isLsaCorrectionEnabled;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS18DefaultNfcRfModule : _TtCs12_SwiftObject {
+    id osFunctions;
+    id numberRetries;
+    id commandSemaphore;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS21RealTimeReadingEntity : RealmSwiftObject {
+    id _id;
+    id _sensor;
+    id _timestampUTC;
+    id _timestampLocal;
+    id _timeZone;
+    id _glucoseValue;
+    id _rateOfChange;
+    id _trendArrow;
+    id _alarm;
+    id _isActionable;
+    id _timeChangeBefore;
+    id _crc;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
+@property (nonatomic) long long _timestampUTC;
+@property (nonatomic) long long _timestampLocal;
+@property (nonatomic,copy) NSString * _timeZone;
+@property (nonatomic) double _glucoseValue;
+@property (nonatomic) double _rateOfChange;
+@property (nonatomic) int _trendArrow;
+@property (nonatomic) int _alarm;
+@property (nonatomic) bool _isActionable;
+@property (nonatomic) long long _timeChangeBefore;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS19RealTimeErrorEntity : RealmSwiftObject {
+    id _id;
+    id _sensor;
+    id _timestampUTC;
+    id _timestampLocal;
+    id _timeZone;
+    id _dataQuality;
+    id _crc;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
+@property (nonatomic) long long _timestampUTC;
+@property (nonatomic) long long _timestampLocal;
+@property (nonatomic,copy) NSString * _timeZone;
+@property (nonatomic) int _dataQuality;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS13RawScanEntity : RealmSwiftObject {
+    id _id;
+    id _sensor;
+    id _timestampUTC;
+    id _timestampLocal;
+    id _timeZone;
+    id _patchInfo;
+    id _payload;
+    id _crc;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
+@property (nonatomic) long long _timestampUTC;
+@property (nonatomic) long long _timestampLocal;
+@property (nonatomic,copy) NSString * _timeZone;
+@property (nonatomic,retain) NSData * _patchInfo;
+@property (nonatomic,retain) NSData * _payload;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS12SensorEntity : RealmSwiftObject {
+    id _id;
+    id _user;
+    id _serialNumber;
+    id _uniqueIdentifier;
+    id _personalizationIndex;
+    id _initialPatchInformation;
+    id _enableStreamingTimestamp;
+    id _streamingUnlockCount;
+    id _sensorStartTimestampUTC;
+    id _sensorStartTimestampLocal;
+    id _sensorStartTimeZone;
+    id _lastScanTimestampUTC;
+    id _lastScanTimestampLocal;
+    id _lastScanTimeZone;
+    id _lastScanSampleNumber;
+    id _endedEarly;
+    id _compositeState;
+    id _attenuationState;
+    id _measurementState;
+    id _lsaDetected;
+    id _unrecordedHistoricTimeChange;
+    id _unrecordedRealTimeTimeChange;
+    id _warmupPeriodInMinutes;
+    id _wearDurationInMinutes;
+    id _streamingAuthenticationData;
+    id _bleAddress;
+    id _crc;
+    id currentReadings;
+    id currentErrors;
+    id historicReadings;
+    id historicErrors;
+    id realTimeReadings;
+    id realTimeErrors;
+    id rawScans;
+    id rawStreamings;
+    id selectionRanges;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC4iSAS10UserEntity * _user;
+@property (nonatomic,copy) NSString * _serialNumber;
+@property (nonatomic,retain) NSData * _uniqueIdentifier;
+@property (nonatomic) int _personalizationIndex;
+@property (nonatomic,retain) NSData * _initialPatchInformation;
+@property (nonatomic) int _enableStreamingTimestamp;
+@property (nonatomic) int _streamingUnlockCount;
+@property (nonatomic) long long _sensorStartTimestampUTC;
+@property (nonatomic) long long _sensorStartTimestampLocal;
+@property (nonatomic,copy) NSString * _sensorStartTimeZone;
+@property (nonatomic) long long _lastScanTimestampUTC;
+@property (nonatomic) long long _lastScanTimestampLocal;
+@property (nonatomic,copy) NSString * _lastScanTimeZone;
+@property (nonatomic) int _lastScanSampleNumber;
+@property (nonatomic) bool _endedEarly;
+@property (nonatomic,retain) NSData * _compositeState;
+@property (nonatomic,retain) NSData * _attenuationState;
+@property (nonatomic,retain) NSData * _measurementState;
+@property (nonatomic) bool _lsaDetected;
+@property (nonatomic) long long _unrecordedHistoricTimeChange;
+@property (nonatomic) long long _unrecordedRealTimeTimeChange;
+@property (nonatomic) int _warmupPeriodInMinutes;
+@property (nonatomic) int _wearDurationInMinutes;
+@property (nonatomic,retain) NSData * _streamingAuthenticationData;
+@property (nonatomic,retain) NSData * _bleAddress;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS20CurrentReadingEntity : RealmSwiftObject {
+    id _id;
+    id _sensor;
+    id _timestampUTC;
+    id _timestampLocal;
+    id _timeZone;
+    id _glucoseValue;
+    id _rateOfChange;
+    id _crc;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
+@property (nonatomic) long long _timestampUTC;
+@property (nonatomic) long long _timestampLocal;
+@property (nonatomic,copy) NSString * _timeZone;
+@property (nonatomic) double _glucoseValue;
+@property (nonatomic) double _rateOfChange;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS13RealmDatabase : _TtCs12_SwiftObject {
+    id manager;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSASP33_FB9ECB77F1B4D0AAE6FEEF518C1115AA12RealmManager : _TtCs12_SwiftObject {
+    id creator;
+    id permanentReferenceThread;
+    id permanentReference;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS21PartnerNfcOsFunctions : _TtCs12_SwiftObject {
+    id collected_data;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS11ScanResults : _TtCs12_SwiftObject {
+    id sensor;
+    id newCompositeState;
+    id newAttenuationState;
+    id newMeasurementState;
+    id sensorEndedEarly;
+    id lsaDetected;
+    id scanTimeInformation;
+    id timeChangeSinceLastScanInMilliseconds;
+    id historicReadings;
+    id historicErrors;
+    id realTimeReading;
+    id realTimeError;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS20DataProcessingNative : _TtCs12_SwiftObject {
+    id processingType;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS26NonActionableConfiguration : _TtCs12_SwiftObject {
+    id isEnabled;
+    id isVelocityCheckEnabled;
+    id isProjectedLowGlucoseCheckEnabled;
+    id minimumActionableId;
+    id minimumActionableValue;
+    id maximumActionableValue;
+    id minimumNegativeActionableVelocity;
+    id maximumPositiveActionableVelocity;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS22DefaultNfcRfModuleGen2 : _TtCs12_SwiftObject {
+    id gen2Processing;
+    id osFunctions;
+    id numberRetries;
+    id authFailureEventHandler;
+    id commandSemaphore;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS12MemoryRegion : _TtCs12_SwiftObject {
+    id startAddress;
+    id numberOfBytes;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS10UserEntity : RealmSwiftObject {
+    id _id;
+    id _name;
+    id _crc;
+    id sensors;
+    id currentErrors;
+    id currentReadings;
+    id historicReadings;
+    id realTimeReadings;
+    id historicErrors;
+    id realTimeErrors;
+    id rawScans;
+    id rawStreamings;
+    id selectionRanges;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,copy) NSString * _name;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS25DataProcessingScanOutputs : _TtC4iSAS21DataProcessingOutputs {
+    id personalizationIndex;
+    id patchEvents;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS10PatchEvent : _TtCs12_SwiftObject {
+    id id;
+    id errorCode;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS21DataProcessingFactory : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS18AlarmConfiguration : _TtCs12_SwiftObject {
+    id lowGlucoseAlarmThreshold;
+    id highGlucoseAlarmThreshold;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS21HistoricReadingEntity : RealmSwiftObject {
+    id _id;
+    id _sensor;
+    id _sampleNumber;
+    id _timestampUTC;
+    id _timestampLocal;
+    id _timeZone;
+    id _glucoseValue;
+    id _timeChangeBefore;
+    id _crc;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
+@property (nonatomic) int _sampleNumber;
+@property (nonatomic) long long _timestampUTC;
+@property (nonatomic) long long _timestampLocal;
+@property (nonatomic,copy) NSString * _timeZone;
+@property (nonatomic) double _glucoseValue;
+@property (nonatomic) long long _timeChangeBefore;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS20SelectedSensorLookup : _TtCs12_SwiftObject {
+    id database;
+    id lookupTable;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS12GlucoseValue : _TtCs12_SwiftObject {
+    id id;
+    id dataQuality;
+    id value;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS18RawStreamingEntity : RealmSwiftObject {
+    id _id;
+    id _sensor;
+    id _timestampUTC;
+    id _timestampLocal;
+    id _timeZone;
+    id _payload;
+    id _crc;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
+@property (nonatomic) long long _timestampUTC;
+@property (nonatomic) long long _timestampLocal;
+@property (nonatomic,copy) NSString * _timeZone;
+@property (nonatomic,retain) NSData * _payload;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS14SequenceEntity : RealmSwiftObject {
+    id _id;
+    id _nextUserId;
+    id _nextSensorId;
+    id _nextHistoricReadingId;
+    id _nextHistoricErrorId;
+    id _nextRealTimeReadingId;
+    id _nextRealTimeErrorId;
+    id _nextCurrentReadingId;
+    id _nextCurrentErrorId;
+    id _nextRawScanId;
+    id _nextRawStreamingId;
+    id _nextSensorSelectionRangeId;
+}
+@property (nonatomic) int _id;
+@property (nonatomic) int _nextUserId;
+@property (nonatomic) int _nextSensorId;
+@property (nonatomic) int _nextHistoricReadingId;
+@property (nonatomic) int _nextHistoricErrorId;
+@property (nonatomic) int _nextRealTimeReadingId;
+@property (nonatomic) int _nextRealTimeErrorId;
+@property (nonatomic) int _nextCurrentReadingId;
+@property (nonatomic) int _nextCurrentErrorId;
+@property (nonatomic) int _nextRawScanId;
+@property (nonatomic) int _nextRawStreamingId;
+@property (nonatomic) int _nextSensorSelectionRangeId;
+- (id)init;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS21DataProcessingOutputs : _TtCs12_SwiftObject {
+    id estimatedSensorStartTimestamp;
+    id estimatedSensorEndTimestamp;
+    id insertionIsConfirmed;
+    id sensorHasBeenRemoved;
+    id newCompositeState;
+    id newAttenuationState;
+    id newMeasurementState;
+    id algorithmResults;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS16AlgorithmResults : _TtCs12_SwiftObject {
+    id historicGlucose;
+    id realTimeGlucose;
+    id rateOfChange;
+    id trendArrow;
+    id alarm;
+    id isActionable;
+    id esaMinutesToWait;
+    id lsaDetected;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS24DefaultMathRuntimeChecks : _TtCs12_SwiftObject
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS26SensorSelectionRangeEntity : RealmSwiftObject {
+    id _id;
+    id _sensor;
+    id _startTimestampUTC;
+    id _endTimestampUTC;
+    id _crc;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
+@property (nonatomic) long long _startTimestampUTC;
+@property (nonatomic) long long _endTimestampUTC;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS17GlucoseValueRange : _TtCs12_SwiftObject {
+    id g_min;
+    id g_max;
+}
+@end
+
+
+/*****************************************************************/
+
+@interface _TtC4iSAS18CurrentErrorEntity : RealmSwiftObject {
+    id _id;
+    id _sensor;
+    id _timestampUTC;
+    id _timestampLocal;
+    id _timeZone;
+    id _dataQuality;
+    id _crc;
+}
+@property (nonatomic) int _id;
+@property (nonatomic,retain) _TtC4iSAS12SensorEntity * _sensor;
+@property (nonatomic) long long _timestampUTC;
+@property (nonatomic) long long _timestampLocal;
+@property (nonatomic,copy) NSString * _timeZone;
+@property (nonatomic) int _dataQuality;
+@property (nonatomic) int _crc;
+@property (nonatomic,readonly) long long hash;
++ (id)primaryKey;
++ (id)indexedProperties;
+- (id)init;
 - (void).cxx_destruct;
 @end
 
@@ -21267,6 +22676,62 @@ fillInImageDetails:forUUID: (IMP @0x100af728c);
 - (void)authTokenWithCompletion:(void (^ /* unknown block signature */)(void))v1;
 - (void)authTokenForcingRefresh:(bool)v1 completion:(void (^ /* unknown block signature */)(void))v2;
 - (void)deleteWithCompletion:(void (^ /* unknown block signature */)(void))v1;
+- (void).cxx_destruct;
+@end
+
+
+/*****************************************************************/
+
+@interface FIRCrashlytics : NSObject<FIRLibrary,FIRCrashlyticsInstanceProvider> {
+    bool _didPreviouslyCrash;
+    NSString * _googleAppID;
+    FIRCLSDataCollectionArbiter * _dataArbiter;
+    FIRCLSFileManager * _fileManager;
+    FIRCLSReportManager * _reportManager;
+    FIRCLSReportUploader * _reportUploader;
+    FIRCLSExistingReportManager * _existingReportManager;
+    FIRCLSAnalyticsManager * _analyticsManager;
+    FIRCLSManagerData * _managerData;
+}
+@property (nonatomic) bool didPreviouslyCrash;
+@property (copy,nonatomic) NSString * googleAppID;
+@property (retain,nonatomic) FIRCLSDataCollectionArbiter * dataArbiter;
+@property (retain,nonatomic) FIRCLSFileManager * fileManager;
+@property (retain,nonatomic) FIRCLSReportManager * reportManager;
+@property (retain,nonatomic) FIRCLSReportUploader * reportUploader;
+@property (retain,nonatomic) FIRCLSExistingReportManager * existingReportManager;
+@property (retain,nonatomic) FIRCLSAnalyticsManager * analyticsManager;
+@property (retain,nonatomic) FIRCLSManagerData * managerData;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+@property (readonly,copy) NSString * description;
+@property (readonly,copy) NSString * debugDescription;
++ (void)load;
++ (id)componentsToRegister;
++ (id)crashlytics;
++ (void)setDevelopmentPlatformName:(id)v1;
++ (void)setDevelopmentPlatformVersion:(id)v1;
+- (id)initWithApp:(id)v1 appInfo:(id)v2 installations:(id)v3 analytics:(id)v4;
+- (void)setCrashlyticsCollectionEnabled:(bool)v1;
+- (bool)isCrashlyticsCollectionEnabled;
+- (bool)didCrashDuringPreviousExecution;
+- (void)processDidCrashDuringPreviousExecution;
+- (void)log:(id)v1;
+- (void)logWithFormat:(id)v1;
+- (void)logWithFormat:(id)v1 arguments:(char *)v2;
+- (void)checkForUnsentReportsWithCompletion:(void (^ /* unknown block signature */)(void))v1;
+- (void)checkAndUpdateUnsentReportsWithCompletion:(void (^ /* unknown block signature */)(void))v1;
+- (void)sendUnsentReports;
+- (void)deleteUnsentReports;
+- (void)setUserID:(id)v1;
+- (void)setCustomValue:(id)v1 forKey:(id)v2;
+- (void)setCustomKeysAndValues:(id)v1;
+- (id)developmentPlatformName;
+- (void)setDevelopmentPlatformName:(id)v1;
+- (id)developmentPlatformVersion;
+- (void)setDevelopmentPlatformVersion:(id)v1;
+- (void)recordError:(id)v1;
+- (void)recordExceptionModel:(id)v1;
 - (void).cxx_destruct;
 @end
 
