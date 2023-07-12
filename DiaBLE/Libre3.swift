@@ -165,6 +165,20 @@ class Libre3: Sensor {
         let uncappedHistoricMgDl: Int
         let temperature: Int
         let fastData: Data
+
+        // 062DEE00FCFF0000945CF12CF0000BEE00F000010C530E72482F130000 (29 bytes):
+        //   062D: lifeCount 11526 (0x2D06)
+        //   EE00: readingMgDl 238
+        //   FCFF: rateOfChange -4 (2**16 - 0xFFFC)
+        //   0000: esaDuration
+        //   945C: projectedGlucose 23700 (0x5C94)
+        //   F12C: historicalLifeCount 11505 (0x2CF1)
+        //   F000: historicalReading 240
+        //   0B: 00001 011 (bitfields 3: trend, 5: rest)
+        //   EE00: uncappedCurrentMgDl 238
+        //   F000: uncappedHistoricMgDl 240
+        //   010C: temperature 3073 (0x0C01)
+        //   530E72482F130000: fastData
     }
 
 
@@ -211,7 +225,7 @@ class Libre3: Sensor {
         //     uint16_t readingMgDl;
         //     uint16_t historicMgDl;
         //     int getHistoricLifeCount() const {
-        //         return round((lifeCount-19.0)/5.0)*5; //  -17?
+        //         return round((lifeCount-19.0)/5.0)*5; //  - 17-minute latency?
         //     };
         // }
         //
@@ -745,19 +759,6 @@ class Libre3: Sensor {
 
     func parseCurrentReading(_ data: Data) {  // -> GlucoseData
         // TODO
-        // 062DEE00FCFF0000945CF12CF0000BEE00F000010C530E72482F130000 (29 bytes):
-        // 062D: lifeCount 11526 (0x2D06)
-        // EE00: readingMgDl 238
-        // FCFF: rateOfChange -4 (2**16 - 0xFFFC)
-        // 0000: esaDuration
-        // 945C: projectedGlucose 23700 (0x5C94)
-        // F12C: historicalLifeCount 11505 (0x2CF1)
-        // F000: historicalReading 240
-        // 0B: 00001 011 (bitfields 3: trend, 5: rest)
-        // EE00: uncappedCurrentMgDl 238
-        // F000: uncappedHistoricMgDl 240
-        // 010C: temperature 3073 (0x0C01)
-        // 530E72482F130000: fastData
     }
 
 
