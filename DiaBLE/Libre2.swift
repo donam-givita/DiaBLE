@@ -49,6 +49,11 @@ let libre2DumpMap = [
 
 // https://github.com/ivalkou/LibreTools/blob/master/Sources/LibreTools/Sensor/Libre2.swift
 
+
+// Full definitions of the multi-stage challenge/response protocols used in "Gen 2 security" Sense/US/CA/AU sensors:
+// https://github.com/gui-dos/DiaBLE/blob/main/DiaBLE%20Playground.swiftpm/Gen2.swift
+
+
 class Libre2: Sensor {
 
     static let key: [UInt16] = [0xA0C5, 0x6860, 0x0000, 0x14C6]

@@ -1,6 +1,10 @@
 import Foundation
 
 
+// Full legacy code leveraging @bubbledevteam's glucose.space server:
+// https://github.com/gui-dos/DiaBLE/blob/main/DiaBLE%20Playground.swiftpm/OOP.swift
+
+
 struct OOP {
 
     enum TrendArrow: Int, CustomStringConvertible, CaseIterable, Codable {
