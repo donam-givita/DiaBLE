@@ -12109,7 +12109,7 @@ struct anonymous_type_19 {
 - (id)init;
 - (bool)loadBinaryImagesFromFile:(id)v1;
 - (id)loadedBinaryImageForPC:(unsigned long long)v1;
-fillInImageDetails:forUUID: (IMP @0x100d82b40);
+fillInImageDetails:forUUID: (IMP @0x100d8341c);
 - (id)frameForAddress:(unsigned long long)v1;
 - (bool)updateStackFrame:(id)v1;
 - (void).cxx_destruct;
