@@ -268,8 +268,13 @@ class Sensor: ObservableObject, Logging {
     var streamingUnlockCode: UInt32 = 42
     @Published var streamingUnlockCount: UInt16 = 0
 
+
     // Gen2
-    var streamingAuthenticationData: Data = Data(count: 10)    // formed when passed as third inout argument to verifyEnableStreamingResponse()
+    var streamingContext: Int = 0    // returned by getNfcAuthenticatedCommandBLE(command:...)
+
+    /// formed when passed as third inout argument to verifyEnableStreamingResponse()
+    /// 10 bytes in older US2 models, 12 bytes in new  ones
+    var streamingAuthenticationData: Data = Data()
 
 
     init(transmitter: Transmitter? = nil, main: MainDelegate? = nil) {

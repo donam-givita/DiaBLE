@@ -20,7 +20,7 @@ class Gen2 {
     static let GEN2_CMD_GET_PVALUES                   =  6145
     static let GEN2_CMD_INIT_LIB                      =     0
     static let GEN2_CMD_VERIFY_RESPONSE               = 22321
-//  static let GEN2_CMD_PERFORM_SENSOR_CONTEXT_CRYPTO = 18712
+    //  static let GEN2_CMD_PERFORM_SENSOR_CONTEXT_CRYPTO = 18712
 
 
     enum Gen2Error: Int, Error, CaseIterable {
@@ -38,7 +38,7 @@ class Gen2 {
         case GEN2_ERROR_MISSING_NATIVE      = -98
         case GEN2_ERROR_PROCESS_ERROR       = -99
 
-        init(value: Int) {
+        init(_ value: Int) {
             for error in Gen2Error.allCases {
                 if value == error.rawValue {
                     self = error
@@ -91,8 +91,8 @@ class Gen2 {
         return p1(command: GEN2_CMD_END_SESSION, context, nil, nil)
     }
 
-    static func getNfcAuthenticatedCommandBLE(command: Int, uid: SensorUid, challenge: Data, output: inout Data) -> Int {
-        let authContext = p1(command: GEN2_CMD_GET_AUTH_CONTEXT, 0, uid, nil)
+    static func getNfcAuthenticatedCommandBLE(command: Int, uid: SensorUid, i2: Int, challenge: Data, output: inout Data) -> Int {
+        let authContext = p1(command: GEN2_CMD_GET_AUTH_CONTEXT, i2, uid, nil)
         if authContext < 0 {
             return authContext
         }
@@ -173,13 +173,39 @@ class Gen2 {
         return p2(command: GEN2_CMD_DECRYPT_NFC_STREAM, p1: context, Data([UInt8(fromBlock), UInt8(count)]), data)
     }
 
-    static func streamingContext(uid: SensorUid, challenge: Data, output: inout Data) -> Int {
-        return getNfcAuthenticatedCommandBLE(command: GEN_SECURITY_CMD_GET_SESSION_INFO, uid: uid, challenge: challenge, output: &output)
+
+    static func createSecureStreamingSession(sensor: Sensor, data: Data) -> Int {
+        if createSecureSession(context: sensor.streamingContext, 1, data: data) != 0 {
+            _ = endSession(context: sensor.streamingContext)
+            sensor.streamingContext = 0
+            return 0
+        }
+        return sensor.streamingContext
     }
 
-    static func decryptStreamingData(context: Int, data: Data) -> Result {
-        return p2(command: GEN2_CMD_DECRYPT_BLE_DATA, p1: context, data, nil)
+
+    // TODO:
+    static func getStreamingUnlockPayload(sensor: Sensor, challenge: Data) -> Data {
+        if sensor.streamingContext > 0 {
+            _ = endSession(context: sensor.streamingContext)
+        }
+        var i = 0
+        var payload = Data(count: 19)
+        do {
+            if sensor.streamingAuthenticationData.count == 12 {
+                i = Int(UInt16(sensor.streamingAuthenticationData[10...11]))
+            } else if sensor.streamingAuthenticationData.count < 10 {
+                throw Gen2Error(0) // TODO: "unexpected auth data size"
+            } else {
+                i = -1
+            }
+            let extendedChallenge = sensor.streamingAuthenticationData.prefix(10) + challenge
+            sensor.streamingContext = getNfcAuthenticatedCommandBLE(command: GEN_SECURITY_CMD_GET_SESSION_INFO, uid: sensor.uid, i2: i, challenge: extendedChallenge, output: &payload)
+        } catch {
+        }
+        return payload
     }
+
 
     static func verifyCommandResponse(context: Int, _ i2: Int, challenge: Data, output: inout Data) -> Int {
         let commandArg = Data([UInt8(i2), UInt8(output.count)])
@@ -212,6 +238,12 @@ class Gen2 {
         output[0 ..< 6] = Data(verifyOutput.prefix(6))
         return 0
     }
+
+
+    static func decryptStreamingData(context: Int, data: Data) -> Result {
+        return p2(command: GEN2_CMD_DECRYPT_BLE_DATA, p1: context, data, nil)
+    }
+
 
 }
 
