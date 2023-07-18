@@ -19,8 +19,8 @@ class Gen2 {
     static let GEN2_CMD_GET_NFC_AUTHENTICATED_CMD     =  6440
     static let GEN2_CMD_GET_PVALUES                   =  6145
     static let GEN2_CMD_INIT_LIB                      =     0
-    static let GEN2_CMD_PERFORM_SENSOR_CONTEXT_CRYPTO = 18712
     static let GEN2_CMD_VERIFY_RESPONSE               = 22321
+//  static let GEN2_CMD_PERFORM_SENSOR_CONTEXT_CRYPTO = 18712
 
 
     enum Gen2Error: Int, Error, CaseIterable {
@@ -106,8 +106,8 @@ class Gen2 {
         return authContext
     }
 
-    static func getNfcAuthenticatedCommandNfc(command: Int, uid: SensorUid, challenge: Data, output: inout Data) -> Int {
-        let authContext = p1(command: GEN2_CMD_GET_AUTH_CONTEXT, 0, uid, nil)
+    static func getNfcAuthenticatedCommandNfc(command: Int, uid: SensorUid, i2: Int, challenge: Data, output: inout Data) -> Int {
+        let authContext = p1(command: GEN2_CMD_GET_AUTH_CONTEXT, i2, uid, nil)
         if authContext < 0 {
             return authContext
         }
@@ -118,7 +118,8 @@ class Gen2 {
             return result.error != nil ? result.error!.rawValue : Gen2Error.GEN2_ERROR_PROCESS_ERROR.rawValue
         }
         output = result.data!
-        output[0 ... 3] = Data([2, 0xA1, 7, UInt8(command)])
+        let manufacturerCode = !uid.isEmpty ? uid[6] : 0x07
+        output[0 ... 3] = Data([2, 0xA1, manufacturerCode, UInt8(command)])
         return authContext
     }
 
@@ -126,11 +127,16 @@ class Gen2 {
 #if !os(watchOS)
 
     static func getAuthenticatedCommand(nfc: NFC, command: Int, output: inout Data) async throws -> Int {
+        let attribute = try await nfc.send(nfc.sensor.nfcCommand(.readAttribute))
+        if attribute.count == 0 {
+            return -1
+        }
+        let i = Int(UInt16(attribute[2...3]))
         let challenge = try await nfc.send(nfc.sensor.nfcCommand(.readChallenge))
         if challenge.count == 0 {
             return -1
         }
-        return getNfcAuthenticatedCommandNfc(command: command, uid: nfc.sensor.uid, challenge: challenge, output: &output)
+        return getNfcAuthenticatedCommandNfc(command: command, uid: nfc.sensor.uid, i2: i, challenge: challenge, output: &output)
     }
 
     static func communicateWithPatch(nfc: NFC) async throws -> Int {
