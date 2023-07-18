@@ -27,6 +27,8 @@
 		C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* App.swift */; };
 		C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
 		C5BE8E5B29916D3600604237 /* DiaBLE Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C59960DF2981E381005999C2 /* DiaBLE Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C5BF60A82A66630D005DC208 /* Gen2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF60A72A66630D005DC208 /* Gen2.swift */; };
+		C5BF60A92A66630D005DC208 /* Gen2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BF60A72A66630D005DC208 /* Gen2.swift */; };
 		C5D3B2692991302000CE92A0 /* MiaoMiao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D3B2682991302000CE92A0 /* MiaoMiao.swift */; };
 		C5D3B26A2991302000CE92A0 /* MiaoMiao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D3B2682991302000CE92A0 /* MiaoMiao.swift */; };
 		C5E015E02989B0EA00F6EDF9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C5E015DF2989B0EA00F6EDF9 /* README.md */; };
@@ -139,6 +141,7 @@
 		C5AAA6182981CF7000CA3EC1 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5AAA61E2981CF7200CA3EC1 /* DiaBLE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DiaBLE.entitlements; sourceTree = "<group>"; };
+		C5BF60A72A66630D005DC208 /* Gen2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gen2.swift; sourceTree = "<group>"; };
 		C5D3B2682991302000CE92A0 /* MiaoMiao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiaoMiao.swift; sourceTree = "<group>"; };
 		C5DED87529899B8A00164AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5E015DF2989B0EA00F6EDF9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 				C5E4007E29825E7B0021C6B7 /* Bubble.swift */,
 				C5D3B2682991302000CE92A0 /* MiaoMiao.swift */,
 				C5E4008129825E8B0021C6B7 /* Libre2.swift */,
+				C5BF60A72A66630D005DC208 /* Gen2.swift */,
 				C5E4008429825E990021C6B7 /* Libre3.swift */,
 				C5E4008729825EA20021C6B7 /* LibrePro.swift */,
 				C5E4008A29825EC40021C6B7 /* Events.swift */,
@@ -463,6 +467,7 @@
 				C5E4008929825EA20021C6B7 /* LibrePro.swift in Sources */,
 				C5E4007A29825E450021C6B7 /* Sensor.swift in Sources */,
 				C5E4008029825E7C0021C6B7 /* Bubble.swift in Sources */,
+				C5BF60A92A66630D005DC208 /* Gen2.swift in Sources */,
 				C5E4009729825F120021C6B7 /* LibreLink.swift in Sources */,
 				C5D3B26A2991302000CE92A0 /* MiaoMiao.swift in Sources */,
 				C5E4008329825E8B0021C6B7 /* Libre2.swift in Sources */,
@@ -509,6 +514,7 @@
 				C51F1B0929B243AE0014A500 /* Dexcom.swift in Sources */,
 				C5E4006029825C930021C6B7 /* Monitor.swift in Sources */,
 				C5E4008529825E990021C6B7 /* Libre3.swift in Sources */,
+				C5BF60A82A66630D005DC208 /* Gen2.swift in Sources */,
 				C5D3B2692991302000CE92A0 /* MiaoMiao.swift in Sources */,
 				C5E4006329825C930021C6B7 /* HamburgerMenu.swift in Sources */,
 				C5E4007429825E050021C6B7 /* MainDelegate.swift in Sources */,
