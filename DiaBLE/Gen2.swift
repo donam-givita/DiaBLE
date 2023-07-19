@@ -20,7 +20,7 @@ class Gen2 {
     static let GEN2_CMD_GET_PVALUES                   =  6145
     static let GEN2_CMD_INIT_LIB                      =     0
     static let GEN2_CMD_VERIFY_RESPONSE               = 22321
-    //  static let GEN2_CMD_PERFORM_SENSOR_CONTEXT_CRYPTO = 18712
+//  static let GEN2_CMD_PERFORM_SENSOR_CONTEXT_CRYPTO = 18712
 
 
     enum Gen2Error: Int, Error, CaseIterable {
@@ -178,7 +178,6 @@ class Gen2 {
         if createSecureSession(context: sensor.streamingContext, 1, data: data) != 0 {
             _ = endSession(context: sensor.streamingContext)
             sensor.streamingContext = 0
-            return 0
         }
         return sensor.streamingContext
     }
@@ -219,6 +218,7 @@ class Gen2 {
     }
 
 
+    // TODO: newer version returns a Boolean and passes 9 as arg
     static func verifyEnableStreamingResponse(context: Int, challenge: Data, authenticationData: inout Data, output: inout Data) -> Int {
         var verifyOutput = Data(count: 9)
         let verify = verifyCommandResponse(context: context, 0, challenge: challenge, output: &verifyOutput)
